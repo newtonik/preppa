@@ -3,7 +3,8 @@ package com.preppa.web.pages;
 import java.util.Date;
 
 /**
- *
+ * Index page.
+ * 
  * @author pg
  */
 public class Index {
