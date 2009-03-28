@@ -6,7 +6,7 @@ import java.util.Date;
  * Index page.
  *
  * 
- * @author pg
+ * @author pg 1
  */
 public class Index {
 
