@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Index page.
+ *
  * 
  * @author pg
  */
