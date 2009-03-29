@@ -10,7 +10,9 @@ import java.util.Date;
  */
 public class Index {
 
-    public Date getCurrentTime() {
-        return new Date();
+    public String getCurrentTime() {
+        Date today = new Date();
+        String message = ". Tapestry is too cool!";
+        return today + message;
     }
 }
