@@ -3,8 +3,11 @@
  */
 package com.preppa.web.services;
 
+import com.preppa.web.data.UserDAO;
+import com.preppa.web.data.UserDAOHibernate;
 import java.io.IOException;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
@@ -26,15 +29,16 @@ public final class AppModule {
     /**
      * Default Constructor.
      */
-    private AppModule() {}
+    private AppModule() {
+    }
 
     /**
      * Tapestry method to bind a service binder.
      * @param binder ServiceBinder.
      */
     public static void bind(ServiceBinder binder) {
-    // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
-
+        // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
+        binder.bind(UserDAO.class, UserDAOHibernate.class);
     // Make bind() calls on the binder object to define most IoC services.
     // Use service builder methods (example below) when the implementation
     // is provided inline, or requires more initialization than simply
@@ -54,6 +58,7 @@ public final class AppModule {
         // the first locale name is the default when there's no reasonable match).
 
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,cn,de,es,fr,ja,ko,pt,ru,zh");
+
     }
 
     /**
@@ -84,7 +89,7 @@ public final class AppModule {
              * @throws IOException if something goes wrong.
              */
             public boolean service(Request request, Response response, RequestHandler handler)
-                throws IOException {
+                    throws IOException {
                 long startTime = System.currentTimeMillis();
 
                 try {
@@ -107,19 +112,16 @@ public final class AppModule {
      * @return service handler.
      */
     public static RequestFilter buildUtf8Filter(
-        @InjectService("RequestGlobals") final RequestGlobals requestGlobals)
-    {
-        return new RequestFilter()
-        {
+            @InjectService("RequestGlobals") final RequestGlobals requestGlobals) {
+        return new RequestFilter() {
+
             public boolean service(Request request, Response response, RequestHandler handler)
-                throws IOException
-            {
+                    throws IOException {
                 requestGlobals.getHTTPServletRequest().setCharacterEncoding("UTF-8");
                 return handler.service(request, response);
             }
         };
     }
-
 
     /**
      * This is a contribution to the RequestHandler service configuration. This is how we extend
@@ -138,5 +140,9 @@ public final class AppModule {
         //configuration.add("Timing", filter);
 
         configuration.add("Utf8Filter", utf8Filter);
+    }
+
+    public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
+        configuration.add("com.preppa.web.entities");
     }
 }
