@@ -3,7 +3,7 @@
         <title>Create User</title>
     </head>
     <body>
-          <t:beaneditform object="user"/>
+          <t:beaneditform t:id="user"/>
 
     </body>
 

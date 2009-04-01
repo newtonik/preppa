@@ -15,9 +15,9 @@ import org.slf4j.Logger;
  *
  * @author newtonik
  */
-public class UserDAOHibernate extends AbstractHibernateDAO<User, Integer> implements UserDAO
+public class UserDAOImpl extends AbstractHibernateDAO<User, Integer> implements UserDAO
 {
-    public UserDAOHibernate(Logger logger, Session session)
+    public UserDAOImpl(Logger logger, Session session)
     {
         super(logger, session);
     }
@@ -45,5 +45,4 @@ public class UserDAOHibernate extends AbstractHibernateDAO<User, Integer> implem
         return findByQuery(sqlString.toString());
     }
 
-   
 }

@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.preppa.web.pages.user;
 
-
+import com.preppa.web.data.UserDAO;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import org.apache.tapestry5.annotations.Property;
@@ -20,34 +19,29 @@ import org.hibernate.Session;
  */
 public class CreateUser {
 
-    
+ 
     @Property
     private User user;
-
-
     @InjectPage
     private Index index;
+    @Inject
+    private UserDAO userDAO;
 
     @Inject
     private Session session;
-
-    //Registry iocRegistry;
-//
-    //UserDAO userDAO = iocRegistry.getService(UserDAO.class);
-
-    
     //private Timestamp currentTime;
-
-
-    @CommitAfter
-    Object onSuccess()
-    {
-    
-
-
-        session.persist(user);
-        //userDAO.doSave(user);
-        return index;
+    void onActivate(User user) {
+        this.user = user;
     }
 
+    Object onPassivate() {
+        return user;
+    }
+
+    @CommitAfter
+    Object onSuccess() {
+        User doSave = userDAO.doSave(user);
+        session.persist(user);
+        return index;
+    }
 }

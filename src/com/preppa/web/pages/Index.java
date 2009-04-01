@@ -1,12 +1,15 @@
 package com.preppa.web.pages;
 
+import com.preppa.web.data.UserDAO;
 import com.preppa.web.entities.User;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.tapestry5.TapestryFilter;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.ioc.Registry;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
 
@@ -46,13 +49,16 @@ public class Index {
     public boolean getUserExists() {
         return userExists;
     }
-
+    //@Inject
+    //private Session session;
     @Inject
-    private Session session;
+    private UserDAO userDAO; 
+
 
     public List<User> getUsers()
     {
-        return session.createCriteria(User.class).list();
+        //return session.createCriteria(User.class).list();
+        return userDAO.findAll();
     }
     @OnEvent(value = "submit", component = "userInputForm")
     Object onFormSubmit() {

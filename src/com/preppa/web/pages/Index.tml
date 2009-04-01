@@ -12,5 +12,12 @@
             <t:actionlink>Start guessing</t:actionlink>
         </p>
 
+         <p>
+            [<t:pagelink t:page="user/create">Create User</t:pagelink>]
+        </p>
+
+        <p>
+             <t:grid source="users"/>
+        </p>
     </body>
 </html>

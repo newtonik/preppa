@@ -4,7 +4,6 @@
  */
 package com.preppa.web.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,11 +22,11 @@ import org.apache.tapestry5.beaneditor.Validate;
  */
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User {
     @Id
     @NonVisual
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
 
@@ -97,7 +96,7 @@ public class User implements Serializable {
 //    public User(Integer id) {
 //        this.id = id;
 //    }
-    public int getId() {
+    public  Integer getId() {
         return id;
     }
 
