@@ -7,6 +7,7 @@ package com.preppa.web.pages.user;
 import com.preppa.web.data.UserDAO;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
+import java.util.Date;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
@@ -38,10 +39,15 @@ public class CreateUser {
         return user;
     }
 
+    void onSubmit()
+    {
+        user.setCreatedAt(new Date());
+        user.setUpdatedAt(new Date());
+    }
     @CommitAfter
     Object onSuccess() {
-        User doSave = userDAO.doSave(user);
-        session.persist(user);
+        userDAO.doSave(user);
+        //session.persist(user);
         return index;
     }
 }

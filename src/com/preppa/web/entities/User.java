@@ -1,9 +1,11 @@
-/*
+    /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.preppa.web.entities;
 
+import com.preppa.web.data.Gender;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
 
@@ -22,46 +23,54 @@ import org.apache.tapestry5.beaneditor.Validate;
  */
 @Entity
 @Table(name = "users")
-public class User {
-    @Id
-    @NonVisual
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+public class User implements Serializable {
 
-
-    @Validate("required")
+    private long id;
     private String email;
-    @Column(name = "firstName")
-    @Validate("required")
-    private String firstName = "John";
-    @Column(name = "lastName")
-    @Validate("required")
-    private String lastName = "Smith";
-
-    
-
-
-    private String sex;
-
-    //@Validate("required")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    private String firstName;
+    private String lastName;
     private Date dob;
-
-    @NonVisual
-    @Temporal(TemporalType.TIMESTAMP)
+    private Gender gender;
     private Date createdAt;
-
-    @NonVisual
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    //@Validate("required")
+    @Id
+    @NonVisual
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, length = 20)
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
+    @Column(name = "firstName")
+    @Validate("required")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Column(name = "lastName")
+    @Validate("required")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     /**
      * @return the email
      */
+    @Validate("required")
     public String getEmail() {
         return email;
     }
@@ -73,65 +82,66 @@ public class User {
         this.email = email;
     }
 
-
-    public String getFirstName() {
-        return firstName;
+    /**
+     * @return the gender
+     */
+    public Gender getGender() {
+        return gender;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-
-
-//
-//    public User(Integer id) {
-//        this.id = id;
-//    }
-    public  Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
 
     /**
-     * @return the sex
+     * @param gender the gender to set
      */
-    public String getSex() {
-        return sex;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     /**
      * @return the dob
      */
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDob() {
         return dob;
     }
 
     /**
+     * @param dob the dob to set
+     */
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    /**
      * @return the createdAt
      */
+    @NonVisual
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getCreatedAt() {
         return createdAt;
     }
 
     /**
+     * @param createdAt the createdAt to set
+     */
+    public void setCreatedAt(Date createdAt) {
+        if (this.createdAt == null) {
+            this.createdAt = new Date();
+        }
+    }
+
+    /**
      * @return the updatedAt
      */
+    @NonVisual
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getUpdatedAt() {
         return updatedAt;
     }
 
-
+    /**
+     * @param updatedAt the updatedAt to set
+     */
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = new Date();
+    }
 }
