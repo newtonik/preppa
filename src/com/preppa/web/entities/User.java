@@ -115,7 +115,7 @@ public class User implements Serializable {
      * @return the createdAt
      */
     @NonVisual
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -125,7 +125,7 @@ public class User implements Serializable {
      */
     public void setCreatedAt(Date createdAt) {
         if (this.createdAt == null) {
-            this.createdAt = new Date();
+            this.createdAt = createdAt;
         }
     }
 
@@ -133,7 +133,7 @@ public class User implements Serializable {
      * @return the updatedAt
      */
     @NonVisual
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -142,6 +142,6 @@ public class User implements Serializable {
      * @param updatedAt the updatedAt to set
      */
     public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = new Date();
+        this.updatedAt = updatedAt;
     }
 }
