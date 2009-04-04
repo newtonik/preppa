@@ -1,0 +1,20 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <head>
+        <title>${article.title}</title>
+    </head>
+    <body>
+        <a href="#" onclick="window1.showCenter(true)">Read Article</a>
+
+        <div t:id="window1">
+            <h3>Test Window</h3>
+            <p>
+                ${article.body}
+            </p>
+        </div>
+
+
+
+    </body>
+
+
+</html>
