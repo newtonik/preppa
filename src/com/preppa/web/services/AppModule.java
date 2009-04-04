@@ -3,8 +3,16 @@
  */
 package com.preppa.web.services;
 
+import com.preppa.web.data.ArticleDAO;
+import com.preppa.web.data.ArticleDAOHibImpl;
+import com.preppa.web.data.QuestiontypeDAO;
+import com.preppa.web.data.QuestiontypeDAOHibImpl;
+import com.preppa.web.data.TestsubjectDAO;
+import com.preppa.web.data.TestsubjectDAOHibImpl;
 import com.preppa.web.data.UserDAO;
-import com.preppa.web.data.UserDAOImpl;
+import com.preppa.web.data.UserDAOHibImpl;
+import com.preppa.web.data.VocabDAO;
+import com.preppa.web.data.VocabDAOHibImpl;
 import java.io.IOException;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.hibernate.HibernateTransactionDecorator;
@@ -40,7 +48,11 @@ public final class AppModule {
      */
     public static void bind(ServiceBinder binder) {
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
-        binder.bind(UserDAO.class, UserDAOImpl.class);
+        binder.bind(UserDAO.class, UserDAOHibImpl.class);
+        binder.bind(ArticleDAO.class, ArticleDAOHibImpl.class);
+        binder.bind(VocabDAO.class, VocabDAOHibImpl.class);
+        binder.bind(TestsubjectDAO.class, TestsubjectDAOHibImpl.class);
+        binder.bind(QuestiontypeDAO.class, QuestiontypeDAOHibImpl.class);
     // Make bind() calls on the binder object to define most IoC services.
     // Use service builder methods (example below) when the implementation
     // is provided inline, or requires more initialization than simply
@@ -60,7 +72,8 @@ public final class AppModule {
         // the first locale name is the default when there's no reasonable match).
 
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,cn,de,es,fr,ja,ko,pt,ru,zh");
-
+        configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+        
     }
 
     /**

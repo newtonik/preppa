@@ -15,15 +15,15 @@ import org.slf4j.Logger;
  *
  * @author newtonik
  */
-public class UserDAOImpl extends AbstractHibernateDAO<User, Integer> implements UserDAO
+public class UserDAOHibImpl extends AbstractHibernateDAO<User, Integer> implements UserDAO
 {
-    public UserDAOImpl(Logger logger, Session session)
+    public UserDAOHibImpl(Logger logger, Session session)
     {
         super(logger, session);
     }
 
     public User findById(Integer id) {
-        SQLString sqlString = new SQLString("FROM Users users");
+        SQLString sqlString = new SQLString("FROM users users");
         if(id != null)
         {
              sqlString.addWhereClause("users.id = '" + id + "'");

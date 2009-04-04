@@ -27,7 +27,7 @@ public class CreateUser {
  
     //private Timestamp currentTime;
 
-    void onActivate(User user) {
+void onActivate(User user) {
         this.user = user;
     }
 

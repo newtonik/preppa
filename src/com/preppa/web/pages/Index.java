@@ -5,13 +5,10 @@ import com.preppa.web.entities.User;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.tapestry5.TapestryFilter;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.ioc.Registry;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.hibernate.Session;
 
 public class Index {
 

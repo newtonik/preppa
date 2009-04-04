@@ -13,6 +13,10 @@
         </p>
 
          <p>
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+        </p>
+
+         <p>
             [<t:pagelink t:page="user/create">Create User</t:pagelink>]
         </p>
 

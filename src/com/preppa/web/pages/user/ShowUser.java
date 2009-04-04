@@ -22,7 +22,7 @@ public class ShowUser {
   @Inject
   private UserDAO userDAO;
 
-  public ShowUser(Integer id) {
+  void onActivate(Integer id) {
 
     this.user = userDAO.findById(id);
   }
