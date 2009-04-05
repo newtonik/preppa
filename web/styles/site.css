@@ -1,0 +1,33 @@
+/* 
+    Document   : site
+    Created on : Apr 5, 2009, 2:02:44 PM
+    Author     : newtonik
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+div.nav-top {
+    background-color:aqua
+}
+
+body, table, input, select
+{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+}
+h1
+{
+font-family: Arial, Helvetica, sans-serif;
+font-size: 20pt;
+font-weight: bold;
+color: #204060;
+}

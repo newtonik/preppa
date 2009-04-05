@@ -1,0 +1,16 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <head>
+        <title>Preppa </title>
+    </head>
+    <body>
+        <div class="nav-top">
+            Preppa 
+        </div>
+
+        <t:body/>
+
+        <div class="nav-bottom">
+            (C) 2009 Preppa, Inc.
+        </div>
+    </body>
+</html>
