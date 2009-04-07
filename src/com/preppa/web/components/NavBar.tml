@@ -1,0 +1,9 @@
+
+<div id="logo">
+<p align="right">
+<img src="${asset:context:/images/logo.png}"
+align="left"/>
+
+
+</p>
+</div>

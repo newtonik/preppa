@@ -5,11 +5,11 @@
 
 package com.preppa.web.pages.contribution.article;
 
+import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.entities.Article;
-import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.chenillekit.tapestry.core.components.Window;
+import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  *
@@ -19,13 +19,20 @@ public class ShowArticle {
 @Persist
 @Property
 private Article article;
+@Inject
+private ArticleDAO articleDAO;
 
-@Component(parameters = {"style=bluelighting", "show=true",
-                         "modal=true", "title=literal:Window 1"})
-private Window window1;
 
-void onActivate(Integer id) {
-    
-}
+Object onActivate(int id) {
+        this.article = articleDAO.findById(id);
+
+        return this;
+    }
+
+
+
+void setarticle(Article article) {
+        this.article = article;
+    }
 
 }

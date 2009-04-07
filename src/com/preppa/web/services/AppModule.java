@@ -52,7 +52,7 @@ public final class AppModule {
         binder.bind(ArticleDAO.class, ArticleDAOHibImpl.class);
         binder.bind(VocabDAO.class, VocabDAOHibImpl.class);
         binder.bind(TestsubjectDAO.class, TestsubjectDAOHibImpl.class);
-        binder.bind(QuestiontypeDAO.class, QuestiontypeDAOHibImpl.class);
+        binder.bind(QuestiontypeDAO.class, QuestiontypeDAOHibImpl.class);       
     // Make bind() calls on the binder object to define most IoC services.
     // Use service builder methods (example below) when the implementation
     // is provided inline, or requires more initialization than simply
@@ -73,7 +73,9 @@ public final class AppModule {
 
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,cn,de,es,fr,ja,ko,pt,ru,zh");
         configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-        
+       // configuration.add("acegi.failure.url", "/loginpage/failed");
+       // configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");
+
     }
 
     /**

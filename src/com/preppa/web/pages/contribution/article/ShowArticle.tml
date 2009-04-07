@@ -1,19 +1,12 @@
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <head>
-        <title>${article.title}</title>
-    </head>
+<html t:type ="layout" t:pageTitle="${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
     <body>
-        <a href="#" onclick="window1.showCenter(true)">Read Article</a>
 
-        <div t:id="window1">
-            <h3>Test Window</h3>
-            <p>
-                ${article.body}
-            </p>
-        </div>
-
-
-
+        <h2>
+           ${article.title}
+        </h2>
+             <t:outputraw t:value="${article.body}"/>
+            
     </body>
 
 
