@@ -31,6 +31,39 @@ h1
     font-weight: bold;
     color: #204060;
 }
+#nav-menu{
+    
+}
+ #nav-menu ul
+{
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+#nav-menu li
+{
+float: left;
+margin: 0 0.15em;
+}
+
+#nav-menu li a
+{
+background: url(background.gif) #fff bottom left repeat-x;
+height: 2em;
+line-height: 2em;
+float: left;
+width: 9em;
+display: block;
+border: 0.1em solid #dcdce9;
+color: #0d2474;
+text-decoration: none;
+text-align: center;
+}
+.container {
+    display: block;
+    margin: 0 auto;
+}
 /* Header styles */
 #header {
     clear:both;
@@ -166,4 +199,17 @@ div.main {
     margin-right: auto;
     margin-left: auto;
     padding: 35px 70px;
+}
+
+/* Bean Edit Stlyes */
+div.t-beaneditor-submit {
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
 }

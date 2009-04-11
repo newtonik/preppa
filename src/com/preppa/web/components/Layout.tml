@@ -4,23 +4,23 @@
         <link rel="shortcut icon" href="${asset:context:/images/favicon.ico}"/>
     </head>
     <body>
-        <div id="header">
-            <t:navbar t:pages="ServiceStatus, contribution/article/All, contribution/article/AllArticle, contribution/article/Create, contribution/article/CreateArticle, contribution/article/Show, contribution/article/ShowArticle, contribution/questiontype/New, contribution/questiontype/NewQuestiontype, contribution/testsubject/New, contribution/testsubject/NewTestsubject, contribution/vocab/New, contribution/vocab/NewVocab, user/Create, user/CreateUser, user/Show, user/ShowUser"/>
+        <div id="header" class="container">
+            <t:navbar/>
             Preppa
         </div>
         <div class="colmask leftmenu">
             <div class="colleft">
-            <div class="col1">
-               <t:body/>
+                <div class="col1">
+                    <t:body/>
+                </div>
+                <div class="col2">
+
+                </div>
             </div>
-            <div class="col2">
-                
-            </div>
-        </div>
         </div>
         <div id="footer">
-         (C) 2009 Preppa, Inc.
+            (C) 2009 Preppa, Inc.
         </div>
- 
+
     </body>
 </html>

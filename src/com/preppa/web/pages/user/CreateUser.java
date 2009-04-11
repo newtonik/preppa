@@ -24,10 +24,9 @@ public class CreateUser {
     private Index index;
     @Inject
     private UserDAO userDAO;
- 
-    //private Timestamp currentTime;
 
-void onActivate(User user) {
+    //private Timestamp currentTime;
+    void onActivate(User user) {
         this.user = user;
     }
 
@@ -37,7 +36,7 @@ void onActivate(User user) {
 
     @CommitAfter
     Object onSuccess() {
-       
+
 
 
         user.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));

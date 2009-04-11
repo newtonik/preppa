@@ -20,7 +20,7 @@
 
                 <t:parameter name="body">
                 <t:label for="body"/>
-                <t:editor t:id="body" value="article.body" t:toolbarSet="Basic" t:width="500" t:height="1000"/>
+                <t:editor t:id="body" value="article.body" t:toolbarSet="Basic" t:width="500" t:height="800"/>
                 </t:parameter>
                
           </t:beaneditform>

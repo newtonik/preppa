@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.UniqueConstraint;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
 
@@ -22,10 +23,14 @@ import org.apache.tapestry5.beaneditor.Validate;
  * @author newtonik
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"loginId"})})
 public class User implements Serializable {
 
+    static public final String ADMIN_LOGINID = "admin";
     private long id;
+    private String loginId;
+    private String password;
+    private String password_confirmation;
     private String email;
     private String firstName;
     private String lastName;
@@ -33,8 +38,8 @@ public class User implements Serializable {
     private Gender gender;
     private Date createdAt;
     private Date updatedAt;
-
     //@Validate("required")
+
     @Id
     @NonVisual
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,6 +50,32 @@ public class User implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the loginId
+     */
+    @Column(length = 15, nullable = false)
+    @Validate("required")
+    public String getLoginId() {
+        return loginId;
+    }
+
+    /**
+     * @return the password
+     */
+    @Column(length = 32)
+    @Validate("required")
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @return the _password_confimration
+     */
+    @Validate("required")
+    public String getPassword_confirmation() {
+        return password_confirmation;
     }
 
     @Column(name = "firstName")
@@ -143,5 +174,26 @@ public class User implements Serializable {
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    /**
+     * @param loginId the loginId to set
+     */
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @param password_confimration the _password_confimration to set
+     */
+    public void setPassword_confirmation(String password_confimration) {
+        this.password_confirmation = password_confimration;
     }
 }
