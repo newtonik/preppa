@@ -1,7 +1,8 @@
 <p>
 <div id="logo">
-    <img src="${asset:context:/images/logo.png}"
+<a href="index">  <img src="${asset:context:/images/logo.png}"
          align="left"/>
+</a>
 </div>
 
     Sign In

@@ -10,4 +10,8 @@
 
 </table>
 </p>
+        <p>
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+        </p>
+
 </html>

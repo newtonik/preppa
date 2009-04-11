@@ -1,8 +1,7 @@
 <html t:type="layout" t:pageTitle="New Vocab Word" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <head>
-        <title>New Vocab</title>
-    </head>
-    <body>
+
+        <h3> Add a Vocab </h3>
+        <p>
           <t:beaneditform t:id="vocab">
                <t:parameter name="definition">
                 <t:label for="definition"/>
@@ -10,8 +9,9 @@
                 </t:parameter>
 
           </t:beaneditform>
-
-    </body>
-
-
+          
+          <br/>
+          <br/>
+          <br/>
+        </p>
 </html>

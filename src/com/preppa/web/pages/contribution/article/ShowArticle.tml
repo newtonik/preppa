@@ -5,6 +5,9 @@
         <h2>
            ${article.title}
         </h2>
+        <div id="author-time">
+            Created at ${article.createdAt}
+        </div>
         <p>
              <t:outputraw t:value="${article.body}"/>
         </p>

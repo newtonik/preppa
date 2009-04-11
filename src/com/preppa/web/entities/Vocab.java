@@ -21,6 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.apache.tapestry5.beaneditor.Validate;
 
 /**
  *
@@ -38,10 +39,12 @@ public class Vocab implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Column(name = "name", length = 255)
+    @Validate("required")
     private String name;
     @Column(name = "partofspeech", length = 255)
     private String partofspeech;
     @Lob
+    @Validate("required")
     @Column(name = "definition", length = 65535)
     private String definition;
     @Lob
