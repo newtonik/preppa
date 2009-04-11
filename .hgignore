@@ -2,3 +2,4 @@ build/*
 dist/*
 lib/tapestry-src-5-0.18/*
 nbproject/private/*
+conf/preppa.dbschema
