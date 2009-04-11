@@ -200,16 +200,25 @@ div.main {
     margin-left: auto;
     padding: 35px 70px;
 }
-
+DIV.t-beaneditor
+{
+display: block;
+background: #ffc;
+border: 2px solid silver;
+padding: 2px;
+font-family: "Trebuchet MS", Arial, sans-serif;
+}
+DIV.t-beaneditor LABEL
+{
+width: 10%;
+display: block;
+float: left;
+text-align: right;
+clear: left;
+padding-right: 3px;
+}
 /* Bean Edit Stlyes */
-div.t-beaneditor-submit {
-clear:both;
-margin-left:150px;
-width:125px;
-height:31px;
-text-align:center;
-line-height:31px;
-color:#FFFFFF;
-font-size:11px;
-font-weight:bold;
+DIV.t-beaneditor-submit {
+position: relative;
+left: 150px;
 }

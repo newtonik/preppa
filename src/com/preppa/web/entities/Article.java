@@ -56,6 +56,7 @@ public class Article implements Serializable {
         this.id = id;
     }
 
+    @Validate("required")
     public String getTitle() {
         return title;
     }
@@ -80,8 +81,8 @@ public class Article implements Serializable {
     public void setTestsubject(Testsubject testsubject) {
         this.testsubject = testsubject;
     }
-    @Validate("required")
     @Lob
+    @Validate("required")
     public String getBody() {
         return body;
     }

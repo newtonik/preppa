@@ -11,6 +11,7 @@
                 <t:label for="password"/>
                 <t:passwordfield t:id="password" value="user.password"/>
                 </t:parameter>
+                <br />
                 <t:parameter name="password_confirmation">
                 <t:label for="password_confirmation"/>
                 <t:passwordfield t:id="password_confirmation" value="user.password_confirmation"/>

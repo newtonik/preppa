@@ -5,8 +5,16 @@
         <h2>
            ${article.title}
         </h2>
+        <p>
              <t:outputraw t:value="${article.body}"/>
-            
+        </p>
+        <p>
+            <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
+        </p>
+
+        <a href="#" t:type="PageLink" t:page="Index">
+        Home
+        </a>
     </body>
 
 

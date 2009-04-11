@@ -74,8 +74,8 @@ public final class AppModule {
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,cn,de,es,fr,ja,ko,pt,ru,zh");
         configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
        // configuration.add("acegi.failure.url", "/loginpage/failed");
-       // configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");
-
+        //configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");
+        
     }
 
     /**
