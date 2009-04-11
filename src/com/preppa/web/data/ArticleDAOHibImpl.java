@@ -28,7 +28,7 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
              sqlString.addWhereClause("articles.id = '" + id + "'");
         }
 
-        return (Article) findByQuery(sqlString.toString());
+        return (Article) findByQuery(sqlString.toString()).get(0);
     }
 
 }

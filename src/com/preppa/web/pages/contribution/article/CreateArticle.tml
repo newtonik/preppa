@@ -1,11 +1,31 @@
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="New Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <head>
         <title>Create Article</title>
     </head>
-    <body>
-          <t:beaneditform t:id="article"/>
+    <tags>
+          <t:beaneditform t:id="article" align ="left">
+                <t:parameter name="title">
+                <t:label for="title"/>
+                 <t:textfield t:id="title" value="article.title" size="60"/>
+                </t:parameter>
+                 <t:parameter name="tags">
+                <t:label for="tags"/>
+                 <t:textarea t:id="tags" value="article.tags" t:width="500" t:height="100"/>
+                </t:parameter>
 
-    </body>
+                <t:parameter name="sources">
+                <t:label for="sources"/>
+                 <t:textarea t:id="sources" value="article.sources" t:width="500" t:height="100"/>
+                </t:parameter>
+
+                <t:parameter name="body">
+                <t:label for="body"/>
+                <t:editor t:id="body" value="article.body" t:toolbarSet="Basic" t:width="500" t:height="800"/>
+                </t:parameter>
+               
+          </t:beaneditform>
+ 
+    </tags>
 
 
 </html>
