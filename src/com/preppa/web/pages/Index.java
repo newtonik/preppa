@@ -1,7 +1,9 @@
 package com.preppa.web.pages;
 
 import com.preppa.web.data.UserDAO;
+import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.User;
+import com.preppa.web.entities.Vocab;
 import java.util.List;
 import java.util.Random;
 
@@ -50,12 +52,18 @@ public class Index {
     //private Session session;
     @Inject
     private UserDAO userDAO; 
-
+    @Inject
+    private VocabDAO vocabDAO;
 
     public List<User> getUsers()
     {
         //return session.createCriteria(User.class).list();
         return userDAO.findAll();
+    }
+    public List<Vocab> getVocab()
+    {
+        //return session.createCriteria(User.class).list();
+        return vocabDAO.findAll();
     }
     @OnEvent(value = "submit", component = "userInputForm")
     Object onFormSubmit() {

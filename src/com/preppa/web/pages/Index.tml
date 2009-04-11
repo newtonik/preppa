@@ -11,9 +11,13 @@
          <p>
             [<t:pagelink t:page="user/create">Create User</t:pagelink>]
         </p>
+        <p>
+            [<t:pagelink t:page="contribution/vocab/new">Create Vocab</t:pagelink>]
+        </p>
 
         <p>
              <t:grid source="users"/>
+             <t:grid source="vocab"/>
         </p>
 
 </html>
