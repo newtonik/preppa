@@ -1,0 +1,13 @@
+<html t:type ="layout" t:pageTitle="${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <body>
+
+        <h2>
+           ${article.title}
+        </h2>
+             <t:outputraw t:value="${article.body}"/>
+            
+    </body>
+
+
+</html>

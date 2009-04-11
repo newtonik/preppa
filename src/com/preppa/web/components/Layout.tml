@@ -1,0 +1,26 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <head>
+        <title> ${pageTitle} </title>
+        <link rel="shortcut icon" href="${asset:context:/images/favicon.ico}"/>
+    </head>
+    <body>
+        <div id="header" class="container">
+            <t:navbar/>
+            Preppa
+        </div>
+        <div class="colmask leftmenu">
+            <div class="colleft">
+                <div class="col1">
+                    <t:body/>
+                </div>
+                <div class="col2">
+
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            (C) 2009 Preppa, Inc.
+        </div>
+
+    </body>
+</html>

@@ -1,18 +1,23 @@
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
-    <head>
-        <title>tutorial1 Start Page</title>
-    </head>
-    <body>
-        <h1>tutorial1 Start Page</h1>
+<html t:type="layout" t:pageTitle="Preppa Home" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+   
+        <h2>
+            Welcome to Preppa
+        </h2>
 
-        <p> This is the start page for this application, a good place to start your modifications.
-            Just to prove this is live: </p>
-
-        <p> The current time is: ${currentTime}. </p>
-
+         <p>
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+        </p>
 
         <p>
-            [<t:pagelink t:page="Index">refresh</t:pagelink>]
+            <t:pagelink t:page="contribution/vocab/new">Add a new vocab word</t:pagelink>
         </p>
-    </body>
+
+         <p>
+            [<t:pagelink t:page="user/create">Create User</t:pagelink>]
+        </p>
+
+        <p>
+             <t:grid source="users"/>
+        </p>
+
 </html>

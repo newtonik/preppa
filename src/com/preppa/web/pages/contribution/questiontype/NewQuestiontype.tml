@@ -1,0 +1,41 @@
+<html t:type="layout" t:pageTitle="Add QuestionType" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <head>
+        <title>Add QuestionType</title>
+    </head>
+    <body>
+
+
+        <t:form method="POST">
+            <t:errors/>
+            <table>
+            <tr>
+                <td>
+                    <t:label t:for="fullName">
+                    Name: </t:label>:
+                </td>
+                    	<td><input t:type="TextField" t:id="fullName" t:value="fullName"/></td>
+
+             </tr>
+             <tr>
+                <td>Test Subject:</td>
+                <td>
+                    <select t:type="ck/BeanSelect"
+                            list="testsubjects"
+                            labelField="literal:name"
+                            valueField="id"
+                            value="testsubject"/>
+                </td>
+             </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Submit"/>
+                    </td>
+                </tr>
+            </table>
+        </t:form>
+
+    </body>
+
+
+</html>
