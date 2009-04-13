@@ -24,13 +24,13 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
     }
 
     public Vocab findById(Integer id) {
-        SQLString sqlString = new SQLString("FROM vocab vocab");
+        SQLString sqlString = new SQLString("FROM Vocab v");
         if(id != null)
         {
-             sqlString.addWhereClause("vocab.id = '" + id + "'");
+             sqlString.addWhereClause("v.id = '" + id + "'");
         }
 
-        return (Vocab) findByQuery(sqlString.toString());
+        return (Vocab) findByQuery(sqlString.toString()).get(0);
     }
 
 

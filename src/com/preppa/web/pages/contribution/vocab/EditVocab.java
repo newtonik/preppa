@@ -6,13 +6,11 @@ package com.preppa.web.pages.contribution.vocab;
 
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.Vocab;
-import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.chenillekit.tapestry.core.components.Editor;
 
 /**
  *
@@ -27,7 +25,6 @@ public class EditVocab {
     private VocabDAO vocabDAO;
     @InjectPage
     private ShowVocab showvocab;
-
     Object onActivate(int id) {
         this.vocab = vocabDAO.findById(id);
 
