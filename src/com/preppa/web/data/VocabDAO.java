@@ -14,7 +14,7 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  * @author newtonik
  */
 public interface VocabDAO extends GenericDAO <Vocab, Integer> {
-    
+
     Vocab findById(Integer id);
     List<Vocab> findAllOrderedByName();
     List<Vocab> findByPartialName(String partialName);

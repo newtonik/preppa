@@ -1,0 +1,17 @@
+<html t:type="layout" t:pageTitle="All Articles" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<p>
+<table>
+<t:loop t:source="allarticles"
+    t:value="article">
+
+    <div t:id="accordion1">     
+    </div>
+</t:loop>
+
+</table>
+</p>
+        <p>
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+        </p>
+
+</html>

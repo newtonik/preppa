@@ -12,6 +12,7 @@ import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 
+
 /**
  *
  * @author newtonik

@@ -35,6 +35,7 @@ public class Article implements Serializable {
     private Integer id;
     private String title;
     private String body;
+    private String teaser;
     private Testsubject testsubject;
     private String sources;
     private String tags;
@@ -55,6 +56,7 @@ public class Article implements Serializable {
         this.id = id;
     }
 
+    @Validate("required")
     public String getTitle() {
         return title;
     }
@@ -66,7 +68,7 @@ public class Article implements Serializable {
     /**
      * @return the testsubject
      */
-    @Basic(optional = false)
+    @Basic(optional = true)
     @ManyToOne(targetEntity=Testsubject.class)
     @JoinColumn(name="testsubject_id")
     public Testsubject getTestsubject() {
@@ -79,6 +81,7 @@ public class Article implements Serializable {
     public void setTestsubject(Testsubject testsubject) {
         this.testsubject = testsubject;
     }
+    @Lob
     @Validate("required")
     public String getBody() {
         return body;
@@ -166,6 +169,23 @@ public class Article implements Serializable {
     @Override
     public String toString() {
         return "com.preppa.web.entities.Articles[id=" + id + "]";
+    }
+
+    /**
+     * @return the teaser
+     */
+    @NonVisual
+    @Basic(optional = false)
+    @Lob
+    public String getTeaser() {
+        return teaser;
+    }
+
+    /**
+     * @param teaser the teaser to set
+     */
+    public void setTeaser(String teaser) {
+        this.teaser = teaser;
     }
 
 

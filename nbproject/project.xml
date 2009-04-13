@@ -135,8 +135,17 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
+                    <file>${libs.CopyLibs}</file>
+                </library>
+                <library>
                     <file>${file.reference.org-netbeans-modules-java-j2seproject-copylibstask.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.tapestry5-acegi-1.1.1-sources.jar}</file>
+                </library>
+                <library>
+                    <file>${file.reference.tapestry5-acegi-1.1.1.jar}</file>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>

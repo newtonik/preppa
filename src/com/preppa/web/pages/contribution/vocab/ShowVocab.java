@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 
-package com.preppa.web.pages.contribution.article;
+package com.preppa.web.pages.contribution.vocab;
 
-import com.preppa.web.data.ArticleDAO;
-import com.preppa.web.entities.Article;
+import com.preppa.web.data.VocabDAO;
+import com.preppa.web.entities.Vocab;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -15,24 +15,24 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author newtonik
  */
-public class ShowArticle {
+public class ShowVocab {
 @Persist
 @Property
-private Article article;
+private Vocab vocab;
 @Inject
-private ArticleDAO articleDAO;
+private VocabDAO vocabDAO;
 
 
 Object onActivate(int id) {
-        this.article = articleDAO.findById(id);
+        this.vocab = vocabDAO.findById(id);
 
         return this;
     }
 
 
 
-void setarticle(Article article) {
-        this.article = article;
+void setvocab(Vocab vocab) {
+        this.vocab = vocab;
     }
 
 }

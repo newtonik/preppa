@@ -1,0 +1,29 @@
+<html t:type="layout" t:pageTitle="Edit Vocab" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <tags>
+          <t:beaneditform t:id="vocab" align ="left" submitLabel="Update">
+                <t:parameter name="name">
+                <t:label for="name"/>
+                 <t:textfield t:id="name" value="vocab.name" size="60"/>
+                </t:parameter>
+                 <t:parameter name="tags">
+                <t:label for="tags"/>
+                 <t:textarea t:id="tags" value="vocab.tags" t:width="500" t:height="100"/>
+                </t:parameter>
+
+                <t:parameter name="partofspeech">
+                <t:label for="partofspeech"/>
+                 <t:textarea t:id="partofspeech" value="vocab.partofspeech" t:width="500" t:height="100"/>
+                </t:parameter>
+
+               <t:parameter name="definition">
+                <t:label for="definition"/>
+                 <t:textarea t:id="definition" value="vocab.definition" size="10x50"/>
+                </t:parameter>
+
+          </t:beaneditform>
+
+    </tags>
+
+
+</html>

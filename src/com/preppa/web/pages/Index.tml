@@ -1,16 +1,26 @@
-<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
- 
+<html t:type="layout" t:pageTitle="Preppa Home" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+   
         <h2>
             Welcome to Preppa
         </h2>
 
          <p>
+            <t:pagelink t:page="contribution/article/viewall"> All Articles </t:pagelink>
+            <br />
             <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+        </p>
+
+        <p>
+            <t:pagelink t:page="contribution/vocab/new">Add a new vocab word</t:pagelink>
         </p>
 
          <p>
             [<t:pagelink t:page="user/create">Create User</t:pagelink>]
         </p>
+        <p>
+            [<t:pagelink t:page="contribution/vocab/new">Create Vocab</t:pagelink>]
+        </p>
+
         <p>
             [<t:pagelink t:page="contribution/vocab/new">Create Vocab</t:pagelink>]
         </p>

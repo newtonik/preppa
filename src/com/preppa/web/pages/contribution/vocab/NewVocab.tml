@@ -1,11 +1,17 @@
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <head>
-        <title>New Vocab</title>
-    </head>
-    <body>
-          <t:beaneditform t:id="vocab"/>
+<html t:type="layout" t:pageTitle="New Vocab Word" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    </body>
+        <h3> Add a Vocab </h3>
+        <p>
+          <t:beaneditform t:id="vocab">
+               <t:parameter name="definition">
+                <t:label for="definition"/>
+                 <t:textarea t:id="definition" value="vocab.definition" size="10x50"/>
+                </t:parameter>
 
-
+          </t:beaneditform>
+          
+          <br/>
+          <br/>
+          <br/>
+        </p>
 </html>

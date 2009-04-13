@@ -1,10 +1,31 @@
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <head>
-        <title>Create User</title>
-    </head>
-    <body>
-          <t:beaneditform t:id="user"/>
+<html t:type="layout" t:pageTitle="Create User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
+    <body>
+           <br/>
+           Create User
+           <br/>
+           <br/>
+
+          <t:beaneditform t:id="user" submitLabel="Create Account">
+               <t:parameter name="password">
+                <t:label for="password"/>
+                <t:passwordfield t:id="password" value="user.password"/>
+                </t:parameter>
+                <br />
+                <t:parameter name="password_confirmation">
+                <t:label for="password_confirmation"/>
+                <t:passwordfield t:id="password_confirmation" value="user.password_confirmation"/>
+                </t:parameter>
+
+
+
+          </t:beaneditform>
+           <br/>
+           <br/>
+           <br/>
+           <br/>
+           <br/>
+           <br/>
     </body>
 
 

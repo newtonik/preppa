@@ -1,19 +1,23 @@
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <head>
-        <title>${article.title}</title>
-    </head>
+<html t:type ="layout" t:pageTitle="${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
     <body>
-        <a href="#" onclick="window1.showCenter(true)">Read Article</a>
 
-        <div t:id="window1">
-            <h3>Test Window</h3>
-            <p>
-                ${article.body}
-            </p>
+        <h2>
+           ${article.title}
+        </h2>
+        <div id="author-time">
+            Created at ${article.createdAt}
         </div>
+        <p>
+             <t:outputraw t:value="${article.body}"/>
+        </p>
+        <p>
+            <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
+        </p>
 
-
-
+        <a href="#" t:type="PageLink" t:page="Index">
+        Home
+        </a>
     </body>
 
 
