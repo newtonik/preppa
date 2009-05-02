@@ -33,6 +33,16 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         return (Vocab) findByQuery(sqlString.toString()).get(0);
     }
 
+    public List<Vocab> findByLetter(Character lower) {
+        Character upper = Character.toUpperCase(lower);
+        SQLString sqlString = new SQLString("FROM Vocab v");
+        if(lower != null && upper != null)
+        {
+             sqlString.addWhereClause("v.name LIKE '" + lower + "%' OR v.name LIKE '" + upper + "%'");
+        }
+
+        return (List <Vocab>) findByQuery(sqlString.toString());
+    }
 
     public List<Vocab> findAllOrderedByName() {
         throw new UnsupportedOperationException("Not supported yet.");
