@@ -1,0 +1,52 @@
+<html t:type="layout" t:pageTitle="Z Vocab" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<p>
+<div class="vocabZ">
+
+<t:pagelink t:page="contribution/vocab/view"> A </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> B </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> C </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> D </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> E </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> F </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> G </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> H </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> I </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> J </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> K </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> L </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> M </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> N </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> O </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> P </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> Q </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> R </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> S </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> T </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> U </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> V </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> W </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> X </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> Y </t:pagelink>
+<t:pagelink t:page="contribution/vocab/view"> Z </t:pagelink>
+
+
+<t:loop t:source="allvocab"
+    t:value="vocabZ">
+    <div class="vocabZ">
+        <h2>${vocabZ.name}</h2>
+        <div class="body">
+            <t:outputraw t:value="${vocabZ.definition}"/>
+        </div>
+
+    </div>
+    <br />
+</t:loop>
+
+</div>
+
+</p>
+        <p>
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+        </p>
+
+</html>

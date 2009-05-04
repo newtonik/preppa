@@ -16,13 +16,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author newtonik
  */
-public class AVocab {
+public class DVocab {
     @Inject
     private VocabDAO vocabDAO;
 
     @Property
     @Persist
-    private Vocab vocabA;
+    private Vocab vocabD;
 
 
     Object onActivate() {
@@ -34,7 +34,7 @@ public class AVocab {
      * @return the allarticles
      */
     public List<Vocab> getAllVocab() {
-        return vocabDAO.findByLetter('a');
+        return vocabDAO.findByLetter('d');
     }
 
 }

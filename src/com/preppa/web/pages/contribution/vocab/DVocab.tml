@@ -1,6 +1,6 @@
-<html t:type="layout" t:pageTitle="A Vocab" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="D Vocab" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <p>
-<div class="vocabA">
+<div class="vocabD">
 
 <t:pagelink t:page="contribution/vocab/view"> A </t:pagelink>
 <t:pagelink t:page="contribution/vocab/view"> B </t:pagelink>
@@ -31,11 +31,11 @@
 
 
 <t:loop t:source="allvocab"
-    t:value="vocabA">
-    <div class="vocabA">
-        <h2>${vocabA.name}</h2>
+    t:value="vocabD">
+    <div class="vocabD">
+        <h2>${vocabD.name}</h2>
         <div class="body">
-            <t:outputraw t:value="${vocabA.definition}"/>
+            <t:outputraw t:value="${vocabD.definition}"/>
         </div>
 
     </div>
