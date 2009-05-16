@@ -49,7 +49,14 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
     }
 
     public List<Vocab> findByPartialName(String partialName) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
+        SQLString sqlString = new SQLString("FROM Vocab v");
+        if(partialName != null)
+        {
+             sqlString.addWhereClause("v.name LIKE '" + partialName + "%'");
+        }
+
+        return (List <Vocab>) findByQuery(sqlString.toString());
     }
 
 }

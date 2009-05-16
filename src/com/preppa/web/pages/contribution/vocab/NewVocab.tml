@@ -3,6 +3,12 @@
         <h3> Add a Vocab </h3>
         <p>
           <t:beaneditform t:id="vocab">
+
+               <t:parameter name="partofspeech">
+                <t:label for="partofspeech"/>
+                <t:select t:id="partofspeech" value ="vocab.partofspeech" model="literal:Noun,Adjective,Adverb"/>
+               </t:parameter>
+
                <t:parameter name="definition">
                 <t:label for="definition"/>
                  <t:textarea t:id="definition" value="vocab.definition" size="10x50"/>

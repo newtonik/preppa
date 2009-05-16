@@ -4,7 +4,7 @@
           <t:beaneditform t:id="vocab" align ="left" submitLabel="Update">
                 <t:parameter name="name">
                 <t:label for="name"/>
-                 <t:textfield t:id="name" value="vocab.name" size="60"/>
+                 <t:textfield t:id="name" value="vocab.name" size="60" t:mixins="autocomplete"/>
                 </t:parameter>
                  <t:parameter name="tags">
                 <t:label for="tags"/>

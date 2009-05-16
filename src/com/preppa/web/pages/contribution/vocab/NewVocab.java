@@ -11,6 +11,9 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.corelib.mixins.Autocomplete;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,6 +30,20 @@ public class NewVocab {
 
     void onActivate(Vocab word) {
         this.vocab = word;
+    }
+
+    List<String> onProvideCompletionsFromName(String partial)
+    {
+        List<Vocab> matches = vocabDAO.findByPartialName(partial);
+
+        List<String> result = new ArrayList<String>();
+
+            for (Vocab a : matches)
+            {
+                result.add(a.getName());
+            }
+
+        return result;
     }
 
     Object onPassivate() {
