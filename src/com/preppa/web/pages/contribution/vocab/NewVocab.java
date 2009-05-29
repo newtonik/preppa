@@ -42,7 +42,7 @@ public class NewVocab {
             {
                 result.add(a.getName());
             }
-
+       
         return result;
     }
 

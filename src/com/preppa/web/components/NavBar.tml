@@ -4,8 +4,7 @@
          align="left"/>
 </a>
 </div>
-
-    Sign In
+<a href="user/create">Sign In</a>
 <div id="nav-menu">
     <ul>
         <li><a href="#">Profile</a></li>

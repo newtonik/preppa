@@ -13,11 +13,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -47,6 +53,20 @@ public class Vocab implements Serializable {
     @Column(name = "tags", length = 65535)
     private String tags;
     @Basic(optional = false)
+    @OneToOne(targetEntity = ExampleSentence.class)
+    @Fetch(value = FetchMode.JOIN)
+    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @JoinColumn(name = "sentence_id")
+    private ExampleSentence sentence;
+
+    @ManyToOne(targetEntity = User.class)
+    @Fetch(value = FetchMode.JOIN)
+    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @JoinColumn(name = "user_id")
+    private User user;
+    
     @NonVisual
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -140,6 +160,34 @@ public class Vocab implements Serializable {
     @Override
     public String toString() {
         return "com.preppa.web.entities.Vocab[id=" + id + "]";
+    }
+
+    /**
+     * @return the sentence
+     */
+    public ExampleSentence getSentence() {
+        return sentence;
+    }
+
+    /**
+     * @param sentence the sentence to set
+     */
+    public void setSentence(ExampleSentence sentence) {
+        this.sentence = sentence;
+    }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

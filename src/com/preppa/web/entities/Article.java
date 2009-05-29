@@ -39,6 +39,7 @@ public class Article implements Serializable {
     private Testsubject testsubject;
     private String sources;
     private String tags;
+    private String links;
     private Date createdAt;
     private Date updatedAt;
     private User user;
@@ -100,6 +101,20 @@ public class Article implements Serializable {
     public void setSources(String sources) {
         this.sources = sources;
     }
+        /**
+     * @return the links
+     */
+    public String getLinks() {
+        return links;
+    }
+
+    /**
+     * @param links the links to set
+     */
+    public void setLinks(String links) {
+        this.links = links;
+    }
+
 
     @Lob
     public String getTags() {
@@ -187,6 +202,7 @@ public class Article implements Serializable {
     public void setTeaser(String teaser) {
         this.teaser = teaser;
     }
+
 
 
 

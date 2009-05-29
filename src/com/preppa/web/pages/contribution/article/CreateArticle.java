@@ -8,6 +8,7 @@ import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.Testsubject;
+import java.sql.Timestamp;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -50,9 +51,9 @@ public class CreateArticle {
 
     @CommitAfter
     Object onSuccess() {
-
-         article.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
-         article.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
+         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+         article.setCreatedAt(now);
+         article.setUpdatedAt(now);
          article.setBody(sanitize(article.getBody()));
          if(article.getBody().length() < 100 )
              size = article.getBody().length();

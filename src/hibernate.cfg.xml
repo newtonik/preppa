@@ -6,9 +6,9 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/preppa_tapestry</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">pw</property>
     <property name="hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.connection.password">preppa</property>
   </session-factory>
 </hibernate-configuration>

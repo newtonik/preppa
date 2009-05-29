@@ -6,7 +6,7 @@
 
                <t:parameter name="partofspeech">
                 <t:label for="partofspeech"/>
-                <t:select t:id="partofspeech" value ="vocab.partofspeech" model="literal:Noun,Adjective,Adverb"/>
+                <t:select t:id="partofspeech" value ="vocab.partofspeech" model="literal:Noun,Adjective, Pronoun, Adverb, Propositions, Conjuctions"/>
                </t:parameter>
 
                <t:parameter name="definition">
