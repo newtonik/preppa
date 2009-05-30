@@ -10,17 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.apache.tapestry5.beaneditor.NonVisual;
 
 /**
  *
  * @author nwt
  */
 @Entity
-public class ShortPassages implements Serializable {
+public class LongPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @NonVisual
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -42,10 +40,10 @@ public class ShortPassages implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ShortPassages)) {
+        if (!(object instanceof LongPassage)) {
             return false;
         }
-        ShortPassages other = (ShortPassages) object;
+        LongPassage other = (LongPassage) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -54,7 +52,7 @@ public class ShortPassages implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.ShortPassages[id=" + id + "]";
+        return "com.preppa.web.entities.LongPassage[id=" + id + "]";
     }
 
 }

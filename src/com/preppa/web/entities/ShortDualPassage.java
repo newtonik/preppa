@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author nwt
  */
 @Entity
-public class ShortDualPassages implements Serializable {
+public class ShortDualPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,10 +40,10 @@ public class ShortDualPassages implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ShortDualPassages)) {
+        if (!(object instanceof ShortDualPassage)) {
             return false;
         }
-        ShortDualPassages other = (ShortDualPassages) object;
+        ShortDualPassage other = (ShortDualPassage) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

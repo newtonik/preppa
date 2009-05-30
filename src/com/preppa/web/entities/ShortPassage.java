@@ -17,27 +17,23 @@ import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.apache.tapestry5.beaneditor.Validate;
+
 
 /**
  *
  * @author nwt
  */
 @Entity
-public class Passages implements Serializable {
+public class ShortPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @NonVisual
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Lob
-    @Validate("required")
-    @Column(name = "passage", length = 65535)
-    private String passage;
-    @Lob
-    @Column(name = "source", length = 65535)
-    private String source;
-    @Column(name = "tags", length = 65535)
     private String tags;
+    @Lob
+    private String source;
     @Basic(optional = false)
     @NonVisual
     @Column(name = "created_at", nullable = false)
@@ -49,7 +45,13 @@ public class Passages implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-
+//    @OneToMany(targetEntity = Passage.class)
+//    @Fetch(value = FetchMode.JOIN)
+//    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+//            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+//    @JoinColumn(name = "passage_id")
+//    private Passage passage;
+    
     public Integer getId() {
         return id;
     }
@@ -68,10 +70,10 @@ public class Passages implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Passages)) {
+        if (!(object instanceof ShortPassage)) {
             return false;
         }
-        Passages other = (Passages) object;
+        ShortPassage other = (ShortPassage) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -80,35 +82,7 @@ public class Passages implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.Passages[id=" + id + "]";
-    }
-
-    /**
-     * @return the passage
-     */
-    public String getPassage() {
-        return passage;
-    }
-
-    /**
-     * @param passage the passage to set
-     */
-    public void setPassage(String passage) {
-        this.passage = passage;
-    }
-
-    /**
-     * @return the source
-     */
-    public String getSource() {
-        return source;
-    }
-
-    /**
-     * @param source the source to set
-     */
-    public void setSource(String source) {
-        this.source = source;
+        return "com.preppa.web.entities.ShortPassages[id=" + id + "]";
     }
 
     /**
@@ -123,6 +97,20 @@ public class Passages implements Serializable {
      */
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    /**
+     * @return the source
+     */
+    public String getSource() {
+        return source;
+    }
+
+    /**
+     * @param source the source to set
+     */
+    public void setSource(String source) {
+        this.source = source;
     }
 
     /**
@@ -152,5 +140,19 @@ public class Passages implements Serializable {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+//    /**
+//     * @return the passage
+//     */
+//    public Passage getPassage() {
+//        return passage;
+//    }
+//
+//    /**
+//     * @param passage the passage to set
+//     */
+//    public void setPassage(Passage passage) {
+//        this.passage = passage;
+//    }
 
 }
