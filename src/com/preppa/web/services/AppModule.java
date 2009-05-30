@@ -5,9 +5,12 @@ package com.preppa.web.services;
 
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.ArticleDAOHibImpl;
+import com.preppa.web.data.LongDualPassageDAO;
+import com.preppa.web.data.LongDualPassageDAOHibImpl;
+import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.LongPassageDAOHibImpl;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.PassageDAOHibImpl;
-import com.preppa.web.data.QuestiontypeDAOHibImpl;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortDualPassageDAOHibImpl;
 import com.preppa.web.data.ShortPassageDAO;
@@ -60,7 +63,9 @@ public final class AppModule {
         binder.bind(PassageDAO.class, PassageDAOHibImpl.class);
         binder.bind(ShortDualPassageDAO.class, ShortDualPassageDAOHibImpl.class);
         binder.bind(ShortPassageDAO.class, ShortPassageDAOHibImpl.class);
-     
+        binder.bind(LongDualPassageDAO.class, LongDualPassageDAOHibImpl.class);
+        binder.bind(LongPassageDAO.class, LongPassageDAOHibImpl.class);
+
         
     // Make bind() calls on the binder object to define most IoC services.
     // Use service builder methods (example below) when the implementation
