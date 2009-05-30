@@ -62,8 +62,6 @@ public class Vocab implements Serializable {
 
     @ManyToOne(targetEntity = User.class)
     @Fetch(value = FetchMode.JOIN)
-    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     @JoinColumn(name = "user_id")
     private User user;
     

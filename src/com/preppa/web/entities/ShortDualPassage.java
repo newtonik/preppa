@@ -49,12 +49,10 @@ public class ShortDualPassage implements Serializable {
     @ManyToOne(targetEntity = Passage.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "passage1_id")
-    @NonVisual
     private Passage passageone;
     @ManyToOne(targetEntity = Passage.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "passage2_id")
-    @NonVisual
     private Passage passagetwo;
     public Integer getId() {
         return id;

@@ -43,8 +43,6 @@ public class Questiontype implements Serializable {
     private String name;
     @Basic(optional = false)
     @ManyToOne(targetEntity=Testsubject.class)
-    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     @JoinColumn(name="testsubject_id")
     private Testsubject testsubject;
     @NonVisual
@@ -128,7 +126,7 @@ public class Questiontype implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.Questiontype[id=" + id + "]";
+        return this.name;
     }
 
 

@@ -122,7 +122,7 @@ public class Testsubject implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.Testsubject[id=" + id + "]";
+        return this.name;
     }
 
     /**

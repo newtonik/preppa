@@ -7,22 +7,27 @@ package com.preppa.web.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
 
 /**
  *
@@ -34,6 +39,7 @@ public class Article implements Serializable {
    
     private Integer id;
     private String title;
+    private Set topics = new HashSet();
     private String body;
     private String teaser;
     private Testsubject testsubject;
@@ -74,6 +80,27 @@ public class Article implements Serializable {
     @JoinColumn(name="testsubject_id")
     public Testsubject getTestsubject() {
         return testsubject;
+    }
+        /**
+     * @return the topics
+     */
+    @ManyToMany(targetEntity=Topic.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "ArticleTopic",
+    joinColumns = {
+      @JoinColumn(name="articleId", unique = true)
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="topicId")
+    })
+    public Set getTopics() {
+        return topics;
+    }
+
+    /**
+     * @param topics the topics to set
+     */
+    public void setTopics(Set topics) {
+        this.topics = topics;
     }
 
     /**
@@ -149,8 +176,6 @@ public class Article implements Serializable {
 
     @ManyToOne(targetEntity = User.class)
     @Fetch(value = FetchMode.JOIN)
-    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     @JoinColumn(name = "user_id")
     public User getUser()
     {
@@ -202,6 +227,7 @@ public class Article implements Serializable {
     public void setTeaser(String teaser) {
         this.teaser = teaser;
     }
+
 
 
 
