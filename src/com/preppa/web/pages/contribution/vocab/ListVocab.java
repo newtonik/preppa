@@ -16,25 +16,38 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author newtonik
  */
-public class BVocab {
+public class ListVocab {
     @Inject
     private VocabDAO vocabDAO;
 
+    private Character letter;
+
     @Property
     @Persist
-    private Vocab vocabB;
+    private Vocab listVocab;
 
-
-    Object onActivate() {
-
+    Object onActivate(String input) {
+        this.letter = input.charAt(0);
         return null;
+    }
+
+	public void set(String input) {
+		this.letter = input.charAt(0);
+	}
+
+    public String getLetter()
+    {
+        char[] arr = new char[1];
+        arr[0] = letter;
+        String returnVal = new String(arr);
+        return returnVal;
     }
 
     /**
      * @return the allarticles
      */
     public List<Vocab> getAllVocab() {
-        return vocabDAO.findByLetter('b');
+        return vocabDAO.findByLetter(letter);
     }
 
 }
