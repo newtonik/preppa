@@ -13,6 +13,7 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 
 root { 
     display: block;
+    background-color: #D4E4FF;
 }
 
 div.nav-top {
@@ -23,6 +24,7 @@ body, table, input, select
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10pt;
+    background-color: #D4E4FF;
 }
 h1
 {
@@ -134,57 +136,70 @@ text-align: center;
     text-align:right;
 }
 /* column container */
-.colmask {
-    position:relative;	/* This fixes the IE7 overflow hidden bug */
-    clear:both;
-    float:left;
-    width:100%;			/* width of whole page */
-    overflow:hidden;		/* This chops off any overhanging divs */
-}
-/* common column settings */
-.colright,
-.colmid,
-.colleft {
-    float:left;
-    width:100%;
-    position:relative;
-}
-.col1,
-.col2,
-.col3 {
-    float:left;
-    position:relative;
-    padding:0 0 1em 0;
-    overflow:hidden;
-}
-/* 2 Column (left menu) settings */
-.leftmenu {
-    background:#fff;		/* right column background colour */
-}
-.leftmenu .colleft {
-    right:85%;			/* right column width */
-    background-color: #D4E4FF;	/* left column background colour */
-}
-.leftmenu .col1 {
-    width:71%;			/* right column content width */
-    left:102%;			/* 100% plus left column left padding */
-}
-.leftmenu .col2 {
-    width:21%;			/* left column content width (column width minus left and right padding) */
-    left:6%;			/* (right column left and right padding) plus (left column left padding) */
+	.colmask {
+		position:relative;	/* This fixes the IE7 overflow hidden bug */
+		clear:both;
+		float:left;
+		width:100%;			/* width of whole page */
+		overflow:hidden;		/* This chops off any overhanging divs */
+	}
+	/* common column settings */
+	.colright,
+	.colmid,
+	.colleft {
+		float:left;
+		width:100%;			/* width of page */
+		position:relative;
+	}
+	.col1,
+	.col2,
+	.col3 {
+		float:left;
+		position:relative;
+		padding:0 0 1em 0;	/* no left and right padding on columns, we just make them narrower instead
+						only padding top and bottom is included here, make it whatever value you need */
+		overflow:hidden;
+	}
+	/* 3 Column settings */
+	.threecol {
+		background-color: #D4E4FF;		/* right column background colour */
+	}
+	.threecol .colmid {
+		right:25%;			/* width of the right column */
+		background:#fff;		/* center column background colour */
+	}
+	.threecol .colleft {
+		right:58%;			/* width of the middle column */
+		background-color: #D4E4FF;	/* left column background colour */
+	}
+	.threecol .col1 {
+		width:56%;			/* width of center column content (column width minus padding on either side) */
+		left:102%;			/* 100% plus left padding of center column */
 
-}
-/* Footer styles */
-#footer {
-    clear:both;
-    float:left;
-    width:100%;
-    border-top:1px solid #000;
-}
-#footer p {
-    padding:10px;
-    margin:0;
-}
+	}
+	.threecol .col2 {
+		width:21%;			/* Width of left column content (column width minus padding on either side) */
+		left:31%;			/* width of (right column) plus (center column left and right padding) plus (left column left padding) */
+    
+	}
+	.threecol .col3 {
+		width:21%;			/* Width of right column content (column width minus padding on either side) */
+		left:85%;			/* Please make note of the brackets here:
+						(100% - left column width) plus (center column left and right padding) plus (left column left and right padding) plus (right column left padding) */
+       
+	}
+	/* Footer styles */
+	#footer {
+		clear:both;
+		float:left;
+		width:100%;
+		border-top:1px solid #000;
+	}
+	#footer p {
+		padding:10px;
+		margin:0;
+	}
+
 
 div.content {
     width: 1000px;

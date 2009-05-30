@@ -13,10 +13,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 
 /**
@@ -45,12 +50,10 @@ public class ShortPassage implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-//    @OneToMany(targetEntity = Passage.class)
-//    @Fetch(value = FetchMode.JOIN)
-//    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-//            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-//    @JoinColumn(name = "passage_id")
-//    private Passage passage;
+    @ManyToOne(targetEntity = Passage.class)
+    @Fetch(value = FetchMode.JOIN)
+    @JoinColumn(name = "passage_id")
+    private Passage passage;
     
     public Integer getId() {
         return id;
@@ -141,18 +144,18 @@ public class ShortPassage implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-//    /**
-//     * @return the passage
-//     */
-//    public Passage getPassage() {
-//        return passage;
-//    }
-//
-//    /**
-//     * @param passage the passage to set
-//     */
-//    public void setPassage(Passage passage) {
-//        this.passage = passage;
-//    }
+    /**
+     * @return the passage
+     */
+    public Passage getPassage() {
+        return passage;
+    }
+
+    /**
+     * @param passage the passage to set
+     */
+    public void setPassage(Passage passage) {
+        this.passage = passage;
+    }
 
 }

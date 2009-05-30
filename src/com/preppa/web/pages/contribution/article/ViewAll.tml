@@ -1,24 +1,31 @@
 <html t:type="layout" t:pageTitle="All Articles" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<p>
-<div class="articles">
+    <p>
+        <div class="articles">
 
-<t:loop t:source="allarticles"
-    t:value="article">
-    <div class="article">
-        <h2>${article.title}</h2>
-        <div class="body">
-            <t:outputraw t:value="${article.body}"/>
+            <t:loop t:source="allarticles"
+                    t:value="article">
+                <div class="article">
+                    <h2>${article.title}</h2>
+                    <div class="body">
+                        <t:outputraw t:value="${article.body}"/>
+                    </div>
+                    <div class="tags">
+                        <h3>Tags:</h3>
+                        ${article.tags}
+                    </div>
+                    <div class="sources">
+                        <h3>Sources:</h3>
+                        ${article.sources}
+                    </div>
+                </div>
+                <br />
+            </t:loop>
+
         </div>
 
-    </div>
-    <br />
-</t:loop>
-
-</div>
-
-</p>
-        <p>
-            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
-        </p>
+    </p>
+    <p>
+        <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+    </p>
 
 </html>

@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.preppa.web.pages.contribution.article;
+package com.preppa.web.pages.contribution.passage;
 
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.pages.contribution.article.ShowArticle;
 import java.sql.Timestamp;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
@@ -22,7 +23,7 @@ import org.chenillekit.tapestry.core.components.Editor;
  *
  * @author newtonik
  */
-public class CreateArticle {
+public class CreatePassage {
 
     @Property
     private Article article;
@@ -65,7 +66,7 @@ public class CreateArticle {
          //article.setUser(userDAO.findById(1));
 
          articleDAO.doSave(article);
-         showarticle.setarticle(article);
+        //showarticle.setarticle(article);
          return showarticle;
     }
     public static String sanitize(String string) {
