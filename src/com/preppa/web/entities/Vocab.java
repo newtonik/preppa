@@ -60,6 +60,9 @@ public class Vocab implements Serializable {
     @JoinColumn(name = "sentence_id")
     private ExampleSentence sentence;
 
+    @Lob
+    private String exampleSentence;
+
     @ManyToOne(targetEntity = User.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
@@ -186,6 +189,20 @@ public class Vocab implements Serializable {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * @return the exampleSentence
+     */
+    public String getExampleSentence() {
+        return exampleSentence;
+    }
+
+    /**
+     * @param exampleSentence the exampleSentence to set
+     */
+    public void setExampleSentence(String exampleSentence) {
+        this.exampleSentence = exampleSentence;
     }
 
 }

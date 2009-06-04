@@ -37,7 +37,7 @@ public class EditArticle {
 
         return this;
     }
-        @CommitAfter
+    @CommitAfter
     Object onSuccess() {
 
          article.setBody(sanitize(article.getBody()));

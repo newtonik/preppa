@@ -13,7 +13,7 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 
 root { 
     display: block;
-    background-color: #D4E4FF;
+    
 }
 
 div.nav-top {
@@ -127,73 +127,81 @@ text-align: center;
     display:block;
 }
 /* 'widths' sub menu */
-#layoutdims {
-    clear:both;
-    background:#eee;
-    border-top:4px solid #000;
-    margin:0;
-    padding:6px 15px !important;
-    text-align:right;
-}
+/* 'widths' sub menu */
+	#layoutdims {
+		clear:both;
+		background:#eee;
+		border-top:4px solid #000;
+		margin:0;
+		padding:6px 15px !important;
+		text-align:right;
+	}
 /* column container */
 	.colmask {
-		position:relative;	/* This fixes the IE7 overflow hidden bug */
-		clear:both;
-		float:left;
-		width:100%;			/* width of whole page */
+		position:relative;		/* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
+	    clear:both;
+	    float:left;
+        width:100%;				/* width of whole page */
 		overflow:hidden;		/* This chops off any overhanging divs */
 	}
-	/* common column settings */
-	.colright,
-	.colmid,
-	.colleft {
-		float:left;
-		width:100%;			/* width of page */
-		position:relative;
+	/* holy grail 3 column settings */
+	.holygrail {
+	    background:#ff9;    	/* Right column background colour */
 	}
-	.col1,
-	.col2,
-	.col3 {
-		float:left;
-		position:relative;
-		padding:0 0 1em 0;	/* no left and right padding on columns, we just make them narrower instead
-						only padding top and bottom is included here, make it whatever value you need */
-		overflow:hidden;
+    .holygrail .colmid {
+        float:left;
+        width:200%;
+        margin-left:-200px; 	/* Width of right column */
+        position:relative;
+        right:100%;
+        background:#fff;    	/* Centre column background colour */
+    }
+    .holygrail .colleft {
+        float:left;
+        width:100%;
+        margin-left:-50%;
+        position:relative;
+        left:400px;         	/* Left column width + right column width */
+        background:#FFD8B7;    	/* Left column background colour */
+    }
+    .holygrail .col1wrap {
+        float:left;
+	    width:50%;
+	    position:relative;
+	    right:200px;        	/* Width of left column */
+	    padding-bottom:1em; 	/* Centre column bottom padding. Leave it out if it's zero */
 	}
-	/* 3 Column settings */
-	.threecol {
-		background-color: #D4E4FF;		/* right column background colour */
+	.holygrail .col1 {
+        margin:0 215px;     	/* Centre column side padding:
+                            	Left padding = left column width + centre column left padding width
+                            	Right padding = right column width + centre column right padding width */
+        position:relative;
+	    left:200%;
+	    overflow:hidden;
 	}
-	.threecol .colmid {
-		right:25%;			/* width of the right column */
-		background:#fff;		/* center column background colour */
-	}
-	.threecol .colleft {
-		right:58%;			/* width of the middle column */
-		background-color: #D4E4FF;	/* left column background colour */
-	}
-	.threecol .col1 {
-		width:56%;			/* width of center column content (column width minus padding on either side) */
-		left:102%;			/* 100% plus left padding of center column */
+    .holygrail .col2 {
+        float:left;
+        float:right;			/* This overrides the float:left above */
+        width:170px;        	/* Width of left column content (left column width minus left and right padding) */
+        position:relative;
+        right:15px;         	/* Width of the left-had side padding on the left column */
+    }
+    .holygrail .col3 {
+        float:left;
+        float:right;			/* This overrides the float:left above */
+        width:170px;        	/* Width of right column content (right column width minus left and right padding) */
+        margin-right:45px;  	/* Width of right column right-hand padding + left column left and right padding */
+        position:relative;
+        left:50%;
+    }
 
-	}
-	.threecol .col2 {
-		width:21%;			/* Width of left column content (column width minus padding on either side) */
-		left:31%;			/* width of (right column) plus (center column left and right padding) plus (left column left padding) */
-    
-	}
-	.threecol .col3 {
-		width:21%;			/* Width of right column content (column width minus padding on either side) */
-		left:85%;			/* Please make note of the brackets here:
-						(100% - left column width) plus (center column left and right padding) plus (left column left and right padding) plus (right column left padding) */
-       
-	}
 	/* Footer styles */
 	#footer {
 		clear:both;
 		float:left;
 		width:100%;
 		border-top:1px solid #000;
+
 	}
 	#footer p {
 		padding:10px;
@@ -202,11 +210,15 @@ text-align: center;
 
 
 div.content {
-    width: 1000px;
-    background-color:blue;
-    background-color: #eaffef;
     margin-right: auto;
     margin-left: auto;
+}
+div.artcont {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 div.main {
@@ -218,23 +230,24 @@ div.main {
 DIV.t-beaneditor
 {
 
-display: block;
-background: #ffc;
-border: 2px solid silver;
-padding: 2px;
-font-family: "Trebuchet MS", Arial, sans-serif;
+    display: block;
+    border: 2px solid black;
+    padding: 2px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background-color: white;
 }
 DIV.t-beaneditor LABEL
 {
-width: 10%;
-display: block;
-float: left;
-text-align: right;
-clear: left;
-padding-right: 3px;
+    width: 150px;
+    display: block;
+    float: left;
+    text-align: right;
+    clear: left;
+    padding-right: 3px;
 }
+
 /* Bean Edit Stlyes */
 DIV.t-beaneditor-submit {
-position: relative;
-left: 150px;
+    position: relative;
+    left: 150px;
 }

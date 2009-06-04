@@ -29,6 +29,12 @@ public class Topic implements Serializable {
     @ManyToMany(mappedBy="topics")  // map info is in person class
     private Set<Article> articles;
 
+    public Topic() {
+        
+    }
+    public Topic(String name) {
+        this.name = name;
+    }
     public Integer getId() {
         return id;
     }

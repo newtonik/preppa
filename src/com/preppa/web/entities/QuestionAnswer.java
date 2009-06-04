@@ -19,39 +19,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
  * @author nwt
  */
 @Entity
-public class LongPassage implements Serializable {
+public class QuestionAnswer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NonVisual
     private Integer id;
     @Lob
-    private String tags;
+    private String answer;
+    Boolean correct;
+    @Basic(optional = true)
+    @ManyToOne(targetEntity=Testsubject.class)
+    @JoinColumn(name="testsubject_id")
+    private Testsubject testsubject;
+    @ManyToOne
+    private Question question;
     @Lob
-    private String sources;
-    @Basic(optional = false)
+    private String tags;
     @NonVisual
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @NonVisual
     @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
+    @NonVisual
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @ManyToOne(targetEntity = Passage.class)
-    @Fetch(value = FetchMode.JOIN)
-    @JoinColumn(name = "passage_id")
-    @NonVisual
-    private Passage passage;
+    
     public Integer getId() {
         return id;
     }
@@ -70,10 +69,10 @@ public class LongPassage implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LongPassage)) {
+        if (!(object instanceof QuestionAnswer)) {
             return false;
         }
-        LongPassage other = (LongPassage) object;
+        QuestionAnswer other = (QuestionAnswer) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -82,7 +81,49 @@ public class LongPassage implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.LongPassage[id=" + id + "]";
+        return "com.preppa.web.entities.QuestionAnswer[id=" + id + "]";
+    }
+
+    /**
+     * @return the answer
+     */
+    public String getAnswer() {
+        return answer;
+    }
+
+    /**
+     * @param answer the answer to set
+     */
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    /**
+     * @return the testsubject
+     */
+    public Testsubject getTestsubject() {
+        return testsubject;
+    }
+
+    /**
+     * @param testsubject the testsubject to set
+     */
+    public void setTestsubject(Testsubject testsubject) {
+        this.testsubject = testsubject;
+    }
+
+    /**
+     * @return the question
+     */
+    public Question getQuestion() {
+        return question;
+    }
+
+    /**
+     * @param question the question to set
+     */
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     /**
@@ -97,20 +138,6 @@ public class LongPassage implements Serializable {
      */
     public void setTags(String tags) {
         this.tags = tags;
-    }
-
-    /**
-     * @return the sources
-     */
-    public String getSources() {
-        return sources;
-    }
-
-    /**
-     * @param sources the sources to set
-     */
-    public void setSources(String source) {
-        this.sources = source;
     }
 
     /**
@@ -139,20 +166,6 @@ public class LongPassage implements Serializable {
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    /**
-     * @return the passage
-     */
-    public Passage getPassage() {
-        return passage;
-    }
-
-    /**
-     * @param passage the passage to set
-     */
-    public void setPassage(Passage passage) {
-        this.passage = passage;
     }
 
 }

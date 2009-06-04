@@ -1,30 +1,52 @@
 <html t:type="layout" t:pageTitle="New Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+        <br/>
+        <br />
+      <div id ="artcont" align="center">
+          <t:form t:id="articleform">
+             <table id="articleformtable">
+                 <tr>
+                     <td>
+                         <label for="testsubject"> Section: </label>
 
-    <tags>
-          <t:beaneditform t:id="article" align ="left"  submitLabel="Create Article">
-              <t:errors/>
-                <t:parameter name="title">
-                <t:label for="title"/>
-                 <t:textfield t:id="title" value="article.title" size="60"/>
-                </t:parameter>
-                 <t:parameter name="tags">
-                <t:label for="tags"/>
-                 <t:textarea t:id="tags" value="article.tags" rows="4" cols="40"/>
-                </t:parameter>
+                            <select t:type="ck/BeanSelect"
+                            list="testsubjects"
+                            labelField="literal:name"
+                            valueField="literal:id"
+                            value="testsubject"/>
+                    </td>
+                     
+                     <td align="left">
+                         <t:label for="topicks"> Topics: </t:label>
+                         <input t:type="TextField" t:id="topicks" t:mixins="autocomplete" t:value="topicks"/>
+                         </td>
+                  </tr>
+                  <tr  align="left">
+                      <td >
+                       <t:label for="fTitle"> Title: </t:label>
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle"/>
+                      </td>
 
-                <t:parameter name="sources">
-                <t:label for="sources"/>
-                 <t:textarea t:id="sources" value="article.sources" rows="4" cols="40"/>
-                </t:parameter>
+                 </tr>
+                
+                 <tr>
+                     <td align="center">
+                          <t:editor t:id="body" value="fBody" t:toolbarSet="Basic" t:width="400" t:height="300"/>
 
-                <t:parameter name="body">
-                <t:label for="body"/>
-                <t:editor t:id="body" value="article.body" t:validate="required" t:toolbarSet="Basic" t:width="400" t:height="600"/>
-                </t:parameter>
-               
-          </t:beaneditform>
+                     </td>
+                 </tr>
+                  <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
+
+                 </tr>
+                 
+             </table>
+             </t:form>
+    </div>
  
-    </tags>
+
+    
 
 
 </html>

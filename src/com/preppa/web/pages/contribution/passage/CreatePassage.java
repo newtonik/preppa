@@ -4,19 +4,18 @@
  */
 package com.preppa.web.pages.contribution.passage;
 
-import com.preppa.web.data.ArticleDAO;
+import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.TestsubjectDAO;
-import com.preppa.web.entities.Article;
+import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Testsubject;
-import com.preppa.web.pages.contribution.article.ShowArticle;
 import java.sql.Timestamp;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.chenillekit.tapestry.core.components.BeanSelect;
 import org.chenillekit.tapestry.core.components.Editor;
 
 /**
@@ -26,13 +25,14 @@ import org.chenillekit.tapestry.core.components.Editor;
 public class CreatePassage {
 
     @Property
-    private Article article;
-    @InjectPage
-    private ShowArticle showarticle;
+    private LongPassage longpassage;
+   
     @Inject
-    private ArticleDAO articleDAO;
-    @Component(parameters = {"value=article.body"})
-    private Editor body;
+    private LongPassageDAO longpassageDAO;
+    @Component(parameters = {"value=body"})
+    private Editor passeditor;
+    @Property
+    private String body;
     private int size;
     @Property
     @Persist
@@ -41,33 +41,26 @@ public class CreatePassage {
     @Inject
     private TestsubjectDAO testsubjectDAO;
 
+    
 
-    void onActivate(Article article) {
-        this.article = article;
+    void onActivate(LongPassage passage) {
+        this.longpassage = passage;
     }
 
     Object onPassivate() {
-        return article;
+        return longpassage;
     }
 
     @CommitAfter
     Object onSuccess() {
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         article.setCreatedAt(now);
-         article.setUpdatedAt(now);
-         article.setBody(sanitize(article.getBody()));
-         if(article.getBody().length() < 100 )
-             size = article.getBody().length();
-         else
-             size = 100;
+         longpassage.setCreatedAt(now);
+         longpassage.setUpdatedAt(now);
+         //longpassage.setUser(userDAO.findById(1));
 
-
-         article.setTeaser(article.getBody().substring(0, size));
-         //article.setUser(userDAO.findById(1));
-
-         articleDAO.doSave(article);
-        //showarticle.setarticle(article);
-         return showarticle;
+         longpassageDAO.doSave(longpassage);
+        //showlongpassage.setlongpassage(longpassage);
+         return this;
     }
     public static String sanitize(String string) {
     return string
@@ -89,6 +82,20 @@ public class CreatePassage {
      */
     public void setTestsubjects(List<Testsubject> testsubjects) {
         this.testsubjects = testsubjects;
+    }
+
+    /**
+     * @return the body
+     */
+    public String getBody() {
+        return body;
+    }
+
+    /**
+     * @param body the body to set
+     */
+    public void setBody(String body) {
+        this.body = body;
     }
 
 

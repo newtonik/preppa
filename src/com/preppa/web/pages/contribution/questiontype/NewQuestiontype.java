@@ -15,6 +15,7 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.chenillekit.tapestry.core.components.BeanSelect;
 
 /**
  *
@@ -22,6 +23,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class NewQuestiontype {
 
+    
     @Persist
     private Questiontype questiontype;
     @Property
@@ -33,11 +35,11 @@ public class NewQuestiontype {
     @Inject
     private TestsubjectDAO testsubjectDAO;
     @Property
-    private String fName;
+    private String fullName;
     
 
     void NewQuestiontype() {
-        this.questiontype = new Questiontype();
+       // this.questiontype = new Questiontype();
         this.setTestsubjects(testsubjectDAO.findAll());
     }
 
@@ -55,9 +57,11 @@ public class NewQuestiontype {
     }
 
     @CommitAfter
-    Object onSuccess() {
-       
-        questiontype.setName(fName);
+    Object onSubmitFromQuestionForm() {
+        this.questiontype = new Questiontype();
+       System.out.println(fullName);
+        questiontype.setName(fullName);
+        questiontype.setTestsubject(testsubject);
         questiontype.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
         questiontype.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
 
@@ -82,19 +86,6 @@ public class NewQuestiontype {
         this.testsubjects = testsubjects;
     }
 
-    /**
-     * @return the fName
-     */
-    public String getFullName() {
-        return fName;
-    }
-
-    /**
-     * @param fName the fName to set
-     */
-    public void setFullName(String fullName) {
-        this.fName = fullName;
-    }
 
 
 }

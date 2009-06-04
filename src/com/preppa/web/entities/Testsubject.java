@@ -130,8 +130,7 @@ public class Testsubject implements Serializable {
      */
    @OneToMany(
             targetEntity = Questiontype.class,
-            cascade = {CascadeType.ALL},
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name = "testsubject_id")
     public List getQuestionTypes() {

@@ -5,7 +5,7 @@
     <body>
 
 
-        <t:form method="POST">
+        <t:form  t:id="questionform">
             <t:errors/>
             <table>
             <tr>
@@ -22,7 +22,7 @@
                     <select t:type="ck/BeanSelect"
                             list="testsubjects"
                             labelField="literal:name"
-                            valueField="id"
+                            valueField="literal:id"
                             value="testsubject"/>
                 </td>
              </tr>

@@ -27,6 +27,7 @@ import org.apache.tapestry5.beaneditor.Validate;
 public class Passage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @NonVisual
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Lob
