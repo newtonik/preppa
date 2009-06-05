@@ -75,8 +75,8 @@ public class CreateArticle {
         return article;
     }
 
-    @CommitAfter
-    Object onSuccess() {
+    void onSubmitFromArticleForm() {
+         article = new Article();
          article.setBody(fBody);
          article.setTitle(fTitle);
          article.setTestsubject(testsubject);
@@ -100,9 +100,29 @@ public class CreateArticle {
 
 //         article.setTeaser(article.getBody().substring(0, size));
          //article.setUser(userDAO.findById(1));
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         this.article = new Article();
-        article.setCreatedAt(now);
+         
+       
+    }
+
+    @CommitAfter
+    Object onSuccessFromArticleForm() {
+               article = new Article();
+         article.setBody(fBody);
+         article.setTitle(fTitle);
+         article.setTestsubject(testsubject);
+         article.setTeaser(fTitle);
+         article.setSources(fSource);
+         article.setTags(fTag);
+         if(topicks != null) {
+            Topic t = new Topic(topicks);
+            Set tset = new HashSet();
+            tset.add(t);
+          //  article.setTopics(tset);
+         }
+         System.out.println(article.getTitle());
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+         article.setCreatedAt(now);
          article.setUpdatedAt(now);
 
          articleDAO.doSave(article);

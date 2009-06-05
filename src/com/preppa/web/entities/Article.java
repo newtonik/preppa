@@ -215,7 +215,6 @@ public class Article implements Serializable {
      * @return the teaser
      */
     @NonVisual
-    @Basic(optional = false)
     @Lob
     public String getTeaser() {
         return teaser;
