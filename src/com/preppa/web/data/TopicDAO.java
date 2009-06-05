@@ -16,5 +16,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface TopicDAO  extends GenericDAO <Topic, Integer>{
 
     public List<Topic> findByPartialName(String partial);
+    public Topic findById(Integer id);
 
 }

@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import org.apache.tapestry5.beaneditor.NonVisual;
 
@@ -26,7 +28,16 @@ public class Topic implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    @ManyToMany(mappedBy="topics")  // map info is in person class
+
+     @ManyToMany(targetEntity=Article.class)
+    @JoinTable(name = "ArticleTopic",
+    joinColumns = {
+      @JoinColumn(name="topicId")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="articleId")
+    })
+  // map info is in person class
     private Set<Article> articles;
 
     public Topic() {

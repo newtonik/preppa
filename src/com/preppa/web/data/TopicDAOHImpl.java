@@ -33,4 +33,16 @@ public class TopicDAOHImpl extends AbstractHibernateDAO<Topic, Integer> implemen
         return  findByQuery(sqlString.toString());
     }
 
+    public Topic findById(Integer id) {
+
+        SQLString sqlString = new SQLString("FROM Topic t");
+        if(id != null)
+        {
+             sqlString.addWhereClause("t.id = '" + id + "'");
+        }
+
+        return (Topic) findByQuery(sqlString.toString()).get(0);
+    
+    }
+
 }

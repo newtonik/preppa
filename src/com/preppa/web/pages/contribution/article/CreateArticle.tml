@@ -22,12 +22,14 @@
                     </td>
                      
                      <td align="right">
-                         <t:label for="topicks"> Topics: </t:label>
+                         <t:label for="autoComplete"> Topics: </t:label>
                      </td>
-                     <td align="left">
-                         <input t:type="TextField" t:id="topicks" t:mixins="autocomplete" t:value="topicks"/>
+
+                      <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
+                        translate="prop:translator" label="name" size="20"/>
                          </td>
-                      </tr>
+                         </tr>
                       </table>
                      </td>
                   </tr>
@@ -79,7 +81,7 @@
              </table>
              </t:form>
     </div>
- 
+   
 
     
 

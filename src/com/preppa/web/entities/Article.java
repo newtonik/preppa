@@ -7,10 +7,9 @@ package com.preppa.web.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Basic; 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +38,7 @@ public class Article implements Serializable {
    
     private Integer id;
     private String title;
-    private Set topics = new HashSet();
+    private List<Topic> topics = new LinkedList<Topic>();
     private String body;
     private String teaser;
     private Testsubject testsubject;
@@ -80,27 +79,6 @@ public class Article implements Serializable {
     @JoinColumn(name="testsubject_id")
     public Testsubject getTestsubject() {
         return testsubject;
-    }
-        /**
-     * @return the topics
-     */
-    @ManyToMany(targetEntity=Topic.class)
-    @JoinTable(name = "ArticleTopic",
-    joinColumns = {
-      @JoinColumn(name="articleId", unique = true)
-        },
-    inverseJoinColumns = {
-      @JoinColumn(name="topicId")
-    })
-    public Set getTopics() {
-        return topics;
-    }
-
-    /**
-     * @param topics the topics to set
-     */
-    public void setTopics(Set topics) {
-        this.topics = topics;
     }
 
     /**
@@ -225,6 +203,30 @@ public class Article implements Serializable {
      */
     public void setTeaser(String teaser) {
         this.teaser = teaser;
+    }
+
+
+    /**
+     * @return the topics
+     */
+     @ManyToMany(targetEntity=Topic.class)
+    @JoinTable(name = "ArticleTopic",
+    joinColumns = {
+      @JoinColumn(name="articleId")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="topicId")
+    })
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    /**
+     * @param topics the topics to set
+     */
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 
 
