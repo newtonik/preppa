@@ -12,7 +12,10 @@ import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
@@ -52,10 +55,14 @@ public class CreateArticle {
     private String fTitle;
     @Property
     private String fBody;
-   
+    @Property
+    private String fSource;
+    @Property
+    private String fTag;
     void Article() {
        this.article = new Article();
-      //  Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+       Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+       testsubjects.addAll(setItems);
         
     }
     void onActivate(Article article) {
@@ -70,14 +77,18 @@ public class CreateArticle {
 
     @CommitAfter
     Object onSuccess() {
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         this.article = new Article();
-        article.setCreatedAt(now);
-         article.setUpdatedAt(now);
          article.setBody(fBody);
          article.setTitle(fTitle);
          article.setTestsubject(testsubject);
          article.setTeaser(fTitle);
+         article.setSources(fSource);
+         article.setTags(fTag);
+         if(topicks != null) {
+            Topic t = new Topic(topicks);
+            Set tset = new HashSet();
+            tset.add(t);
+          //  article.setTopics(tset);
+         }
          System.out.println(article.getTitle());
 
        //  article.setBody(sanitize(article.getBody()));
@@ -89,6 +100,10 @@ public class CreateArticle {
 
 //         article.setTeaser(article.getBody().substring(0, size));
          //article.setUser(userDAO.findById(1));
+         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+         this.article = new Article();
+        article.setCreatedAt(now);
+         article.setUpdatedAt(now);
 
          articleDAO.doSave(article);
          showarticle.setarticle(article);

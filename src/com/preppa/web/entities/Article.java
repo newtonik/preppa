@@ -84,7 +84,7 @@ public class Article implements Serializable {
         /**
      * @return the topics
      */
-    @ManyToMany(targetEntity=Topic.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(targetEntity=Topic.class)
     @JoinTable(name = "ArticleTopic",
     joinColumns = {
       @JoinColumn(name="articleId", unique = true)
