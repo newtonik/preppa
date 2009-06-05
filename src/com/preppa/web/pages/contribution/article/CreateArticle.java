@@ -179,9 +179,10 @@ public class CreateArticle {
       {
         Topic serverValue = null;
 
-        if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0"))
+        if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+            System.out.println(clientValue);
           serverValue = topicDAO.findById(new Integer(clientValue));
-
+        }
         return serverValue;
       }
     };

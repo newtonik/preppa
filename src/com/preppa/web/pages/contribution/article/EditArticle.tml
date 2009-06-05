@@ -1,29 +1,86 @@
 <html t:type="layout" t:pageTitle="Edit Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+        <br/>
+        <br />
+      <div id ="artcont" align="center">
+          <t:form t:id="articleform">
+             <table id="articleformtable" width="600">
+                 <tr>
+                     <td align="right">
+                         <label for="testsubject"> Section: </label>
+                     </td>
+                     <td align="left">
+                      <table>
+                      <tr>
 
-    <tags>
-          <t:beaneditform t:id="article" align ="left" submitLabel="Update">
-                <t:parameter name="title">
-                <t:label for="title"/>
-                 <t:textfield t:id="title" value="article.title" size="60"/>
-                </t:parameter>
-                 <t:parameter name="tags">
-                <t:label for="tags"/>
-                 <t:textarea t:id="tags" value="article.tags" t:width="500" t:height="100"/>
-                </t:parameter>
 
-                <t:parameter name="sources">
-                <t:label for="sources"/>
-                 <t:textarea t:id="sources" value="article.sources" t:width="500" t:height="100"/>
-                </t:parameter>
+                     <td align="left">
+                            <select t:id="testsubject" t:type="ck/BeanSelect"
+                            list="testsubjects"
+                            labelField="literal:name"
+                            valueField="literal:id"
+                            value="testsubject"/>
+                    </td>
 
-                <t:parameter name="body">
-                <t:label for="body"/>
-                <t:editor t:id="body" value="article.body" t:toolbarSet="Basic" t:width="500" t:height="800"/>
-                </t:parameter>
+                     <td align="right">
+                         <t:label for="autoComplete"> Topics: </t:label>
+                     </td>
 
-          </t:beaneditform>
+                      <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
+                        translate="prop:translator" label="name" size="20"/>
+                         </td>
+                         </tr>
+                      </table>
+                     </td>
+                  </tr>
+                  <tr  align="left">
+                      <td align="right">
+                       <t:label for="fTitle"> Title: </t:label>
+                       </td>
+                       <td align="left">
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle"/>
+                      </td>
 
-    </tags>
+                 </tr>
+
+                 <tr>
+                        <td valign="top" align="right">
+                           <t:label for="body">Article: </t:label>
+                        </td>
+                           <td >
+                          <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="400" t:height="300"/>
+
+                     </td>
+                 </tr>
+                   <tr>
+
+                        <td valign="top" align="right">
+                             <t:label for="fSource"> Sources: </t:label>
+                        </td>
+                        <td>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
+
+                     </td>
+                 </tr>
+                   <tr>
+                     <td align="right">
+                         <t:label for="fTag"> Tags: </t:label>
+                      </td>
+                      <td>
+                          <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
+
+                     </td>
+                 </tr>
+                  <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
+
+                 </tr>
+
+             </table>
+             </t:form>
+    </div>
 
 
 </html>
