@@ -5,8 +5,10 @@
 package com.preppa.web.pages.contribution.passage;
 
 import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.Passage;
 import com.preppa.web.entities.Testsubject;
 import java.sql.Timestamp;
 import java.util.List;
@@ -15,7 +17,6 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.chenillekit.tapestry.core.components.BeanSelect;
 import org.chenillekit.tapestry.core.components.Editor;
 
 /**
@@ -29,10 +30,10 @@ public class CreatePassage {
    
     @Inject
     private LongPassageDAO longpassageDAO;
-    @Component(parameters = {"value=body"})
+    @Inject
+    private PassageDAO passageDAO;
+    @Component(parameters = {"value=fbody"})
     private Editor passeditor;
-    @Property
-    private String body;
     private int size;
     @Property
     @Persist
@@ -40,26 +41,51 @@ public class CreatePassage {
     private List<Testsubject> testsubjects;
     @Inject
     private TestsubjectDAO testsubjectDAO;
+    @Property
+    private String fTitle;
+    @Property
+    private String fBody;
+    @Property
+    private String fSource;
+    @Property
+    private String fTag;
+
 
     
 
-    void onActivate(LongPassage passage) {
-        this.longpassage = passage;
+    void onActivate() {
+        this.longpassage = new LongPassage();
     }
 
     Object onPassivate() {
-        return longpassage;
+        return this;
     }
 
     @CommitAfter
     Object onSuccess() {
+        Passage p = new Passage();
+        p.setPassage(fBody);
+        p.setTitle(fTitle);
+
+        
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+         p.setCreatedAt(now);
+         p.setUpdatedAt(now);
+
+         passageDAO.doSave(p);
+         longpassage.setPassage(p);
+         longpassage.setSources(fSource);
+         longpassage.setTags(fTag);
+
+
+         now = new java.sql.Timestamp(System.currentTimeMillis());
+
          longpassage.setCreatedAt(now);
          longpassage.setUpdatedAt(now);
-         //longpassage.setUser(userDAO.findById(1));
 
+
+      
          longpassageDAO.doSave(longpassage);
-        //showlongpassage.setlongpassage(longpassage);
          return this;
     }
     public static String sanitize(String string) {
@@ -84,19 +110,6 @@ public class CreatePassage {
         this.testsubjects = testsubjects;
     }
 
-    /**
-     * @return the body
-     */
-    public String getBody() {
-        return body;
-    }
-
-    /**
-     * @param body the body to set
-     */
-    public void setBody(String body) {
-        this.body = body;
-    }
 
 
 }

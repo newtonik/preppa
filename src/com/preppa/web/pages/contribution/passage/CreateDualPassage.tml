@@ -1,8 +1,74 @@
 <html t:type="layout" t:pageTitle="New Dual Passage" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    <tags>
- 
-    </tags>
+ <div id="dualpassage">
+        <t:form t:id="createdualpassageform">
+            <table id="dualpasstable">
 
+               <tr align="left">
+                      <td align="right">
+                       <t:label for="fTitle"> Title: </t:label>
+                       </td>
+                       <td align="left">
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle"/>
+                      </td>
+                 </tr>
+                <tr>
+                    <div id="pass1">
+                         <td valign="top" align="right">
+                           <t:label for="passeditorone">Passage: </t:label>
+                        </td>
+                           <td >
+                          <t:editor align="left" t:id="passeditorone" value="fBodyone" t:toolbarSet="Basic" t:width="400" t:height="300"/>
+                           </td>
+                    </div>
+                </tr>
+                  <tr align="left">
+                      <td align="right">
+                       <t:label for="fTitle2"> Title: </t:label>
+                       </td>
+                       <td align="left">
+                      <input t:type="TextField" t:id="fTitle2"  t:value="fTitle2"/>
+                      </td>
+                 </tr>
+                <tr>
+                       <div id="pass2">
+                         <td valign="top" align="right">
+                           <t:label for="passeditortwo">Passage: </t:label>
+                        </td>
+                           <td >
+                          <t:editor align="left" t:id="passeditortwo" value="fBodytwo" t:toolbarSet="Basic" t:width="400" t:height="300"/>
+                           </td>
+                    </div>
+                </tr>
+
+                <tr>
+
+                        <td valign="top" align="right">
+                             <t:label for="fSource"> Sources: </t:label>
+                        </td>
+                        <td>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
+
+                     </td>
+                 </tr>
+                   <tr>
+                     <td align="right">
+                         <t:label for="fTag"> Tags: </t:label>
+                      </td>
+                      <td>
+                          <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
+
+                     </td>
+                 </tr>
+                  <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
+
+                 </tr>
+
+            </table>
+        </t:form>
+    </div>
 
 </html>

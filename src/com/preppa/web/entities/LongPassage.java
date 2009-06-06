@@ -8,8 +8,10 @@ package com.preppa.web.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -47,8 +50,7 @@ public class LongPassage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @ManyToOne(targetEntity = Passage.class)
-    @Fetch(value = FetchMode.JOIN)
+    @ManyToOne(cascade={CascadeType.ALL}, targetEntity=Passage.class)
     @JoinColumn(name = "passage_id")
     @NonVisual
     private Passage passage;
@@ -154,5 +156,10 @@ public class LongPassage implements Serializable {
     public void setPassage(Passage passage) {
         this.passage = passage;
     }
-
+    public void setTitle(String title){
+        this.passage.setTitle(title);
+    }
+    public String getTitle() {
+        return this.passage.getTitle();
+    }
 }

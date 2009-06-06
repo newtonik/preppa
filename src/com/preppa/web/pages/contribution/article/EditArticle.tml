@@ -27,7 +27,7 @@
 
                       <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
-                        translate="prop:translator" label="name" size="20"/>
+                        translate="prop:translator" label="name" size="10"/>
                          </td>
                          </tr>
                       </table>

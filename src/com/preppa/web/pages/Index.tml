@@ -8,6 +8,10 @@
             <t:pagelink t:page="contribution/article/viewall"> All Articles </t:pagelink>
             <br />
             <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+              <br />
+            <t:pagelink t:page="contribution/passage/create">Create Passage</t:pagelink>
+               <br />
+            <t:pagelink t:page="contribution/passage/createdual">Create Dual Passage</t:pagelink>
         </p>
 
         <p>

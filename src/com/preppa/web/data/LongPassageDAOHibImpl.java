@@ -7,6 +7,7 @@ package com.preppa.web.data;
 
 import com.preppa.web.entities.LongPassage;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
+import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 
@@ -22,7 +23,13 @@ public class LongPassageDAOHibImpl extends AbstractHibernateDAO<LongPassage, Int
     }
 
     public LongPassage findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        SQLString sqlString = new SQLString("FROM LongPassage lp");
+        if(id != null)
+        {
+             sqlString.addWhereClause("lp.id = '" + id + "'");
+        }
+
+        return (LongPassage) findByQuery(sqlString.toString()).get(0);
     }
 
 }

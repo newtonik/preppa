@@ -30,6 +30,7 @@ public class Passage implements Serializable {
     @NonVisual
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String title;
     @Lob
     @Validate("required")
     @Column(name = "passage", length = 65535)
@@ -76,7 +77,7 @@ public class Passage implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.Passages[id=" + id + "]";
+        return passage;
     }
 
     /**
@@ -120,6 +121,20 @@ public class Passage implements Serializable {
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

@@ -1,0 +1,22 @@
+<html t:type ="layout" t:pageTitle="${apassage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <body>
+
+        <h2>
+           ${apassage.title}
+        </h2>
+        <div id="author-time">
+            Created at ${apassage.createdAt}
+        </div>
+        <p>
+             <t:outputraw t:value="${passage.passage}"/>
+        </p>
+        <p>
+            <a href="#" t:type="pageLink" t:page="contribution/passage/show" t:context="passage.id"> Edit </a>
+        </p>
+
+        <a href="#" t:type="PageLink" t:page="Index">
+        Home
+        </a>
+    </body>
+</html>

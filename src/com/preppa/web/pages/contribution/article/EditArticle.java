@@ -20,7 +20,6 @@ import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
@@ -31,7 +30,6 @@ import org.chenillekit.tapestry.core.components.Editor;
  *
  * @author newtonik
  */
-@IncludeJavaScriptLibrary("context:js/Chenillekit.js")
 public class EditArticle {
 
 

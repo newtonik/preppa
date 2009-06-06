@@ -24,7 +24,7 @@ public class TopicDAOHImpl extends AbstractHibernateDAO<Topic, Integer> implemen
 
     public List<Topic> findByPartialName(String partial) {
         SQLString sqlString = new SQLString("FROM Topic topics");
-        if(partial != null)
+        if(partial != null && partial.length() > 0)
         {
              sqlString.addOrderField("topics.name");
                  sqlString.addWhereClause("topics.name LIKE '%" + partial + "%'");

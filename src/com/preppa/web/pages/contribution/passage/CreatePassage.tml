@@ -1,22 +1,55 @@
 <html t:type="layout" t:pageTitle="New Passage" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    <tags>
-          <t:beaneditform t:id="longpassage" align ="left"  submitLabel="Save">
+    <div id="passage">
+        <t:form t:id="createpassageform">
+            <table id="passtable">
+               
+               <tr align="left">
+                      <td align="right">
+                       <t:label for="fTitle"> Title: </t:label>
+                       </td>
+                       <td align="left">
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle"/>
+                      </td>
+                 </tr>
+                <tr>
+                    <div id="pass1">
+                         <td valign="top" align="right">
+                           <t:label for="passeditor">Passage: </t:label>
+                        </td>
+                           <td >
+                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="400" t:height="300"/>
+                           </td>
+                    </div>
+                </tr>
               
-               <t:parameter name="sources">
-                <t:label for="sources"/>
-                 <t:textarea t:id="sources" value="longpassage.sources" rows="4" cols="50"/>
-                </t:parameter>
+                <tr>
 
-                
-                
+                        <td valign="top" align="right">
+                             <t:label for="fSource"> Sources: </t:label>
+                        </td>
+                        <td>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
 
-          </t:beaneditform>
-            <input t:type="text" t:value="body"/>
-            <t:label for="body"/>
-            <t:editor t:id="passeditor" value="body" t:validate="required" t:toolbarSet="Basic" t:width="400" t:height="400"/>
-            
-    </tags>
+                     </td>
+                 </tr>
+                   <tr>
+                     <td align="right">
+                         <t:label for="fTag"> Tags: </t:label>
+                      </td>
+                      <td>
+                          <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
 
+                     </td>
+                 </tr>
+                  <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
 
+                 </tr>
+
+            </table>
+        </t:form>
+    </div>
 </html>

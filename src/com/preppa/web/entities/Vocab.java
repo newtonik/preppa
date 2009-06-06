@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -53,16 +52,14 @@ public class Vocab implements Serializable {
     @Column(name = "tags", length = 65535)
     private String tags;
     @Basic(optional = false)
-    @OneToOne(targetEntity = ExampleSentence.class)
+    @ManyToOne(targetEntity = ExampleSentence.class)
     @Fetch(value = FetchMode.JOIN)
-    @Cascade(value = {org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+    @Cascade(value = {org.hibernate.annotations.CascadeType.MERGE,
             org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     @JoinColumn(name = "sentence_id")
     private ExampleSentence sentence;
-
     @Lob
-    private String exampleSentence;
-
+    private String formsentence;
     @ManyToOne(targetEntity = User.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
@@ -192,17 +189,17 @@ public class Vocab implements Serializable {
     }
 
     /**
-     * @return the exampleSentence
+     * @return the formsentence
      */
-    public String getExampleSentence() {
-        return exampleSentence;
+    public String getFormsentence() {
+        return formsentence;
     }
 
     /**
-     * @param exampleSentence the exampleSentence to set
+     * @param formsentence the formsentence to set
      */
-    public void setExampleSentence(String exampleSentence) {
-        this.exampleSentence = exampleSentence;
+    public void setFormsentence(String formsentence) {
+        this.formsentence = formsentence;
     }
 
 }

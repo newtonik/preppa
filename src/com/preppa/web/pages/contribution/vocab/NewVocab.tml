@@ -11,15 +11,11 @@
 
                <t:parameter name="definition">
                 <t:label for="definition"/>
-                 <t:textarea t:id="definition" value="vocab.definition" size="10x80"/>
+                 <t:textarea t:id="definition" value="vocab.definition" size="10x50"/>
                 </t:parameter>
-
-                   <t:parameter name="examplesentence">
-                <t:label for="examplesentence">Example</t:label>
-                 <t:textarea t:id="examplesentence" value="vocab.examplesentence" size="10x80"/>
-                </t:parameter>
+                 
           </t:beaneditform>
-          
+         
           <br/>
           <br/>
           <br/>
