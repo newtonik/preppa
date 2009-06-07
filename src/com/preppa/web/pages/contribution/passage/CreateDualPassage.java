@@ -83,8 +83,8 @@ public class CreateDualPassage {
          p2.setCreatedAt(now);
          p2.setUpdatedAt(now);
 
-         passageDAO.doSave(p);
-         passageDAO.doSave(p2);
+         //passageDAO.doSave(p);
+         //passageDAO.doSave(p2);
          longDualpassage.setPassageone(p);
          longDualpassage.setPassagetwo(p2);
          longDualpassage.setSource(fSource);

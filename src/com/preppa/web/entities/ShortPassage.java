@@ -15,7 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -50,7 +50,7 @@ public class ShortPassage implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @ManyToOne(targetEntity = Passage.class)
+    @OneToOne(targetEntity = Passage.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "passage_id")
     private Passage passage;

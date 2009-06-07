@@ -72,7 +72,7 @@ public class CreatePassage {
          p.setCreatedAt(now);
          p.setUpdatedAt(now);
 
-         passageDAO.doSave(p);
+        // passageDAO.doSave(p);
          longpassage.setPassage(p);
          longpassage.setSources(fSource);
          longpassage.setTags(fTag);
