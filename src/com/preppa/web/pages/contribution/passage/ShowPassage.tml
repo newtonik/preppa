@@ -1,12 +1,12 @@
-<html t:type ="layout" t:pageTitle="${apassage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type ="layout" t:pageTitle="${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
 
         <h2>
-           ${apassage.title}
+           ${passage.title}
         </h2>
         <div id="author-time">
-            Created at ${apassage.createdAt}
+            Created at ${passage.createdAt}
         </div>
         <p>
              <t:outputraw t:value="${passage.passage}"/>

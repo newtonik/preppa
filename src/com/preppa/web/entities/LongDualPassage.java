@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,16 +50,13 @@ public class LongDualPassage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @OneToOne(cascade={CascadeType.ALL}, targetEntity = Passage.class)
-    @Fetch(value = FetchMode.JOIN)
+    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Passage.class, fetch=FetchType.EAGER)
     @JoinColumn(name = "passage1_id")
-    @NonVisual
     private Passage passageone;
-    @ManyToOne(cascade={CascadeType.ALL}, targetEntity = Passage.class)
-    @Fetch(value = FetchMode.JOIN)
+    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity = Passage.class, fetch=FetchType.EAGER)
     @JoinColumn(name = "passage2_id")
-    @NonVisual
     private Passage passagetwo;
+    
     public Integer getId() {
         return id;
     }

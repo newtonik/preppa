@@ -25,6 +25,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
 /**
  *
@@ -64,7 +65,8 @@ public class CreateArticle {
     private String fSource;
     @Property
     private String fTag;
-
+    @Component
+    private AutoComplete autoComplete;
 
 
     void Article() {
@@ -87,7 +89,9 @@ public class CreateArticle {
     Object onPassivate() {
         return article;
     }
+    void onValidateFromArticleForm() {
 
+    }
 
     @CommitAfter
     Object onSuccessFromArticleForm() {

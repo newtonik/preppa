@@ -11,11 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,10 +50,9 @@ public class LongPassage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @OneToOne(cascade={CascadeType.ALL}, targetEntity=Passage.class)
+    
+    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity=Passage.class, fetch=FetchType.EAGER)
     @JoinColumn(name = "passage_id")
-    @Fetch(value = FetchMode.JOIN)
-    @NonVisual
     private Passage passage;
     public Integer getId() {
         return id;

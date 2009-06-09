@@ -32,6 +32,11 @@ private Passage apassage;
 Object onActivate(int id) {
         this.passage = passageDAO.findById(id);
         apassage = passage.getPassage();
+        if(apassage != null)
+        {
+            System.out.println(passage.getPassage());
+            System.out.println(passage.getTitle());
+        }
         
         return this;
     }

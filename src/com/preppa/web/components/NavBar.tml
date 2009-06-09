@@ -1,16 +1,18 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <p>
 <div id="logo">
-<a href="index">  <img src="${asset:context:/images/logo.png}"
-         align="left"/>
+<a href="#" t:type="PageLink" t:page="index">
+    <img src="${asset:context:/images/logo.png}" align="left"/>
 </a>
 </div>
 <a href="user/create">Sign In</a>
 <div id="nav-menu">
     <ul>
-        <li><a href="index">Home</a></li>
+        <li><a href="#" t:type="PageLink" t:page="index">Home</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Friends</a></li>
         <li><a href="#">Sites Available</a></li>
     </ul>
 </div>
 </p>
+</t:container>

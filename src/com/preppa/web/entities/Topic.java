@@ -6,7 +6,10 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 
 /**
@@ -39,6 +44,17 @@ public class Topic implements Serializable {
     })
   // map info is in person class
     private Set<Article> articles;
+
+    @Basic(optional = false)
+    @NonVisual
+    @Column(name = "created_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+    @NonVisual
+    @Basic(optional = false)
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
 
     public Topic() {
         
@@ -105,6 +121,34 @@ public class Topic implements Serializable {
      */
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
+    }
+
+    /**
+     * @return the createdAt
+     */
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @param createdAt the createdAt to set
+     */
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    /**
+     * @return the updatedAt
+     */
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    /**
+     * @param updatedAt the updatedAt to set
+     */
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }

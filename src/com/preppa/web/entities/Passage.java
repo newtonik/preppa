@@ -6,7 +6,9 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -45,8 +48,16 @@ public class Passage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @NonVisual
+    @OneToMany(mappedBy = "passage")
+    private List<LongPassage> longPassages;
+
+    @OneToMany(mappedBy = "passageone")
+    private List<LongDualPassage> longDualPassagesone;
 
 
+    @OneToMany(mappedBy = "passagetwo")
+    private List<LongDualPassage> longDualPassagestwo;
     public Integer getId() {
         return id;
     }

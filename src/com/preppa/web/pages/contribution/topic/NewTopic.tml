@@ -1,0 +1,22 @@
+<html t:type="layout" t:pageTitle="New Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+        <br/>
+        <br />
+       <div id="topicform">
+           <t:form>
+           <table>
+               <tr>
+                   <td>
+                   <input type="text" t:type="TextField" t:id="fName" t:value="fName" />
+                   </td>
+               </tr>
+               <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
+               </tr>
+
+           </table>
+           </t:form>
+       </div>
+
+</html>
