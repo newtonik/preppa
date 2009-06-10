@@ -6,17 +6,25 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+
 
 /**
  *
@@ -28,6 +36,8 @@ public class Question implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "id")
+    @NonVisual
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @ManyToOne(targetEntity=Questiontype.class)
     @JoinColumn(name="questiontype_id")
@@ -44,6 +54,12 @@ public class Question implements Serializable {
     @Lob
     @Column(name = "explanation")
     private String explanation;
+    private Integer difficulty;
+    @OneToMany(cascade=CascadeType.ALL,  fetch=FetchType.EAGER)
+    @JoinColumn(name="question_id")
+    private List<QuestionAnswer> choices = new ArrayList<QuestionAnswer>();
+    //this will be used for validation.
+    private Integer numCorrect;
     @Basic(optional = false)
     @NonVisual
     @Column(name = "created_at")
@@ -54,9 +70,7 @@ public class Question implements Serializable {
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    private Integer difficulty;
-    //this will be used for validation.
-    private Integer numCorrect;
+    
 
     public Question() {
     }
@@ -193,6 +207,20 @@ public class Question implements Serializable {
      */
     public void setNumCorrect(Integer numCorrect) {
         this.numCorrect = numCorrect;
+    }
+
+    /**
+     * @return the choices
+     */
+    public List<QuestionAnswer> getChoices() {
+        return choices;
+    }
+
+    /**
+     * @param choices the choices to set
+     */
+    public void setChoices(List<QuestionAnswer> choices) {
+        this.choices = choices;
     }
 
 }

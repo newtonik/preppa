@@ -11,6 +11,8 @@ import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.LongPassageDAOHibImpl;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.PassageDAOHibImpl;
+import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.QuestionDAOHimpl;
 import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.QuestiontypeDAOHibImpl;
 import com.preppa.web.data.ShortDualPassageDAO;
@@ -70,6 +72,7 @@ public final class AppModule {
         binder.bind(LongDualPassageDAO.class, LongDualPassageDAOHibImpl.class);
         binder.bind(LongPassageDAO.class, LongPassageDAOHibImpl.class);
         binder.bind(QuestiontypeDAO.class, QuestiontypeDAOHibImpl.class);
+        binder.bind(QuestionDAO.class, QuestionDAOHimpl.class);
 
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
 

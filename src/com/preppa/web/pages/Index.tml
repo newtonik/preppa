@@ -12,6 +12,8 @@
             <t:pagelink t:page="contribution/passage/create">Create Passage</t:pagelink>
                <br />
             <t:pagelink t:page="contribution/passage/createdual">Create Dual Passage</t:pagelink>
+            <br />
+            <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
         </p>
 
         <p>

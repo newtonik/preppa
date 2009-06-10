@@ -1,0 +1,96 @@
+<html t:type="layout" t:pageTitle="New Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+   <div id="multiple-question">
+        <t:form t:id="createarticleform">
+            <table id="formtable">
+                
+                 <tr>
+                        <td width="10%" valign="top" align="right">
+                           <t:label for="questioneditor">Question: </t:label>
+                        </td>
+                           <td >
+                          <t:editor align="left" t:id="questioneditor" t:toolbarSet="Basic" t:width="600" t:height="100"/>
+
+                     </td>
+                 </tr>
+                        <tr>
+                             <td width="10%" valign="top" align="right">
+                              <input t:type="checkbox" t:id="c1" t:value="c1"/><br />
+                              <t:label for="choice1">Choice 1: </t:label>
+                             </td>
+                        <td>
+                         <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td width="10%" valign="top" align="right">
+                           <input t:type="checkbox" t:id="c2" t:value="c2"/>
+                           <br />
+                           <t:label for="choice2">Choice 2: </t:label>
+                            </td>
+                            <td>
+                            <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                            </td>
+                        </tr>
+
+                         <tr>
+                             <td width="10%" valign="top" align="right">
+                              <input t:type="checkbox" t:id="c3" t:value="c3"/>
+                              <br />
+                             <t:label for="choice3">Choice 3: </t:label>
+                        </td>
+                        <td>
+                         <t:editor align="left" t:id="choice3" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                        </td>
+                        </tr>
+                         <tr>
+                            <td width="10%" valign="top" align="right">
+                                <input t:type="checkbox" t:id="c4" t:value="c4"/>
+                                <br />
+                            <t:label for="choice4">Choice 4: </t:label>
+                            
+                            </td>
+                            <td>
+                            <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                            </td>
+                        </tr>
+                         <tr>
+                               <td width="10%" valign="top" align="right">
+                                  <input t:type="checkbox" t:id="c5" t:value="c5"/>
+                                  <br />
+                                <t:label for="choice5">Choice 5: </t:label>
+                        </td>
+                        <td>
+                         <t:editor align="left" t:id="choice5" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                        </td>
+                        </tr>
+ 
+                  <tr>
+
+                        <td width="10%" valign="top" align="right">
+                             <t:label for="fExplanation"> Explain: </t:label>
+                        </td>
+                        <td>
+                          <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="4" cols="50"/>
+                       </td>
+                 </tr>
+                   <tr>
+                     <td width="10%" align="right">
+                         <t:label for="fTag"> Tags: </t:label>
+                      </td>
+
+                      <td>
+                          <input t:type="TextField" t:id="fTag" value="fTag" width="90"/>
+                     </td>
+                 </tr>
+                <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                 </td>
+
+                 </tr>
+
+             </table>
+            
+        </t:form>
+    </div>
+</html>
