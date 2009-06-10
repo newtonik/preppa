@@ -31,7 +31,7 @@ Object onActivate(int id) {
 
 
 
-void setarticle(LongPassage passage) {
+void setPassagePage(LongPassage passage) {
         this.passage = passage;
     }
 

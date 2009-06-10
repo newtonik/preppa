@@ -3,7 +3,7 @@
     <div id="passage">
         <t:form t:id="createpassageform">
             <table id="passtable">
-               
+
                <tr align="left">
                       <td align="right">
                        <t:label for="fTitle"> Title: </t:label>
@@ -22,7 +22,7 @@
                            </td>
                     </div>
                 </tr>
-              
+
                 <tr>
 
                         <td valign="top" align="right">

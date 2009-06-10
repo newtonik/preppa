@@ -12,7 +12,7 @@
              <t:outputraw t:value="${passage.passage}"/>
         </p>
         <p>
-            <a href="#" t:type="pageLink" t:page="contribution/passage/show" t:context="passage.id"> Edit </a>
+            <a href="#" t:type="pageLink" t:page="contribution/passage/edit" t:context="passage.id"> Edit </a>
         </p>
 
         <a href="#" t:type="PageLink" t:page="Index">

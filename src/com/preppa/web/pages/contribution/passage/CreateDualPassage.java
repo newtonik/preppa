@@ -9,11 +9,11 @@ import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongDualPassage;
-import com.preppa.web.entities.Passage;
 import com.preppa.web.entities.Testsubject;
 import java.sql.Timestamp;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
@@ -55,7 +55,8 @@ public class CreateDualPassage {
     private String fSource;
     @Property
     private String fTag;
-
+    @InjectPage
+    private ShowDualPassage showdualpasage;
 
 
 
@@ -63,9 +64,7 @@ public class CreateDualPassage {
         this.longDualpassage = new LongDualPassage();
     }
 
-    Object onPassivate() {
-        return this;
-    }
+ 
 
     @CommitAfter
     Object onSuccess() {
@@ -86,7 +85,8 @@ public class CreateDualPassage {
 
 
          longDualpassageDAO.doSave(longDualpassage);
-         return this;
+         showdualpasage.setLongDualPassage(longDualpassage);
+         return showdualpasage;
     }
     public static String sanitize(String string) {
     return string

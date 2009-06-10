@@ -3,7 +3,7 @@
         <br />
       <div id ="artcont" align="center">
           <t:form t:id="articleform">
-             <table id="articleformtable" width="600">
+             <table id="articleformtable" width="700">
                  <tr>
                      <td align="right">
                          <label for="testsubject"> Section: </label>
@@ -48,7 +48,7 @@
                            <t:label for="body">Article: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="400" t:height="300"/>
+                          <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"/>
 
                      </td>
                  </tr>

@@ -24,7 +24,7 @@ body, table, input, select
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10pt;
-    background-color: #D4E4FF;
+    background-color: #ffffff;
 }
 h1
 {
@@ -146,7 +146,7 @@ text-align: center;
 	}
 	/* holy grail 3 column settings */
 	.holygrail {
-	    background:#ff9;    	/* Right column background colour */
+	    background: #D4E4FF;    	/* Right column background colour */
 	}
     .holygrail .colmid {
         float:left;
@@ -162,7 +162,7 @@ text-align: center;
         margin-left:-50%;
         position:relative;
         left:400px;         	/* Left column width + right column width */
-        background:#FFD8B7;    	/* Left column background colour */
+        background: #D4E4FF;    	/* Left column background colour */
     }
     .holygrail .col1wrap {
         float:left;
@@ -208,10 +208,34 @@ text-align: center;
 		margin:0;
 	}
 
+.roundedcornr_box {
+   background: #ffffff;
+}
+.roundedcornr_top div {
+   background: url(roundedcornr_849746_tl.png) no-repeat top left;
+}
+.roundedcornr_top{
+   background: url(roundedcornr_849746_tr.png) no-repeat top right;
+}
+.roundedcornr_bottom div {
+   background: url(roundedcornr_849746_bl.png) no-repeat bottom left;
+}
+.roundedcornr_bottom d{
+   background: url(roundedcornr_849746_br.png) no-repeat bottom right;
+}
+
+.roundedcornr_top div, .roundedcornr,
+.roundedcornr_bottomdiv, .roundedcornr_bottom {
+   width: 100%;
+   height: 30px;
+   font-size: 1px;
+}
+
 
 div.content {
     margin-right: auto;
     margin-left: auto;
+    margin: 0 30px;
 }
 div.artcont {
 

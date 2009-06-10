@@ -10,12 +10,17 @@
             Preppa
         </div>
     <div class="colmask holygrail">
+         
         <div class="colmid">
          <div class="colleft">
+           
+            <div class=".roundedcornr_box">
             <div class="col1wrap">
+                 <div class="roundedcornr_top"><div></div></div>
                 <div class="col1">
                     <t:body/>
                 </div>
+                 <div class="roundedcornr_bottom"><div></div></div>
             </div>
                 <div class="col2">
                     <h2>Left Side Bar </h2>
@@ -24,7 +29,10 @@
                  Nothing
                 </div>
             </div>
+         
             </div>
+            </div>
+              
         </div>
         
         <div id="footer">
