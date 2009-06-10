@@ -63,22 +63,18 @@ public class CreatePassage {
 
     @CommitAfter
     Object onSuccess() {
-        Passage p = new Passage();
-        p.setPassage(fBody);
-        p.setTitle(fTitle);
-
         
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         p.setCreatedAt(now);
-         p.setUpdatedAt(now);
-
+        
+        
+        
         // passageDAO.doSave(p);
-         longpassage.setPassage(p);
+         longpassage.setPassage(fBody);
          longpassage.setSources(fSource);
          longpassage.setTags(fTag);
+         longpassage.setTitle(fTitle);
 
 
-         now = new java.sql.Timestamp(System.currentTimeMillis());
+         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longpassage.setCreatedAt(now);
          longpassage.setUpdatedAt(now);

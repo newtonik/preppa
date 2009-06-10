@@ -8,22 +8,15 @@ package com.preppa.web.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -50,12 +43,14 @@ public class LongDualPassage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Passage.class, fetch=FetchType.EAGER)
-    @JoinColumn(name = "passage1_id")
-    private Passage passageone;
-    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity = Passage.class, fetch=FetchType.EAGER)
-    @JoinColumn(name = "passage2_id")
-    private Passage passagetwo;
+    //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Passage.class, fetch=FetchType.EAGER)
+    //@JoinColumn(name = "passage1_id")
+    @Lob
+    private String passageone;
+    //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity = Passage.class, fetch=FetchType.EAGER)
+    //@JoinColumn(name = "passage2_id")
+    @Lob
+    private String passagetwo;
     
     public Integer getId() {
         return id;
@@ -163,28 +158,28 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the passageone
      */
-    public Passage getPassageone() {
+    public String getPassageone() {
         return passageone;
     }
 
     /**
      * @param passageone the passageone to set
      */
-    public void setPassageone(Passage passageone) {
+    public void setPassageone(String passageone) {
         this.passageone = passageone;
     }
 
     /**
      * @return the passagetwo
      */
-    public Passage getPassagetwo() {
+    public String getPassagetwo() {
         return passagetwo;
     }
 
     /**
      * @param passagetwo the passagetwo to set
      */
-    public void setPassagetwo(Passage passagetwo) {
+    public void setPassagetwo(String passagetwo) {
         this.passagetwo = passagetwo;
     }
 

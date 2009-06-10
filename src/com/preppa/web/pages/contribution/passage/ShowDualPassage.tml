@@ -1,21 +1,21 @@
-<html t:type ="layout" t:pageTitle="${ftitle}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type ="layout" t:pageTitle="${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
 
         <h3>
-           ${ftitle}
+           ${passage.title}
         </h3>
         <div id="author-time">
             Created at ${passage.createdAt}
         </div>
         <p>
-             <t:outputraw t:value="${passage1}"/>
+             <t:outputraw t:value="${passage.passageone}"/>
         </p>
         <div id="author-time">
             Created at ${passage.createdAt}
         </div>
         <p>
-             <t:outputraw t:value="${passage2}"/>
+             <t:outputraw t:value="${passage.passagetwo}"/>
         </p>
         <p>
             <a href="#" t:type="pageLink" t:page="index" t:context="passage.id"> Edit </a>

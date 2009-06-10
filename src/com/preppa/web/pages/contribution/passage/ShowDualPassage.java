@@ -25,27 +25,19 @@ public class ShowDualPassage {
     private LongDualPassageDAO longpassageDAO;
     @Inject
     private PassageDAO passDA0;
-    @Property
-    private String ptitle;
-    @Property
-    private String passage1;
-    @Property
-    private String passage2;
-    @Property
-    private String ftitle;
 
     Object onActivate(int id) {
         this.passage = longpassageDAO.findById(id);
-        passage1 = passage.getPassageone().getPassage();
-        passage2 = passage.getPassagetwo().getPassage();
-        ftitle = passage.getTitle();
-        if(ftitle == null) {
-            ftitle = passage.getPassageone().getTitle();
-        }
+        //passage1 = passage.getPassageone();
+//        passage2 = passage.getPassagetwo();
+//        ftitle = passage.getTitle();
+//        if(ftitle == null) {
+//            ftitle = passage.getPassageone().getTitle();
+//        }
         return this;
     }
 
-    void setarticle(LongDualPassage passage) {
+    void setLongDualPassage(LongDualPassage passage) {
         this.passage = passage;
     }
 }

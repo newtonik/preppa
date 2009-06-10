@@ -1,7 +1,7 @@
-<html t:type="layout" t:pageTitle="New Dual Passage" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="${fTitle}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
  <div id="dualpassage">
-        <t:form t:id="createdualpassageform">
+        <t:form t:id="editdualpassageform">
             <table id="dualpasstable">
 
                <tr align="left">
@@ -15,20 +15,20 @@
                 <tr>
                     <div id="pass1">
                          <td valign="top" align="right">
-                           <t:label for="passeditorone">Passage: </t:label>
+                           <t:label for="pass1">Passage: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="passeditorone" value="fBodyone" t:toolbarSet="Basic" t:width="400" t:height="300"/>
+                          <t:editor align="left" t:id="pass1" value="fBodyone" t:toolbarSet="Basic" t:width="600" t:height="300"/>
                            </td>
                     </div>
                 </tr>
                 <tr>
                        <div id="pass2">
                          <td valign="top" align="right">
-                           <t:label for="passeditortwo">Passage: </t:label>
+                           <t:label for="pass2">Passage: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="passeditortwo" value="fBodytwo" t:toolbarSet="Basic" t:width="400" t:height="300"/>
+                          <t:editor align="left" t:id="pass2" value="fBodytwo" t:toolbarSet="Basic" t:width="600" t:height="300"/>
                            </td>
                     </div>
                 </tr>

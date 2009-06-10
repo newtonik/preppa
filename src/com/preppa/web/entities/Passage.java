@@ -48,16 +48,7 @@ public class Passage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @NonVisual
-    @OneToMany(mappedBy = "passage")
-    private List<LongPassage> longPassages;
-
-    @OneToMany(mappedBy = "passageone")
-    private List<LongDualPassage> longDualPassagesone;
-
-
-    @OneToMany(mappedBy = "passagetwo")
-    private List<LongDualPassage> longDualPassagestwo;
+    
     public Integer getId() {
         return id;
     }

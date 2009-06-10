@@ -49,11 +49,12 @@ public class ShortPassage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-
-    @OneToOne(targetEntity = Passage.class)
-    @Fetch(value = FetchMode.JOIN)
-    @JoinColumn(name = "passage_id")
-    private Passage passage;
+    private String title;
+    //@OneToOne(targetEntity = Passage.class)
+    //@Fetch(value = FetchMode.JOIN)
+    //@JoinColumn(name = "passage_id")
+    @Lob
+    private String passage;
     
     public Integer getId() {
         return id;
@@ -147,15 +148,29 @@ public class ShortPassage implements Serializable {
     /**
      * @return the passage
      */
-    public Passage getPassage() {
+    public String getPassage() {
         return passage;
     }
 
     /**
      * @param passage the passage to set
      */
-    public void setPassage(Passage passage) {
+    public void setPassage(String passage) {
         this.passage = passage;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

@@ -9,11 +9,11 @@ import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongDualPassage;
-import com.preppa.web.entities.Passage;
 import com.preppa.web.entities.Testsubject;
 import java.sql.Timestamp;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
@@ -24,18 +24,18 @@ import org.chenillekit.tapestry.core.components.Editor;
  *
  * @author nwt
  */
-public class CreateDualPassage {
- @Property
+public class EditDualPassage {
+    @Property
     private LongDualPassage longDualpassage;
 
     @Inject
     private LongDualPassageDAO longDualpassageDAO;
     @Inject
     private PassageDAO passageDAO;
-    @Component(parameters = {"value=fbodyone"})
-    private Editor passeditorone;
-     @Component(parameters = {"value=fbodytwo"})
-    private Editor passeditortwo;
+    @Component(parameters = {"value=fBodyone"})
+    private Editor pass1;
+     @Component(parameters = {"value=fBodytwo"})
+    private Editor pass2;
     private int size;
     @Property
     @Persist
@@ -55,21 +55,30 @@ public class CreateDualPassage {
     private String fSource;
     @Property
     private String fTag;
+    @InjectPage
+    private ShowDualPassage showdualpasage;
 
 
 
-
-    void onActivate() {
-        this.longDualpassage = new LongDualPassage();
+    void onActivate(int id) {
+        this.longDualpassage = longDualpassageDAO.findById(id);
+        if(longDualpassage != null)
+        {
+                    fBodyone = longDualpassage.getPassageone();
+                    fBodytwo = longDualpassage.getPassagetwo();
+                    fTag = longDualpassage.getTags();
+                    fSource = longDualpassage.getSource();
+                    fTitle = longDualpassage.getTitle();
+        }
+        
     }
 
     Object onPassivate() {
-        return this;
+        return longDualpassage;
     }
-
     @CommitAfter
     Object onSuccess() {
-  
+
 
          longDualpassage.setPassageone(fBodyone);
          longDualpassage.setPassagetwo(fBodytwo);
@@ -80,13 +89,13 @@ public class CreateDualPassage {
 
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-         longDualpassage.setCreatedAt(now);
          longDualpassage.setUpdatedAt(now);
 
 
 
          longDualpassageDAO.doSave(longDualpassage);
-         return this;
+         showdualpasage.setLongDualPassage(longDualpassage);
+         return showdualpasage;
     }
     public static String sanitize(String string) {
     return string
@@ -109,6 +118,7 @@ public class CreateDualPassage {
     public void setTestsubjects(List<Testsubject> testsubjects) {
         this.testsubjects = testsubjects;
     }
+
 
 
 }

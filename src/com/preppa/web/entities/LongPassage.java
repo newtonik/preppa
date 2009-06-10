@@ -18,12 +18,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -51,9 +48,11 @@ public class LongPassage implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
     
-    @ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity=Passage.class, fetch=FetchType.EAGER)
-    @JoinColumn(name = "passage_id")
-    private Passage passage;
+    //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity=Passage.class, fetch=FetchType.EAGER)
+    //@JoinColumn(name = "passage_id")
+    @Lob
+    private String passage;
+    private String title;
     public Integer getId() {
         return id;
     }
@@ -84,7 +83,7 @@ public class LongPassage implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.LongPassage[id=" + id + "]";
+        return getTitle();
     }
 
     /**
@@ -146,20 +145,20 @@ public class LongPassage implements Serializable {
     /**
      * @return the passage
      */
-    public Passage getPassage() {
+    public String getPassage() {
         return passage;
     }
 
     /**
      * @param passage the passage to set
      */
-    public void setPassage(Passage passage) {
+    public void setPassage(String passage) {
         this.passage = passage;
     }
     public void setTitle(String title){
-        this.passage.setTitle(title);
+        this.title = title;
     }
     public String getTitle() {
-        return this.passage.getTitle();
+        return title;
     }
 }
