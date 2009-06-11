@@ -7,13 +7,16 @@ package com.preppa.web.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -47,6 +50,8 @@ public class LongDualPassage implements Serializable {
     //@JoinColumn(name = "passage1_id")
     @Lob
     private String passageone;
+    @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
+    private List<Question> questions;
     //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity = Passage.class, fetch=FetchType.EAGER)
     //@JoinColumn(name = "passage2_id")
     @Lob

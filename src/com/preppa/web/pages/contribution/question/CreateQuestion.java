@@ -16,6 +16,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.RatingField;
 
 /**
  *
@@ -46,6 +47,10 @@ public class CreateQuestion {
     private Editor choice4;
     @Component(parameters = {"value=ans5"})
     private Editor choice5;
+    @Component
+    private RatingField ratingField;
+    @Property
+    private Integer ratingValue;
     @Property
     private String ans1;
     @Property
@@ -120,6 +125,7 @@ public class CreateQuestion {
         question.getChoices().add(ch);
     }
      question.setNumCorrect(numCorrect);
+     question.setDifficulty(ratingValue);
      Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
      question.setCreatedAt(now);
      question.setUpdatedAt(now);
