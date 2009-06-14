@@ -21,11 +21,13 @@ public class ShowVocab {
 private Vocab vocab;
 @Inject
 private VocabDAO vocabDAO;
+@Property
+private String example;
 
 
 Object onActivate(int id) {
         this.vocab = vocabDAO.findById(id);
-
+        example = vocab.getSentence().getSentence();
         return this;
     }
 

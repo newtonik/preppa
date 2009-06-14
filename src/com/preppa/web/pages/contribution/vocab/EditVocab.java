@@ -28,8 +28,25 @@ public class EditVocab {
     private VocabDAO vocabDAO;
     @InjectPage
     private ShowVocab showvocab;
+   @Property
+    private String fWord;
+    @Property
+    private String partofspch;
+    @Property
+    private String fDefinition;
+    @Property
+    private String fSentence;
+    @Property
+    private String fTag;
+
     Object onActivate(int id) {
         this.vocab = vocabDAO.findById(id);
+        if(vocab != null) {
+            fWord = vocab.getName();
+            partofspch = vocab.getPartofspeech();
+            fSentence = vocab.getSentence().getSentence();
+            fTag = vocab.getTags();
+        }
 
         return this;
     }

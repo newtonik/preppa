@@ -42,6 +42,8 @@ public class CreatePassage {
     @Inject
     private TestsubjectDAO testsubjectDAO;
     @Property
+	private List<String> qblockIds;
+    @Property
     private String fTitle;
     @Property
     private String fBody;
@@ -58,7 +60,10 @@ public class CreatePassage {
         this.longpassage = new LongPassage();
     }
 
-  
+    void pageLoaded()
+	{
+
+    }
     @CommitAfter
     Object onSuccess() {
         

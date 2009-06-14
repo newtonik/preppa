@@ -9,7 +9,7 @@
                        <t:label for="fTitle"> Title: </t:label>
                        </td>
                        <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle"/>
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:validate="required" t:title="Title" />
                       </td>
                  </tr>
                 <tr>
@@ -18,7 +18,7 @@
                            <t:label for="passeditor">Passage: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"/>
+                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required" t:title="Passage"/>
                            </td>
                     </div>
                 </tr>

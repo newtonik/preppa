@@ -1,33 +1,69 @@
 <html t:type="layout" t:pageTitle="Edit Vocab" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    <tags>
-          <t:beaneditform t:id="vocab" align ="left" submitLabel="Update">
-                <t:parameter name="name">
-                <t:label for="name"/>
-                 <t:textfield t:id="name" value="vocab.name" size="60" t:mixins="autocomplete"/>
-                </t:parameter>
-                 <t:parameter name="tags">
-                <t:label for="tags"/>
-                 <t:textarea t:id="tags" value="vocab.tags" t:width="500" t:height="100"/>
-                </t:parameter>
+<div id="editform">
+       <t:form t:id="vocabform">
+              <t:errors/>
+              <table>
+                  <tr>
+                      <td>
+                    <t:label for="fWord"> Word </t:label>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>
+                         <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30"/>
+                        </td>
+                    </tr>
+                  <tr>
+                      <td>
+                       <t:label for="partofspch"> Part Of Speech </t:label>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                     <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective, Pronoun, Adverb, Propositions, Conjuctions"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                      <t:label for="fDefinition"> Definition: </t:label>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="fDefinition" t:validate="required" rows="4" cols="80"/>
+                      </td>
 
-                <t:parameter name="partofspeech">
-                <t:label for="partofspeech"/>
-                 <t:textarea t:id="partofspeech" value="vocab.partofspeech" t:width="500" t:height="100"/>
-                </t:parameter>
+                  </tr>
+                    <tr>
+                      <td>
+                      <t:label for="fSentence"> Example Sentence: </t:label>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="fSentence" t:validate="required" rows="4" cols="80"/>
+                      </td>
 
-               <t:parameter name="definition">
-                <t:label for="definition"/>
-                 <t:textarea t:id="definition" value="vocab.definition" size="10x50"/>
-                </t:parameter>
+                  </tr>
+                        <tr>
+                      <td>
+                    <t:label for="fTag"> Tags </t:label>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>
+                         <input type="text" t:type="TextField" t:id="fTag"  t:value="fTag" t:label="Tags" size="80"/>
+                        </td>
+                    </tr>
+                   <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
 
-                <t:parameter name="examplesentence">
-                <t:label for="examplesentence"/>
-                 <t:textarea t:id="examplesentence" value="vocab.examplesentence" size="10x80"/>
-                </t:parameter>
-          </t:beaneditform>
-
-    </tags>
-
+                 </tr>
+              </table>
+          </t:form>
+</div>
 
 </html>

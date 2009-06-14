@@ -183,6 +183,10 @@
                 <library>
                     <file>${file.reference.servlet-api-2.5.jar}</file>
                 </library>
+                <library>
+                    <file>${file.reference.lib-tapestry-src-5.0.18}</file>
+                    <path-in-war>WEB-INF/classes</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>

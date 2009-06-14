@@ -31,6 +31,7 @@ public class ExampleSentence implements Serializable {
     private Long id;
 
     @Lob
+    @Column(nullable = false)
     private String sentence;
     //keywords I envision as highlighted words in the example sentence that
     //help explain the sentence.
@@ -76,7 +77,7 @@ public class ExampleSentence implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.ExampleSentence[id=" + id + "]";
+        return sentence;
     }
 
     /**

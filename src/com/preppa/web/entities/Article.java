@@ -89,6 +89,7 @@ public class Article implements Serializable {
     }
     @Lob
     @Validate("required")
+    @Column( nullable = false)
     public String getBody() {
         return body;
     }

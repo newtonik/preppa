@@ -39,7 +39,7 @@ public class Vocab implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "name", length = 255)
+    @Column(name = "name", length = 255, unique =true )
     @Validate("required")
     private String name;
     @Column(name = "partofspeech", length = 255)
@@ -54,8 +54,7 @@ public class Vocab implements Serializable {
     @Basic(optional = false)
     @ManyToOne(targetEntity = ExampleSentence.class)
     @Fetch(value = FetchMode.JOIN)
-    @Cascade(value = {org.hibernate.annotations.CascadeType.MERGE,
-            org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
     @JoinColumn(name = "sentence_id")
     private ExampleSentence sentence;
     @Lob

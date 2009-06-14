@@ -16,7 +16,7 @@
         </p>
         <p>
             <b>Example</b>
-             <t:outputraw t:value="${vocab.examplesentence}"/>
+             <t:outputraw t:value="example"/>
         </p>
         <p>
              <t:outputraw t:value="${vocab.tags}"/>

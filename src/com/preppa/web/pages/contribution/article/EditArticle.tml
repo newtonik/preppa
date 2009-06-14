@@ -38,7 +38,7 @@
                        <t:label for="fTitle"> Title: </t:label>
                        </td>
                        <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle"/>
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required"/>
                       </td>
 
                  </tr>
@@ -48,7 +48,7 @@
                            <t:label for="body">Article: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"/>
+                          <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"  t:validate="required"/>
 
                      </td>
                  </tr>
