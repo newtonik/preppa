@@ -42,6 +42,9 @@
                        <td align="left">
                       <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required"/>
                       </td>
+                      <td>
+                          <input t:id="inplacetopic" />
+                      </td>
 
                  </tr>
                 

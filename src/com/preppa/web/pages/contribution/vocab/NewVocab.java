@@ -74,8 +74,6 @@ public class NewVocab {
          vocab.setUpdatedAt(now);
          ExampleSentence sent = new ExampleSentence();
          sent.setSentence(fSentence);
-         sent.setCreatedAt(now);
-         sent.setUpdatedAt(now);
          vocab.setSentence(sent);
 
          vocabDAO.doSave(vocab);

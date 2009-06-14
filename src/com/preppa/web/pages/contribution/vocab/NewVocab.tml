@@ -22,7 +22,7 @@
                   </tr>
                   <tr>
                       <td>
-                     <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective, Pronoun, Adverb, Propositions, Conjuctions"/>
+                     <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective, Pronoun, Adverb, Propositions, Conjuctions" t:validate="required"/>
                       </td>
                   </tr>
                   <tr>
@@ -32,7 +32,7 @@
                   </tr>
                   <tr>
                       <td>
-                          <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="fDefinition" t:validate="required" rows="4" cols="80"/>
+                          <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
                       </td>
                       
                   </tr>
@@ -43,7 +43,7 @@
                   </tr>
                   <tr>
                       <td>
-                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="fSentence" t:validate="required" rows="4" cols="80"/>
+                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="Sentence" t:validate="required" rows="4" cols="80"/>
                       </td>
 
                   </tr>

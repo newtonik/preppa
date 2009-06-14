@@ -25,6 +25,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.InPlaceEditor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
 /**
@@ -67,7 +68,10 @@ public class CreateArticle {
     private String fTag;
     @Component
     private AutoComplete autoComplete;
-
+    @Component(parameters = {"value=inPlaceValue"})
+    private InPlaceEditor inplaceTopic;
+    @Property
+    private String inPlaceValue;
 
     void Article() {
        this.article = new Article();
@@ -124,7 +128,9 @@ public class CreateArticle {
      .replaceAll("(?i)<.*?javascript:.*?>.*?</.*?>", "") // case 2
      .replaceAll("(?i)<.*?\\s+on.*?>.*?</.*?>", "");     // case 3
     }
-
+    void onSave() {
+        System.out.println("Submit clicked");
+    }
         /**
      * @return the testsubjects
      */

@@ -40,6 +40,7 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         {
              sqlString.addWhereClause("v.name LIKE '" + lower + "%' OR v.name LIKE '" + upper + "%'");
         }
+        sqlString.addOrderField("name");
 
         return (List <Vocab>) findByQuery(sqlString.toString());
     }

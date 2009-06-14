@@ -36,15 +36,7 @@ public class ExampleSentence implements Serializable {
     //keywords I envision as highlighted words in the example sentence that
     //help explain the sentence.
     private String keywords;
-    @NonVisual
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @NonVisual
-    @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    
 
 
     public Long getId() {
@@ -107,33 +99,4 @@ public class ExampleSentence implements Serializable {
     public void setSentence(String sentence) {
         this.sentence = sentence;
     }
-
-    /**
-     * @return the createdAt
-     */
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @param createdAt the createdAt to set
-     */
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    /**
-     * @return the updatedAt
-     */
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    /**
-     * @param updatedAt the updatedAt to set
-     */
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
 }

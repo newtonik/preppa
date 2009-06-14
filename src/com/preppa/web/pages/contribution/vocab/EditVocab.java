@@ -39,20 +39,30 @@ public class EditVocab {
     @Property
     private String fTag;
 
-    Object onActivate(int id) {
+    void onActivate(int id) {
         this.vocab = vocabDAO.findById(id);
         if(vocab != null) {
             fWord = vocab.getName();
             partofspch = vocab.getPartofspeech();
+            fDefinition = vocab.getDefinition();
             fSentence = vocab.getSentence().getSentence();
             fTag = vocab.getTags();
         }
 
-        return this;
+    }
+    Object onPassivate() {
+
+        return this.vocab;
     }
         @CommitAfter
     Object onSuccess() {
-        
+
+          vocab.setName(fWord);
+         vocab.setPartofspeech(partofspch);
+         vocab.setDefinition(fDefinition);
+         vocab.setTags(fTag);
+         vocab.getSentence().setSentence(fSentence);
+
          //set the updated at tag to current time
          vocab.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
 
