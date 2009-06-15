@@ -99,6 +99,7 @@ public final class AppModule {
         configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
         configuration.add(SymbolConstants.FILE_CHECK_INTERVAL, "5 m");
          configuration.add(SymbolConstants.FORCE_ABSOLUTE_URIS, "true");
+              configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");
         //configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");

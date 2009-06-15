@@ -42,7 +42,24 @@
 
                      </td>
                  </tr>
-                  <tr>
+                
+                 <tr>
+                     <td></td>
+                     <td>
+                    <div id="questionblock">
+                    <div t:type="ck/tabset" panelIds="prop:qblockIds"  activePanelId="activeBlock"/>
+                                <div>
+                            <t:block id="q1">
+                                <t:cquestion />
+                            </t:block>
+                                <t:block id="q2">
+                                <t:cquestion />
+                            </t:block>
+                        </div>
+                    </div>
+                     </td>
+                 </tr>
+                   <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
                     </td>
@@ -50,6 +67,10 @@
                  </tr>
 
             </table>
+
+         
+
         </t:form>
     </div>
+
 </html>

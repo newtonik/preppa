@@ -10,6 +10,7 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Testsubject;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -44,6 +45,8 @@ public class CreatePassage {
     @Property
 	private List<String> qblockIds;
     @Property
+	private String activeBlock;
+    @Property
     private String fTitle;
     @Property
     private String fBody;
@@ -62,6 +65,9 @@ public class CreatePassage {
 
     void pageLoaded()
 	{
+        qblockIds = new ArrayList<String>();
+		qblockIds.add("q1");
+        qblockIds.add("q2");
 
     }
     @CommitAfter

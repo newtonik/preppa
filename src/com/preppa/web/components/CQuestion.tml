@@ -1,6 +1,5 @@
-<html t:type="layout" t:pageTitle="New Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-   <div id="multiple-question">
-        <t:form t:id="createarticleform">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id="multiple-question">
             <table id="formtable">
                 
                  <tr>
@@ -82,10 +81,9 @@
                           <input t:type="TextField" t:id="fTag" value="fTag" width="90"/>
                      </td>
                  </tr>
-                        <tr>
+                 <tr>
                      <td width="10%" valign="top" align="right">
                          <t:label for="ratingField"> Difficulty: </t:label>
-
                      </td>
                      <td>
 
@@ -94,15 +92,7 @@
                  </tr>
 
 
-                  <tr>
-                      <td colspan="2" align="left">
-                        <input type="submit" value="Submit"/>
-                 </td>
-
-                 </tr>
 
              </table>
-            
-        </t:form>
     </div>
-</html>
+</t:container>  

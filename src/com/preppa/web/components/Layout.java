@@ -5,7 +5,6 @@
 package com.preppa.web.components;
 
 import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.runtime.Component;
@@ -17,8 +16,8 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author newtonik
  */
-@IncludeStylesheet("context:styles/site.css")
-@IncludeJavaScriptLibrary(value = {"context:js/Chenillekit.js"})
+@IncludeStylesheet(value = {"context:styles/site.css", "context:js/lightbox/css/lightbox.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/Chenillekit.js", "context:js/lightbox/scripts/lightbox.js"})
 public class Layout {
 
     @Inject
