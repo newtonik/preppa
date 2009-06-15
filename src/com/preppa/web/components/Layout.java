@@ -4,6 +4,8 @@
  */
 package com.preppa.web.components;
 
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.runtime.Component;
@@ -24,6 +26,8 @@ public class Layout {
     @Parameter(required = true, defaultPrefix = "literal")
     private String pageTitle;
 
+    //final static ResourceBundle rb = ResourceBundle.getBundle("version.properties");
+
     public String getPageTitle() {
         return pageTitle;
     }
@@ -32,5 +36,15 @@ public class Layout {
     private String getPageName() {
         Component page = resources.getContainer();
         return page.getClass().getName();
+    }
+
+    private String getBuildNumber() {
+          String msg = "";
+        try {
+         //   msg = rb.getString("BUILD");
+        } catch (MissingResourceException e) {
+            System.err.println("Token ".concat("BUILD").concat(" not in Propertyfile!"));
+        }
+        return msg;
     }
 }

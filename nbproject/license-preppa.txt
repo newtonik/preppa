@@ -1,0 +1,12 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Preppa, Inc.
+${licensePrefix}
+${licensePrefix}Copyright ${date?date?string("yyyy")}. All rights reserved.
+${licensePrefix}
+${licensePrefix}$Id$
+<#if licenseLast??>
+${licenseLast}
+</#if>
+

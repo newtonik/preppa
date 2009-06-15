@@ -95,8 +95,11 @@ public final class AppModule {
         // you can extend this list of locales (it's a comma seperated series of locale names;
         // the first locale name is the default when there's no reasonable match).
 
-        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,cn,de,es,fr,ja,ko,pt,ru,zh");
+        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,fr,pt");
         configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+        configuration.add(SymbolConstants.FILE_CHECK_INTERVAL, "5 m");
+         configuration.add(SymbolConstants.FORCE_ABSOLUTE_URIS, "true");
+
        // configuration.add("acegi.failure.url", "/loginpage/failed");
         //configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");
         
