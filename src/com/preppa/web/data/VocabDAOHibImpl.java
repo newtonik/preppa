@@ -60,4 +60,14 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         return (List <Vocab>) findByQuery(sqlString.toString());
     }
 
+    public List<Vocab> findByName(String name) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        SQLString sqlString = new SQLString("FROM Vocab v");
+        if(name != null)
+        {
+             sqlString.addWhereClause("v.name = '" + name + "'");
+        }
+
+        return (List <Vocab>) findByQuery(sqlString.toString());
+    }
 }

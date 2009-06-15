@@ -14,6 +14,8 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.corelib.components.Form;
 
 /**
  *
@@ -37,7 +39,16 @@ public class NewVocab {
     private String fSentence;
     @Property
     private String fTag;
+	@Component(id = "vocabform")
+	private Form _form;
 
+    void onValidateForm() {
+        List<Vocab> matches = vocabDAO.findByName(fWord);
+        if (matches.isEmpty() == false)
+        {
+            _form.recordError("The word already exists.");
+        }
+    }
 
 
     void onActivate(Vocab word) {
