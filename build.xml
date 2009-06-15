@@ -68,9 +68,16 @@
     nbproject/build-impl.xml file. 
 
     -->
-    <target name="-pre-dist" >
-<propertyfile file="${src.dir}\version.properties">
+<target name="-pre-compile" >
+<propertyfile file="${webinf.dir}\app.properties">
 <entry key="BUILD" value="1" type="int" operation="+"/>
 </propertyfile>
+</target>
+<target depends="init,compile,-pre-dist,do-dist,-post-dist" name="dist-test">
+<propertyfile file="${webinf.dir}\app.properties">
+<entry key="GLOBALBUILD" value="1" type="int" operation="+"/>
+</propertyfile>
+<antcall target="dist"/>
+<copy file="${dist.war}" tofile="${dist.jar.dir}/preppatest.war"/>
 </target>
 </project>

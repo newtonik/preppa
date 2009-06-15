@@ -7,6 +7,11 @@
            <br/>
 
           <t:beaneditform t:id="user" submitLabel="Create Account">
+              <t:errors />
+              <t:parameter name="email">
+                  <t:label for="email"/>
+                  <t:textfield t:id="email" value="user.email" t:validate="required,regexp" />
+              </t:parameter>
                <t:parameter name="password">
                 <t:label for="password"/>
                 <t:passwordfield t:id="password" value="user.password"/>

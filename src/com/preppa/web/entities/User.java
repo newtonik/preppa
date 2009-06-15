@@ -29,9 +29,9 @@ public class User implements Serializable {
     static public final String ADMIN_LOGINID = "admin";
     private long id;
     private String loginId;
+    private String email;
     private String password;
     private String password_confirmation;
-    private String email;
     private String firstName;
     private String lastName;
     private Date dob;
@@ -55,10 +55,20 @@ public class User implements Serializable {
     /**
      * @return the loginId
      */
-    @Column(length = 15, nullable = false)
+    @Column(length = 15, nullable = false, unique = true)
     @Validate("required")
     public String getLoginId() {
         return loginId;
+    }
+
+
+    /**
+     * @return the email
+     */
+    @Column(unique = true, nullable = false)
+    @Validate("required")
+    public String getEmail() {
+        return email;
     }
 
     /**
@@ -96,14 +106,6 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    /**
-     * @return the email
-     */
-    @Validate("required")
-    public String getEmail() {
-        return email;
     }
 
     /**

@@ -36,7 +36,7 @@
         </div>
         
         <div id="footer">
-            (C) 2009 Preppa, Inc.
+            (C) 2009 Preppa, Inc. Build ${message:GLOBALBUILD}
         </div>
 
     </body>
