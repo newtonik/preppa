@@ -10,6 +10,7 @@ import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
+import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -21,6 +22,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -72,6 +74,11 @@ public class CreateArticle {
     private InPlaceEditor inplaceTopic;
     @Property
     private String inPlaceValue;
+
+    public Object onCancel() {
+   //now you have a chance to do any cleanup work you want to do.
+        return Index.class;
+    }
 
     void Article() {
        this.article = new Article();

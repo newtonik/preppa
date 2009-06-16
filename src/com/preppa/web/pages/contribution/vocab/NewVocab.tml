@@ -17,12 +17,12 @@
                     </tr>
                   <tr>
                       <td>
-                       <t:label for="partofspch"> Part Of Speech </t:label>
+                       <t:label for="partofspch"> Parts Of Speech </t:label>
                       </td>
                   </tr>
                   <tr>
                       <td>
-                     <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective, Pronoun, Adverb, Propositions, Conjuctions" t:validate="required"/>
+                     <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
                       </td>
                   </tr>
                   <tr>
