@@ -68,6 +68,7 @@
     nbproject/build-impl.xml file. 
 
     -->
+<property name="buildtag" value="build-"/>
 <target name="-pre-compile" >
 <propertyfile file="${webinf.dir}\app.properties">
 <entry key="BUILD" value="1" type="int" operation="+"/>
@@ -77,7 +78,12 @@
 <propertyfile file="${webinf.dir}\app.properties">
 <entry key="GLOBALBUILD" value="1" type="int" operation="+"/>
 </propertyfile>
+ <buildnumber file="${webinf.dir}\app.properties"/>
 <antcall target="dist"/>
 <copy file="${dist.war}" tofile="${dist.jar.dir}/preppatest.war"/>
+ <exec executable="hg">
+     <arg value="tag" />
+    <arg value="${buildtag}${}"/>
+ </exec>
 </target>
 </project>
