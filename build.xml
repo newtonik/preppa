@@ -69,21 +69,29 @@
 
     -->
 <property name="buildtag" value="build-"/>
-<target name="-pre-compile" >
-<propertyfile file="${webinf.dir}\app.properties">
-<entry key="BUILD" value="1" type="int" operation="+"/>
-</propertyfile>
-</target>
 <target depends="init,compile,-pre-dist,do-dist,-post-dist" name="dist-test">
 <propertyfile file="${webinf.dir}\app.properties">
+
 <entry key="GLOBALBUILD" value="1" type="int" operation="+"/>
 </propertyfile>
  <buildnumber file="${webinf.dir}\app.properties"/>
+<loadfile srcfile="${webinf.dir}\app.properties" property="result">
+ <filterchain>
+  <linecontains>
+ <contains value="build.number"/>
+ </linecontains>
+      <striplinebreaks/>
+ <tokenfilter>
+<replacestring from="build.number=" to=""/>
+ </tokenfilter>
+ </filterchain>
+ </loadfile>
+ <echo message="${result}"/>
 <antcall target="dist"/>
 <copy file="${dist.war}" tofile="${dist.jar.dir}/preppatest.war"/>
  <exec executable="hg">
      <arg value="tag" />
-    <arg value="${buildtag}${}"/>
+    <arg value="${buildtag}${result}"/>
  </exec>
 </target>
 </project>
