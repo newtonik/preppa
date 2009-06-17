@@ -27,7 +27,10 @@
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:x"> X </t:pagelink>
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:y"> Y </t:pagelink>
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:z"> Z </t:pagelink>
-
+<br></br>
+<t:pagelink t:page="contribution/vocab/list" t:context="literal:Noun"> Noun </t:pagelink>
+<t:pagelink t:page="contribution/vocab/list" t:context="literal:Adjective"> Adjective </t:pagelink>
+<t:pagelink t:page="contribution/vocab/list" t:context="literal:Verb"> Verb </t:pagelink>
 <div class="listVocab">
 
 <t:loop t:source="allvocab"

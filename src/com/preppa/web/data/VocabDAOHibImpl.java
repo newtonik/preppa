@@ -45,6 +45,15 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         return (List <Vocab>) findByQuery(sqlString.toString());
     }
 
+    public List<Vocab> findAllOrderedByPartOfSpeech(String pos) {
+        SQLString sqlString = new SQLString("FROM Vocab v");
+        if(pos != null)
+        {
+             sqlString.addWhereClause("v.partofspeech = '" + pos + "'");
+        }
+        return (List<Vocab>) findByQuery(sqlString.toString());
+    }
+
     public List<Vocab> findAllOrderedByName() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

@@ -28,17 +28,17 @@
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:x"> X </t:pagelink>
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:y"> Y </t:pagelink>
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:z"> Z </t:pagelink>
-
+<br></br>
+<t:pagelink t:page="contribution/vocab/list" t:context="literal:Noun"> Noun </t:pagelink>
+<t:pagelink t:page="contribution/vocab/list" t:context="literal:Adjective"> Adjective </t:pagelink>
+<t:pagelink t:page="contribution/vocab/list" t:context="literal:Verb"> Verb </t:pagelink>
 
 <t:loop t:source="allvocab"
     t:value="vocab">
+    <h2>Vocabulary Words</h2>
     <div class="vocab">
-        <h2>${vocab.name}</h2>
-        <div class="body">
-            <t:outputraw t:value="${vocab.definition}"/>
-            <a href="#" t:type="pageLink" t:page="contribution/vocab/Edit" t:context="vocab.id"><br> Edit</br> </a>
-        </div>
-
+            <a href="#" t:type="pageLink" t:page="contribution/vocab/Show" t:context="vocab.id">${vocab.name}</a>
+            <br></br>
     </div>
     <br />
 </t:loop>

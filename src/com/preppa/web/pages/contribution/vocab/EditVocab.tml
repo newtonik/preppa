@@ -21,7 +21,7 @@
                   </tr>
                   <tr>
                       <td>
-                     <t:select t:id="partofspch" t:value ="partofspch" model="literal:Noun,Verb,Adjective, Pronoun, Adverb, Propositions, Conjuctions"/>
+                     <t:select t:id="partofspch" t:value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb"/>
                       </td>
                   </tr>
                   <tr>

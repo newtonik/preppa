@@ -21,12 +21,14 @@ public class ListVocab {
     private VocabDAO vocabDAO;
 
     private Character letter;
+    private String input;
 
     @Property
     @Persist
     private Vocab listVocab;
 
     Object onActivate(String input) {
+        this.input = input;
         this.letter = input.charAt(0);
         return null;
     }
@@ -47,7 +49,22 @@ public class ListVocab {
      * @return the allarticles
      */
     public List<Vocab> getAllVocab() {
-        return vocabDAO.findByLetter(letter);
+        if (input.compareTo("Noun") == 0)
+        {
+             return vocabDAO.findAllOrderedByPartOfSpeech("Noun");
+        }
+        else if (input.compareTo("Adjective") == 0)
+        {
+             return vocabDAO.findAllOrderedByPartOfSpeech("Adjective");
+        }
+        else if (input.compareTo("Verb") == 0)
+        {
+             return vocabDAO.findAllOrderedByPartOfSpeech("Verb");
+        }
+        else
+        {
+            return vocabDAO.findByLetter(letter);
+        }
     }
 
 }
