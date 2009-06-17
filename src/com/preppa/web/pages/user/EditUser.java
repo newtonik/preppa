@@ -10,10 +10,10 @@ import java.util.Date;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.corelib.components.DateField;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.chenillekit.tapestry.core.components.DateSelector;
 
 /**
  *
@@ -44,7 +44,8 @@ public class EditUser {
     private Integer uid;
 
     @Component(parameters = {"value=fdob"})
-    private DateField datefield;
+    private DateSelector datefield;
+    
 
     //private Timestamp currentTime;
     void onActivate(int id) {
