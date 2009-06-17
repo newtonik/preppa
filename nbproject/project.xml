@@ -182,19 +182,15 @@
                 </library>
                 <library>
                     <file>${file.reference.lib-tapestry-src-5.0.18}</file>
-                    <path-in-war>WEB-INF/classes</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-image-1.0.2-javadoc.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-image-1.0.2-sources.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-image-1.0.2.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-mail-1.0.2-javadoc.jar}</file>
@@ -206,6 +202,38 @@
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-mail-1.0.2.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.chenillekit-google-1.0.2-javadoc.jar}</file>
+                </library>
+                <library>
+                    <file>${file.reference.chenillekit-google-1.0.2-sources.jar}</file>
+                </library>
+                <library>
+                    <file>${file.reference.chenillekit-google-1.0.2.jar}</file>
+                </library>
+                <library>
+                    <file>${file.reference.kaptcha-2.3.jar}</file>
+                </library>
+                <library>
+                    <file>${file.reference.commons-email-1.1-javadoc.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.commons-email-1.1-sources.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.commons-email-1.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.activation-1.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.mail-1.4.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

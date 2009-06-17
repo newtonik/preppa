@@ -22,7 +22,6 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -74,6 +73,8 @@ public class CreateArticle {
     private InPlaceEditor inplaceTopic;
     @Property
     private String inPlaceValue;
+    //@Inject
+   // private SimpleSmtpService mailer;
 
     public Object onCancel() {
    //now you have a chance to do any cleanup work you want to do.
@@ -113,6 +114,21 @@ public class CreateArticle {
          article.setTeaser(fTitle);
          article.setSources(fSource);
          article.setTags(fTag);
+
+//         SimpleEmail email = new SimpleEmail();
+//        try {
+//            email.setMsg(fBody);
+//             email.addTo("newtonik@gmail.com");
+//              email.setSubject(fTitle);
+//        } catch (EmailException ex) {
+//            Logger.getLogger(CreateArticle.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//
+//         mailer.sendEmail(email);
+//
+
+        
 
 
             article.getTopics().addAll(addedTopics);
