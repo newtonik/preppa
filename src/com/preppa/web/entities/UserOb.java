@@ -23,8 +23,8 @@ import org.apache.tapestry5.beaneditor.Validate;
  * @author newtonik
  */
 @Entity
-@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"loginId"})})
-public class User implements Serializable {
+@Table( catalog = "preppa_tapestry", uniqueConstraints = {@UniqueConstraint(columnNames = {"loginId"})})
+public class UserOb implements Serializable {
 
     static public final String ADMIN_LOGINID = "admin";
     private long id;
@@ -55,7 +55,7 @@ public class User implements Serializable {
     /**
      * @return the loginId
      */
-    @Column(length = 15, nullable = false, unique = true)
+    @Column(length = 15, nullable = false)
     @Validate("required")
     public String getLoginId() {
         return loginId;
@@ -65,7 +65,7 @@ public class User implements Serializable {
     /**
      * @return the email
      */
-    @Column(unique = true, nullable = false)
+    @Column(unique=true, nullable = false)
     @Validate("required")
     public String getEmail() {
         return email;

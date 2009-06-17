@@ -4,8 +4,8 @@
  */
 package com.preppa.web.pages.user;
 
-import com.preppa.web.data.UserDAO;
-import com.preppa.web.entities.User;
+import com.preppa.web.data.UserObDAO;
+import com.preppa.web.entities.UserOb;
 import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.Property;
@@ -21,16 +21,16 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class CreateUser {
 
     @Property
-    private User user;
+    private UserOb user;
     @InjectPage
     private Index index;
     @Inject
-    private UserDAO userDAO;
+    private UserObDAO userDAO;
     @Inject
     private Messages messages;
 
     //private Timestamp currentTime;
-    void onActivate(User user) {
+    void onActivate(UserOb user) {
         this.user = user;
     }
 

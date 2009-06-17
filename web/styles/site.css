@@ -259,6 +259,7 @@ DIV.t-beaneditor
     padding: 2px;
     font-family: "Trebuchet MS", Arial, sans-serif;
     background-color: white;
+    margin-left: 20px;
 }
 DIV.t-beaneditor LABEL
 {
@@ -273,10 +274,8 @@ DIV.t-beaneditor LABEL
 /* Bean Edit Stlyes */
 DIV.t-beaneditor-submit {
     position: relative;
-    left: 150px;
+    margin-left: 60px;
 }
-
-#sideboxes {
-    width: 150px;
-    height: 200px;
+DIV.t-error LI {
+    margin-left: 20px;
 }

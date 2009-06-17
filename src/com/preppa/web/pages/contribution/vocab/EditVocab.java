@@ -50,9 +50,9 @@ public class EditVocab {
         }
 
     }
-    Object onPassivate() {
+    Integer onPassivate() {
 
-        return this.vocab;
+        return this.vocab.getId();
     }
         @CommitAfter
     Object onSuccess() {

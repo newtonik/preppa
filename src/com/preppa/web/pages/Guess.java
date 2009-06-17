@@ -4,7 +4,7 @@
  */
 package com.preppa.web.pages;
 
-import com.preppa.web.entities.User;
+import com.preppa.web.entities.UserOb;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -27,7 +27,7 @@ public class Guess {
     @Property
     private int count;
     @ApplicationState
-    private User myUser;
+    private UserOb myUser;
 
     Object initialize(int target) {
         this.target = target;
@@ -59,7 +59,7 @@ public class Guess {
     /**
      * @return the myUser
      */
-    public User getMyUser() {
+    public UserOb getMyUser() {
         return myUser;
     }
 

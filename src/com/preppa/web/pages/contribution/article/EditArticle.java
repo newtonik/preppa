@@ -69,6 +69,7 @@ public class EditArticle {
 
 
 
+
     void Article(Integer id) {
 
        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
@@ -95,8 +96,8 @@ public class EditArticle {
         
     }
 
-    Object onPassivate() {
-        return article;
+    Integer onPassivate() {
+        return article.getId();
     }
 
 

@@ -47,7 +47,7 @@ public class Article implements Serializable {
     private String links;
     private Date createdAt;
     private Date updatedAt;
-    private User user;
+    private UserOb user;
 
     @Id
     @NonVisual
@@ -153,15 +153,15 @@ public class Article implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = UserOb.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
-    public User getUser()
+    public UserOb getUser()
     {
         return user;
     }
 
-    public void setUser(User user)
+    public void setUser(UserOb user)
     {
         this.user = user;
     }

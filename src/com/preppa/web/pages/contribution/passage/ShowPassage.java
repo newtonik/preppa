@@ -26,9 +26,8 @@ private LongPassageDAO passageDAO;
 private PassageDAO passDA0;
 Object onActivate(int id) {
         this.passage = passageDAO.findById(id);
-        return this;
+        return passage;
 }
-
 
 
 void setPassagePage(LongPassage passage) {

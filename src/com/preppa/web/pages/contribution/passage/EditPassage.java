@@ -64,8 +64,8 @@ public class EditPassage {
         }
     }
 
-    Object onPassivate() {
-        return longpassage;
+    Integer onPassivate() {
+        return longpassage.getId();
     }
 
     @CommitAfter

@@ -23,8 +23,8 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.data.TestsubjectDAOHibImpl;
 import com.preppa.web.data.TopicDAO;
 import com.preppa.web.data.TopicDAOHImpl;
-import com.preppa.web.data.UserDAO;
-import com.preppa.web.data.UserDAOHibImpl;
+import com.preppa.web.data.UserObDAO;
+import com.preppa.web.data.UserObDAOHibImpl;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
 import java.io.IOException;
@@ -62,7 +62,7 @@ public final class AppModule {
      */
     public static void bind(ServiceBinder binder) {
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
-        binder.bind(UserDAO.class, UserDAOHibImpl.class);
+        binder.bind(UserObDAO.class, UserObDAOHibImpl.class);
         binder.bind(ArticleDAO.class, ArticleDAOHibImpl.class);
         binder.bind(VocabDAO.class, VocabDAOHibImpl.class);
         binder.bind(TestsubjectDAO.class, TestsubjectDAOHibImpl.class);

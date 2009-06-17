@@ -1,0 +1,73 @@
+<html t:type="layout" t:pageTitle="Edit Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+        <br/>
+        <br />
+      <div id ="edituser" align="center">
+          <t:form t:id="user" t:object="user">
+              <t:errors/>
+             <table id="userformtable">
+                 <tr>
+                     <td>
+                         <t:label for="fLogin"/>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="TextField" t:id="fLogin" size="60" disabled="true" readonly="true"  t:value="fLogin" t:label="Login" t:validate="required"/>
+                   </td>
+                  </tr>
+                  <tr>
+                     <td>
+                         <t:label for="femail"/>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="TextField" t:id="femail" size="60"  t:value="femail" t:label="Email Address" t:validate="required"/>
+                   </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <t:label for="ffName"/>
+                      </td>
+                  </tr>
+
+                   <tr>
+                   <td>
+                     <input t:type="TextField" t:id="ffName" size="60"  t:value="ffName" t:label="First Name" t:validate="required"/>
+                   </td>
+                  </tr>
+                         <tr>
+                      <td>
+                          <t:label for="flName"/>
+                      </td>
+                  </tr>
+                   <tr>
+                   <td>
+                     <input t:type="TextField" t:id="flName" size="60" t:value="flName" t:label="Last Name" t:validate="required"/>
+                   </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <t:label for="datefield"> Date of Birth</t:label>
+                      </td>
+                  </tr>
+                   <tr>
+                   <td>
+                     <input t:id="datefield" t:validate="required"/>
+                   </td>
+                  </tr>
+                   <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
+
+                 </tr>
+             </table>
+             </t:form>
+    </div>
+
+
+
+
+
+</html>

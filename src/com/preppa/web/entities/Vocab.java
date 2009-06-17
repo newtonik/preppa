@@ -61,10 +61,10 @@ public class Vocab implements Serializable {
     private ExampleSentence sentence;
     @Lob
     private String formsentence;
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = UserOb.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserOb user;
     
     @NonVisual
     @Column(name = "created_at", nullable = false)
@@ -178,14 +178,14 @@ public class Vocab implements Serializable {
     /**
      * @return the user
      */
-    public User getUser() {
+    public UserOb getUser() {
         return user;
     }
 
     /**
      * @param user the user to set
      */
-    public void setUser(User user) {
+    public void setUser(UserOb user) {
         this.user = user;
     }
 

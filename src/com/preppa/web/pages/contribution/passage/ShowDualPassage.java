@@ -36,6 +36,7 @@ public class ShowDualPassage {
 //        }
         return this;
     }
+ 
 
     void setLongDualPassage(LongDualPassage passage) {
         this.passage = passage;

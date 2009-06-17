@@ -59,7 +59,7 @@ public class Layout {
     public Object getLeftContent() {
         return left==null ?  getLeftRegularContent() : left;
 
-    }
+    }   
 
     private String getBuildNumber() {
           String msg = "";

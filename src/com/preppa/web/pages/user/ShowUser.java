@@ -5,8 +5,8 @@
 
 package com.preppa.web.pages.user;
 
-import com.preppa.web.data.UserDAO;
-import com.preppa.web.entities.User;
+import com.preppa.web.data.UserObDAO;
+import com.preppa.web.entities.UserOb;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
@@ -17,10 +17,10 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class ShowUser {
 
   @Property
-  private User user;
+  private UserOb user;
 
   @Inject
-  private UserDAO userDAO;
+  private UserObDAO userDAO;
 
   void onActivate(Integer id) {
 
@@ -29,12 +29,12 @@ public class ShowUser {
 
 
 
-  void onActivate(User user)
+  void onActivate(UserOb user)
   {
     this.user = user;
   }
 
-  User onPassivate()
+  UserOb onPassivate()
   {
     return user;
   }

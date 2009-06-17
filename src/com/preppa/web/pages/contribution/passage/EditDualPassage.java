@@ -73,8 +73,8 @@ public class EditDualPassage {
         
     }
 
-    Object onPassivate() {
-        return longDualpassage;
+    Integer onPassivate() {
+        return longDualpassage.getId();
     }
     @CommitAfter
     Object onSuccess() {

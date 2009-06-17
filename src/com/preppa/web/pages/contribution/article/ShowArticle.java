@@ -30,7 +30,6 @@ Object onActivate(int id) {
     }
 
 
-
 void setarticle(Article article) {
         this.article = article;
     }

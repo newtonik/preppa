@@ -1,8 +1,8 @@
 package com.preppa.web.pages;
 
-import com.preppa.web.data.UserDAO;
+import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.VocabDAO;
-import com.preppa.web.entities.User;
+import com.preppa.web.entities.UserOb;
 import com.preppa.web.entities.Vocab;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +19,7 @@ public class Index {
     @InjectPage
     private Guess guess;
     @ApplicationState
-    private User myUser;
+    private UserOb myUser;
 
     private boolean userExists;
 
@@ -41,7 +41,7 @@ public class Index {
     /**
      * @return the myUser
      */
-    public User getMyUser() {
+    public UserOb getMyUser() {
         return myUser;
     }
 
@@ -51,18 +51,18 @@ public class Index {
     //@Inject
     //private Session session;
     @Inject
-    private UserDAO userDAO; 
+    private UserObDAO userDAO;
     @Inject
     private VocabDAO vocabDAO;
 
-    public List<User> getUsers()
+    public List<UserOb> getUsers()
     {
-        //return session.createCriteria(User.class).list();
+        //return session.createCriteria(UserOb.class).list();
         return userDAO.findAll();
     }
     public List<Vocab> getVocab()
     {
-        //return session.createCriteria(User.class).list();
+        //return session.createCriteria(UserOb.class).list();
         return vocabDAO.findAll();
     }
     @OnEvent(value = "submit", component = "userInputForm")
