@@ -87,7 +87,6 @@
  </filterchain>
  </loadfile>
  <echo message="${result}"/>
- <antcall target="clean"/>
 <antcall target="dist"/>
 <copy file="${dist.war}" tofile="${dist.jar.dir}/preppatest.war"/>
  <exec executable="hg">
