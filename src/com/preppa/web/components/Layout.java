@@ -5,9 +5,10 @@
 package com.preppa.web.components;
 
 import java.util.MissingResourceException;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
-import org.apache.tapestry5.runtime.Component;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -24,17 +25,40 @@ public class Layout {
     private ComponentResources resources;
     @Parameter(required = true, defaultPrefix = "literal")
     private String pageTitle;
+    @Parameter
+    private Block left;
+     @Component
+     private Left leftRegularContent;
+
+     @Parameter
+     private Block rightblockone;
+     @Component
+     private Right rightblockoneregularContent;
+
+     @Parameter
+     private Block rightblocktwo;
+     @Component
+    private Right rightblocktworegularContent;
+
+     @Parameter
+     private Block rightblockthree;
+     @Component
+     private Right rightblockthreeregularContent;
 
     //final static ResourceBundle rb = ResourceBundle.getBundle("version.properties");
 
     public String getPageTitle() {
         return pageTitle;
     }
-    
+   /**
+        * This method check if the left parameter has been set by the user
+        * if not the regular content is shown otherwise the content of this parameter
+        *
+        * @return the component we want to display
+    */
+    public Object getLeftContent() {
+        return left==null ?  getLeftRegularContent() : left;
 
-    private String getPageName() {
-        Component page = resources.getContainer();
-        return page.getClass().getName();
     }
 
     private String getBuildNumber() {
@@ -46,4 +70,34 @@ public class Layout {
         }
         return msg;
     }
+
+    /**
+     * @return the leftRegularContent
+     */
+    public Left getLeftRegularContent() {
+        return leftRegularContent;
+    }
+
+    /**
+     * @return the rightblockone
+     */
+    public Object getRightblockone() {
+        return rightblockone == null ? rightblockoneregularContent : rightblockone;
+    }
+
+    /**
+     * @return the rightblocktwo
+     */
+    public Object getRightblocktwo() {
+        return rightblocktwo == null ? rightblocktworegularContent : rightblocktwo;
+    }
+
+    /**
+     * @return the rightblockthree
+     */
+    public Object getRightblockthree() {
+        return rightblockthree == null ? rightblockthreeregularContent : rightblockthree;
+    }
+
+
 }

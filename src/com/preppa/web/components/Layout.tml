@@ -23,10 +23,36 @@
                  <div class="roundedcornr_bottom"><div></div></div>
             </div>
                 <div class="col2">
+                     <t:delegate to="leftContent" />
+                    <t:block t:id="sideboxes">
                     <h2>Left Side Bar </h2>
+                     <div t:id="leftRegularContent">
+                            Here come the left regular content
+                     </div>
+                     </t:block>
                 </div>
                 <div class="col3">
-                 Nothing
+                
+                      <div t:id="rightblockoneregularContent">
+                        <h3>Block 1</h3>
+                            Block 1 Contents
+                    </div>
+                 
+                 <t:delegate to="rightblocktwo" />
+                  <t:block>
+                  <h2> Block 2 </h2>
+                     <div t:id="rightblocktworegularContent" class="sideboxes">
+                            Block 2 Contents
+                    </div>
+                  </t:block>
+                 <t:delegate to="rightblockthree" />
+                  <t:block>
+                  <h2> Block 3 </h2>
+                     <div t:id="rightblockthreeregularContent" class="sideboxes">
+                            Block 3 Contents
+                    </div>
+                  </t:block>
+
                 </div>
             </div>
          
