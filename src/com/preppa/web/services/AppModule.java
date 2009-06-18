@@ -42,6 +42,8 @@ import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
 import org.chenillekit.mail.ChenilleKitMailConstants;
+import org.chenillekit.mail.services.SmtpService;
+import org.chenillekit.mail.services.impl.SimpleSmtpServiceImpl;
 import org.slf4j.Logger;
 
 /**
@@ -77,6 +79,7 @@ public final class AppModule {
 
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
 
+
         
     // Make bind() calls on the binder object to define most IoC services.
     // Use service builder methods (example below) when the implementation
@@ -101,13 +104,15 @@ public final class AppModule {
         configuration.add(SymbolConstants.FILE_CHECK_INTERVAL, "5 m");
         configuration.add(SymbolConstants.FORCE_ABSOLUTE_URIS, "true");
         configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
+
+        //chenille kit mailer properties
         configuration.add(ChenilleKitMailConstants.SMTP_HOST, "mail.preppa.com");
         configuration.add(ChenilleKitMailConstants.SMTP_PORT, "26");
         configuration.add(ChenilleKitMailConstants.SMTP_USER, "site-admin+preppa.com");
         configuration.add(ChenilleKitMailConstants.SMTP_PASSWORD, "ibsalt80");
         configuration.add(ChenilleKitMailConstants.SMTP_DEBUG, "true");
         configuration.add(ChenilleKitMailConstants.SMTP_SSL, "true");
-        configuration.add(ChenilleKitMailConstants.SMTP_USER, "465");
+        configuration.add(ChenilleKitMailConstants.SMTP_SSLPORT, "465");
         configuration.add(ChenilleKitMailConstants.SMTP_TLS, "true");
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");

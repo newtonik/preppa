@@ -17,6 +17,8 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -67,15 +69,17 @@ public class CreateArticle {
     private String fSource;
     @Property
     private String fTag;
-    @Component
+     @Component
     private AutoComplete autoComplete;
     @Component(parameters = {"value=inPlaceValue"})
     private InPlaceEditor inplaceTopic;
     @Property
     private String inPlaceValue;
-    //@Inject
-   // private SimpleSmtpService mailer;
 
+    
+    @Property
+    private SimpleEmail email;
+   
     public Object onCancel() {
    //now you have a chance to do any cleanup work you want to do.
         return Index.class;
@@ -115,20 +119,37 @@ public class CreateArticle {
          article.setSources(fSource);
          article.setTags(fTag);
 
-//         SimpleEmail email = new SimpleEmail();
-//        try {
-//            email.setMsg(fBody);
-//             email.addTo("newtonik@gmail.com");
-//              email.setSubject(fTitle);
-//        } catch (EmailException ex) {
-//            Logger.getLogger(CreateArticle.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//
-//         mailer.sendEmail(email);
-//
+        email = new SimpleEmail();
+        email.setHostName("mail.preppa.com");
 
         
+  			email.setAuthentication("site-admin+preppa.com","ibsalt80");
+  			email.setDebug(true);
+            email.setSmtpPort(26);
+  			email.setSSL(true);
+  			email.setSslSmtpPort("465");
+  			//email.setTLS(true);
+
+
+        try {
+            email.setMsg(fBody);
+             email.addTo("newtonik@gmail.com");
+             email.setFrom("site-admin@preppa.com","Preppa");
+              email.setSubject(fTitle);
+               email.send();
+        } catch (EmailException ex) {
+              //Logger.getLogger(CreateArticle.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.toString());
+                //System.out.println(ex.printStackTrace());
+
+        }
+
+         System.out.println("out of maill");
+         if(email == null) {
+              System.out.println("email is Null");
+         }
+        
+
 
 
             article.getTopics().addAll(addedTopics);

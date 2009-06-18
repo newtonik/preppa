@@ -1,4 +1,4 @@
-<html t:type="layout" t:pageTitle="Edit Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="Edit User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
         <br/>
         <br />
       <div id ="edituser" align="center">

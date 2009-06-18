@@ -1,37 +1,93 @@
-<html t:type="layout" t:pageTitle="Create User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="New User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+        <br/>
+        <br />
+      <div id ="edituser" align="center">
+          <t:form t:id="userform">
+              <t:errors/>
+             <table id="userformtable">
+                 <tr>
+                     <td>
+                         <t:label for="fLogin"/>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="TextField" t:id="fLogin" size="60"  t:value="fLogin" t:label="Login" t:validate="required"/>
+                   </td>
+                  </tr>
+                  <tr>
+                     <td>
+                         <t:label for="femail"/>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="TextField" t:id="femail" size="60"  t:value="femail" t:label="Email Address" t:validate="required"/>
+                   </td>
+                  </tr>
+                    <tr>
+                     <td>
+                         <t:label for="fpass1"/>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="PasswordField" t:id="fpass1" size="60"  t:value="fpass1" t:label="Password" t:validate="required"/>
+                   </td>
+                  </tr>
+                    <tr>
+                     <td>
+                         <t:label for="fpass2"/>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="PasswordField" t:id="fpass2" size="60"  t:value="fpass2" t:label="Password Confirmation" t:validate="required"/>
+                   </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <t:label for="ffName"/>
+                      </td>
+                  </tr>
 
-    <body>
-           <br/>
-           Create User
-           <br/>
-           <br/>
+                   <tr>
+                   <td>
+                     <input t:type="TextField" t:id="ffName" size="60"  t:value="ffName" t:label="First Name" t:validate="required"/>
+                   </td>
+                  </tr>
+                         <tr>
+                      <td>
+                          <t:label for="flName"/>
+                      </td>
+                  </tr>
+                   <tr>
+                   <td>
+                     <input t:type="TextField" t:id="flName" size="60" t:value="flName" t:label="Last Name" t:validate="required"/>
+                   </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <t:label for="datefield"> Date of Birth</t:label>
+                      </td>
+                  </tr>
+                   <tr>
+                   <td>
+                     <input t:id="datefield" t:validate="required"/>
+                   </td>
+                  </tr>
+                   <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
 
-          <t:beaneditform t:id="user" submitLabel="Create Account">
-              <t:errors />
-              <t:parameter name="email">
-                  <t:label for="email"/>
-                  <t:textfield t:id="email" value="user.email" t:validate="required,regexp" />
-              </t:parameter>
-               <t:parameter name="password">
-                <t:label for="password"/>
-                <t:passwordfield t:id="password" value="user.password"/>
-                </t:parameter>
-                <br />
-                <t:parameter name="password_confirmation">
-                <t:label for="password_confirmation"/>
-                <t:passwordfield t:id="password_confirmation" value="user.password_confirmation"/>
-                </t:parameter>
+                 </tr>
+             </table>
+             </t:form>
+    </div>
 
 
 
-          </t:beaneditform>
-           <br/>
-           <br/>
-           <br/>
-           <br/>
-           <br/>
-           <br/>
-    </body>
 
 
 </html>
