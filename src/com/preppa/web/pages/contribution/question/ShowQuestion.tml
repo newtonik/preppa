@@ -24,7 +24,7 @@
         </t:loop>
 
 
-        <input type="button" onclick="window.location='Edit'; return false;" t:context="vocab.id" value="Edit"></input>
+        <a href="#" t:type="pageLink" t:page="contribution/question/Edit" t:context="question.id"> Edit </a>
         <a href="#" t:type="PageLink" t:page="Index">
         Home
         </a>

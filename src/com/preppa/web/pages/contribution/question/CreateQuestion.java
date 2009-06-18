@@ -86,6 +86,7 @@ public class CreateQuestion {
     Object onPassivate() {
         return question;
     }
+
     @CommitAfter
     Object onSuccess(){
     question = new Question();
