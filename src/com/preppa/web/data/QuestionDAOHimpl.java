@@ -53,4 +53,10 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         super(logger, session);
     }
 
+    public List<Question> findAll() {
+        SQLString sqlString = new SQLString("FROM Question q");
+
+        return (List<Question>) findByQuery(sqlString.toString());
+    }
+
 }

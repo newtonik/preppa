@@ -28,7 +28,7 @@ public class EditVocab {
     private VocabDAO vocabDAO;
     @InjectPage
     private ShowVocab showvocab;
-   @Property
+    @Property
     private String fWord;
     @Property
     private String partofspch;

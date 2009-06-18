@@ -1,0 +1,23 @@
+<html t:type="layout" t:pageTitle="All Questions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<p>
+<div class="question">
+
+
+<t:loop t:source="allquestions"
+    t:value="question">
+    <h2>Questions</h2>
+    <div class="question">
+            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="question.id">${question.question}</a>
+            <br></br>
+    </div>
+    <br />
+</t:loop>
+
+</div>
+
+</p>
+        <p>
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+        </p>
+
+</html>

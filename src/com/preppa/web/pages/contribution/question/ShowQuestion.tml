@@ -1,0 +1,34 @@
+<html t:type ="layout" t:pageTitle="Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <body>
+
+        <h2>
+           ${question.question}
+        </h2>
+        <div id="author-time">
+            Created at ${question.createdAt}
+        </div>
+
+        <h2>Answers</h2>
+        <t:loop t:source="AllAnswers"
+            t:value="questionanswer">
+            <div class="questionanswer">
+                    ${questionanswer.answer}
+                    <br></br>
+                    ${questionanswer.}
+                    <t:if t:test="questionanswer.correct">
+                        <b>This answer is correct.</b>
+                    </t:if>
+            </div>
+            <br />
+        </t:loop>
+
+
+        <input type="button" onclick="window.location='Edit'; return false;" t:context="vocab.id" value="Edit"></input>
+        <a href="#" t:type="PageLink" t:page="Index">
+        Home
+        </a>
+    </body>
+
+
+</html>

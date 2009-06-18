@@ -18,5 +18,6 @@ public interface QuestionDAO extends GenericDAO <Question, Integer> {
     Question findById(Integer id);
     List<Question> findByQuestiontype(Questiontype q);
     List<Question> findByQuestiontype(Integer q);
+    List<Question> findAll();
     
 }

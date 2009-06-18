@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.preppa.web.pages.contribution.question;
 
 import com.preppa.web.data.QuestionDAO;
@@ -18,11 +17,12 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 
+
 /**
  *
- * @author nwt
+ * @author newtonik
  */
-public class CreateQuestion {
+public class EditQuestion {
     @Property
     private Question question;
     @Inject
@@ -73,66 +73,5 @@ public class CreateQuestion {
     private Boolean c5;
     @InjectPage
     private ShowQuestion showquestion;
-    
 
-    void CreateQuestion() {
-        //question = new Question();
-    }
-
-    void onActivate() {
-        //question = new Question();
-    }
-
-    Object onPassivate() {
-        return question;
-    }
-    @CommitAfter
-    Object onSuccess(){
-    question = new Question();
-    question.setExplanation(fExplanation);
-    question.setQuestion(fQuestion);
-    question.setTags(fTag);
-    int numCorrect = 0;
-    if(ans1.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans1);
-        ch.setCorrect(c1);
-        if(c1) numCorrect++;
-        question.getChoices().add(ch);
-
-
-    }
-        if(ans2.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans2);
-        if(c2) numCorrect++;
-        ch.setCorrect(c2);
-        question.getChoices().add(ch);
-    }
-        if(ans3.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans3);
-        if(c3) numCorrect++;
-        ch.setCorrect(c3);
-        question.getChoices().add(ch);
-    }
-        if(ans4.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans4);
-        if(c4) numCorrect++;
-        ch.setCorrect(c4);
-        question.getChoices().add(ch);
-    }
-        if(ans5.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans5);
-        if(c5) numCorrect++;
-        ch.setCorrect(c5);
-        question.getChoices().add(ch);
-    }
-     question.setNumCorrect(numCorrect);
-     question.setDifficulty(ratingValue);
-     Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-     question.setCreatedAt(now);
-     question.setUpdatedAt(now);
-     questionDAO.doSave(question);
-     showquestion.setquestion(question);
-     return showquestion;
-    }
-    
 }
