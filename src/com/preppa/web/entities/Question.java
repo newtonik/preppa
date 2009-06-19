@@ -60,6 +60,7 @@ public class Question implements Serializable {
     private List<QuestionAnswer> choices = new ArrayList<QuestionAnswer>();
     //this will be used for validation.
     private Integer numCorrect;
+    private String correctAnswer;
     @Basic(optional = false)
     @NonVisual
     @Column(name = "created_at")
@@ -221,6 +222,20 @@ public class Question implements Serializable {
      */
     public void setChoices(List<QuestionAnswer> choices) {
         this.choices = choices;
+    }
+
+    /**
+     * @return the correctAnswer
+     */
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    /**
+     * @param correctAnswer the correctAnswer to set
+     */
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
 }
