@@ -9,6 +9,6 @@
     <property name="hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
-    <property name="hibernate.connection.password">preppa</property>
+    <property name="hibernate.connection.password">winter</property>
   </session-factory>
 </hibernate-configuration>
