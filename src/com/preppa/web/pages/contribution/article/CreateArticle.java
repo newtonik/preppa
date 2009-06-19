@@ -10,14 +10,17 @@ import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
-import com.preppa.web.pages.Index;
+import com.preppa.web.services.EmailService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
@@ -69,21 +72,20 @@ public class CreateArticle {
     private String fSource;
     @Property
     private String fTag;
-     @Component
+    @Component
     private AutoComplete autoComplete;
     @Component(parameters = {"value=inPlaceValue"})
     private InPlaceEditor inplaceTopic;
     @Property
     private String inPlaceValue;
 
-    
-    @Property
-    private SimpleEmail email;
-   
-    public Object onCancel() {
-   //now you have a chance to do any cleanup work you want to do.
-        return Index.class;
-    }
+    @Inject
+    private EmailService mailer;
+//    @OnEvent(component="cancelButton")
+//    public Object onCancelButton() {
+//   //now you have a chance to do any cleanup work you want to do.
+//        return Index.class;
+//    }
 
     void Article() {
        this.article = new Article();
@@ -119,38 +121,21 @@ public class CreateArticle {
          article.setSources(fSource);
          article.setTags(fTag);
 
-        email = new SimpleEmail();
-        email.setHostName("mail.preppa.com");
-
-        
-  			email.setAuthentication("site-admin+preppa.com","ibsalt80");
-  			email.setDebug(true);
-            email.setSmtpPort(26);
-  			email.setSSL(true);
-  			email.setSslSmtpPort("465");
-  			//email.setTLS(true);
-
-
-        try {
-            email.setMsg(fBody);
-             email.addTo("newtonik@gmail.com");
-             email.setFrom("site-admin@preppa.com","Preppa");
-              email.setSubject(fTitle);
-               email.send();
-        } catch (EmailException ex) {
-              //Logger.getLogger(CreateArticle.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.toString());
-                //System.out.println(ex.printStackTrace());
-
-        }
-
-         System.out.println("out of maill");
-         if(email == null) {
-              System.out.println("email is Null");
-         }
-        
-
-
+//         //SimpleEmail email = new SimpleEmail();
+//         HtmlEmail email = new HtmlEmail();
+//        try {
+//            email.setDebug(true);
+//            email.setHtmlMsg(fBody);
+//             email.addTo("newtonik@gmail.com", "Newton");
+//             email.addTo("gabenicolau@gmail.com", "Gabe");
+//             email.addTo("lionel.nicolau@gmail.com", "Lionel");
+//             email.addTo("jjsoa1@gmail.com", "Jan");
+//             email.setFrom("site-admin@preppa.com", "Preppa");
+//              email.setSubject(fTitle);
+//              mailer.sendHTMLEmail(email);
+//        } catch (EmailException ex) {
+//            Logger.getLogger(CreateArticle.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
             article.getTopics().addAll(addedTopics);
           //  article.setTopics(tset);

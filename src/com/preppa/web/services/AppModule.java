@@ -76,11 +76,11 @@ public final class AppModule {
         binder.bind(LongPassageDAO.class, LongPassageDAOHibImpl.class);
         binder.bind(QuestiontypeDAO.class, QuestiontypeDAOHibImpl.class);
         binder.bind(QuestionDAO.class, QuestionDAOHimpl.class);
-
+        //binder.bind(SmtpService.class, SimpleSmtpServiceImpl.class);
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
+        binder.bind(EmailService.class);
 
-
-        
+    
     // Make bind() calls on the binder object to define most IoC services.
     // Use service builder methods (example below) when the implementation
     // is provided inline, or requires more initialization than simply
@@ -106,7 +106,7 @@ public final class AppModule {
         configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
 
         //chenille kit mailer properties
-        configuration.add(ChenilleKitMailConstants.SMTP_HOST, "mail.preppa.com");
+        configuration.add(ChenilleKitMailConstants.SMTP_HOST, "box317.bluehost.com");
         configuration.add(ChenilleKitMailConstants.SMTP_PORT, "26");
         configuration.add(ChenilleKitMailConstants.SMTP_USER, "site-admin+preppa.com");
         configuration.add(ChenilleKitMailConstants.SMTP_PASSWORD, "ibsalt80");

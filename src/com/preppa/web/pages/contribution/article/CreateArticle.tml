@@ -63,7 +63,7 @@
                         <td valign="top" align="right">
                              <t:label for="fSource"> Sources: </t:label>
                         </td>
-                        <td>
+                        <td align="left">
                           <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
 
                      </td>
@@ -72,15 +72,17 @@
                      <td align="right">
                          <t:label for="fTag"> Tags: </t:label>
                       </td>
-                      <td>
+                      <td align="left">
                           <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
 
                      </td>
                  </tr>
                   <tr>
+
                       <td colspan="2" align="left">
+                          <br />
                         <input type="submit" value="Submit"/>
-                        <input type="button" onclick="window.location='Index'; return false;" value="Cancel"></input>
+                        <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
                     </td>
 
                  </tr>

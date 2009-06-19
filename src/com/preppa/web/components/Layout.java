@@ -18,7 +18,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  * @author newtonik
  */
 @IncludeStylesheet(value = {"context:styles/site.css", "context:js/lightbox/css/lightbox.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/Chenillekit.js", "context:js/lightbox/scripts/lightbox.js", "context:js/jquery-1.2.6.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/Chenillekit.js"})
 public class Layout {
 
     @Inject

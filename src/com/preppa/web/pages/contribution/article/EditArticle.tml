@@ -57,16 +57,15 @@
                         <td valign="top" align="right">
                              <t:label for="fSource"> Sources: </t:label>
                         </td>
-                        <td>
+                        <td align="left">
                           <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
-
-                     </td>
+                         </td>
                  </tr>
                    <tr>
                      <td align="right">
                          <t:label for="fTag"> Tags: </t:label>
                       </td>
-                      <td>
+                      <td align="left">
                           <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
 
                      </td>
