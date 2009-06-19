@@ -1,8 +1,8 @@
 <html t:type="layout" t:pageTitle="New Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-   <div id="multiple-question">
+   <div id="multiple-question" class="overlay">
         <t:form t:id="createarticleform">
             <table id="formtable">
-                
+                <t:radiogroup t:value="correct">
                  <tr>
                         <td width="10%" valign="top" align="right">
                            <t:label for="questioneditor">Question: </t:label>
@@ -15,6 +15,7 @@
                         <tr>
                              <td width="10%" valign="top" align="right">
                               <input t:type="checkbox" t:id="c1" t:value="c1"/><br />
+                             <input t:type="radio" type="radio" t:value="literal:A" /> <br />
                               <t:label for="choice1">A: </t:label>
                              </td>
                         <td>
@@ -24,6 +25,7 @@
                         <tr>
                             <td width="10%" valign="top" align="right">
                            <input t:type="checkbox" t:id="c2" t:value="c2"/>
+                           <input t:type="radio" type="radio" t:value="literal:B" /> <br />
                            <br />
                            <t:label for="choice2">B: </t:label>
                             </td>
@@ -35,6 +37,7 @@
                          <tr>
                              <td width="10%" valign="top" align="right">
                               <input t:type="checkbox" t:id="c3" t:value="c3"/>
+                              <input t:type="radio" type="radio" t:value="literal:C" /> <br />
                               <br />
                              <t:label for="choice3">C: </t:label>
                         </td>
@@ -45,6 +48,7 @@
                          <tr>
                             <td width="10%" valign="top" align="right">
                                 <input t:type="checkbox" t:id="c4" t:value="c4"/>
+                                <input t:type="radio" type="radio" t:value="literal:D" /> <br />
                                 <br />
                             <t:label for="choice4">D: </t:label>
                             
@@ -56,6 +60,7 @@
                          <tr>
                                <td width="10%" valign="top" align="right">
                                   <input t:type="checkbox" t:id="c5" t:value="c5"/>
+                                  <input t:type="radio" type="radio" t:value="literal:E" /> <br />
                                   <br />
                                 <t:label for="choice5">E: </t:label>
                         </td>
@@ -100,7 +105,7 @@
                  </td>
 
                  </tr>
-
+                 </t:radiogroup>
              </table>
             
         </t:form>
