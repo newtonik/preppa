@@ -18,4 +18,5 @@ public interface UserObDAO extends GenericDAO <UserOb, Integer>{
     UserOb findById(Integer id);
     List<UserOb> findAllOrderedByLoginName();
     List<UserOb> findByPartialName(String partialName);
+    public Integer findCountByLoginId(String login);
 }

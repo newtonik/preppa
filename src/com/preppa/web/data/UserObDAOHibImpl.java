@@ -37,12 +37,22 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<UserOb, Integer> impl
     }
 
     public List<UserOb> findByPartialName(String partialName) {
-       SQLString sqlString = new SQLString("FROM Users u");
+       SQLString sqlString = new SQLString("FROM UserOb u");
 
         if (partialName != null && partialName.length() > 0)
             sqlString.addWhereClause("u.firstName LIKE '" + partialName + "%'");
 
         return findByQuery(sqlString.toString());
     }
+    public Integer findCountByLoginId(String login) {
+        SQLString sqlString = new SQLString("From UserOb u");
 
+        if(login != null && login.length() > 0)
+        {
+            sqlString.addWhereClause("u.loginId LIKE '" + login + "%'");
+
+        }
+        return findByQuery(sqlString.toString()).size();
+        
+    }
 }

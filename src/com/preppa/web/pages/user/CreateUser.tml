@@ -6,7 +6,7 @@
               <t:errors/>
              <table id="userformtable">
                  <tr>
-                     <td>
+                     <td valign="top" align="left">
                          <t:label for="fLogin"/>
                      </td>
                  </tr>
@@ -16,37 +16,37 @@
                    </td>
                   </tr>
                   <tr>
-                     <td>
+                     <td valign="top" align="left">
                          <t:label for="femail"/>
                      </td>
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="TextField" t:id="femail" size="60"  t:value="femail" t:label="Email Address" t:validate="required"/>
+                     <input t:type="TextField" t:id="femail" size="60"  t:value="femail" t:label="Email Address" t:validate="regexp,required"/>
                    </td>
                   </tr>
                     <tr>
-                     <td>
+                     <td valign="top" align="left">
                          <t:label for="fpass1"/>
                      </td>
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="PasswordField" t:id="fpass1" size="60"  t:value="fpass1" t:label="Password" t:validate="required"/>
+                     <input t:type="PasswordField" t:id="fpass1" size="60"  t:value="fpass1" t:label="Password" t:validate="required,minlength=6"/>
                    </td>
                   </tr>
                     <tr>
-                     <td>
+                     <td valign="top" align="left">
                          <t:label for="fpass2"/>
                      </td>
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="PasswordField" t:id="fpass2" size="60"  t:value="fpass2" t:label="Password Confirmation" t:validate="required"/>
+                     <input t:type="PasswordField" t:id="fpass2" size="60"  t:value="fpass2" t:label="Password Confirmation" t:validate="required,minlength=6"/>
                    </td>
                   </tr>
                   <tr>
-                      <td>
+                      <td valign="top" align="left">
                           <t:label for="ffName"/>
                       </td>
                   </tr>
@@ -57,28 +57,31 @@
                    </td>
                   </tr>
                          <tr>
-                      <td>
+                      <td valign="top" align="left">
                           <t:label for="flName"/>
                       </td>
                   </tr>
                    <tr>
-                   <td>
+                   <td align="=left">
                      <input t:type="TextField" t:id="flName" size="60" t:value="flName" t:label="Last Name" t:validate="required"/>
                    </td>
                   </tr>
                   <tr>
-                      <td>
+                      <td valign="top" align="left">
                           <t:label for="datefield"> Date of Birth</t:label>
                       </td>
                   </tr>
                    <tr>
-                   <td>
+                   <td align="left"> 
                      <input t:id="datefield" t:validate="required"/>
                    </td>
                   </tr>
                    <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
+                    </td>
+                    <td alight="left">
+                         <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
                     </td>
 
                  </tr>

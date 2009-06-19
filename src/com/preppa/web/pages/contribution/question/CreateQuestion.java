@@ -22,6 +22,7 @@ import org.chenillekit.tapestry.core.components.RatingField;
  *
  * @author nwt
  */
+//@IncludeJavaScriptLibrary(value={"context:js/jquery-1.3.2.js",  "context:js/tools.overlay-1.0.4.js", "context:js/layout.js"})
 public class CreateQuestion {
     @Property
     private Question question;
@@ -71,8 +72,9 @@ public class CreateQuestion {
     private Boolean c4;
     @Property
     private Boolean c5;
-    @InjectPage
-    private ShowQuestion showquestion;
+    @Property
+    private String correct;
+
     
 
     void CreateQuestion() {
@@ -86,7 +88,6 @@ public class CreateQuestion {
     Object onPassivate() {
         return question;
     }
-
     @CommitAfter
     Object onSuccess(){
     question = new Question();
@@ -126,14 +127,14 @@ public class CreateQuestion {
         ch.setCorrect(c5);
         question.getChoices().add(ch);
     }
+    question.setCorrectAnswer(correct);
      question.setNumCorrect(numCorrect);
      question.setDifficulty(ratingValue);
      Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
      question.setCreatedAt(now);
      question.setUpdatedAt(now);
      questionDAO.doSave(question);
-     showquestion.setquestion(question);
-     return showquestion;
+     return indexpage;
     }
     
 }
