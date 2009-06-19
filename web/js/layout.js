@@ -1,3 +1,7 @@
 <script type="text/javascript">
-</script>
+    jQuery.noConflict();
+    jQuery("#multiple-question").overlay({
+       
 
+    });
+</script>

@@ -194,15 +194,12 @@
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-mail-1.0.2-javadoc.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-mail-1.0.2-sources.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-mail-1.0.2.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.chenillekit-google-1.0.2-javadoc.jar}</file>
@@ -234,6 +231,30 @@
                 </library>
                 <library>
                     <file>${file.reference.mail-1.4.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.chenillekit-mail-1.0.0-javadoc.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.chenillekit-mail-1.0.0-sources.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.chenillekit-mail-1.0.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.commons-collections-3.2.1-sources.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.commons-collections-3.2.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.commons-collections-testframework-3.2.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
