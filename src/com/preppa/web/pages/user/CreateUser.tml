@@ -22,7 +22,7 @@
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="TextField" t:id="femail" size="60"  t:value="femail" t:label="Email Address" t:validate="regexp,required"/>
+                     <input t:type="TextField" t:id="femail" size="60"  t:value="femail" t:label="Email Address" t:validate="required"/>
                    </td>
                   </tr>
                     <tr>
