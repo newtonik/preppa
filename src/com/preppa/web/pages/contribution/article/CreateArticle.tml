@@ -7,7 +7,7 @@
              <table id="articleformtable" width="700">
                  <tr>
                      <td align="right">
-                         <label for="testsubject"> Section: </label>
+                         <label for="testsubject"> Test Subject: </label>
                      </td>
                      <td align="left">
                       <table>
