@@ -143,27 +143,17 @@
                 </library>
                 <library>
                     <file>${file.reference.commons-logging-1.0.4.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.commons-collections-3.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
                     <file>${file.reference.tapestry5-acegi-1.1.1.jar}</file>
                 </library>
                 <library>
                     <file>${file.reference.acegi-security-1.0.4.jar}</file>
-                </library>
-                <library>
-                    <file>${file.reference.spring-aop-2.0.4.jar}</file>
-                </library>
-                <library>
-                    <file>${file.reference.spring-beans-2.0.4.jar}</file>
-                </library>
-                <library>
-                    <file>${file.reference.spring-context-2.0.4.jar}</file>
-                </library>
-                <library>
-                    <file>${file.reference.spring-core-2.0.4.jar}</file>
                 </library>
                 <library>
                     <file>${file.reference.acegi-security-tiger-1.0.4.jar}</file>
@@ -319,23 +309,8 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library>
-                    <file>${file.reference.spring-context.jar}</file>
-                </library>
-                <library>
-                    <file>${file.reference.spring-aop.jar}</file>
-                </library>
-                <library>
-                    <file>${file.reference.spring-core.jar}</file>
-                </library>
-                <library>
-                    <file>${file.reference.spring-beans.jar-1}</file>
-                </library>
-                <library>
                     <file>${file.reference.commons-httpclient-3.0.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library>
-                    <file>${file.reference.spring-web.jar}</file>
                 </library>
                 <library>
                     <file>${file.reference.spring-aop.jar-1}</file>
@@ -347,6 +322,14 @@
                 </library>
                 <library>
                     <file>${file.reference.spring-core.jar-1}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.spring-security-openid-2.0.3-sources.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.spring-security-openid-2.0.3.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
