@@ -1,5 +1,6 @@
 package com.preppa.web.services;
 
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;

@@ -28,23 +28,39 @@ import com.preppa.web.data.UserObDAOHibImpl;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
 import java.io.IOException;
+
+import nu.localhost.tapestry5.springsecurity.services.SpringSecurityServices;
+import nu.localhost.tapestry5.springsecurity.services.internal.HttpServletRequestFilterWrapper;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.hibernate.HibernateTransactionDecorator;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Match;
+import org.apache.tapestry5.ioc.annotations.Value;
+import org.apache.tapestry5.services.AliasContribution;
+import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
 import org.chenillekit.mail.ChenilleKitMailConstants;
-import org.chenillekit.mail.services.SmtpService;
-import org.chenillekit.mail.services.impl.SimpleSmtpServiceImpl;
 import org.slf4j.Logger;
+import org.springframework.security.AuthenticationManager;
+import org.springframework.security.providers.AuthenticationProvider;
+import org.springframework.security.providers.encoding.PasswordEncoder;
+import org.springframework.security.providers.encoding.ShaPasswordEncoder;
+import org.springframework.security.providers.openid.OpenIDAuthenticationProvider;
+import org.springframework.security.ui.openid.OpenIDAuthenticationProcessingFilter;
+import org.springframework.security.ui.rememberme.RememberMeServices;
+import org.springframework.security.userdetails.UserDetailsService;
+
+
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to
@@ -78,7 +94,10 @@ public final class AppModule {
         binder.bind(QuestionDAO.class, QuestionDAOHimpl.class);
         //binder.bind(SmtpService.class, SimpleSmtpServiceImpl.class);
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
-        binder.bind(EmailService.class);
+        binder.bind(EmailService.class, EmailServiceImpl.class);
+        //binder.bind(UserDetailsService.class, UserDetailsServiceImpl.class);
+
+
 
     
     // Make bind() calls on the binder object to define most IoC services.
@@ -86,6 +105,29 @@ public final class AppModule {
     // is provided inline, or requires more initialization than simply
     // invoking the constructor.
     }
+    public static HttpServletRequestFilter buildOpenIDAuthenticationProcessingFilter(
+        final OpenIDAuthenticationProcessingFilter filter)
+{
+    return new HttpServletRequestFilterWrapper(filter);
+}
+    public static UserDetailsService buildUserDetailsService(Logger logger,
+             @InjectService("HibernateSessionManager") HibernateSessionManager session)
+    {
+        return (UserDetailsService) new UserDetailsServiceImpl(session, logger);
+    }
+
+    public static OpenIDAuthenticationProvider buildOpenIDAuthenticationProvider(
+        @InjectService("UserDetailsService")
+        UserDetailsService userDetailsService) throws Exception
+{
+    OpenIDAuthenticationProvider provider = new OpenIDAuthenticationProvider();
+
+    provider.setUserDetailsService(userDetailsService);
+
+    provider.afterPropertiesSet();
+
+    return provider;
+}
 
     /**
      * Sets application defaults.
@@ -116,9 +158,42 @@ public final class AppModule {
         configuration.add(ChenilleKitMailConstants.SMTP_TLS, "true");
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");
-        //configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");
+       // configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");
+            configuration.add("spring-security.openidcheck.url", "/j_spring_openid_security_check");
+            
         
     }
+
+      
+    public static OpenIDAuthenticationProcessingFilter buildRealOpenIDAuthenticationProcessingFilter(
+        @SpringSecurityServices final AuthenticationManager manager,
+
+        @SpringSecurityServices final RememberMeServices rememberMeServices,
+
+        @Inject @Value("${spring-security.openidcheck.url}") final String authUrl,
+
+        @Inject @Value("${spring-security.target.url}") final String targetUrl,
+
+        @Inject @Value("${spring-security.failure.url}") final String failureUrl) throws Exception
+        {
+            OpenIDAuthenticationProcessingFilter filter = new OpenIDAuthenticationProcessingFilter();
+
+            filter.setAuthenticationManager(manager);
+
+            filter.setAuthenticationFailureUrl(failureUrl);
+
+            filter.setDefaultTargetUrl(targetUrl);
+
+            filter.setFilterProcessesUrl(authUrl);
+
+            filter.setRememberMeServices(rememberMeServices);
+
+            filter.afterPropertiesSet();
+
+            return filter;
+        }
+
+
 
     /**
      * This is a service definition, the service will be named "TimingFilter". The interface,
@@ -181,6 +256,21 @@ public final class AppModule {
             }
         };
     }
+    public static void contributeHttpServletRequestHandler(
+            OrderedConfiguration<HttpServletRequestFilter> configuration,
+
+            @InjectService("OpenIDAuthenticationProcessingFilter")
+            HttpServletRequestFilter openIDAuthenticationProcessingFilter)
+    {
+        configuration.add(
+                "openIDAuthenticationProcessingFilter",
+
+                openIDAuthenticationProcessingFilter,
+
+                "before:springSecurityAuthenticationProcessingFilter",
+
+                "after:springSecurityHttpSessionContextIntegrationFilter");
+    }
 
     /**
      * This is a contribution to the RequestHandler service configuration. This is how we extend
@@ -201,6 +291,19 @@ public final class AppModule {
         configuration.add("Utf8Filter", utf8Filter);
     }
 
+    public static void contributeProviderManager(
+        OrderedConfiguration<AuthenticationProvider> configuration,
+
+        @InjectService("OpenIDAuthenticationProvider")
+        AuthenticationProvider openIdAuthenticationProvider)
+    {
+        configuration.add("openIDAuthenticationProvider", openIdAuthenticationProvider);
+    }
+
+
+    public static void contibuteAlias( Configuration<AliasContribution<PasswordEncoder>> configuration) {
+        configuration.add(AliasContribution.create(PasswordEncoder.class, new ShaPasswordEncoder()));
+    }
     public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
         
     }
