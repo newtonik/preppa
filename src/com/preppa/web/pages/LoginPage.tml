@@ -1,7 +1,12 @@
 <html t:type="layout"  t:pageTitle="Login Page" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+    bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+<div style="padding: 20px; background-color:#e8eefa;" >
 
 OpenID: <br />
-<form xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" action="${openIdCheckUrl}" method="POST">
+<form xmlns:t="http://tapestry.apache.org/schema/
+tapestry_5_0_0.xsd" action="${openIdCheckUrl}" method="POST" id="userformtable">
     <t:if test="failed">Username and/or password was wrong!<br /></t:if>
     <label class="username" for="j_username">Username:</label>
     <input class="username" name="j_username" type="text" size="30"/>
@@ -16,4 +21,6 @@ Form-based: <br />
     <input class="password" name="j_password" type="password" size="10" maxlength="30"/>
     <input id="submit" class="submit" type="submit" value="log in"/>
 </form>
+</div>
+</div>
 </html>

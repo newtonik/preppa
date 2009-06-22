@@ -1,0 +1,12 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <head>
+        <title>Usecase T5-Secure Module</title>
+    </head>
+    <body>
+        <h1>Forbidden</h1>
+		<p>
+			You tried to access a page without the required authorization rights.
+		</p>
+		<p><t:pagelink t:page="index">Home</t:pagelink></p>
+    </body>
+</html>

@@ -5,7 +5,9 @@
     <img src="${asset:context:/images/logo.png}" align="left"/>
 </a>
 </div>
-<a href="loginpage">Sign In</a>
+<a href="#" t:type="PageLink" t:page="loginpage">Sign In</a>
+
+<a href="#" t:type="ActionLink" t:id="logouturl"> Log out </a>
 <div id="nav-menu">
     <ul>
         <li><a href="#" t:type="PageLink" t:page="index">Home</a></li>

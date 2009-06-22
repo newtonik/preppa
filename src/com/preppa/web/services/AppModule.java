@@ -21,6 +21,8 @@ import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortDualPassageDAOHibImpl;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.ShortPassageDAOHibImpl;
+import com.preppa.web.data.TagDAO;
+import com.preppa.web.data.TagDAOHibImpl;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.data.TestsubjectDAOHibImpl;
 import com.preppa.web.data.TopicDAO;
@@ -31,6 +33,7 @@ import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
 import java.io.IOException;
 
+import nu.localhost.tapestry5.springsecurity.services.RequestInvocationDefinition;
 import nu.localhost.tapestry5.springsecurity.services.SpringSecurityServices;
 import nu.localhost.tapestry5.springsecurity.services.internal.HttpServletRequestFilterWrapper;
 import org.apache.tapestry5.SymbolConstants;
@@ -55,6 +58,7 @@ import org.chenillekit.mail.ChenilleKitMailConstants;
 import org.slf4j.Logger;
 import org.springframework.security.AuthenticationManager;
 import org.springframework.security.providers.AuthenticationProvider;
+import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.PasswordEncoder;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
 import org.springframework.security.providers.openid.OpenIDAuthenticationProvider;
@@ -98,7 +102,8 @@ public final class AppModule {
         //binder.bind(SmtpService.class, SimpleSmtpServiceImpl.class);
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
         binder.bind(EmailService.class, EmailServiceImpl.class);
-        //binder.bind(UserDetailsService.class, UserDetailsServiceImpl.class);
+        binder.bind(TagDAO.class, TagDAOHibImpl.class);
+        //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 
 
@@ -113,14 +118,24 @@ public final class AppModule {
 {
     return new HttpServletRequestFilterWrapper(filter);
 }
+    public static void contibuteAlias( Configuration<AliasContribution<PasswordEncoder>> configuration) {
+        configuration.add(AliasContribution.create(PasswordEncoder.class, new ShaPasswordEncoder()));
+
+    }
     public static UserDetailsService buildUserDetailsService(Logger logger,
-             @InjectService("HibernateSessionManager") HibernateSessionManager session)
+             @InjectService("HibernateSessionManager") HibernateSessionManager session,
+             @Inject
+             PasswordEncoder encoder,
+             @Inject
+            SaltSource salt)
     {
-        return (UserDetailsService) new UserDetailsServiceImpl(session, logger);
+        return  new UserDetailsWithPasswordServiceImpl(session, logger, encoder, salt);
     }
 
+     
+
     public static OpenIDAuthenticationProvider buildOpenIDAuthenticationProvider(
-        @InjectService("UserDetailsService")
+        @InjectService("UserDetailsWithOpenIDService")
         UserDetailsService userDetailsService) throws Exception
 {
     OpenIDAuthenticationProvider provider = new OpenIDAuthenticationProvider();
@@ -132,6 +147,36 @@ public final class AppModule {
     return provider;
 }
 
+  public static void contributeProviderManager( OrderedConfiguration<AuthenticationProvider> configuration,
+       //@InjectService("OpenIDAuthenticationProvider") AuthenticationProvider openIdAuthenticationProvider,
+         // @Inject
+         // Logger logger,
+           //  @InjectService("HibernateSessionManager") HibernateSessionManager session,
+       @InjectService( "DaoAuthenticationProvider" )  AuthenticationProvider daoAuthenticationProvider)
+
+       {
+            configuration.add( "daoAuthenticationProvider", daoAuthenticationProvider );
+           OpenIDAuthenticationProvider provider = new  OpenIDAuthenticationProvider();
+
+
+        UserDetailsService userDetailService = new UserDetailsWithOpenIDServiceImpl();
+        provider.setUserDetailsService(userDetailService);
+        try {
+            provider.afterPropertiesSet();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+            configuration.add("openIDAuthenticationProvider", provider);
+       }
+
+    public static void contributeFilterSecurityInterceptor(
+      Configuration<RequestInvocationDefinition> configuration ) {
+
+      configuration.add( new RequestInvocationDefinition(
+          "/ltd.pdf",
+          "ROLE_ADMIN" ) );
+  }
     /**
      * Sets application defaults.
      * @param configuration configuration for the application.
@@ -161,9 +206,20 @@ public final class AppModule {
         configuration.add(ChenilleKitMailConstants.SMTP_TLS, "true");
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");
-       // configuration.add("acegi.password.encoder", "org.acegisecurity.providers.encoding.Md5PasswordEncoder");
-            configuration.add("spring-security.openidcheck.url", "/j_spring_openid_security_check");
-            
+        //configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
+         configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.Md5PasswordEncoder");
+
+           configuration.add( "spring-security.rememberme.key", "REMEMBERMEKEY" );
+           configuration.add("spring-security.loginform.url", "/loginpage");
+           configuration.add( "spring-security.force.ssl.login", "false" );
+           configuration.add( "spring-security.anonymous.key","acegi_anonymous" );
+         configuration.add("spring-security.anonymous.attribute","anonymous,ROLE_ANONYMOUS" );
+
+        configuration.add("spring-security.password.salt", "CEDEBEEF");
+        configuration.add( "spring-security.accessDenied.url", "/forbidden" );
+        configuration.add("spring-security.openidcheck.url", "/j_spring_openid_security_check");
+        configuration.add("spring-security.check.url", "/j_spring_security_check");
+        configuration.add("spring-security.logout", "/j_spring_security_logout");
         
     }
 
@@ -294,19 +350,19 @@ public final class AppModule {
         configuration.add("Utf8Filter", utf8Filter);
     }
 
-    public static void contributeProviderManager(
-        OrderedConfiguration<AuthenticationProvider> configuration,
-
-        @InjectService("OpenIDAuthenticationProvider")
-        AuthenticationProvider openIdAuthenticationProvider)
-    {
-        configuration.add("openIDAuthenticationProvider", openIdAuthenticationProvider);
-    }
 
 
-    public static void contibuteAlias( Configuration<AliasContribution<PasswordEncoder>> configuration) {
-        configuration.add(AliasContribution.create(PasswordEncoder.class, new ShaPasswordEncoder()));
-    }
+    
+//    public static void contributeAliasOverrides(Configuration<AliasContribution<?>> configuration)
+//{
+//        SaltSourceService saltSource = new SaltSourceService() {
+//                public Object getSalt(UserDetails user) {
+//                        return null;
+//                }
+//        };
+//
+//        configuration.add(AliasContribution.create(SaltSourceService.class, saltSource));
+//}
     public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
         
     }

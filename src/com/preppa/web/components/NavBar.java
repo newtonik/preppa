@@ -5,6 +5,11 @@
 
 package com.preppa.web.components;
 
+import nu.localhost.tapestry5.springsecurity.services.LogoutService;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.Value;
+import org.apache.tapestry5.services.Request;
+
 /**
  *
  * @author newtonik
@@ -31,5 +36,22 @@ public class NavBar {
 //
 //        return null;
 //    }
+ @Inject
+ @Value("${spring-security.logout}")
+ private String logoutUrl;
+    @Inject
+    private Request request;
+    @Inject
+    private LogoutService logout;
 
+    /**
+     * @return the logoutUrl
+     */
+    public String getLogoutUrl() {
+        return request.getContextPath() + logoutUrl;
+    }
+
+    void onActionFromLogoutUrl() {
+        logout.logout();
+    }
 }

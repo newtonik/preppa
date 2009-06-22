@@ -3,7 +3,7 @@ package com.preppa.web.pages.user;
 
 import com.preppa.web.data.Gender;
 import com.preppa.web.data.UserObDAO;
-import com.preppa.web.entities.UserOb;
+import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -15,13 +15,14 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.DateSelector;
 
+
 /**
  *
  * @author nwt
  */
 public class EditUser {
     @Property
-    private UserOb user;
+    private User user;
     @InjectPage
     private Index index;
     @Inject
@@ -52,7 +53,7 @@ public class EditUser {
         if(id > 0) {
             this.user = userDAO.findById(id);
             uid = id;
-            fLogin = user.getLoginId();
+            fLogin = user.getUsername();
             femail = user.getEmail();
             ffName = user.getFirstName();
             flName = user.getLastName();

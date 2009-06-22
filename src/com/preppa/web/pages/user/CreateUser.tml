@@ -1,8 +1,11 @@
 <html t:type="layout" t:pageTitle="New User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
         <br/>
         <br />
-      <div id ="edituser" align="center">
-          <t:form t:id="userform">
+      <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+    bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+        <div style="padding: 20px; background-color:#e8eefa;" >
+          <t:form t:id="userform" t:object="user">
               <t:errors/>
              <table id="userformtable">
                  <tr>
@@ -78,9 +81,11 @@
                   </tr>
                    <tr>
                       <td colspan="2" align="left">
+                          <br />
                         <input type="submit" value="Submit"/>
                     </td>
                     <td alight="left">
+                        <br />
                          <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
                     </td>
 
@@ -88,7 +93,7 @@
              </table>
              </t:form>
     </div>
-
+    </div>
 
 
 

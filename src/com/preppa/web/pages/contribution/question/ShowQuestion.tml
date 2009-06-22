@@ -2,9 +2,10 @@
 
     <body>
 
-        <h2>
-           ${question.question}
-        </h2>
+        <h3>
+            <t:outputraw t:value="${question.question}"/>
+           
+        </h3>
         <div id="author-time">
             Created at ${question.createdAt}
         </div>
@@ -13,9 +14,9 @@
         <t:loop t:source="AllAnswers"
             t:value="questionanswer">
             <div class="questionanswer">
-                    ${questionanswer.answer}
+                     <t:outputraw t:value="${questionanswer.answer}" />
                     <br></br>
-                    ${questionanswer.}
+                     <t:outputraw t:value="${questionanswer.}" />
                     <t:if t:test="questionanswer.correct">
                         <b>This answer is correct.</b>
                     </t:if>

@@ -2,6 +2,7 @@ package com.preppa.web.pages;
 
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.VocabDAO;
+import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserOb;
 import com.preppa.web.entities.Vocab;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
+
 
 public class Index {
 
@@ -63,7 +65,7 @@ public class Index {
         return dictionaryDAO.findByPartialName("Ab");
     }*/
 
-    public List<UserOb> getUsers()
+    public List<User> getUsers()
     {
         //return session.createCriteria(UserOb.class).list();
         return userDAO.findAll();

@@ -5,7 +5,7 @@
 
 package com.preppa.web.data;
 
-import com.preppa.web.entities.UserOb;
+import com.preppa.web.entities.User;
 import java.util.List;
 import org.chenillekit.hibernate.daos.GenericDAO;
 
@@ -13,10 +13,10 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  *
  * @author newtonik
  */
-public interface UserObDAO extends GenericDAO <UserOb, Integer>{
+public interface UserObDAO extends GenericDAO <User, Integer>{
 
-    UserOb findById(Integer id);
-    List<UserOb> findAllOrderedByLoginName();
-    List<UserOb> findByPartialName(String partialName);
+    User findById(Integer id);
+    List<User> findAllOrderedByLoginName();
+    List<User> findByPartialName(String partialName);
     public Integer findCountByLoginId(String login);
 }
