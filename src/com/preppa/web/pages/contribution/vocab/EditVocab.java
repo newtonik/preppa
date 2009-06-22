@@ -57,7 +57,7 @@ public class EditVocab {
         @CommitAfter
     Object onSuccess() {
 
-          vocab.setName(fWord);
+         vocab.setName(fWord);
          vocab.setPartofspeech(partofspch);
          vocab.setDefinition(fDefinition);
          vocab.setTags(fTag);

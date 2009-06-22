@@ -12,7 +12,7 @@
                     </tr>
                     <tr>
                         <td>
-                         <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30"/>
+                         <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
                         </td>
                     </tr>
                   <tr>

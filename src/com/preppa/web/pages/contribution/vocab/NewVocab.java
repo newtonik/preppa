@@ -5,8 +5,10 @@
 package com.preppa.web.pages.contribution.vocab;
 
 import com.preppa.web.data.VocabDAO;
+import com.preppa.web.data.DictionaryWordDAO;
 import com.preppa.web.entities.ExampleSentence;
 import com.preppa.web.entities.Vocab;
+import com.preppa.web.entities.DictionaryWord;
 import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
@@ -41,6 +43,8 @@ public class NewVocab {
     private String fTag;
 	@Component(id = "vocabform")
 	private Form _form;
+    @Inject
+    private DictionaryWordDAO dictionarywordDAO;
 
     void onValidateForm() {
         List<Vocab> matches = vocabDAO.findByName(fWord);
@@ -55,13 +59,13 @@ public class NewVocab {
         this.vocab = word;
     }
 
-    List<String> onProvideCompletionsFromName(String partial)
+    List<String> onProvideCompletionsFromfWord(String partial)
     {
-        List<Vocab> matches = vocabDAO.findByPartialName(partial);
+        List<DictionaryWord> matches = dictionarywordDAO.findByPartialName(partial);
 
         List<String> result = new ArrayList<String>();
 
-            for (Vocab a : matches)
+            for (DictionaryWord a : matches)
             {
                 result.add(a.getName());
             }

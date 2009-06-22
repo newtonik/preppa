@@ -54,6 +54,14 @@ public class Index {
     private UserObDAO userDAO;
     @Inject
     private VocabDAO vocabDAO;
+    /*@Inject
+    private DictionaryDAO dictionaryDAO;
+
+    public List<DictionaryWord> getDictionary()
+    {
+        //return session.createCriteria(UserOb.class).list();
+        return dictionaryDAO.findByPartialName("Ab");
+    }*/
 
     public List<UserOb> getUsers()
     {

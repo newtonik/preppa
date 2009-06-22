@@ -5,6 +5,8 @@ package com.preppa.web.services;
 
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.ArticleDAOHibImpl;
+import com.preppa.web.data.DictionaryWordDAO;
+import com.preppa.web.data.DictionaryWordDAOHibImpl;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongDualPassageDAOHibImpl;
 import com.preppa.web.data.LongPassageDAO;
@@ -92,6 +94,7 @@ public final class AppModule {
         binder.bind(LongPassageDAO.class, LongPassageDAOHibImpl.class);
         binder.bind(QuestiontypeDAO.class, QuestiontypeDAOHibImpl.class);
         binder.bind(QuestionDAO.class, QuestionDAOHimpl.class);
+        binder.bind(DictionaryWordDAO.class, DictionaryWordDAOHibImpl.class);
         //binder.bind(SmtpService.class, SimpleSmtpServiceImpl.class);
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
         binder.bind(EmailService.class, EmailServiceImpl.class);
