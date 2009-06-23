@@ -11,6 +11,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  */
 public interface TagDAO extends GenericDAO< Tag, Integer> {
     Tag findById(Integer id);
-    Tag findByName(String name);
+    List<Tag> findByName(String name);
     List<Tag> findByPartialName(String partialName);
 }

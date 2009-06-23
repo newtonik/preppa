@@ -47,8 +47,8 @@ public class Article implements Serializable {
     private String links;
     private Date createdAt;
     private Date updatedAt;
-    private UserOb user;
-
+    private User user;
+    private List<Tag> taglist = new LinkedList<Tag>();
     @Id
     @NonVisual
     @Basic(optional = false)
@@ -153,15 +153,15 @@ public class Article implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    @ManyToOne(targetEntity = UserOb.class)
+    @ManyToOne(targetEntity = User.class)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
-    public UserOb getUser()
+    public User getUser()
     {
         return user;
     }
 
-    public void setUser(UserOb user)
+    public void setUser(User user)
     {
         this.user = user;
     }
@@ -228,6 +228,28 @@ public class Article implements Serializable {
      */
     public void setTopics(List<Topic> topics) {
         this.topics = topics;
+    }
+
+    /**
+     * @return the taglist
+     */
+    @ManyToMany(targetEntity = Tag.class)
+     @JoinTable(name = "Article_Tag",
+    joinColumns = {
+      @JoinColumn(name="Article_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="Tag_id")
+    })
+    public List<Tag> getTaglist() {
+        return taglist;
+    }
+
+    /**
+     * @param taglist the taglist to set
+     */
+    public void setTaglist(List<Tag> taglist) {
+        this.taglist = taglist;
     }
 
 

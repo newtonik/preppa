@@ -1,0 +1,39 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+    bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+    <div style="padding: 20px; background-color:#e8eefa;" >
+        <t:form t:id="tagform">
+            <t:errors />
+            <table id="userformtable">
+                <tr>
+                    <td>
+                        <t:label for="tagTextfield"/>
+                    </td>
+                </tr>
+             <tr>
+                 <td valign="top" align="left">
+                   <input t:type="TextField" t:id="tagTextfield" size="30"  t:value="fname" t:label="Tag Name" t:validate="required"/>
+                 </td>
+             </tr>
+             <tr>
+                    <td colspan="2" align="left">
+                          <br />
+                        <a href="contribution/tag/submitted" class="lbAction" rel="insert"><input type="submit" value="Submit"/></a>
+                        <a href="#" class="lbAction" rel="deactivate"><input type="button"  value="Cancel"></input></a>
+                    </td>
+                  
+             </tr>
+
+            </table>
+
+            
+        </t:form>
+
+    </div>
+        
+    </div>
+
+
+
+</t:container>

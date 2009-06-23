@@ -5,23 +5,19 @@
 package com.preppa.web.pages.contribution.article;
 
 import com.preppa.web.data.ArticleDAO;
+import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.Article;
+import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
-import com.preppa.web.services.EmailService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.HtmlEmail;
-import org.apache.commons.mail.SimpleEmail;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -60,6 +56,8 @@ public class CreateArticle {
     private Topic top;
     @Property
     private List<Topic> addedTopics = new LinkedList<Topic>();
+    @Property
+    private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
     private TestsubjectDAO testsubjectDAO;
     @Property
@@ -76,11 +74,16 @@ public class CreateArticle {
     private AutoComplete autoComplete;
     @Component(parameters = {"value=inPlaceValue"})
     private InPlaceEditor inplaceTopic;
+    @Component
+    private AutoComplete autoCompleteTag;
+
     @Property
     private String inPlaceValue;
 
+    //@Inject
+    //private EmailService mailer;
     @Inject
-    private EmailService mailer;
+    private TagDAO tagDAO;
 //    @OnEvent(component="cancelButton")
 //    public Object onCancelButton() {
 //   //now you have a chance to do any cleanup work you want to do.
@@ -91,7 +94,8 @@ public class CreateArticle {
        this.article = new Article();
        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
        testsubjects.addAll(setItems);
-            addedTopics =  topicDAO.findAll();
+        addedTopics =  topicDAO.findAll();
+        addedTags = tagDAO.findAll();
 
     }
 
@@ -137,7 +141,9 @@ public class CreateArticle {
 //            Logger.getLogger(CreateArticle.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
+        // @TODO strip duplicates before savee
             article.getTopics().addAll(addedTopics);
+            article.getTaglist().addAll(addedTags);
           //  article.setTopics(tset);
          
          System.out.println(article.getTitle());
@@ -186,9 +192,26 @@ public class CreateArticle {
         return result;
     }
 
+      List<String> onProvideCompletionsFromTags(String partial) {
+        List<Tag> matches = tagDAO.findByPartialName(partial);
 
-       List<Topic> onProvideCompletionsFromAutocomplete(String partial) {
+        List<String> result = new ArrayList<String>();
+        for(Tag t : matches)
+        {
+            result.add(t.getName());
+        }
+        return result;
+    }
+
+
+    List<Topic> onProvideCompletionsFromAutocomplete(String partial) {
         List<Topic> matches = topicDAO.findByPartialName(partial);
+        return matches;
+
+    }
+
+        List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+        List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
 
     }
@@ -222,5 +245,42 @@ public class CreateArticle {
       }
     };
   }
+       public FieldTranslator getTagTranslator()
+    {
+        return new FieldTranslator<Tag>()
+        {
+          public String toClient(Tag value)
+          {
+                String clientValue = "0";
+                if (value != null)
+                clientValue = String.valueOf(value.getName());
+
+                return clientValue;
+          }
+
+          public void render(MarkupWriter writer) { }
+
+            @Override
+          public Class<Tag> getType() { return Tag.class; }
+
+            @Override
+          public Tag parse(String clientValue) throws ValidationException
+          {
+            Tag serverValue = null;
+//            if(clientValue == null) {
+//                Tag t = new Tag();
+//                t.setName(clientValue);
+//            }
+            System.out.println(clientValue);
+
+            if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                System.out.println(clientValue);
+                serverValue = tagDAO.findByName(clientValue).get(0);
+            }
+            return serverValue;
+          }
+
+    };
+   }
 
 }

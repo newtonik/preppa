@@ -94,7 +94,9 @@
              </t:form>
     </div>
     </div>
-
+    <div>
+        <t:newtag />
+    </div>
 
 
 
