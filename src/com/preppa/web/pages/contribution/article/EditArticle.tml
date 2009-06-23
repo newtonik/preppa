@@ -1,13 +1,27 @@
 <html t:type="layout" t:pageTitle="Edit Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <t:pagelink t:page="contribution/article"> Back to Articles </t:pagelink>
         <br/>
         <br />
       <div id ="artcont" align="center">
           <t:form t:id="articleform">
-             <table id="articleformtable" width="800">
+              <t:errors/>
+             <table id="articleformtable" width="700">
+                  <tr  align="left">
+                        <td>
+                       <t:label for="fTitle"> Title: </t:label>
+                       </td>
+                  </tr>
+                  <tr>
+                       <td align="left">
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="60"/>
+                      </td>
+                  </tr>
                  <tr>
-                     <td align="right">
-                         <label for="testsubject"> Section: </label>
+                     <td align="left">
+                         <label for="testsubject"> Test Subject: </label>
                      </td>
+                 </tr>
+                 <tr>
                      <td align="left">
                       <table>
                       <tr>
@@ -18,61 +32,69 @@
                             list="testsubjects"
                             labelField="literal:name"
                             valueField="literal:id"
-                            value="testsubject"/>
+                            value="testsubject"
+                            t:label="Section"/>
                     </td>
 
-                     <td align="right">
+                     <td align="left">
                          <t:label for="autoComplete"> Topics: </t:label>
                      </td>
 
                       <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
-                        translate="prop:translator" label="name" size="10"/>
+                        translate="prop:translator" label="name" type="text" size="10" readonly="true"/>
                          </td>
                          </tr>
                       </table>
                      </td>
                   </tr>
-                  <tr  align="left">
-                      <td align="right">
-                       <t:label for="fTitle"> Title: </t:label>
-                       </td>
-                       <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required"/>
-                      </td>
-
-                 </tr>
 
                  <tr>
-                        <td valign="top" align="right">
+                       <td valign="top" align="left">
                            <t:label for="body">Article: </t:label>
                         </td>
-                           <td >
-                          <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"  t:validate="required"/>
-
+                 </tr>
+                 <tr>
+                      <td>
+                          <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"
+                          t:label="Body" t:validate="required" />
                      </td>
                  </tr>
                    <tr>
-
-                        <td valign="top" align="right">
+                       <td valign="top" align="left">
                              <t:label for="fSource"> Sources: </t:label>
                         </td>
+                   </tr>
+                     <tr>
+
                         <td align="left">
                           <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
-                         </td>
-                 </tr>
-                   <tr>
-                     <td align="right">
-                         <t:label for="fTag"> Tags: </t:label>
-                      </td>
-                      <td align="left">
-                          <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
 
                      </td>
                  </tr>
+                   <tr>
+                     <td align="left">
+                         <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                     </td>
+                   </tr>
+                   <tr>
+                   <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
+                         </td>
+
+                 </tr>
+                 <tr>
+                     <td align="left">
+                         Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
+                     </td>
+                  </tr>
+
                   <tr>
+                      <br />
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
+                         <a href="#" t:type="pageLink" t:page="contribution/article/show" t:context="aid"> <input type="button" value="Cancel"></input></a>
                     </td>
 
                  </tr>

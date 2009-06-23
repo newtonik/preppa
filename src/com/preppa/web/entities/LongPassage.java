@@ -15,7 +15,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +42,16 @@ public class LongPassage implements Serializable {
     private String sources;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     private List<Question> questions;
+     @ManyToMany(targetEntity = Tag.class)
+     @JoinTable(name = "LongPassage_Tag",
+    joinColumns = {
+      @JoinColumn(name="longpassage_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="tag_id")
+    })
+
+    private List<Tag> taglist;
     @Basic(optional = false)
     @NonVisual
     @Column(name = "created_at", nullable = false)

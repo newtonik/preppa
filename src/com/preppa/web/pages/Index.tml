@@ -5,7 +5,7 @@
         </h2>
 
          <p>
-            <t:pagelink t:page="contribution/article/viewall"> All Articles </t:pagelink>
+                <t:pagelink t:page="contribution/article"> All Articles </t:pagelink>
             <br />
             <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
               <br />

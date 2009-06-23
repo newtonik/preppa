@@ -5,9 +5,11 @@
 package com.preppa.web.pages.contribution.article;
 
 import com.preppa.web.data.ArticleDAO;
+import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.Article;
+import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import java.sql.Timestamp;
@@ -25,6 +27,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
 /**
  *
@@ -53,6 +56,8 @@ public class EditArticle {
     private Topic top;
     @Property
     private List<Topic> addedTopics = new LinkedList<Topic>();
+    @Property
+    private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
     private TestsubjectDAO testsubjectDAO;
     @Property
@@ -65,8 +70,12 @@ public class EditArticle {
     private String fSource;
     @Property
     private String fTag;
-
-
+    @Property
+    private Integer aid;
+    @Component
+    private AutoComplete autoCompleteTag;
+    @Inject
+    private TagDAO tagDAO;
 
 
 
@@ -82,7 +91,8 @@ public class EditArticle {
 
     }
     void onActivate(int id) {
-         this.article = articleDAO.findById(id);
+
+      this.article = articleDAO.findById(id);
        if(this.article != null) {
            this.fBody = article.getBody();
            this.fSource = article.getSources();
@@ -90,6 +100,7 @@ public class EditArticle {
            this.fTag = article.getTags();
            this.addedTopics = article.getTopics();
            this.testsubject = article.getTestsubject();
+           this.aid = article.getId();
        }
 
         this.top = new Topic();
@@ -115,6 +126,14 @@ public class EditArticle {
             if(!(article.getTopics().contains(e)))
             {
                 article.getTopics().add(e);
+            }
+          //  article.setTopics(tset);
+
+         }
+           for(Tag t: addedTags) {
+            if(!(article.getTaglist().contains(t)))
+            {
+                article.getTaglist().add(t);
             }
           //  article.setTopics(tset);
 
@@ -170,6 +189,12 @@ public class EditArticle {
 
     }
 
+    List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+        List<Tag> matches = tagDAO.findByPartialName(partial);
+        return matches;
+
+    }
+
     public FieldTranslator getTranslator()
   {
     return new FieldTranslator<Topic>()
@@ -199,5 +224,41 @@ public class EditArticle {
       }
     };
   }
+public FieldTranslator getTagTranslator()
+    {
+        return new FieldTranslator<Tag>()
+        {
+          public String toClient(Tag value)
+          {
+                String clientValue = "0";
+                if (value != null)
+                clientValue = String.valueOf(value.getName());
 
+                return clientValue;
+          }
+
+          public void render(MarkupWriter writer) { }
+
+            @Override
+          public Class<Tag> getType() { return Tag.class; }
+
+            @Override
+          public Tag parse(String clientValue) throws ValidationException
+          {
+            Tag serverValue = null;
+//            if(clientValue == null) {
+//                Tag t = new Tag();
+//                t.setName(clientValue);
+//            }
+            System.out.println(clientValue);
+
+            if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                System.out.println(clientValue);
+                serverValue = tagDAO.findByName(clientValue).get(0);
+            }
+            return serverValue;
+          }
+
+    };
+   }
 }

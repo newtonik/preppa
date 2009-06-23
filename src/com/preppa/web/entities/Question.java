@@ -18,7 +18,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -48,6 +50,15 @@ public class Question implements Serializable {
     @Lob
     @Column(name = "tags")
     private String tags;
+     @ManyToMany(targetEntity = Tag.class)
+     @JoinTable(name = "Question_Tag",
+    joinColumns = {
+      @JoinColumn(name="question_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="tag_id")
+    })
+    private List<Tag> tagltist;
     @Lob
     @Column(name = "source")
     private String source;
@@ -236,6 +247,20 @@ public class Question implements Serializable {
      */
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    /**
+     * @return the tagltist
+     */
+    public List<Tag> getTaglist() {
+        return tagltist;
+    }
+
+    /**
+     * @param tagltist the tagltist to set
+     */
+    public void setTaglist(List<Tag> tagltist) {
+        this.tagltist = tagltist;
     }
 
 }

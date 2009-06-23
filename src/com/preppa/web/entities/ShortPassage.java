@@ -15,7 +15,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,6 +43,16 @@ public class ShortPassage implements Serializable {
     private String source;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     private List<Question> questions;
+    @ManyToMany(targetEntity = Tag.class)
+     @JoinTable(name = "ShortPassage_Tag",
+    joinColumns = {
+      @JoinColumn(name="ShortPassage_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="Tag_id")
+    })
+    private List<Tag> taglist;
+
     @Basic(optional = false)
     @NonVisual
     @Column(name = "created_at", nullable = false)
@@ -172,6 +185,20 @@ public class ShortPassage implements Serializable {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /**
+     * @return the taglist
+     */
+    public List<Tag> getTaglist() {
+        return taglist;
+    }
+
+    /**
+     * @param taglist the taglist to set
+     */
+    public void setTaglist(List<Tag> taglist) {
+        this.taglist = taglist;
     }
 
 }

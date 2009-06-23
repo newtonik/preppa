@@ -142,10 +142,23 @@ public class CreateArticle {
 //        }
 
         // @TODO strip duplicates before savee
-            article.getTopics().addAll(addedTopics);
-            article.getTaglist().addAll(addedTags);
+            //article.getTopics().addAll(addedTopics);
+            //article.getTaglist().addAll(addedTags);
+           for(Topic e: addedTopics) {
+            if(!(article.getTopics().contains(e)))
+            {
+                article.getTopics().add(e);
+            }
+
+         }
+          for(Tag t: addedTags) {
+            if(!(article.getTaglist().contains(t)))
+            {
+                article.getTaglist().add(t);
+            }
           //  article.setTopics(tset);
-         
+
+         }
          System.out.println(article.getTitle());
             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 

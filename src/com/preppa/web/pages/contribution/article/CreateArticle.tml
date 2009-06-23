@@ -1,4 +1,5 @@
 <html t:type="layout" t:pageTitle="New Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <t:pagelink t:page="contribution/article"> Back to Articles </t:pagelink>
         <br/>
         <br />
       <div id ="artcont" align="center">
@@ -90,7 +91,7 @@
 
                  </tr>
                  <tr>
-                     <td>
+                     <td align="left">
                          Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
                      </td>
                   </tr>

@@ -16,7 +16,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author newtonik
  */
-public class ViewAll {
+public class Index {
     @Inject
     private ArticleDAO articleDAO;
 

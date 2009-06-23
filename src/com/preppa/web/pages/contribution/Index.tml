@@ -1,0 +1,19 @@
+<html t:type="layout" t:pageTitle="Contribution Home" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id="contributehome">
+
+         <p>
+            <t:pagelink t:page="contribution/article"> All Articles </t:pagelink>
+            <br />
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+              <br />
+            <t:pagelink t:page="contribution/passage/create">Create Passage</t:pagelink>
+               <br />
+            <t:pagelink t:page="contribution/passage/createdual">Create Dual Passage</t:pagelink>
+            <br />
+            <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
+            <br />
+            <a href="#" t:type="PageLink"  t:page="contribution/vocab/new"> Create Vocab </a>
+        </p>
+
+</div>
+</html>

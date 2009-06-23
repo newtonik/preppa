@@ -15,7 +15,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -56,7 +59,15 @@ public class LongDualPassage implements Serializable {
     //@JoinColumn(name = "passage2_id")
     @Lob
     private String passagetwo;
-    
+      @ManyToMany(targetEntity = Tag.class)
+     @JoinTable(name = "LongDualPassage_Tag",
+    joinColumns = {
+      @JoinColumn(name="longdualpassage_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="tag_id")
+    })
+    private List<Tag> taglist;
     public Integer getId() {
         return id;
     }
@@ -186,6 +197,20 @@ public class LongDualPassage implements Serializable {
      */
     public void setPassagetwo(String passagetwo) {
         this.passagetwo = passagetwo;
+    }
+
+    /**
+     * @return the taglist
+     */
+    public List<Tag> getTaglist() {
+        return taglist;
+    }
+
+    /**
+     * @param taglist the taglist to set
+     */
+    public void setTaglist(List<Tag> taglist) {
+        this.taglist = taglist;
     }
 
 }

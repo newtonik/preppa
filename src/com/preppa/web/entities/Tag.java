@@ -1,6 +1,7 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,11 +17,17 @@ import javax.persistence.Id;
 @Entity
 public class Tag implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
 
+    public Tag() {
+
+    }
+    public Tag(String name) {
+        this.name = name;
+    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
@@ -51,12 +58,13 @@ public class Tag implements Serializable {
 
     @Override
     public String toString() {
-        return "com.preppa.web.entities.Tag[id=" + id + "]";
+        return this.name;
     }
 
     /**
      * @return the name
      */
+    @Column(unique=true)
     public String getName() {
         return name;
     }

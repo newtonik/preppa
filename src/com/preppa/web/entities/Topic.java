@@ -98,6 +98,7 @@ public class Topic implements Serializable {
     /**
      * @return the name
      */
+    @Column(unique=true)
     public String getName() {
         return name;
     }

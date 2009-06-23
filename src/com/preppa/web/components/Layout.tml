@@ -27,7 +27,8 @@
                     <t:block t:id="sideboxes">
                     <h2>Left Side Bar </h2>
                      <div t:id="leftRegularContent">
-                            Here come the left regular content
+                        <t:pagelink t:page="contribution"> Contribution Section </t:pagelink>
+
                      </div>
                      </t:block>
                 </div>
