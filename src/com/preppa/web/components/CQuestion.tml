@@ -72,15 +72,6 @@
                           <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="4" cols="50"/>
                        </td>
                  </tr>
-                   <tr>
-                     <td width="10%" align="right">
-                         <t:label for="fTag"> Tags: </t:label>
-                      </td>
-
-                      <td>
-                          <input t:type="TextField" t:id="fTag" value="fTag" width="90"/>
-                     </td>
-                 </tr>
                  <tr>
                      <td width="10%" valign="top" align="right">
                          <t:label for="ratingField"> Difficulty: </t:label>
