@@ -90,7 +90,6 @@ public class CQuestion {
     question = new Question();
     question.setExplanation(fExplanation);
     question.setQuestion(fQuestion);
-    question.setTags(fTag);
     int numCorrect = 0;
     if(ans1.length() > 0) {
         QuestionAnswer ch = new QuestionAnswer(ans1);

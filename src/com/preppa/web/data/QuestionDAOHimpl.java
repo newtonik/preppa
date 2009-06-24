@@ -39,6 +39,7 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         return findByQuery(sqlString.toString());
     }
 
+    @Override
      public List<Question> findByQuestiontype(Integer q) {
         SQLString sqlString = new SQLString("FROM Question q");
         if(q > 0)
@@ -53,10 +54,10 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         super(logger, session);
     }
 
-    public List<Question> findAll() {
-        SQLString sqlString = new SQLString("FROM Question q");
 
-        return (List<Question>) findByQuery(sqlString.toString());
+    @Override
+    public List<Question> findByTag(String name) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

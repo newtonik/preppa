@@ -88,7 +88,7 @@ public class EditQuestion {
             ans3 = question.getChoices().get(2).getAnswer();
             ans4 = question.getChoices().get(3).getAnswer();
             ans5 = question.getChoices().get(4).getAnswer();
-            fTag = question.getTags();
+           
         }
     }
     Object onPassivate() {
@@ -100,7 +100,6 @@ public class EditQuestion {
     question = new Question();
     question.setExplanation(fExplanation);
     question.setQuestion(fQuestion);
-    question.setTags(fTag);
     int numCorrect = 0;
     if(ans1.length() > 0) {
         QuestionAnswer ch = new QuestionAnswer(ans1);
