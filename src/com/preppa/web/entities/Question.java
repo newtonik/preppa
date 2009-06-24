@@ -47,10 +47,7 @@ public class Question implements Serializable {
     @Lob
     @Column(name = "question")
     private String question;
-    @Lob
-    @Column(name = "tags")
-    private String tags;
-     @ManyToMany(targetEntity = Tag.class)
+    @ManyToMany(cascade=CascadeType.ALL,  fetch=FetchType.EAGER, targetEntity=Tag.class)
      @JoinTable(name = "Question_Tag",
     joinColumns = {
       @JoinColumn(name="question_id")
@@ -114,14 +111,7 @@ public class Question implements Serializable {
         this.question = question;
     }
 
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
+    
     public String getSource() {
         return source;
     }
@@ -262,5 +252,7 @@ public class Question implements Serializable {
     public void setTaglist(List<Tag> tagltist) {
         this.tagltist = tagltist;
     }
+
+  
 
 }

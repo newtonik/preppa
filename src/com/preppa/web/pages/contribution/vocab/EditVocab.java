@@ -45,8 +45,22 @@ public class EditVocab {
             fWord = vocab.getName();
             partofspch = vocab.getPartofspeech();
             fDefinition = vocab.getDefinition();
-            fSentence = vocab.getSentence().getSentence();
-            fTag = vocab.getTags();
+            if (vocab.getSentence() == null)
+            {
+                fSentence = "";
+            }
+            else
+            {
+                fSentence = vocab.getSentence().getSentence();
+            }
+            if (vocab.getTags() == null)
+            {
+                fTag = "";
+            }
+            else
+            {
+                fTag = vocab.getTags();
+            }
         }
 
     }

@@ -3,7 +3,8 @@
     bgcolor="#FFFFFF"
     style="padding: 20px;" align="center">
     <div style="padding: 20px; background-color:#e8eefa;" >
-        <t:form t:id="tagform">
+        <t:zone t:id="formZone">
+        <t:form t:id="tagform" t:zone="formZone">
             <t:errors />
             <table id="userformtable">
                 <tr>
@@ -19,19 +20,21 @@
              <tr>
                     <td colspan="2" align="left">
                           <br />
-                        <a href="contribution/tag/submitted" class="lbAction" rel="insert"><input type="submit" value="Submit"/></a>
+                        <input type="submit" t:type="submit" value="Submit"/>
                         <a href="#" class="lbAction" rel="deactivate"><input type="button"  value="Cancel"></input></a>
                     </td>
-                  
-             </tr>
+ </tr>
+            
 
             </table>
 
             
         </t:form>
-
+        </t:zone>
     </div>
-        
+        <p>
+             <a href="#" class="lbAction" rel="deactivate">Close</a>
+        </p>
     </div>
 
 

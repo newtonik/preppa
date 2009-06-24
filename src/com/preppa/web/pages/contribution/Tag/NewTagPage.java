@@ -1,4 +1,4 @@
-package com.preppa.web.pages.contribution.Tag;
+package com.preppa.web.pages.contribution.tag;
 
 /**
  *

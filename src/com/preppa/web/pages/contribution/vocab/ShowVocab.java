@@ -33,8 +33,15 @@ Object onActivate(int id) {
     if(id > 0 ) {
         this.vocab = vocabDAO.findById(id);
         if(this.vocab != null) {
-            example = vocab.getSentence().getSentence();
-            vid = vocab.getId();    
+            if (vocab.getSentence() == null)
+            {
+                example = "";
+            }
+            else
+            {
+                example = vocab.getSentence().getSentence();
+            }
+            vid = vocab.getId();
         }
         else
         {
