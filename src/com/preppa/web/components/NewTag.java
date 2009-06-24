@@ -4,17 +4,13 @@ package com.preppa.web.components;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.pages.contribution.tag.TagSubmitted;
-import java.util.List;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
-import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.chenillekit.tapestry.core.components.Button;
 
 
 /**

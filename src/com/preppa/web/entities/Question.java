@@ -47,7 +47,7 @@ public class Question implements Serializable {
     @Lob
     @Column(name = "question")
     private String question;
-    @ManyToMany(cascade=CascadeType.ALL,  fetch=FetchType.EAGER, targetEntity=Tag.class)
+    @ManyToMany(cascade=CascadeType.ALL,  targetEntity=Tag.class)
      @JoinTable(name = "Question_Tag",
     joinColumns = {
       @JoinColumn(name="question_id")
@@ -55,7 +55,7 @@ public class Question implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="tag_id")
     })
-    private List<Tag> tagltist;
+    private List<Tag> taglist;
     @Lob
     @Column(name = "source")
     private String source;
@@ -240,17 +240,17 @@ public class Question implements Serializable {
     }
 
     /**
-     * @return the tagltist
+     * @return the taglist
      */
     public List<Tag> getTaglist() {
-        return tagltist;
+        return taglist;
     }
 
     /**
-     * @param tagltist the tagltist to set
+     * @param taglist the taglist to set
      */
     public void setTaglist(List<Tag> tagltist) {
-        this.tagltist = tagltist;
+        this.taglist = tagltist;
     }
 
   

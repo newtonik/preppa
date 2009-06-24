@@ -233,6 +233,7 @@ public class CreateArticle {
   {
     return new FieldTranslator<Topic>()
     {
+            @Override
       public String toClient(Topic value)
       {
         String clientValue = "0";
@@ -242,10 +243,13 @@ public class CreateArticle {
         return clientValue;
       }
 
+            @Override
       public void render(MarkupWriter writer) { }
 
+            @Override
       public Class<Topic> getType() { return Topic.class; }
 
+            @Override
       public Topic parse(String clientValue) throws ValidationException
       {
         Topic serverValue = null;
@@ -271,6 +275,7 @@ public class CreateArticle {
                 return clientValue;
           }
 
+            @Override
           public void render(MarkupWriter writer) { }
 
             @Override

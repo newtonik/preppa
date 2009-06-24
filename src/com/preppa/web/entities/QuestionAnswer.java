@@ -33,6 +33,7 @@ public class QuestionAnswer implements Serializable {
     private Question question;
 
     public QuestionAnswer() {
+        this.correct = false;
     }
   
 
