@@ -1,0 +1,23 @@
+<html t:type="layout" t:pageTitle="Add a Vocabulary Word" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+          <h3> Add a Vocab Word </h3>
+        <p>
+          <t:form t:id="addvocabform">
+              <t:errors/>
+              <table>
+                  <t:label for="dWord"> Word </t:label>
+                  <input type="text" t:type="TextField" t:id="dWord"  t:value="dWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
+                  <input type="submit" value="Submit"/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+              </table>
+          </t:form>
+          <br/>
+          <br/>
+          <br/>
+        </p>
+
+
+</html>
