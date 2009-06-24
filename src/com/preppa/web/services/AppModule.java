@@ -308,6 +308,7 @@ public final class AppModule {
             @InjectService("RequestGlobals") final RequestGlobals requestGlobals) {
         return new RequestFilter() {
 
+            @Override
             public boolean service(Request request, Response response, RequestHandler handler)
                     throws IOException {
                 requestGlobals.getHTTPServletRequest().setCharacterEncoding("UTF-8");
