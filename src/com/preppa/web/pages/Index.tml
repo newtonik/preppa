@@ -19,7 +19,7 @@
         </p>
 
         <p>
-            <t:pagelink t:page="contribution/vocab/new">Add a new vocab word</t:pagelink>
+            <t:pagelink t:page="contribution/vocab/add">Add a new vocab word</t:pagelink>
         </p>
 
          <p>

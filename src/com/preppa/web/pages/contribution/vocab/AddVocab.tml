@@ -6,7 +6,7 @@
               <table>
                   <t:label for="dWord"> Word </t:label>
                   <input type="text" t:type="TextField" t:id="dWord"  t:value="dWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
-                  <input type="submit" value="Submit"/>
+                  <input type="submit" value="Use Persistence"/>
                   <br/>
                   <br/>
                   <br/>

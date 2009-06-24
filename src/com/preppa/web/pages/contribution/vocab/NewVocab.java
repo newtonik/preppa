@@ -55,8 +55,19 @@ public class NewVocab {
     }
 
 
-    void onActivate(Vocab word) {
+    /*void onActivate(Vocab word) {
         this.vocab = word;
+    }*/
+
+    void onActivate(int id) {
+        DictionaryWord dWord = dictionarywordDAO.findById(id);
+        //this.vocab = vocabDAO.findById(id);
+        if(dWord != null) {
+            fWord = dWord.getName();
+            partofspch = dWord.getPartofspeech();
+            fDefinition = dWord.getDefinition();
+        }
+
     }
 
     List<String> onProvideCompletionsFromfWord(String partial)

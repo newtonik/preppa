@@ -15,6 +15,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.corelib.components.Form;
 
 /**
@@ -32,9 +33,17 @@ public class AddVocab {
     private String dWord;
     @Inject
     private DictionaryWordDAO dictionarywordDAO;
+	@InjectPage
+	private DefinitionVocab _next;
 
     void onValidateForm() {
     }
+
+	Object onSuccessFromAddVocabForm() {
+        System.out.println(dWord);
+		_next.set(dWord);
+		return _next;
+	}
 
     void onActivate(Vocab word) {
         this.view = word;
@@ -42,10 +51,6 @@ public class AddVocab {
 
     Object onPassivate() {
         return view;
-    }
-    @CommitAfter
-    Object onSuccess() {
-        return Index.class;
     }
 
     List<String> onProvideCompletionsFromdWord(String partial)
@@ -61,4 +66,9 @@ public class AddVocab {
             System.out.println(result);
         return result;
     }
+
+    /*@CommitAfter
+    Object onSuccess() {
+        return EditVocab.class;
+    }*/
 }

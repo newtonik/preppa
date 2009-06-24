@@ -45,6 +45,8 @@ public class DictionaryWord implements Serializable {
     private String name;
     @Column(name = "partofspeech", length = 255)
     private String partofspeech;
+    @Column(name = "submitted")
+    private boolean submitted;
     @Lob
     @Validate("required")
     @Column(name = "definition", length = 65535)

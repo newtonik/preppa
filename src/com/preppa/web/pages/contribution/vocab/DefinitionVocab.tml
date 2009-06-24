@@ -1,0 +1,25 @@
+<html t:type="layout" t:pageTitle="Vocabulary" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+<h2>${input}</h2>
+<t:loop t:source="allwords"
+    t:value="definition">
+    <div class="definition">
+        <div class="body">
+            <a href="#" t:type="pageLink" t:page="contribution/vocab/New" t:context="definition.id">Select Definition</a>
+            <br></br>
+            <t:outputraw t:value="${definition.definition}"/>
+        </div>
+
+    </div>
+    <br />
+</t:loop>
+
+<t:if t:test="isempty">
+    <b>No results were found.</b>
+</t:if>
+
+<t:if t:test="isin">
+    <b>One or more definitions for this word have already been submitted.</b>
+</t:if>
+
+</html>
