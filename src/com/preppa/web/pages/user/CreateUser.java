@@ -9,6 +9,7 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.Role;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
+import com.preppa.web.services.UserDetailsWithPasswordServiceImpl;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
@@ -26,8 +27,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.DateSelector;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.security.Authentication;
+import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
+import org.springframework.security.providers.dao.DaoAuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.PasswordEncoder;
+import org.springframework.security.providers.encoding.PlaintextPasswordEncoder;
+import org.springframework.security.userdetails.UserDetailsService;
 
 /**
  *
@@ -74,6 +80,10 @@ public class CreateUser {
     private PasswordField passwordField;
     @Component
     private Form userform;
+    private DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    private UsernamePasswordAuthenticationToken authtoken;
+    @Inject
+    private UserDetailsService userserve;
     //private Timestamp currentTime;
     void onActivate() {
         this.user = new User();
@@ -108,22 +118,25 @@ public class CreateUser {
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         user.setCreatedAt(now);
         user.setUpdatedAt(now);
-        //userDAO.doSave(user);
+        userDAO.doSave(user);
+      
         RegisterUser(user);
         //session.persist(user);
+       
+
         return index;
     }
 
    public void RegisterUser(User user) {
         if( user != null)
         {
-            userDAO.doSave(user);
-            Object salter = salt.getSalt(user);
-            String passwordToencode = user.getPassword() + user.getUsername() + user.getId();
-            String encodpassword = encoder.encodePassword(passwordToencode, salter);
-            System.out.println(encodpassword);
-            user.setPassword(encodpassword);
-            userDAO.doSave(user);
+//            userDAO.doSave(user);
+//            Object salter = salt.getSalt(user);
+//            String passwordToencode = user.getPassword() + user.getUsername() + user.getId();
+//            String encodpassword = encoder.encodePassword(passwordToencode, salter);
+//            System.out.println(encodpassword);
+//            user.setPassword(encodpassword);
+//            userDAO.doSave(user);
            Session session = sessionManager.getSession();
             Role r = (Role) session.createCriteria(Role.class).add(
                     Restrictions.eq("authority", "ROLE_USER")).uniqueResult();

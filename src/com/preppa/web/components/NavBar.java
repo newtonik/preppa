@@ -5,7 +5,9 @@
 
 package com.preppa.web.components;
 
+import com.preppa.web.entities.User;
 import nu.localhost.tapestry5.springsecurity.services.LogoutService;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.services.Request;
@@ -43,7 +45,9 @@ public class NavBar {
     private Request request;
     @Inject
     private LogoutService logout;
-
+  @ApplicationState
+    private User user;
+  private boolean userExists;
     /**
      * @return the logoutUrl
      */
@@ -54,4 +58,16 @@ public class NavBar {
     void onActionFromLogoutUrl() {
         logout.logout();
     }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+    public boolean getUserExists()
+    {
+        return userExists;
+    }
+
 }

@@ -15,7 +15,6 @@ import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.DictionaryWord;
 import java.util.List;
 import org.apache.tapestry5.PersistenceConstants;
-import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.annotations.Property;

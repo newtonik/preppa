@@ -16,6 +16,8 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface UserObDAO extends GenericDAO <User, Integer>{
 
     User findById(Integer id);
+    User findByUsername(String username);
+    User findByEmail(String email);
     List<User> findAllOrderedByLoginName();
     List<User> findByPartialName(String partialName);
     public Integer findCountByLoginId(String login);

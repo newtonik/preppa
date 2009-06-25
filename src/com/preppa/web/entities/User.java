@@ -25,7 +25,7 @@ import org.springframework.security.userdetails.UserDetails;
  * A minimalistic UserDetails implementation providing a username only. Storing
  * a password is not necessary since the OpenID provider will do the authentication.
  *
- * @author Ulrich St&auml;rk --- newtonik
+ * @author  newtonik
  */
 @Entity
 public class User implements UserDetails, Serializable
@@ -176,6 +176,7 @@ public class User implements UserDetails, Serializable
     }
 
     @Transient
+    @Override
     public GrantedAuthority[] getAuthorities()
     {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();

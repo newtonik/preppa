@@ -22,6 +22,7 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
         super(logger, session);
     }
 
+    @Override
     public User findById(Integer id) {
         SQLString sqlString = new SQLString("FROM User p");
         if(id != null)
@@ -32,10 +33,12 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
         return (User) findByQuery(sqlString.toString()).get(0);
     }
 
+    @Override
     public List<User> findAllOrderedByLoginName() {
          return findAll("loginName");
     }
 
+    @Override
     public List<User> findByPartialName(String partialName) {
        SQLString sqlString = new SQLString("FROM User u");
 
@@ -44,6 +47,7 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
 
         return findByQuery(sqlString.toString());
     }
+    @Override
     public Integer findCountByLoginId(String login) {
         SQLString sqlString = new SQLString("From User u");
 
@@ -54,5 +58,21 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
         }
         return findByQuery(sqlString.toString()).size();
         
+    }
+
+    @Override
+    public User findByUsername(String username) {
+               SQLString sqlString = new SQLString("FROM User u");
+        if(username!= null)
+        {
+             sqlString.addWhereClause("u.username = '" + username + "'");
+        }
+
+        return (User) findByQuery(sqlString.toString()).get(0);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

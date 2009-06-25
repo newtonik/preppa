@@ -153,21 +153,20 @@ public final class AppModule {
          // Logger logger,
            //  @InjectService("HibernateSessionManager") HibernateSessionManager session,
        @InjectService( "DaoAuthenticationProvider" )  AuthenticationProvider daoAuthenticationProvider)
-
-       {
+        {
             configuration.add( "daoAuthenticationProvider", daoAuthenticationProvider );
            OpenIDAuthenticationProvider provider = new  OpenIDAuthenticationProvider();
 
 
         UserDetailsService userDetailService = new UserDetailsWithOpenIDServiceImpl();
         provider.setUserDetailsService(userDetailService);
-        try {
-            provider.afterPropertiesSet();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-            configuration.add("openIDAuthenticationProvider", provider);
+       try {
+           provider.afterPropertiesSet();
+      } catch (Exception e) {
+         // TODO Auto-generated catch block
+          e.printStackTrace();
+       }
+           configuration.add("openIDAuthenticationProvider", provider);
        }
 
     public static void contributeFilterSecurityInterceptor(
@@ -207,7 +206,7 @@ public final class AppModule {
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");
         //configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
-         configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.Md5PasswordEncoder");
+//         configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.Md5PasswordEncoder");
 
            configuration.add( "spring-security.rememberme.key", "REMEMBERMEKEY" );
            configuration.add("spring-security.loginform.url", "/loginpage");
@@ -251,7 +250,7 @@ public final class AppModule {
 
             return filter;
         }
-
+//
 
 
     /**
@@ -281,6 +280,7 @@ public final class AppModule {
              * Service method for Tapestry.
              * @throws IOException if something goes wrong.
              */
+            @Override
             public boolean service(Request request, Response response, RequestHandler handler)
                     throws IOException {
                 long startTime = System.currentTimeMillis();
