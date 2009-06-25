@@ -62,6 +62,11 @@ public class LoginPage
     @Inject
     private SaltSource salt;
     
+    public String getfLogin()
+    {
+        return fLogin;
+    }
+
     public boolean isFailed()
     {
         return failed;

@@ -69,6 +69,14 @@ public class DictionaryWord implements Serializable {
         return name;
     }
 
+    public boolean getSubmitted() {
+        return submitted;
+    }
+
+    public void setSubmitted(boolean val) {
+        submitted = val;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

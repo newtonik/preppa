@@ -65,7 +65,7 @@ public class NavBar {
     public User getUser() {
         return user;
     }
-    public boolean getUserExists()
+    public boolean getuserExists()
     {
         return userExists;
     }

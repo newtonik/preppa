@@ -15,11 +15,11 @@
 </t:loop>
 
 <t:if t:test="isempty">
-    <b>No results were found.</b>
+    <b>No results were found for ${input}.</b>
 </t:if>
 
 <t:if t:test="isin">
-    <b>One or more definitions for this word have already been submitted.</b>
+    <b>One or more definitions for this word may have already been submitted.</b>
 </t:if>
 
 </html>

@@ -74,6 +74,11 @@ public class Login
         return request.getContextPath() + checkUrl;
     }
 
+    public String getfLogin()
+    {
+        return fLogin;
+    }
+
     public String getOpenIdCheckUrl()
     {
         return request.getContextPath() + openidCheckUrl;

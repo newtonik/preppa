@@ -1,19 +1,17 @@
 <html t:type="layout" t:pageTitle="Add a Vocabulary Word" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
           <h3> Add a Vocab Word </h3>
-        <p>
+        <p> Check our dictionary.
           <t:form t:id="addvocabform">
               <t:errors/>
               <table>
                   <t:label for="dWord"> Word </t:label>
                   <input type="text" t:type="TextField" t:id="dWord"  t:value="dWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
-                  <input type="submit" value="Use Persistence"/>
-                  <br/>
-                  <br/>
-                  <br/>
+                  <input type="submit" value="Get Definitions"/>
                   <br/>
                   <br/>
               </table>
           </t:form>
+          Or enter in a word <t:pagelink t:page="contribution/vocab/new">here</t:pagelink>
           <br/>
           <br/>
           <br/>

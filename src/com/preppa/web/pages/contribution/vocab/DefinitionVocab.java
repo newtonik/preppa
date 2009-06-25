@@ -15,6 +15,7 @@ import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.DictionaryWord;
 import java.util.List;
 import org.apache.tapestry5.PersistenceConstants;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.annotations.Property;
@@ -55,13 +56,22 @@ public class DefinitionVocab {
         }
     }
 
-    public boolean isEmpty() {
+    public boolean getIsEmpty() {
         return dictionarywordDAO.findByName(input).isEmpty();
     }
 
     public List<DictionaryWord> getAllWords() {
-        //System.out.println("This is the input " + input);
-        return dictionarywordDAO.findByName(input);
+        List<DictionaryWord> returnVal = dictionarywordDAO.findByName(input);
+
+        for (int i = 0; i < returnVal.size(); i++)
+        {
+            if (returnVal.get(i).getSubmitted() == true)
+            {
+                returnVal.remove(i);
+            }
+        }
+
+        return returnVal;
     }
 
 }

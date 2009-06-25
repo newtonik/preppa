@@ -90,7 +90,7 @@ public class NewVocab {
 
     @CommitAfter
     Object onSuccess() {
-        this.vocab = new Vocab();
+         this.vocab = new Vocab();
          vocab.setName(fWord);
          vocab.setPartofspeech(partofspch);
          vocab.setDefinition(fDefinition);
@@ -103,6 +103,14 @@ public class NewVocab {
          vocab.setSentence(sent);
 
          vocabDAO.doSave(vocab);
+
+         DictionaryWord dWord = new DictionaryWord();
+         dWord.setName(fWord);
+         dWord.setDefinition(fDefinition);
+         dWord.setPartofspeech(partofspch);
+         dWord.setSubmitted(true);
+         dictionarywordDAO.doSave(dWord);
+
          showvocab.setvocab(vocab);
         return showvocab;
     }
