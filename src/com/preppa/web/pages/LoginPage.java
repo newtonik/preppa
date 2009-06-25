@@ -15,6 +15,9 @@ import org.apache.tapestry5.services.Request;
 import org.springframework.security.Authentication;
 import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
 import org.springframework.security.providers.dao.DaoAuthenticationProvider;
+import org.springframework.security.providers.dao.SaltSource;
+import org.springframework.security.providers.encoding.PasswordEncoder;
+import org.springframework.security.providers.encoding.ShaPasswordEncoder;
 import org.springframework.security.userdetails.UserDetailsService;
 
 /**
@@ -54,6 +57,10 @@ public class LoginPage
     private User user;
     @Inject
     private UserObDAO userDAO;
+    @Inject
+    private PasswordEncoder encoder;
+    @Inject
+    private SaltSource salt;
     
     public boolean isFailed()
     {
@@ -81,8 +88,10 @@ public class LoginPage
     void onValidateForm() {
 
          provider.setUserDetailsService(userserve);
-
+        
+        provider.setPasswordEncoder(new ShaPasswordEncoder());
        authtoken = new UsernamePasswordAuthenticationToken(fLogin, fpass);
+       provider.setSaltSource(salt);
 
       Authentication token = provider.authenticate(authtoken);
       if(token.isAuthenticated())

@@ -42,7 +42,6 @@
             [<t:pagelink t:page="contribution/question/view">View Question</t:pagelink>]
         </p>
         <p>
-             <t:grid source="users"/>
              <t:grid source="vocab"/>
         </p>
 

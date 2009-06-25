@@ -34,6 +34,7 @@ import com.preppa.web.data.VocabDAOHibImpl;
 import java.io.IOException;
 
 import nu.localhost.tapestry5.springsecurity.services.RequestInvocationDefinition;
+import nu.localhost.tapestry5.springsecurity.services.SaltSourceService;
 import nu.localhost.tapestry5.springsecurity.services.SpringSecurityServices;
 import nu.localhost.tapestry5.springsecurity.services.internal.HttpServletRequestFilterWrapper;
 import org.apache.tapestry5.SymbolConstants;
@@ -64,6 +65,7 @@ import org.springframework.security.providers.encoding.ShaPasswordEncoder;
 import org.springframework.security.providers.openid.OpenIDAuthenticationProvider;
 import org.springframework.security.ui.openid.OpenIDAuthenticationProcessingFilter;
 import org.springframework.security.ui.rememberme.RememberMeServices;
+import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 
 
@@ -308,7 +310,6 @@ public final class AppModule {
             @InjectService("RequestGlobals") final RequestGlobals requestGlobals) {
         return new RequestFilter() {
 
-            @Override
             public boolean service(Request request, Response response, RequestHandler handler)
                     throws IOException {
                 requestGlobals.getHTTPServletRequest().setCharacterEncoding("UTF-8");
@@ -354,16 +355,18 @@ public final class AppModule {
 
 
     
-//    public static void contributeAliasOverrides(Configuration<AliasContribution<?>> configuration)
-//{
-//        SaltSourceService saltSource = new SaltSourceService() {
-//                public Object getSalt(UserDetails user) {
-//                        return null;
-//                }
-//        };
-//
-//        configuration.add(AliasContribution.create(SaltSourceService.class, saltSource));
-//}
+    public static void contributeAliasOverrides(Configuration<AliasContribution<?>> configuration)
+{
+        SaltSourceService saltSource = new SaltSourceService() {
+            @Override
+                public Object getSalt(UserDetails user) {
+                   String newsalt =  user.getUsername() + "{CEDEBEEF}";
+                   return newsalt;
+                }
+        };
+
+        configuration.add(AliasContribution.create(SaltSourceService.class, saltSource));
+}
     public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
         
     }
