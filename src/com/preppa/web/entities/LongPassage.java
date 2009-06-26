@@ -6,6 +6,7 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -42,7 +43,7 @@ public class LongPassage implements Serializable {
     private String sources;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     private List<Question> questions;
-     @ManyToMany(targetEntity = Tag.class)
+     @ManyToMany(cascade=CascadeType.ALL, targetEntity = Tag.class)
      @JoinTable(name = "LongPassage_Tag",
     joinColumns = {
       @JoinColumn(name="longpassage_id")
@@ -50,8 +51,7 @@ public class LongPassage implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="tag_id")
     })
-
-    private List<Tag> taglist;
+    private List<Tag> taglist = new ArrayList<Tag>();
     @Basic(optional = false)
     @NonVisual
     @Column(name = "created_at", nullable = false)
@@ -175,5 +175,19 @@ public class LongPassage implements Serializable {
     }
     public String getTitle() {
         return title;
+    }
+
+    /**
+     * @return the taglist
+     */
+    public List<Tag> getTaglist() {
+        return taglist;
+    }
+
+    /**
+     * @param taglist the taglist to set
+     */
+    public void setTaglist(List<Tag> taglist) {
+        this.taglist = taglist;
     }
 }

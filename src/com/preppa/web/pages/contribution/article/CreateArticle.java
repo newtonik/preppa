@@ -266,6 +266,7 @@ public class CreateArticle {
     {
         return new FieldTranslator<Tag>()
         {
+            @Override
           public String toClient(Tag value)
           {
                 String clientValue = "0";

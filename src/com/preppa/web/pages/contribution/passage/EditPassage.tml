@@ -9,7 +9,7 @@
                        <t:label for="fTitle"> Title: </t:label>
                        </td>
                        <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle"/>
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="60"/>
                       </td>
                  </tr>
                 <tr>
@@ -18,7 +18,7 @@
                            <t:label for="passeditor">Passage: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"/>
+                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:label="Passage" t:validate="required" t:width="600" t:height="300"/>
                            </td>
                     </div>
                 </tr>
@@ -29,19 +29,30 @@
                              <t:label for="fSource"> Sources: </t:label>
                         </td>
                         <td>
-                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="70"/>
 
                      </td>
                  </tr>
+                 <tr>
+                       <td></td>
+                     <td align="left">
+                         <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                     </td>
+                   </tr>
                    <tr>
-                     <td align="right">
-                         <t:label for="fTag"> Tags: </t:label>
-                      </td>
-                      <td>
-                          <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
+                       <td></td>
+                   <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" />
+                         </td>
 
-                     </td>
                  </tr>
+                 <tr>
+                     <td></td>
+                     <td align="left">
+                         Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
+                     </td>
+                  </tr>
                   <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>

@@ -30,12 +30,12 @@
                   </tr>
                     <tr>
                      <td valign="top" align="left">
-                         <t:label for="fpass1"/>
+                         <t:label for="passwordField"/>
                      </td>
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="PasswordField" t:id="fpass1" size="60"  t:value="fpass1" t:label="Password" t:validate="required,minlength=6"/>
+                     <input t:type="PasswordField" t:id="passwordField" size="60"  t:value="fpass1" t:label="Password" t:validate="required,minlength=6"/>
                    </td>
                   </tr>
                     <tr>

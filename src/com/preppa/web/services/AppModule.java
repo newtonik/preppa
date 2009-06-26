@@ -115,6 +115,13 @@ public final class AppModule {
     // is provided inline, or requires more initialization than simply
     // invoking the constructor.
     }
+
+//        public static void contributeVelocityService(MappedConfiguration<String, Resource> configuration)
+//    {
+//        Resource velocityConfig = new ClasspathResource("/velocity.properties");
+//        configuration.add("velocity.configuration", velocityConfig);
+//    }
+
     public static HttpServletRequestFilter buildOpenIDAuthenticationProcessingFilter(
         final OpenIDAuthenticationProcessingFilter filter)
 {
@@ -151,7 +158,7 @@ public final class AppModule {
 
   public static void contributeProviderManager( OrderedConfiguration<AuthenticationProvider> configuration,
        //@InjectService("OpenIDAuthenticationProvider") AuthenticationProvider openIdAuthenticationProvider,
-         // @Inject
+          // @Inject
          // Logger logger,
            //  @InjectService("HibernateSessionManager") HibernateSessionManager session,
        @InjectService( "DaoAuthenticationProvider" )  AuthenticationProvider daoAuthenticationProvider)

@@ -190,11 +190,14 @@ public class User implements UserDetails, Serializable
     }
 
   
+    @Override
     public String getPassword()
     {
         return password;
     }
-
+    @Column(unique=true, nullable = false)
+    @Validate("required")
+    @Override
     public String getUsername()
     {
         return username;
@@ -206,24 +209,28 @@ public class User implements UserDetails, Serializable
     }
 
     @Transient
+    @Override
     public boolean isAccountNonExpired()
     {
         return true;
     }
 
     @Transient
+    @Override
     public boolean isAccountNonLocked()
     {
         return true;
     }
 
     @Transient
+    @Override
     public boolean isCredentialsNonExpired()
     {
         return true;
     }
 
     @Transient
+    @Override
     public boolean isEnabled()
     {
         return true;

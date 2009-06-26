@@ -6,7 +6,9 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -59,7 +61,7 @@ public class LongDualPassage implements Serializable {
     //@JoinColumn(name = "passage2_id")
     @Lob
     private String passagetwo;
-      @ManyToMany(targetEntity = Tag.class)
+      @ManyToMany(cascade=CascadeType.ALL, targetEntity = Tag.class)
      @JoinTable(name = "LongDualPassage_Tag",
     joinColumns = {
       @JoinColumn(name="longdualpassage_id")
@@ -67,7 +69,7 @@ public class LongDualPassage implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="tag_id")
     })
-    private List<Tag> taglist;
+    private List<Tag> taglist = new ArrayList<Tag>();
     public Integer getId() {
         return id;
     }

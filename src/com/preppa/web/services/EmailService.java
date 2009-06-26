@@ -1,5 +1,6 @@
 package com.preppa.web.services;
 
+import com.preppa.web.entities.User;
 import org.apache.commons.mail.EmailException; 
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
@@ -13,5 +14,6 @@ public interface EmailService {
     public void sendForgottenUsernameAndPassword(String emailTo, String password) throws EmailException;
      public void sendRegularEmail(SimpleEmail email) throws EmailException;
      public void sendHTMLEmail(HtmlEmail email) throws EmailException;
+     public void sendSendRegistrationEmail(User user) throws EmailException;
 
 }

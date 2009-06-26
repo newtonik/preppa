@@ -9,9 +9,12 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.Role;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
+import com.preppa.web.services.EmailService;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.Component;
@@ -69,16 +72,16 @@ public class CreateUser {
     @Property
     private String fpass2;
     @Inject
-    private PasswordEncoder encoder;
-    @Inject
     private SaltSource salt;
     @Inject
     private HibernateSessionManager sessionManager;
+    @Inject
+    private EmailService emailer;
     
 
     @Component(parameters = {"value=fdob", "firstYear=1930"})
     private DateSelector datefield;
-    @Component(id="fpass1")
+    @Component
     private PasswordField passwordField;
     @Component
     private Form userform;
@@ -108,7 +111,7 @@ public class CreateUser {
    
     @CommitAfter
     @Log
-    Object onSuccess() {
+    Object onSuccess() throws EmailException {
         //user = new User();
         auser.setPassword(fpass1);
         auser.setLoginId(fLogin);
@@ -124,7 +127,7 @@ public class CreateUser {
       
         RegisterUser(auser);
         //session.persist(user);
-       
+       emailer.sendSendRegistrationEmail(auser);
         this.user = auser;
         return index;
     }
@@ -156,7 +159,6 @@ public class CreateUser {
 
                 session.saveOrUpdate(r);
             }
-
 
             auser.setRoles(new HashSet<Role>());
 

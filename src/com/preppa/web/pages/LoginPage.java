@@ -49,7 +49,7 @@ public class LoginPage
     private Messages messages;
     @Component
     private Form loginform;
-    @Component(id="fpass")
+    @Component
     private PasswordField passwordField;
     @InjectPage
     private Index index;
@@ -67,6 +67,9 @@ public class LoginPage
         return fLogin;
     }
 
+    public void setfLogin(String login) {
+        this.fLogin = login;
+    }
     public boolean isFailed()
     {
         return failed;
@@ -107,8 +110,8 @@ public class LoginPage
 
       else
       {
-          fpass = null;
-          fLogin = null;
+          //fpass = null;
+          //fLogin = null;
           loginform.recordError(passwordField, "Either the Username or Password is incorrect, Please try again.");
 
       }

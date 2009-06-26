@@ -43,15 +43,27 @@
 
                      </td>
                  </tr>
-                   <tr>
-                     <td align="right">
-                         <t:label for="fTag"> Tags: </t:label>
-                      </td>
-                      <td>
-                          <input t:type="TextField" t:id="fTag" value="fTag" width="80"/>
-
+                    <tr>
+                       <td></td>
+                     <td align="left">
+                         <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
                      </td>
+                   </tr>
+                   <tr>
+                       <td></td>
+                   <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" />
+                         </td>
+
                  </tr>
+                 <tr>
+                     <td></td>
+                     <td align="left">
+                         Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
+                     </td>
+                  </tr>
+                
                   <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>

@@ -13,17 +13,17 @@
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="TextField" t:id="fLogin" size="60"  t:value="fLogin" t:label="Login"/>
+                     <input t:type="TextField" t:id="fLogin" size="30"  t:value="fLogin" t:label="Login"/>
                    </td>
                   </tr>
                       <tr>
                      <td valign="top" align="left">
-                         <t:label for="fpass"/>
+                         <t:label for="passwordField"/>
                      </td>
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="PasswordField" t:id="fpass" size="60"  t:value="fpass" t:label="Password"/>
+                     <input t:type="PasswordField" t:id="passwordField" size="30"  t:value="fpass" t:label="Password"/>
                    </td>
                   </tr>
                     <tr>
