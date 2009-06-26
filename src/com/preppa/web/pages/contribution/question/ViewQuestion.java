@@ -52,7 +52,7 @@ public class ViewQuestion {
     public List<Question> getAllQuestions() {
         List<Question> returnVal;
 
-        returnVal = questionDAO.findAll();
+        returnVal = questionDAO.findAllNoRepeat();
 
         return returnVal;
     }

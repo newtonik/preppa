@@ -17,6 +17,7 @@
                         <h3>Sources:</h3>
                         ${article.sources}
                     </div>
+                    <a href="#" t:type="pageLink" t:page="contribution/article/edit" t:context="article.id">Edit</a>
                 </div>
                 <br />
             </t:loop>

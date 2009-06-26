@@ -29,6 +29,11 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         return (Question)findByQuery(sqlString.toString()).get(0);
     }
 
+    public List<Question> findAllNoRepeat() {
+        SQLString sqlString = new SQLString("FROM Question q");
+        return findByQuery(sqlString.toString());
+    }
+
     public List<Question> findByQuestiontype(Questiontype q) {
         SQLString sqlString = new SQLString("FROM Question q");
         if(q.getId() > 0)

@@ -15,8 +15,6 @@
             t:value="questionanswer">
             <div class="questionanswer">
                      <t:outputraw t:value="${questionanswer.answer}" />
-                    <br></br>
-                     <t:outputraw t:value="${questionanswer.}" />
                     <t:if t:test="questionanswer.correct">
                         <b>This answer is correct.</b>
                     </t:if>

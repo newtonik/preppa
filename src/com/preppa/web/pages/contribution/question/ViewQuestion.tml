@@ -3,11 +3,11 @@
 <div class="question">
 
 
+    <h2>Questions</h2>
 <t:loop t:source="allquestions"
     t:value="question">
-    <h2>Questions</h2>
     <div class="question">
-            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="question.id">${question.question}</a>
+            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="question.id">${question.questionformatted}</a>
             <br></br>
     </div>
     <br />

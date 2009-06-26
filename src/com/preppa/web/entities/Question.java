@@ -107,6 +107,12 @@ public class Question implements Serializable {
         return question;
     }
 
+    public String getQuestionFormatted() {
+         //Removed html tags
+        String returnVal = question.substring(3, question.length()-4);
+        return returnVal;
+    }
+
     public void setQuestion(String question) {
         this.question = question;
     }
