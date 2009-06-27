@@ -13,7 +13,7 @@
          <p>
                 <t:pagelink t:page="contribution/article"> All Articles </t:pagelink>
             <br />
-            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+            <a href="#" t:type="pagelink" t:page="contribution/article/create" > Create Article</a>
               <br />
             <t:pagelink t:page="contribution/passage/create">Create Passage</t:pagelink>
                <br />

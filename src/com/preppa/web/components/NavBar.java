@@ -17,6 +17,10 @@ import org.apache.tapestry5.services.Request;
  * @author newtonik
  */
 public class NavBar {
+    @Inject
+    @Value("${spring-security.check.url}")
+    private String checkUrl;
+
 //    @Parameter(defaultPrefix="literal", required=true)
 //    private String pages;
 //
@@ -68,6 +72,13 @@ public class NavBar {
     public boolean getuserExists()
     {
         return userExists;
+    }
+
+    /**
+     * @return the checkUrl
+     */
+    public String getCheckUrl() {
+         return request.getContextPath() + checkUrl;
     }
 
 }

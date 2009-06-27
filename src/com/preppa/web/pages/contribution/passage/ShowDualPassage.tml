@@ -24,5 +24,18 @@
         <a href="#" t:type="PageLink" t:page="Index">
         Home
         </a>
+        <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
+
+        
+            <t:zone t:id="questionZone" t:elementeffect="hide">
+                <t:delegate to="questionblock" />
+            </t:zone>
+        
+        
+        <t:block t:id="questionblock">
+        <div t:id="firstquestion" t:longpassage="passage">
+           
+        </div>
+        </t:block>
     </body>
 </html>

@@ -1,80 +1,86 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<div id="multiple-question">
+ <div id="multiple-question" class="overlay">
+        <t:form t:id="createarticleform">
             <table id="formtable">
-                
+                <t:radiogroup t:value="correct">
                  <tr>
                         <td width="10%" valign="top" align="right">
                            <t:label for="questioneditor">Question: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="questioneditor" t:toolbarSet="Basic" t:width="600" t:height="100"/>
+                          <t:editor align="left" t:id="questioneditor" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="100"/>
 
                      </td>
                  </tr>
                         <tr>
                              <td width="10%" valign="top" align="right">
-                              <input t:type="checkbox" t:id="c1" t:value="c1"/><br />
                               <t:label for="choice1">A: </t:label>
+                              <br />
+                               <input t:type="radio" type="radio" t:value="literal:A" /> <br />
                              </td>
                         <td>
-                         <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                         <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="600" t:validate="required" t:height="80"/>
                         </td>
                         </tr>
                         <tr>
                             <td width="10%" valign="top" align="right">
-                           <input t:type="checkbox" t:id="c2" t:value="c2"/>
-                           <br />
                            <t:label for="choice2">B: </t:label>
+                           <br />
+                           <input t:type="radio" type="radio" t:value="literal:B" /> <br />
                             </td>
                             <td>
-                            <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                            <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="80"/>
                             </td>
                         </tr>
 
                          <tr>
                              <td width="10%" valign="top" align="right">
-                              <input t:type="checkbox" t:id="c3" t:value="c3"/>
-                              <br />
                              <t:label for="choice3">C: </t:label>
+                              <br />
+                              <input t:type="radio" type="radio" t:value="literal:C" /> <br />
+
                         </td>
                         <td>
-                         <t:editor align="left" t:id="choice3" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                         <t:editor align="left" t:id="choice3" t:toolbarSet="Basic" t:validate="required"  t:width="600" t:height="80"/>
                         </td>
                         </tr>
                          <tr>
                             <td width="10%" valign="top" align="right">
-                                <input t:type="checkbox" t:id="c4" t:value="c4"/>
-                                <br />
                             <t:label for="choice4">D: </t:label>
-                            
+                            <br />
+                            <input t:type="radio" type="radio" t:value="literal:D" /> <br />
                             </td>
                             <td>
-                            <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                            <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="600" t:validate="required" t:height="80"/>
                             </td>
                         </tr>
                          <tr>
                                <td width="10%" valign="top" align="right">
-                                  <input t:type="checkbox" t:id="c5" t:value="c5"/>
+
                                   <br />
                                 <t:label for="choice5">E: </t:label>
+                                <br />
+                                 <input t:type="radio" type="radio" t:value="literal:E" />
+
                         </td>
                         <td>
-                         <t:editor align="left" t:id="choice5" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                         <t:editor align="left" t:id="choice5" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="80"/>
                         </td>
                         </tr>
- 
+
                   <tr>
 
                         <td width="10%" valign="top" align="right">
                              <t:label for="fExplanation"> Explain: </t:label>
                         </td>
                         <td>
-                          <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="4" cols="50"/>
+                          <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="3" cols="80"/>
                        </td>
                  </tr>
-                 <tr>
+                        <tr>
                      <td width="10%" valign="top" align="right">
                          <t:label for="ratingField"> Difficulty: </t:label>
+
                      </td>
                      <td>
 
@@ -82,8 +88,32 @@
                      </td>
                  </tr>
 
+                     <tr>
+                            <td></td>
+                     <td align="left">
+                         <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                     </td>
+                   </tr>
+                   <tr>
+                       <td></td>
+                   <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
+                         </td>
+
+                 </tr>
 
 
+                  <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                          <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                 </td>
+
+                 </tr>
+                 </t:radiogroup>
              </table>
+
+        </t:form>
     </div>
-</t:container>  
+    </t:container>

@@ -8,12 +8,12 @@ package com.preppa.web.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,12 +56,12 @@ public class LongDualPassage implements Serializable {
     @Lob
     private String passageone;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
-    private List<Question> questions;
+    private List<Question> questions = new ArrayList<Question>();
     //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity = Passage.class, fetch=FetchType.EAGER)
     //@JoinColumn(name = "passage2_id")
     @Lob
     private String passagetwo;
-      @ManyToMany(cascade=CascadeType.ALL, targetEntity = Tag.class)
+      @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Tag.class)
      @JoinTable(name = "LongDualPassage_Tag",
     joinColumns = {
       @JoinColumn(name="longdualpassage_id")
@@ -213,6 +213,20 @@ public class LongDualPassage implements Serializable {
      */
     public void setTaglist(List<Tag> taglist) {
         this.taglist = taglist;
+    }
+
+    /**
+     * @return the questions
+     */
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    /**
+     * @param questions the questions to set
+     */
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 
 }

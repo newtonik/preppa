@@ -17,6 +17,10 @@
 
         <a href="#" t:type="PageLink" t:page="Index">
         Home
-        </a>    
+        </a>
+
+        <div>
+            <t:cquestion />
+        </div>
     </body>
 </html>

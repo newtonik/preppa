@@ -37,6 +37,11 @@
                     </td>
 
                  </tr>
+                 <tr>
+                     <td>
+                         <a href="#" t:type="Pagelink" t:page="user/create" >Register</a>
+                     </td>
+                 </tr>
       </table>
   </t:form>
 

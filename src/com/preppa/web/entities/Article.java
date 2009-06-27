@@ -132,7 +132,7 @@ public class Article implements Serializable {
     }
     @NonVisual
     @Basic(optional = false)
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
@@ -143,7 +143,7 @@ public class Article implements Serializable {
     }
     @NonVisual
     @Basic(optional = false)
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
     public Date getUpdatedAt() {
         return updatedAt;
