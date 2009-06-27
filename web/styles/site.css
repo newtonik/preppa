@@ -282,3 +282,6 @@ DIV.t-error LI {
 #userformtable {
      border: none; background-color: #e8eefa; margin: 20px auto; border-collapse: collapse;
 }
+#navbarlogintable {
+     border: none; background-color: #D4E4FF; border-collapse: collapse;
+}

@@ -55,7 +55,7 @@ public class Question implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="tag_id")
     })
-    private List<Tag> taglist;
+    private List<Tag> taglist = new ArrayList<Tag>();
     @Lob
     @Column(name = "source")
     private String source;

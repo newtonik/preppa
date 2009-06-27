@@ -35,8 +35,6 @@ import java.io.IOException;
 
 import nu.localhost.tapestry5.springsecurity.services.RequestInvocationDefinition;
 import nu.localhost.tapestry5.springsecurity.services.SaltSourceService;
-import nu.localhost.tapestry5.springsecurity.services.SpringSecurityServices;
-import nu.localhost.tapestry5.springsecurity.services.internal.HttpServletRequestFilterWrapper;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.hibernate.HibernateTransactionDecorator;
@@ -47,9 +45,7 @@ import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Match;
-import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.services.AliasContribution;
-import org.apache.tapestry5.services.HttpServletRequestFilter;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestGlobals;
@@ -57,14 +53,11 @@ import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
 import org.chenillekit.mail.ChenilleKitMailConstants;
 import org.slf4j.Logger;
-import org.springframework.security.AuthenticationManager;
 import org.springframework.security.providers.AuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.PasswordEncoder;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
 import org.springframework.security.providers.openid.OpenIDAuthenticationProvider;
-import org.springframework.security.ui.openid.OpenIDAuthenticationProcessingFilter;
-import org.springframework.security.ui.rememberme.RememberMeServices;
 import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 
@@ -122,11 +115,11 @@ public final class AppModule {
 //        configuration.add("velocity.configuration", velocityConfig);
 //    }
 
-    public static HttpServletRequestFilter buildOpenIDAuthenticationProcessingFilter(
-        final OpenIDAuthenticationProcessingFilter filter)
-{
-    return new HttpServletRequestFilterWrapper(filter);
-}
+//    public static HttpServletRequestFilter buildOpenIDAuthenticationProcessingFilter(
+//        final OpenIDAuthenticationProcessingFilter filter)
+//{
+//    return new HttpServletRequestFilterWrapper(filter);
+//}
     public static void contibuteAlias( Configuration<AliasContribution<PasswordEncoder>> configuration) {
         configuration.add(AliasContribution.create(PasswordEncoder.class, new ShaPasswordEncoder()));
 
@@ -164,18 +157,18 @@ public final class AppModule {
        @InjectService( "DaoAuthenticationProvider" )  AuthenticationProvider daoAuthenticationProvider)
         {
             configuration.add( "daoAuthenticationProvider", daoAuthenticationProvider );
-           OpenIDAuthenticationProvider provider = new  OpenIDAuthenticationProvider();
-
-
-        UserDetailsService userDetailService = new UserDetailsWithOpenIDServiceImpl();
-        provider.setUserDetailsService(userDetailService);
-       try {
-           provider.afterPropertiesSet();
-      } catch (Exception e) {
-         // TODO Auto-generated catch block
-          e.printStackTrace();
-       }
-           configuration.add("openIDAuthenticationProvider", provider);
+//           OpenIDAuthenticationProvider provider = new  OpenIDAuthenticationProvider();
+//
+//
+//        UserDetailsService userDetailService = new UserDetailsWithOpenIDServiceImpl();
+//        provider.setUserDetailsService(userDetailService);
+//       try {
+//           provider.afterPropertiesSet();
+//      } catch (Exception e) {
+//         // TODO Auto-generated catch block
+//          e.printStackTrace();
+//       }
+//           configuration.add("openIDAuthenticationProvider", provider);
        }
 
     public static void contributeFilterSecurityInterceptor(
@@ -228,37 +221,44 @@ public final class AppModule {
         configuration.add("spring-security.openidcheck.url", "/j_spring_openid_security_check");
         configuration.add("spring-security.check.url", "/j_spring_security_check");
         configuration.add("spring-security.logout", "/j_spring_security_logout");
+        configuration.add( "spring-security.target.url", "/" );
+        configuration.add( "spring-security.afterlogout.url", "/" );
+        configuration.add( "spring-security.force.ssl.login", "false" );
+        configuration.add( "spring-security.anonymous.key", "acegi_anonymous" );
+        configuration.add("spring-security.anonymous.attribute", "anonymous,ROLE_ANONYMOUS" );
+
+        //configuration.add("spring-security.target.url", "/");
         
     }
 
       
-    public static OpenIDAuthenticationProcessingFilter buildRealOpenIDAuthenticationProcessingFilter(
-        @SpringSecurityServices final AuthenticationManager manager,
-
-        @SpringSecurityServices final RememberMeServices rememberMeServices,
-
-        @Inject @Value("${spring-security.openidcheck.url}") final String authUrl,
-
-        @Inject @Value("${spring-security.target.url}") final String targetUrl,
-
-        @Inject @Value("${spring-security.failure.url}") final String failureUrl) throws Exception
-        {
-            OpenIDAuthenticationProcessingFilter filter = new OpenIDAuthenticationProcessingFilter();
-
-            filter.setAuthenticationManager(manager);
-
-            filter.setAuthenticationFailureUrl(failureUrl);
-
-            filter.setDefaultTargetUrl(targetUrl);
-
-            filter.setFilterProcessesUrl(authUrl);
-
-            filter.setRememberMeServices(rememberMeServices);
-
-            filter.afterPropertiesSet();
-
-            return filter;
-        }
+//    public static OpenIDAuthenticationProcessingFilter buildRealOpenIDAuthenticationProcessingFilter(
+//        @SpringSecurityServices final AuthenticationManager manager,
+//
+//        @SpringSecurityServices final RememberMeServices rememberMeServices,
+//
+//        @Inject @Value("${spring-security.openidcheck.url}") final String authUrl,
+//
+//        @Inject @Value("${spring-security.target.url}") final String targetUrl,
+//
+//        @Inject @Value("${spring-security.failure.url}") final String failureUrl) throws Exception
+//        {
+//            OpenIDAuthenticationProcessingFilter filter = new OpenIDAuthenticationProcessingFilter();
+//
+//            filter.setAuthenticationManager(manager);
+//
+//            filter.setAuthenticationFailureUrl(failureUrl);
+//
+//            filter.setDefaultTargetUrl(targetUrl);
+//
+//            filter.setFilterProcessesUrl(authUrl);
+//
+//            filter.setRememberMeServices(rememberMeServices);
+//
+//            filter.afterPropertiesSet();
+//
+//            return filter;
+//        }
 //
 
 
@@ -324,21 +324,21 @@ public final class AppModule {
             }
         };
     }
-    public static void contributeHttpServletRequestHandler(
-            OrderedConfiguration<HttpServletRequestFilter> configuration,
-
-            @InjectService("OpenIDAuthenticationProcessingFilter")
-            HttpServletRequestFilter openIDAuthenticationProcessingFilter)
-    {
-        configuration.add(
-                "openIDAuthenticationProcessingFilter",
-
-                openIDAuthenticationProcessingFilter,
-
-                "before:springSecurityAuthenticationProcessingFilter",
-
-                "after:springSecurityHttpSessionContextIntegrationFilter");
-    }
+//    public static void contributeHttpServletRequestHandler(
+//            OrderedConfiguration<HttpServletRequestFilter> configuration,
+//
+//            @InjectService("OpenIDAuthenticationProcessingFilter")
+//            HttpServletRequestFilter openIDAuthenticationProcessingFilter)
+//    {
+//        configuration.add(
+//                "openIDAuthenticationProcessingFilter",
+//
+//                openIDAuthenticationProcessingFilter,
+//
+//                "before:springSecurityAuthenticationProcessingFilter",
+//
+//                "after:springSecurityHttpSessionContextIntegrationFilter");
+//    }
 
     /**
      * This is a contribution to the RequestHandler service configuration. This is how we extend

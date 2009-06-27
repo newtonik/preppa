@@ -30,7 +30,9 @@ public class LoginPage
     @Inject
     @Value("${spring-security.check.url}")
     private String checkUrl;
-
+    @Inject
+    @Value("${spring-security.target.url}")
+    private String returnurl;
     @Inject
     @Value("${spring-security.openidcheck.url}")
     private String openidCheckUrl;
@@ -112,15 +114,15 @@ public class LoginPage
       {
           //fpass = null;
           //fLogin = null;
-          loginform.recordError(passwordField, "Either the Username or Password is incorrect, Please try again.");
+          loginform.recordError("Either the Username or Password is incorrect, Please try again.");
 
       }
 
     }
 
-    Object onSuccess() {
+    String onSuccess() {
         System.out.println("user has been authenticated");
-        return index;
+         return "index";
     }
 
 }

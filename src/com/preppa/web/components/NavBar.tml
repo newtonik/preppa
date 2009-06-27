@@ -1,22 +1,49 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <p>
-<div id="logo">
+<div id="logo" align="left">
 <a href="#" t:type="PageLink" t:page="index">
     <img src="${asset:context:/images/logo.png}" align="left"/>
 </a>
 </div>
+<div align="right">
 <t:if t:test="userExists">
    <a href="#" t:type="actionlink" t:page="contribution/user/show" t:context="${user.id}"> ${user.username} </a>
-   
-
    <a href="#" t:type="ActionLink" t:id="logouturl"> Log out </a>
-    <t:parameter name="else">
-<a href="#" t:type="PageLink" t:page="loginpage">Sign In</a>
+<t:parameter name="else">
+    <div id="navbarloginform" align="right">
+        <form xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" action="${CheckUrl}" method="POST">
+            <table id="navbarlogintable">
+                <tr>
+                <td>
+                    <label class="username" for="j_username">Username:</label>
+                    <input class="username" name="j_username" type="text" size="10"/>
+                </td>
+                    <td>
+                    <label class="password" for="j_password">Password</label>
+                    <input class="password" name="j_password" type="password" size="10" maxlength="30"/>
+                    </td>
+               
+                <td>
+                    <input id="submit" class="submit" type="submit" value="log in"/>
+                </td>
+                <td>
+                    <a href="#" t:type="PageLink" t:page="loginpage">Sign In</a>
+                </td>
+                <td>
+                    <a href="#" t:type="PageLink" t:page="user/create">Register</a>
+                </td>
+                </tr>
 
-<a href="#" t:type="PageLink" t:page="user/create">Register</a>
+            </table>
+        </form>
+ 
+
+
+
+ </div>
 </t:parameter>
 </t:if>
-
+</div>
 <div id="nav-menu">
     <ul>
         <li><a href="#" t:type="PageLink" t:page="index">Home</a></li>

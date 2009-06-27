@@ -26,14 +26,17 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.Value;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.InPlaceEditor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author newtonik
  */
+//@Secured("ROLE_USER")
 public class CreateArticle {
 
     @Property
@@ -79,8 +82,8 @@ public class CreateArticle {
 
     @Property
     private String inPlaceValue;
-
-    //@Inject
+    
+//@Inject
     //private EmailService mailer;
     @Inject
     private TagDAO tagDAO;
