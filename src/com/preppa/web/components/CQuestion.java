@@ -94,11 +94,14 @@ public class CQuestion {
     private LongDualPassage longpassage;
     @Inject
     private LongDualPassageDAO longpassageDAO;
+    @Parameter
+    private boolean newquestion;
 
 
 
     void CreateQuestion() {
         question = new Question();
+         newquestion = true;
     }
 
     void onActivate() {
@@ -158,6 +161,7 @@ public class CQuestion {
      Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
      question.setCreatedAt(now);
      question.setUpdatedAt(now);
+     newquestion = true;
      if(longpassage != null ) {
          System.out.println("Adding Questions to Passage");
          longpassage = longpassageDAO.findById(longpassage.getId());
@@ -169,7 +173,7 @@ public class CQuestion {
           System.out.println("Just saving the question, long passage is null");
         questionDAO.doSave(question);
      }
-     return indexpage;
+     return null;
     }
      List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);

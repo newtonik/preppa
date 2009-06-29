@@ -25,17 +25,32 @@
         Home
         </a>
         <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
+        <br/>
+         <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
 
-        
-            <t:zone t:id="questionZone" t:elementeffect="hide">
-                <t:delegate to="questionblock" />
+
+         <t:zone t:id="showquestionZone">
+           
+         </t:zone>
+         <br/>
+            <t:zone t:id="questionZone">
+                
             </t:zone>
-        
+
+
+        <t:block t:id="showquestionBlock">
+            <div t:id="showquestion" t:pid="passage.id" t:question="q1">
+            </div>
+            <a t:type="actionlink" t:id="nextshowquestion" href="#" t:zone="showquestionZone"> Next </a>
+            <br />
+            <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
+        </t:block>
         
         <t:block t:id="questionblock">
-        <div t:id="firstquestion" t:longpassage="passage">
+        <div t:id="firstquestion" t:longpassage="passage" t:newquestion="questionschanged" >
            
         </div>
+             <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
         </t:block>
     </body>
 </html>

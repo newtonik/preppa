@@ -6,25 +6,17 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -46,7 +38,7 @@ public class DictionaryWord implements Serializable {
     @Column(name = "partofspeech", length = 255)
     private String partofspeech;
     @Column(name = "submitted")
-    private boolean submitted;
+    private boolean submitted = false;
     @Lob
     @Validate("required")
     @Column(name = "definition", length = 65535)
@@ -54,6 +46,7 @@ public class DictionaryWord implements Serializable {
 
 
     public DictionaryWord() {
+        this.submitted = false;
     }
 
 
