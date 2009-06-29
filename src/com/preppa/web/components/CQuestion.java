@@ -13,6 +13,7 @@ import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.pages.Index;
+import com.preppa.web.pages.contribution.question.ShowQuestion;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
+import org.apache.tapestry5.internal.structure.Page;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
@@ -96,8 +98,18 @@ public class CQuestion {
     private LongDualPassageDAO longpassageDAO;
     @Parameter
     private boolean newquestion;
+    @InjectPage
+    private ShowQuestion show;
 
+    private boolean showpage = false;
 
+    public void setPageTrue() {
+        showpage = true;
+    }
+
+    public void setPageFalse() {
+        showpage = false;
+    }
 
     void CreateQuestion() {
         question = new Question();
@@ -173,7 +185,14 @@ public class CQuestion {
           System.out.println("Just saving the question, long passage is null");
         questionDAO.doSave(question);
      }
-     return null;
+
+     if (showpage == false) {
+         return null;
+     }
+     else {
+        show.setquestion(this.question);
+        return show;
+     }
     }
      List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);

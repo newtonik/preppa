@@ -21,7 +21,7 @@
             <br />
             <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
             <br />
-            <a href="#" t:type="PageLink"  t:page="contribution/vocab/new"> Create Vocab </a>
+
         </p>
 
         <p>

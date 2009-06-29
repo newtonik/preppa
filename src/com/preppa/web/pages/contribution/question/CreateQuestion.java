@@ -5,6 +5,7 @@
 
 package com.preppa.web.pages.contribution.question;
 
+import com.preppa.web.components.CQuestion;
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Question;
@@ -18,8 +19,10 @@ import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
@@ -32,12 +35,10 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  */
 //@IncludeJavaScriptLibrary(value={"context:js/jquery-1.3.2.js",  "context:js/tools.overlay-1.0.4.js", "context:js/layout.js"})
 public class CreateQuestion {
-    @Property
+/*    @Property
     private Question question;
     @Inject
     private QuestionDAO questionDAO;
-    @Component(parameters = {"value=fQuestion"})
-    private Editor questioneditor;
     @InjectPage
     private Index indexpage;
     @Property
@@ -46,16 +47,6 @@ public class CreateQuestion {
     private String fExplanation;
     @Property
     private String fTag;
-    @Component(parameters = {"value=ans1"})
-    private Editor choice1;
-    @Component(parameters = {"value=ans2"})
-    private Editor choice2;
-    @Component(parameters = {"value=ans3"})
-    private Editor choice3;
-    @Component(parameters = {"value=ans4"})
-    private Editor choice4;
-    @Component(parameters = {"value=ans5"})
-    private Editor choice5;
     @Component
     private RatingField ratingField;
     @Property
@@ -85,12 +76,17 @@ public class CreateQuestion {
      @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
      @Inject
-     private TagDAO tagDAO;
+     private TagDAO tagDAO;*/
+    /*@Component
+    private AutoComplete autoCompleteTag;*/
     @Component
-    private AutoComplete autoCompleteTag;
+    private CQuestion firstquestion;
 
-    
+    void pageLoaded() {
+        firstquestion.setPageTrue();
+    }
 
+/*
     void CreateQuestion() {
         //question = new Question();
     }
@@ -190,6 +186,6 @@ public class CreateQuestion {
           }
 
     };
-   }
+   }*/
 
 }

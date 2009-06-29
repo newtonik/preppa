@@ -58,6 +58,10 @@ public class ShowDualPassage {
     @Property
     private boolean questionschanged = false;
 
+    void pageLoaded() {
+        firstquestion.setPageFalse();
+    }
+
     Object onActivate(int id) {
         this.passage = longpassageDAO.findById(id);
 
