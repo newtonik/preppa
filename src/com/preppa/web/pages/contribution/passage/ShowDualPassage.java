@@ -17,6 +17,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
@@ -58,9 +59,19 @@ public class ShowDualPassage {
     @Property
     private boolean questionschanged = false;
     private Integer passageid;
+    @Property
+    private boolean lastquestion;
+    @Property
+    private boolean onequestion;
 
     void onpageLoaded() {
         firstquestion.setPageFalse();
+        
+    }
+    @SetupRender
+    void setDefaults() {
+        lastquestion = true;
+        onequestion = true;
     }
     void onActivate(int id) {
         this.passage = longpassageDAO.findById(id);
@@ -83,11 +94,24 @@ public class ShowDualPassage {
     }
 
     Block onActionFromAddQuestion() {
+
         return questionblock;
     }
 
     Block onActionFromShowQuestionlink() {
         count = 0;
+
+         if(count == 0) {
+             onequestion = false;
+         }
+         else
+             onequestion = true;
+         if(count == size-1) {
+             lastquestion = false;
+         }
+         else
+             lastquestion = true;
+
         return showquestionBlock;
     }
     Block onActionFromRemoveShowQuestion() {
@@ -106,6 +130,44 @@ public class ShowDualPassage {
          }
          if(count < size-1) 
              count++;
+         if(count == 0) {
+             onequestion = false;
+         }
+         else
+             onequestion = true;
+
+         if(count == size-1) {
+             lastquestion = false;
+         }
+         else
+             lastquestion = true;
+
+
+         q1 = passage.getQuestions().get(count);
+         return showquestionBlock;
+     }
+      Block onActionFromPrevShowQuestion() {
+         if(questionschanged) {
+             System.out.println("questions have been updated");
+            passage = longpassageDAO.findById(passage.getId());
+            size = passage.getQuestions().size();
+            questionschanged = false;
+         }
+         if(count > 0)
+         {
+             count--;
+         }
+         if(count == 0) {
+             onequestion = false;
+         }
+         else
+             onequestion = true;
+         if(count == size-1) {
+             lastquestion = false;
+         }
+         else
+             lastquestion = true;
+         
          q1 = passage.getQuestions().get(count);
          return showquestionBlock;
      }

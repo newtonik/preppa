@@ -103,7 +103,7 @@ public class CreatePassage {
              longpassage.setPassagetype(PassageType.SHORT);
          }
 
-
+         longpassage.setComplete(true);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longpassage.setCreatedAt(now);

@@ -99,8 +99,10 @@ public class CreateDualPassage {
              longDualpassage.setPassagetype(PassageType.SHORT_DUAL);
          }
          
+         longDualpassage.setComplete(true);
 
-          for(Tag t: addedTags) {
+
+         for(Tag t: addedTags) {
             if(!(longDualpassage.getTaglist().contains(t)))
             {
                 longDualpassage.getTaglist().add(t);

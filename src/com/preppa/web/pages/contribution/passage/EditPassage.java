@@ -13,6 +13,7 @@ import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 
+import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -90,6 +91,15 @@ public class EditPassage {
          longpassage.setPassage(fBody);
          longpassage.setSources(fSource);
          longpassage.setTitle(fTitle);
+         longpassage.setComplete(true);
+
+          if(fBody.length() > 100) {
+            longpassage.setPassagetype(PassageType.LONG_DUAL);
+         }
+         else
+         {
+             longpassage.setPassagetype(PassageType.SHORT_DUAL);
+         }
 
 
          for(Tag t: addedTags) {

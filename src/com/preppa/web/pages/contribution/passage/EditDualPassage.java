@@ -113,7 +113,7 @@ public class EditDualPassage {
 
          longDualpassage.setUpdatedAt(now);
 
-
+         longDualpassage.setComplete(true);
 
          longDualpassageDAO.doSave(longDualpassage);
          showdualpasage.setLongDualPassage(longDualpassage);
