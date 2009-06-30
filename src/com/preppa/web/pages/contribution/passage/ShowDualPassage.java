@@ -57,30 +57,27 @@ public class ShowDualPassage {
     private int count;
     @Property
     private boolean questionschanged = false;
+    private Integer passageid;
 
-    void pageLoaded() {
+    void onpageLoaded() {
         firstquestion.setPageFalse();
     }
-
-    Object onActivate(int id) {
+    void onActivate(int id) {
         this.passage = longpassageDAO.findById(id);
 
-        
+        passageid = id;
         size = passage.getQuestions().size();
         if(size > 0) {
             count = 0;
             q1 = passage.getQuestions().get(count);
         }
-        //passage1 = passage.getPassageone();
-//        passage2 = passage.getPassagetwo();
-//        ftitle = passage.getTitle();
-//        if(ftitle == null) {
-//            ftitle = passage.getPassageone().getTitle();
-//        }
-        return this;
+        
+//        return this;
     }
  
-
+    Integer onPassivate() {
+        return passageid;
+    }
     void setLongDualPassage(LongDualPassage passage) {
         this.passage = passage;
     }

@@ -24,12 +24,15 @@ private LongPassage passage;
 private LongPassageDAO passageDAO;
 @Inject
 private PassageDAO passDA0;
-Object onActivate(int id) {
+private Integer pid;
+void onActivate(int id) {
         this.passage = passageDAO.findById(id);
-        return passage;
+        this.pid = passage.getId();
 }
 
-
+Integer onPassivate() {
+    return this.pid;
+}
 void setPassagePage(LongPassage passage) {
         this.passage = passage;
     }

@@ -18,19 +18,20 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.annotations.Value;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.InPlaceEditor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
-import org.springframework.security.annotation.Secured;
 
 /**
  *
@@ -82,6 +83,10 @@ public class CreateArticle {
 
     @Property
     private String inPlaceValue;
+    @Inject
+    private Block newtagblock;
+    @InjectComponent
+    private Zone tagZone;
     
 //@Inject
     //private EmailService mailer;
@@ -305,4 +310,11 @@ public class CreateArticle {
     };
    }
 
+       Block onActionFromAddTag() {
+           
+            return newtagblock;
+       }
+       Block onActionFromCancelTag() {
+            return null;
+       }
 }
