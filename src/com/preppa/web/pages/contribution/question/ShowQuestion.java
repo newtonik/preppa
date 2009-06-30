@@ -34,7 +34,7 @@ private Integer qid;
 @Persist
 private QuestionAnswer questionanswer;
 
-Object onActivate(int id) {
+    Object onActivate(int id) {
     if(id > 0 ) {
         this.question = questionDAO.findById(id);
         if(this.question != null) {
@@ -49,6 +49,7 @@ Object onActivate(int id) {
      return this;
     }
 
+
     public List<QuestionAnswer> getAllAnswers() {
         List<QuestionAnswer> returnVal;
 
@@ -57,7 +58,7 @@ Object onActivate(int id) {
         return returnVal;
     }
 
-void setquestion(Question question) {
+    public void setquestion(Question question) {
         this.question = question;
         this.qid = question.getId();
     }

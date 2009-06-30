@@ -11,8 +11,8 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.FieldTranslator;
@@ -95,6 +95,15 @@ public class CreatePassage {
                 longpassage.getTaglist().add(t);
             }
           }
+         if(fBody.length() > 100) {
+            longpassage.setPassagetype(PassageType.LONG);
+         }
+         else
+         {
+             longpassage.setPassagetype(PassageType.SHORT);
+         }
+
+
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longpassage.setCreatedAt(now);

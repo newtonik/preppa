@@ -37,22 +37,22 @@ public class NewTag {
     private TagSubmitted tagpage;
 
 
-    void onSubmitForm() {
+    void onValidateForm() {
         List<Tag> tolist =  tagDAO.findByName(fname);
 
         if(tolist.size() > 0) {
             fname=null;
-            tagform.recordError(tagTextfield, messages.get("passwords-dont-match"));
+            tagform.recordError(tagTextfield, "Tag Exists!");
         }
     }
     @CommitAfter
-    void onSuccess()
+    Object onSuccess()
     {
         tag = new Tag();
         tag.setName(fname);
 
         tagDAO.doSave(tag);
-
+        return null;
     }
     void onActionFromFormZone() {
         System.out.println("I have been submitted Ajax stype");

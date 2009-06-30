@@ -5,6 +5,7 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.PassageType;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,6 +52,8 @@ public class LongDualPassage implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @Column(nullable = false)
+    private Boolean complete = false;
     //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Passage.class, fetch=FetchType.EAGER)
     //@JoinColumn(name = "passage1_id")
     @Lob
@@ -70,6 +73,11 @@ public class LongDualPassage implements Serializable {
       @JoinColumn(name="tag_id")
     })
     private List<Tag> taglist = new ArrayList<Tag>();
+    
+    private PassageType passagetype;
+
+
+
     public Integer getId() {
         return id;
     }
@@ -228,5 +236,36 @@ public class LongDualPassage implements Serializable {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+    /**
+     * @return the complete
+     */
+    public Boolean getComplete() {
+        return complete;
+    }
+    public Boolean isComplete() {
+        return complete;
+    }
 
+    /**
+     * @param complete the complete to set
+     */
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
+    }
+
+    /**
+     * @return the passagetype
+     */
+    public PassageType getPassagetype() {
+        return passagetype;
+    }
+
+    /**
+     * @param passagetype the passagetype to set
+     */
+    public void setPassagetype(PassageType passagetype) {
+        this.passagetype = passagetype;
+    }
+
+    
 }

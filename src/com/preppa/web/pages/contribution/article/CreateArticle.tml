@@ -92,8 +92,15 @@
                  </tr>
                  <tr>
                      <td align="left">
-                         Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
+                         Can't find one
+                          <a t:type="actionlink" t:id="addtag" href="#" t:zone="tagZone"> Add a New Tag </a>
+
                      </td>
+                  </tr>
+                  <tr>
+                      <t:zone t:id="tagZone">
+
+                      </t:zone>
                   </tr>
                   <tr>
 
@@ -109,7 +116,14 @@
              </table>
              </t:form>
     </div>
-   
+
+    <t:block t:id="newtagblock">
+        <div id="tagform">
+            <t:newtag />
+        </div>
+        <a t:type="actionlink" t:id="canceltag" href="#" t:zone="tagZone"> Cancel </a>
+
+    </t:block>
 
     
 

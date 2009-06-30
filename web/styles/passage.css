@@ -1,0 +1,12 @@
+/*
+Document   : passage
+Created on : Jun 29, 2009
+Author     : newtonik
+Description:
+Purpose of the stylesheet follows.
+*/
+
+#notcompleted  h3 {
+    color: maroon;
+    font-family: Geneva,Arial,Helvetica,sans-serif;
+}

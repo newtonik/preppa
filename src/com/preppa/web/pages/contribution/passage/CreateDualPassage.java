@@ -12,6 +12,7 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -90,7 +91,13 @@ public class CreateDualPassage {
          longDualpassage.setTitle(fTitle);
          longDualpassage.setSource(fSource);
          longDualpassage.setTags(fTag);
-
+         if(fBodyone.length() > 100) {
+            longDualpassage.setPassagetype(PassageType.LONG_DUAL);
+         }
+         else
+         {
+             longDualpassage.setPassagetype(PassageType.SHORT_DUAL);
+         }
          
 
           for(Tag t: addedTags) {
