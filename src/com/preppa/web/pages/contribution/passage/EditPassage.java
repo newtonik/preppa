@@ -13,6 +13,7 @@ import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 
+import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.LinkedList;
@@ -64,7 +65,8 @@ public class EditPassage {
     private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
     private TagDAO tagDAO;
-   
+    @Inject
+    private PassageService passageService;
 
 
     void onActivate(int id) {
@@ -108,6 +110,8 @@ public class EditPassage {
                 longpassage.getTaglist().add(t);
             }
           }
+
+         passageService.checkRegularPassage(longpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longpassage.setUpdatedAt(now);

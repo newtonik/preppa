@@ -12,6 +12,7 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -74,6 +75,8 @@ public class CreateDualPassage {
     private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
     private TagDAO tagDAO;
+    @Inject
+    private PassageService passageService;
 
 
     void onActivate() {
@@ -99,7 +102,7 @@ public class CreateDualPassage {
              longDualpassage.setPassagetype(PassageType.SHORT_DUAL);
          }
          
-         longDualpassage.setComplete(true);
+         
 
 
          for(Tag t: addedTags) {
@@ -108,6 +111,8 @@ public class CreateDualPassage {
                 longDualpassage.getTaglist().add(t);
             }
           }
+
+         passageService.checkDualPassage(longDualpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longDualpassage.setCreatedAt(now);

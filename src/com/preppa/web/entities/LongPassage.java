@@ -43,7 +43,7 @@ public class LongPassage implements Serializable {
     @Lob
     private String sources;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
-    private List<Question> questions;
+    private List<Question> questions = new ArrayList<Question>();
      @ManyToMany(cascade=CascadeType.ALL, targetEntity = Tag.class)
      @JoinTable(name = "LongPassage_Tag",
     joinColumns = {
@@ -71,6 +71,8 @@ public class LongPassage implements Serializable {
     @Lob
     private String passage;
     private String title;
+    @Column(nullable=false, columnDefinition="bigint(20) default 0")
+    private Integer numQuestions = 0;
     public Integer getId() {
         return id;
     }
@@ -224,4 +226,32 @@ public class LongPassage implements Serializable {
     public void setPassagetype(PassageType passagetype) {
         this.passagetype = passagetype;
     }
+
+    /**
+     * @return the numQuestions
+     */
+    public Integer getNumQuestions() {
+        return numQuestions;
+    }
+
+    /**
+     * @param numQuestions the numQuestions to set
+     */
+    public void setNumQuestions(Integer numQuestions) {
+        this.numQuestions = numQuestions;
+    }
+        /**
+     * @return the questions
+     */
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    /**
+     * @param questions the questions to set
+     */
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
 }

@@ -31,21 +31,19 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.UserObDAOHibImpl;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
+import com.preppa.web.services.SecurityModule;
+import com.preppa.web.services.impl.PassageServiceImpl;
 import java.io.IOException;
 
-import nu.localhost.tapestry5.springsecurity.services.RequestInvocationDefinition;
-import nu.localhost.tapestry5.springsecurity.services.SaltSourceService;
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.hibernate.HibernateTransactionDecorator;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Match;
-import org.apache.tapestry5.services.AliasContribution;
+import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestGlobals;
@@ -53,21 +51,15 @@ import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
 import org.chenillekit.mail.ChenilleKitMailConstants;
 import org.slf4j.Logger;
-import org.springframework.security.providers.AuthenticationProvider;
-import org.springframework.security.providers.dao.SaltSource;
-import org.springframework.security.providers.encoding.PasswordEncoder;
-import org.springframework.security.providers.encoding.ShaPasswordEncoder;
-import org.springframework.security.providers.openid.OpenIDAuthenticationProvider;
-import org.springframework.security.userdetails.UserDetails;
-import org.springframework.security.userdetails.UserDetailsService;
 
 
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to
  * configure and extend Tapestry, or to place your own service definitions.
- * @author gsubrama
+ * @author newtonik
  */
+@SubModule(value=SecurityModule.class)
 public final class AppModule {
 
     /**
@@ -96,8 +88,9 @@ public final class AppModule {
         binder.bind(DictionaryWordDAO.class, DictionaryWordDAOHibImpl.class);
         //binder.bind(SmtpService.class, SimpleSmtpServiceImpl.class);
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
-        binder.bind(EmailService.class, EmailServiceImpl.class);
+        //binder.bind(EmailService.class, EmailServiceImpl.class);
         binder.bind(TagDAO.class, TagDAOHibImpl.class);
+        binder.bind(PassageService.class, PassageServiceImpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 
@@ -115,69 +108,12 @@ public final class AppModule {
 //        configuration.add("velocity.configuration", velocityConfig);
 //    }
 
-//    public static HttpServletRequestFilter buildOpenIDAuthenticationProcessingFilter(
-//        final OpenIDAuthenticationProcessingFilter filter)
-//{
-//    return new HttpServletRequestFilterWrapper(filter);
-//}
-    public static void contibuteAlias( Configuration<AliasContribution<PasswordEncoder>> configuration) {
-        configuration.add(AliasContribution.create(PasswordEncoder.class, new ShaPasswordEncoder()));
 
-    }
-    public static UserDetailsService buildUserDetailsService(Logger logger,
-             @InjectService("HibernateSessionManager") HibernateSessionManager session,
-             @Inject
-             PasswordEncoder encoder,
-             @Inject
-            SaltSource salt)
-    {
-        return  new UserDetailsWithPasswordServiceImpl(session, logger, encoder, salt);
-    }
 
      
 
-    public static OpenIDAuthenticationProvider buildOpenIDAuthenticationProvider(
-        @InjectService("UserDetailsWithOpenIDService")
-        UserDetailsService userDetailsService) throws Exception
-{
-    OpenIDAuthenticationProvider provider = new OpenIDAuthenticationProvider();
 
-    provider.setUserDetailsService(userDetailsService);
 
-    provider.afterPropertiesSet();
-
-    return provider;
-}
-
-  public static void contributeProviderManager( OrderedConfiguration<AuthenticationProvider> configuration,
-       //@InjectService("OpenIDAuthenticationProvider") AuthenticationProvider openIdAuthenticationProvider,
-          // @Inject
-         // Logger logger,
-           //  @InjectService("HibernateSessionManager") HibernateSessionManager session,
-       @InjectService( "DaoAuthenticationProvider" )  AuthenticationProvider daoAuthenticationProvider)
-        {
-            configuration.add( "daoAuthenticationProvider", daoAuthenticationProvider );
-//           OpenIDAuthenticationProvider provider = new  OpenIDAuthenticationProvider();
-//
-//
-//        UserDetailsService userDetailService = new UserDetailsWithOpenIDServiceImpl();
-//        provider.setUserDetailsService(userDetailService);
-//       try {
-//           provider.afterPropertiesSet();
-//      } catch (Exception e) {
-//         // TODO Auto-generated catch block
-//          e.printStackTrace();
-//       }
-//           configuration.add("openIDAuthenticationProvider", provider);
-       }
-
-    public static void contributeFilterSecurityInterceptor(
-      Configuration<RequestInvocationDefinition> configuration ) {
-
-      configuration.add( new RequestInvocationDefinition(
-          "/ltd.pdf",
-          "ROLE_ADMIN" ) );
-  }
     /**
      * Sets application defaults.
      * @param configuration configuration for the application.
@@ -210,7 +146,7 @@ public final class AppModule {
         //configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
 //         configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.Md5PasswordEncoder");
 
-           configuration.add( "spring-security.rememberme.key", "REMEMBERMEKEY" );
+           //configuration.add( "spring-security.rememberme.key", "REMEMBERMEKEY" );
            configuration.add("spring-security.loginform.url", "/loginpage");
            configuration.add( "spring-security.force.ssl.login", "false" );
            configuration.add( "spring-security.anonymous.key","acegi_anonymous" );
@@ -232,35 +168,6 @@ public final class AppModule {
     }
 
       
-//    public static OpenIDAuthenticationProcessingFilter buildRealOpenIDAuthenticationProcessingFilter(
-//        @SpringSecurityServices final AuthenticationManager manager,
-//
-//        @SpringSecurityServices final RememberMeServices rememberMeServices,
-//
-//        @Inject @Value("${spring-security.openidcheck.url}") final String authUrl,
-//
-//        @Inject @Value("${spring-security.target.url}") final String targetUrl,
-//
-//        @Inject @Value("${spring-security.failure.url}") final String failureUrl) throws Exception
-//        {
-//            OpenIDAuthenticationProcessingFilter filter = new OpenIDAuthenticationProcessingFilter();
-//
-//            filter.setAuthenticationManager(manager);
-//
-//            filter.setAuthenticationFailureUrl(failureUrl);
-//
-//            filter.setDefaultTargetUrl(targetUrl);
-//
-//            filter.setFilterProcessesUrl(authUrl);
-//
-//            filter.setRememberMeServices(rememberMeServices);
-//
-//            filter.afterPropertiesSet();
-//
-//            return filter;
-//        }
-//
-
 
     /**
      * This is a service definition, the service will be named "TimingFilter". The interface,
@@ -362,18 +269,6 @@ public final class AppModule {
 
 
     
-    public static void contributeAliasOverrides(Configuration<AliasContribution<?>> configuration)
-{
-        SaltSourceService saltSource = new SaltSourceService() {
-            @Override
-                public Object getSalt(UserDetails user) {
-                   String newsalt =  user.getUsername() + "{CEDEBEEF}";
-                   return newsalt;
-                }
-        };
-
-        configuration.add(AliasContribution.create(SaltSourceService.class, saltSource));
-}
     public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {
         
     }

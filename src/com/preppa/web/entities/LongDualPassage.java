@@ -75,7 +75,8 @@ public class LongDualPassage implements Serializable {
     private List<Tag> taglist = new ArrayList<Tag>();
     
     private PassageType passagetype;
-
+    @Column(nullable=false, columnDefinition="bigint(20) default 0")
+    private Integer numQuestions;
 
 
     public Integer getId() {
@@ -265,6 +266,20 @@ public class LongDualPassage implements Serializable {
      */
     public void setPassagetype(PassageType passagetype) {
         this.passagetype = passagetype;
+    }
+
+    /**
+     * @return the numQuestions
+     */
+    public Integer getNumQuestions() {
+        return numQuestions;
+    }
+
+    /**
+     * @param numQuestions the numQuestions to set
+     */
+    public void setNumQuestions(Integer numQuestions) {
+        this.numQuestions = numQuestions;
     }
 
     
