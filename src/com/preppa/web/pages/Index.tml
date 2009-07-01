@@ -15,6 +15,8 @@
          <p>
                 <t:pagelink t:page="contribution/article"> All Articles </t:pagelink>
             <br />
+                    <t:pagelink t:page="contribution/longpassage"> All Passages </t:pagelink>
+            <br />
             <a href="#" t:type="pagelink" t:page="contribution/article/create" > Create Article</a>
               <br />
             <t:pagelink t:page="contribution/longpassage/create">Create Passage</t:pagelink>
