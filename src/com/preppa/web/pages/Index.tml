@@ -9,7 +9,9 @@
             </t:if>
      
         </h2>
-
+        <p>
+            <t:pagelink t:page="contribution/article/home">Article Section Home</t:pagelink>
+        </p>
          <p>
                 <t:pagelink t:page="contribution/article"> All Articles </t:pagelink>
             <br />
