@@ -3,19 +3,19 @@
  * and open the template in the editor.
  */
 
-package com.preppa.web.pages.contribution.passage;
+package com.preppa.web.pages.contribution.longpassage;
 
-import com.preppa.web.data.LongDualPassageDAO;
+import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
-import com.preppa.web.entities.LongDualPassage;
+import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+
 import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.FieldTranslator;
@@ -30,24 +30,20 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
-
-
 /**
  *
- * @author nwt
+ * @author newtonik
  */
-public class CreateDualPassage {
+public class EditLongPassage {
  @Property
-    private LongDualPassage longDualpassage;
+    private LongPassage longpassage;
 
     @Inject
-    private LongDualPassageDAO longDualpassageDAO;
+    private LongPassageDAO longpassageDAO;
     @Inject
     private PassageDAO passageDAO;
-    @Component(parameters = {"value=fbodyone"})
-    private Editor passeditorone;
-     @Component(parameters = {"value=fbodytwo"})
-    private Editor passeditortwo;
+    @Component(parameters = {"value=fbody"})
+    private Editor passeditor;
     private int size;
     @Property
     @Persist
@@ -58,18 +54,12 @@ public class CreateDualPassage {
     @Property
     private String fTitle;
     @Property
-    private String fTitle2;
-    @Property
-    private String fBodyone;
-    @Property
-    private String fBodytwo;
+    private String fBody;
     @Property
     private String fSource;
-    @Property
-    private String fTag;
     @InjectPage
-    private ShowDualPassage showdualpasage;
-    @Component
+    private ShowLongPassage showpassage;
+     @Component
     private AutoComplete autoCompleteTag;
     @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
@@ -79,50 +69,59 @@ public class CreateDualPassage {
     private PassageService passageService;
 
 
-    void onActivate() {
-        this.longDualpassage = new LongDualPassage();
+    void onActivate(int id) {
+        this.longpassage = longpassageDAO.findById(id);
+        if(longpassage != null) {
+            fTitle = longpassage.getTitle();
+            fBody = longpassage.getPassage();
+            fSource = longpassage.getSources();
+            addedTags = longpassage.getTaglist();
+        }
     }
 
- 
+    Integer onPassivate() {
+        return longpassage.getId();
+    }
 
     @CommitAfter
     Object onSuccess() {
-  
 
-         longDualpassage.setPassageone(fBodyone);
-         longDualpassage.setPassagetwo(fBodytwo);
-         longDualpassage.setTitle(fTitle);
-         longDualpassage.setSource(fSource);
-         longDualpassage.setTags(fTag);
-         if(fBodyone.length() > 100) {
-            longDualpassage.setPassagetype(PassageType.LONG_DUAL);
+
+
+
+        // passageDAO.doSave(p);
+         longpassage.setPassage(fBody);
+         longpassage.setSources(fSource);
+         longpassage.setTitle(fTitle);
+         longpassage.setComplete(true);
+
+          if(fBody.length() > 100) {
+            longpassage.setPassagetype(PassageType.LONG_DUAL);
          }
          else
          {
-             longDualpassage.setPassagetype(PassageType.SHORT_DUAL);
+             longpassage.setPassagetype(PassageType.SHORT_DUAL);
          }
-         
-         
 
 
          for(Tag t: addedTags) {
-            if(!(longDualpassage.getTaglist().contains(t)))
+            if(!(longpassage.getTaglist().contains(t)))
             {
-                longDualpassage.getTaglist().add(t);
+                longpassage.getTaglist().add(t);
             }
           }
 
-         passageService.checkDualPassage(longDualpassage);
+         passageService.checkRegularPassage(longpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-         longDualpassage.setCreatedAt(now);
-         longDualpassage.setUpdatedAt(now);
+         longpassage.setUpdatedAt(now);
 
 
 
-         longDualpassageDAO.doSave(longDualpassage);
-         showdualpasage.setLongDualPassage(longDualpassage);
-         return showdualpasage;
+         longpassageDAO.doSave(longpassage);
+
+           showpassage.setPassagePage(longpassage);
+         return showpassage;
     }
     public static String sanitize(String string) {
     return string
@@ -144,17 +143,6 @@ public class CreateDualPassage {
      */
     public void setTestsubjects(List<Testsubject> testsubjects) {
         this.testsubjects = testsubjects;
-    }
-
- List<String> onProvideCompletionsFromTags(String partial) {
-        List<Tag> matches = tagDAO.findByPartialName(partial);
-
-        List<String> result = new ArrayList<String>();
-        for(Tag t : matches)
-        {
-            result.add(t.getName());
-        }
-        return result;
     }
       List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
@@ -199,6 +187,5 @@ public class CreateDualPassage {
           }
 
     };
-   }
-
+             }
 }

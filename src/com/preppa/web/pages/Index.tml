@@ -17,9 +17,9 @@
             <br />
             <a href="#" t:type="pagelink" t:page="contribution/article/create" > Create Article</a>
               <br />
-            <t:pagelink t:page="contribution/passage/create">Create Passage</t:pagelink>
+            <t:pagelink t:page="contribution/longpassage/create">Create Passage</t:pagelink>
                <br />
-            <t:pagelink t:page="contribution/passage/createdual">Create Dual Passage</t:pagelink>
+            <t:pagelink t:page="contribution/longpassage/createdual">Create Dual Passage</t:pagelink>
             <br />
             <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
             <br />

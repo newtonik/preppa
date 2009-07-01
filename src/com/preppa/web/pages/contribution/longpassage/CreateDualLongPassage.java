@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.preppa.web.pages.contribution.passage;
+package com.preppa.web.pages.contribution.longpassage;
 
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
@@ -13,7 +13,9 @@ import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.services.PassageService;
+import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.FieldTranslator;
@@ -28,22 +30,24 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
+
+
 /**
  *
  * @author nwt
  */
-public class EditDualPassage {
-    @Property
+public class CreateDualLongPassage {
+ @Property
     private LongDualPassage longDualpassage;
 
     @Inject
     private LongDualPassageDAO longDualpassageDAO;
     @Inject
     private PassageDAO passageDAO;
-    @Component(parameters = {"value=fBodyone"})
-    private Editor pass1;
-     @Component(parameters = {"value=fBodytwo"})
-    private Editor pass2;
+    @Component(parameters = {"value=fbodyone"})
+    private Editor passeditorone;
+     @Component(parameters = {"value=fbodytwo"})
+    private Editor passeditortwo;
     private int size;
     @Property
     @Persist
@@ -64,7 +68,7 @@ public class EditDualPassage {
     @Property
     private String fTag;
     @InjectPage
-    private ShowDualPassage showdualpasage;
+    private ShowDualLongPassage showdualpasage;
     @Component
     private AutoComplete autoCompleteTag;
     @Property
@@ -75,47 +79,46 @@ public class EditDualPassage {
     private PassageService passageService;
 
 
-
-    void onActivate(int id) {
-        this.longDualpassage = longDualpassageDAO.findById(id);
-        if(longDualpassage != null)
-        {
-                    fBodyone = longDualpassage.getPassageone();
-                    fBodytwo = longDualpassage.getPassagetwo();
-                    fTag = longDualpassage.getTags();
-                    fSource = longDualpassage.getSource();
-                    fTitle = longDualpassage.getTitle();
-                    addedTags = longDualpassage.getTaglist();
-        }
-        
+    void onActivate() {
+        this.longDualpassage = new LongDualPassage();
     }
 
-    Integer onPassivate() {
-        return longDualpassage.getId();
-    }
+ 
+
     @CommitAfter
     Object onSuccess() {
-
+  
 
          longDualpassage.setPassageone(fBodyone);
          longDualpassage.setPassagetwo(fBodytwo);
          longDualpassage.setTitle(fTitle);
          longDualpassage.setSource(fSource);
          longDualpassage.setTags(fTag);
+         if(fBodyone.length() > 100) {
+            longDualpassage.setPassagetype(PassageType.LONG_DUAL);
+         }
+         else
+         {
+             longDualpassage.setPassagetype(PassageType.SHORT_DUAL);
+         }
+         
+         
 
 
-          for(Tag t: addedTags) {
+         for(Tag t: addedTags) {
             if(!(longDualpassage.getTaglist().contains(t)))
             {
                 longDualpassage.getTaglist().add(t);
             }
           }
-          passageService.checkDualPassage(longDualpassage);
+
+         passageService.checkDualPassage(longDualpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
+         longDualpassage.setCreatedAt(now);
          longDualpassage.setUpdatedAt(now);
 
-         longDualpassage.setComplete(true);
+
 
          longDualpassageDAO.doSave(longDualpassage);
          showdualpasage.setLongDualPassage(longDualpassage);
@@ -143,7 +146,17 @@ public class EditDualPassage {
         this.testsubjects = testsubjects;
     }
 
-  List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+ List<String> onProvideCompletionsFromTags(String partial) {
+        List<Tag> matches = tagDAO.findByPartialName(partial);
+
+        List<String> result = new ArrayList<String>();
+        for(Tag t : matches)
+        {
+            result.add(t.getName());
+        }
+        return result;
+    }
+      List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
 

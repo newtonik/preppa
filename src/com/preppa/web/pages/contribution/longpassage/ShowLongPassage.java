@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.preppa.web.pages.contribution.passage;
+package com.preppa.web.pages.contribution.longpassage;
 
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.PassageDAO;
@@ -16,7 +16,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author newtonik
  */
-public class ShowPassage {
+public class ShowLongPassage {
 @Property
 @Persist
 private LongPassage passage;

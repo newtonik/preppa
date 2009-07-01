@@ -146,22 +146,6 @@ public final class AppModule {
         //configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
 //         configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.Md5PasswordEncoder");
 
-           //configuration.add( "spring-security.rememberme.key", "REMEMBERMEKEY" );
-           configuration.add("spring-security.loginform.url", "/loginpage");
-           configuration.add( "spring-security.force.ssl.login", "false" );
-           configuration.add( "spring-security.anonymous.key","acegi_anonymous" );
-         configuration.add("spring-security.anonymous.attribute","anonymous,ROLE_ANONYMOUS" );
-
-        configuration.add("spring-security.password.salt", "CEDEBEEF");
-        configuration.add( "spring-security.accessDenied.url", "/forbidden" );
-        configuration.add("spring-security.openidcheck.url", "/j_spring_openid_security_check");
-        configuration.add("spring-security.check.url", "/j_spring_security_check");
-        configuration.add("spring-security.logout", "/j_spring_security_logout");
-        configuration.add( "spring-security.target.url", "/" );
-        configuration.add( "spring-security.afterlogout.url", "/" );
-        configuration.add( "spring-security.force.ssl.login", "false" );
-        configuration.add( "spring-security.anonymous.key", "acegi_anonymous" );
-        configuration.add("spring-security.anonymous.attribute", "anonymous,ROLE_ANONYMOUS" );
 
         //configuration.add("spring-security.target.url", "/");
         

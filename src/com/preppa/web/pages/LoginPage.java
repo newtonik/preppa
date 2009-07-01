@@ -13,6 +13,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.services.Request;
 import org.springframework.security.Authentication;
+import org.springframework.security.providers.AuthenticationProvider;
 import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
 import org.springframework.security.providers.dao.DaoAuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
@@ -103,7 +104,9 @@ public class LoginPage
        authtoken = new UsernamePasswordAuthenticationToken(fLogin, fpass);
        provider.setSaltSource(salt);
 
+
       Authentication token = provider.authenticate(authtoken);
+     
       if(token.isAuthenticated())
       {
           System.out.println("user has been authenticated");

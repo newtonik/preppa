@@ -3,18 +3,16 @@
  * and open the template in the editor.
  */
 
-package com.preppa.web.pages.contribution.passage;
+package com.preppa.web.pages.contribution.longpassage;
 
-import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
-import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
-
 import com.preppa.web.services.PassageService;
-import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,18 +30,20 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
 /**
  *
- * @author newtonik
+ * @author nwt
  */
-public class EditPassage {
- @Property
-    private LongPassage longpassage;
+public class EditDualLongPassage {
+    @Property
+    private LongDualPassage longDualpassage;
 
     @Inject
-    private LongPassageDAO longpassageDAO;
+    private LongDualPassageDAO longDualpassageDAO;
     @Inject
     private PassageDAO passageDAO;
-    @Component(parameters = {"value=fbody"})
-    private Editor passeditor;
+    @Component(parameters = {"value=fBodyone"})
+    private Editor pass1;
+     @Component(parameters = {"value=fBodytwo"})
+    private Editor pass2;
     private int size;
     @Property
     @Persist
@@ -54,12 +54,18 @@ public class EditPassage {
     @Property
     private String fTitle;
     @Property
-    private String fBody;
+    private String fTitle2;
+    @Property
+    private String fBodyone;
+    @Property
+    private String fBodytwo;
     @Property
     private String fSource;
+    @Property
+    private String fTag;
     @InjectPage
-    private ShowPassage showpassage;
-     @Component
+    private ShowDualLongPassage showdualpasage;
+    @Component
     private AutoComplete autoCompleteTag;
     @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
@@ -69,59 +75,51 @@ public class EditPassage {
     private PassageService passageService;
 
 
+
     void onActivate(int id) {
-        this.longpassage = longpassageDAO.findById(id);
-        if(longpassage != null) {
-            fTitle = longpassage.getTitle();
-            fBody = longpassage.getPassage();
-            fSource = longpassage.getSources();
-            addedTags = longpassage.getTaglist();
+        this.longDualpassage = longDualpassageDAO.findById(id);
+        if(longDualpassage != null)
+        {
+                    fBodyone = longDualpassage.getPassageone();
+                    fBodytwo = longDualpassage.getPassagetwo();
+                    fTag = longDualpassage.getTags();
+                    fSource = longDualpassage.getSource();
+                    fTitle = longDualpassage.getTitle();
+                    addedTags = longDualpassage.getTaglist();
         }
+        
     }
 
     Integer onPassivate() {
-        return longpassage.getId();
+        return longDualpassage.getId();
     }
-
     @CommitAfter
     Object onSuccess() {
 
 
+         longDualpassage.setPassageone(fBodyone);
+         longDualpassage.setPassagetwo(fBodytwo);
+         longDualpassage.setTitle(fTitle);
+         longDualpassage.setSource(fSource);
+         longDualpassage.setTags(fTag);
 
 
-        // passageDAO.doSave(p);
-         longpassage.setPassage(fBody);
-         longpassage.setSources(fSource);
-         longpassage.setTitle(fTitle);
-         longpassage.setComplete(true);
-
-          if(fBody.length() > 100) {
-            longpassage.setPassagetype(PassageType.LONG_DUAL);
-         }
-         else
-         {
-             longpassage.setPassagetype(PassageType.SHORT_DUAL);
-         }
-
-
-         for(Tag t: addedTags) {
-            if(!(longpassage.getTaglist().contains(t)))
+          for(Tag t: addedTags) {
+            if(!(longDualpassage.getTaglist().contains(t)))
             {
-                longpassage.getTaglist().add(t);
+                longDualpassage.getTaglist().add(t);
             }
           }
-
-         passageService.checkRegularPassage(longpassage);
+          passageService.checkDualPassage(longDualpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-         longpassage.setUpdatedAt(now);
+         longDualpassage.setUpdatedAt(now);
 
+         longDualpassage.setComplete(true);
 
-
-         longpassageDAO.doSave(longpassage);
-
-           showpassage.setPassagePage(longpassage);
-         return showpassage;
+         longDualpassageDAO.doSave(longDualpassage);
+         showdualpasage.setLongDualPassage(longDualpassage);
+         return showdualpasage;
     }
     public static String sanitize(String string) {
     return string
@@ -144,7 +142,8 @@ public class EditPassage {
     public void setTestsubjects(List<Testsubject> testsubjects) {
         this.testsubjects = testsubjects;
     }
-      List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+
+  List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
 
@@ -187,5 +186,6 @@ public class EditPassage {
           }
 
     };
-             }
+   }
+
 }

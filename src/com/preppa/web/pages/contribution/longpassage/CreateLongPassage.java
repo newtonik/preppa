@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.preppa.web.pages.contribution.passage;
+package com.preppa.web.pages.contribution.longpassage;
 
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.PassageDAO;
@@ -32,7 +32,7 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  *
  * @author newtonik
  */
-public class CreatePassage {
+public class CreateLongPassage {
 
     @Property
     private LongPassage longpassage;
@@ -63,7 +63,7 @@ public class CreatePassage {
     @Property
     private String fTag;
     @InjectPage
-    private ShowPassage showpassage;
+    private ShowLongPassage showpassage;
     @Component
     private AutoComplete autoCompleteTag;
     @Property

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.preppa.web.pages.contribution.passage;
+package com.preppa.web.pages.contribution.longpassage;
 
 import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
@@ -25,7 +25,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author nwt
  */
-public class ShowDualPassage {
+public class ShowDualLongPassage {
 
     @Property
     @Persist
