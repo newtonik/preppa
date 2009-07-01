@@ -7,6 +7,7 @@ package com.preppa.web.data;
 
 import com.preppa.web.entities.ShortPassage;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
+import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 
@@ -21,8 +22,16 @@ public class ShortPassageDAOHibImpl extends AbstractHibernateDAO<ShortPassage, I
         super(logger, session);
     }
 
+    @Override
     public ShortPassage findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        SQLString sqlString = new SQLString("FROM ShortPassage lp");
+        if(id != null)
+        {
+             sqlString.addWhereClause("lp.id = '" + id + "'");
+        }
+
+        return (ShortPassage) findByQuery(sqlString.toString()).get(0);
     }
 
 }

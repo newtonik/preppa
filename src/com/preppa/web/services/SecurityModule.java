@@ -36,7 +36,13 @@ public class SecurityModule {
     public static void bind(ServiceBinder binder) {
       binder.bind(EmailService.class, EmailServiceImpl.class);
     }
+  public static void contributeAlias(
+      Configuration<AliasContribution<PasswordEncoder>> configuration ) {
 
+      configuration.add( AliasContribution.create(
+          PasswordEncoder.class,
+          new ShaPasswordEncoder() ) );
+  }
 
     /**
      * Sets application defaults.
@@ -62,14 +68,7 @@ public class SecurityModule {
         configuration.add("spring-security.anonymous.attribute", "anonymous,ROLE_ANONYMOUS" );
 
     }
-    /**
-     * This changes the alias of the password encoder from plain text to Shapassword encodeds
-     * @param configuration
-     */
-    public static void contibuteAlias( Configuration<AliasContribution<PasswordEncoder>> configuration) {
-        configuration.add(AliasContribution.create(PasswordEncoder.class, new ShaPasswordEncoder()));
 
-    }
     /**
      * This function builds the UserDetailService used by Spring Security to
      * represent the user object
@@ -154,7 +153,7 @@ public class SecurityModule {
   }
  public static AuthenticationProcessingFilter buildMyAuthenticationProcessingFilter(
                 @SpringSecurityServices final AuthenticationManager manager,
-                @SpringSecurityServices final RememberMeServices rememberMeServices,
+            //    @SpringSecurityServices final RememberMeServices rememberMeServices,
                 @Inject @Value("${spring.security.check.url}") final String authUrl,
                 @Inject @Value("${spring.security.target.url}") final String targetUrl,
                 @Inject @Value("${spring.security.failure.url}") final String failureUrl)
@@ -164,7 +163,7 @@ public class SecurityModule {
         filter.setAuthenticationFailureUrl(failureUrl);
         filter.setDefaultTargetUrl(targetUrl);
         filter.setFilterProcessesUrl(authUrl);
-        filter.setRememberMeServices(rememberMeServices);
+      //  filter.setRememberMeServices(rememberMeServices);
         filter.afterPropertiesSet();
         return filter;
     }

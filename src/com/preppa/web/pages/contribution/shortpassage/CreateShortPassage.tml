@@ -1,0 +1,71 @@
+<html t:type="layout" t:pageTitle="New Short Passage" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <div id="passage">
+        <t:form t:id="createpassageform">
+            <table id="passtable">
+               
+               <tr align="left">
+                      <td align="right">
+                       <t:label for="fTitle"> Title: </t:label>
+                       </td>
+                       <td align="left">
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:validate="required" t:label="Title" size="60" />
+                      </td>
+                 </tr>
+                <tr>
+                    <div id="pass1">
+                         <td valign="top" align="right">
+                           <t:label for="passeditor">Passage: </t:label>
+                        </td>
+                           <td >
+                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required,maxlength=110" t:label="Passage"/>
+                           </td>
+                    </div>
+                </tr>
+              
+                <tr>
+
+                        <td valign="top" align="right">
+                             <t:label for="fSource"> Sources: </t:label>
+                        </td>
+                        <td>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="70"/>
+
+                     </td>
+                 </tr>
+                        <tr>
+                       <td></td>
+                     <td align="left">
+                         <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                     </td>
+                   </tr>
+                   <tr>
+                       <td></td>
+                   <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" />
+                         </td>
+
+                 </tr>
+                 <tr>
+                     <td></td>
+                     <td align="left">
+                         Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
+                     </td>
+                  </tr>
+                   <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                        <input type="button" onclick="window.location='Index'; return false;" value="Cancel"></input>
+                    </td>
+
+                 </tr>
+
+            </table>
+
+         
+
+        </t:form>
+    </div>
+
+</html>
