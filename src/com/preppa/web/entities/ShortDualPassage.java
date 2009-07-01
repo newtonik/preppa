@@ -7,12 +7,14 @@ package com.preppa.web.entities;
 
 import com.preppa.web.utils.PassageType;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,21 +37,22 @@ public class ShortDualPassage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String title;
     @Lob
     private String tags;
     @Lob
     private String source;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
-    private List<Question> questions;
-     @ManyToMany(targetEntity = Tag.class)
+    private List<Question> questions =  new ArrayList<Question>();
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Tag.class)
      @JoinTable(name = "ShortDualPassage_Tag",
     joinColumns = {
-      @JoinColumn(name="ShortDualPassage_id")
+      @JoinColumn(name="shortdualpassage_id")
         },
     inverseJoinColumns = {
-      @JoinColumn(name="Tag_id")
+      @JoinColumn(name="tag_id")
     })
-    private List<Tag> taglist;
+    private List<Tag> taglist = new ArrayList<Tag>();
     @Basic(optional = false)
     @NonVisual
     @Column(name = "created_at", nullable = false)
@@ -63,14 +66,11 @@ public class ShortDualPassage implements Serializable {
     @Column(nullable = false)
     private Boolean complete = false;
      private PassageType passagetype;
-//    @OneToOne(targetEntity = Passage.class)
-//    @Fetch(value = FetchMode.JOIN)
-//    @JoinColumn(name = "passage1_id")
+    @Column(nullable=false, columnDefinition="bigint(20) default 0")
+    private Integer numQuestions = 0;
+
     @Lob
     private String passageone;
-//    @OneToOne(targetEntity = Passage.class)
-//    @Fetch(value = FetchMode.JOIN)
-//    @JoinColumn(name = "passage2_id")
     @Lob
     private String passagetwo;
     public Integer getId() {
@@ -231,5 +231,47 @@ public class ShortDualPassage implements Serializable {
      */
     public void setPassagetype(PassageType passagetype) {
         this.passagetype = passagetype;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @return the numQuestions
+     */
+    public Integer getNumQuestions() {
+        return numQuestions;
+    }
+
+    /**
+     * @param numQuestions the numQuestions to set
+     */
+    public void setNumQuestions(Integer numQuestions) {
+        this.numQuestions = numQuestions;
+    }
+
+    /**
+     * @return the questions
+     */
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    /**
+     * @param questions the questions to set
+     */
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }

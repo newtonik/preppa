@@ -137,7 +137,7 @@ public class CreateUser {
             Object salter = salt.getSalt(auser);
             //String passwordToencode = user.getPassword() + user.getUsername();
              ShaPasswordEncoder enc = new ShaPasswordEncoder();
-
+             System.out.println(salter);
             String encodpassword = enc.encodePassword(user.getPassword(), salter);
             System.out.println(encodpassword);
             user.setPassword(encodpassword);

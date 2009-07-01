@@ -7,6 +7,7 @@ package com.preppa.web.entities;
 
 import com.preppa.web.utils.PassageType;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -43,7 +44,7 @@ public class ShortPassage implements Serializable {
     @Lob
     private String source;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
-    private List<Question> questions;
+    private List<Question> questions = new ArrayList<Question>();
     @ManyToMany(targetEntity = Tag.class)
      @JoinTable(name = "ShortPassage_Tag",
     joinColumns = {
@@ -52,7 +53,7 @@ public class ShortPassage implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="Tag_id")
     })
-    private List<Tag> taglist;
+    private List<Tag> taglist = new ArrayList<Tag>();
 
     @Basic(optional = false)
     @NonVisual
@@ -67,6 +68,8 @@ public class ShortPassage implements Serializable {
     private String title;
     @Column(nullable = false)
     private Boolean complete = false;
+    @Column(nullable=false, columnDefinition="bigint(20) default 0")
+    private Integer numQuestions = 0;
     private PassageType passagetype;
     //@OneToOne(targetEntity = Passage.class)
     //@Fetch(value = FetchMode.JOIN)
@@ -232,5 +235,33 @@ public class ShortPassage implements Serializable {
      */
     public void setPassagetype(PassageType passagetype) {
         this.passagetype = passagetype;
+    }
+
+    /**
+     * @return the numQuestions
+     */
+    public Integer getNumQuestions() {
+        return numQuestions;
+    }
+
+    /**
+     * @param numQuestions the numQuestions to set
+     */
+    public void setNumQuestions(Integer numQuestions) {
+        this.numQuestions = numQuestions;
+    }
+
+    /**
+     * @return the questions
+     */
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    /**
+     * @param questions the questions to set
+     */
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }
