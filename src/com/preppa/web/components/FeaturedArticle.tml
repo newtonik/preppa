@@ -1,0 +1,21 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+        <h1>
+           Today's featured article
+        </h1>
+
+        <h2>
+           ${article.title}
+        </h2>
+
+        <div id="author-time">
+            Created at ${article.createdAt}
+        </div>
+        <p>
+             <t:outputraw t:value="${bodyparse}"/>...<a href="#" t:type="pageLink" t:page="contribution/article/Show" t:context="article.id"> (more) </a>
+        </p>
+        <p>
+            <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
+        </p>
+
+</t:container>

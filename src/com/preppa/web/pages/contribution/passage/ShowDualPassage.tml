@@ -41,16 +41,31 @@
         <t:block t:id="showquestionBlock">
             <div t:id="showquestion" t:pid="passage.id" t:question="q1">
             </div>
-            <a t:type="actionlink" t:id="nextshowquestion" href="#" t:zone="showquestionZone"> Next </a>
-            <br />
-            <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
+            <table>
+          <tr>
+              <td align="center">
+                   <t:if t:test="onequestion">
+                        <a t:type="actionlink" t:id="prevshowquestion" href="#" t:zone="showquestionZone"> Previous </a>
+                   </t:if>
+              </td>
+              <td align="center">
+                  <t:if t:test="lastquestion">
+
+                <a t:type="actionlink" t:id="nextshowquestion" href="#" t:zone="showquestionZone"> Next </a>
+                    </t:if>
+              </td>
+              <td align="center">
+              <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
+              </td>
+
+          </tr>
+            </table>
         </t:block>
         
         <t:block t:id="questionblock">
         <div t:id="firstquestion" t:longpassage="passage" t:newquestion="questionschanged" >
-           
         </div>
-             <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
+        <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
         </t:block>
     </body>
 </html>
