@@ -32,12 +32,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.InPlaceEditor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author newtonik
  */
-//@Secured("ROLE_USER")
+@Secured("ROLE_USER")
 public class CreateArticle {
 
     @Property

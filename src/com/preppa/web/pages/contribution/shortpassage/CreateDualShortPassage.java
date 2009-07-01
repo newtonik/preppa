@@ -6,14 +6,12 @@
 package com.preppa.web.pages.contribution.shortpassage;
 
 import com.preppa.web.data.ShortDualPassageDAO;
-import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.services.PassageService;
-import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,6 +27,7 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.springframework.security.annotation.Secured;
 
 
 
@@ -36,6 +35,7 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  *
  * @author nwt
  */
+@Secured("ROLE_USER")
 public class CreateDualShortPassage {
  @Property
     private ShortDualPassage shortDualpassage;

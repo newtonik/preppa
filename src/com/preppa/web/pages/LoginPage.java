@@ -2,6 +2,9 @@ package com.preppa.web.pages;
 
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.User;
+import com.sun.org.apache.bcel.internal.classfile.JavaClass;
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -12,13 +15,17 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.RequestGlobals;
+import org.apache.tapestry5.services.Session;
 import org.springframework.security.Authentication;
-import org.springframework.security.providers.AuthenticationProvider;
+import org.springframework.security.context.SecurityContextHolder;
 import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
 import org.springframework.security.providers.dao.DaoAuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.PasswordEncoder;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
+import org.springframework.security.ui.AbstractProcessingFilter;
+import org.springframework.security.ui.savedrequest.SavedRequest;
 import org.springframework.security.userdetails.UserDetailsService;
 
 /**
@@ -64,7 +71,10 @@ public class LoginPage
     private PasswordEncoder encoder;
     @Inject
     private SaltSource salt;
-    
+    @Inject
+    private RequestGlobals requestGlobals;
+    private java.net.URL url = null;
+
     public String getfLogin()
     {
         return fLogin;
@@ -111,6 +121,22 @@ public class LoginPage
       {
           System.out.println("user has been authenticated");
           this.user = userDAO.findByUsername(fLogin);
+          SecurityContextHolder.getContext().setAuthentication(token);
+          SavedRequest savedRequest =
+                  (SavedRequest) requestGlobals.getHTTPServletRequest().getSession().getAttribute(AbstractProcessingFilter.SPRING_SECURITY_SAVED_REQUEST_KEY);
+          Session s = request.getSession(false);
+          s.invalidate();
+          s = request.getSession(true);
+           if(savedRequest != null){
+                 url = null;
+
+                try {
+                        url = new URL(savedRequest.getRequestURL());
+                } catch (MalformedURLException e){
+                        System.out.println("malformed url:" + savedRequest.getRequestURI());
+                }
+        }
+
       }
 
       else
@@ -125,6 +151,12 @@ public class LoginPage
 
     String onSuccess() {
         System.out.println("user has been authenticated");
+        if(url != null)
+        {
+            String path = url.getPath();
+            path = path.substring(8, path.length());
+            return path;
+        }
          return "index";
     }
 

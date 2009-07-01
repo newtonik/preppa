@@ -20,7 +20,6 @@ import org.springframework.security.AuthenticationManager;
 import org.springframework.security.providers.AuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
-import org.springframework.security.ui.rememberme.RememberMeServices;
 import org.springframework.security.ui.webapp.AuthenticationProcessingFilter;
 
 /**

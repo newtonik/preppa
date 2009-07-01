@@ -29,6 +29,7 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.springframework.security.annotation.Secured;
 
 
 
@@ -36,6 +37,7 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  *
  * @author nwt
  */
+@Secured("ROLE_USER")
 public class CreateDualLongPassage {
  @Property
     private LongDualPassage longDualpassage;
