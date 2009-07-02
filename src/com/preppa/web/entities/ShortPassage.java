@@ -81,6 +81,10 @@ public class ShortPassage implements Serializable {
         return id;
     }
 
+    public String getSources() {
+       return this.source;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -103,6 +107,10 @@ public class ShortPassage implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public void setSources(String fSource) {
+        this.source = fSource;
     }
 
     @Override

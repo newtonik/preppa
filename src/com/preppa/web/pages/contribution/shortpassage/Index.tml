@@ -6,18 +6,18 @@
 
         <strong>Passages</strong>
         <table>
-        <tr t:type="loop" t:source="longpassages" t:value="longpassage">
+        <tr t:type="loop" t:source="shortpassages" t:value="shortpassage">
             <td>
-                <a href="#" t:type="pagelink" t:page="contribution/longpassage/show" t:context="longpassage.id"> ${longpassage.title} </a>
+                <a href="#" t:type="pagelink" t:page="contribution/shortpassage/show" t:context="shortpassage.id"> ${shortpassage.title} </a>
             </td>
 
         </tr>
         </table>
         <strong>Dual Passages</strong>
           <table>
-        <tr t:type="loop" t:source="longdualpassages" t:value="longdualpassage">
+        <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">
             <td>
-                <a href="#" t:type="pagelink" t:page="contribution/longpassage/showdual" t:context="longdualpassage.id"> ${longdualpassage.title} </a>
+                <a href="#" t:type="pagelink" t:page="contribution/shortpassage/showdual" t:context="shortdualpassage.id"> ${shortdualpassage.title} </a>
             </td>
 
         </tr>

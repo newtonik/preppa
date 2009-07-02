@@ -5,22 +5,19 @@
         <h2>
            ${passage.title}
         </h2>
-        <div id="author-time">
+           <div class="author-date">
             Created at ${passage.createdAt}
         </div>
         <p>
              <t:outputraw t:value="${passage.passage}"/>
         </p>
         <p>
-            <a href="#" t:type="pageLink" t:page="contribution/passage/edit" t:context="passage.id"> Edit </a>
+            <a href="#" t:type="pageLink" t:page="contribution/shortpassage/edit" t:context="passage.id"> Edit </a>
         </p>
 
         <a href="#" t:type="PageLink" t:page="Index">
         Home
         </a>
 
-        <div>
-            <t:cquestion />
-        </div>
     </body>
 </html>

@@ -19,8 +19,6 @@
         Home
         </a>
 
-        <div>
-            <t:cquestion />
-        </div>
+
     </body>
 </html>

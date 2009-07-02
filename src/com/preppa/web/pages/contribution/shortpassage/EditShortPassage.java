@@ -5,11 +5,11 @@
 
 package com.preppa.web.pages.contribution.shortpassage;
 
-import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
-import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 
@@ -38,10 +38,10 @@ import org.springframework.security.annotation.Secured;
 @Secured("ROLE_USER")
 public class EditShortPassage {
  @Property
-    private LongPassage longpassage;
+    private ShortPassage shortpassage;
 
     @Inject
-    private LongPassageDAO longpassageDAO;
+    private ShortPassageDAO shortpassageDAO;
     @Inject
     private PassageDAO passageDAO;
     @Component(parameters = {"value=fbody"})
@@ -72,17 +72,17 @@ public class EditShortPassage {
 
 
     void onActivate(int id) {
-        this.longpassage = longpassageDAO.findById(id);
-        if(longpassage != null) {
-            fTitle = longpassage.getTitle();
-            fBody = longpassage.getPassage();
-            fSource = longpassage.getSources();
-            addedTags = longpassage.getTaglist();
+        this.shortpassage = shortpassageDAO.findById(id);
+        if(shortpassage != null) {
+            fTitle = shortpassage.getTitle();
+            fBody = shortpassage.getPassage();
+            fSource = shortpassage.getSources();
+            addedTags = shortpassage.getTaglist();
         }
     }
 
     Integer onPassivate() {
-        return longpassage.getId();
+        return shortpassage.getId();
     }
 
     @CommitAfter
@@ -92,37 +92,37 @@ public class EditShortPassage {
 
 
         // passageDAO.doSave(p);
-         longpassage.setPassage(fBody);
-         longpassage.setSources(fSource);
-         longpassage.setTitle(fTitle);
-         longpassage.setComplete(true);
+         shortpassage.setPassage(fBody);
+         shortpassage.setSources(fSource);
+         shortpassage.setTitle(fTitle);
+         shortpassage.setComplete(true);
 
           if(fBody.length() > 100) {
-            longpassage.setPassagetype(PassageType.LONG_DUAL);
+            shortpassage.setPassagetype(PassageType.LONG_DUAL);
          }
          else
          {
-             longpassage.setPassagetype(PassageType.SHORT_DUAL);
+             shortpassage.setPassagetype(PassageType.SHORT_DUAL);
          }
 
 
          for(Tag t: addedTags) {
-            if(!(longpassage.getTaglist().contains(t)))
+            if(!(shortpassage.getTaglist().contains(t)))
             {
-                longpassage.getTaglist().add(t);
+                shortpassage.getTaglist().add(t);
             }
           }
 
-         passageService.checkRegularPassage(longpassage);
+         //passageService.checkRegularPassage(shortpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-         longpassage.setUpdatedAt(now);
+         shortpassage.setUpdatedAt(now);
 
 
 
-         longpassageDAO.doSave(longpassage);
+         shortpassageDAO.doSave(shortpassage);
 
-           showpassage.setPassagePage(longpassage);
+           showpassage.setPassagePage(shortpassage);
          return showpassage;
     }
     public static String sanitize(String string) {

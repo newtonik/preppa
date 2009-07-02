@@ -90,6 +90,7 @@ public class ShowDualShortPassage {
         return passageid;
     }
     void setShortDualPassage(ShortDualPassage passage) {
+        this.passageid = passage.getId();
         this.passage = passage;
     }
 

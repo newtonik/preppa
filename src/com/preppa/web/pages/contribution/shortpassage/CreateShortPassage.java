@@ -4,11 +4,11 @@
  */
 package com.preppa.web.pages.contribution.shortpassage;
 
-import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
-import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.services.PassageService;
@@ -37,10 +37,10 @@ import org.springframework.security.annotation.Secured;
 public class CreateShortPassage {
 
     @Property
-    private LongPassage longpassage;
+    private ShortPassage shortpassage;
    
     @Inject
-    private LongPassageDAO longpassageDAO;
+    private ShortPassageDAO shortpassageDAO;
     @Inject
     private PassageDAO passageDAO;
     @Component(parameters = {"value=fbody"})
@@ -76,7 +76,7 @@ public class CreateShortPassage {
     private PassageService passageService;
 
     void onActivate() {
-        this.longpassage = new LongPassage();
+        this.shortpassage = new ShortPassage();
     }
 
   
@@ -87,36 +87,36 @@ public class CreateShortPassage {
         
         
         // passageDAO.doSave(p);
-         longpassage.setPassage(fBody);
-         longpassage.setSources(fSource);
-         longpassage.setTags(fTag);
-         longpassage.setTitle(fTitle);
+         shortpassage.setPassage(fBody);
+         shortpassage.setSources(fSource);
+         shortpassage.setTags(fTag);
+         shortpassage.setTitle(fTitle);
 
 
          for(Tag t: addedTags) {
-            if(!(longpassage.getTaglist().contains(t)))
+            if(!(shortpassage.getTaglist().contains(t)))
             {
-                longpassage.getTaglist().add(t);
+                shortpassage.getTaglist().add(t);
             }
           }
          if(fBody.length() > 100) {
-            longpassage.setPassagetype(PassageType.LONG);
+            shortpassage.setPassagetype(PassageType.LONG);
          }
          else
          {
-             longpassage.setPassagetype(PassageType.SHORT);
+             shortpassage.setPassagetype(PassageType.SHORT);
          }
 
-         passageService.checkRegularPassage(longpassage);
+        // passageService.checkRegularPassage(shortpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-         longpassage.setCreatedAt(now);
-         longpassage.setUpdatedAt(now);
+         shortpassage.setCreatedAt(now);
+         shortpassage.setUpdatedAt(now);
 
 
       
-         longpassageDAO.doSave(longpassage);
-         showpassage.setPassagePage(longpassage);
+         shortpassageDAO.doSave(shortpassage);
+         showpassage.setPassagePage(shortpassage);
          return showpassage;
     }
     public static String sanitize(String string) {

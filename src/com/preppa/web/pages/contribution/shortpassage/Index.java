@@ -19,14 +19,8 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 @IncludeStylesheet(value = {"context:styles/passage.css"})
 public class Index {
-private List<LongDualPassage> longdualpassages;
-private List<LongPassage> longpassages;
 private List<ShortDualPassage> shortdualpassages;
 private List<ShortPassage> shortpassages;
-@Property
-private LongDualPassage longdualpassage;
-@Property
-private LongPassage longpassage;
 @Property
 private ShortDualPassage shortdualpassage;
 @Property
@@ -43,23 +37,9 @@ private ShortPassageDAO shortpDAO;
 void onActivate() {
     shortdualpassages = shortdualpDAO.findAll();
     shortpassages = shortpDAO.findAll();
-    longdualpassages = longdualpDAO.findAll();
-    longpassages = longpDAO.findAll();
+   
 }
 
-    /**
-     * @return the longdualpassages
-     */
-    public List<LongDualPassage> getLongdualpassages() {
-        return longdualpassages;
-    }
-
-    /**
-     * @return the longpassages
-     */
-    public List<LongPassage> getLongpassages() {
-        return longpassages;
-    }
 
     /**
      * @return the shortdualpassages

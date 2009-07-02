@@ -5,9 +5,10 @@
 
 package com.preppa.web.pages.contribution.shortpassage;
 
-import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.PassageDAO;
-import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.ShortPassage;
+import com.preppa.web.entities.ShortPassage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -19,9 +20,9 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class ShowShortPassage {
 @Property
 @Persist
-private LongPassage passage;
+private ShortPassage passage;
 @Inject
-private LongPassageDAO passageDAO;
+private ShortPassageDAO passageDAO;
 @Inject
 private PassageDAO passDA0;
 private Integer pid;
@@ -33,8 +34,10 @@ void onActivate(int id) {
 Integer onPassivate() {
     return this.pid;
 }
-void setPassagePage(LongPassage passage) {
+void setPassagePage(ShortPassage passage) {
         this.passage = passage;
     }
+
+ 
 
 }
