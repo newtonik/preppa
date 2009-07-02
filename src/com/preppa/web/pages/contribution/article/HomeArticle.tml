@@ -2,7 +2,12 @@
     <div>
         <t:articlemenu />
     </div>
+
+    New to the SAT?
+
     <div>
         <t:featuredarticle />
     </div>
+
+<t:pagelink t:page="contribution/article/view" t:context="literal:Hello"> Test </t:pagelink>
 </html>

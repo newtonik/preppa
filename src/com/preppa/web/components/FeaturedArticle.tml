@@ -12,10 +12,10 @@
             Created at ${article.createdAt}
         </div>
         <p>
-             <t:outputraw t:value="${bodyparse}"/>...<a href="#" t:type="pageLink" t:page="contribution/article/Show" t:context="article.id"> (more) </a>
+             <t:outputraw t:value="${bodyparse}"/>
         </p>
         <p>
-            <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
+            <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> (See more) </a>
         </p>
 
 </t:container>

@@ -1,0 +1,6 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:form t:id="articlesearch">
+<input type="text" t:type="TextField" t:id="dWord"  t:value="dWord" t:label="Word" t:validate="required" size="20" t:mixins="autocomplete"/>
+<input type="submit" value="Search"/>
+</t:form>
+</t:container>

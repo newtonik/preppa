@@ -1,10 +1,10 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <div id="nav-menu">
     <ul>
-        <li><a href="#">Test Info</a></li>
-        <li><a href="#">Math</a></li>
-        <li><a href="#">Critical Reading</a></li>
-        <li><a href="#">Writing</a></li>
+        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test">Test Info</t:pagelink></li>
+        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math">Math</t:pagelink></li>
+        <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading">Critical Reading</t:pagelink></li>
+        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing">Writing</t:pagelink></li>
     </ul>
 </div>
 <br/>
