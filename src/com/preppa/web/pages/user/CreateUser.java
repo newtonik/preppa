@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import org.apache.commons.mail.EmailException;
-import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -26,6 +25,8 @@ import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.RequestGlobals;
 import org.chenillekit.tapestry.core.components.DateSelector;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -41,7 +42,7 @@ import org.springframework.security.userdetails.UserDetailsService;
  */
 public class CreateUser {
 
-    @ApplicationState
+    
     private User user;
     @Property
     private User auser;
@@ -83,10 +84,8 @@ public class CreateUser {
     private PasswordField passwordField;
     @Component
     private Form userform;
-    private DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-    private UsernamePasswordAuthenticationToken authtoken;
-    @Inject
-    private UserDetailsService userserve;
+
+
     //private Timestamp currentTime;
     void onActivate() {
         this.auser = new User();
@@ -126,8 +125,9 @@ public class CreateUser {
         RegisterUser(auser);
         //session.persist(user);
        emailer.sendSendRegistrationEmail(auser);
+
         this.user = auser;
-        return index;
+        return "loginpage";
     }
 
    public void RegisterUser(User user) {

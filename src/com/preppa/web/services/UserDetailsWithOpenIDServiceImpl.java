@@ -24,6 +24,7 @@ public class UserDetailsWithOpenIDServiceImpl implements UserDetailsService
 {
     @Inject
     private HibernateSessionManager sessionManager;
+    @Inject
     private Logger logger;
    
 
@@ -80,7 +81,7 @@ public class UserDetailsWithOpenIDServiceImpl implements UserDetailsService
             session.saveOrUpdate(u);
         }
 
-        //logger.debug("returning user " + u.getUsername());
+        logger.debug("returning user " + u.getUsername());
 
         sessionManager.commit();
 
