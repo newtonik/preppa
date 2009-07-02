@@ -1,12 +1,10 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-        <h1>
-           Today's featured article
-        </h1>
+       <h3>Today's featured article</h3>
 
-        <h2>
-           ${article.title}
-        </h2>
+        
+       <b>${article.title}</b>
+
 
         <div id="author-time">
             Created at ${article.createdAt}

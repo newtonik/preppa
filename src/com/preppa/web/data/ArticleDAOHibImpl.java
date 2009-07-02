@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
+import java.util.List;
 
 /**
  *
@@ -29,6 +30,16 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
         }
 
         return (Article) findByQuery(sqlString.toString()).get(0);
+    }
+
+    public List<Article>  findBytestsubject_id(Integer id) {
+        SQLString sqlString = new SQLString("FROM Article articles");
+        if(id != null)
+        {
+            sqlString.addWhereClause("articles.testsubject = '" + id + "'");
+        }
+
+        return findByQuery(sqlString.toString());
     }
 
 }
