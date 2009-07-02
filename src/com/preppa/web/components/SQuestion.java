@@ -48,20 +48,20 @@ private LongDualPassage passage;
 private List<QuestionAnswer> returnVal;
 
 void onActivate() {
-       
-        passage = passageDAO.findById(pid);
-        allQuestions = passage.getQuestions();
-
-        question = allQuestions.get(0);
-
-        if(question != null) {
-            System.out.println("question is not null");
-            /*example = question.getSentence().getSentence();
-            vid = question.getId();*/
-            returnVal = question.getChoices();
-        }
-      setquestion(question);
-
+//       if(pid != null) {
+//        passage = passageDAO.findById(pid);
+//        allQuestions = passage.getQuestions();
+//
+//        question = allQuestions.get(0);
+//
+//        if(question != null) {
+//            System.out.println("question is not null");
+//            /*example = question.getSentence().getSentence();
+//            vid = question.getId();*/
+//            returnVal = question.getChoices();
+//        }
+//      setquestion(question);
+//       }
     }
    @SetupRender
 void intializeQuestion () {

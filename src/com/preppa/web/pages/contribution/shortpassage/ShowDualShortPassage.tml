@@ -21,26 +21,27 @@
 
         <a href="#" t:type="PageLink" t:page="Index">
         Home
-        </a>
-        <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
+         </a>
+           <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
         <br/>
          <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
 
 
          <t:zone t:id="showquestionZone">
-           
+
          </t:zone>
          <br/>
-            <t:zone t:id="questionZone">
-                
-            </t:zone>
+        <t:zone t:id="questionZone">
+
+         </t:zone>
 
 
         <t:block t:id="showquestionBlock">
-            <div t:id="showquestion" t:pid="passage.id" t:question="q1">
+            <div t:id="showquestion" t:question="q1">
             </div>
-            <table>
-          <tr>
+            <div>
+            <table id-="linkstable">
+            <tr>
               <td align="center">
                    <t:if t:test="onequestion">
                         <a t:type="actionlink" t:id="prevshowquestion" href="#" t:zone="showquestionZone"> Previous </a>
@@ -56,12 +57,13 @@
               <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
               </td>
 
-          </tr>
+            </tr>
             </table>
+            </div>
         </t:block>
-        
+
         <t:block t:id="questionblock">
-        <div t:id="firstquestion" t:longpassage="passage" t:newquestion="questionschanged" >
+        <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
         </div>
         <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
         </t:block>

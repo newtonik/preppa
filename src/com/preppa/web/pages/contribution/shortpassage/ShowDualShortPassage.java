@@ -34,7 +34,9 @@ public class ShowDualShortPassage {
     private ShortDualPassageDAO shortpassageDAO;
     @Inject
     private PassageDAO passDA0;
-    @Inject
+
+private Integer pid;
+@Inject
     @Property
     private Block questionblock;
     private List<Block> questionBlocks = new LinkedList<Block>();
@@ -63,7 +65,9 @@ public class ShowDualShortPassage {
     private boolean lastquestion;
     @Property
     private boolean onequestion;
-
+    @Persist
+    private List<Question> listquestions;
+    
     void onpageLoaded() {
         firstquestion.setPageFalse();
         
@@ -94,12 +98,12 @@ public class ShowDualShortPassage {
         this.passage = passage;
     }
 
-    Block onActionFromAddQuestion() {
+       Block onActionFromAddQuestion() {
 
         return questionblock;
     }
 
-    Block onActionFromShowQuestionlink() {
+      Block onActionFromShowQuestionlink() {
         count = 0;
 
          if(count == 0) {
@@ -112,6 +116,12 @@ public class ShowDualShortPassage {
          }
          else
              lastquestion = true;
+        passage = shortpassageDAO.findById(passage.getId());
+        listquestions = passage.getQuestions();
+        size = listquestions.size();
+          if(size == 0)
+            return null;
+        q1 = listquestions.get(count);
 
         return showquestionBlock;
     }
@@ -126,10 +136,12 @@ public class ShowDualShortPassage {
          if(questionschanged) {
              System.out.println("questions have been updated");
             passage = shortpassageDAO.findById(passage.getId());
-            size = passage.getQuestions().size();
+            listquestions = passage.getQuestions();
+            size = listquestions.size();
             questionschanged = false;
          }
-         if(count < size-1) 
+         System.out.println("Size is " + size);
+         if(count < size-1 && (size != 0))
              count++;
          if(count == 0) {
              onequestion = false;
@@ -144,17 +156,19 @@ public class ShowDualShortPassage {
              lastquestion = true;
 
 
-         q1 = passage.getQuestions().get(count);
+         q1 = listquestions.get(count);
          return showquestionBlock;
      }
       Block onActionFromPrevShowQuestion() {
          if(questionschanged) {
-             System.out.println("questions have been updated");
+
+          System.out.println("questions have been updated");
             passage = shortpassageDAO.findById(passage.getId());
-            size = passage.getQuestions().size();
+            listquestions = passage.getQuestions();
+            size = listquestions.size();
             questionschanged = false;
          }
-         if(count > 0)
+         if(count > 0 && count <= (size-1))
          {
              count--;
          }
@@ -168,8 +182,8 @@ public class ShowDualShortPassage {
          }
          else
              lastquestion = true;
-         
-         q1 = passage.getQuestions().get(count);
+
+         q1 = listquestions.get(count);
          return showquestionBlock;
      }
     void onSubmitForm() {

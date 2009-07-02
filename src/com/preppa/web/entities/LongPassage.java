@@ -14,6 +14,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class LongPassage implements Serializable {
     private String sources;
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     private List<Question> questions = new ArrayList<Question>();
-     @ManyToMany(cascade=CascadeType.ALL, targetEntity = Tag.class)
+     @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Tag.class)
      @JoinTable(name = "LongPassage_Tag",
     joinColumns = {
       @JoinColumn(name="longpassage_id")

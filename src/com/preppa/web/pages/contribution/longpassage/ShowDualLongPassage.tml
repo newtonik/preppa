@@ -37,7 +37,7 @@
 
 
         <t:block t:id="showquestionBlock">
-            <div t:id="showquestion" t:pid="passage.id" t:question="q1">
+            <div t:id="showquestion" t:question="q1">
             </div>
             <div>
             <table id-="linkstable">
@@ -63,7 +63,7 @@
         </t:block>
         
         <t:block t:id="questionblock">
-        <div t:id="firstquestion" t:longpassage="passage" t:newquestion="questionschanged" >
+        <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
         </div>
         <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
         </t:block>

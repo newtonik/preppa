@@ -6,11 +6,17 @@
 package com.preppa.web.components;
 
 import com.preppa.web.data.LongDualPassageDAO;
+import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.ShortDualPassageDAO;
+import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.LongDualPassage;
+import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
+import com.preppa.web.entities.ShortDualPassage;
+import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
@@ -25,11 +31,11 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
-import org.apache.tapestry5.internal.structure.Page;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.slf4j.Logger;
 
 /**
  *
@@ -93,15 +99,27 @@ public class CQuestion {
     @Component
     private AutoComplete autoCompleteTag;
     @Parameter
-    private LongDualPassage longpassage;
+    private LongPassage longpassage;
     @Inject
-    private LongDualPassageDAO longpassageDAO;
+    private LongDualPassageDAO longdualpassageDAO;
+    @Inject
+    private ShortPassageDAO shortpassageDAO;
+    @Inject
+    private ShortDualPassageDAO shortdualpassageDAO;
+    @Inject
+    private LongPassageDAO longpassageDAO;
     @Parameter
     private boolean newquestion;
+    @Parameter
+    private Object owner;
     @InjectPage
     private ShowQuestion show;
-
+    @Inject
+    private Logger logger;
     private boolean showpage = false;
+    private ShortPassage shortpassage;
+    private ShortDualPassage shortdualpassage;
+    private LongDualPassage longdualpassage;
 
     public void setPageTrue() {
         showpage = true;
@@ -174,16 +192,13 @@ public class CQuestion {
      question.setCreatedAt(now);
      question.setUpdatedAt(now);
      newquestion = true;
-     if(longpassage != null ) {
-         System.out.println("Adding Questions to Passage");
-         longpassage = longpassageDAO.findById(longpassage.getId());
-        longpassage.getQuestions().add(question);
-        longpassage.setUpdatedAt(now);
-        longpassageDAO.doSave(longpassage);
-     }
-     else {
-          System.out.println("Just saving the question, long passage is null");
-        questionDAO.doSave(question);
+     if(owner != null)
+     {
+        if(!saveQuestionToObject(owner, question))
+        {
+            logger.debug("Just saving the question, object is null");
+            questionDAO.doSave(question);
+        }
      }
 
      if (showpage == false) {
@@ -238,5 +253,49 @@ public class CQuestion {
 
     };
    }
-   
+        /**
+         *This function determines the object passed to the component then saves a question to it.
+         * @param toSave
+         * @param questiontoSave
+         * @return
+         */
+        @CommitAfter
+   Boolean saveQuestionToObject(Object toSave, Question questiontoSave) {
+       if(toSave instanceof LongPassage) {
+          longpassage = (LongPassage)toSave;
+            longpassage = longpassageDAO.findById(longpassage.getId());
+            longpassage.getQuestions().add(question);
+            logger.debug("Object to save is long passage");
+            return true;
+       }
+       else if(toSave instanceof ShortPassage)
+       {
+           shortpassage = (ShortPassage)toSave;
+           shortpassage = shortpassageDAO.findById(shortpassage.getId());
+           shortpassage.getQuestions().add(question);
+           logger.debug("Object to save is sshortpassage");
+           return true;
+       }
+       else if(toSave instanceof ShortDualPassage)
+       {
+           shortdualpassage = (ShortDualPassage)toSave;
+           shortdualpassage = shortdualpassageDAO.findById(shortdualpassage.getId());
+           shortdualpassage.getQuestions().add(question);
+
+           return true;
+       }
+       else if(toSave instanceof LongDualPassage)
+       {
+           longdualpassage = (LongDualPassage)toSave;
+           longdualpassage = longdualpassageDAO.findById(longdualpassage.getId());
+           longdualpassage.getQuestions().add(question);
+          return true;
+       }
+       else
+       {
+            logger.error("Object to save is not handled");
+            return false;
+       }
+
+   }
 }
