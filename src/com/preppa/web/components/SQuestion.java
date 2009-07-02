@@ -6,7 +6,6 @@
 package com.preppa.web.components;
 
 import com.preppa.web.data.LongDualPassageDAO;
-import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Question;

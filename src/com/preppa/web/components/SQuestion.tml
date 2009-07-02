@@ -1,14 +1,15 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-        <h3>
+
+        <div class="multiple-choice-question">
             <t:outputraw t:value="${question.question}"/>
            
-        </h3>
-        <div id="author-time">
-            Created at ${question.createdAt}
+        </div>
+        <div class="author-date">
+            Last updated ${question.updatedAt}
         </div>
 
-        <h2>Answers</h2>
+        <h3>Choices</h3>
         <t:loop t:source="AllAnswers" t:value="questionanswer">
             <div class="questionanswer">
                      <t:outputraw t:value="${questionanswer.answer}" />

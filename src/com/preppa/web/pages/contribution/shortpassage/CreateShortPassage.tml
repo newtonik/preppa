@@ -18,7 +18,7 @@
                            <t:label for="passeditor">Passage: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required,maxlength=110" t:label="Passage"/>
+                          <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required" t:label="Passage"/>
                            </td>
                     </div>
                 </tr>

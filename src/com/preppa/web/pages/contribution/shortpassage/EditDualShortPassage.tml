@@ -18,7 +18,7 @@
                            <t:label for="pass1">Passage: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="pass1" value="fBodyone" t:toolbarSet="Basic" t:width="600" t:validate="required,maxlength=110" t:height="300"/>
+                          <t:editor align="left" t:id="pass1" value="fBodyone" t:toolbarSet="Basic" t:width="600" t:validate="required" t:height="300"/>
                            </td>
                     </div>
                 </tr>
@@ -28,7 +28,7 @@
                            <t:label for="pass2">Passage: </t:label>
                         </td>
                            <td >
-                          <t:editor align="left" t:id="pass2" value="fBodytwo" t:toolbarSet="Basic" t:validate="required,maxlength=110" t:width="600" t:height="300"/>
+                          <t:editor align="left" t:id="pass2" value="fBodytwo" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="300"/>
                            </td>
                     </div>
                 </tr>

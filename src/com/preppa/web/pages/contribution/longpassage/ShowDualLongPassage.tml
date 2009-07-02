@@ -2,18 +2,16 @@
 
     <body>
 
-        <h3>
+        <h2>
            ${passage.title}
-        </h3>
-        <div id="author-time">
-            Created at ${passage.createdAt}
+        </h2>
+        <div class="author-date">
+            Last updated ${passage.updatedAt}
         </div>
         <p>
              <t:outputraw t:value="${passage.passageone}"/>
         </p>
-        <div id="author-time">
-            Created at ${passage.createdAt}
-        </div>
+       
         <p>
              <t:outputraw t:value="${passage.passagetwo}"/>
         </p>
@@ -33,16 +31,17 @@
            
          </t:zone>
          <br/>
-            <t:zone t:id="questionZone">
+        <t:zone t:id="questionZone">
                 
-            </t:zone>
+         </t:zone>
 
 
         <t:block t:id="showquestionBlock">
             <div t:id="showquestion" t:pid="passage.id" t:question="q1">
             </div>
-            <table>
-          <tr>
+            <div>
+            <table id-="linkstable">
+            <tr>
               <td align="center">
                    <t:if t:test="onequestion">
                         <a t:type="actionlink" t:id="prevshowquestion" href="#" t:zone="showquestionZone"> Previous </a>
@@ -58,8 +57,9 @@
               <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
               </td>
 
-          </tr>
+            </tr>
             </table>
+            </div>
         </t:block>
         
         <t:block t:id="questionblock">

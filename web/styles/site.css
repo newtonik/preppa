@@ -285,3 +285,61 @@ DIV.t-error LI {
 #navbarlogintable {
      border: none; background-color: #D4E4FF; border-collapse: collapse;
 }
+#showquestion h1,h2, h3{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#showquestion {
+
+    float:left;
+    margin-bottom:40px;
+    width:535px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    border-right-color: black;
+    background-color: #fbf7f9;
+}
+DIV.multiple-choice-question {
+    font-size:107%;
+    line-height:130%;
+    margin-bottom:5px;
+    margin-right:5px;
+    width:660px;
+    
+    margin-left: 10px;
+}
+DIV.questionanswer {
+    
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: left;
+    font-family: cursive;
+}
+
+h2, div.author, div.author-date {
+    color:#046380;
+    font-family:Georgia,serif;
+    font-size:2.0em;
+}
+DIV.author-date {
+    font-size:0.8em;
+    font-weight:normal;
+    margin-top:3em;
+    margin-left:10px;
+}

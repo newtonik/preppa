@@ -2,9 +2,9 @@ package com.preppa.web.pages;
 
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.User;
-import com.sun.org.apache.bcel.internal.classfile.JavaClass;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.apache.tapestry5.Link;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -108,9 +108,9 @@ public class LoginPage
 
     void onValidateForm() {
 
-         provider.setUserDetailsService(userserve);
+       provider.setUserDetailsService(userserve);
         
-        provider.setPasswordEncoder(new ShaPasswordEncoder());
+       provider.setPasswordEncoder(new ShaPasswordEncoder());
        authtoken = new UsernamePasswordAuthenticationToken(fLogin, fpass);
        provider.setSaltSource(salt);
 
@@ -149,13 +149,13 @@ public class LoginPage
 
     }
 
-    String onSuccess() {
-        System.out.println("user has been authenticated");
+    Object onSuccess() {
         if(url != null)
         {
-            String path = url.getPath();
-            path = path.substring(8, path.length());
-            return path;
+    
+
+            return url;
+
         }
          return "index";
     }
