@@ -67,6 +67,8 @@ private Integer pid;
 void onActivate(int id) {
         this.passage = passageDAO.findById(id);
         this.pid = passage.getId();
+        lastquestion = true;
+        onequestion = true;
 }
 
 Integer onPassivate() {

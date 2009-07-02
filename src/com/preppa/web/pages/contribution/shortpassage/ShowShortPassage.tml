@@ -37,26 +37,30 @@
             <div t:id="showquestion" t:question="q1">
             </div>
             <div>
-            <table id-="linkstable">
-            <tr>
-              <td align="center">
-                   <t:if t:test="onequestion">
+            <ul id="question-links">
+              
+                    <t:if t:test="onequestion">
+                        <li class="prev">
                         <a t:type="actionlink" t:id="prevshowquestion" href="#" t:zone="showquestionZone"> Previous </a>
+                        </li>
+                        <t:parameter name="else">
+                            <li class="prev-off"> Previous  </li>
+                        </t:parameter>
                    </t:if>
-              </td>
-              <td align="center">
+              
+              <li class="next">
                   <t:if t:test="lastquestion">
 
                 <a t:type="actionlink" t:id="nextshowquestion" href="#" t:zone="showquestionZone"> Next </a>
+                     <t:parameter name="else">
+                            <li class="next-off"> Next </li>
+                        </t:parameter>
                     </t:if>
-              </td>
-              <td align="center">
-              <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
-              </td>
-
-            </tr>
-            </table>
+              </li>
+             </ul>
             </div>
+            <br />
+              <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
         </t:block>
 
         <t:block t:id="questionblock">
