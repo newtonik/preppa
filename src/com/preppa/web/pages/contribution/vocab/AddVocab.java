@@ -61,9 +61,12 @@ public class AddVocab {
 
             for (DictionaryWord a : matches)
             {
-                result.add(a.getName());
+                if (!result.contains(a.getName())) {
+                    result.add(a.getName());
+                }
             }
-            System.out.println(result);
+        
+        
         return result;
     }
 

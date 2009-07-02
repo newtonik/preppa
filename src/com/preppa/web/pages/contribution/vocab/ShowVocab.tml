@@ -15,8 +15,8 @@
              <t:outputraw t:value="${vocab.definition}"/>
         </p>
         <p>
-            <b>Example</b>
-             <t:outputraw t:value="example"/>
+            <b>Example</b><p/>
+            ${example}
         </p>
         <p>
              <t:outputraw t:value="${vocab.tags}"/>

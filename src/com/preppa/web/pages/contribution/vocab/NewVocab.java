@@ -99,8 +99,12 @@ public class NewVocab {
          vocab.setCreatedAt(now);
          vocab.setUpdatedAt(now);
          ExampleSentence sent = new ExampleSentence();
-         sent.setSentence(fSentence);
-         vocab.setSentence(sent);
+         if (fSentence != null) {
+            sent.setSentence(fSentence);
+            vocab.setSentence(sent);
+         }
+
+
 
          vocabDAO.doSave(vocab);
 

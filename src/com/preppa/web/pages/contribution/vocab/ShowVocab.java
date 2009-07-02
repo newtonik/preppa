@@ -23,8 +23,8 @@ public class ShowVocab {
 private Vocab vocab;
 @Inject
 private VocabDAO vocabDAO;
-@Property
-private String example;
+
+private String example = "before";
 @InjectPage
 private Index index;
 private Integer vid;
@@ -40,6 +40,7 @@ Object onActivate(int id) {
             else
             {
                 example = vocab.getSentence().getSentence();
+                System.out.println(example);
             }
             vid = vocab.getId();
         }
@@ -51,7 +52,17 @@ Object onActivate(int id) {
      return this;
     }
 
-
+public String getExample() {
+    if (vocab.getSentence() == null)
+    {
+        example = "";
+    }
+    else {
+        example = vocab.getSentence().getSentence();
+        System.out.println(example);
+    }
+    return example;
+}
 
 void setvocab(Vocab vocab) {
         this.vocab = vocab;

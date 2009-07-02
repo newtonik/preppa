@@ -43,7 +43,7 @@
                   </tr>
                   <tr>
                       <td>
-                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="Sentence" t:validate="required" rows="4" cols="80"/>
+                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="Sentence" rows="4" cols="80"/>
                       </td>
 
                   </tr>
@@ -60,12 +60,14 @@
                    <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
-                        <input type="button" onclick="window.location='Index'; return false;" value="Cancel"></input>
+                        <input type="button" onclick="window.location='../../preppa/Index'; return false;" value="Cancel"></input>
                     </td>
 
                  </tr>
+
               </table>
           </t:form>
+
           <br/>
           <br/>
           <br/>

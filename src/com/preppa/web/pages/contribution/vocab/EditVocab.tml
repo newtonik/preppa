@@ -42,7 +42,7 @@
                   </tr>
                   <tr>
                       <td>
-                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="Sentence" t:validate="required" rows="4" cols="80"/>
+                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="Sentence" rows="4" cols="80"/>
                       </td>
 
                   </tr>

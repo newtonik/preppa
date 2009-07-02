@@ -5,6 +5,7 @@
 package com.preppa.web.pages.contribution.vocab;
 
 import com.preppa.web.data.VocabDAO;
+import com.preppa.web.entities.ExampleSentence;
 import com.preppa.web.entities.Vocab;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -68,14 +69,28 @@ public class EditVocab {
 
         return this.vocab.getId();
     }
-        @CommitAfter
+    @CommitAfter
     Object onSuccess() {
 
          vocab.setName(fWord);
          vocab.setPartofspeech(partofspch);
          vocab.setDefinition(fDefinition);
          vocab.setTags(fTag);
-         vocab.getSentence().setSentence(fSentence);
+         if (vocab.getSentence() != null) {
+            if (fSentence == null) {
+                vocab.getSentence().setSentence("");
+            }
+            else {
+                vocab.getSentence().setSentence(fSentence);
+            }
+         }
+         else if (fSentence != null) {
+            ExampleSentence edit = new ExampleSentence();
+            edit.setSentence(fSentence);
+            vocab.setSentence(edit);
+         }
+
+
 
          //set the updated at tag to current time
          vocab.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
