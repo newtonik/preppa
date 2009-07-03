@@ -7,6 +7,7 @@ package com.preppa.web.pages.contribution.article;
 
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.entities.Article;
+import com.preppa.web.entities.User;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -21,17 +22,27 @@ public class ShowArticle {
 private Article article;
 @Inject
 private ArticleDAO articleDAO;
-
-
-Object onActivate(int id) {
+@Property
+private User author;
+@Property
+private Boolean authorexist;
+void onActivate(int id) {
         this.article = articleDAO.findById(id);
-
-        return this;
-    }
-
+        this.author = article.getUser();
+        if(author != null)
+        {
+            authorexist = true;
+        }
+        else
+            authorexist = false;
+ }
+void onPassivate() {
+   
+}
 
 void setarticle(Article article) {
         this.article = article;
+        this.author = article.getUser();
     }
 
 }

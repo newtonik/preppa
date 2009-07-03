@@ -107,7 +107,7 @@ public class CreateShortPassage {
              shortpassage.setPassagetype(PassageType.SHORT);
          }
 
-        // passageService.checkRegularPassage(shortpassage);
+         passageService.checkShortPassage(shortpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          shortpassage.setCreatedAt(now);

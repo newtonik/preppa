@@ -113,7 +113,7 @@ public class EditDualShortPassage {
                 shortDualpassage.getTaglist().add(t);
             }
           }
-      //    passageService.checkDualPassage(shortDualpassage);
+          passageService.checkShortDualPassage(shortDualpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          shortDualpassage.setUpdatedAt(now);
