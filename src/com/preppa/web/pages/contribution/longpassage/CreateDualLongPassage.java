@@ -114,7 +114,7 @@ public class CreateDualLongPassage {
             }
           }
 
-         passageService.checkDualPassage(longDualpassage);
+         passageService.checkLongDualPassage(longDualpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longDualpassage.setCreatedAt(now);

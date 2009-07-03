@@ -107,7 +107,7 @@ public class CreateLongPassage {
              longpassage.setPassagetype(PassageType.SHORT);
          }
 
-         passageService.checkRegularPassage(longpassage);
+         passageService.checkLongPassage(longpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longpassage.setCreatedAt(now);

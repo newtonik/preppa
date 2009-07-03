@@ -113,7 +113,7 @@ public class EditLongPassage {
             }
           }
 
-         passageService.checkRegularPassage(longpassage);
+         passageService.checkLongPassage(longpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          longpassage.setUpdatedAt(now);

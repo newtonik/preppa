@@ -108,7 +108,7 @@ public class CreateDualShortPassage {
             }
           }
 
-         //passageService.checkDualPassage(shortDualpassage);
+         passageService.checkShortDualPassage(shortDualpassage);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          shortDualpassage.setCreatedAt(now);
