@@ -12,6 +12,7 @@ import com.preppa.web.entities.Article;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
+import com.preppa.web.entities.User;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -21,6 +22,7 @@ import java.util.Set;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
@@ -37,7 +39,8 @@ import org.springframework.security.annotation.Secured;
 @Secured("ROLE_USER")
 public class EditArticle {
 
-
+    @ApplicationState
+    private User user;
     @Property
     private Article article;
     @Property
@@ -85,7 +88,7 @@ public class EditArticle {
 
        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
        testsubjects.addAll(setItems);
-            addedTopics =  topicDAO.findAll();
+       addedTopics =  topicDAO.findAll();
 
     }
 
@@ -140,6 +143,9 @@ public class EditArticle {
           //  article.setTopics(tset);
 
          }
+          if(user != null) {
+              article.setUser(user);
+          }
          System.out.println(article.getTitle());
             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 

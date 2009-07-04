@@ -25,16 +25,18 @@ private ArticleDAO articleDAO;
 @Property
 private User author;
 @Property
-private Boolean authorexist;
+private String authorname;
 void onActivate(int id) {
         this.article = articleDAO.findById(id);
         this.author = article.getUser();
-        if(author != null)
-        {
-            authorexist = true;
+        if(author != null) {
+            authorname = author.getUsername();
         }
-        else
-            authorexist = false;
+        if(authorname == null)
+        {
+            authorname = "unknown dude";
+        }
+            
  }
 void onPassivate() {
    
@@ -43,6 +45,15 @@ void onPassivate() {
 void setarticle(Article article) {
         this.article = article;
         this.author = article.getUser();
+            if(author != null) {
+            authorname = author.getUsername();
+        }
+    
+         if(authorname == null)
+         {
+            authorname = "unknown dude";
+        }
+
     }
 
 }

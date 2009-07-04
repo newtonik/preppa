@@ -36,7 +36,7 @@
         <t:block t:id="showquestionBlock">
             <div t:id="showquestion" t:question="q1">
             </div>
-            <div>
+            <div align="center">
                 <ul id="question-links">
 
                     <t:if t:test="onequestion">
@@ -60,13 +60,18 @@
              </ul>
                 </div>
                        <br />
+                       <div align="right">
+
               <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
+                       </div>
         </t:block>
 
          <t:block t:id="questionblock">
         <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
         </div>
+         <div align="right">
         <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
+         </div>
         </t:block>
        </body>
 </html>

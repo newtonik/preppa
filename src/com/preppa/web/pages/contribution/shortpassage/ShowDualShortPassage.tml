@@ -62,15 +62,19 @@
               </li>
              </ul>
                 </div>
+                    <div align="right">
                        <br />
               <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
+                    </div>
      
         </t:block>
 
         <t:block t:id="questionblock">
         <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
         </div>
+                    <div align="right">
         <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
+                    </div>
         </t:block>
     </body>
 </html>

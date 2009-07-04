@@ -6,9 +6,9 @@
            ${article.title}
         </h2>
         <div id="author">
-            <t:if t:test="authorexist">
-             written by ${author.username}
-            </t:if>
+            
+             written by ${authorname}
+            
         </div>
         <div id="author-time">
             Created at ${article.createdAt}
