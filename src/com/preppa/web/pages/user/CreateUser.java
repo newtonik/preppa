@@ -11,6 +11,7 @@ import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.services.EmailService;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import org.apache.commons.mail.EmailException;
@@ -25,16 +26,11 @@ import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.Request;
-import org.apache.tapestry5.services.RequestGlobals;
 import org.chenillekit.tapestry.core.components.DateSelector;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
-import org.springframework.security.providers.dao.DaoAuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
-import org.springframework.security.userdetails.UserDetailsService;
 
 /**
  *
@@ -76,9 +72,10 @@ public class CreateUser {
     private HibernateSessionManager sessionManager;
     @Inject
     private EmailService emailer;
-    
+    @Property
+    private int currYear;
 
-    @Component(parameters = {"value=fdob", "firstYear=1930"})
+    @Component(parameters = {"value=fdob", "firstYear=1930", "lastYear=prop:currYear"})
     private DateSelector datefield;
     @Component
     private PasswordField passwordField;
@@ -86,11 +83,20 @@ public class CreateUser {
     private Form userform;
     @Property
     private Boolean passKap;
+    @Property
+    private Boolean userAgreement;
 
+    void CreateUser() {
+        Calendar cal = Calendar.getInstance();
+        currYear = cal.get(Calendar.YEAR);
+    }
 
     //private Timestamp currentTime;
     void onActivate() {
         this.auser = new User();
+        //Setting the current Year to use in Date Selector field for dob
+        Calendar cal = Calendar.getInstance();
+        currYear = cal.get(Calendar.YEAR);
     }
 
     Object onPassivate() {
@@ -108,6 +114,9 @@ public class CreateUser {
         }
       if(!passKap) {
           userform.recordError("failed kaptcha, try again");
+      }
+      if(!userAgreement) {
+          userform.recordError("You cannot create an Account without agreeing to the site policies!");
       }
     }
    

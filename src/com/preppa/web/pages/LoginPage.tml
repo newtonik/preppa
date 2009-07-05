@@ -8,7 +8,8 @@
       <table id="userformtable">
            <tr>
                      <td valign="top" align="left">
-                         <t:label for="fLogin"/>
+           <t:label for="fLogin"> Login Name </t:label>
+
                      </td>
                  </tr>
                  <tr>

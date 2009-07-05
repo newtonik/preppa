@@ -7,7 +7,7 @@
 </div>
 <div align="right">
 <t:if t:test="userExists">
-   <a href="#" t:type="actionlink" t:page="contribution/user/show" t:context="${user.id}"> ${user.username} </a>
+   <a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> ${user.username} </a>
    <a href="#" t:type="ActionLink" t:id="logouturl"> Log out </a>
 <t:parameter name="else">
     <div id="navbarloginform" align="right">

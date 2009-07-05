@@ -6,6 +6,7 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -14,12 +15,14 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.DateSelector;
+import org.springframework.security.annotation.Secured;
 
 
 /**
  *
  * @author nwt
  */
+@Secured("ROLE_USER")
 public class EditUser {
     @Property
     private User user;
@@ -43,10 +46,15 @@ public class EditUser {
     private String femail;
     @Property
     private Integer uid;
+    @Property
+    private int currYear;
 
-    @Component(parameters = {"value=fdob"})
+    @Component(parameters = {"value=fdob", "firstYear=1930", "lastYear=prop:currYear"})
     private DateSelector datefield;
-    
+       void CreateUser() {
+        Calendar cal = Calendar.getInstance();
+        currYear = cal.get(Calendar.YEAR);
+    }
 
     //private Timestamp currentTime;
     void onActivate(int id) {
@@ -59,6 +67,8 @@ public class EditUser {
             flName = user.getLastName();
             fdob = user.getDob();
         }
+          Calendar cal = Calendar.getInstance();
+        currYear = cal.get(Calendar.YEAR);
     }
 
     Object onPassivate() {

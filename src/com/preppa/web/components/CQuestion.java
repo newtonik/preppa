@@ -30,6 +30,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
@@ -120,6 +121,10 @@ public class CQuestion {
     private ShortPassage shortpassage;
     private ShortDualPassage shortdualpassage;
     private LongDualPassage longdualpassage;
+    @Property
+    private Boolean mywork;
+    @Component
+    private Form createquestionform;
 
     public void setPageTrue() {
         showpage = true;
@@ -147,6 +152,11 @@ public class CQuestion {
 //    }
     Object onPassivate() {
         return question;
+    }
+    void onSubmitForm() {
+        if(!mywork) {
+            createquestionform.recordError("You cannot submit a question to Preppa, that isn't your own work.");
+        }
     }
     @CommitAfter
     Object onSuccess(){

@@ -10,7 +10,7 @@
              <table id="userformtable">
                  <tr>
                      <td valign="top" align="left">
-                         <t:label for="fLogin"/>
+                 <t:label for="fLogin"> Login Name </t:label>
                      </td>
                  </tr>
                  <tr>
@@ -84,6 +84,13 @@
                           <br />
                           <br />
                           <input t:type="ck/kaptcha"  t:value="passKap" />
+                      </td>
+                  </tr>
+                     <tr>
+                      <td align="left">
+                          <br />
+                          <input t:type="checkbox"  t:value="userAgreement" />
+                          Check if you agree with the Preppa Terms of Service and Preppa Privacy Policy.
                       </td>
                   </tr>
                    <tr>
