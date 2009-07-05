@@ -79,6 +79,13 @@
                      <input t:id="datefield" t:validate="required"/>
                    </td>
                   </tr>
+                     <tr>
+                      <td>
+                          <br />
+                          <br />
+                          <input t:type="ck/kaptcha"  t:value="passKap" />
+                      </td>
+                  </tr>
                    <tr>
                       <td colspan="2" align="left">
                           <br />

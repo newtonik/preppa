@@ -84,6 +84,8 @@ public class CreateUser {
     private PasswordField passwordField;
     @Component
     private Form userform;
+    @Property
+    private Boolean passKap;
 
 
     //private Timestamp currentTime;
@@ -97,19 +99,23 @@ public class CreateUser {
     
     void onValidateForm() {
     
-           if(!fpass1.equals(fpass2)) {
+      if(!fpass1.equals(fpass2)) {
             fpass1 = null;
             fpass2 = null;
 
             userform.recordError(passwordField, messages.get("passwords-dont-match"));
 
         }
+      if(!passKap) {
+          userform.recordError("failed kaptcha, try again");
+      }
     }
    
     @CommitAfter
     @Log
     Object onSuccess() throws EmailException {
         //user = new User();
+
         auser.setPassword(fpass1);
         auser.setLoginId(fLogin);
         auser.setUsername(fLogin);
