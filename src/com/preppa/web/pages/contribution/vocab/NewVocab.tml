@@ -12,7 +12,13 @@
                     </tr>
                     <tr>
                         <td>
-                         <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
+                         <t:if t:test="TitleFilled">
+                                <input type="text" disabled="true"  t:type="TextField" t:id="fWordBlank"  t:value="fWord" t:label="Word" size="30"/>
+                            <t:parameter name="else">
+                                <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
+                            </t:parameter>
+                        </t:if>
+
                         </td>
                     </tr>
                   <tr>
@@ -22,7 +28,13 @@
                   </tr>
                   <tr>
                       <td>
-                     <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
+                         <t:if t:test="POSFilled">
+                                <t:select disabled="true" t:id="partofspchdis" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
+                            <t:parameter name="else">
+                                <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
+                            </t:parameter>
+                        </t:if>
+                     
                       </td>
                   </tr>
                   <tr>
@@ -32,7 +44,12 @@
                   </tr>
                   <tr>
                       <td>
-                          <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
+                         <t:if t:test="DefFilled">
+                                <input disabled="true" type="text" t:type="TextArea" t:id="fDefinitionDis" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
+                            <t:parameter name="else">
+                                <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
+                            </t:parameter>
+                        </t:if>
                       </td>
                       
                   </tr>
@@ -49,19 +66,26 @@
                   </tr>
                         <tr>
                       <td>
-                    <t:label for="fTag"> Tags </t:label>
+                    <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
                       </td>
                     </tr>
                     <tr>
-                        <td>
-                         <input type="text" t:type="TextField" t:id="fTag"  t:value="fTag" t:label="Tags" size="80"/>
-                        </td>
+                   <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
+                         </td>
                     </tr>
                    <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
                         <input type="button" onclick="window.location='../../preppa/Index'; return false;" value="Cancel"></input>
                     </td>
+
+                     <td align="left">
+                         Can't find one
+                          <a t:type="actionlink" t:id="addtag" href="#" t:zone="tagZone"> Add a New Tag </a>
+
+                     </td>
 
                  </tr>
 
