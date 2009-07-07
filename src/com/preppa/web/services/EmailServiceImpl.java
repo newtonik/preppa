@@ -2,9 +2,6 @@ package com.preppa.web.services;
 
 
 import com.preppa.web.entities.User;
-import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
@@ -40,6 +37,7 @@ public class EmailServiceImpl implements EmailService {
         this.configuration = configurationService.getConfiguration(configResource);
     }
 
+    @Override
     public void sendForgottenUsernameAndPassword(String emailTo, String password) throws EmailException {
         SimpleEmail email = new SimpleEmail();
         email.setCharset("utf8");
@@ -77,10 +75,29 @@ public class EmailServiceImpl implements EmailService {
             email.addTo(user.getEmail());
             email.setFrom("email@preppa.com");
             email.setSubject("Welcome to Preppa" + user.getFirstName());
-            email.setTextMsg("Welcome " + user.getFirstName() + " to preppa!" + " Your username is " + user.getUsername());
+            //email.setTextMsg("Welcome " + user.getFirstName() + " to preppa!" + " Your username is " + user.getUsername());
+            String activate = "<p> To activate account go to " + "http://test.preppa.com/user/activate/" + user.getActivationcode() + " </p>";
+            String aHtml = "<html><body><h2> Welcome " + user.getFirstName() +" </h2> <p> Your username is " +  user.getUsername() + "</p> " + activate + " </body><html>";
 
-            String aHtml = "<html><body><h2> Welcome " + user.getFirstName() +" </h2> Your username is " +  user.getUsername() + " </body><html>";
             email.setHtmlMsg(aHtml);
+            
+            smtpService.sendEmail(email);
+        }
+    }
+
+    @Override
+    public void sendSendRegistrationCompleteEmail(User user) throws EmailException {
+         if(user != null) {
+            HtmlEmail email = new HtmlEmail();
+            email.addTo(user.getEmail());
+            email.setFrom("email@preppa.com");
+            email.setSubject("Welcome to Preppa" + user.getFirstName());
+            //email.setTextMsg("Welcome " + user.getFirstName() + " to preppa!" + " Your username is " + user.getUsername());
+            String activate = "<p> Your registration is complete, go to " + "http://test.preppa.com/ to start prepping </p>";
+            String aHtml = "<html><body><h2> Welcome " + user.getFirstName() +" </h2> <p> Your username is " +  user.getUsername() + "</p> " + activate + " </body><html>";
+
+            email.setHtmlMsg(aHtml);
+
             smtpService.sendEmail(email);
         }
     }

@@ -135,6 +135,7 @@ public class CreateUser {
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         auser.setCreatedAt(now);
         auser.setUpdatedAt(now);
+        auser.setEnabled(false);
         userDAO.doSave(auser);
       
         RegisterUser(auser);
@@ -157,6 +158,15 @@ public class CreateUser {
             System.out.println(encodpassword);
             user.setPassword(encodpassword);
 
+            user.setEnabled(false);
+            user.setAccountNonExpired(true);
+            user.setAccountNonLocked(true);
+            user.setCredentialsNonExpired(true);
+
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+            String basiccode = now.toString() + user.getUsername() + user.getFirstName();
+            String activationcode = enc.encodePassword(basiccode, salter);
+            user.setActivationcode(activationcode);
             //find a the default role, create it if it doesn't exist
             Session session = sessionManager.getSession();
             Role r = (Role) session.createCriteria(Role.class).add(

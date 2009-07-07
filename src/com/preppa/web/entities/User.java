@@ -48,6 +48,10 @@ public class User implements UserDetails, Serializable
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
+    private String activationcode;
+    private boolean recentlyactivated;
+    private Date activatedAt;
+
     private Set<Role> roles;
 
     @Id
@@ -208,32 +212,28 @@ public class User implements UserDetails, Serializable
         this.username = username;
     }
 
-    @Transient
     @Override
     public boolean isAccountNonExpired()
     {
-        return true;
+        return this.accountNonExpired;
     }
 
-    @Transient
     @Override
     public boolean isAccountNonLocked()
     {
-        return true;
+        return this.accountNonLocked;
     }
 
-    @Transient
     @Override
     public boolean isCredentialsNonExpired()
     {
-        return true;
+        return this.credentialsNonExpired;
     }
 
-    @Transient
     @Override
     public boolean isEnabled()
     {
-        return true;
+        return this.enabled;
     }
 
     /**
@@ -283,5 +283,49 @@ public class User implements UserDetails, Serializable
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the activationcode
+     */
+    public String getActivationcode() {
+        return activationcode;
+    }
+
+    /**
+     * @param activationcode the activationcode to set
+     */
+    public void setActivationcode(String activationcode) {
+        this.activationcode = activationcode;
+    }
+
+    /**
+     * @return the recentlyactivated
+     */
+    public boolean isRecentlyactivated() {
+        return recentlyactivated;
+    }
+
+    /**
+     * @param recentlyactivated the recentlyactivated to set
+     */
+    public void setRecentlyactivated(boolean recentlyactivated) {
+        this.recentlyactivated = recentlyactivated;
+    }
+
+    /**
+     * @return the activatedAt
+     */
+     @NonVisual
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    public Date getActivatedAt() {
+        return activatedAt;
+    }
+
+    /**
+     * @param activatedAt the activatedAt to set
+     */
+    public void setActivatedAt(Date activatedAt) {
+        this.activatedAt = activatedAt;
     }
 }

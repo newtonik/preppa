@@ -20,6 +20,7 @@ import org.springframework.security.AuthenticationManager;
 import org.springframework.security.providers.AuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
+import org.springframework.security.ui.rememberme.RememberMeServices;
 import org.springframework.security.ui.webapp.AuthenticationProcessingFilter;
 
 /**
@@ -49,7 +50,7 @@ public class SecurityModule {
      */
     public static void contributeApplicationDefaults(
             MappedConfiguration<String, String> configuration) {
-            //configuration.add( "spring-security.rememberme.key", "REMEMBERMEKEY" );
+            configuration.add( "spring-security.rememberme.key", "REMEMBERMEKEYZ" );
            configuration.add("spring-security.loginform.url", "/loginpage");
            configuration.add( "spring-security.force.ssl.login", "false" );
            configuration.add( "spring-security.anonymous.key","acegi_anonymous" );
@@ -115,11 +116,16 @@ public class SecurityModule {
     public static void contributeProviderManager(
         OrderedConfiguration<AuthenticationProvider> configuration,
         @InjectService( "DaoAuthenticationProvider" )
-        AuthenticationProvider daoAuthenticationProvider ) {
+       AuthenticationProvider daoAuthenticationProvider
+      //  @InjectService("RememberMeAuthenticationProvider")
+      //  AuthenticationProvider rememberAuthenticationProvider
+       )
+    {
 
         configuration.add(
             "daoAuthenticationProvider",
             daoAuthenticationProvider );
+        //configuration.add("rememberAuthenticationProvider", rememberAuthenticationProvider);
     }
 
 //  public static void contributeProviderManager( OrderedConfiguration<AuthenticationProvider> configuration,
@@ -152,7 +158,7 @@ public class SecurityModule {
   }
  public static AuthenticationProcessingFilter buildMyAuthenticationProcessingFilter(
                 @SpringSecurityServices final AuthenticationManager manager,
-            //    @SpringSecurityServices final RememberMeServices rememberMeServices,
+                @SpringSecurityServices final RememberMeServices rememberMeServices,
                 @Inject @Value("${spring.security.check.url}") final String authUrl,
                 @Inject @Value("${spring.security.target.url}") final String targetUrl,
                 @Inject @Value("${spring.security.failure.url}") final String failureUrl)
@@ -162,7 +168,7 @@ public class SecurityModule {
         filter.setAuthenticationFailureUrl(failureUrl);
         filter.setDefaultTargetUrl(targetUrl);
         filter.setFilterProcessesUrl(authUrl);
-      //  filter.setRememberMeServices(rememberMeServices);
+       filter.setRememberMeServices(rememberMeServices);
         filter.afterPropertiesSet();
         return filter;
     }

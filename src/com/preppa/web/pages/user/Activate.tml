@@ -1,0 +1,57 @@
+<html t:type="layout"  t:pageTitle="Activate" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+    bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+<div style="padding: 20px; background-color:#e8eefa;" >
+  <t:form t:id="userform">
+      <t:errors />
+      <table id="userformtable">
+           <tr>
+                     <td valign="top" align="left">
+           <t:label for="fuser"> Login Name </t:label>
+
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="TextField" t:id="fuser" size="30"  t:value="fuser" readonly="true" t:label="Login"/>
+                   </td>
+                  </tr>
+                      <tr>
+                     <td valign="top" align="left">
+                         <t:label for="fpass1"> Enter The password used to create your account </t:label>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="PasswordField" t:id="fpass1" size="30"  t:value="fpass1" t:label="Password"/>
+                   </td>
+                  </tr>
+                     <tr>
+                     <td valign="top" align="left">
+                         <t:label for="fpass2"/>
+                     </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <input t:type="PasswordField" t:id="fpass2" size="30"  t:value="fpass2" t:label="Password"/>
+                   </td>
+                  </tr>
+                    <tr>
+                      <td colspan="2" align="left">
+                          <br />
+                        <input type="submit" value="Submit"/>
+                    </td>
+                    <td alight="left">
+                        <br />
+                         <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                    </td>
+
+                 </tr>
+
+      </table>
+  </t:form>
+
+</div>
+</div>
+</html>

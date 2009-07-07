@@ -20,5 +20,6 @@ public interface UserObDAO extends GenericDAO <User, Integer>{
     User findByEmail(String email);
     List<User> findAllOrderedByLoginName();
     List<User> findByPartialName(String partialName);
-    public Integer findCountByLoginId(String login);
+    Integer findCountByLoginId(String login);
+    User findByActivationCode(String code);
 }
