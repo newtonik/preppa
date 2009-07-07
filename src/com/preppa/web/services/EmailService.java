@@ -16,4 +16,5 @@ public interface EmailService {
      public void sendHTMLEmail(HtmlEmail email) throws EmailException;
      public void sendSendRegistrationEmail(User user) throws EmailException;
         public void sendSendRegistrationCompleteEmail(User user) throws EmailException;
+        public void sendPasswordResetEmail(User user) throws EmailException;
 }

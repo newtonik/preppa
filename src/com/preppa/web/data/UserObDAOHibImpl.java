@@ -73,7 +73,15 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
 
     @Override
     public User findByEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet.");
+                      SQLString sqlString = new SQLString("FROM User u");
+        if(email!= null)
+        {
+             sqlString.addWhereClause("u.email = '" + email + "'");
+        }
+
+         User out = null;
+            out = (User) findByQuery(sqlString.toString()).get(0);
+         return out;
     }
 
     @Override
@@ -86,4 +94,16 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
 
         return (User) findByQuery(sqlString.toString()).get(0);
     }
+
+    @Override
+    public User findByPasswordResetCode(String code) {
+                       SQLString sqlString = new SQLString("FROM User u");
+        if(code != null)
+        {
+             sqlString.addWhereClause("u.passwordResetCode = '" + code + "'");
+        }
+
+        return (User) findByQuery(sqlString.toString()).get(0);
+    }
+
 }

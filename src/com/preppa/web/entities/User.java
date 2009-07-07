@@ -51,6 +51,8 @@ public class User implements UserDetails, Serializable
     private String activationcode;
     private boolean recentlyactivated;
     private Date activatedAt;
+    private String passwordResetCode;
+    private boolean recentlyreset;
 
     private Set<Role> roles;
 
@@ -327,5 +329,33 @@ public class User implements UserDetails, Serializable
      */
     public void setActivatedAt(Date activatedAt) {
         this.activatedAt = activatedAt;
+    }
+
+    /**
+     * @return the passwordResetCode
+     */
+    public String getPasswordResetCode() {
+        return passwordResetCode;
+    }
+
+    /**
+     * @param passwordResetCode the passwordResetCode to set
+     */
+    public void setPasswordResetCode(String passwordResetCode) {
+        this.passwordResetCode = passwordResetCode;
+    }
+
+    /**
+     * @return the recentlyreset
+     */
+    public boolean isRecentlyreset() {
+        return recentlyreset;
+    }
+
+    /**
+     * @param recentlyreset the recentlyreset to set
+     */
+    public void setRecentlyreset(boolean recentlyreset) {
+        this.recentlyreset = recentlyreset;
     }
 }

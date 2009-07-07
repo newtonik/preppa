@@ -102,5 +102,23 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
+    @Override
+    public void sendPasswordResetEmail(User user) throws EmailException {
+              if(user != null) {
+            HtmlEmail email = new HtmlEmail();
+            email.addTo(user.getEmail());
+            email.setFrom("email@preppa.com");
+            email.setSubject("Your Password has been reset");
+            //email.setTextMsg("Welcome " + user.getFirstName() + " to preppa!" + " Your username is " + user.getUsername());
+            String activate = "<p> Your password has been reset, follow this link to create a new one " + "http://test.preppa.com/user/password/activatenew/" + user.getPasswordResetCode() + " </p>";
+            String warning = "<p> If you didn't not perform this request, send an email right away to email@preppa.com </p>";
+            String aHtml = "<html><body><h3> Reset Password</h3> " + activate + warning + " </body><html>";
+
+            email.setHtmlMsg(aHtml);
+
+            smtpService.sendEmail(email);
+        }
+    }
+
 
 }

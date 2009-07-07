@@ -1,19 +1,26 @@
-package com.preppa.web.pages.user;
+/*
+ * Preppa, Inc.
+ * 
+ * Copyright 2009. All rights reserved.
+ * 
+ * $Id$
+ */
+
+
+package com.preppa.web.pages.user.password;
 
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.User;
 import com.preppa.web.services.EmailService;
+
 import java.sql.Timestamp;
 
-import org.apache.commons.mail.EmailException;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
-import org.springframework.security.Authentication;
-import org.springframework.security.context.SecurityContextHolder;
 import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
 import org.springframework.security.providers.dao.DaoAuthenticationProvider;
 import org.springframework.security.providers.dao.SaltSource;
@@ -21,14 +28,12 @@ import org.springframework.security.providers.encoding.PasswordEncoder;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
 import org.springframework.security.userdetails.UserDetailsService;
 
-
 /**
  *
- * @author nwt
+ * @author newtonik
  */
-public class Activate {
-
-    private String acode;
+public class ActivateNewPassword {
+  private String acode;
     @Property
     private User user;
     @Inject
@@ -61,7 +66,7 @@ public class Activate {
         if(code != null)
         {
             acode = code;
-            user = userDAO.findByActivationCode(code);
+            user = userDAO.findByPasswordResetCode(code);
 
             if(user == null) {
                 errorMessage = "The user does not exist";
@@ -91,41 +96,21 @@ public class Activate {
            ShaPasswordEncoder enc = new ShaPasswordEncoder();
            Object salter = salt.getSalt(user);
            String encpaswd = enc.encodePassword(fpass1, salter);
-           if(!encpaswd.equals(user.getPassword())) {
-               userform.recordError("Password Incorrect!");
-           }
+           user.setPassword(encpaswd);
 
       }
     }
     @CommitAfter
     String onSuccess() {
 
-        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-        user.setActivatedAt(now);
-        user.setUpdatedAt(now);
-        user.setRecentlyactivated(true);
-        user.setActivationcode(null);
+        
         user.setEnabled(true);
-
+        user.setPasswordResetCode(null);
+        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        user.setUpdatedAt(now);
         userDAO.doSave(user);
-       provider.setUserDetailsService(userserve);
-       provider.setPasswordEncoder(new ShaPasswordEncoder());
-       authtoken = new UsernamePasswordAuthenticationToken(fuser, fpass1);
-       provider.setSaltSource(salt);
-        try {
-            emailservice.sendSendRegistrationCompleteEmail(user);
-        } catch (EmailException ex) {
-           logger.debug(ex.toString());
-        }
+   
 
-       Authentication token = provider.authenticate(authtoken);
-
-      if(token.isAuthenticated())
-      {
-          SecurityContextHolder.getContext().setAuthentication(token);
-
-      }
-
-        return "index";
+        return "loginpage";
     }
 }
