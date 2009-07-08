@@ -74,6 +74,11 @@
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
                         translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
                          </td>
+                     <td align="left">
+                         Can't find one
+                          <a t:type="actionlink" t:id="addtag" href="#" t:zone="tagZone"> Add a New Tag </a>
+
+                     </td>
                     </tr>
                    <tr>
                       <td colspan="2" align="left">
@@ -81,18 +86,21 @@
                         <input type="button" onclick="window.location='../../preppa/Index'; return false;" value="Cancel"></input>
                     </td>
 
-                     <td align="left">
-                         Can't find one
-                          <a t:type="actionlink" t:id="addtag" href="#" t:zone="tagZone"> Add a New Tag </a>
-
-                     </td>
-
                  </tr>
 
               </table>
           </t:form>
 
           <br/>
+                      <t:zone t:id="tagZone">
+    <t:block t:id="newtagblock">
+        <div id="tagform">
+            <t:newtag />
+        </div>
+        <a t:type="actionlink" t:id="canceltag" href="#" t:zone="tagZone"> Cancel </a>
+
+    </t:block>
+                      </t:zone>
           <br/>
           <br/>
         </p>

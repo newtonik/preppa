@@ -48,12 +48,13 @@
                   </tr>
                         <tr>
                       <td>
-                    <t:label for="fTag"> Tags </t:label>
+                    <t:label for="autoCompletetag"> Tags </t:label>
                       </td>
                     </tr>
                     <tr>
                         <td>
-                         <input type="text" t:type="TextField" t:id="fTag"  t:value="fTag" t:label="Tags" size="80"/>
+                       <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
                         </td>
                     </tr>
                    <tr>

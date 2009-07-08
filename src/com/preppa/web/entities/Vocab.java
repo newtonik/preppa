@@ -7,14 +7,19 @@ package com.preppa.web.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,7 +36,7 @@ import org.hibernate.annotations.FetchMode;
  * @author newtonik
  */
 @Entity
-@Table(name = "vocab", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+//@Table(name = "vocab", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 //@NamedQueries({ @NamedQuery(name = "Vocab.findById", query = "SELECT v FROM Vocab v WHERE v.id = :id"), @NamedQuery(name = "Vocab.findByName", query = "SELECT v FROM Vocab v WHERE v.name = :name"), @NamedQuery(name = "Vocab.findByPartofspeech", query = "SELECT v FROM Vocab v WHERE v.partofspeech = :partofspeech"), @NamedQuery(name = "Vocab.findByCreatedAt", query = "SELECT v FROM Vocab v WHERE v.createdAt = :createdAt"), @NamedQuery(name = "Vocab.findByUpdatedAt", query = "SELECT v FROM Vocab v WHERE v.updatedAt = :updatedAt")})
 public class Vocab implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -75,6 +80,16 @@ public class Vocab implements Serializable {
     @Column(name = "updated_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    @ManyToMany(targetEntity = Tag.class, cascade=CascadeType.ALL)
+     @JoinTable(name = "Vocab_Tag",
+    joinColumns = {
+      @JoinColumn(name="Vocab_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="Tag_id")
+    })
+    private List<Tag> vlist = new LinkedList<Tag>();
 
     public Vocab() {
     }
@@ -201,6 +216,18 @@ public class Vocab implements Serializable {
      */
     public void setFormsentence(String formsentence) {
         this.formsentence = formsentence;
+    }
+
+
+    public List<Tag> getTaglist() {
+        return vlist;
+    }
+
+    /**
+     * @param taglist the taglist to set
+     */
+    public void setTaglist(LinkedList<Tag> taglist) {
+        this.vlist = taglist;
     }
 
 }

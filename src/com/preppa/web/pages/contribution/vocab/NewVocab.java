@@ -19,11 +19,14 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
 /**
@@ -58,6 +61,10 @@ public class NewVocab {
     private TagDAO tagDAO;
     @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
+    @InjectComponent
+    private Zone tagZone;
+    @Inject
+    private Block newtagblock;
 
     void onValidateForm() {
         List<Vocab> matches = vocabDAO.findByName(fWord);
@@ -65,7 +72,7 @@ public class NewVocab {
         {
             _form.recordError("The word already exists.");
         }
-        addedTags = tagDAO.findAll();
+        //addedTags = tagDAO.findAll();
     }
 
     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
@@ -135,7 +142,12 @@ public class NewVocab {
             vocab.setSentence(sent);
          }
 
-
+          for(Tag t: addedTags) {
+            if(!(vocab.getTaglist().contains(t)))
+            {
+                vocab.getTaglist().add(t);
+            }
+          }
 
          vocabDAO.doSave(vocab);
 
@@ -174,10 +186,10 @@ public FieldTranslator getTagTranslator()
           public Tag parse(String clientValue) throws ValidationException
           {
             Tag serverValue = null;
-//            if(clientValue == null) {
-//                Tag t = new Tag();
-//                t.setName(clientValue);
-//            }
+            if(clientValue == null) {
+                Tag t = new Tag();
+                t.setName(clientValue);
+            }
             System.out.println(clientValue);
 
             if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
@@ -190,5 +202,11 @@ public FieldTranslator getTagTranslator()
     };
    }
 
+       Block onActionFromAddTag() {
+            return newtagblock;
+       }
+       Block onActionFromCancelTag() {
+            return null;
+       }
 
 }

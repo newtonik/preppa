@@ -4,17 +4,24 @@
  */
 package com.preppa.web.pages.contribution.vocab;
 
+import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.ExampleSentence;
 import com.preppa.web.entities.Vocab;
+import com.preppa.web.entities.Tag;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.corelib.mixins.Autocomplete;
+import org.apache.tapestry5.FieldTranslator;
+import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.Component;
 
 /**
  *
@@ -39,13 +46,20 @@ public class EditVocab {
     private String fSentence;
     @Property
     private String fTag;
-
+    @Component
+    private AutoComplete autoCompleteTag;
+    @Property
+    private List<Tag> addedTags = new LinkedList<Tag>();
+    @Inject
+    private TagDAO tagDAO;
+    
     void onActivate(int id) {
         this.vocab = vocabDAO.findById(id);
         if(vocab != null) {
             fWord = vocab.getName();
             partofspch = vocab.getPartofspeech();
             fDefinition = vocab.getDefinition();
+            addedTags = vocab.getTaglist();
             if (vocab.getSentence() == null)
             {
                 fSentence = "";
@@ -120,5 +134,45 @@ public class EditVocab {
      .replaceAll("(?i)<.*?javascript:.*?>.*?</.*?>", "") // case 2
      .replaceAll("(?i)<.*?\\s+on.*?>.*?</.*?>", "");     // case 3
     }
+
+public FieldTranslator getTagTranslator()
+    {
+        return new FieldTranslator<Tag>()
+        {
+          @Override
+          public String toClient(Tag value)
+          {
+                String clientValue = "0";
+                if (value != null)
+                clientValue = String.valueOf(value.getName());
+
+                return clientValue;
+          }
+
+          @Override
+          public void render(MarkupWriter writer) { }
+
+          @Override
+          public Class<Tag> getType() { return Tag.class; }
+
+          @Override
+          public Tag parse(String clientValue) throws ValidationException
+          {
+            Tag serverValue = null;
+            if(clientValue == null) {
+                Tag t = new Tag();
+                t.setName(clientValue);
+            }
+            System.out.println(clientValue);
+
+            if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                System.out.println(clientValue);
+                serverValue = tagDAO.findByName(clientValue).get(0);
+            }
+            return serverValue;
+          }
+
+    };
+  }
 
 }
