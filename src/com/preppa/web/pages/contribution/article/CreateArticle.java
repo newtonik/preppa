@@ -27,6 +27,7 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
@@ -118,6 +119,7 @@ public class CreateArticle {
         article.setTitle("");
         this.top = new Topic();
         this.article = article;
+        
     }
 
     Object onPassivate() {
@@ -322,4 +324,11 @@ public class CreateArticle {
        Block onActionFromCancelTag() {
             return null;
        }
+
+        @OnEvent(component = "inPlaceEditor", value = InPlaceEditor.SAVE_EVENT)
+        void actionFromEditor(String titleValue)
+        {
+            Topic topic = new Topic(titleValue);
+            topicDAO.doSave(topic);
+        }
 }

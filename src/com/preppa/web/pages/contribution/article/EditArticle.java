@@ -104,6 +104,7 @@ public class EditArticle {
            this.fTitle = article.getTitle();
            this.fTag = article.getTags();
            this.addedTopics = article.getTopics();
+           this.addedTags = article.getTaglist();
            this.testsubject = article.getTestsubject();
            this.aid = article.getId();
        }

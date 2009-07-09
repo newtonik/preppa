@@ -43,6 +43,7 @@
                       <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
                         translate="prop:translator" label="name" type="text" size="10" readonly="true"/>
+                        <t:pagelink t:page="contribution/topic/new">Add a topic here</t:pagelink>
                          </td>
                          </tr>
                       </table>

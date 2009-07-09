@@ -12,6 +12,7 @@ package com.preppa.web.components;
 
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.entities.Article;
+import java.util.Calendar;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
@@ -21,13 +22,19 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class FeaturedArticle {
 
-    final private static int index = 1;
+    private int index;
     final private static int bodysize = 2000;
 
     @Inject
     private ArticleDAO articleDAO;
     @Property
     private Article article = articleDAO.findById(index);
+
+    void FeaturedArticle() {
+        Calendar calendar = Calendar.getInstance();
+        index = calendar.get(Calendar.DAY_OF_MONTH);
+        index = 1;
+    }
 
     void onActivate() {
         article = articleDAO.findById(index);
