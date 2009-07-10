@@ -40,7 +40,6 @@ public class AddVocab {
     }
 
 	Object onSuccessFromAddVocabForm() {
-        System.out.println(dWord);
 		_next.set(dWord);
 		return _next;
 	}

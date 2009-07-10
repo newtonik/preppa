@@ -27,7 +27,22 @@ private User author;
 @Property
 private String authorname;
 void onActivate(int id) {
-        this.article = articleDAO.findById(id);
+       if (this.article == null) {
+            this.article = articleDAO.findById(id);
+            this.author = article.getUser();
+            if(author != null) {
+                authorname = author.getUsername();
+            }
+            if(authorname == null)
+            {
+                authorname = "unknown dude";
+            }
+        }
+            
+ }
+
+ public void set(String title) {
+        this.article = articleDAO.findByTitle(title);
         this.author = article.getUser();
         if(author != null) {
             authorname = author.getUsername();
@@ -36,7 +51,7 @@ void onActivate(int id) {
         {
             authorname = "unknown dude";
         }
-            
+
  }
 void onPassivate() {
    

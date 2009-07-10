@@ -16,4 +16,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface ArticleDAO extends GenericDAO< Article, Integer> {
     Article findById(Integer id);
     List<Article>  findBytestsubject_id(Integer id);
+    List<Article> findByPartialName(String partialName);
+    Article findByTitle(String title);
 }

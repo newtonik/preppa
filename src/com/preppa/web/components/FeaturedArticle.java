@@ -22,7 +22,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class FeaturedArticle {
 
-    private int index;
+    private int index = 1;
     final private static int bodysize = 2000;
 
     @Inject

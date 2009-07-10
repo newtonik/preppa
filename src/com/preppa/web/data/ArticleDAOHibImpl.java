@@ -40,6 +40,24 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
 
     }
 
+    public Article findByTitle(String title) {
+        SQLString sqlString = new SQLString("FROM Article articles");
+        if(title != null)
+        {
+             sqlString.addWhereClause("articles.title = '" + title + "'");
+        }
+
+        List<Article> returnVal = findByQuery(sqlString.toString());
+
+        if (returnVal.isEmpty()) {
+            return null;
+        }
+        else {
+            return returnVal.get(0);
+        }
+
+    }
+
     public List<Article>  findBytestsubject_id(Integer id) {
         SQLString sqlString = new SQLString("FROM Article articles");
         if(id != null)
@@ -48,6 +66,16 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
         }
 
         return findByQuery(sqlString.toString());
+    }
+
+    public List<Article> findByPartialName(String partialName) {
+        SQLString sqlString = new SQLString("FROM Article a");
+        if(partialName != null)
+        {
+             sqlString.addWhereClause("a.title LIKE '" + partialName + "%'");
+        }
+
+        return (List <Article>) findByQuery(sqlString.toString());
     }
 
 }
