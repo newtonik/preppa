@@ -5,6 +5,7 @@
 
 package com.preppa.web.data;
 
+import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
@@ -22,6 +23,7 @@ public class TopicDAOHImpl extends AbstractHibernateDAO<Topic, Integer> implemen
         super(logger, session);
     }
 
+    @Override
     public List<Topic> findByPartialName(String partial) {
         SQLString sqlString = new SQLString("FROM Topic topics");
         if(partial != null && partial.length() > 0)
@@ -33,6 +35,7 @@ public class TopicDAOHImpl extends AbstractHibernateDAO<Topic, Integer> implemen
         return  findByQuery(sqlString.toString());
     }
 
+    @Override
     public Topic findById(Integer id) {
 
         SQLString sqlString = new SQLString("FROM Topic t");
@@ -43,6 +46,22 @@ public class TopicDAOHImpl extends AbstractHibernateDAO<Topic, Integer> implemen
 
         return (Topic) findByQuery(sqlString.toString()).get(0);
     
+    }
+
+    @Override
+    public List<Topic> findByPartialName(String partial, Testsubject subject) {
+                SQLString sqlString = new SQLString("FROM Topic topics");
+        if(partial != null && partial.length() > 0)
+        {
+             sqlString.addOrderField("topics.name");
+                 sqlString.addWhereClause("topics.name LIKE '%" + partial + "%'");
+                 if(subject != null) {
+                     sqlString.addWhereClause("topics.testsubject_id = '" + subject.getId() + "'");
+                 }
+        }
+        
+        return  findByQuery(sqlString.toString());
+
     }
 
 }

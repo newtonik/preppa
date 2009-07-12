@@ -50,11 +50,6 @@
                      </td>
                   </tr>
                  
-                  <tr>
-                      <td>
-                          <input t:id="inplacetopic" />
-                      </td>
-                  </tr>
                 
                  <tr>
                        <td valign="top" align="left">

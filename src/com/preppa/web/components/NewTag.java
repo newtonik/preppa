@@ -5,14 +5,18 @@ import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.pages.contribution.tag.TagSubmitted;
 import java.util.List;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.slf4j.Logger;
 
 
 /**
@@ -31,11 +35,16 @@ public class NewTag {
     private TextField tagTextfield;
     @Property
     private String fname;
-    @Component
+    @InjectComponent
     private Form tagform;
     @InjectPage
     private TagSubmitted tagpage;
-
+    @Inject
+    private Block responseblock;
+    @InjectComponent
+    private Zone formzone;
+    @Inject
+    private Logger logger;
 
     void onValidateForm() {
         List<Tag> tolist =  tagDAO.findByName(fname);
@@ -45,19 +54,34 @@ public class NewTag {
             tagform.recordError(tagTextfield, "Tag Exists!");
         }
     }
-    @CommitAfter
-    Object onSuccess()
-    {
-        tag = new Tag();
-        tag.setName(fname);
-
-        tagDAO.doSave(tag);
-        return null;
-    }
+//    @CommitAfter
+//    Object onSuccessFromTagForm()
+//    {
+//        tag = new Tag();
+//        tag.setName(fname);
+//
+//        tagDAO.doSave(tag);
+//
+//        return tagform;
+//    }
     void onActionFromFormZone() {
         System.out.println("I have been submitted Ajax stype");
     }
-     void onSelectedFromFormZone() {
+   Object onActionFromSubmitButton() {
+        System.out.println("I have been submitted Ajax stype");
+        return tagform;
+    }
+     void onSelectedFromSubmitButton() {
         System.out.println("I have been submitted Ajax stype");
     }
+     Block onActionFromSubmitLink() {
+           logger.debug("I have been submitted Ajax stype");
+                   tag = new Tag();
+        tag.setName(fname);
+
+        tagDAO.doSave(tag);
+
+
+         return responseblock;
+     }
 }

@@ -81,13 +81,8 @@ public class CreateArticle {
     private String fTag;
     @Component
     private AutoComplete autoComplete;
-    @Component(parameters = {"value=inPlaceValue"})
-    private InPlaceEditor inplaceTopic;
     @Component
     private AutoComplete autoCompleteTag;
-
-    @Property
-    private String inPlaceValue;
     @Inject
     private Block newtagblock;
     @InjectComponent

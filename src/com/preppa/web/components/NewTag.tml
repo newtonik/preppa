@@ -3,8 +3,8 @@
     bgcolor="#FFFFFF"
     style="padding: 20px;" align="center">
     <div style="padding: 20px; background-color:#e8eefa;" >
-        
-        <t:form t:id="tagform">
+        <t:zone t:id="formzone">
+        <t:form t:id="tagform" t:zone="formzone">
             <t:errors />
             <table id="userformtable">
                 <tr>
@@ -20,23 +20,31 @@
              <tr>
                     <td colspan="2" align="left">
                           <br />
-                        <input type="submit" t:type="submit" value="Submit"/>
+                        <input t:id="submit" type="submit" t:type="submit" value="Submit"/>
                         <a href="#" class="lbAction" rel="deactivate"><input type="button"  value="Cancel"></input></a>
                     </td>
- </tr>
+                    <td>
+                        <a t:type="actionlink" t:id="submitlink" href="#" t:zone="formzone"> Submit </a>
+                    </td>
+            </tr>
             
 
             </table>
 
             
         </t:form>
-        
+        </t:zone>
     </div>
         <p>
              <a href="#" class="lbAction" rel="deactivate">Close</a>
         </p>
     </div>
 
+    <t:block t:id="responseblock">
+        <p>
+           Your Tag has been submitted. Click Close.
+        </p>
 
+    </t:block>
 
 </t:container>

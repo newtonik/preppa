@@ -5,6 +5,7 @@
 
 package com.preppa.web.data;
 
+import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import java.util.List;
 import org.chenillekit.hibernate.daos.GenericDAO;
@@ -16,6 +17,7 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface TopicDAO  extends GenericDAO <Topic, Integer>{
 
     public List<Topic> findByPartialName(String partial);
+    public List<Topic> findByPartialName(String partial, Testsubject subject);
     public Topic findById(Integer id);
 
 }

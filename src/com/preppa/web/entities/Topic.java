@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -28,32 +29,15 @@ import org.apache.tapestry5.beaneditor.NonVisual;
 @Entity
 public class Topic implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
     @NonVisual
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
 
-     @ManyToMany(targetEntity=Article.class)
-    @JoinTable(name = "ArticleTopic",
-    joinColumns = {
-      @JoinColumn(name="topicId")
-        },
-    inverseJoinColumns = {
-      @JoinColumn(name="articleId")
-    })
-  // map info is in person class
     private Set<Article> articles;
-
-    @Basic(optional = false)
+    private Testsubject testsubject;
     @NonVisual
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @NonVisual
-    @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
     public Topic() {
@@ -62,6 +46,8 @@ public class Topic implements Serializable {
     public Topic(String name) {
         this.name = name;
     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
@@ -113,6 +99,8 @@ public class Topic implements Serializable {
     /**
      * @return the articles
      */
+    @ManyToMany(targetEntity = Article.class)
+    @JoinTable(name = "ArticleTopic", joinColumns = {@JoinColumn(name = "topicId")}, inverseJoinColumns = {@JoinColumn(name = "articleId")})
     public Set<Article> getArticles() {
         return articles;
     }
@@ -127,6 +115,9 @@ public class Topic implements Serializable {
     /**
      * @return the createdAt
      */
+    @Basic(optional = false)
+    @Column(name = "created_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -141,6 +132,9 @@ public class Topic implements Serializable {
     /**
      * @return the updatedAt
      */
+    @Basic(optional = false)
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -150,6 +144,23 @@ public class Topic implements Serializable {
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    /**
+     * @return the testsubject
+     */
+    @Basic(optional = true)
+    @ManyToOne(targetEntity = Testsubject.class)
+    @JoinColumn(name="testsubject_id")
+    public Testsubject getTestsubject() {
+        return testsubject;
+    }
+
+    /**
+     * @param testsubject the testsubject to set
+     */
+    public void setTestsubject(Testsubject testsubject) {
+        this.testsubject = testsubject;
     }
 
 }
