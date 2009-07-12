@@ -29,6 +29,8 @@ import com.preppa.web.data.TopicDAO;
 import com.preppa.web.data.TopicDAOHImpl;
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.UserObDAOHibImpl;
+import com.preppa.web.data.UserProfileDAO;
+import com.preppa.web.data.UserProfileDAOHibImpl;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
 import com.preppa.web.services.SecurityModule;
@@ -86,6 +88,7 @@ public final class AppModule {
         binder.bind(QuestiontypeDAO.class, QuestiontypeDAOHibImpl.class);
         binder.bind(QuestionDAO.class, QuestionDAOHimpl.class);
         binder.bind(DictionaryWordDAO.class, DictionaryWordDAOHibImpl.class);
+        binder.bind(UserProfileDAO.class, UserProfileDAOHibImpl.class);
         //binder.bind(SmtpService.class, SimpleSmtpServiceImpl.class);
         binder.bind(TopicDAO.class, TopicDAOHImpl.class);
         //binder.bind(EmailService.class, EmailServiceImpl.class);
