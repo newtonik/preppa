@@ -1,0 +1,10 @@
+<html t:type="layout" t:pageTitle="New User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <t:form>
+        <t:errors/>
+        <input t:type="upload" t:id="file" validate="required"/>
+        <br/>
+        <input type="submit" value="Upload"/>
+    </t:form>
+
+</html>

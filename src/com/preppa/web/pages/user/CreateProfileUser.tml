@@ -1,0 +1,9 @@
+<html t:type="layout" t:pageTitle="New Profile" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:form t:id="profileform">
+About Me<input type="text" t:type="TextArea" t:id="aboutme" t:value="aboutme" t:label="About Me" t:validate="required" rows="4" cols="80"/>
+Activities: <input type="text" t:type="TextArea" t:id="activities" t:value="activities" t:label="Activities" t:validate="required" rows="4" cols="80"/>
+Interests: <input type="text" t:type="TextArea" t:id="interests" t:value="interests" t:label="Interests" t:validate="required" rows="4" cols="80"/>
+<input type="submit" value="Submit"/>
+                        <input type="button" onclick="window.location='../../preppa/Index'; return false;" value="Cancel"></input>
+</t:form>
+</html>
