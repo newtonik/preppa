@@ -16,11 +16,13 @@ import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.upload.services.UploadedFile;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author Jan Jan
  */
+    @Secured("ROLE_USER")
     public class UploadUser
     {
         @Property

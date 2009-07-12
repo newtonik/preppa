@@ -93,11 +93,11 @@ public class UserProfile implements Serializable {
         return aboutme;
     }
 
-    public void setActivites(String activities) {
+    public void setActivities(String activities) {
         this.activities = activities;
     }
 
-    public String getActivites() {
+    public String getActivities() {
         return activities;
     }
 

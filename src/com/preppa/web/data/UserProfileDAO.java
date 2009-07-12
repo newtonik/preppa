@@ -16,11 +16,5 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface UserProfileDAO extends GenericDAO <UserProfile, Integer>{
 
     UserProfile findById(Integer id);
-    UserProfile findByUsername(String username);
-    UserProfile findByEmail(String email);
-    List<UserProfile> findAllOrderedByLoginName();
-    List<UserProfile> findByPartialName(String partialName);
-    Integer findCountByLoginId(String login);
-    UserProfile findByActivationCode(String code);
-    UserProfile findByPasswordResetCode(String code);
+    UserProfile findByUserId(Integer id);
 }

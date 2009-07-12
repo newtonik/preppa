@@ -47,7 +47,7 @@ public class CreateProfileUser {
     Object onSuccess() {
          this.userprofile = new UserProfile();
          userprofile.setAboutMe(aboutme);
-         userprofile.setActivites(activities);
+         userprofile.setActivities(activities);
          userprofile.setInterests(interests);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
          userprofile.setCreatedAt(now);
