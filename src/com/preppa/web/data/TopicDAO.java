@@ -19,5 +19,6 @@ public interface TopicDAO  extends GenericDAO <Topic, Integer>{
     public List<Topic> findByPartialName(String partial);
     public List<Topic> findByPartialName(String partial, Testsubject subject);
     public Topic findById(Integer id);
+    public Integer findSizeByPartialName(String partial, Testsubject subject);
 
 }

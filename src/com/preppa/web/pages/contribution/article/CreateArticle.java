@@ -126,7 +126,8 @@ public class CreateArticle {
 
     @CommitAfter
     Object onSuccessFromArticleForm() {
-               article = new Article();
+
+         article = new Article();
          article.setBody(fBody);
          article.setTitle(fTitle);
          article.setTestsubject(testsubject);
@@ -134,26 +135,9 @@ public class CreateArticle {
          article.setSources(fSource);
          article.setTags(fTag);
 
-//         //SimpleEmail email = new SimpleEmail();
-//         HtmlEmail email = new HtmlEmail();
-//        try {
-//            email.setDebug(true);
-//            email.setHtmlMsg(fBody);
-//             email.addTo("newtonik@gmail.com", "Newton");
-//             email.addTo("gabenicolau@gmail.com", "Gabe");
-//             email.addTo("lionel.nicolau@gmail.com", "Lionel");
-//             email.addTo("jjsoa1@gmail.com", "Jan");
-//             email.setFrom("site-admin@preppa.com", "Preppa");
-//              email.setSubject(fTitle);
-//              mailer.sendHTMLEmail(email);
-//        } catch (EmailException ex) {
-//            Logger.getLogger(CreateArticle.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 
-        // @TODO strip duplicates before savee
-            //article.getTopics().addAll(addedTopics);
-            //article.getTaglist().addAll(addedTags);
-           for(Topic e: addedTopics) {
+    
+       for(Topic e: addedTopics) {
             if(!(article.getTopics().contains(e)))
             {
                 article.getTopics().add(e);
@@ -205,8 +189,15 @@ public class CreateArticle {
     }
 
     List<String> onProvideCompletionsFromTopicks(String partial) {
-        List<Topic> matches = topicDAO.findByPartialName(partial);
-
+        List<Topic> matches = new ArrayList<Topic>();
+        if(testsubject != null)
+        {
+            matches = topicDAO.findByPartialName(partial, testsubject);
+        }
+        else
+        {
+            matches = topicDAO.findByPartialName(partial);
+        }
         List<String> result = new ArrayList<String>();
         for(Topic t : matches)
         {

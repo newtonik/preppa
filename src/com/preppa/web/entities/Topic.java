@@ -84,7 +84,7 @@ public class Topic implements Serializable {
     /**
      * @return the name
      */
-    @Column(unique=true)
+    @Column(unique=false)
     public String getName() {
         return name;
     }
@@ -149,7 +149,7 @@ public class Topic implements Serializable {
     /**
      * @return the testsubject
      */
-    @Basic(optional = true)
+    @Basic(optional = false)
     @ManyToOne(targetEntity = Testsubject.class)
     @JoinColumn(name="testsubject_id")
     public Testsubject getTestsubject() {

@@ -1,9 +1,23 @@
 <html t:type="layout" t:pageTitle="New Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
         <br/>
         <br />
-       <div id="topicform">
-           <t:form>
+       <div id="topic">
+           <t:form t:id="topicform">
+               
            <table>
+               <tr>
+                   <t:errors />
+               </tr>
+               <tr>
+                     <td align="left">
+                            <select t:id="testsubject" t:type="ck/BeanSelect"
+                            list="testsubjects"
+                            labelField="literal:name"
+                            valueField="literal:id"
+                            value="testsubject"
+                            t:label="Section"/>
+                    </td>
+               </tr>
                <tr>
                    <td>
                    <input type="text" t:type="TextField" t:id="fName" t:value="fName" />

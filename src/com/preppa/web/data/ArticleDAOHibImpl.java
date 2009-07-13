@@ -22,6 +22,7 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
     {
         super(logger, session);
     }
+    @Override
     public Article findById(Integer id) {
         SQLString sqlString = new SQLString("FROM Article articles");
         if(id != null)
@@ -40,6 +41,7 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
 
     }
 
+    @Override
     public Article findByTitle(String title) {
         SQLString sqlString = new SQLString("FROM Article articles");
         if(title != null)
@@ -58,6 +60,7 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
 
     }
 
+    @Override
     public List<Article>  findBytestsubject_id(Integer id) {
         SQLString sqlString = new SQLString("FROM Article articles");
         if(id != null)
@@ -68,6 +71,7 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
         return findByQuery(sqlString.toString());
     }
 
+    @Override
     public List<Article> findByPartialName(String partialName) {
         SQLString sqlString = new SQLString("FROM Article a");
         if(partialName != null)
