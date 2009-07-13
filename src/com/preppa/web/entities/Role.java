@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.envers.Audited;
 import org.springframework.security.GrantedAuthority;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.security.GrantedAuthority;
  * @author Ulrich St&auml;rk -- newtonik
  */
 @Entity
+@Audited
 public class Role implements GrantedAuthority, Serializable
 {
     private static final long serialVersionUID = -117212611936641518L;

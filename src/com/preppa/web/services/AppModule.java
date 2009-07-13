@@ -33,11 +33,12 @@ import com.preppa.web.data.UserProfileDAO;
 import com.preppa.web.data.UserProfileDAOHibImpl;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
-import com.preppa.web.services.SecurityModule;
 import com.preppa.web.services.impl.PassageServiceImpl;
 import java.io.IOException;
 
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.hibernate.HibernateConfigurer;
+import org.apache.tapestry5.hibernate.HibernateConfigurer;
 import org.apache.tapestry5.hibernate.HibernateTransactionDecorator;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -266,4 +267,5 @@ public final class AppModule {
     {
         return decorator.build(serviceInterface, delegate, serviceId);
     }
+
 }

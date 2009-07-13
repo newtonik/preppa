@@ -21,12 +21,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.envers.Audited;
 
 /**
  *
  * @author newtonik
  */
 @Entity
+@Audited
 public class Topic implements Serializable {
     private static final long serialVersionUID = 1L;
     @NonVisual
@@ -100,7 +102,6 @@ public class Topic implements Serializable {
      * @return the articles
      */
     @ManyToMany(targetEntity = Article.class)
-    @JoinTable(name = "ArticleTopic", joinColumns = {@JoinColumn(name = "topicId")}, inverseJoinColumns = {@JoinColumn(name = "articleId")})
     public Set<Article> getArticles() {
         return articles;
     }

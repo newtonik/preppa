@@ -21,7 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.hibernate.annotations.Cascade;
+import org.hibernate.envers.Audited;
 
 /**
  *
@@ -30,6 +30,7 @@ import org.hibernate.annotations.Cascade;
 @Entity
 @Table(name = "questiontype")
 @NamedQueries({@NamedQuery(name = "Questiontype.findById", query = "SELECT q FROM Questiontype q WHERE q.id = :id"), @NamedQuery(name = "Questiontype.findByName", query = "SELECT q FROM Questiontype q WHERE q.name = :name"), @NamedQuery(name = "Questiontype.findByCreatedAt", query = "SELECT q FROM Questiontype q WHERE q.createdAt = :createdAt"), @NamedQuery(name = "Questiontype.findByUpdatedAt", query = "SELECT q FROM Questiontype q WHERE q.updatedAt = :updatedAt")})
+@Audited
 public class Questiontype implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

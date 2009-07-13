@@ -6,23 +6,21 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.envers.Audited;
 
 /**
  *
  * @author nwt
  */
 @Entity
+@Audited
 public class ExampleSentence implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

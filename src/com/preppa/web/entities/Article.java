@@ -37,6 +37,7 @@ import org.hibernate.envers.Audited;
  */
 @Entity
 @Audited
+
 public class Article implements Serializable {
     private static final long serialVersionUID = 1L;
    

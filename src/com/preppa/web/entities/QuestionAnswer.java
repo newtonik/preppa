@@ -14,12 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.envers.Audited;
 
 /**
  *
  * @author nwt
  */
 @Entity
+@Audited
 public class QuestionAnswer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

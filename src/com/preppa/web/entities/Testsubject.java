@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,6 +25,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.envers.Audited;
 
 /**
  *
@@ -34,8 +34,8 @@ import org.apache.tapestry5.beaneditor.NonVisual;
 @Entity
 @Table(name = "testsubject", catalog = "preppa_tapestry", schema = "")
 @NamedQueries({@NamedQuery(name = "Testsubject.findById", query = "SELECT t FROM Testsubject t WHERE t.id = :id"), @NamedQuery(name = "Testsubject.findByName", query = "SELECT t FROM Testsubject t WHERE t.name = :name"), @NamedQuery(name = "Testsubject.findByCreatedAt", query = "SELECT t FROM Testsubject t WHERE t.createdAt = :createdAt"), @NamedQuery(name = "Testsubject.findByUpdatedAt", query = "SELECT t FROM Testsubject t WHERE t.updatedAt = :updatedAt")})
+@Audited
 public class Testsubject implements Serializable {
-    private static final long serialVersionUID = 1L;
   
     private Integer id;    
     private String name;

@@ -26,12 +26,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.envers.Audited;
 
 /**
  *
  * @author nwt
  */
 @Entity
+@Audited
 public class ShortDualPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

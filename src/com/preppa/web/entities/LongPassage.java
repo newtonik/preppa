@@ -26,6 +26,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.envers.Audited;
 
 
 /**
@@ -33,6 +34,7 @@ import org.apache.tapestry5.beaneditor.NonVisual;
  * @author nwt
  */
 @Entity
+@Audited
 public class LongPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
+import org.hibernate.envers.Audited;
 
 /**
  *
@@ -24,6 +25,7 @@ import org.apache.tapestry5.beaneditor.Validate;
  */
 @Entity
 @Table(name = "dictionaryword", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
+@Audited
 public class DictionaryWord implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -17,6 +17,7 @@ import javax.persistence.Transient;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
+import org.hibernate.envers.Audited;
 import org.springframework.security.GrantedAuthority;
 import org.springframework.security.GrantedAuthorityImpl;
 import org.springframework.security.userdetails.UserDetails;
@@ -28,6 +29,7 @@ import org.springframework.security.userdetails.UserDetails;
  * @author  newtonik
  */
 @Entity
+@Audited
 public class User implements UserDetails, Serializable
 {
     private static final long serialVersionUID = 4068206679084877888L;
