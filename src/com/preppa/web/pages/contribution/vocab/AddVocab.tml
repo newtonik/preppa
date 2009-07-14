@@ -9,6 +9,8 @@
                   <input type="submit" value="Get Definitions"/>
                   <br/>
                   <br/>
+                  <br/>
+                  <br/>
               </table>
           </t:form>
            Can't find your word? Enter a word <t:pagelink t:page="contribution/vocab/new">here</t:pagelink>

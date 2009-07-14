@@ -83,7 +83,7 @@
                    <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
-                        <input type="button" onclick="window.location='../../preppa/Index'; return false;" value="Cancel"></input>
+                        <input type="button" class="lbOn" t:page="contribution/tag/newtagpage" value="Cancel"></input>
                     </td>
 
                  </tr>

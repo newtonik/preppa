@@ -13,6 +13,7 @@ package com.preppa.web.pages.user;
 import com.preppa.web.data.UserProfileDAO;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserProfile;
+import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
@@ -55,6 +56,6 @@ public class CreateProfileUser {
          userprofile.setUserId(user.getId());
          userprofileDAO.doSave(userprofile);
 
-         return ShowUser.class;
+         return Index.class;
     }
 }

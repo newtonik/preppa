@@ -1,12 +1,18 @@
 <html t:type="layout" t:pageTitle="${user.firstName}'s Page" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <body>
   <h3>${user.username}</h3>
-  <img src="${asset:context:/images/placeholder.jpg}" align="left"/>
+  <t:if t:test="imageexist">
+  <t:pagelink t:page="user/upload"><img src="${pathstring}" align="left" width="85" height="100"/></t:pagelink>
+  <t:parameter name ="else">
+  <t:pagelink t:page="user/upload"><img src="${asset:context:/images/placeholder.jpg}" align="left"/></t:pagelink>
+  </t:parameter>
+  </t:if>
   Name: ${user.firstName}  ${user.LastName}
   <t:if t:test="isprofile">
   <br>Activities: ${userprofile.activities}</br>
   <br>About Me: ${userprofile.aboutme} </br>
   <br>Interests: ${userprofile.interests} </br>
+  <br><a href="#" t:type="pageLink" t:page="user/editprofile" t:context="userprofile.id">Edit Profile</a></br>
   <t:parameter name="else">
   <br>Edit your Profile <t:pagelink t:page="user/createprofile">Here</t:pagelink></br>
   </t:parameter>
