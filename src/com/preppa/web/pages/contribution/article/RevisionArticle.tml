@@ -1,17 +1,14 @@
-<html t:type ="layout" t:pageTitle="${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type ="layout" t:pageTitle="${article.title} -- Revision ${revisionNumber}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
 
-        <div align="right">
-            <a href="#" t:type="pagelink" t:context="${article.id}" t:page="contribution/article/revisions"> History </a>
-        </div>
         <h2>
            ${article.title}
         </h2>
         <div id="author">
-            
+
              written by ${authorname}
-            
+
         </div>
         <div id="author-time">
             Created at ${article.createdAt}

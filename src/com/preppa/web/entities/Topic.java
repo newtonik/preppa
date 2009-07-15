@@ -35,7 +35,7 @@ public class Topic implements Serializable {
     private Integer id;
     private String name;
 
-    private Set<Article> articles;
+   
     private Testsubject testsubject;
     @NonVisual
     private Date createdAt;
@@ -98,21 +98,7 @@ public class Topic implements Serializable {
         this.name = name;
     }
 
-    /**
-     * @return the articles
-     */
-    @ManyToMany(targetEntity = Article.class)
-    public Set<Article> getArticles() {
-        return articles;
-    }
-
-    /**
-     * @param articles the articles to set
-     */
-    public void setArticles(Set<Article> articles) {
-        this.articles = articles;
-    }
-
+   
     /**
      * @return the createdAt
      */

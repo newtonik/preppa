@@ -53,6 +53,8 @@ import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
 import org.chenillekit.mail.ChenilleKitMailConstants;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.reader.AuditReaderImpl;
 import org.slf4j.Logger;
 
 
@@ -95,6 +97,7 @@ public final class AppModule {
         //binder.bind(EmailService.class, EmailServiceImpl.class);
         binder.bind(TagDAO.class, TagDAOHibImpl.class);
         binder.bind(PassageService.class, PassageServiceImpl.class);
+        binder.bind(AuditReader.class, AuditReaderImpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 

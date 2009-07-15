@@ -133,7 +133,6 @@ public class CreateArticle {
          article.setTestsubject(testsubject);
          article.setTeaser(fTitle);
          article.setSources(fSource);
-         article.setTags(fTag);
 
 
     

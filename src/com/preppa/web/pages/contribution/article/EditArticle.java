@@ -102,7 +102,6 @@ public class EditArticle {
            this.fBody = article.getBody();
            this.fSource = article.getSources();
            this.fTitle = article.getTitle();
-           this.fTag = article.getTags();
            this.addedTopics = article.getTopics();
            this.addedTags = article.getTaglist();
            this.testsubject = article.getTestsubject();
@@ -126,8 +125,7 @@ public class EditArticle {
          article.setTestsubject(testsubject);
          article.setTeaser(fTitle);
          article.setSources(fSource);
-         article.setTags(fTag);
-
+         
          for(Topic e: addedTopics) {
             if(!(article.getTopics().contains(e)))
             {

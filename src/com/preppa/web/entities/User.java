@@ -29,7 +29,6 @@ import org.springframework.security.userdetails.UserDetails;
  * @author  newtonik
  */
 @Entity
-@Audited
 public class User implements UserDetails, Serializable
 {
     private static final long serialVersionUID = 4068206679084877888L;
@@ -74,6 +73,7 @@ public class User implements UserDetails, Serializable
     /**
      * @return the email
      */
+    @Audited
     @Column(unique=true, nullable = false)
     @Validate("required")
     public String getEmail() {
@@ -84,6 +84,7 @@ public class User implements UserDetails, Serializable
 
     @Column(name = "firstName")
     @Validate("required")
+    @Audited
     public String getFirstName() {
         return firstName;
     }
@@ -94,6 +95,7 @@ public class User implements UserDetails, Serializable
 
     @Column(name = "lastName")
     @Validate("required")
+    @Audited
     public String getLastName() {
         return lastName;
     }
@@ -143,6 +145,7 @@ public class User implements UserDetails, Serializable
      */
     @NonVisual
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Audited
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -161,6 +164,7 @@ public class User implements UserDetails, Serializable
      */
     @NonVisual
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Audited
     public Date getUpdatedAt() {
         return updatedAt;
     }

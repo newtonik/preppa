@@ -27,7 +27,6 @@ private User author;
 @Property
 private String authorname;
 void onActivate(int id) {
-       if (this.article == null) {
             this.article = articleDAO.findById(id);
             this.author = article.getUser();
             if(author != null) {
@@ -37,7 +36,6 @@ void onActivate(int id) {
             {
                 authorname = "unknown dude";
             }
-        }
             
  }
 

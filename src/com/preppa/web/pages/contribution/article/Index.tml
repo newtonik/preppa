@@ -11,7 +11,6 @@
                     </div>
                     <div class="tags">
                         <h3>Tags:</h3>
-                        ${article.tags}
                     </div>
                     <div class="sources">
                         <h3>Sources:</h3>

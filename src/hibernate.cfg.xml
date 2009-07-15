@@ -10,6 +10,7 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.connection.password">preppa</property>
+    <property name="current_session_context_class">thread</property>
   
     <listener type="post-insert" class="org.hibernate.envers.event.AuditEventListener" />
     <listener type="post-update" class="org.hibernate.envers.event.AuditEventListener" />

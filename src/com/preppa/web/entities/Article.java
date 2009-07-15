@@ -36,8 +36,6 @@ import org.hibernate.envers.Audited;
  * @author newtonik
  */
 @Entity
-@Audited
-
 public class Article implements Serializable {
     private static final long serialVersionUID = 1L;
    
@@ -48,8 +46,6 @@ public class Article implements Serializable {
     private String teaser;
     private Testsubject testsubject;
     private String sources;
-    private String tags;
-    private String links;
     private Date createdAt;
     private Date updatedAt;
     private User user;
@@ -68,6 +64,7 @@ public class Article implements Serializable {
     }
 
     @Validate("required")
+    @Audited
     public String getTitle() {
         return title;
     }
@@ -82,6 +79,7 @@ public class Article implements Serializable {
     @Basic(optional = true)
     @ManyToOne(targetEntity=Testsubject.class)
     @JoinColumn(name="testsubject_id")
+      @Audited
     public Testsubject getTestsubject() {
         return testsubject;
     }
@@ -94,6 +92,7 @@ public class Article implements Serializable {
     }
     @Lob
     @Validate("required")
+    @Audited
     @Column( nullable = false)
     public String getBody() {
         return body;
@@ -105,6 +104,7 @@ public class Article implements Serializable {
 
 
     @Lob
+    @Audited
     public String getSources() {
         return sources;
     }
@@ -115,26 +115,7 @@ public class Article implements Serializable {
         /**
      * @return the links
      */
-    public String getLinks() {
-        return links;
-    }
-
-    /**
-     * @param links the links to set
-     */
-    public void setLinks(String links) {
-        this.links = links;
-    }
-
-
-    @Lob
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
+   
     @NonVisual
     @Basic(optional = false)
     @Column(name = "created_at", nullable=false)
@@ -143,6 +124,7 @@ public class Article implements Serializable {
         return createdAt;
     }
 
+
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
@@ -150,6 +132,7 @@ public class Article implements Serializable {
     @Basic(optional = false)
     @Column(name = "updated_at", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
+    @Audited
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -161,6 +144,7 @@ public class Article implements Serializable {
     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
+    @Audited
     public User getUser()
     {
         return user;
@@ -223,7 +207,7 @@ public class Article implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="topicId")
     })
-
+      @Audited
     public List<Topic> getTopics() {
         return topics;
     }
@@ -246,6 +230,7 @@ public class Article implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="Tag_id")
     })
+    @Audited
     public List<Tag> getTaglist() {
         return taglist;
     }

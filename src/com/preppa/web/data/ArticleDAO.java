@@ -18,4 +18,8 @@ public interface ArticleDAO extends GenericDAO< Article, Integer> {
     List<Article>  findBytestsubject_id(Integer id);
     List<Article> findByPartialName(String partialName);
     Article findByTitle(String title);
+
+    //Revisions information
+    List<Article> findAllArticleRevisions(Integer articleId);
+    Article findArticleByRevision(Integer articleId, Integer revisionId);
 }

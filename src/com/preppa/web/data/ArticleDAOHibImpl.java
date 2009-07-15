@@ -11,6 +11,12 @@ import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
 import java.util.List;
+import org.apache.tapestry5.hibernate.HibernateSessionManager;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.hibernate.engine.SessionImplementor;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+
 
 /**
  *
@@ -18,9 +24,16 @@ import java.util.List;
  */
 public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> implements ArticleDAO {
 
+    @Inject
+    private HibernateSessionManager sessionManger;
+    @Inject
+    private AuditReader reader;
+    
     public ArticleDAOHibImpl(Logger logger, Session session)
     {
+        
         super(logger, session);
+        
     }
     @Override
     public Article findById(Integer id) {
@@ -80,6 +93,26 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
         }
 
         return (List <Article>) findByQuery(sqlString.toString());
+    }
+
+    @Override
+    public List<Article> findAllArticleRevisions(Integer articleId) {
+        reader = AuditReaderFactory.get(sessionManger.getSession());
+
+        return null;
+    }
+
+    @Override
+    public Article findArticleByRevision(Integer articleId, Integer revisionId) {
+        //Get Session
+        
+
+        
+        reader = AuditReaderFactory.get(sessionManger.getSession());
+
+        Article result = reader.find(Article.class, articleId, revisionId);
+
+        return result;
     }
 
 }
