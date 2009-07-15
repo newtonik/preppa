@@ -1,10 +1,32 @@
 <html t:type="layout" t:pageTitle="All revisions for ${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div>
-        <t:loop t:source="revisions" t:value="revision">
-            <a href="#" t:type="pagelink" t:context="${article.id}/${revision}" t:page="contribution/article/revision"> ${revision} </a>
-            <br />
-        </t:loop>
+        <table>
+            <tr>
+            <th>
+                Revision Number
+            </th>
+             <th>
+               Last Edited
+            </th>
+            <th>
+                User
+            </th>
+            </tr>
+        <tr t:type="loop" source="revisions" value="revision">
+            <td>
+            <a href="#" t:type="pagelink" t:context="${article.id}/${revision.revisionnumber}" t:page="contribution/article/revision"> ${revision.revisionnumber} </a>
+            </td>
+            <td>
+                ${revision.revisiontime}
+            </td>
+            <td>
+                <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
+
+            </td>
+          
+        </tr>
+        </table>
     </div>
 
 </html>
