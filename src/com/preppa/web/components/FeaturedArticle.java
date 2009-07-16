@@ -30,13 +30,15 @@ public class FeaturedArticle {
     @Property
     private Article article = articleDAO.findById(index);
 
+    
     void FeaturedArticle() {
         Calendar calendar = Calendar.getInstance();
         index = calendar.get(Calendar.DAY_OF_MONTH);
-        index = 1;
+         index = 1;
     }
 
     void onActivate() {
+        this.index = 1;
         article = articleDAO.findById(index);
     }
 

@@ -1,5 +1,7 @@
 <html t:type="layout" t:pageTitle="All revisions for ${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+   <div align="right">
+            <a href="#" t:type="pagelink" t:context="${article.id}" t:page="contribution/article/show"> Current </a>
+   </div>
     <div>
         <table>
             <tr>

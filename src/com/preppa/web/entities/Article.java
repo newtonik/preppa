@@ -28,6 +28,11 @@ import org.apache.tapestry5.beaneditor.Validate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
 
 
@@ -36,6 +41,7 @@ import org.hibernate.envers.Audited;
  * @author newtonik
  */
 @Entity
+@Indexed
 public class Article implements Serializable {
     private static final long serialVersionUID = 1L;
    
@@ -53,6 +59,7 @@ public class Article implements Serializable {
     @Id
     @NonVisual
     @Basic(optional = false)
+    @DocumentId
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, length = 20)
     public Integer getId() {
@@ -65,6 +72,7 @@ public class Article implements Serializable {
 
     @Validate("required")
     @Audited
+    @Field(index=Index.TOKENIZED, store=Store.NO)
     public String getTitle() {
         return title;
     }
@@ -93,6 +101,7 @@ public class Article implements Serializable {
     @Lob
     @Validate("required")
     @Audited
+    @Field(index=Index.TOKENIZED, store=Store.NO)
     @Column( nullable = false)
     public String getBody() {
         return body;
