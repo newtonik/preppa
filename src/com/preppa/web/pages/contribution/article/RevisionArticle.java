@@ -4,6 +4,7 @@ import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.User;
+import java.util.Map;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -37,14 +38,17 @@ public class RevisionArticle {
     @Inject
     private UserObDAO userDAO;
 
-    void onActivate(Integer articleId, Integer revId) {
-        System.out.println("ArticleId is " + articleId + " RevId is " + revId );
-        this.articleId = articleId;
+    void onActivate(Integer artId, Integer revId) {
+       // Map params;
+       //Integer artId = (Integer) params.get("artId");
+       //Integer revId = (Integer)params.get("revId");
+        System.out.println("ArticleId is " + artId + " RevId is " + revId );
+        this.articleId = artId;
         
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
         this.revisionNumber = revId;
 
-        this.article = reader.find(Article.class, articleId, revId);
+        this.article = reader.find(Article.class, artId, revId);
         //author = reader.find(User.class, article.getUser().getId(), revId);
         //this.article = articleDAO.findArticleByRevision(articleId, revId);
         if(article != null) {
@@ -59,6 +63,8 @@ public class RevisionArticle {
             }
         }
     }
+
+
 
     Integer onPassivate() {
 

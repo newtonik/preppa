@@ -3,6 +3,8 @@ package com.preppa.web.utils;
 
 import com.preppa.web.entities.User;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Helper class to help the display of Revisions on web pages
@@ -16,6 +18,9 @@ public class Revision {
     private String username;
     private Integer userid;
     private Date revisionTime;
+    private Map<String, Integer> revMap = new HashMap<String, Integer>();
+
+
 
     /**
      * @return the name
@@ -101,5 +106,19 @@ public class Revision {
      */
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    /**
+     * @return the revMap
+     */
+    public Map<String, Integer> getRevMap() {
+        return revMap;
+    }
+
+    /**
+     * @param revMap the revMap to set
+     */
+    public void setRevMap(Map<String, Integer> revMap) {
+        this.revMap = revMap;
     }
 }

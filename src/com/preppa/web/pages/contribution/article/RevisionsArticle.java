@@ -7,6 +7,7 @@ import com.preppa.web.entities.User;
 import com.preppa.web.utils.Revision;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
@@ -81,6 +82,8 @@ public class RevisionsArticle {
             User u = userDAO.findById((Integer) obj[2]);
             result.setUser(u);
             result.setRevisionTime((Date) (obj[3]));
+            result.getRevMap().put("revId", result.getRevisionNumber());
+            result.getRevMap().put("artId", article.getId());
             revisions.add(result);
             count++;
         }

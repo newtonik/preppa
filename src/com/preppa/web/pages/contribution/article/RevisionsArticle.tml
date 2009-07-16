@@ -17,7 +17,7 @@
             </tr>
         <tr t:type="loop" source="revisions" value="revision">
             <td>
-            <a href="#" t:type="pagelink" t:context="${article.id}/${revision.revisionnumber}" t:page="contribution/article/revision"> ${revision.revisionnumber} </a>
+            <a href="#" t:type="pagelink" t:context="${revision.revMap}" t:page="contribution/article/revision"> ${revision.revisionnumber} </a>
             </td>
             <td>
                 ${revision.revisiontime}

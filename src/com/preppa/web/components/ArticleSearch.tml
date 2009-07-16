@@ -6,5 +6,4 @@
                   <br/>
 </t:form>
 
-    <a href="#" t:type="pagelink" t:page="contribution/article/search"> Search Page</a>
 </t:container>

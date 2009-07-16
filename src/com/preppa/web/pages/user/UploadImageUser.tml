@@ -1,4 +1,4 @@
-<html t:type="layout" t:pageTitle="New User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="New User Image" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <t:form>
         <t:errors/>

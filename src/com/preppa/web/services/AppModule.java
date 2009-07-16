@@ -33,13 +33,14 @@ import com.preppa.web.data.UserProfileDAO;
 import com.preppa.web.data.UserProfileDAOHibImpl;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
+import com.preppa.web.services.impl.MapValueEncoder;
 import com.preppa.web.services.impl.PassageServiceImpl;
 import java.io.IOException;
 
+import java.util.Map;
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.hibernate.HibernateConfigurer;
-import org.apache.tapestry5.hibernate.HibernateConfigurer;
 import org.apache.tapestry5.hibernate.HibernateTransactionDecorator;
+import org.apache.tapestry5.internal.services.GenericValueEncoderFactory;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -52,6 +53,8 @@ import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
+import org.apache.tapestry5.services.ValueEncoderFactory;
+import org.apache.tapestry5.upload.services.UploadSymbols;
 import org.chenillekit.mail.ChenilleKitMailConstants;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.reader.AuditReaderImpl;
@@ -148,6 +151,9 @@ public final class AppModule {
         configuration.add(ChenilleKitMailConstants.SMTP_SSL, "true");
         configuration.add(ChenilleKitMailConstants.SMTP_SSLPORT, "465");
         configuration.add(ChenilleKitMailConstants.SMTP_TLS, "true");
+        configuration.add(UploadSymbols.FILESIZE_MAX, "1000000"  );
+        configuration.add(UploadSymbols.REPOSITORY_LOCATION, "resources"  );
+        
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");
         //configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
@@ -215,6 +221,7 @@ public final class AppModule {
             @InjectService("RequestGlobals") final RequestGlobals requestGlobals) {
         return new RequestFilter() {
 
+            @Override
             public boolean service(Request request, Response response, RequestHandler handler)
                     throws IOException {
                 requestGlobals.getHTTPServletRequest().setCharacterEncoding("UTF-8");
@@ -258,6 +265,12 @@ public final class AppModule {
     }
 
 
+
+        public static void contributeValueEncoderSource(MappedConfiguration<Class,
+            ValueEncoderFactory> configuration)  {
+                configuration.add(Map.class, new GenericValueEncoderFactory<Map>(new
+                        MapValueEncoder()));
+        }
 
     
     public static void contributeHibernateEntityPackageManager(Configuration<String> configuration) {

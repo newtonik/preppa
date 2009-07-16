@@ -37,8 +37,8 @@ public class ShowUser {
 
 
   /*public String getImageURL() {
-      String classLocation = UploadUser.class.getName().replace('.', '/') + ".class";
-      ClassLoader loader = UploadUser.class.getClassLoader();
+      String classLocation = UploadImageUser.class.getName().replace('.', '/') + ".class";
+      ClassLoader loader = UploadImageUser.class.getClassLoader();
       String copyLocation = loader.getResource(classLocation).toString();
       copyLocation = copyLocation.substring(8, 73); // Remove "file" from the string
       copyLocation = this.formatSpace(copyLocation);
@@ -46,8 +46,8 @@ public class ShowUser {
   }*/
 
   public boolean getImageExist() {
-      String classLocation = UploadUser.class.getName().replace('.', '/') + ".class";
-      ClassLoader loader = UploadUser.class.getClassLoader();
+      String classLocation = UploadImageUser.class.getName().replace('.', '/') + ".class";
+      ClassLoader loader = UploadImageUser.class.getClassLoader();
       String copyLocation = loader.getResource(classLocation).toString();
       copyLocation = copyLocation.substring(8, 73); // Remove "file" from the string
       copyLocation = this.formatSpace(copyLocation);

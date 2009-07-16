@@ -27,7 +27,7 @@ import org.springframework.security.annotation.Secured;
  * @author Jan Jan
  */
     @Secured("ROLE_USER")
-    public class UploadUser
+    public class UploadImageUser
     {
         @ApplicationState
         private User user;
@@ -48,14 +48,18 @@ import org.springframework.security.annotation.Secured;
             catch(Exception e) {
                 e.printStackTrace();
             }
-            String classLocation = UploadUser.class.getName().replace('.', '/') + ".class";
-            ClassLoader loader = UploadUser.class.getClassLoader();
+            String classLocation = UploadImageUser.class.getName().replace('.', '/') + ".class";
+            ClassLoader loader = UploadImageUser.class.getClassLoader();
             String copyLocation = loader.getResource(classLocation).toString();
             copyLocation = copyLocation.substring(8, 73); // Remove "file" from the string
             copyLocation = this.formatSpace(copyLocation);
             System.out.println(copyLocation + "images/" + user.getId() + ".jpg");
             File copied = new File(copyLocation + "images/" + user.getId() + ".jpg");
             file.write(copied);
+             // File copied = new File("web/images/" + file.getFileName());
+
+          //  file.write(copied);
+
         }
 
         private String formatSpace(String s) {

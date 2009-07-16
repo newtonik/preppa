@@ -41,7 +41,7 @@ public class HomeArticle {
 //            fullTextSession.index(a);
 //        }
 //
-  //      tx.commit();
+//        tx.commit();
         //session.close();
     }
 }
