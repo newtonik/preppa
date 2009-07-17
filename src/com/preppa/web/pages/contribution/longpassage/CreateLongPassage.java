@@ -11,6 +11,7 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.User;
 import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
@@ -19,6 +20,7 @@ import java.util.List;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -38,7 +40,8 @@ public class CreateLongPassage {
 
     @Property
     private LongPassage longpassage;
-   
+    @ApplicationState
+    private User user;
     @Inject
     private LongPassageDAO longpassageDAO;
     @Inject
@@ -64,6 +67,8 @@ public class CreateLongPassage {
     private String fSource;
     @Property
     private String fTag;
+    @Property
+    private String fSummary;
     @InjectPage
     private ShowLongPassage showpassage;
     @Component
@@ -89,9 +94,9 @@ public class CreateLongPassage {
         // passageDAO.doSave(p);
          longpassage.setPassage(fBody);
          longpassage.setSources(fSource);
-         longpassage.setTags(fTag);
          longpassage.setTitle(fTitle);
-
+         longpassage.setSummary(fSummary);
+         longpassage.setUser(user);
 
          for(Tag t: addedTags) {
             if(!(longpassage.getTaglist().contains(t)))

@@ -12,6 +12,7 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.User;
 import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
@@ -21,6 +22,7 @@ import java.util.List;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -39,9 +41,10 @@ import org.springframework.security.annotation.Secured;
  */
 @Secured("ROLE_USER")
 public class CreateDualLongPassage {
- @Property
+    @Property
     private LongDualPassage longDualpassage;
-
+    @ApplicationState
+    private User user;
     @Inject
     private LongDualPassageDAO longDualpassageDAO;
     @Inject
@@ -69,6 +72,8 @@ public class CreateDualLongPassage {
     private String fSource;
     @Property
     private String fTag;
+    @Property
+    private String fSummary;
     @InjectPage
     private ShowDualLongPassage showdualpasage;
     @Component
@@ -95,7 +100,7 @@ public class CreateDualLongPassage {
          longDualpassage.setPassagetwo(fBodytwo);
          longDualpassage.setTitle(fTitle);
          longDualpassage.setSource(fSource);
-         longDualpassage.setTags(fTag);
+         longDualpassage.setSummary(fSummary);
          if(fBodyone.length() > 100) {
             longDualpassage.setPassagetype(PassageType.LONG_DUAL);
          }
@@ -119,7 +124,7 @@ public class CreateDualLongPassage {
 
          longDualpassage.setCreatedAt(now);
          longDualpassage.setUpdatedAt(now);
-
+         longDualpassage.setUser(user);
 
 
          longDualpassageDAO.doSave(longDualpassage);

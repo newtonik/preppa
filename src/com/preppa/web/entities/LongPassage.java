@@ -22,10 +22,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
 
 
@@ -34,48 +37,26 @@ import org.hibernate.envers.Audited;
  * @author nwt
  */
 @Entity
-@Audited
 public class LongPassage implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NonVisual
     private Integer id;
-    @Lob
-    private String tags;
-    @Lob
     private String sources;
-    @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     private List<Question> questions = new ArrayList<Question>();
-     @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Tag.class)
-     @JoinTable(name = "LongPassage_Tag",
-    joinColumns = {
-      @JoinColumn(name="longpassage_id")
-        },
-    inverseJoinColumns = {
-      @JoinColumn(name="tag_id")
-    })
     private List<Tag> taglist = new ArrayList<Tag>();
-    @Basic(optional = false)
-    @NonVisual
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @NonVisual
-    @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @Column(nullable = false)
     private Boolean complete = false;
     private PassageType passagetype;
-    //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity=Passage.class, fetch=FetchType.EAGER)
-    //@JoinColumn(name = "passage_id")
-    @Lob
+    private String summary;
+    private User user;
     private String passage;
     private String title;
-    @Column(nullable=false, columnDefinition="bigint(20) default 0")
     private Integer numQuestions = 0;
+
+    
+    @Id
+    @NonVisual
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
@@ -110,22 +91,10 @@ public class LongPassage implements Serializable {
     }
 
     /**
-     * @return the tags
-     */
-    public String getTags() {
-        return tags;
-    }
-
-    /**
-     * @param tags the tags to set
-     */
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    /**
      * @return the sources
      */
+    @Lob
+    @Audited
     public String getSources() {
         return sources;
     }
@@ -140,6 +109,10 @@ public class LongPassage implements Serializable {
     /**
      * @return the createdAt
      */
+    @Basic(optional = false)
+    @Column(name = "created_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @NonVisual
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -154,6 +127,11 @@ public class LongPassage implements Serializable {
     /**
      * @return the updatedAt
      */
+    @Basic(optional = false)
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @NonVisual
+    @Audited
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -168,6 +146,8 @@ public class LongPassage implements Serializable {
     /**
      * @return the passage
      */
+    @Lob
+    @Audited
     public String getPassage() {
         return passage;
     }
@@ -181,6 +161,7 @@ public class LongPassage implements Serializable {
     public void setTitle(String title){
         this.title = title;
     }
+    @Audited
     public String getTitle() {
         return title;
     }
@@ -188,6 +169,9 @@ public class LongPassage implements Serializable {
     /**
      * @return the taglist
      */
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    @JoinTable(name = "LongPassage_Tag", joinColumns = {@JoinColumn(name = "longpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    @Audited
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -202,13 +186,12 @@ public class LongPassage implements Serializable {
     /**
      * @return the complete
      */
+    @Column(nullable = false)
+    @Audited
     public Boolean getComplete() {
         return complete;
     }
-    public Boolean isComplete() {
-        return complete;
-    }
-
+    
     /**
      * @param complete the complete to set
      */
@@ -219,6 +202,7 @@ public class LongPassage implements Serializable {
     /**
      * @return the passagetype
      */
+    @Audited
     public PassageType getPassagetype() {
         return passagetype;
     }
@@ -233,6 +217,8 @@ public class LongPassage implements Serializable {
     /**
      * @return the numQuestions
      */
+    @Column(nullable = false, columnDefinition = "bigint(20) default 0")
+    @Audited
     public Integer getNumQuestions() {
         return numQuestions;
     }
@@ -246,6 +232,8 @@ public class LongPassage implements Serializable {
         /**
      * @return the questions
      */
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Question.class)
+    @Audited
     public List<Question> getQuestions() {
         return questions;
     }
@@ -255,6 +243,41 @@ public class LongPassage implements Serializable {
      */
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    /**
+     * @return the user
+     */
+     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
+    @Fetch(value = FetchMode.JOIN)
+    @JoinColumn(name = "user_id")
+    @Audited
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the summary
+     */
+    @Lob
+    @Audited
+    @Column(nullable=false)
+    public String getSummary() {
+        return summary;
+    }
+
+    /**
+     * @param summary the summary to set
+     */
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
 }
