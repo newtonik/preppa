@@ -30,18 +30,18 @@ public class HomeArticle {
     private Session session;
     void onActivate()
     {
-//        session = sessionManager.getSession();
-//        FullTextSession fullTextSession = Search.getFullTextSession(session);
-//        Transaction tx = fullTextSession.beginTransaction();
-//
-//        List<Article> articles = session.createQuery("from Article as article").list();
-//
-//        for(Article a: articles)
-//        {
-//            fullTextSession.index(a);
-//        }
-//
-//        tx.commit();
+        session = sessionManager.getSession();
+        FullTextSession fullTextSession = Search.getFullTextSession(session);
+        Transaction tx = fullTextSession.beginTransaction();
+
+        List<Article> articles = session.createQuery("from Article as article").list();
+
+        for(Article a: articles)
+        {
+            fullTextSession.index(a);
+        }
+
+        tx.commit();
         //session.close();
     }
 }

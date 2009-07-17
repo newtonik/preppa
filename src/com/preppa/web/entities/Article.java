@@ -32,6 +32,7 @@ import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
 
 
@@ -216,7 +217,8 @@ public class Article implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="topicId")
     })
-      @Audited
+    @Audited
+    @IndexedEmbedded
     public List<Topic> getTopics() {
         return topics;
     }
@@ -240,6 +242,7 @@ public class Article implements Serializable {
       @JoinColumn(name="Tag_id")
     })
     @Audited
+    @IndexedEmbedded
     public List<Tag> getTaglist() {
         return taglist;
     }
