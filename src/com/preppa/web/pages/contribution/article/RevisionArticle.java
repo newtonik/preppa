@@ -4,7 +4,6 @@ import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.User;
-import java.util.Map;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -38,10 +37,13 @@ public class RevisionArticle {
     @Inject
     private UserObDAO userDAO;
 
-    void onActivate(Integer artId, Integer revId) {
-       // Map params;
-       //Integer artId = (Integer) params.get("artId");
-       //Integer revId = (Integer)params.get("revId");
+    void onActivate(String params) {
+        //Map params;
+        //Integer artId = (Integer) params.get("artId");
+      // Integer revId = (Integer)params.get("revId");
+        String[] tokens = params.split("_");
+        Integer artId = Integer.parseInt(tokens[0]);
+        Integer revId = Integer.parseInt(tokens[1]);
         System.out.println("ArticleId is " + artId + " RevId is " + revId );
         this.articleId = artId;
         

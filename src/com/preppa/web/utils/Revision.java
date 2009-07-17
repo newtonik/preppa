@@ -18,7 +18,7 @@ public class Revision {
     private String username;
     private Integer userid;
     private Date revisionTime;
-    private Map<String, Integer> revMap = new HashMap<String, Integer>();
+    private Map<String, Integer> revMap;
 
 
 

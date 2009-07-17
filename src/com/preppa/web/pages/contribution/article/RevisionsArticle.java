@@ -4,6 +4,7 @@ import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.User;
+import com.preppa.web.services.impl.MapValueEncoder;
 import com.preppa.web.utils.Revision;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,11 +83,15 @@ public class RevisionsArticle {
             User u = userDAO.findById((Integer) obj[2]);
             result.setUser(u);
             result.setRevisionTime((Date) (obj[3]));
+            result.setRevMap(  new HashMap<String, Integer>());
             result.getRevMap().put("revId", result.getRevisionNumber());
             result.getRevMap().put("artId", article.getId());
             revisions.add(result);
             count++;
         }
         System.out.println("Count is " + count);
+    }
+    public MapValueEncoder getMapEncoder(){
+        return new MapValueEncoder();
     }
 }

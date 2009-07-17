@@ -33,6 +33,7 @@ import org.hibernate.search.annotations.Field;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Target;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Fields;
@@ -145,8 +146,9 @@ public class OpenQuestion implements Serializable {
     inverseJoinColumns = {
       @JoinColumn(name="tag_id")
     })
-    @IndexedEmbedded
-    public List<Tag> getTaglist() {
+   @IndexedEmbedded
+   @Target(Tag.class)
+   public List<Tag> getTaglist() {
         return taglist;
     }
 
@@ -172,7 +174,7 @@ public class OpenQuestion implements Serializable {
      */
     @Audited
     @Fields( {
-            @Field(index=Index.TOKENIZED),
+            @Field(index=Index.TOKENIZED, store=Store.NO),
             @Field(name = "title_sort", index=Index.UN_TOKENIZED,
                     store=Store.YES)
     })
@@ -209,7 +211,6 @@ public class OpenQuestion implements Serializable {
     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name="user_id")
-    @Field(index=Index.UN_TOKENIZED, store=Store.YES)
     @Audited
     public User getOwner() {
         return user;
@@ -220,6 +221,13 @@ public class OpenQuestion implements Serializable {
      */
     public void setOwner(User owner) {
         this.user = owner;
+    }
+
+    /**
+     * @param taglist the taglist to set
+     */
+    public void setTaglist(List<Tag> taglist) {
+        this.taglist = taglist;
     }
 
 }

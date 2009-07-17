@@ -1,12 +1,17 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
 
 
 
@@ -21,10 +26,12 @@ public class Tag implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
+    private List<OpenQuestion> openquestions;
 
     public Tag() {
 
     }
+
     public Tag(String name) {
         this.name = name;
     }
@@ -67,6 +74,7 @@ public class Tag implements Serializable {
      * @return the name
      */
     @Column(unique=true)
+    @Field(index=Index.TOKENIZED)
     public String getName() {
         return name;
     }
@@ -76,6 +84,22 @@ public class Tag implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the openquestions
+     */
+    @ContainedIn
+    @ManyToMany(mappedBy="taglist")
+    public List<OpenQuestion> getOpenquestions() {
+        return openquestions;
+    }
+
+    /**
+     * @param openquestions the openquestions to set
+     */
+    public void setOpenquestions(List<OpenQuestion> openquestions) {
+        this.openquestions = openquestions;
     }
 
 }

@@ -84,7 +84,10 @@ public class DualPassageRevisionRevisions {
         lastquestion = true;
         onequestion = true;
     }
-    void onActivate(Integer passId, Integer revId) {
+    void onActivate(String params) {
+        String[] tokens = params.split("_");
+        Integer passId = Integer.parseInt(tokens[0]);
+        Integer revId = Integer.parseInt(tokens[1]);
         System.out.println("PassageId is " + passId + " RevId is " + revId );
         this.passageid = passId;
 

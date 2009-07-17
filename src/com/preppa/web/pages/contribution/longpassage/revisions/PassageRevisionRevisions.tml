@@ -1,4 +1,4 @@
-<html t:type ="layout" t:pageTitle="${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type ="layout" t:pageTitle="${passage.title} Revision" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
 
