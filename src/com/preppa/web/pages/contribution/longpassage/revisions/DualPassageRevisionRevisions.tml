@@ -3,7 +3,7 @@
     <body>
 
            <div align="right">
-            <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/longpassage/revisions/DualPassage"> History </a>
+            <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/longpassage/showdual"> Current </a>
         </div>
         <h2>
            ${passage.title}
@@ -18,7 +18,7 @@
         <p>
              <t:outputraw t:value="${passage.passageone}"/>
         </p>
-       
+
         <p>
              <t:outputraw t:value="${passage.passagetwo}"/>
         </p>
@@ -35,11 +35,11 @@
 
 
          <t:zone t:id="showquestionZone">
-           
+
          </t:zone>
          <br/>
         <t:zone t:id="questionZone">
-                
+
          </t:zone>
 
 

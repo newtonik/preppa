@@ -2,12 +2,20 @@
 
     <body>
 
+
+           <div align="right">
+            <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/longpassage/revisions/Passage"> History </a>
+        </div>
         <h2>
            ${passage.title}
         </h2>
          <div class="author-date">
              ${passage.createdAt}
         </div>
+        <p>
+                <h3> Brief Introduction of Passage </h3>
+             <t:outputraw t:value="${passage.summary}" />
+        </p>
         <p>
              <t:outputraw t:value="${passage.passage}"/>
         </p>

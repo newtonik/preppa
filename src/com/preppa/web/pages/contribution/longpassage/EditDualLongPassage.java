@@ -12,6 +12,7 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.User;
 import com.preppa.web.services.PassageService;
 import java.sql.Timestamp;
 import java.util.LinkedList;
@@ -19,6 +20,7 @@ import java.util.List;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -37,7 +39,8 @@ import org.springframework.security.annotation.Secured;
 public class EditDualLongPassage {
     @Property
     private LongDualPassage longDualpassage;
-
+    @ApplicationState
+    private User user;
     @Inject
     private LongDualPassageDAO longDualpassageDAO;
     @Inject
@@ -65,6 +68,8 @@ public class EditDualLongPassage {
     private String fSource;
     @Property
     private String fTag;
+    @Property
+    private String fSummary;
     @InjectPage
     private ShowDualLongPassage showdualpasage;
     @Component
@@ -82,10 +87,11 @@ public class EditDualLongPassage {
         this.longDualpassage = longDualpassageDAO.findById(id);
         if(longDualpassage != null)
         {
+
                     fBodyone = longDualpassage.getPassageone();
                     fBodytwo = longDualpassage.getPassagetwo();
-                    fTag = longDualpassage.getTags();
                     fSource = longDualpassage.getSource();
+                    fSummary = longDualpassage.getSummary();
                     fTitle = longDualpassage.getTitle();
                     addedTags = longDualpassage.getTaglist();
         }
@@ -103,8 +109,8 @@ public class EditDualLongPassage {
          longDualpassage.setPassagetwo(fBodytwo);
          longDualpassage.setTitle(fTitle);
          longDualpassage.setSource(fSource);
-         longDualpassage.setTags(fTag);
-
+         longDualpassage.setSummary(fSummary);
+         
 
           for(Tag t: addedTags) {
             if(!(longDualpassage.getTaglist().contains(t)))
@@ -117,6 +123,7 @@ public class EditDualLongPassage {
 
          longDualpassage.setUpdatedAt(now);
 
+         longDualpassage.setUser(user);
          longDualpassage.setComplete(true);
 
          longDualpassageDAO.doSave(longDualpassage);

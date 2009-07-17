@@ -12,6 +12,15 @@
                       <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:validate="required" t:label="Title" size="60" />
                       </td>
                  </tr>
+                    <tr>
+                     <td>
+                        <t:label for="fSummary"> Brief Introduction of Passage </t:label>
+                    </td>
+                     <td>
+                         <input t:type="textarea" t:id="fSummary" t:value="fSummary" t:validate="required" />
+
+                     </td>
+                 </tr>
                 <tr>
                     <div id="pass1">
                          <td valign="top" align="right">

@@ -22,10 +22,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
 
 /**
@@ -33,54 +36,27 @@ import org.hibernate.envers.Audited;
  * @author nwt
  */
 @Entity
-@Audited
 public class LongDualPassage implements Serializable {
     private static final long serialVersionUID = 1L;
+   private Integer id;
+
+    private String title;
+    private String source;
+    private Date createdAt;
+    private Date updatedAt;
+    private Boolean complete;
+    private String summary;
+    private String passageone;
+    private List<Question> questions = new ArrayList<Question>();
+    private String passagetwo;
+    private List<Tag> taglist = new ArrayList<Tag>();
+    private PassageType passagetype;
+    private Integer numQuestions;
+    private User user;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String title;
-    @Lob
-    private String tags;
-    @Lob
-    private String source;
-    @Basic(optional = false)
-    @NonVisual
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @NonVisual
-    @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-    @Column(nullable = false)
-    private Boolean complete = false;
-    //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Passage.class, fetch=FetchType.EAGER)
-    //@JoinColumn(name = "passage1_id")
-    @Lob
-    private String passageone;
-    @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
-    private List<Question> questions = new ArrayList<Question>();
-    //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity = Passage.class, fetch=FetchType.EAGER)
-    //@JoinColumn(name = "passage2_id")
-    @Lob
-    private String passagetwo;
-      @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Tag.class)
-     @JoinTable(name = "LongDualPassage_Tag",
-    joinColumns = {
-      @JoinColumn(name="longdualpassage_id")
-        },
-    inverseJoinColumns = {
-      @JoinColumn(name="tag_id")
-    })
-    private List<Tag> taglist = new ArrayList<Tag>();
-    
-    private PassageType passagetype;
-    @Column(nullable=false, columnDefinition="bigint(20) default 0")
-    private Integer numQuestions;
-
-
     public Integer getId() {
         return id;
     }
@@ -117,6 +93,7 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the title
      */
+    @Audited
     public String getTitle() {
         return title;
     }
@@ -127,24 +104,11 @@ public class LongDualPassage implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    /**
-     * @return the tags
-     */
-    public String getTags() {
-        return tags;
-    }
-
-    /**
-     * @param tags the tags to set
-     */
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    /**
+/**
      * @return the source
      */
+    @Lob
+    @Audited
     public String getSource() {
         return source;
     }
@@ -159,6 +123,10 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the createdAt
      */
+    @Basic(optional = false)
+    @NonVisual
+    @Column(name = "created_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -173,6 +141,11 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the updatedAt
      */
+    @NonVisual
+    @Basic(optional = false)
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @Audited
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -187,6 +160,8 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the passageone
      */
+    @Lob
+    @Audited
     public String getPassageone() {
         return passageone;
     }
@@ -201,6 +176,10 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the passagetwo
      */
+    //@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, targetEntity = Passage.class, fetch=FetchType.EAGER)
+    //@JoinColumn(name = "passage2_id")
+    @Lob
+    @Audited
     public String getPassagetwo() {
         return passagetwo;
     }
@@ -215,6 +194,9 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the taglist
      */
+    @Audited
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    @JoinTable(name = "LongDualPassage_Tag", joinColumns = {@JoinColumn(name = "longdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -229,6 +211,8 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the questions
      */
+    @Audited
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Question.class)
     public List<Question> getQuestions() {
         return questions;
     }
@@ -242,13 +226,11 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the complete
      */
+    @Audited
     public Boolean getComplete() {
         return complete;
     }
-    public Boolean isComplete() {
-        return complete;
-    }
-
+    
     /**
      * @param complete the complete to set
      */
@@ -273,6 +255,8 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the numQuestions
      */
+    @Audited
+    @Column(nullable = false, columnDefinition = "bigint(20) default 0")
     public Integer getNumQuestions() {
         return numQuestions;
     }
@@ -282,6 +266,41 @@ public class LongDualPassage implements Serializable {
      */
     public void setNumQuestions(Integer numQuestions) {
         this.numQuestions = numQuestions;
+    }
+
+    /**
+     * @return the user
+     */
+     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
+    @Fetch(value = FetchMode.JOIN)
+    @JoinColumn(name = "user_id")
+    @Audited
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the summary
+     */
+    @Lob
+    @Audited
+    @Column(nullable=false)
+    public String getSummary() {
+        return summary;
+    }
+
+    /**
+     * @param summary the summary to set
+     */
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     
