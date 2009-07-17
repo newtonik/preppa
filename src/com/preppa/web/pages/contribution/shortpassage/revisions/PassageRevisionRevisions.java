@@ -1,15 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package com.preppa.web.pages.contribution.shortpassage;
+package com.preppa.web.pages.contribution.shortpassage.revisions;
 
 import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
 import com.preppa.web.data.ShortPassageDAO;
-import com.preppa.web.entities.Question;
+import com.preppa.web.data.PassageDAO;
 import com.preppa.web.entities.ShortPassage;
+import com.preppa.web.entities.Question;
+
+import com.preppa.web.entities.User;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;
@@ -17,21 +15,28 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
 
 /**
  *
- * @author newtonik
+ * @author nwt
  */
-public class ShowShortPassage {
-@Property
-private ShortPassage passage;
-@Inject
-private ShortPassageDAO passageDAO;
+public class PassageRevisionRevisions {
 
-private Integer pid;
-@Inject
+@Property
+    @Persist
+    private ShortPassage passage;
+    @Inject
+    private ShortPassageDAO passageDAO;
+    @Inject
+    private PassageDAO passDA0;
+    private Integer pid;
+    @Inject
     @Property
     private Block questionblock;
     private List<Block> questionBlocks = new LinkedList<Block>();
@@ -62,23 +67,50 @@ private Integer pid;
     private boolean onequestion;
     @Persist
     private List<Question> listquestions;
+    private Integer revisionNumber;
+    private String authorname;
+    @Property
+    private User author;
+    @Inject
+    private HibernateSessionManager sessionManager;
 
-void onActivate(int id) {
-        this.passage = passageDAO.findById(id);
-        this.pid = passage.getId();
-        lastquestion = true;
-        onequestion = true;
-}
+    void onpageLoaded() {
+            firstquestion.setPageFalse();
 
-Integer onPassivate() {
-    return this.pid;
-}
-void setPassagePage(ShortPassage passage) {
-        this.passage = passage;
+    }
+    @SetupRender
+    void setDefaults() {
+            lastquestion = true;
+            onequestion = true;
+    }
+    void onActivate(Integer passId, Integer revId) {
+        System.out.println("PassageId is " + passId + " RevId is " + revId );
+        this.passageid = passId;
+
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        this.revisionNumber = revId;
+
+        this.passage = reader.find(ShortPassage.class, passageid, revisionNumber);
+        //author = reader.find(User.class, article.getUser().getId(), revId);
+        //this.article = articleDAO.findArticleByRevision(articleId, revId);
+        if(passage != null) {
+             if(author != null) {
+                authorname = author.getUsername();
+            }
+            if(authorname == null)
+            {
+                authorname = "unknown dude";
+            }
+        }
     }
 
- 
-   Block onActionFromAddQuestion() {
+    Integer onPassivate() {
+        return this.pid;
+    }
+    void setPassagePage(ShortPassage passage) {
+            this.passage = passage;
+        }
+        Block onActionFromAddQuestion() {
 
         return questionblock;
     }
@@ -99,7 +131,7 @@ void setPassagePage(ShortPassage passage) {
         passage = passageDAO.findById(passage.getId());
         listquestions = passage.getQuestions();
         size = listquestions.size();
-          if(size == 0)
+         if(size == 0)
             return null;
         q1 = listquestions.get(count);
 
@@ -166,4 +198,5 @@ void setPassagePage(ShortPassage passage) {
          q1 = listquestions.get(count);
          return showquestionBlock;
      }
+
 }

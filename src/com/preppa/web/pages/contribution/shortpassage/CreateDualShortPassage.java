@@ -11,6 +11,7 @@ import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.User;
 import com.preppa.web.services.PassageService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -37,9 +39,10 @@ import org.springframework.security.annotation.Secured;
  */
 @Secured("ROLE_USER")
 public class CreateDualShortPassage {
- @Property
+    @Property
     private ShortDualPassage shortDualpassage;
-
+    @ApplicationState
+    private User user;
     @Inject
     private ShortDualPassageDAO shortDualpassageDAO;
     @Component(parameters = {"value=fbodyone"})
@@ -96,7 +99,6 @@ public class CreateDualShortPassage {
          shortDualpassage.setPassagetwo(fBodytwo);
          shortDualpassage.setTitle(fTitle);
          shortDualpassage.setSource(fSource);
-         shortDualpassage.setTags(fTag);
          
          
 
@@ -109,6 +111,7 @@ public class CreateDualShortPassage {
           }
 
          passageService.checkShortDualPassage(shortDualpassage);
+         shortDualpassage.setUser(user);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          shortDualpassage.setCreatedAt(now);

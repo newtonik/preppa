@@ -1,4 +1,4 @@
-package com.preppa.web.pages.contribution.longpassage.revisions;
+package com.preppa.web.pages.contribution.shortpassage.revisions;
 
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.UserObDAO;
@@ -60,7 +60,7 @@ public class DualPassageRevisions {
             passage = passageDAO.findById(passId);
             
         }
-                AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
 
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortDualPassage.class, false, true)
                 .addProjection(AuditEntity.revisionNumber())
@@ -89,7 +89,7 @@ public class DualPassageRevisions {
             revisions.add(result);
             count++;
         }
-        System.out.println("Count is " + count);
+        //System.out.println("Count is " + count);
     }
 
     Integer onPassivate() {

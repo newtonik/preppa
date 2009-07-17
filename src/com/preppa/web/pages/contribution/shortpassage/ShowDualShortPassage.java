@@ -28,7 +28,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class ShowDualShortPassage {
 
     @Property
-    @Persist
     private ShortDualPassage passage;
     @Inject
     private ShortDualPassageDAO shortpassageDAO;

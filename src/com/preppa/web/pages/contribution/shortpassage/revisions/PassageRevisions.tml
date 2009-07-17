@@ -1,0 +1,34 @@
+<html t:type="layout" t:pageTitle="All revisions for ${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+   <div align="right">
+            <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/shortpassage/show"> Current </a>
+   </div>
+    <div>
+        <table>
+            <tr>
+            <th>
+                Revision Number
+            </th>
+             <th>
+               Last Edited
+            </th>
+            <th>
+                User
+            </th>
+            </tr>
+        <tr t:type="loop" source="revisions" value="revision">
+            <td>
+            <a href="#" t:type="pagelink" t:context="${passage.id}/${revision.revisionnumber}" t:page="contribution/shortpassage/revisions/passagerevision"> ${revision.revisionnumber} </a>
+            </td>
+            <td>
+                ${revision.revisiontime}
+            </td>
+            <td>
+                <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
+
+            </td>
+          
+        </tr>
+        </table>
+    </div>
+
+</html>

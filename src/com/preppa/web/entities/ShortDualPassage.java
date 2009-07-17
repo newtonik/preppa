@@ -22,10 +22,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.apache.tapestry5.beaneditor.Validate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
 
 /**
@@ -33,48 +37,26 @@ import org.hibernate.envers.Audited;
  * @author nwt
  */
 @Entity
-@Audited
 public class ShortDualPassage implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
-    @Lob
-    private String tags;
-    @Lob
     private String source;
-    @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     private List<Question> questions =  new ArrayList<Question>();
-    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = Tag.class)
-     @JoinTable(name = "ShortDualPassage_Tag",
-    joinColumns = {
-      @JoinColumn(name="shortdualpassage_id")
-        },
-    inverseJoinColumns = {
-      @JoinColumn(name="tag_id")
-    })
     private List<Tag> taglist = new ArrayList<Tag>();
-    @Basic(optional = false)
-    @NonVisual
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @NonVisual
-    @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @Column(nullable = false)
     private Boolean complete = false;
-     private PassageType passagetype;
-    @Column(nullable=false, columnDefinition="bigint(20) default 0")
-    private Integer numQuestions = 0;
 
-    @Lob
+    private PassageType passagetype;
+    private Integer numQuestions = 0;
     private String passageone;
-    @Lob
     private String passagetwo;
+    private User user;
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
@@ -108,23 +90,12 @@ public class ShortDualPassage implements Serializable {
         return "com.preppa.web.entities.ShortDualPassages[id=" + id + "]";
     }
 
-    /**
-     * @return the tags
-     */
-    public String getTags() {
-        return tags;
-    }
-
-    /**
-     * @param tags the tags to set
-     */
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
+   
     /**
      * @return the source
      */
+    @Lob
+    @Audited
     public String getSource() {
         return source;
     }
@@ -139,6 +110,10 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the createdAt
      */
+    @NonVisual
+    @Basic(optional = false)
+    @Column(name = "created_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -153,6 +128,11 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the updatedAt
      */
+     @NonVisual
+    @Basic(optional = false)
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+     @Audited
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -167,6 +147,8 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the passageone
      */
+    @Lob
+    @Audited
     public String getPassageone() {
         return passageone;
     }
@@ -181,6 +163,8 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the passagetwo
      */
+    @Lob
+    @Audited
     public String getPassagetwo() {
         return passagetwo;
     }
@@ -195,6 +179,9 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the taglist
      */
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    @JoinTable(name = "ShortDualPassage_Tag", joinColumns = {@JoinColumn(name = "shortdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    @Audited
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -208,13 +195,11 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the complete
      */
+    @Column(nullable = false)
+    @Audited
     public Boolean getComplete() {
         return complete;
     }
-    public Boolean isComplete() {
-        return complete;
-    }
-
     /**
      * @param complete the complete to set
      */
@@ -238,6 +223,8 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the title
      */
+    @Audited
+    @Validate("required")
     public String getTitle() {
         return title;
     }
@@ -252,6 +239,8 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the numQuestions
      */
+    @Audited
+    @Column(nullable = false, columnDefinition = "bigint(20) default 0")
     public Integer getNumQuestions() {
         return numQuestions;
     }
@@ -266,6 +255,8 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the questions
      */
+    @Audited
+    @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     public List<Question> getQuestions() {
         return questions;
     }
@@ -275,5 +266,23 @@ public class ShortDualPassage implements Serializable {
      */
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    /**
+     * @return the user
+     */
+     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
+    @Fetch(value = FetchMode.JOIN)
+    @JoinColumn(name = "user_id")
+    @Audited
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,8 +1,8 @@
-package com.preppa.web.pages.contribution.longpassage.revisions;
+package com.preppa.web.pages.contribution.shortpassage.revisions;
 
-import com.preppa.web.data.ShortDualPassageDAO;
+import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.UserObDAO;
-import com.preppa.web.entities.ShortDualPassage;
+import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.User;
 import com.preppa.web.utils.Revision;
 import java.util.ArrayList;
@@ -22,14 +22,14 @@ import org.hibernate.envers.query.AuditQuery;
  *
  * @author nwt
  */
-public class DualPassageRevisions {
+public class PassageRevisions {
 
     @Property
-    private ShortDualPassage passage;
+    private ShortPassage passage;
     @Property
     private String title;
     @Inject
-    private ShortDualPassageDAO passageDAO;
+    private ShortPassageDAO passageDAO;
     private Integer passageId;
     @Inject
     private Session session;
@@ -44,7 +44,7 @@ public class DualPassageRevisions {
     @Inject
     private UserObDAO userDAO;
     @Property
-    private List<ShortDualPassage> allPassages;
+    private List<ShortPassage> allPassages;
     @Property
     private List<Revision> revisions;
     @Property
@@ -62,7 +62,7 @@ public class DualPassageRevisions {
         }
                 AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
 
-        AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortDualPassage.class, false, true)
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortPassage.class, false, true)
                 .addProjection(AuditEntity.revisionNumber())
                 .addProjection(AuditEntity.property("title"))
                 .addProjection(AuditEntity.property("user_id"))

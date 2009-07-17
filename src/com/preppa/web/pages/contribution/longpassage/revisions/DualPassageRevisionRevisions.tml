@@ -11,10 +11,7 @@
         <div class="author-date">
             Last updated ${passage.updatedAt}
         </div>
-        <p>
-        <h3> Brief Introduction of Passage </h3>
-             <t:outputraw t:value="${passage.summary}" />
-        </p>
+        
         <p>
              <t:outputraw t:value="${passage.passageone}"/>
         </p>

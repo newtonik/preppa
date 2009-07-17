@@ -8,7 +8,6 @@ import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Question;
 
 import com.preppa.web.entities.User;
-import com.preppa.web.entities.User;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;

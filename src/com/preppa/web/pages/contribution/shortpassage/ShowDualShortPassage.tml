@@ -1,6 +1,9 @@
 <html t:type ="layout" t:pageTitle="${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
+          <div align="right">
+            <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/shortpassage/revisions/DualPassage"> History </a>
+        </div>
 
         <h2>
            ${passage.title}
