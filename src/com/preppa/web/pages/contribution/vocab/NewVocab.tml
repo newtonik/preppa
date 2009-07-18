@@ -44,12 +44,7 @@
                   </tr>
                   <tr>
                       <td>
-                         <t:if t:test="DefFilled">
-                                <input disabled="true" type="text" t:type="TextArea" t:id="fDefinitionDis" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
-                            <t:parameter name="else">
                                 <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
-                            </t:parameter>
-                        </t:if>
                       </td>
                       
                   </tr>

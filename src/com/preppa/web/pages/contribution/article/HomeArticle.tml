@@ -9,4 +9,8 @@
     </div>
 
 <t:pagelink t:page="contribution/article/view" t:context="literal:Hello">New to the SAT?  Click Here</t:pagelink>
+<br/>
+<t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+<br/>
+<t:pagelink t:page="contribution/article/view">View Articles</t:pagelink>
 </html>

@@ -24,12 +24,14 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.springframework.security.annotation.Secured;
 
 
 /**
  *
  * @author newtonik
  */
+@Secured("ROLE_USER")
 public class EditQuestion {
     @Property
     private Question question;

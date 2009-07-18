@@ -17,11 +17,13 @@ import java.util.List;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.corelib.components.Form;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author newtonik
  */
+@Secured("ROLE_USER")
 public class AddVocab {
     @Property
     private Vocab word;

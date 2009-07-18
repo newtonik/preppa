@@ -13,11 +13,9 @@
             <t:pagelink t:page="contribution/article/home">Article Section Home</t:pagelink>
         </p>
          <p>
-                <t:pagelink t:page="contribution/article"> All Articles </t:pagelink>
             <br />
                     <t:pagelink t:page="contribution/longpassage"> All Passages </t:pagelink>
             <br />
-            <a href="#" t:type="pagelink" t:page="contribution/article/create" > Create Article</a>
               <br />
             <t:pagelink t:page="contribution/longpassage/create">Create Passage</t:pagelink>
                <br />
@@ -34,9 +32,6 @@
 
          <p>
             [<t:pagelink t:page="user/create">Create User</t:pagelink>]
-        </p>
-        <p>
-            [<t:pagelink t:page="contribution/vocab/new">Create Vocab</t:pagelink>]
         </p>
 
         <p>

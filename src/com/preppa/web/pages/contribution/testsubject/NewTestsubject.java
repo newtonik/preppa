@@ -12,11 +12,13 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author newtonik
  */
+@Secured("ROLE_USER")
 public class NewTestsubject {
     @Property
     private Testsubject testsubject;

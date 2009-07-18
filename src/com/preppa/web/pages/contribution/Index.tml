@@ -2,13 +2,11 @@
 <div id="contributehome">
 
          <p>
-            <t:pagelink t:page="contribution/article"> All Articles </t:pagelink>
+            <t:pagelink t:page="contribution/article/home"> Articles Home </t:pagelink>
             <br />
             <t:pagelink t:page="contribution/longpassage"> All Long Passages </t:pagelink>
             <br />
             <t:pagelink t:page="contribution/shortpassage"> All Short Passages </t:pagelink>
-            <br />
-            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
               <br />
             <t:pagelink t:page="contribution/longpassage/create">Create Long Passage</t:pagelink>
                <br />
@@ -20,7 +18,7 @@
             <br />
             <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
             <br />
-            <a href="#" t:type="PageLink"  t:page="contribution/vocab/new"> Create Vocab </a>
+            <t:pagelink t:page="contribution/vocab/add">Add a new vocab word</t:pagelink>
         </p>
 
 </div>

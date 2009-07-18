@@ -18,11 +18,13 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author nwt
  */
+@Secured("ROLE_USER")
 public class NewTopic {
     @Property
     private Topic topic;

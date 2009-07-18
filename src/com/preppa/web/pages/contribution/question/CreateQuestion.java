@@ -28,12 +28,14 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author nwt
  */
 //@IncludeJavaScriptLibrary(value={"context:js/jquery-1.3.2.js",  "context:js/tools.overlay-1.0.4.js", "context:js/layout.js"})
+@Secured("ROLE_USER")
 public class CreateQuestion {
 /*    @Property
     private Question question;

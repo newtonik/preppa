@@ -28,11 +28,13 @@ import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author newtonik
  */
+@Secured("ROLE_USER")
 public class NewVocab {
 
     @Property
@@ -91,10 +93,6 @@ public class NewVocab {
 
     public boolean getPOSFilled() {
         return (partofspch != null);
-    }
-
-    public boolean getDefFilled() {
-        return (fDefinition != null);
     }
 
     void onActivate(int id) {
