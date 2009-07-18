@@ -24,7 +24,10 @@ import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.Query;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -40,7 +43,10 @@ import org.slf4j.Logger;
  */
 public class ArticleSearch {
     @Property
+    @Persist
     private String aName;
+    @Parameter
+    private String searcher;
     @Component(id = "articlesearch")
     private Form myform;
     @Inject
@@ -60,6 +66,19 @@ public class ArticleSearch {
 //		return _next;
 //	}
 
+
+@SetupRender
+void setSearchString()
+{
+         if(this.searcher == null)
+         {
+             aName = "";
+         }
+         else
+         {
+             aName = searcher;
+         }
+ }
      Object onSuccessFromArticleSearch() {
 
          session = sessionManager.getSession();
@@ -68,7 +87,7 @@ public class ArticleSearch {
         Transaction tx = fullTextSession.beginTransaction();
 
         //create Lucene Search query
-        String[] fields = new String[]{"title", "body"};
+        String[] fields = new String[]{"title", "body", "article.taglist"};
 
         MultiFieldQueryParser parser = new MultiFieldQueryParser(fields,
                 new StandardAnalyzer());

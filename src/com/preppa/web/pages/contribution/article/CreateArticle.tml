@@ -28,12 +28,13 @@
                        
                      
                      <td align="left">
-                            <select t:id="testsubject" t:type="ck/BeanSelect"
+                            <select id="testsubject" t:type="ck/BeanSelect"
                             list="testsubjects"
                             labelField="literal:name"
                             valueField="literal:id"
                             value="testsubject"
-                            t:label="Section"/>
+                            t:label="Section"
+                            />
                     </td>
                      
                      <td align="left">
@@ -42,7 +43,7 @@
 
                       <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
-                        translate="prop:translator" label="name" type="text" size="10" readonly="true"/>
+                        translate="prop:translator" label="name" type="text" size="10" readonly="true" t:validate="required" />
                         <t:pagelink t:page="contribution/topic/new">Add a topic here</t:pagelink>
                          </td>
                          </tr>
@@ -70,7 +71,7 @@
                      <tr>
 
                         <td align="left">
-                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="65"/>
 
                      </td>
                  </tr>

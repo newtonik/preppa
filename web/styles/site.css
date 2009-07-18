@@ -402,27 +402,22 @@ ul {
     margin-right:2px;
 
 }
-#tag-links .next-off,
-#tag-links .prev-off {
-    color:#666666;
-    float:left;
-    display:block;
+
+#tag-links a,
+#tag-links a{
     font-weight:bold;
-    padding:3px 4px;
-    border:solid 1px #DDDDDD;
-}
-#tag-links .next a,
-#tag-links .prev a{
-    font-weight:bold;
-    border:solid 1px #dddddd;
+    border:solid 2px #dddddd;
 }
 #tag-links a:link,
 #tag-links a:visited {
-    color:#0e509e;
+    color:#012c5f;
     display:block;
     float:left;
     padding:3px 6px;
     text-decoration:none;
+    font-style: normal;
+    font-weight: bolder;
+    font-variant: inherit;
 }
 #tag-links a:hover {
     border:solid 1px #666666

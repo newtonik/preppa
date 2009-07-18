@@ -1,6 +1,7 @@
 <html t:type="layout" t:pageTitle="Articles and Guides" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <div>
-        <t:articlemenu /> <t:articlesearch/>
+        <t:articlemenu />
+        <t:articlesearch/>
         <br/>
          <a href="#" t:type="pagelink" t:page="contribution/article/search"> Search Page</a>
     </div>

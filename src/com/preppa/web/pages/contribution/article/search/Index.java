@@ -9,6 +9,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.Query;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -25,6 +26,7 @@ import org.slf4j.Logger;
 public class Index {
 
     @Property
+    @Persist
     private String searchString;
     private List<Article> allArticles;
     @Property
@@ -46,7 +48,7 @@ public class Index {
         Transaction tx = fullTextSession.beginTransaction();
 
         //create Lucene Search query
-        String[] fields = new String[]{"title", "body"};
+        String[] fields = new String[]{"title", "body", "taglist.name"};
 
         MultiFieldQueryParser parser = new MultiFieldQueryParser(fields,
                 new StandardAnalyzer());
@@ -74,12 +76,6 @@ public class Index {
     {
         System.out.println("There are " + results.size() + " results");
         this.searchString = searcher;
-//        this.allArticles = new ArrayList<Article>();
-//        for(Article a: results)
-//        {
-//            Article addee = articleDAO.findById(a.getId());
-//            allArticles.add(addee);
-//        }
 
         allArticles = results;
 

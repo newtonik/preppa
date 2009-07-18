@@ -1,7 +1,7 @@
 <html t:type="layout" t:pageTitle="Search Results for ${searchString}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div align="right">
-        <t:articlesearch/>
+        <t:articlesearch t:searcher="${searchString}"/>
     </div>
     <br />
     <h3>Results </h3>

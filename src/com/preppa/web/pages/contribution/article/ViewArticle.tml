@@ -4,7 +4,7 @@
     t:value="cursor">
     <div class="cursor">
             <h2>${cursor.title}</h2>
-            ${samplebody}
+            <t:outputraw t:value="${samplebody}" />
             <br></br>
             <a href="#" t:type="pageLink" t:page="contribution/article/show" t:context="cursor.id">See More</a>
             <br></br>

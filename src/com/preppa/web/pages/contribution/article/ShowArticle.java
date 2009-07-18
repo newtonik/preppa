@@ -10,8 +10,8 @@ import com.preppa.web.entities.Article;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import java.util.List;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
@@ -20,6 +20,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class ShowArticle {
 @Property
+@Persist
 private Article article;
 @Inject
 private ArticleDAO articleDAO;
