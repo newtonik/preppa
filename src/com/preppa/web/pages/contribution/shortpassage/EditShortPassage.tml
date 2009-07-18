@@ -56,7 +56,7 @@
                   <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
-                        <input type="button" onclick="window.location='Index'; return false;" value="Cancel"></input>
+                      <a href="#" t:type="pagelink" t:page="contribution/shortpassage/show" t:context="${shortpassage.id}" ><input type="button" value="Cancel" /></a>
                     </td>
 
                  </tr>

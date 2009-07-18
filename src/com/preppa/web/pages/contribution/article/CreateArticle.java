@@ -223,7 +223,7 @@ public class CreateArticle {
 
     }
 
-        List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+    List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
 

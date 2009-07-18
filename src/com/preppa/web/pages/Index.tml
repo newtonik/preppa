@@ -12,28 +12,7 @@
         <p>
             <t:pagelink t:page="contribution/article/home">Article Section Home</t:pagelink>
         </p>
-         <p>
-            <br />
-                    <t:pagelink t:page="contribution/longpassage"> All Passages </t:pagelink>
-            <br />
-              <br />
-            <t:pagelink t:page="contribution/longpassage/create">Create Passage</t:pagelink>
-               <br />
-            <t:pagelink t:page="contribution/longpassage/createdual">Create Dual Passage</t:pagelink>
-            <br />
-            <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
-            <br />
-
-        </p>
-
-        <p>
-            <t:pagelink t:page="contribution/vocab/add">Add a new vocab word</t:pagelink>
-        </p>
-
-         <p>
-            [<t:pagelink t:page="user/create">Create User</t:pagelink>]
-        </p>
-
+     
         <p>
             [<t:pagelink t:page="contribution/vocab/view">View Vocab</t:pagelink>]
         </p>

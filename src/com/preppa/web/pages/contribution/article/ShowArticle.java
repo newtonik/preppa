@@ -58,7 +58,7 @@ void onActivate(int id) {
 
  }
 
-    @SetupRender
+
  public void setarticle(Article article) {
         this.article = articleDAO.findById(article.getId());
 

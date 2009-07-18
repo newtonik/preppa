@@ -1,10 +1,10 @@
-<html t:type="layout" t:pageTitle="Short Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <h2>Passages</h2>
+<html t:type="layout" t:pageTitle="All Short Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <h2>All Short Passages</h2>
 
     <div class="completed">
         <h3>Completed Passages</h3>
 
-        <strong>Passages</strong>
+        <strong>Short Passages</strong>
         <table>
         <tr t:type="loop" t:source="shortpassages" t:value="shortpassage">
             <td>
@@ -13,7 +13,7 @@
 
         </tr>
         </table>
-        <strong>Dual Passages</strong>
+        <strong>Short Dual Passages</strong>
           <table>
         <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">
             <td>

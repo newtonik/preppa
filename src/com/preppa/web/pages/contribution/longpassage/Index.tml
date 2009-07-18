@@ -1,5 +1,5 @@
-<html t:type="layout" t:pageTitle="Long Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <h2>Passages</h2>
+<html t:type="layout" t:pageTitle="All Long Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <h2>All Long Passages</h2>
 
     <div class="completed">
         <h3>Completed Passages</h3>
