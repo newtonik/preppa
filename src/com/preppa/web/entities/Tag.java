@@ -27,7 +27,8 @@ public class Tag implements Serializable {
     private Integer id;
     private String name;
     private List<OpenQuestion> openquestions;
-
+    private List<Article> articles;
+    
     public Tag() {
 
     }
@@ -96,10 +97,26 @@ public class Tag implements Serializable {
     }
 
     /**
+     * @return the articles with a tag
+     */
+    @ContainedIn
+    @ManyToMany(mappedBy="taglist")
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    /**
      * @param openquestions the openquestions to set
      */
     public void setOpenquestions(List<OpenQuestion> openquestions) {
         this.openquestions = openquestions;
+    }
+
+    /**
+     * @param articles the articles to set
+     */
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
 }

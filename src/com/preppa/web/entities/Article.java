@@ -250,12 +250,9 @@ public class Article implements Serializable {
     /**
      * @param taglist the taglist to set
      */
-    public void setTaglist(List<Tag> taglist) {
-        this.taglist = taglist;
+    public void setTaglist(List<Tag> tags) {
+        this.taglist = tags;
     }
-
-
-
 
 
 }

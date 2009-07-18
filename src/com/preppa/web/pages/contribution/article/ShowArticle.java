@@ -7,9 +7,11 @@ package com.preppa.web.pages.contribution.article;
 
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.entities.Article;
+import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
-import org.apache.tapestry5.annotations.Persist;
+import java.util.List;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
@@ -17,7 +19,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  * @author newtonik
  */
 public class ShowArticle {
-@Persist
 @Property
 private Article article;
 @Inject
@@ -26,9 +27,14 @@ private ArticleDAO articleDAO;
 private User author;
 @Property
 private String authorname;
+@Property
+private List<Tag> tags;
+
 void onActivate(int id) {
             this.article = articleDAO.findById(id);
             this.author = article.getUser();
+            this.tags = article.getTaglist();
+            
             if(author != null) {
                 authorname = author.getUsername();
             }
@@ -51,11 +57,11 @@ void onActivate(int id) {
         }
 
  }
-void onPassivate() {
-   
-}
 
-void setarticle(Article article) {
+    @SetupRender
+ public void setarticle(Article article) {
+        this.article = articleDAO.findById(article.getId());
+
         this.article = article;
         this.author = article.getUser();
             if(author != null) {
