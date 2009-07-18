@@ -154,6 +154,12 @@ public class EditDualLongPassage {
 
   List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
+             for(Tag t : matches) {
+            if(addedTags.contains(t))
+            {
+                matches.remove(t);
+            }
+        }
         return matches;
 
     }

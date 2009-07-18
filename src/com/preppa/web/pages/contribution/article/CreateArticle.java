@@ -20,7 +20,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import org.apache.tapestry5.Block;
-import org.apache.tapestry5.Field;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -31,7 +30,6 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
-import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -92,6 +90,7 @@ public class CreateArticle {
     private Zone tagZone;
     @Component
     private Form articleform;
+    private List<Integer> addTagIds;
 
     
 //@Inject
@@ -130,6 +129,10 @@ public class CreateArticle {
         if(testsubject == null)
         {
             articleform.recordError("Articles require a Test Subject");
+        }
+        if(addedTopics.size() == 0)
+        {
+            articleform.recordError("Articles should have a topic.");
         }
     }
 
@@ -214,16 +217,23 @@ public class CreateArticle {
         return result;
     }
 
-      List<String> onProvideCompletionsFromTags(String partial) {
-        List<Tag> matches = tagDAO.findByPartialName(partial);
-
-        List<String> result = new ArrayList<String>();
-        for(Tag t : matches)
-        {
-            result.add(t.getName());
-        }
-        return result;
-    }
+//      List<String> onProvideCompletionsFromTags(String partial) {
+//        List<Tag> matches = tagDAO.findByPartialName(partial);
+//
+//        List<String> result = new ArrayList<String>();
+//        for(Tag t : matches)
+//        {
+//            if(addedTags.contains(t))
+//            {
+//                matches.remove(t);
+//            }
+//            else
+//            {
+//                result.add(t.getName());
+//            }
+//        }
+//        return result;
+//    }
 
 
     List<Topic> onProvideCompletionsFromAutocomplete(String partial) {
@@ -234,6 +244,7 @@ public class CreateArticle {
 
     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
+      
         return matches;
 
     }
@@ -299,7 +310,7 @@ public class CreateArticle {
 //                Tag t = new Tag();
 //                t.setName(clientValue);
 //            }
-            System.out.println(clientValue);
+            
 
             if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
                 System.out.println(clientValue);

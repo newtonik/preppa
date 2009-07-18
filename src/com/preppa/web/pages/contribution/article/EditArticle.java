@@ -26,6 +26,7 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
@@ -81,7 +82,8 @@ public class EditArticle {
     private AutoComplete autoCompleteTag;
     @Inject
     private TagDAO tagDAO;
-
+    @Component
+    private Form articleform;
 
 
     void Article(Integer id) {
@@ -115,7 +117,16 @@ public class EditArticle {
     Integer onPassivate() {
         return article.getId();
     }
-
+    void onValidateForm() {
+        if(testsubject == null)
+        {
+            articleform.recordError("Articles require a Test Subject");
+        }
+        if(addedTopics.size() == 0)
+        {
+            articleform.recordError("Articles should have a topic.");
+        }
+    }
 
     @CommitAfter
     Object onSuccessFromArticleForm() {
@@ -192,12 +203,24 @@ public class EditArticle {
 
        List<Topic> onProvideCompletionsFromAutocomplete(String partial) {
         List<Topic> matches = topicDAO.findByPartialName(partial);
+          for(Topic t : matches) {
+            if(addedTopics.contains(t))
+            {
+                matches.remove(t);
+            }
+        }
         return matches;
 
     }
 
     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
+          for(Tag t : matches) {
+            if(addedTags.contains(t))
+            {
+                matches.remove(t);
+            }
+        }
         return matches;
 
     }

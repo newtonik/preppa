@@ -10,6 +10,7 @@ import com.preppa.web.components.SQuestion;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.ShortPassage;
+import com.preppa.web.entities.Tag;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;
@@ -26,6 +27,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class ShowShortPassage {
 @Property
+@Persist
 private ShortPassage passage;
 @Inject
 private ShortPassageDAO passageDAO;
@@ -62,9 +64,12 @@ private Integer pid;
     private boolean onequestion;
     @Persist
     private List<Question> listquestions;
+    @Property
+    private List<Tag> tags = new LinkedList<Tag>();
 
 void onActivate(int id) {
         this.passage = passageDAO.findById(id);
+        tags = passage.getTaglist();
         this.pid = passage.getId();
         lastquestion = true;
         onequestion = true;

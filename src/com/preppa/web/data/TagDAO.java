@@ -13,4 +13,5 @@ public interface TagDAO extends GenericDAO< Tag, Integer> {
     Tag findById(Integer id);
     List<Tag> findByName(String name);
     List<Tag> findByPartialName(String partialName);
+   List<Tag> findByPartialName(String partialName, List<Integer> notlist);
 }

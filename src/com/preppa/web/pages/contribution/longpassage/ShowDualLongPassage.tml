@@ -26,12 +26,14 @@
              <t:outputraw t:value="${passage.passagetwo}"/>
         </p>
         <p>
+        <t:tagview t:alltags="tags" />
+        <br />
+        </p>
+        <p>
             <a href="#" t:type="pageLink" t:page="contribution/longpassage/editdual" t:context="passage.id"> Edit </a>
         </p>
 
-        <a href="#" t:type="PageLink" t:page="Index">
-        Home
-        </a>
+     
         <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
         <br/>
          <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>

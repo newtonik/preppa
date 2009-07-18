@@ -13,7 +13,7 @@
                   </tr>
                   <tr>
                        <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="60"/>
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80"/>
                       </td>
                   </tr>
                  <tr>
@@ -68,7 +68,7 @@
                      <tr>
 
                         <td align="left">
-                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="80"/>
 
                      </td>
                  </tr>

@@ -35,17 +35,37 @@ public class TagDAOHibImpl extends AbstractHibernateDAO<Tag , Integer> implement
         if(name != null && name.length() > 0)
         {
              sqlString.addWhereClause("t.name = '" + name + "'");
+
         }
 
         return findByQuery(sqlString.toString());
     }
-    @Override
+      @Override
     public List<Tag> findByPartialName(String partialName) {
         SQLString sqlString = new SQLString("FROM Tag t");
         if(partialName != null && partialName.length() > 0)
         {
              sqlString.addOrderField("t.name");
-                 sqlString.addWhereClause("t.name LIKE '%" + partialName + "%'");
+              sqlString.addWhereClause("t.name LIKE '%" + partialName + "%'");
+
+        }
+
+        return  findByQuery(sqlString.toString());
+
+    }
+    @Override
+    public List<Tag> findByPartialName(String partialName, List<Integer> notlist) {
+        SQLString sqlString = new SQLString("FROM Tag t");
+        if(partialName != null && partialName.length() > 0)
+        {
+             sqlString.addOrderField("t.name");
+             if(notlist != null)
+             {
+                 
+                sqlString.addWhereClause("t.id is NOT IN " + notlist );
+             }
+              sqlString.addWhereClause("t.name LIKE '%" + partialName + "%'");
+
         }
 
         return  findByQuery(sqlString.toString());

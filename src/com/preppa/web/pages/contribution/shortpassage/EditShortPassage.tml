@@ -2,6 +2,7 @@
 
     <div id="passage">
         <t:form t:id="createpassageform">
+            <t:errors />
             <table id="passtable">
 
                <tr align="left">

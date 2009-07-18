@@ -1,7 +1,8 @@
 <html t:type="layout" t:pageTitle="New Passage" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    <div id="passage">
+    <div id="passage" align="center">
         <t:form t:id="createpassageform">
+            <t:errors />
             <table id="passtable">
 
                <tr align="left">
@@ -9,7 +10,7 @@
                        <t:label for="fTitle"> Title: </t:label>
                        </td>
                        <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="60"/>
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80"/>
                       </td>
                  </tr>
                            <tr>
@@ -17,7 +18,7 @@
                         <t:label for="fSummary"> Brief Introduction of Passage </t:label>
                     </td>
                      <td>
-                         <input t:type="textarea" t:id="fSummary" t:value="fSummary" t:validate="required" />
+                         <input t:type="textarea" t:id="fSummary" t:value="fSummary" t:validate="required" rows="4" cols="80" />
 
                      </td>
                  </tr>
@@ -38,7 +39,7 @@
                              <t:label for="fSource"> Sources: </t:label>
                         </td>
                         <td>
-                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="70"/>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="80"/>
 
                      </td>
                  </tr>

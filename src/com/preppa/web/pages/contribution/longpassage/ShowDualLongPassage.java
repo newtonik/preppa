@@ -10,6 +10,7 @@ import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.Tag;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;
@@ -65,6 +66,8 @@ public class ShowDualLongPassage {
     private boolean onequestion;
     @Persist
     private List<Question> listquestions;
+    @Property
+    private List<Tag> tags = new LinkedList<Tag>();
 
     void onpageLoaded() {
         firstquestion.setPageFalse();
@@ -77,7 +80,7 @@ public class ShowDualLongPassage {
     }
     void onActivate(int id) {
         this.passage = longpassageDAO.findById(id);
-
+        this.tags = passage.getTaglist();
         passageid = id;
 
 //        return this;

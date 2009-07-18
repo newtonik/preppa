@@ -2,6 +2,7 @@
 
  <div id="dualpassage">
         <t:form t:id="editdualpassageform">
+            <t:errors />
             <table id="dualpasstable">
 
                <tr align="left">
@@ -39,7 +40,7 @@
                              <t:label for="fSource"> Sources: </t:label>
                         </td>
                         <td>
-                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="50"/>
+                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="80"/>
 
                      </td>
                  </tr>

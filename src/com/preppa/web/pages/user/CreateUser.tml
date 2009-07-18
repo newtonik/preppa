@@ -6,7 +6,7 @@
     style="padding: 20px;" align="center">
         <div style="padding: 20px; background-color:#e8eefa;" >
           <t:form t:id="userform" t:object="user">
-              <t:errors/>
+              <t:errors />
              <table id="userformtable">
                  <tr>
                      <td valign="top" align="left">
@@ -15,7 +15,7 @@
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="TextField" t:id="fLogin" size="60"  t:value="fLogin" t:label="Login" t:validate="required"/>
+                     <input t:type="TextField" t:id="fLogin" size="60"  t:value="fLogin" t:label="Login" t:validate="required,minlength=4"/>
                    </td>
                   </tr>
                   <tr>
@@ -90,7 +90,8 @@
                       <td align="left">
                           <br />
                           <input t:type="checkbox"  t:value="userAgreement" />
-                          Check if you agree with the Preppa Terms of Service and Preppa Privacy Policy.
+                          Check if you agree with the 
+                          <a href="#" >Preppa Terms of Service</a> and <a href="#">Preppa Privacy Policy</a>.
                       </td>
                   </tr>
                    <tr>

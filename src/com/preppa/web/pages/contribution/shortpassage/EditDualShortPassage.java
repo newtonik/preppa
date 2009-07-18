@@ -148,9 +148,19 @@ public class EditDualShortPassage {
     public void setTestsubjects(List<Testsubject> testsubjects) {
         this.testsubjects = testsubjects;
     }
-
+ /**
+     * autocomplete function for tags
+     * @param partial - partial string
+     * @return matches - returns matches from the database
+     */
   List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
+             for(Tag t : matches) {
+            if(addedTags.contains(t))
+            {
+                matches.remove(t);
+            }
+        }
         return matches;
 
     }

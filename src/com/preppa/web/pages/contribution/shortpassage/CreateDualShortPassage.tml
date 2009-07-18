@@ -2,6 +2,7 @@
 
  <div id="dualpassage">
         <t:form t:id="dualpassageform">
+            <t:errors />
             <table id="dualpasstable">
 
                <tr align="left">

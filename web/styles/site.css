@@ -276,8 +276,19 @@ DIV.t-beaneditor-submit {
     position: relative;
     margin-left: 60px;
 }
+DIV.t-error
+{
+  width: 600px;
+
+}
+div.t-error div {
+    background-color:orange;
+    font-weight:bolder;
+    color: black
+}
 DIV.t-error LI {
     margin-left: 20px;
+    color: #000000;
 }
 #userformtable {
      border: none; background-color: #e8eefa; margin: 20px auto; border-collapse: collapse;
@@ -394,7 +405,7 @@ ul {
 
 #tag-links li {
     border:0;margin:0; padding:0;
-    font-size:11px;
+    font-size:15px;
     list-style:none;
 }
 #tag-links a {
@@ -425,5 +436,5 @@ ul {
 
 #tagbox {
     display:block;
-    width:535px;
+    width:635px;
 }
