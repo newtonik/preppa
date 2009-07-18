@@ -9,19 +9,14 @@
     <property name="hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
-    <property name="hibernate.connection.password">pw</property>
+    <property name="hibernate.connection.password">preppa</property>
     <property name="current_session_context_class">thread</property>
-    <property name="hibernate.search.default.directory_provider"  > org.hibernate.search.store.FSDirectoryProvider </property>
+    <property name="hibernate.search.default.directory_provider"> org.hibernate.search.store.FSDirectoryProvider </property>
     <property name="hibernate.search.default.indexBase"> ../lucene/indexes </property>
-  
-    <listener type="post-insert" class="org.hibernate.envers.event.AuditEventListener" />
-    <listener type="post-update" class="org.hibernate.envers.event.AuditEventListener" />
-    <listener type="post-delete" class="org.hibernate.envers.event.AuditEventListener" />
-    <listener type="pre-collection-update" class="org.hibernate.envers.event.AuditEventListener" />
-    <listener type="pre-collection-remove" class="org.hibernate.envers.event.AuditEventListener" />
-
-
-
-
-    </session-factory>
+    <listener class="org.hibernate.envers.event.AuditEventListener" type="post-insert"/>
+    <listener class="org.hibernate.envers.event.AuditEventListener" type="post-update"/>
+    <listener class="org.hibernate.envers.event.AuditEventListener" type="post-delete"/>
+    <listener class="org.hibernate.envers.event.AuditEventListener" type="pre-collection-update"/>
+    <listener class="org.hibernate.envers.event.AuditEventListener" type="pre-collection-remove"/>
+  </session-factory>
 </hibernate-configuration>
