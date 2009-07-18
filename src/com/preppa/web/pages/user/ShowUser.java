@@ -12,6 +12,7 @@ import com.preppa.web.entities.UserProfile;
 import java.io.File;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Context;
 
 /**
  *
@@ -29,6 +30,9 @@ public class ShowUser {
 
   @Inject 
   private UserProfileDAO userprofileDAO;
+  
+@Inject
+private Context c;
 
   void onActivate(Integer id) {
     this.user = userDAO.findById(id);
@@ -46,13 +50,17 @@ public class ShowUser {
   }*/
 
   public boolean getImageExist() {
-      String classLocation = UploadImageUser.class.getName().replace('.', '/') + ".class";
+      /*String classLocation = UploadImageUser.class.getName().replace('.', '/') + ".class";
       ClassLoader loader = UploadImageUser.class.getClassLoader();
       String copyLocation = loader.getResource(classLocation).toString();
       copyLocation = copyLocation.substring(8, 73); // Remove "file" from the string
       copyLocation = this.formatSpace(copyLocation);
       System.out.println(copyLocation + "images/" + user.getId() + ".jpg");
-      File check = new File(copyLocation + "images/" + user.getId()  +  ".jpg");
+      File check = new File(copyLocation + "images/" + user.getId()  +  ".jpg");*/
+      char slash = (char)92;
+      System.out.println( "This " + c.getRealFile("/").getPath() + "/images/" + user.getId() + ".jpg");
+      File check = new File(c.getRealFile("/").getPath() + "/images/" + user.getId() + ".jpg");
+
       return check.exists();
   }
 

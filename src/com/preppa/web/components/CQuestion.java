@@ -30,6 +30,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Checkbox;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -158,6 +159,16 @@ public class CQuestion {
             createquestionform.recordError("You cannot submit a question to Preppa, that isn't your own work.");
         }
     }
+
+    void onValidateForm() throws ValidationException {
+        System.out.println("Mywork is " + mywork);
+        if(mywork == false) {
+            System.out.println("I'm here " + mywork);
+            throw new ValidationException("You must verify that this is your own work.");
+            //createquestionform.recordError("You cannot submit a question to Preppa, that isn't your own work.");
+        }
+    }
+
     @CommitAfter
     Object onSuccess(){
     question = new Question();
@@ -202,6 +213,7 @@ public class CQuestion {
      question.setCreatedAt(now);
      question.setUpdatedAt(now);
      newquestion = true;
+     
      if(owner != null)
      {
         if(!saveQuestionToObject(owner, question))
@@ -209,6 +221,9 @@ public class CQuestion {
             logger.debug("Just saving the question, object is null");
             questionDAO.doSave(question);
         }
+     }
+     else {
+         questionDAO.doSave(question);
      }
 
      if (showpage == false) {

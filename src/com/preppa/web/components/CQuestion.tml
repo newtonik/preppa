@@ -2,7 +2,7 @@
  <div id="multiple-question" class="overlay">
         <t:form t:id="createquestionform">
             <table id="formtable">
-                <t:radiogroup t:value="correct">
+                <t:radiogroup t:value="correct" validators="validators:required">
                  <tr>
                         <td width="10%" valign="top" align="right">
                            <t:label for="questioneditor">Question: </t:label>
@@ -74,7 +74,7 @@
                              <t:label for="fExplanation"> Explain: </t:label>
                         </td>
                         <td>
-                          <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="3" cols="80"/>
+                          <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="3" cols="80" t:validate="required"/>
                        </td>
                  </tr>
                         <tr>
@@ -105,7 +105,13 @@
                  <tr>
                      <td></td>
                      <td align="left">
-                         <input t:type="checkbox" t:value="mywork" />
+                         Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
+                     </td>
+                  </tr>
+                 <tr>
+                     <td></td>
+                     <td align="left">
+                         <input t:type="checkbox" t:value="mywork" validators="validators:required"/>
                          I certify that my contributions are my own original work and that all sources are cited where needed.
                      </td>
 

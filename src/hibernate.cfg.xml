@@ -9,7 +9,7 @@
     <property name="hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
-    <property name="hibernate.connection.password">preppa</property>
+    <property name="hibernate.connection.password">pw</property>
     <property name="current_session_context_class">thread</property>
     <property name="hibernate.search.default.directory_provider"  > org.hibernate.search.store.FSDirectoryProvider </property>
     <property name="hibernate.search.default.indexBase"> ../lucene/indexes </property>
