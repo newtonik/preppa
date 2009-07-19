@@ -101,7 +101,15 @@
                          </td>
 
                  </tr>
+                 <tr>
+                     <td></td>
+                     <td align="left">
+                         <input t:type="checkbox" t:value="mywork" validators="validators:required"/>
+                         I certify that my contributions are my own original work and that all sources are cited where needed.
+                     </td>
 
+
+                 </tr>
                   <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
