@@ -33,7 +33,7 @@ public class RevisionArticle {
     @Inject
     private HibernateSessionManager sessionManager;
     @Property
-    private Integer revisionNumber;
+    private Long revisionNumber;
     @Inject
     private UserObDAO userDAO;
 
@@ -43,7 +43,7 @@ public class RevisionArticle {
       // Integer revId = (Integer)params.get("revId");
         String[] tokens = params.split("_");
         Integer artId = Integer.parseInt(tokens[0]);
-        Integer revId = Integer.parseInt(tokens[1]);
+        Long revId = Long.parseLong(tokens[1]);
         System.out.println("ArticleId is " + artId + " RevId is " + revId );
         this.articleId = artId;
         

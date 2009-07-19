@@ -80,7 +80,7 @@ public class PassageRevisions {
         {
             Revision result = new Revision();
             Object[] obj = (Object[]) iter.next();
-            result.setRevisionNumber((Integer) obj[0]);
+            result.setRevisionNumber((Long) obj[0]);
             result.setName((String) obj[1]);
 
             User u = userDAO.findById((Integer) obj[2]);

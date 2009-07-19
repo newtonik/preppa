@@ -13,7 +13,7 @@ import java.util.Map;
 public class Revision {
 
     private String name;
-    private Integer revisionNumber;
+    private Long revisionNumber;
     private User user;
     private String username;
     private Integer userid;
@@ -39,14 +39,14 @@ public class Revision {
     /**
      * @return the revisionNumber
      */
-    public Integer getRevisionNumber() {
+    public Long getRevisionNumber() {
         return revisionNumber;
     }
 
     /**
      * @param revisionNumber the revisionNumber to set
      */
-    public void setRevisionNumber(Integer revisionNumber) {
+    public void setRevisionNumber(Long revisionNumber) {
         this.revisionNumber = revisionNumber;
     }
 
@@ -121,4 +121,6 @@ public class Revision {
     public void setRevMap(Map<String, Integer> revMap) {
         this.revMap = revMap;
     }
+
+ 
 }

@@ -67,7 +67,7 @@ public class PassageRevisionRevisions {
     private boolean onequestion;
     @Persist
     private List<Question> listquestions;
-    private Integer revisionNumber;
+    private Long revisionNumber;
     private String authorname;
     @Property
     private User author;
@@ -87,7 +87,7 @@ public class PassageRevisionRevisions {
 
         String[] tokens = params.split("_");
         Integer passId = Integer.parseInt(tokens[0]);
-        Integer revId = Integer.parseInt(tokens[1]);
+        Long revId = Long.parseLong(tokens[1]);
         this.passageid = passId;
 
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());

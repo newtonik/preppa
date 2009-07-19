@@ -69,7 +69,7 @@ public class DualPassageRevisionRevisions {
     @Inject
     private HibernateSessionManager sessionManager;
     private Session session;
-    private Integer revisionNumber;
+    private Long revisionNumber;
     private User author;
     @Property
     private String authorname;
@@ -87,7 +87,7 @@ public class DualPassageRevisionRevisions {
 
         String[] tokens = params.split("_");
         Integer passId = Integer.parseInt(tokens[0]);
-        Integer revId = Integer.parseInt(tokens[1]);
+        Long revId = Long.parseLong(tokens[1]);
         this.passageid = passId;
 
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());

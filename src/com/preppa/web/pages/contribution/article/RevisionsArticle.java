@@ -77,14 +77,15 @@ public class RevisionsArticle {
         {
             Revision result = new Revision();
             Object[] obj = (Object[]) iter.next();
-            result.setRevisionNumber((Integer) obj[0]);
+            result.setRevisionNumber((Long) obj[0]);
             result.setName((String) obj[1]);
 
-            User u = userDAO.findById((Integer) obj[2]);
+         
+            User u = userDAO.findById( (Integer) obj[2]);
             result.setUser(u);
             result.setRevisionTime((Date) (obj[3]));
             result.setRevMap(  new HashMap<String, Integer>());
-            result.getRevMap().put("revId", result.getRevisionNumber());
+            //result.getRevMap().put("revId", result.getRevisionNumber());
             result.getRevMap().put("artId", article.getId());
             revisions.add(result);
             count++;
