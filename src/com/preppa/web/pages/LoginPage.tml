@@ -27,6 +27,12 @@
                      <input t:type="PasswordField" t:id="passwordField" size="30"  t:value="fpass" t:label="Password"/>
                    </td>
                   </tr>
+                  <tr>
+                      <td>
+                          Remember Me
+                          <input type="checkbox" name="_spring_security_remember_me"/>
+                      </td>
+                  </tr>
                     <tr>
                       <td align="left">
                           <br />

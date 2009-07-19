@@ -4,7 +4,6 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.User;
 import java.net.MalformedURLException;
 import java.net.URL;
-import org.apache.tapestry5.Link;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -25,6 +24,7 @@ import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.PasswordEncoder;
 import org.springframework.security.providers.encoding.ShaPasswordEncoder;
 import org.springframework.security.ui.AbstractProcessingFilter;
+import org.springframework.security.ui.rememberme.RememberMeServices;
 import org.springframework.security.ui.savedrequest.SavedRequest;
 import org.springframework.security.userdetails.UserDetailsService;
 
@@ -50,6 +50,8 @@ public class LoginPage
     private String fLogin;
     @Inject
     private Request request;
+    @Inject
+    private RememberMeServices rememberMeServices;
     private DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
     private UsernamePasswordAuthenticationToken authtoken;
     @Inject
@@ -113,7 +115,7 @@ public class LoginPage
        provider.setPasswordEncoder(new ShaPasswordEncoder());
        authtoken = new UsernamePasswordAuthenticationToken(fLogin, fpass);
        provider.setSaltSource(salt);
-
+       
 
       Authentication token = provider.authenticate(authtoken);
      
@@ -122,6 +124,7 @@ public class LoginPage
           System.out.println("user has been authenticated");
           this.user = userDAO.findByUsername(fLogin);
           SecurityContextHolder.getContext().setAuthentication(token);
+          
           SavedRequest savedRequest =
                   (SavedRequest) requestGlobals.getHTTPServletRequest().getSession().getAttribute(AbstractProcessingFilter.SPRING_SECURITY_SAVED_REQUEST_KEY);
           Session s = request.getSession(false);
