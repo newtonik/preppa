@@ -13,7 +13,7 @@
                   </tr>
                   <tr>
                        <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80"/>
+                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" onkeyup="countCharacters();"/>
                       </td>
                   </tr>
                  <tr>
@@ -60,7 +60,11 @@
                  <tr>
                       <td>
                           <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"
-                          t:label="Body" t:validate="required" />
+                          t:label="Body" t:validate="required" onkeyup="countCharacters();" />
+                     </td>
+                 </tr>
+                 <tr >
+                     <td id="counter">
                      </td>
                  </tr>
                    <tr>

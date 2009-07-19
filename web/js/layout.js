@@ -1,12 +1,13 @@
-<script type="text/javascript">
-
-    function setTopicsOptions()
-    {
-        $('topicsdropdown').options[0] = new Option('1', 'option 1');
+    function countCharacters() {
+        // Get the editor instance that we want to interact with.
+        var oEditor = FCKeditorAPI.GetInstance('body');
+        // Get the Editor Area DOM (Document object).
+        var oDOM = oEditor.EditorDocument;
+        var iLength;
+        // The are two diffent ways to get the text (without HTML markups).
+        // It is browser specific.
+        iLength = oDOM.body.innerText.length;
         
-        $('topicsdropdown').options[1] = new Option('2', 'option 2');
+     }
 
-    }
-
-
-</script>
+       
