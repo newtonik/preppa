@@ -25,6 +25,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
@@ -44,10 +45,13 @@ public class NewVocab {
     @InjectPage
     private ShowVocab showvocab;
     @Property
+    @Persist
     private String fWord;
     @Property
+    @Persist
     private String partofspch;
     @Property
+    @Persist
     private String fDefinition;
     @Property
     private String fSentence;
@@ -69,12 +73,6 @@ public class NewVocab {
     private Block newtagblock;
 
     void onValidateForm() {
-        List<Vocab> matches = vocabDAO.findByName(fWord);
-        if (matches.isEmpty() == false)
-        {
-            _form.recordError("The word already exists.");
-        }
-        //addedTags = tagDAO.findAll();
     }
 
     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {

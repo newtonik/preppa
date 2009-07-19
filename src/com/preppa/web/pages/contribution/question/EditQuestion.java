@@ -81,9 +81,18 @@ public class EditQuestion {
      private TagDAO tagDAO;
     @Component
     private AutoComplete autoCompleteTag;
-    
+    @Property
+    private Boolean mywork;
+
     void CreateQuestion() {
         //question = new Question();
+    }
+
+    void onValidateForm() throws ValidationException {
+        if(mywork == false) {
+            throw new ValidationException("You must verify that this is your own work.");
+            //createquestionform.recordError("You cannot submit a question to Preppa, that isn't your own work.");
+        }
     }
 
     void onActivate(int id) {

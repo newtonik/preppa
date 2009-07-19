@@ -167,6 +167,9 @@ public class CQuestion {
             throw new ValidationException("You must verify that this is your own work.");
             //createquestionform.recordError("You cannot submit a question to Preppa, that isn't your own work.");
         }
+        if ((c1 == null && c2 == null && c3 == null && c4 ==null && c5 == null)) {
+            createquestionform.recordError("You did not specify an answer.");
+        }
     }
 
     @CommitAfter
