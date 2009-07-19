@@ -69,16 +69,16 @@
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
                         translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
                          </td>
+                    </tr>
                      <td align="left">
                          Can't find one
                           <a t:type="actionlink" t:id="addtag" href="#" t:zone="tagZone"> Add a New Tag </a>
 
                      </td>
-                    </tr>
                    <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
-                        <input type="button" class="lbOn" t:page="contribution/tag/newtagpage" value="Cancel"></input>
+                        <t:pagelink t:page="Index" t:mixins="confirm"><button type="button">Cancel</button></t:pagelink>
                     </td>
 
                  </tr>
