@@ -90,7 +90,8 @@
                       <td align="left">
                           <br />
                           <input t:type="checkbox"  t:value="userAgreement" />
-                          Check if you agree with the 
+                          Clicking I accept means that you have read and agree to the
+                          <br />
                           <a href="#" >Preppa Terms of Service</a> and <a href="#">Preppa Privacy Policy</a>.
                       </td>
                   </tr>

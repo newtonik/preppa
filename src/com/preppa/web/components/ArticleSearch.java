@@ -25,7 +25,6 @@ import org.apache.lucene.search.Query;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
@@ -43,7 +42,6 @@ import org.slf4j.Logger;
  */
 public class ArticleSearch {
     @Property
-    @Persist
     private String aName;
     @Parameter
     private String searcher;

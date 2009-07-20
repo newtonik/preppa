@@ -78,7 +78,7 @@
                   <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
-                        <a href="#" t:type="pagelink" t:page="contribution/longpassage/showdual" t:context="${longpassage.id}" ><input type="button" value="Cancel" /></a>
+                        <a href="#" t:type="pagelink" t:page="contribution/longpassage/showdual" t:context="${longDualpassage.id}" ><input type="button" value="Cancel" /></a>
                     </td>
 
                  </tr>
