@@ -13,5 +13,5 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  * @author newtonik
  */
 public interface TestsubjectDAO extends GenericDAO <Testsubject, Integer> {
-
+    Testsubject findById(Integer id);
 }

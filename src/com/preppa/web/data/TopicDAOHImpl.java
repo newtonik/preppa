@@ -48,6 +48,7 @@ public class TopicDAOHImpl extends AbstractHibernateDAO<Topic, Integer> implemen
     
     }
 
+    @Override
       public Integer findSizeByPartialName(String partial, Testsubject subject) {
                 SQLString sqlString = new SQLString("FROM Topic topics");
         if(partial != null && partial.length() > 0)
@@ -73,7 +74,7 @@ public class TopicDAOHImpl extends AbstractHibernateDAO<Topic, Integer> implemen
         if(name != null && name.length() > 0)
         {
              sqlString.addOrderField("topics.name");
-                 sqlString.addWhereClause("topics.name  = '" + name + "'");
+                 sqlString.addWhereClause("topics.name  LIKE '%" + name + "%'");
                  if(subject != null) {
                      sqlString.addWhereClause("topics.testsubject = '" + subject.getId() + "'");
                  }

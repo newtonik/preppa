@@ -10,4 +10,9 @@
         
      }
 
-       
+     function onChangeTestsubject(response) {
+     
+         var result = response;
+         $('result1').value = result;
+
+     }

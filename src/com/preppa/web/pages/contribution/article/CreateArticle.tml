@@ -28,13 +28,9 @@
                        
                      
                      <td align="left">
-                            <select id="testsubject" t:type="ck/BeanSelect"
-                            list="testsubjects"
-                            labelField="literal:name"
-                            valueField="literal:id"
-                            value="testsubject"
-                            t:label="Section"
-                            />
+                         <input t:id="select1"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
+                         <input id="result1" type="hidden" />
+
                     </td>
                      
                      <td align="left">
@@ -49,9 +45,9 @@
                          </tr>
                       </table>
                      </td>
+
                   </tr>
                  
-                
                  <tr>
                        <td valign="top" align="left">
                            <t:label for="body">Article: </t:label>

@@ -48,6 +48,8 @@ import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.annotations.SubModule;
+import org.apache.tapestry5.ioc.services.PropertyAccess;
+import org.apache.tapestry5.services.ComponentClassTransformWorker;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestGlobals;
@@ -122,6 +124,16 @@ public final class AppModule {
 
      
 
+/**
+     * Adds a number of standard component class transform workers:
+     * <ul>
+     * <li>InjectSelectionModel - generates the SelectionModel and ValueEncoder for a any marked list of objects.</li>
+     * </ul>
+     */
+    public static void contributeComponentClassTransformWorker(OrderedConfiguration<ComponentClassTransformWorker> configuration, PropertyAccess propertyAccess)
+    {
+        configuration.add("InjectSelectionModel", new InjectSelectionModelWorker(propertyAccess), "after:Inject*");
+    }
 
 
     /**

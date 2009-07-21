@@ -13,6 +13,7 @@ import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
+import com.preppa.web.utils.InjectSelectionModel;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -22,20 +23,29 @@ import java.util.Set;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Mixins;
+
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.util.TextStreamResponse;
+import org.chenillekit.tapestry.core.components.BeanSelect;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.InPlaceEditor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.slf4j.Logger;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -60,8 +70,10 @@ public class CreateArticle {
     private Editor body;
     private int size;
     @Property
+    @Persist
     private Testsubject testsubject;
-    private List<Testsubject> testsubjects;
+    @InjectSelectionModel(labelField = "name", idField = "id")
+    private List<Testsubject> testsubjects = new ArrayList<Testsubject>();
     @Property
     private Topic top;
     @Property
@@ -91,17 +103,26 @@ public class CreateArticle {
     @Component
     private Form articleform;
     private List<Integer> addTagIds;
+   
 
+    @Component(parameters = {"value=testsubject",  "event=change",
+                         "onCompleteCallback=literal:onChangeTestsubject"})
+    @Mixins({"ck/OnEvent"})
+    private Select select1;
     
-//@Inject
-    //private EmailService mailer;
+    @Inject
+    private Logger logger;
+
     @Inject
     private TagDAO tagDAO;
-//    @OnEvent(component="cancelButton")
-//    public Object onCancelButton() {
-//   //now you have a chance to do any cleanup work you want to do.
-//        return Index.class;
-//    }
+
+
+    public void onPrepare(){
+              Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+                testsubjects.clear();
+              testsubjects.addAll(setItems);
+     
+    }
 
     void Article() {
        this.article = new Article();
@@ -135,7 +156,22 @@ public class CreateArticle {
             articleform.recordError("Articles should have a topic.");
         }
     }
+    
+    public StreamResponse onChangeFromSelect1(String c)
+    {
+            logger.info("TestSubject Id = " + c);
+            //JSONObject json = new JSONObject();
+            if (c != null) {
 
+                testsubject = testsubjectDAO.findById(Integer.parseInt(c));
+                JSONObject json = new JSONObject();
+                json.put("result", testsubject.getId());
+                return new TextStreamResponse("text/json", json.toString());
+
+            }
+            return null;
+
+    }
     @CommitAfter
     Object onSuccessFromArticleForm() {
 
@@ -199,24 +235,6 @@ public class CreateArticle {
         this.testsubjects = testsubjects;
     }
 
-    List<String> onProvideCompletionsFromTopicks(String partial) {
-        List<Topic> matches = new ArrayList<Topic>();
-        if(testsubject != null)
-        {
-            matches = topicDAO.findByPartialName(partial, testsubject);
-        }
-        else
-        {
-            matches = topicDAO.findByPartialName(partial);
-        }
-        List<String> result = new ArrayList<String>();
-        for(Topic t : matches)
-        {
-            result.add(t.getName());
-        }
-        return result;
-    }
-
 //      List<String> onProvideCompletionsFromTags(String partial) {
 //        List<Tag> matches = tagDAO.findByPartialName(partial);
 //
@@ -237,7 +255,18 @@ public class CreateArticle {
 
 
     List<Topic> onProvideCompletionsFromAutocomplete(String partial) {
-        List<Topic> matches = topicDAO.findByPartialName(partial);
+         List<Topic> matches = null;
+        if(testsubject != null)
+        {
+            logger.warn("Test subject is not null");
+            matches = topicDAO.findByPartialName(partial, testsubject);
+            logger.warn("Size is " + matches.size());
+        }
+        else
+        {
+            matches = null;
+        }
+       // matches = topicDAO.findByPartialName(partial);
         return matches;
 
     }

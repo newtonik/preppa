@@ -13,6 +13,7 @@ import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
+import com.preppa.web.utils.InjectSelectionModel;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -21,16 +22,23 @@ import java.util.List;
 import java.util.Set;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Mixins;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.util.TextStreamResponse;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.slf4j.Logger;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -56,7 +64,9 @@ public class EditArticle {
     private Editor body;
     private int size;
     @Property
+    @Persist
     private Testsubject testsubject;
+     @InjectSelectionModel(labelField = "name", idField = "id")
     private List<Testsubject> testsubjects;
     @Property
     private Topic top;
@@ -85,6 +95,12 @@ public class EditArticle {
     @Component
     private Form articleform;
 
+    @Component(parameters = {"value=testsubject",  "event=change",
+                         "onCompleteCallback=literal:onChangeTestsubject"})
+    @Mixins({"ck/OnEvent"})
+    private Select select1;
+       @Inject
+    private Logger logger;
 
     void Article(Integer id) {
 
@@ -94,8 +110,11 @@ public class EditArticle {
 
     }
 
-    void setupRender() {
-
+    public void onPrepare(){
+              Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+                testsubjects.clear();
+              testsubjects.addAll(setItems);
+             
     }
     void onActivate(int id) {
 
@@ -127,7 +146,21 @@ public class EditArticle {
             articleform.recordError("Articles should have a topic.");
         }
     }
+    public StreamResponse onChangeFromSelect1(String c)
+    {
+            logger.info("TestSubject Id = " + c);
+            //JSONObject json = new JSONObject();
+            if (c != null) {
 
+                testsubject = testsubjectDAO.findById(Integer.parseInt(c));
+                JSONObject json = new JSONObject();
+                json.put("result", testsubject.getId());
+                return new TextStreamResponse("text/json", json.toString());
+
+            }
+            return null;
+
+    }
     @CommitAfter
     Object onSuccessFromArticleForm() {
                //article = new Article();

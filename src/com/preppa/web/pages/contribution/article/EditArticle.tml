@@ -28,12 +28,9 @@
 
 
                      <td align="left">
-                            <select t:id="testsubject" t:type="ck/BeanSelect"
-                            list="testsubjects"
-                            labelField="literal:name"
-                            valueField="literal:id"
-                            value="testsubject"
-                            t:label="Section"/>
+                          <input t:id="select1"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
+                         <input id="result1" type="hidden" />
+
                     </td>
 
                      <td align="left">
