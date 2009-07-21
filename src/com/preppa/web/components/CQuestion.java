@@ -29,6 +29,7 @@ import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Checkbox;
 import org.apache.tapestry5.corelib.components.Form;
@@ -124,8 +125,21 @@ public class CQuestion {
     private LongDualPassage longdualpassage;
     @Property
     private Boolean mywork;
-    @Component
+    @Component(id = "createquestionform")
     private Form createquestionform;
+    @Persist
+    private boolean error;
+    @Persist
+    private String emessage;
+
+    public boolean getError() {
+        error = !error;
+        return !error;
+    }
+
+    public String getEMessage() {
+        return emessage;
+    }
 
     public void setPageTrue() {
         showpage = true;
@@ -160,14 +174,16 @@ public class CQuestion {
         }
     }
 
-    void onValidateForm() throws ValidationException {
-        System.out.println("Mywork is " + mywork);
+
+    void onValidateForm(){
         if(mywork == false) {
-            System.out.println("I'm here " + mywork);
-            throw new ValidationException("You must verify that this is your own work.");
-            //createquestionform.recordError("You cannot submit a question to Preppa, that isn't your own work.");
+            error = true;
+            emessage = "You must verify that this is your own work.";
+            createquestionform.recordError("You must verify that this is your own work.");
         }
-        if ((c1 == null && c2 == null && c3 == null && c4 ==null && c5 == null)) {
+        if ((correct == null)) {
+            error = true;
+            emessage = "You did not specify an answer.";
             createquestionform.recordError("You did not specify an answer.");
         }
     }

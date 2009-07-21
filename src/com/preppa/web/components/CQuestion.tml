@@ -1,4 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+ <t:if t:test="error">
+ <font color="FF0000">ERROR : ${emessage}</font>
+ </t:if>
  <div id="multiple-question" class="overlay">
         <t:form t:id="createquestionform">
             <table id="formtable">
