@@ -4,6 +4,9 @@
          <p>
             <t:pagelink t:page="contribution/article/home"> Articles Home </t:pagelink>
             <br />
+               
+            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+            <br />
             <t:pagelink t:page="contribution/longpassage"> All Long Passages </t:pagelink>
             <br />
             <t:pagelink t:page="contribution/shortpassage"> All Short Passages </t:pagelink>

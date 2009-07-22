@@ -109,16 +109,13 @@ public class EditArticle {
        addedTopics =  topicDAO.findAll();
 
     }
-
-    public void onPrepare(){
-              Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
-                testsubjects.clear();
-              testsubjects.addAll(setItems);
-             
-    }
     void onActivate(int id) {
 
-      this.article = articleDAO.findById(id);
+        this.article = articleDAO.findById(id);
+        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+        testsubjects = new ArrayList<Testsubject>();
+        testsubjects.addAll(setItems);
+
        if(this.article != null) {
            this.fBody = article.getBody();
            this.fSource = article.getSources();
@@ -146,6 +143,11 @@ public class EditArticle {
             articleform.recordError("Articles should have a topic.");
         }
     }
+    /**
+     * This method respons to the onChange event from the select component
+     * @param c
+     * @return a response
+     */
     public StreamResponse onChangeFromSelect1(String c)
     {
             logger.info("TestSubject Id = " + c);

@@ -29,9 +29,10 @@ private String example = "before";
 private Index index;
 private Integer vid;
 
-Object onActivate(int id) {
+void onActivate(int id) {
     if(id > 0 ) {
         this.vocab = vocabDAO.findById(id);
+        this.vid = id;
         if(this.vocab != null) {
             if (vocab.getSentence() == null)
             {
@@ -44,14 +45,15 @@ Object onActivate(int id) {
             }
             vid = vocab.getId();
         }
-        else
-        {
-            return index;
-        }
+       
     }
-     return this;
+     
     }
 
+Integer onPassivate() {
+    return this.vid;
+
+}
 public String getExample() {
     if (vocab.getSentence() == null)
     {
