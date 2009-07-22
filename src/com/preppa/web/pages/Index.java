@@ -6,7 +6,8 @@ import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vocab;
 import java.util.List;
 import java.util.Random;
-
+import java.net.URL;
+import java.io.*;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.security.Authentication;
@@ -60,6 +61,38 @@ public class Index {
      */
     public User getUser() {
         return user;
+    }
+
+	public static BufferedReader read(String url) throws Exception {
+		return new BufferedReader(
+			new InputStreamReader(
+				new URL(url).openStream()));
+    }
+
+    public String getWebPage() throws Exception {
+        BufferedReader reader = read("http://www.preppa.com");
+		String line = reader.readLine();
+        String returnVal = "";
+        boolean copy = false;
+        String beginning = "<div class=" + '"' + "topPost" + '"' + ">";
+        String end = "</div> <!-- Closes topPost --><br/>";
+
+		while (line != null) {
+			System.out.println(line);
+			line = reader.readLine();
+            if (line.contains(beginning) == true) {
+                copy = true;
+            }
+            else if (line.contains(end) == true) {
+                copy = false;
+                returnVal = returnVal + line;
+                break;
+            }
+            if (copy) {
+                returnVal = returnVal + line;
+            }
+        }
+        return returnVal;
     }
 
     public boolean getUserExists() {

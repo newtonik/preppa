@@ -9,20 +9,16 @@
             </t:if>
      
         </h2>
-        <p>
-            <t:pagelink t:page="contribution/article/home">Article Section Home</t:pagelink>
-        </p>
-      <p>
-            <t:pagelink t:page="contribution/article/create" >Create Article</t:pagelink>
-        </p>
-        <p>
-            [<t:pagelink t:page="contribution/vocab/view">View Vocab</t:pagelink>]
-        </p>
-        <p>
-            [<t:pagelink t:page="contribution/question/view">View Question</t:pagelink>]
-        </p>
-        <p>
-             <t:grid source="vocab"/>
-        </p>
 
+        <h3>
+        Anouncements
+        </h3>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h3>
+        Latest Blog Post
+        </h3>
+        <t:outputraw t:value="${webpage}"/>
 </html>
