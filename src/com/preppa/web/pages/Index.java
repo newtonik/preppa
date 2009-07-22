@@ -92,6 +92,9 @@ public class Index {
                 returnVal = returnVal + line;
             }
         }
+        if(returnVal == null) {
+            returnVal = "No Featured Article";
+        }
         return returnVal;
     }
 

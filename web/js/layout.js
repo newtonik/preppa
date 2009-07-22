@@ -11,8 +11,12 @@
      }
 
      function onChangeTestsubject(response) {
-     
-         var result = response;
-         $('result1').value = result;
+         
+         //alert(response.testsubject);
+         $('result1').update(response.testsubject);
+         $('result1').setStyle({
+            backgroundColor: '#FFFF5C'
+            });
+
 
      }

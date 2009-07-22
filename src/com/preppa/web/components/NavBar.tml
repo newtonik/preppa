@@ -50,7 +50,12 @@
 <div id="nav-menu">
     <ul>
         <li><a href="#" t:type="PageLink" t:page="index">Home</a></li>
-        <li><a href="#">Profile</a></li>
+        <t:if t:test="userExists">
+            <li> <a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a> </li>
+            <t:parameter name="else">
+                <li><a href="#">Profile</a></li>
+            </t:parameter>
+        </t:if>
         <li><a href="#">Friends</a></li>
         <li><a href="#">Sites Available</a></li>
     </ul>

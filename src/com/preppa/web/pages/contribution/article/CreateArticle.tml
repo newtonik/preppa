@@ -16,21 +16,24 @@
                       <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" onkeyup="countCharacters();"/>
                       </td>
                   </tr>
-                 <tr>
-                     <td align="left">
-                         <label for="testsubject"> Test Subject: </label>
-                     </td>
-                 </tr>
                  <tr> 
                      <td align="left">
                       <table>
+                          <tr align="right">
+                             <td align="left">
+                                 <label for="testsubject"> Test Subject: </label>
+                             </td>
+                             <td>Section: </td>
+                             <td align="left" id="result1">
+                                  
+                              </td>
+                          </tr>
                       <tr>
                        
                      
                      <td align="left">
                          <input t:id="select1"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
-                         <input id="result1" type="hidden" />
-
+                         
                     </td>
                      
                      <td align="left">
@@ -113,6 +116,7 @@
              </table>
              </t:form>
     </div>
+    
 
     <t:block t:id="newtagblock">
         <div id="tagform">

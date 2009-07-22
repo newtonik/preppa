@@ -165,7 +165,8 @@ public class CreateArticle {
 
                 testsubject = testsubjectDAO.findById(Integer.parseInt(c));
                 JSONObject json = new JSONObject();
-                json.put("result", testsubject.getId());
+                json.put("testsubject", testsubject.getName());
+              
                 return new TextStreamResponse("text/json", json.toString());
 
             }
