@@ -13,6 +13,7 @@ import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
+import com.preppa.web.entities.Vote;
 import com.preppa.web.utils.InjectSelectionModel;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -41,7 +42,6 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.util.TextStreamResponse;
-import org.chenillekit.tapestry.core.components.BeanSelect;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.InPlaceEditor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
@@ -103,8 +103,11 @@ public class CreateArticle {
     @Component
     private Form articleform;
     private List<Integer> addTagIds;
-   
+    @Persist
+    @Property
+    private Boolean vote;
 
+   
     @Component(parameters = {"value=testsubject",  "event=change",
                          "onCompleteCallback=literal:onChangeTestsubject"})
     @Mixins({"ck/OnEvent"})
@@ -366,4 +369,5 @@ public class CreateArticle {
             Topic topic = new Topic(titleValue);
             topicDAO.doSave(topic);
         }
+
 }

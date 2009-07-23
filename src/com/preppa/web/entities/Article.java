@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic; 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,6 +58,9 @@ public class Article implements Serializable {
     private Date updatedAt;
     private User user;
     private List<Tag> taglist = new LinkedList<Tag>();
+    private Set<Vote> votes;
+    private Integer voteCount;
+
     @Id
     @NonVisual
     @Basic(optional = false)
@@ -252,6 +256,36 @@ public class Article implements Serializable {
      */
     public void setTaglist(List<Tag> tags) {
         this.taglist = tags;
+    }
+
+    /**
+     * @return the votes
+     */
+   
+    @ManyToMany(mappedBy = "articles")
+    public Set<Vote> getVotes() {
+        return votes;
+    }
+
+    /**
+     * @param votes the votes to set
+     */
+    public void setVotes(Set<Vote> votes) {
+        this.votes = votes;
+    }
+
+    /**
+     * @return the voteCount
+     */
+    public Integer getVoteCount() {
+        return voteCount;
+    }
+
+    /**
+     * @param voteCount the voteCount to set
+     */
+    public void setVoteCount(Integer voteCount) {
+        this.voteCount = voteCount;
     }
 
 
