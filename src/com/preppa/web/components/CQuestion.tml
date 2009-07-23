@@ -124,7 +124,7 @@
                   <tr>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
-                        
+                        <t:pagelink t:page="Index"><button type="button">Cancel</button></t:pagelink>
                  </td>
 
                  </tr>

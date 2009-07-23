@@ -1,24 +1,34 @@
 <html t:type="layout" t:pageTitle="Preppa Home" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-   
-        <h2>
+       <h2>
             <t:if t:test="userExists">
                        Welcome to Preppa ${user.firstname}!
                 <t:parameter name="else">
                            Welcome to Preppa
                     </t:parameter>
             </t:if>
-     
         </h2>
-
+    <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+        bgcolor="#FFFFFF"
+        style="padding: 20px;" align="center">
+    <div style="border-width: 2px; border-style: solid; border-color: #4186D3;padding: 20px;background-color:#e8eefa;" >
         <h3>
         Anouncements
         </h3>
+    </div></div>
+
+
         <br/>
-        <br/>
-        <br/>
-        <br/>
+    <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+        bgcolor="#FFFFFF"
+        style="padding: 20px;" align="center">
+    <div style="border-width: 2px; border-style: solid; border-color: #4186D3;padding: 20px;background-color:#e8eefa;" >
         <h3>
         Latest Blog Post
         </h3>
         <t:outputraw t:value="${webpage}"/>
+
+    </div>
+    </div>
+        <br/>
+
 </html>

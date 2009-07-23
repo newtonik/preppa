@@ -31,4 +31,5 @@
 
         <strong>Dual Passages</strong>
     </div>
+    <t:pagelink t:page="contribution/shortpassage/create"> Create Short Passage </t:pagelink>
 </html>

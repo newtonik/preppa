@@ -133,11 +133,11 @@ public class CQuestion {
     private String emessage;
 
     public boolean getError() {
-        error = !error;
-        return !error;
+        return error;
     }
 
     public String getEMessage() {
+        error = !error;
         return emessage;
     }
 

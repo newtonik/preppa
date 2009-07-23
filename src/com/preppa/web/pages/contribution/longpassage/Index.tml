@@ -31,4 +31,5 @@
 
         <strong>Dual Passages</strong>
     </div>
+    <t:pagelink t:page="contribution/longpassage/create"> Create Long Passages </t:pagelink>
 </html>

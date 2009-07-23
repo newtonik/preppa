@@ -17,7 +17,7 @@
 
 </p>
         <p>
-            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+            <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
         </p>
 
 </html>

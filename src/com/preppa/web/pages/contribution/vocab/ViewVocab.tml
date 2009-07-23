@@ -47,7 +47,7 @@
 
 </p>
         <p>
-            <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+            <t:pagelink t:page="contribution/vocab/add">Add a Vocab Word</t:pagelink>
         </p>
 
 </html>
