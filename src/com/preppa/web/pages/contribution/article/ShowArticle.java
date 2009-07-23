@@ -22,6 +22,7 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.util.TextStreamResponse;
 
@@ -53,11 +54,21 @@ private VoteDAO voteDAO;
 private Zone voteupZone;
 @Inject
 private Block voteBlock;
+@Inject
+private Block upSuccess;
+@Inject
+private Block downSuccess;
+@Property
+@Persist
+private Integer votes;
+
 
 void onActivate(int id) {
             this.article = articleDAO.findById(id);
             this.author = article.getUser();
             this.tags = article.getTaglist();
+            this.votes = voteDAO.findVoteByContentId("article", article.getId());
+
             
             if(author != null) {
                 authorname = author.getUsername();
@@ -101,7 +112,7 @@ void onActivate(int id) {
 
     }
 
- StreamResponse onActionFromVoteUp() {
+ Block onActionFromVoteUp() {
      requestGlobals.getHTTPServletRequest();
      String  hostname = _request.getRemoteAddr();
 
@@ -119,9 +130,15 @@ void onActivate(int id) {
 
      voteDAO.doSave(v);
 
-     return new TextStreamResponse("text/json", hostname);
+     JSONObject json = new JSONObject();
+     json.put("vote", "down");
+     //decrement the vote
+     votes++;
+
+     return upSuccess;
+     //return new TextStreamResponse("text/json", json.toString());
  }
-  StreamResponse onActionFromVoteDown() {
+  Block onActionFromVoteDown() {
      requestGlobals.getHTTPServletRequest();
      String  hostname = _request.getRemoteAddr();
 
@@ -138,7 +155,14 @@ void onActivate(int id) {
      v.setCreatedAt(now);
 
      voteDAO.doSave(v);
+     //update the vote
+     votes--;
 
-     return new TextStreamResponse("text/json", hostname);
+
+     JSONObject json = new JSONObject();
+     json.put("vote", "down");
+
+     //return new TextStreamResponse("text/json", json.toString());
+     return downSuccess;
  }
 }
