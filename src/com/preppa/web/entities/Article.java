@@ -59,7 +59,7 @@ public class Article implements Serializable {
     private User user;
     private List<Tag> taglist = new LinkedList<Tag>();
     private Set<Vote> votes;
-    private Integer voteCount;
+    private Integer voteScore;
 
     @Id
     @NonVisual
@@ -275,17 +275,17 @@ public class Article implements Serializable {
     }
 
     /**
-     * @return the voteCount
+     * @return the voteScore
      */
     public Integer getVoteCount() {
-        return voteCount;
+        return voteScore;
     }
 
     /**
-     * @param voteCount the voteCount to set
+     * @param voteScore the voteScore to set
      */
     public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
+        this.voteScore = voteCount;
     }
 
 

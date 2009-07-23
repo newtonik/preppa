@@ -33,6 +33,8 @@ import com.preppa.web.data.UserProfileDAO;
 import com.preppa.web.data.UserProfileDAOHibImpl;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.data.VocabDAOHibImpl;
+import com.preppa.web.data.VoteDAO;
+import com.preppa.web.data.VoteDAOHimpl;
 import com.preppa.web.services.impl.MapValueEncoder;
 import com.preppa.web.services.impl.PassageServiceImpl;
 import java.io.IOException;
@@ -103,6 +105,7 @@ public final class AppModule {
         binder.bind(TagDAO.class, TagDAOHibImpl.class);
         binder.bind(PassageService.class, PassageServiceImpl.class);
         binder.bind(AuditReader.class, AuditReaderImpl.class);
+        binder.bind(VoteDAO.class, VoteDAOHimpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 

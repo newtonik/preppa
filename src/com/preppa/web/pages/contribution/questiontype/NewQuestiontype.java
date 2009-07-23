@@ -65,8 +65,6 @@ public class NewQuestiontype {
         questiontype.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
         questiontype.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
 
-        //article.setUser(userDAO.findById(1));
-        System.out.println("I have succeded");
         questiontypeDAO.doSave(questiontype);
         return index;
     }

@@ -23,7 +23,16 @@
             <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
         </p>
 
-        
+        <div>
+            <t:zone t:id="voteupZone">
+            </t:zone>
+            <t:block t:id="voteBlock">
+                
+            </t:block>
+            <a href="#" t:type="actionlink" t:id="voteup" t:zone="voteupZone"> Vote Up </a>
+            <br />
+            <a href="#" t:type="actionlink" t:id="votedown" t:zone="voteupZone"> Vote Down </a>
+        </div>
        
         <t:tagview t:alltags="tags" />
         <br />

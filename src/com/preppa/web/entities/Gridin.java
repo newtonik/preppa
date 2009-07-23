@@ -57,7 +57,7 @@ public class Gridin implements Serializable {
     private Date createdAt;
     private Date updatedAt;
     private List<Tag> taglist = new ArrayList<Tag>();
-    private Integer rating;
+    private Integer voteScore;
     private User user;
     
 
@@ -187,18 +187,18 @@ public class Gridin implements Serializable {
     }
 
     /**
-     * @return the rating
+     * @return the voteScore
      */
     @Audited
     public Integer getRating() {
-        return rating;
+        return voteScore;
     }
 
     /**
-     * @param rating the rating to set
+     * @param voteScore the voteScore to set
      */
     public void setRating(Integer rating) {
-        this.rating = rating;
+        this.voteScore = rating;
     }
 
     /**

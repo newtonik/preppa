@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Table;
@@ -25,11 +26,11 @@ import org.hibernate.annotations.Table;
  * @author nwt
  */
 @javax.persistence.Entity
-@javax.persistence.Table(name="Vote")
+@javax.persistence.Table(name="Vote", uniqueConstraints={@UniqueConstraint(columnNames={"contentType","contentId", "user_id"})})
 @Table(appliesTo="Vote", indexes = {
     @Index(name="contType_contId_uid", columnNames={"contentType","contentId", "user_id"}),
     @Index(name="contType_userId", columnNames={"contentType","user_id"}),
-    @Index(name="content_source", columnNames={"contentType","contentId","source"})})
+    @Index(name="content_source", columnNames={"contentType","contentId","source"})    })
 public class Vote implements Serializable {
     private Long id;
     private List<Article> articles;
@@ -39,7 +40,7 @@ public class Vote implements Serializable {
     private User user;
     private String source;
     private String contentType;
-    private Long contentId;
+    private Integer contentId;
 
     
      @Id
@@ -82,19 +83,13 @@ public class Vote implements Serializable {
         this.id = id;
     }
     /**
-     * @return the up
+     * @return the value
      */
     public Integer getValue() {
         return value;
     }
 
     public void setValue(Integer value) {
-        this.value = value;
-    }
-    /**
-     * @param up the up to set
-     */
-    public void setUp(Integer value) {
         this.value = value;
     }
 
@@ -175,14 +170,14 @@ public class Vote implements Serializable {
     /**
      * @return the contentId
      */
-    public Long getContentId() {
+    public Integer getContentId() {
         return contentId;
     }
 
     /**
      * @param contentId the contentId to set
      */
-    public void setContentId(Long contentId) {
+    public void setContentId(Integer contentId) {
         this.contentId = contentId;
     }
 

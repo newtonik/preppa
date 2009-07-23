@@ -20,3 +20,7 @@
 
 
      }
+
+     $('articleform').request({
+        onSucess: function(){ alert('Form data saved!') }
+      })

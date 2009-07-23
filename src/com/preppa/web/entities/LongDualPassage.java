@@ -53,6 +53,7 @@ public class LongDualPassage implements Serializable {
     private PassageType passagetype;
     private Integer numQuestions;
     private User user;
+    private Integer voteScore;
 
 
     @Id
@@ -301,6 +302,20 @@ public class LongDualPassage implements Serializable {
      */
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    /**
+     * @return the voteScore
+     */
+    public Integer getVoteScore() {
+        return voteScore;
+    }
+
+    /**
+     * @param voteScore the voteScore to set
+     */
+    public void setVoteScore(Integer voteScore) {
+        this.voteScore = voteScore;
     }
 
     
