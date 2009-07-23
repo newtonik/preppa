@@ -66,7 +66,7 @@ public class EditArticle {
     @Property
     @Persist
     private Testsubject testsubject;
-     @InjectSelectionModel(labelField = "name", idField = "id")
+    @InjectSelectionModel(labelField = "name", idField = "id")
     private List<Testsubject> testsubjects;
     @Property
     private Topic top;
@@ -156,7 +156,7 @@ public class EditArticle {
 
                 testsubject = testsubjectDAO.findById(Integer.parseInt(c));
                 JSONObject json = new JSONObject();
-                json.put("result", testsubject.getId());
+                json.put("testsubject", testsubject.getName());
                 return new TextStreamResponse("text/json", json.toString());
 
             }

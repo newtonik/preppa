@@ -25,6 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.envers.Audited;
 
@@ -37,50 +38,20 @@ import org.hibernate.envers.Audited;
 @Audited
 public class Question implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "id")
-    @NonVisual
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne(targetEntity=Questiontype.class)
-    @JoinColumn(name="questiontype_id")
     private Questiontype questiontype;
-    @Lob
-    @Column(name = "question")
     private String question;
-    @ManyToMany(cascade=CascadeType.ALL,  targetEntity=Tag.class)
-     @JoinTable(name = "Question_Tag",
-    joinColumns = {
-      @JoinColumn(name="question_id")
-        },
-    inverseJoinColumns = {
-      @JoinColumn(name="tag_id")
-    })
     private List<Tag> taglist = new ArrayList<Tag>();
-    @Lob
-    @Column(name = "source")
     private String source;
-    @Lob
-    @Column(name = "explanation")
     private String explanation;
     private Integer difficulty;
-    @OneToMany(cascade=CascadeType.ALL,  fetch=FetchType.EAGER)
-    @JoinColumn(name="question_id")
     private List<QuestionAnswer> choices = new ArrayList<QuestionAnswer>();
     //this will be used for validation.
     private Integer numCorrect;
     private String correctAnswer;
-    @Basic(optional = false)
-    @NonVisual
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @Basic(optional = false)
-    @NonVisual
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    private User user;
     
 
     public Question() {
@@ -96,6 +67,10 @@ public class Question implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @Basic(optional = false)
+    @Column(name = "id")
     @NonVisual
     public Integer getId() {
         return id;
@@ -105,10 +80,12 @@ public class Question implements Serializable {
         this.id = id;
     }
 
+    @Lob
+    @Column(name = "question")
     public String getQuestion() {
         return question;
     }
-
+    @Transient
     public String getQuestionFormatted() {
          //Removed html tags
         String returnVal = question.substring(3, question.length()-4);
@@ -120,6 +97,8 @@ public class Question implements Serializable {
     }
 
     
+    @Lob
+    @Column(name = "source")
     public String getSource() {
         return source;
     }
@@ -128,6 +107,8 @@ public class Question implements Serializable {
         this.source = source;
     }
 
+    @Lob
+    @Column(name = "explanation")
     public String getExplanation() {
         return explanation;
     }
@@ -135,7 +116,10 @@ public class Question implements Serializable {
     public void setExplanation(String explanation) {
         this.explanation = explanation;
     }
-
+    @NonVisual
+    @Basic(optional = false)
+    @Column(name = "created_at")
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -143,7 +127,10 @@ public class Question implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
+    @NonVisual
+    @Basic(optional = false)
+    @Column(name = "updated_at")
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -180,6 +167,8 @@ public class Question implements Serializable {
     /**
      * @return the questiontype
      */
+    @ManyToOne(targetEntity = Questiontype.class)
+    @JoinColumn(name = "questiontype_id")
     public Questiontype getQuestiontype() {
         return questiontype;
     }
@@ -222,6 +211,8 @@ public class Question implements Serializable {
     /**
      * @return the choices
      */
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "question_id")
     public List<QuestionAnswer> getChoices() {
         return choices;
     }
@@ -250,6 +241,8 @@ public class Question implements Serializable {
     /**
      * @return the taglist
      */
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class)
+    @JoinTable(name = "Question_Tag", joinColumns = {@JoinColumn(name = "question_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -259,6 +252,21 @@ public class Question implements Serializable {
      */
     public void setTaglist(List<Tag> tagltist) {
         this.taglist = tagltist;
+    }
+
+    /**
+     * @return the user
+     */
+    @ManyToOne
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
   

@@ -18,7 +18,7 @@ import org.hibernate.search.annotations.Index;
 
 /**
  *
- * @author nwt
+ * @author newtonik
  */
 @Entity
 @Audited
@@ -28,6 +28,7 @@ public class Tag implements Serializable {
     private String name;
     private List<OpenQuestion> openquestions;
     private List<Article> articles;
+    private List<Gridin> gridins;
     
     public Tag() {
 
@@ -117,6 +118,15 @@ public class Tag implements Serializable {
      */
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+    }
+
+    @ManyToMany(mappedBy = "taglist")
+    public List<Gridin> getGridins() {
+        return gridins;
+    }
+
+    public void setGridins(List<Gridin> gridins) {
+        this.gridins = gridins;
     }
 
 }

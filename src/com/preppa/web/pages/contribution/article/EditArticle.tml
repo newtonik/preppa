@@ -24,8 +24,16 @@
                  <tr>
                      <td align="left">
                       <table>
-                      <tr>
-
+                          <tr align="right">
+                             <td align="left">
+                                 <label for="testsubject"> Test Subject: </label>
+                             </td>
+                             <td>Section: </td>
+                             <td align="left" id="result1">
+                                  
+                              </td>
+                          </tr>
+		    <tr>
 
                      <td align="left">
                           <input t:id="select1"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>

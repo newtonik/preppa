@@ -1,0 +1,236 @@
+/*
+ * Preppa, Inc.
+ * 
+ * Copyright 2009. All rights reserved.
+ * 
+ * $Id$
+ */
+
+
+package com.preppa.web.entities;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.envers.Audited;
+
+/**
+ *
+ * @author newtonik
+ */
+@Entity
+public class Gridin implements Serializable {
+    private static long serialVersionUID = 1L;
+
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
+    private Long id;
+    private String title;
+    private String question;
+    private List<GridinAnswer> answers = new ArrayList<GridinAnswer>();
+    private Date createdAt;
+    private Date updatedAt;
+    private List<Tag> taglist = new ArrayList<Tag>();
+    private Integer rating;
+    private User user;
+    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (getId() != null ? getId().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Gridin)) {
+            return false;
+        }
+        Gridin other = (Gridin) object;
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.getQuestion();
+    }
+
+    /**
+     * @return the title
+     */
+    @Audited
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @return the question
+     */
+       @Audited
+    public String getQuestion() {
+        return question;
+    }
+
+    /**
+     * @param question the question to set
+     */
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    /**
+     * @return the createdAt
+     */
+    @Basic(optional = false)
+    @NonVisual
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @param createdAt the createdAt to set
+     */
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    /**
+     * @return the updatedAt
+     */
+    @Audited
+    @Basic(optional = false)
+    @NonVisual
+    @Column(name = "updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    /**
+     * @param updatedAt the updatedAt to set
+     */
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    /**
+     * @return the taglist
+     */
+    @ManyToMany
+    @JoinTable(name = "Gridin_Tag",
+    joinColumns = {
+      @JoinColumn(name="gridin_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="tag_id")
+    })
+    @Audited
+    public List<Tag> getTaglist() {
+        return taglist;
+    }
+
+    /**
+     * @param taglist the taglist to set
+     */
+    public void setTaglist(List<Tag> taglist) {
+        this.taglist = taglist;
+    }
+
+    /**
+     * @return the rating
+     */
+    @Audited
+    public Integer getRating() {
+        return rating;
+    }
+
+    /**
+     * @param rating the rating to set
+     */
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    /**
+     * @return the user
+     */
+    @Audited
+    @ManyToOne
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the answers
+     */
+    @OneToMany
+    @Audited
+    public List<GridinAnswer> getAnswers() {
+        return answers;
+    }
+
+    /**
+     * @param answers the answers to set
+     */
+    public void setAnswers(List<GridinAnswer> answers) {
+        this.answers = answers;
+    }
+
+}
