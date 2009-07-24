@@ -11,7 +11,12 @@ import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.SupportsInformalParameters;
+import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.annotations.Path;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.chenillekit.tapestry.core.components.SlidingPanel;
 
 /**
  *
@@ -44,6 +49,18 @@ public class Layout {
      private Block rightblockthree;
      @Component
      private Right rightblockthreeregularContent;
+
+
+
+    @Inject
+    @Path("context:/styles/SlidingPanelNew.css")
+    @Property
+    private Asset styles;
+
+    @Component(parameters = {"subject=Contributions", "closed=false", "options={duration:0.1}"})
+    private SlidingPanel panel1;
+    @Component(parameters = {"subject=Testing", "closed=true", "options={duration:0.1}"})
+    private SlidingPanel panel2;
 
     //final static ResourceBundle rb = ResourceBundle.getBundle("version.properties");
 
