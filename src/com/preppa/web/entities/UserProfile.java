@@ -10,6 +10,7 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -18,6 +19,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -32,34 +34,26 @@ import org.hibernate.envers.Audited;
 @Audited
 //@Table(name = "userprofile", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
 public class UserProfile implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private Integer id;
+    private Integer user_id;
+    private String aboutme;
+    private String activities;
+    private String interests;
+    private Date createdAt;
+    private Date updatedAt;
+    private ContentFlag status;
+
+
+    public UserProfile() {
+    }
+
     @Id
     @NonVisual
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Integer id;
-    @Column(name = "user_id", nullable = true, unique =true)
-    private Integer user_id;
-    @Column(name = "aboutme", length = 5000)
-    private String aboutme;
-    @Column(name = "activities", length = 5000)
-    private String activities;
-    @Column(name = "interests", length = 5000)
-    private String interests;
-    @NonVisual
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @NonVisual
-    @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-
-    public UserProfile() {
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
     public void setId(Integer id) {
@@ -68,7 +62,7 @@ public class UserProfile implements Serializable {
     public void setUserId(Integer uid) {
         this.user_id = uid;
     }
-
+    @Column(name = "user_id", nullable = true, unique =true)
     public int getUserId() {
         return this.user_id;
     }
@@ -76,7 +70,8 @@ public class UserProfile implements Serializable {
     public void setAboutMe(String aboutme) {
         this.aboutme = aboutme;
     }
-
+    @Lob
+    @Column(name = "aboutme", length = 5000)
     public String getAboutMe() {
         return aboutme;
     }
@@ -84,7 +79,8 @@ public class UserProfile implements Serializable {
     public void setActivities(String activities) {
         this.activities = activities;
     }
-
+    @Lob
+    @Column(name = "activities", length = 5000)
     public String getActivities() {
         return activities;
     }
@@ -92,7 +88,8 @@ public class UserProfile implements Serializable {
     public void setInterests(String interests) {
         this.interests = interests;
     }
-
+    @Lob
+    @Column(name = "interests", length = 5000)
     public String getInterests() {
         return interests;
     }
@@ -101,6 +98,9 @@ public class UserProfile implements Serializable {
         this.createdAt = now;
     }
 
+    @NonVisual
+    @Column(name = "created_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -109,7 +109,25 @@ public class UserProfile implements Serializable {
         this.updatedAt = now;
     }
 
+    @Basic(optional = false)
+    @NonVisual
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getUpdatedAt() {
         return updatedAt;
+    }
+
+    /**
+     * @return the status
+     */
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 }

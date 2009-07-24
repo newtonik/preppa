@@ -9,13 +9,16 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -59,6 +62,7 @@ public class Gridin implements Serializable {
     private List<Tag> taglist = new ArrayList<Tag>();
     private Integer voteScore;
     private User user;
+    private ContentFlag status;
     
 
     @Id
@@ -220,7 +224,7 @@ public class Gridin implements Serializable {
     /**
      * @return the answers
      */
-    @OneToMany
+    @OneToMany(targetEntity = GridinAnswer.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @Audited
     public List<GridinAnswer> getAnswers() {
         return answers;
@@ -231,6 +235,20 @@ public class Gridin implements Serializable {
      */
     public void setAnswers(List<GridinAnswer> answers) {
         this.answers = answers;
+    }
+
+    /**
+     * @return the status
+     */
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 
 }

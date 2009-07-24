@@ -162,7 +162,7 @@ public class CreateArticle {
     
     public StreamResponse onChangeFromSelect1(String c)
     {
-            logger.info("TestSubject Id = " + c);
+            logger.debug("TestSubject Id = " + c);
             //JSONObject json = new JSONObject();
             if (c != null) {
 
@@ -187,7 +187,7 @@ public class CreateArticle {
          article.setSources(fSource);
 
 
-    
+        //add new topics and verify no duplicates
        for(Topic e: addedTopics) {
             if(!(article.getTopics().contains(e)))
             {

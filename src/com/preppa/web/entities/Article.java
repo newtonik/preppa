@@ -5,6 +5,7 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
@@ -13,6 +14,8 @@ import java.util.Set;
 import javax.persistence.Basic; 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -60,6 +63,7 @@ public class Article implements Serializable {
     private List<Tag> taglist = new LinkedList<Tag>();
     private Set<Vote> votes;
     private Integer voteScore;
+    private ContentFlag status;
 
     @Id
     @NonVisual
@@ -286,6 +290,21 @@ public class Article implements Serializable {
      */
     public void setVoteCount(Integer voteCount) {
         this.voteScore = voteCount;
+    }
+
+    /**
+     * @return the status
+     */
+    @Enumerated(EnumType.ORDINAL)
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 
 

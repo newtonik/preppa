@@ -5,6 +5,7 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,7 +53,7 @@ public class Question implements Serializable {
     private Date createdAt;
     private Date updatedAt;
     private User user;
-    
+    private ContentFlag status;
 
     public Question() {
     }
@@ -267,6 +268,20 @@ public class Question implements Serializable {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * @return the status
+     */
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 
   

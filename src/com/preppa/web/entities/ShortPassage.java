@@ -5,11 +5,13 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.PassageType;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.mail.internet.ContentDisposition;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,6 +54,7 @@ public class ShortPassage implements Serializable {
     private PassageType passagetype;
     private String passage;
     private User user;
+    private ContentFlag status;
 
     @Id
     @NonVisual
@@ -277,5 +280,19 @@ public class ShortPassage implements Serializable {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * @return the status
+     */
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 }

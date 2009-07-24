@@ -10,6 +10,7 @@
 package com.preppa.web.entities;
 
 
+import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +28,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.search.annotations.Field;
@@ -54,11 +56,13 @@ public class OpenQuestion implements Serializable {
     private Long id;
     private String title;
     private String question;
+    private List<OpenAnswer> answers;
     private Date createdAt;
     private Date updatedAt;
     private List<Tag> taglist = new ArrayList<Tag>();
     private Integer votes;
     private User user;
+    private ContentFlag status;
 
 
     @Id
@@ -159,6 +163,7 @@ public class OpenQuestion implements Serializable {
     @Lob
     @Audited
     @Field(index=Index.TOKENIZED, store=Store.NO)
+    @Basic(optional = false)
     public String getQuestion() {
         return question;
     }
@@ -179,6 +184,7 @@ public class OpenQuestion implements Serializable {
             @Field(name = "title_sort", index=Index.UN_TOKENIZED,
                     store=Store.YES)
     })
+    @Basic(optional = false)
     public String getTitle() {
         return title;
     }
@@ -229,6 +235,36 @@ public class OpenQuestion implements Serializable {
      */
     public void setTaglist(List<Tag> taglist) {
         this.taglist = taglist;
+    }
+
+    /**
+     * @return the answers
+     */
+    @OneToMany(targetEntity = OpenAnswer.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @IndexedEmbedded
+    public List<OpenAnswer> getAnswers() {
+        return answers;
+    }
+
+    /**
+     * @param answers the answers to set
+     */
+    public void setAnswers(List<OpenAnswer> answers) {
+        this.answers = answers;
+    }
+
+    /**
+     * @return the status
+     */
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 
 }

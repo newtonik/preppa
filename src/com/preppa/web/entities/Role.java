@@ -37,6 +37,7 @@ public class Role implements GrantedAuthority, Serializable
         this.id = id;
     }
 
+    @Override
     public String getAuthority()
     {
         return authority;

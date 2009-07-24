@@ -5,6 +5,7 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.PassageType;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class LongDualPassage implements Serializable {
     private Integer numQuestions;
     private User user;
     private Integer voteScore;
+    private ContentFlag status;
 
 
     @Id
@@ -316,6 +318,20 @@ public class LongDualPassage implements Serializable {
      */
     public void setVoteScore(Integer voteScore) {
         this.voteScore = voteScore;
+    }
+
+    /**
+     * @return the status
+     */
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 
     
