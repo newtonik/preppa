@@ -53,12 +53,13 @@ public class OpenQuestion implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private String title;
-    private String Question;
+    private String question;
     private Date createdAt;
     private Date updatedAt;
     private List<Tag> taglist = new ArrayList<Tag>();
-    private Integer rating;
+    private Integer votes;
     private User user;
+
 
     @Id
     @NonVisual
@@ -153,20 +154,20 @@ public class OpenQuestion implements Serializable {
     }
 
     /**
-     * @return the Question
+     * @return the question
      */
     @Lob
     @Audited
     @Field(index=Index.TOKENIZED, store=Store.NO)
     public String getQuestion() {
-        return Question;
+        return question;
     }
 
     /**
-     * @param Question the Question to set
+     * @param question the question to set
      */
     public void setQuestion(String Question) {
-        this.Question = Question;
+        this.question = Question;
     }
 
     /**
@@ -190,19 +191,19 @@ public class OpenQuestion implements Serializable {
     }
 
     /**
-     * @return the rating
+     * @return the votes
      */
     @Audited
     @Field(index=Index.UN_TOKENIZED, store=Store.YES)
     public Integer getRating() {
-        return rating;
+        return votes;
     }
 
     /**
-     * @param rating the rating to set
+     * @param votes the votes to set
      */
     public void setRating(Integer rating) {
-        this.rating = rating;
+        this.votes = rating;
     }
 
     /**

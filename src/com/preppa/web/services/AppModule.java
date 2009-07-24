@@ -11,6 +11,8 @@ import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongDualPassageDAOHibImpl;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.LongPassageDAOHibImpl;
+import com.preppa.web.data.OpenQuestionDAO;
+import com.preppa.web.data.OpenQuestionDAOHimpl;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.PassageDAOHibImpl;
 import com.preppa.web.data.QuestionDAO;
@@ -106,6 +108,7 @@ public final class AppModule {
         binder.bind(PassageService.class, PassageServiceImpl.class);
         binder.bind(AuditReader.class, AuditReaderImpl.class);
         binder.bind(VoteDAO.class, VoteDAOHimpl.class);
+        binder.bind(OpenQuestionDAO.class, OpenQuestionDAOHimpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 
