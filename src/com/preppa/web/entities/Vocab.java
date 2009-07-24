@@ -5,6 +5,7 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
@@ -13,6 +14,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -90,6 +93,7 @@ public class Vocab implements Serializable {
       @JoinColumn(name="Tag_id")
     })
     private List<Tag> vlist = new LinkedList<Tag>();
+    private ContentFlag status;
 
     public Vocab() {
     }
@@ -228,6 +232,21 @@ public class Vocab implements Serializable {
      */
     public void setTaglist(LinkedList<Tag> taglist) {
         this.vlist = taglist;
+    }
+
+    /**
+     * @return the status
+     */
+    @Enumerated(EnumType.ORDINAL)
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 
 }

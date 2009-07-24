@@ -18,6 +18,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,19 +42,6 @@ import org.hibernate.envers.Audited;
 public class Gridin implements Serializable {
     private static long serialVersionUID = 1L;
 
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
     private Long id;
     private String title;
     private String question;
@@ -240,6 +229,7 @@ public class Gridin implements Serializable {
     /**
      * @return the status
      */
+    @Enumerated(EnumType.ORDINAL)
     public ContentFlag getStatus() {
         return status;
     }

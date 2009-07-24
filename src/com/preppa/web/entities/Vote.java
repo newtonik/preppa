@@ -33,9 +33,10 @@ import org.hibernate.annotations.Table;
     @Index(name="contType_userId", columnNames={"contentTypeId","user_id"}),
     @Index(name="content_source", columnNames={"contentTypeId","contentId","source"})    })
 public class Vote implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Long id;
     private List<Article> articles;
-    private static final long serialVersionUID = 1L;
     private Integer value;
     private Date createdAt;
     private User user;
