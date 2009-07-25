@@ -1,7 +1,7 @@
 package com.preppa.web.entities;
 
 import com.preppa.web.data.Gender;
-import com.sun.istack.internal.NotNull;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -84,8 +84,6 @@ public class User implements UserDetails, Serializable
      */
     @Audited
     @Column(unique=true, nullable = false)
-    @Validate("required")
-    @NotNull
     public String getEmail() {
         return email;
     }

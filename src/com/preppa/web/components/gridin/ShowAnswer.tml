@@ -1,0 +1,15 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <h4> Answers </h4>
+    <table>
+        <tr t:type="loop" source="answers" value="answer" >
+            <td>
+                ${answer.answer}
+            </td>
+
+            <td>
+                ${answer.description}
+            </td>
+        </tr>
+
+    </table>
+</t:container>

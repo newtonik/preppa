@@ -10,6 +10,7 @@
 package com.preppa.web.entities;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,8 @@ public class GridinAnswer implements Serializable {
 
     private Long id;
     private String answer;
+    //this can be used to explain the answer or it's format.
+    private String description;
 
     
     @Id
@@ -67,6 +70,7 @@ public class GridinAnswer implements Serializable {
      * @return the answer
      */
     @Audited
+    @Basic(optional = false)
     public String getAnswer() {
         return answer;
     }
@@ -76,6 +80,20 @@ public class GridinAnswer implements Serializable {
      */
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

@@ -18,7 +18,7 @@ public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Integer> implem
     }
 
     @Override
-    public Gridin findById(Integer id) {
+    public Gridin findById(Long id) {
         SQLString sqlString = new SQLString("FROM Gridin g");
         if(id != null)
         {

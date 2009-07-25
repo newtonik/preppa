@@ -10,11 +10,13 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author nwt
  */
+@Secured("ROLE_USER")
 public class NewOpenQuestion {
     @ApplicationState
     private User user;

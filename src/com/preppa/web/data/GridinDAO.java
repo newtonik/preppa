@@ -8,5 +8,5 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  * @author nwt
  */
 public interface GridinDAO  extends GenericDAO<Gridin, Integer> {
-    Gridin findById(Integer id);
+    Gridin findById(Long id);
 }

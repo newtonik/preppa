@@ -1,0 +1,54 @@
+<html t:type="layout" t:pageTitle="New Gridin" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <h3>Add a gridin question</h3>
+
+    <t:form t:id="qridinForm">
+        <table id="questiontable">
+               <tr  align="left">
+                        <td>
+                       <t:label for="fTitle" > Title: </t:label>
+                       </td>
+                  </tr>
+                  <tr>
+                       <td align="left">
+                        <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80"/>
+                      </td>
+                </tr>
+<tr>
+                       <td valign="top" align="left">
+                           <t:label for="questionBody"> Ask </t:label>
+                           <br />
+                        </td>
+                 </tr>
+                 <tr>
+                      <td>
+                          <t:editor align="left" t:id="questionBody" value="fQuestion" t:width="600" t:height="300"
+                          t:label="Body" t:validate="required" onkeyup="countCharacters();" />
+                     </td>
+                 </tr>
+                   <t:zone t:id="answerZone">
+                       </t:zone>
+                    
+
+                  <tr>
+
+                      <td colspan="2" align="left">
+                          <br />
+                        <input type="submit" value="Submit"/>
+                        <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                    </td>
+
+                 </tr>
+               
+        </table>
+
+    </t:form>
+      <a href="#" t:type="actionlink" t:zone="answerZone" t:id="addanswer"> Add Answer </a>
+  
+        
+  
+<t:block t:id="addanswer">
+                        <div t:id="answerComp" >
+                        </div>
+                    </t:block>
+</html>

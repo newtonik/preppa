@@ -1,0 +1,21 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <t:form>
+    <b>${error}</b>
+       <tr>
+            <td> <t:label for="fAnswer">Answer * </t:label></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="textfield" t:type="textfield" t:id="fAnswer" t:value="fAnswer" />
+            </td>
+        </tr>
+            <tr>
+            <td> <t:label for="fDescription">Description of Answer (Optional) </t:label></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="textfield" t:type="textfield" t:id="fDescription" t:value="fDescription" />
+            </td>
+        </tr>
+    </t:form>
+</t:container>
