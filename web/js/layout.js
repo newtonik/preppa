@@ -10,6 +10,20 @@
         
      }
 
+//     var url = '../show.voteup';
+//
+//     $('voteup').observe('click', function() {
+//     new Ajax.Request(url, {
+//         method: 'post',
+//         onSuccess: function(response) {
+//              $('voteupZone').update(response.vote);
+//               $('voteupZone').setStyle({
+//                    backgroundColor: '#FFFF5C'
+//            });
+//         }
+//     });
+//     });
+
      function onChangeTestsubject(response) {
          
          //alert(response.testsubject);
@@ -21,6 +35,6 @@
 
      }
 
-     $('articleform').request({
-        onSucess: function(){ alert('Form data saved!') }
-      })
+//     $('articleform').request({
+//        onSuccess: function(){ alert('Form data saved!') }
+//      })

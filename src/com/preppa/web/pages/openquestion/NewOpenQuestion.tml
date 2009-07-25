@@ -17,6 +17,7 @@
 <tr>
                        <td valign="top" align="left">
                            <t:label for="questionBody"> Ask </t:label>
+                           <br />
                         </td>
                  </tr>
                  <tr>
