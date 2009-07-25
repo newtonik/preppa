@@ -1,6 +1,8 @@
 package com.preppa.web.data;
 
+import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.ContentType;
 import org.chenillekit.hibernate.daos.GenericDAO;
 
 /**
@@ -9,5 +11,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  */
 public interface VoteDAO  extends GenericDAO <Vote, Long> {
 
-    public Integer findVoteByContentId(String contentType, Integer contentId);
+    public Integer findVoteByContentId(ContentType contentType, Integer contentId);
+    public Boolean checkVoted(ContentType contentType, Integer contentId, User user);
 }

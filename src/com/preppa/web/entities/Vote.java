@@ -1,10 +1,13 @@
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentType;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,22 +29,22 @@ import org.hibernate.annotations.Table;
  * @author nwt
  */
 @javax.persistence.Entity
-@javax.persistence.Table(name="Vote", uniqueConstraints={@UniqueConstraint(columnNames={"contentType","contentId", "user_id"})})
+@javax.persistence.Table(name="Vote", uniqueConstraints={@UniqueConstraint(columnNames={"contentTypeId","contentId", "user_id"})})
 @Table(appliesTo="Vote", indexes = {
-    @Index(name="contType_contId_uid", columnNames={"contentType","contentId", "user_id"}),
-    @Index(name="contType_userId", columnNames={"contentType","user_id"}),
-    @Index(name="content_source", columnNames={"contentType","contentId","source"})    })
+    @Index(name="contType_contId_uid", columnNames={"contentTypeId","contentId", "user_id"}),
+    @Index(name="contType_userId", columnNames={"contentTypeId","user_id"}),
+    @Index(name="content_source", columnNames={"contentTypeId","contentId","source"})    })
 public class Vote implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Long id;
     private List<Article> articles;
-    private static final long serialVersionUID = 1L;
     private Integer value;
     private Date createdAt;
     private User user;
     private String source;
-    private String contentType;
     private Integer contentId;
-
+    private ContentType contentTypeId;
     
      @Id
     @NonVisual
@@ -153,19 +156,6 @@ public class Vote implements Serializable {
         this.source = source;
     }
 
-    /**
-     * @return the contentType
-     */
-    public String getContentType() {
-        return contentType;
-    }
-
-    /**
-     * @param contentType the contentType to set
-     */
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
 
     /**
      * @return the contentId
@@ -179,6 +169,21 @@ public class Vote implements Serializable {
      */
     public void setContentId(Integer contentId) {
         this.contentId = contentId;
+    }
+
+    /**
+     * @return the contentTypeId
+     */
+    @Enumerated(EnumType.ORDINAL)
+    public ContentType getContentTypeId() {
+        return contentTypeId;
+    }
+
+    /**
+     * @param contentTypeId the contentTypeId to set
+     */
+    public void setContentTypeId(ContentType contentTypeId) {
+        this.contentTypeId = contentTypeId;
     }
 
 }

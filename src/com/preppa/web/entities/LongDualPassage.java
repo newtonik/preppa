@@ -5,6 +5,7 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.PassageType;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,6 +57,7 @@ public class LongDualPassage implements Serializable {
     private Integer numQuestions;
     private User user;
     private Integer voteScore;
+    private ContentFlag status;
 
 
     @Id
@@ -316,6 +320,21 @@ public class LongDualPassage implements Serializable {
      */
     public void setVoteScore(Integer voteScore) {
         this.voteScore = voteScore;
+    }
+
+    /**
+     * @return the status
+     */
+    @Enumerated(EnumType.ORDINAL)
+    public ContentFlag getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(ContentFlag status) {
+        this.status = status;
     }
 
     

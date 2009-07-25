@@ -62,7 +62,7 @@ public class EditProfileUser {
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
          userprofile.setCreatedAt(now);
          userprofile.setUpdatedAt(now);
-         userprofile.setUserId(user.getId());
+         userprofile.setUser(user);
          userprofileDAO.doSave(userprofile);
 
          return Index.class;

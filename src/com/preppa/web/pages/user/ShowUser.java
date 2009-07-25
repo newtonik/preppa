@@ -36,8 +36,11 @@ private Context c;
 
   void onActivate(Integer id) {
     this.user = userDAO.findById(id);
-    userprofile = userprofileDAO.findByUserId(user.getId());
+    userprofile = user.getUserProfile();
+//        userprofile = userprofileDAO.findByUserId(user.getId());
+
   }
+
 
 
   /*public String getImageURL() {
