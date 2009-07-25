@@ -1,5 +1,6 @@
 package com.preppa.web.data;
 
+import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
 import com.preppa.web.utils.ContentType;
 import java.math.BigDecimal;
@@ -51,4 +52,20 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
     }
 
+    @Override
+    public Boolean checkVoted(ContentType contentType, Integer contentId, User user) {
+        SQLString sqlString = new SQLString("select v.value FROM Vote v");
+        if(contentType != null && contentId > 0)
+        {
+            sqlString.addWhereClause("v.contentTypeId  = '" + contentType + "'");
+            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
+            sqlString.addWhereClause("v.user_id = '" + user.getId() + "'");
+
+        }
+               Integer result = (Integer) (Object) findBySQLQuery(sqlString.toString()).get(0);
+               if(result == null)
+                    return false;
+               else
+                   return true;
+    }
 }

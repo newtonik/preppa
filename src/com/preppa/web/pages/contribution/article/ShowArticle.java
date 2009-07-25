@@ -60,6 +60,8 @@ private Block voteBlock;
 private Block upSuccess;
 @Inject
 private Block downSuccess;
+@Inject
+private Block voted;
 @Property
 @Persist
 private Integer votes;
@@ -116,53 +118,66 @@ void onActivate(int id) {
      requestGlobals.getHTTPServletRequest();
      String  hostname = _request.getRemoteAddr();
 
-     Vote v = new Vote();
-     v.setContentId(article.getId());
-     v.setSource(hostname);
-     if(user != null)
-         v.setUser(user);
-    
-     v.setValue(1);
-      v.setContentTypeId(ContentType.Article);
+     if(!(voteDAO.checkVoted(ContentType.Article, article.getId(), user)))
+     {
+         Vote v = new Vote();
+         v.setContentId(article.getId());
+         v.setSource(hostname);
+         if(user != null)
+             v.setUser(user);
 
-     Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-     v.setCreatedAt(now);
+         v.setValue(1);
+          v.setContentTypeId(ContentType.Article);
 
-     voteDAO.doSave(v);
+         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+         v.setCreatedAt(now);
 
-     JSONObject json = new JSONObject();
-     json.put("vote", "down");
-     //decrement the vote
-     votes++;
+         voteDAO.doSave(v);
 
-     return upSuccess;
-     //return new TextStreamResponse("text/json", json.toString());
+         JSONObject json = new JSONObject();
+         json.put("vote", "down");
+         //decrement the vote
+         votes++;
+
+         return upSuccess;
+     }//return new TextStreamResponse("text/json", json.toString());
+     else
+     {
+         return voted;
+     }
  }
   Block onActionFromVoteDown() {
      requestGlobals.getHTTPServletRequest();
      String  hostname = _request.getRemoteAddr();
 
-     Vote v = new Vote();
-     v.setContentId(article.getId());
-     v.setSource(hostname);
-     if(user != null)
-         v.setUser(user);
+     if(!(voteDAO.checkVoted(ContentType.Article, article.getId(), user)))
+     {
+         Vote v = new Vote();
+         v.setContentId(article.getId());
+         v.setSource(hostname);
+         if(user != null)
+             v.setUser(user);
 
-     v.setValue(-1);
-     v.setContentTypeId(ContentType.Article);
-     
-     Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-     v.setCreatedAt(now);
+         v.setValue(-1);
+         v.setContentTypeId(ContentType.Article);
 
-     voteDAO.doSave(v);
-     //update the vote
-     votes--;
+         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+         v.setCreatedAt(now);
+
+         voteDAO.doSave(v);
+         //update the vote
+         votes--;
 
 
-     JSONObject json = new JSONObject();
-     json.put("vote", "down");
+         JSONObject json = new JSONObject();
+         json.put("vote", "down");
 
      //return new TextStreamResponse("text/json", json.toString());
-     return downSuccess;
+         return downSuccess;
+     }
+     else
+     {
+         return voted;
+     }
  }
 }

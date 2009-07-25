@@ -56,5 +56,10 @@
         <br />
         You Voted Down
     </t:block>
+    <t:block t:id="voted">
+     <b> ${votes} Stars</b>
+        <br />
+       You have already voted.
+    </t:block>
 
 </html>
