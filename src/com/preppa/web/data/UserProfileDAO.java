@@ -5,8 +5,8 @@
 
 package com.preppa.web.data;
 
+import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserProfile;
-import java.util.List;
 import org.chenillekit.hibernate.daos.GenericDAO;
 
 /**
@@ -17,4 +17,5 @@ public interface UserProfileDAO extends GenericDAO <UserProfile, Integer>{
 
     UserProfile findById(Integer id);
     UserProfile findByUserId(Integer id);
+    UserProfile findByUser(User user);
 }

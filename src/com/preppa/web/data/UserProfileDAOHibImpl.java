@@ -5,6 +5,7 @@
 
 package com.preppa.web.data;
 
+import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserProfile;
 import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
@@ -48,6 +49,24 @@ public class UserProfileDAOHibImpl extends AbstractHibernateDAO<UserProfile, Int
         else {
             return null;
         }
+    }
+
+    @Override
+    public UserProfile findByUser(User user) {
+            SQLString sqlString = new SQLString("FROM UserProfile p");
+        if(user != null)
+        {
+             sqlString.addWhereClause("p.user = '" + user + "'");
+        }
+
+        List<UserProfile> returnVal = findByQuery(sqlString.toString());
+        if (!returnVal.isEmpty()) {
+            return (UserProfile) returnVal.get(0);
+        }
+        else {
+            return null;
+        }
+
     }
 
 

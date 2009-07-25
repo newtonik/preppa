@@ -1,6 +1,7 @@
 package com.preppa.web.entities;
 
 import com.preppa.web.data.Gender;
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -8,13 +9,19 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
 
+import javax.persistence.UniqueConstraint;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.hibernate.envers.Audited;
@@ -29,6 +36,7 @@ import org.springframework.security.userdetails.UserDetails;
  * @author  newtonik
  */
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"username", "email"})})
 public class User implements UserDetails, Serializable
 {
     private static final long serialVersionUID = 4068206679084877888L;
@@ -54,6 +62,7 @@ public class User implements UserDetails, Serializable
     private Date activatedAt;
     private String passwordResetCode;
     private boolean recentlyreset;
+    private UserProfile userProfile;
 
     private Set<Role> roles;
 
@@ -76,6 +85,7 @@ public class User implements UserDetails, Serializable
     @Audited
     @Column(unique=true, nullable = false)
     @Validate("required")
+    @NotNull
     public String getEmail() {
         return email;
     }
@@ -129,6 +139,7 @@ public class User implements UserDetails, Serializable
      * @return the dob
      */
     @Temporal(javax.persistence.TemporalType.DATE)
+    @Enumerated(EnumType.STRING)
     public Date getDob() {
         return dob;
     }
@@ -208,7 +219,6 @@ public class User implements UserDetails, Serializable
         return password;
     }
     @Column(unique=true, nullable = false)
-    @Validate("required")
     @Override
     public String getUsername()
     {
@@ -363,5 +373,21 @@ public class User implements UserDetails, Serializable
      */
     public void setRecentlyreset(boolean recentlyreset) {
         this.recentlyreset = recentlyreset;
+    }
+
+    /**
+     * @return the userProfile
+     */
+    @OneToOne
+    @JoinColumn(name="userprofile_id")
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    /**
+     * @param userProfile the userProfile to set
+     */
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 }

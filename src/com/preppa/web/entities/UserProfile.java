@@ -20,6 +20,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -36,13 +37,14 @@ import org.hibernate.envers.Audited;
 public class UserProfile implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
-    private Integer user_id;
+  //  private Integer user_id;
     private String aboutme;
     private String activities;
     private String interests;
     private Date createdAt;
     private Date updatedAt;
     private ContentFlag status;
+    private User user;
 
 
     public UserProfile() {
@@ -59,13 +61,13 @@ public class UserProfile implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public void setUserId(Integer uid) {
-        this.user_id = uid;
-    }
-    @Column(name = "user_id", nullable = true, unique =true)
-    public int getUserId() {
-        return this.user_id;
-    }
+//    public void setUserId(Integer uid) {
+//        this.user_id = uid;
+//    }
+//    @Column(name = "user_id", nullable = true, unique =true)
+//    public int getUserId() {
+//        return this.user_id;
+//    }
 
     public void setAboutMe(String aboutme) {
         this.aboutme = aboutme;
@@ -129,5 +131,14 @@ public class UserProfile implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    @OneToOne(mappedBy = "userProfile")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

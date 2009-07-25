@@ -27,7 +27,7 @@ import org.hibernate.annotations.Table;
  * @author nwt
  */
 @javax.persistence.Entity
-@javax.persistence.Table(name="Vote", uniqueConstraints={@UniqueConstraint(columnNames={"contentType","contentId", "user_id"})})
+@javax.persistence.Table(name="Vote", uniqueConstraints={@UniqueConstraint(columnNames={"contentTypeId","contentId", "user_id"})})
 @Table(appliesTo="Vote", indexes = {
     @Index(name="contType_contId_uid", columnNames={"contentTypeId","contentId", "user_id"}),
     @Index(name="contType_userId", columnNames={"contentTypeId","user_id"}),
