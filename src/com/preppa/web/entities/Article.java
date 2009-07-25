@@ -64,6 +64,7 @@ public class Article implements Serializable {
     private Set<Vote> votes;
     private Integer voteScore;
     private ContentFlag status;
+    private String revComment;
 
     @Id
     @NonVisual
@@ -305,6 +306,21 @@ public class Article implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Audited
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
     }
 
 

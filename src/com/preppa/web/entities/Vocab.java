@@ -27,7 +27,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.apache.tapestry5.beaneditor.Validate;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -43,62 +42,34 @@ import org.hibernate.envers.Audited;
 //@NamedQueries({ @NamedQuery(name = "Vocab.findById", query = "SELECT v FROM Vocab v WHERE v.id = :id"), @NamedQuery(name = "Vocab.findByName", query = "SELECT v FROM Vocab v WHERE v.name = :name"), @NamedQuery(name = "Vocab.findByPartofspeech", query = "SELECT v FROM Vocab v WHERE v.partofspeech = :partofspeech"), @NamedQuery(name = "Vocab.findByCreatedAt", query = "SELECT v FROM Vocab v WHERE v.createdAt = :createdAt"), @NamedQuery(name = "Vocab.findByUpdatedAt", query = "SELECT v FROM Vocab v WHERE v.updatedAt = :updatedAt")})
 public class Vocab implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @NonVisual
-    @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "name", length = 255, unique =true )
-    @Validate("required")
     private String name;
-    @Column(name = "partofspeech", length = 255)
     private String partofspeech;
-    @Lob
-    @Validate("required")
-    @Column(name = "definition", length = 65535)
     private String definition;
-    @Lob
-    @Column(name = "tags", length = 65535)
     private String tags;
-    @Basic(optional = false)
-    @ManyToOne(targetEntity = ExampleSentence.class)
-    @Fetch(value = FetchMode.JOIN)
-    @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
-    @JoinColumn(name = "sentence_id")
     private ExampleSentence sentence;
-    @Lob
     private String formsentence;
-    @ManyToOne(targetEntity = User.class)
-    @Fetch(value = FetchMode.JOIN)
-    @JoinColumn(name = "user_id")
     private User user;
-    
-    @NonVisual
-    @Column(name = "created_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @NonVisual
-    @Basic(optional = false)
-    @Column(name = "updated_at", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-
-    @ManyToMany(targetEntity = Tag.class, cascade=CascadeType.ALL)
-     @JoinTable(name = "Vocab_Tag",
-    joinColumns = {
-      @JoinColumn(name="Vocab_id")
-        },
-    inverseJoinColumns = {
-      @JoinColumn(name="Tag_id")
-    })
     private List<Tag> vlist = new LinkedList<Tag>();
     private ContentFlag status;
+    private String revComment;
 
     public Vocab() {
     }
 
 
+    
+   
+
+   
+
+    @Id
+    @NonVisual
+    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
     }
@@ -107,6 +78,7 @@ public class Vocab implements Serializable {
         this.id = id;
     }
 
+    @Column(name = "name", length = 255, unique = true)
     public String getName() {
         return name;
     }
@@ -115,6 +87,7 @@ public class Vocab implements Serializable {
         this.name = name;
     }
 
+    @Column(name = "partofspeech", length = 255)
     public String getPartofspeech() {
         return partofspeech;
     }
@@ -123,6 +96,8 @@ public class Vocab implements Serializable {
         this.partofspeech = partofspeech;
     }
 
+    @Lob
+    @Column(name = "definition", length = 65535)
     public String getDefinition() {
         return definition;
     }
@@ -131,6 +106,8 @@ public class Vocab implements Serializable {
         this.definition = definition;
     }
 
+    @Lob
+    @Column(name = "tags", length = 65535)
     public String getTags() {
         return tags;
     }
@@ -139,6 +116,9 @@ public class Vocab implements Serializable {
         this.tags = tags;
     }
 
+    @NonVisual
+    @Column(name = "created_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -147,6 +127,10 @@ public class Vocab implements Serializable {
         this.createdAt = createdAt;
     }
 
+    @NonVisual
+    @Basic(optional = false)
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -183,6 +167,11 @@ public class Vocab implements Serializable {
     /**
      * @return the sentence
      */
+    @Basic(optional = false)
+    @ManyToOne(targetEntity = ExampleSentence.class)
+    @JoinColumn(name = "sentence_id")
+    @Fetch(value = FetchMode.JOIN)
+    @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
     public ExampleSentence getSentence() {
         return sentence;
     }
@@ -197,6 +186,9 @@ public class Vocab implements Serializable {
     /**
      * @return the user
      */
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+     @Fetch(value = FetchMode.JOIN)
     public User getUser() {
         return user;
     }
@@ -211,6 +203,7 @@ public class Vocab implements Serializable {
     /**
      * @return the formsentence
      */
+    @Lob
     public String getFormsentence() {
         return formsentence;
     }
@@ -222,8 +215,15 @@ public class Vocab implements Serializable {
         this.formsentence = formsentence;
     }
 
-
-    public List<Tag> getTaglist() {
+    @ManyToMany(targetEntity = Tag.class, cascade=CascadeType.ALL)
+     @JoinTable(name = "Vocab_Tag",
+    joinColumns = {
+      @JoinColumn(name="Vocab_id")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="Tag_id")
+    })
+   public List<Tag> getTaglist() {
         return vlist;
     }
 
@@ -238,6 +238,7 @@ public class Vocab implements Serializable {
      * @return the status
      */
     @Enumerated(EnumType.ORDINAL)
+    @Audited
     public ContentFlag getStatus() {
         return status;
     }
@@ -247,6 +248,21 @@ public class Vocab implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Lob
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
     }
 
 }

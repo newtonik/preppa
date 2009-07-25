@@ -29,7 +29,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class ShowDualLongPassage {
 
     @Property
-    @Persist
     private LongDualPassage passage;
     @Inject
     private LongDualPassageDAO longpassageDAO;
@@ -90,7 +89,10 @@ public class ShowDualLongPassage {
         return passageid;
     }
     void setLongDualPassage(LongDualPassage passage) {
-        this.passage = passage;
+        if(passage != null) {
+            this.passage = passage;
+            this.passageid = passage.getId();
+        }
     }
 
     Block onActionFromAddQuestion() {

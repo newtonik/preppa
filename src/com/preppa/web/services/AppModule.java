@@ -172,8 +172,8 @@ public final class AppModule {
         configuration.add(ChenilleKitMailConstants.SMTP_SSL, "true");
         configuration.add(ChenilleKitMailConstants.SMTP_SSLPORT, "465");
         configuration.add(ChenilleKitMailConstants.SMTP_TLS, "true");
-        configuration.add(UploadSymbols.FILESIZE_MAX, "1000000"  );
-        configuration.add(UploadSymbols.REPOSITORY_LOCATION, "resources"  );
+  //      configuration.add(UploadSymbols.FILESIZE_MAX, "1000000"  );
+       // configuration.add(UploadSymbols.REPOSITORY_LOCATION, "resources"  );
         
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");

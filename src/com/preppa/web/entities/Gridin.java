@@ -26,6 +26,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -52,6 +53,10 @@ public class Gridin implements Serializable {
     private Integer voteScore;
     private User user;
     private ContentFlag status;
+    private String revComment;
+    private List<Topic> topics = new ArrayList<Topic>();
+    private Boolean image;
+    private String imagePath;
     
 
     @Id
@@ -229,6 +234,7 @@ public class Gridin implements Serializable {
     /**
      * @return the status
      */
+    @Audited
     @Enumerated(EnumType.ORDINAL)
     public ContentFlag getStatus() {
         return status;
@@ -239,6 +245,75 @@ public class Gridin implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Lob
+    @Audited
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
+    }
+
+    /**
+     * @return the topics
+     */
+    @ManyToMany(targetEntity=Topic.class)
+    @JoinTable(name = "Gridin_Topic",
+    joinColumns = {
+      @JoinColumn(name="gridinId")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="topicId")
+    })
+    @Audited
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    /**
+     * @param topics the topics to set
+     */
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
+
+    /**
+     * @return the image
+     */
+    @Audited
+    public Boolean getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(Boolean image) {
+        this.image = image;
+    }
+
+    /**
+     * @return the imagePath
+     */
+    @Audited
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * @param imagePath the imagePath to set
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
 }

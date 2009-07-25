@@ -58,6 +58,7 @@ public class LongDualPassage implements Serializable {
     private User user;
     private Integer voteScore;
     private ContentFlag status;
+    private String revComment;
 
 
     @Id
@@ -311,6 +312,7 @@ public class LongDualPassage implements Serializable {
     /**
      * @return the voteScore
      */
+    @Audited
     public Integer getVoteScore() {
         return voteScore;
     }
@@ -326,6 +328,7 @@ public class LongDualPassage implements Serializable {
      * @return the status
      */
     @Enumerated(EnumType.ORDINAL)
+    @Audited
     public ContentFlag getStatus() {
         return status;
     }
@@ -335,6 +338,22 @@ public class LongDualPassage implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Lob
+    @Audited
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
     }
 
     

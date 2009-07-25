@@ -97,4 +97,10 @@ private Context c;
   {
     return user;
   }
+  void setUserPage(User u) {
+      if(u != null) {
+          this.user = userDAO.findById(u.getId());
+          
+      }
+  }
 }

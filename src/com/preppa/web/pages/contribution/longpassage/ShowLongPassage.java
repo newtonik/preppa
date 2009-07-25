@@ -89,7 +89,11 @@ public class ShowLongPassage {
         return this.pid;
     }
     void setPassagePage(LongPassage passage) {
+        if(passage != null) {
             this.passage = passage;
+            this.pid = passage.getId();
+        }
+
         }
         Block onActionFromAddQuestion() {
 

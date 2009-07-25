@@ -57,6 +57,8 @@ public class ShortDualPassage implements Serializable {
     private String passagetwo;
     private User user;
     private ContentFlag status;
+    private String revComment;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -293,6 +295,7 @@ public class ShortDualPassage implements Serializable {
      * @return the status
      */
     @Enumerated(EnumType.ORDINAL)
+    @Audited
     public ContentFlag getStatus() {
         return status;
     }
@@ -302,5 +305,21 @@ public class ShortDualPassage implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Audited
+    @Lob
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
     }
 }

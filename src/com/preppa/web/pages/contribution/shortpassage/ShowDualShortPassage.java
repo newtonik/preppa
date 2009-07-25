@@ -29,15 +29,14 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class ShowDualShortPassage {
 
     @Property
-    @Persist
     private ShortDualPassage passage;
     @Inject
     private ShortDualPassageDAO shortpassageDAO;
     @Inject
     private PassageDAO passDA0;
 
-private Integer pid;
-@Inject
+    private Integer pid;
+    @Inject
     @Property
     private Block questionblock;
     private List<Block> questionBlocks = new LinkedList<Block>();
@@ -98,8 +97,10 @@ private Integer pid;
         return passageid;
     }
     void setShortDualPassage(ShortDualPassage passage) {
-        this.passageid = passage.getId();
-        this.passage = passage;
+        if(passage != null) {
+            this.passageid = passage.getId();
+            this.passage = passage;
+        }
     }
 
        Block onActionFromAddQuestion() {

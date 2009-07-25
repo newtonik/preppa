@@ -56,6 +56,7 @@ public class LongPassage implements Serializable {
     private String title;
     private Integer numQuestions = 0;
     private ContentFlag status;
+    private String revComment;
     
     @Id
     @NonVisual
@@ -287,6 +288,8 @@ public class LongPassage implements Serializable {
      * @return the status
      */
     @Enumerated(EnumType.ORDINAL)
+    @Lob
+    @Audited
     public ContentFlag getStatus() {
         return status;
     }
@@ -296,6 +299,22 @@ public class LongPassage implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Lob
+    @Audited
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
     }
 
 }

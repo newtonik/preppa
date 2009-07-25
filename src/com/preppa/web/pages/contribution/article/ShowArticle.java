@@ -34,7 +34,6 @@ public class ShowArticle {
 @ApplicationState
 private User user;
 @Property
-@Persist
 private Article article;
 @Inject
 private ArticleDAO articleDAO;
@@ -65,9 +64,10 @@ private Block voted;
 @Property
 @Persist
 private Integer votes;
-
+private Integer artId;
 
 void onActivate(int id) {
+    if(id > 0) {
             this.article = articleDAO.findById(id);
             this.author = article.getUser();
             this.tags = article.getTaglist();
@@ -81,37 +81,50 @@ void onActivate(int id) {
             {
                 authorname = "unknown dude";
             }
-            
+            this.artId = id;
+    }
  }
-
+ Integer onPassivate() {
+     return artId;
+ }
+ /**
+  * sets the article in the show page by finding the article by Title.
+  * @param title
+  */
  public void set(String title) {
         this.article = articleDAO.findByTitle(title);
-        this.author = article.getUser();
-        if(author != null) {
-            authorname = author.getUsername();
-        }
-        if(authorname == null)
-        {
-            authorname = "unknown dude";
-        }
-
+        if(article != null) {
+            this.author = article.getUser();
+            if(author != null) {
+                authorname = author.getUsername();
+            }
+            if(authorname == null)
+            {
+                authorname = "unknown dude";
+            }
+            this.artId = article.getId();
+          }
  }
 
-
+/**
+ * Sets the article before the page is rendered.
+ * @param article
+ */
  public void setarticle(Article article) {
         this.article = articleDAO.findById(article.getId());
+        if(article != null) {
+            this.article = article;
+            this.author = article.getUser();
+                if(author != null) {
+                authorname = author.getUsername();
+            }
 
-        this.article = article;
-        this.author = article.getUser();
-            if(author != null) {
-            authorname = author.getUsername();
+             if(authorname == null)
+             {
+                authorname = "unknown dude";
+            }
+            this.artId = article.getId();
         }
-    
-         if(authorname == null)
-         {
-            authorname = "unknown dude";
-        }
-
     }
 
  Block onActionFromVoteUp() {

@@ -16,6 +16,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -42,10 +43,12 @@ import org.springframework.security.annotation.Secured;
         private Context c;
 
         @Persist(PersistenceConstants.FLASH)
-         @Property
+        @Property
          private String message;
+        @InjectPage
+        private ShowUser userpage;
 
-        public void onSuccess()
+        public Object onSuccess()
         {
             /*File dir1 = new File (".");
             try {
@@ -66,7 +69,8 @@ import org.springframework.security.annotation.Secured;
             File copied = new File(c.getRealFile("/").getPath() + "/images/" + user.getId() + ".jpg");
             file.write(copied);
              // File copied = new File("web/images/" + file.getFileName());
-
+             userpage.setUserPage(user);
+             return userpage;
           //  file.write(copied);
 
         }

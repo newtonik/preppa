@@ -56,6 +56,7 @@ public class ShortPassage implements Serializable {
     private String passage;
     private User user;
     private ContentFlag status;
+    private String revComment;
 
     @Id
     @NonVisual
@@ -286,6 +287,7 @@ public class ShortPassage implements Serializable {
     /**
      * @return the status
      */
+    @Audited
     @Enumerated(EnumType.ORDINAL)
     public ContentFlag getStatus() {
         return status;
@@ -296,5 +298,21 @@ public class ShortPassage implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Audited
+    @Lob
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
     }
 }

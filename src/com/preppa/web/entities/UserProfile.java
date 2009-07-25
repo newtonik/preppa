@@ -16,6 +16,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,6 +47,7 @@ public class UserProfile implements Serializable {
     private Date updatedAt;
     private ContentFlag status;
     private User user;
+    private String imagePath;
 
 
     public UserProfile() {
@@ -122,6 +125,8 @@ public class UserProfile implements Serializable {
     /**
      * @return the status
      */
+    @Enumerated(EnumType.ORDINAL)
+    @Audited
     public ContentFlag getStatus() {
         return status;
     }
@@ -140,5 +145,19 @@ public class UserProfile implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * @return the imagePath
+     */
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * @param imagePath the imagePath to set
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

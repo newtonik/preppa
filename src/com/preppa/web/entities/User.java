@@ -63,7 +63,6 @@ public class User implements UserDetails, Serializable
     private String passwordResetCode;
     private boolean recentlyreset;
     private UserProfile userProfile;
-
     private Set<Role> roles;
 
     @Id

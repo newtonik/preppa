@@ -27,7 +27,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class ShowShortPassage {
 @Property
-@Persist
 private ShortPassage passage;
 @Inject
 private ShortPassageDAO passageDAO;
@@ -79,7 +78,10 @@ Integer onPassivate() {
     return this.pid;
 }
 void setPassagePage(ShortPassage passage) {
+    if(passage != null) {
+        this.passageid = passage.getId();
         this.passage = passage;
+    }
     }
 
  

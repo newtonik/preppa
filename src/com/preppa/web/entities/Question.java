@@ -56,6 +56,10 @@ public class Question implements Serializable {
     private Date updatedAt;
     private User user;
     private ContentFlag status;
+    private String revComment;
+    private Boolean image;
+    private String imagePath;
+
 
     public Question() {
     }
@@ -276,6 +280,7 @@ public class Question implements Serializable {
      * @return the status
      */
     @Enumerated(EnumType.ORDINAL)
+    @Audited
     public ContentFlag getStatus() {
         return status;
     }
@@ -285,6 +290,52 @@ public class Question implements Serializable {
      */
     public void setStatus(ContentFlag status) {
         this.status = status;
+    }
+
+    /**
+     * @return the revComment
+     */
+    @Audited
+    @Lob
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
+    }
+
+    /**
+     * @return the image
+     */
+    @Audited
+    public Boolean getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(Boolean image) {
+        this.image = image;
+    }
+
+    /**
+     * @return the imagePath
+     */
+    @Audited
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * @param imagePath the imagePath to set
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
   

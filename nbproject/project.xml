@@ -382,6 +382,33 @@
                     <file>${file.reference.xml-apis-1.0.b2.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+                <library>
+                    <file>${file.reference.Tapestry5EasyFckEditor-1.0-beta.jar}</file>
+                </library>
+                <library>
+                    <file>${file.reference.commons-fileupload-1.2.1-javadoc.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.commons-fileupload-1.2.1-sources.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.commons-fileupload-1.2.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.lib-tapestry-src-5.0.18}</file>
+                    <path-in-war>WEB-INF/classes</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.acegi-security-1.0.4.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library>
+                    <file>${file.reference.acegi-security-tiger-1.0.4.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>

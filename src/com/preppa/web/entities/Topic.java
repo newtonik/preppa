@@ -7,6 +7,7 @@ package com.preppa.web.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -41,6 +42,7 @@ public class Topic implements Serializable {
     private Date createdAt;
     @NonVisual
     private Date updatedAt;
+    private List<Gridin> gridins;
 
     public Topic() {
         
@@ -148,6 +150,15 @@ public class Topic implements Serializable {
      */
     public void setTestsubject(Testsubject testsubject) {
         this.testsubject = testsubject;
+    }
+
+    @ManyToMany(mappedBy = "topics")
+    public List<Gridin> getGridins() {
+        return gridins;
+    }
+
+    public void setGridins(List<Gridin> gridins) {
+        this.gridins = gridins;
     }
 
 }
