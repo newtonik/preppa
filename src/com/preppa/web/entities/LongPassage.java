@@ -288,7 +288,6 @@ public class LongPassage implements Serializable {
      * @return the status
      */
     @Enumerated(EnumType.ORDINAL)
-    @Lob
     @Audited
     public ContentFlag getStatus() {
         return status;
