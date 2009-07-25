@@ -59,13 +59,21 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         {
             sqlString.addWhereClause("v.contentTypeId  = '" + contentType + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addWhereClause("v.user_id = '" + user.getId() + "'");
+            sqlString.addWhereClause("v.user = '" + user.getId() + "'");
 
         }
-               Integer result = (Integer) (Object) findBySQLQuery(sqlString.toString()).get(0);
-               if(result == null)
-                    return false;
-               else
-                   return true;
+            List<Vote> votes;
+
+            //votes = findBySQLQuery(sqlString.toString());
+            Integer result =  0;
+            result = (Integer)  countByQuery(sqlString.toString());
+
+            if(result == null)
+            {
+                return false;
+            }
+            if(result == 0)
+                return false;
+            return true;
     }
 }
