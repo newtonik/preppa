@@ -28,6 +28,7 @@
                     <t:block t:id="sideboxes">
                     <h2>Left Side Bar </h2>
                      <div t:id="leftRegularContent">
+                        <br/>
                         <div t:id="panel1" style="width: 150px;">
                         <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
                         <t:pagelink t:page="contribution/article/home"> Articles </t:pagelink><br/>

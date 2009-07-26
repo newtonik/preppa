@@ -1,3 +1,21 @@
 <html t:type ="layout" t:pageTitle="${announce.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <body>
 
+        <h2>
+           ${announce.title}
+        </h2>
+        <div id="author-time">
+            Created at ${announce.createdAt}
+        </div>
+        <p>
+             <t:outputraw t:value="${announce.message}"/>
+        </p>
+        <p>
+            <a href="#" t:type="pageLink" t:page="announcements/Editannouncement" t:context="announce.id"> Edit </a>
+        </p>
+
+        <a href="#" t:type="PageLink" t:page="Index">
+        Home
+        </a>
+    </body>
 </html>

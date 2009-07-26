@@ -1,0 +1,8 @@
+<html t:type="layout" t:pageTitle="New Announcement" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+          <t:form t:id="announcementedit">
+                Title: <input t:type="TextField" t:id="aTitle"  t:value="aTitle" t:label="Title" t:validate="required" size="80"/>
+                <br/>Announcement: <br/><t:editor align="left" t:id="messageedit" value="aAnnouncement" t:toolbarSet="Basic" t:width="600" t:height="300"
+                        t:label="Body" t:validate="required" />
+                <br/><input type="submit" value="Submit"/>
+          </t:form>
+</html>
