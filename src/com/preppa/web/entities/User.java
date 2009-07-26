@@ -5,6 +5,7 @@ import com.preppa.web.data.Gender;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,6 +41,7 @@ import org.springframework.security.userdetails.UserDetails;
 @Table(uniqueConstraints={@UniqueConstraint(columnNames={"username", "email"})})
 public class User implements UserDetails, Serializable
 {
+    private List<Flag> flags;
     private static final long serialVersionUID = 4068206679084877888L;
 
     private int id;
@@ -386,5 +389,14 @@ public class User implements UserDetails, Serializable
      */
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
+    }
+
+    @OneToMany(mappedBy = "flagger")
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 }

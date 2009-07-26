@@ -5,6 +5,6 @@ package com.preppa.web.utils;
  * @author nwt
  */
 public enum ContentFlag {
-   Active, Incorrect, Inappropriate, Copyright, Attention;
+   Active, Incorrect, Spam, Inappropriate, Copyright, Attention;
 
 }

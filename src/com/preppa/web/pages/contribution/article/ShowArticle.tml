@@ -22,7 +22,9 @@
         <p>
             <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
         </p>
-
+        <p>
+             <a href="#" id="flaglink" > Flag </a>
+        </p>
         <div>
             <t:zone t:id="voteupZone">
             
@@ -41,9 +43,12 @@
        
         <t:tagview t:alltags="tags" />
         <br />
+         <br />
+          <br />
          <p>
                     <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=1f0013ba-f916-4397-b4d4-2fda020283ae&amp;type=website&amp;buttonText=Share&amp;post_services=facebook%2Cmyspace%2Cdigg%2Cdelicious%2Cybuzz%2Ctwitter%2Cstumbleupon%2Creddit%2Ctechnorati%2Cwindows_live%2Cblogger%2Cwordpress%2Ctypepad%2Cgoogle_bmarks%2Cfark%2Cbus_exchange%2Cpropeller%2Cnewsvine%2Clinkedin%2Cmixx"></script>
         </p>
+        
     </body>
 
     <t:block t:id="upsuccess">
@@ -61,5 +66,54 @@
         <br />
        You have already voted.
     </t:block>
+       
+    <div id="votebox" class="votemenu" style='display:none'>
+    <t:zone t:id="flagZone">
+        <h3> Select a reason for flaging </h3>
+        <t:form t:id="flagform" t:zone="flagZone">
+             <t:radiogroup value="reason" name="flaggroup">
+                  <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
+                 Incorrect<br />
+                 <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
+                 Offensive or Abusive<br />
+                   <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
+                   Spam <br />
+                   <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
+                   Alert Moderator<br />
+             </t:radiogroup>
+   
+        <br />
+        <table>
+            <tr>
+                
+                       <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                            <a href="#" id="cancelflag" > Cancel </a>
+                 </td>
+                
+                
+                
+                
+            </tr>
+        </table>
+            </t:form>
 
+         </t:zone>
+    </div>
+
+    <t:block t:id="flagresponse" >
+        <br />
+        <br />
+        <p>
+            Thanks for your feedback, we will look at the issue.
+        </p>
+        <br />
+        <table style="background-color:inherit" align="center">
+            <tr align="center">
+                <td align="center">
+                    <a href="#" t:type="actionlink" t:id="removeflagbox" t:zone="flagZone" > Close </a>
+                </td>
+            </tr>
+        </table>
+    </t:block>
 </html>

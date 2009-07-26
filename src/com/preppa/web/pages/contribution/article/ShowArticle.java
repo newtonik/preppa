@@ -8,20 +8,29 @@ package com.preppa.web.pages.contribution.article;
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Article;
+import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
+import com.preppa.web.utils.FlagStatus;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.RequestGlobals;
@@ -30,6 +39,8 @@ import org.apache.tapestry5.services.RequestGlobals;
  *
  * @author newtonik
  */
+@IncludeStylesheet(value = {"context:styles/flag.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/article.js"})
 public class ShowArticle {
 @ApplicationState
 private User user;
@@ -62,15 +73,25 @@ private Block downSuccess;
 @Inject
 private Block voted;
 @Property
+private String reason;
+@Property
+private String reasonDesc;
+@Property
 @Persist
 private Integer votes;
 private Integer artId;
+@Component
+private Form flagform;
+@Inject
+private Block flagresponse;
+private List<Flag> articleflags;
 
 void onActivate(int id) {
     if(id > 0) {
             this.article = articleDAO.findById(id);
             this.author = article.getUser();
             this.tags = article.getTaglist();
+            this.articleflags = article.getFlags();
             this.votes = voteDAO.findVoteByContentId(ContentType.Article, article.getId());
             this.topics = article.getTopics();
             
@@ -193,4 +214,66 @@ void onActivate(int id) {
          return voted;
      }
  }
+
+  @CommitAfter
+  Block onSuccessFromFlagForm () {
+      if(reason != null) {
+          Flag f = new Flag();
+          if(reason.equals("A") )
+          {
+               System.out.println(reason);
+              f.setFlagtype(ContentFlag.Inappropriate);
+          }
+          else if(reason.equals("B")) {
+               System.out.println(reason);
+              f.setFlagtype(ContentFlag.Spam);
+          }
+          else if(reason.equals("C"))
+          {
+               System.out.println(reason);
+              f.setFlagtype(ContentFlag.Attention);
+          }
+          else if(reason.equals("D")) {
+               System.out.println(reason);
+              f.setFlagtype(ContentFlag.Incorrect);
+          } else
+          {
+               System.out.println(reason);
+              f.setFlagtype(ContentFlag.Attention);
+          }
+
+          f.setDescription(reasonDesc);
+          f.setContentType(ContentType.Article);
+          f.setFlagger(user);
+          f.setStatus(FlagStatus.NEW);
+
+
+
+          if(articleflags == null) {
+              articleflags = new ArrayList<Flag>();
+              articleflags.add(f);
+              article.setFlags(articleflags);
+            
+          }
+          else
+          {
+              //articleflags.add(f);
+              article.getFlags().add(f);
+            
+          }
+          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+          f.setUpdatedAt(now);
+          f.setCreatedAt(now);
+
+          article.setUpdatedAt(now);
+          
+      }
+      articleDAO.doSave(article);
+      return flagresponse;
+  }
+
+  Block onActionFromRemoveFlagBox() {
+      return null;
+  }
 }
