@@ -99,8 +99,10 @@ public class EditArticle {
                          "onCompleteCallback=literal:onChangeTestsubject"})
     @Mixins({"ck/OnEvent"})
     private Select select1;
-       @Inject
+    @Inject
     private Logger logger;
+    @Property
+    private String fComment;
 
     void Article(Integer id) {
 
@@ -171,6 +173,7 @@ public class EditArticle {
          article.setTestsubject(testsubject);
          article.setTeaser(fTitle);
          article.setSources(fSource);
+         article.setRevComment(fComment);
          
          for(Topic e: addedTopics) {
             if(!(article.getTopics().contains(e)))
@@ -194,7 +197,6 @@ public class EditArticle {
          System.out.println(article.getTitle());
             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-         article.setCreatedAt(now);
          article.setUpdatedAt(now);
 
          articleDAO.doSave(article);

@@ -72,6 +72,8 @@ public class EditShortPassage {
     private TagDAO tagDAO;
     @Inject
     private PassageService passageService;
+    @Property
+    private String fComment;
 
 
     void onActivate(int id) {
@@ -100,6 +102,7 @@ public class EditShortPassage {
          shortpassage.setTitle(fTitle);
          shortpassage.setComplete(true);
          shortpassage.setUser(user);
+         shortpassage.setRevComment(fComment);
           if(fBody.length() > 100) {
             shortpassage.setPassagetype(PassageType.LONG_DUAL);
          }

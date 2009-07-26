@@ -54,7 +54,23 @@
                          Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
                      </td>
                   </tr>
+                          <tr>
+                              <td></td>
+                     <td>
+                        <t:label for="fComment">
+                            Edit summary (Briefly describe the changes you have made)
+                        </t:label>
+                    </td>
+                 </tr>
+                 <tr>
+                     <td></td>
+                     <td>
+                         <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
+                     </td>
+                 </tr>
+
                   <tr>
+                      <td></td>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
                       <a href="#" t:type="pagelink" t:page="contribution/shortpassage/show" t:context="${shortpassage.id}" ><input type="button" value="Cancel" /></a>

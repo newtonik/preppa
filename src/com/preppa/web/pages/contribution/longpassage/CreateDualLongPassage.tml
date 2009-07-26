@@ -74,6 +74,7 @@
                      </td>
                   </tr>
                  <tr>
+                     <td></td>
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
                         <input type="button" onclick="window.location='Index'; return false;" value="Cancel"></input>

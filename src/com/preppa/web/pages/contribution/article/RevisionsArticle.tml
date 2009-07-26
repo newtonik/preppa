@@ -14,6 +14,9 @@
             <th>
                 User
             </th>
+            <th>
+                Edit Summary
+            </th>
             </tr>
         <tr t:type="loop" source="revisions" value="revision">
             <td>
@@ -25,6 +28,9 @@
             <td>
                 <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
 
+            </td>
+            <td>
+                ${revision.revComment}
             </td>
           
         </tr>

@@ -64,6 +64,7 @@ public class RevisionsArticle {
                 .addProjection(AuditEntity.property("title"))
                 .addProjection(AuditEntity.property("user_id"))
                 .addProjection(AuditEntity.property("updatedAt"))
+                .addProjection(AuditEntity.property("revComment"))
                 .addOrder(AuditEntity.revisionNumber().asc())
                 .add(AuditEntity.id().eq(article.getId()));
 
@@ -84,6 +85,7 @@ public class RevisionsArticle {
             User u = userDAO.findById( (Integer) obj[2]);
             result.setUser(u);
             result.setRevisionTime((Date) (obj[3]));
+            result.setRevComment((String) (obj[4]));
             result.setRevMap(  new HashMap<String, Integer>());
             //result.getRevMap().put("revId", result.getRevisionNumber());
             result.getRevMap().put("artId", article.getId());

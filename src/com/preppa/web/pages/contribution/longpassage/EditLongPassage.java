@@ -75,7 +75,8 @@ public class EditLongPassage {
     private TagDAO tagDAO;
     @Inject
     private PassageService passageService;
-
+    @Property
+    private String fComment;
 
     void onActivate(int id) {
         this.longpassage = longpassageDAO.findById(id);
@@ -106,6 +107,7 @@ public class EditLongPassage {
          longpassage.setComplete(true);
          longpassage.setSummary(fSummary);
          longpassage.setUser(user);
+         longpassage.setRevComment(fComment);
 
           if(fBody.length() > 100) {
             longpassage.setPassagetype(PassageType.LONG_DUAL);

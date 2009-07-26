@@ -79,8 +79,8 @@ Integer onPassivate() {
 }
 void setPassagePage(ShortPassage passage) {
     if(passage != null) {
-        this.passageid = passage.getId();
         this.passage = passage;
+        this.pid = passage.getId();
     }
     }
 

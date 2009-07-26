@@ -1,0 +1,18 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <div id="answerlist">
+         <t:loop t:source="answers"
+            t:value="answer">
+             <div class="questionanswer">
+                     <t:outputraw t:value="${answer.answer}" />
+                     <br />
+
+                     Submitted by ${answer.user.username}
+                     <br />
+                     Modified at ${answer.updatedat}
+                     <br />
+            </div>
+         </t:loop>
+    </div>
+
+</t:container>

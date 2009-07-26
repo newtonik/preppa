@@ -58,7 +58,7 @@ public class OpenQuestion implements Serializable {
     private Long id;
     private String title;
     private String question;
-    private List<OpenAnswer> answers;
+    private List<OpenAnswer> answers = new ArrayList<OpenAnswer>();
     private Date createdAt;
     private Date updatedAt;
     private List<Tag> taglist = new ArrayList<Tag>();
@@ -245,8 +245,9 @@ public class OpenQuestion implements Serializable {
     /**
      * @return the answers
      */
-    @OneToMany(targetEntity = OpenAnswer.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @IndexedEmbedded
+    @Audited
     public List<OpenAnswer> getAnswers() {
         return answers;
     }

@@ -80,6 +80,8 @@ public class EditDualLongPassage {
     private TagDAO tagDAO;
     @Inject
     private PassageService passageService;
+    @Property
+    private String fComment;
 
 
 
@@ -110,7 +112,7 @@ public class EditDualLongPassage {
          longDualpassage.setTitle(fTitle);
          longDualpassage.setSource(fSource);
          longDualpassage.setSummary(fSummary);
-         
+         longDualpassage.setRevComment(fComment);
 
           for(Tag t: addedTags) {
             if(!(longDualpassage.getTaglist().contains(t)))

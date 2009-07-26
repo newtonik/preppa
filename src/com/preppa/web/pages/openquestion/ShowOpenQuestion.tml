@@ -1,7 +1,8 @@
 <html t:type="layout" t:pageTitle="${question.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
  <body>
-
-
+     <div align="right">
+       <a href="#" t:type="pageLink" t:page="openquestion/Edit" t:context="question.id"> Edit </a>
+     </div>
      <h3 align="center">
          ${question.title}
      </h3>
@@ -9,15 +10,40 @@
             Created at ${question.updatedAt}
         </div>
 
-     <div align="center">
+     <div>
         <p>
             <t:outputraw t:value="${question.question}"/>
         </p>
+    </div>
+     <div t:id="answerlist" t:answers="openanswers">
 
-       
- </div>
-        <a href="#" t:type="pageLink" t:page="openquestion/Edit" t:context="question.id"> Edit </a>
-        
+     </div>
+     <br />
+     <div id="newanswer">
+     <t:form t:id="answerform">
+         <table>
+             <tr>
+                 <td>
+                    <t:label for="fAnswer"> Answer here </t:label>
+                </td>
+             </tr>
+             <tr>
+                 <td>
+                <input t:type="textarea" type="textarea" t:id="fAnswer" t:value="fAnswer"/>
+                <br />
+                <b> Please be explain clearly!</b>
+                <br />
+                 </td>
+            </tr>
+            <tr>
+                    <td colspan="2" align="left">
+                          <br />
+                        <input type="submit" value="Submit"/>
+                    </td>
+            </tr>
+         </table>
+     </t:form>
+     </div>
     </body>
 
 

@@ -29,7 +29,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class ShowLongPassage {
     @Property
-    @Persist
     private LongPassage passage;
     @Inject
     private LongPassageDAO passageDAO;

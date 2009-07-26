@@ -78,7 +78,8 @@ public class EditDualShortPassage {
     private TagDAO tagDAO;
     @Inject
     private PassageService passageService;
-
+    @Property
+    private String fComment;
 
 
     void onActivate(int id) {
@@ -108,7 +109,7 @@ public class EditDualShortPassage {
          shortDualpassage.setTitle(fTitle);
          shortDualpassage.setSource(fSource);
          shortDualpassage.setUser(user);
-
+         shortDualpassage.setRevComment(fComment);
 
           for(Tag t: addedTags) {
             if(!(shortDualpassage.getTaglist().contains(t)))

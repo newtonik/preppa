@@ -1,7 +1,8 @@
 package com.preppa.web.pages.contribution.longpassage.revisions;
 
-import com.preppa.web.data.ShortDualPassageDAO;
+import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.UserObDAO;
+import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.User;
 import com.preppa.web.utils.Revision;
@@ -25,11 +26,11 @@ import org.hibernate.envers.query.AuditQuery;
 public class DualPassageRevisions {
 
     @Property
-    private ShortDualPassage passage;
+    private LongDualPassage passage;
     @Property
     private String title;
     @Inject
-    private ShortDualPassageDAO passageDAO;
+    private LongDualPassageDAO passageDAO;
     private Integer passageId;
     @Inject
     private Session session;
@@ -62,18 +63,20 @@ public class DualPassageRevisions {
         }
                 AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
 
-        AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortDualPassage.class, false, true)
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(LongDualPassage.class, false, true)
                 .addProjection(AuditEntity.revisionNumber())
                 .addProjection(AuditEntity.property("title"))
                 .addProjection(AuditEntity.property("user_id"))
                 .addProjection(AuditEntity.property("updatedAt"))
+                .addProjection(AuditEntity.property("revComment"))
                 .addOrder(AuditEntity.revisionNumber().asc())
                 .add(AuditEntity.id().eq(passage.getId()));
 
         List results = query.getResultList();
-
+        int count = results.size();
+        System.out.println("Count is " + count);
         Iterator iter = results.iterator();
-        int count = 0;
+        count = 0;
          revisions = new ArrayList<Revision>();
 
          while (iter.hasNext())
@@ -83,9 +86,11 @@ public class DualPassageRevisions {
             result.setRevisionNumber((Long) obj[0]);
             result.setName((String) obj[1]);
 
+
             User u = userDAO.findById((Integer) obj[2]);
             result.setUser(u);
             result.setRevisionTime((Date) (obj[3]));
+            result.setRevComment((String) (obj[4]));
             revisions.add(result);
             count++;
         }

@@ -67,6 +67,7 @@ public class PassageRevisions {
                 .addProjection(AuditEntity.property("title"))
                 .addProjection(AuditEntity.property("user_id"))
                 .addProjection(AuditEntity.property("updatedAt"))
+                .addProjection(AuditEntity.property("revComment"))
                 .addOrder(AuditEntity.revisionNumber().asc())
                 .add(AuditEntity.id().eq(passage.getId()));
 
@@ -84,8 +85,10 @@ public class PassageRevisions {
             result.setName((String) obj[1]);
 
             User u = userDAO.findById((Integer) obj[2]);
+
             result.setUser(u);
             result.setRevisionTime((Date) (obj[3]));
+            result.setRevComment((String) (obj[4]));
             revisions.add(result);
             count++;
         }

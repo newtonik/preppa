@@ -19,6 +19,7 @@ public class Revision {
     private Integer userid;
     private Date revisionTime;
     private Map<String, Integer> revMap;
+    private String revComment;
 
 
 
@@ -120,6 +121,20 @@ public class Revision {
      */
     public void setRevMap(Map<String, Integer> revMap) {
         this.revMap = revMap;
+    }
+
+    /**
+     * @return the revComment
+     */
+    public String getRevComment() {
+        return revComment;
+    }
+
+    /**
+     * @param revComment the revComment to set
+     */
+    public void setRevComment(String revComment) {
+        this.revComment = revComment;
     }
 
  
