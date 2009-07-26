@@ -5,6 +5,7 @@ package com.preppa.web.services;
 
 import com.preppa.web.data.AnnouncementDAO;
 import com.preppa.web.data.AnnouncementDAO;
+import com.preppa.web.data.AnnouncementDAOHibImpl;
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.ArticleDAOHibImpl;
 import com.preppa.web.data.DictionaryWordDAO;
@@ -114,7 +115,7 @@ public final class AppModule {
         binder.bind(VoteDAO.class, VoteDAOHimpl.class);
         binder.bind(OpenQuestionDAO.class, OpenQuestionDAOHimpl.class);
         binder.bind(GridinDAO.class, GridinDAOHimpl.class);
-        binder.bind(AnnouncementDAO.class, AnnouncementDAOHibimpl.class);
+        binder.bind(AnnouncementDAO.class, AnnouncementDAOHibImpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 
