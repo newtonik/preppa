@@ -36,6 +36,17 @@ public class EditAnnouncement {
     private String aAnnouncement;
 	@Component(id = "announcementedit")
 	private Form _formedit;
+    @Inject
+    private AnnouncementDAO announcementDAO;
+
+    void onActivate(int id) {
+        this.announce = announcementDAO.findById(id);
+        if(announce != null) {
+            aTitle = announce.getTitle();
+            aAnnouncement = announce.getMessage();
+        }
+
+    }
 
     @CommitAfter
     Object onSuccess() {
