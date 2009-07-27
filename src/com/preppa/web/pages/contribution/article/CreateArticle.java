@@ -13,7 +13,6 @@ import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
-import com.preppa.web.entities.Vote;
 import com.preppa.web.utils.InjectSelectionModel;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -37,6 +36,7 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Select;
+import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -118,6 +118,15 @@ public class CreateArticle {
 
     @Inject
     private TagDAO tagDAO;
+    @Property
+    private Tag tag;
+    @Component
+    private TextField tagTextfield;
+    @Property
+    private String fname;
+    @Component
+    private Form tagform;
+
 
 
     public void onPrepare(){
@@ -149,7 +158,7 @@ public class CreateArticle {
     Object onPassivate() {
         return article;
     }
-    void onValidateForm() {
+    void onValidateFormFromArticleForm() {
         if(testsubject == null)
         {
             articleform.recordError("Articles require a Test Subject");
@@ -370,4 +379,31 @@ public class CreateArticle {
             topicDAO.doSave(topic);
         }
 
+        //Funtions for adding new tags and topics
+        @CommitAfter
+        JSONObject onSuccessFromTagForm() {
+            List<Tag> tolist =  tagDAO.findByName(fname);
+            JSONObject json = new JSONObject();
+            
+            if(tolist != null) {
+                String markup = "<p>  <b>" + fname +
+                    "</b> already exists. <p>";
+                json.put("content", markup);
+                
+            }
+            else 
+            {
+                tag = new Tag();
+                tag.setName(fname);
+
+                tagDAO.doSave(tag);
+                String markup = "<p> You just submitted <b>" + tag.getName() +
+                    "</b>. Please add it using the dropdown <p>";
+               json.put("content", markup);
+
+            }
+            
+            
+            return json;
+        }
 }

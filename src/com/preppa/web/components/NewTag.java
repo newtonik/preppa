@@ -35,7 +35,7 @@ public class NewTag {
     private TextField tagTextfield;
     @Property
     private String fname;
-    @InjectComponent
+    @Component
     private Form tagform;
     @InjectPage
     private TagSubmitted tagpage;

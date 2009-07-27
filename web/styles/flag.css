@@ -14,10 +14,46 @@
 root { 
     display: block;
 }
-#votebox {
-    background-color:aqua;
+#votebox, #flagresponse {
+    background-color:red;
+    
+   
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-color: black;
+    border-left-color: black;
+    border-bottom-color: black;
+    border-top-color: black;
+    margin-left: 10px;
+    text-indent: 2px;
+    font-family: 'Times New Roman',Times,serif;
+    text-align: justify;
+}
+#newtagbox {
+     border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-color: black;
+    border-left-color: black;
+    border-bottom-color: black;
+    border-top-color: black;
+}
+
+.tagboxklass {
+    width: 400px;
+    height: 400px;
 }
 .votemenu {
-    width: 250px;
-    height: 200px;
+    width: 300px;
+    height: 250px;
+}
+
+#submitable {
+    margin-left: 15px;
+
+    text-align: left;
+    text-indent: 6px;
 }

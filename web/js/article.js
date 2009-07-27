@@ -1,11 +1,19 @@
 
      window.onload = function() {
-
         //$('votebox').hide();
         $('flaglink').observe('click', function() {
+            //get position
+            var pos = $('flagpass').cumulativeOffset();
+            var width  = $('flagpass').getWidth();
+            //alert(pos.left)
+            
             $('votebox').setStyle({
+
                 display: 'block',
-                fontSize: '12px'
+                position: 'absolute',
+                fontSize: '12px',
+                left: (pos.left-200) + "px",
+                top : (pos.top-250)+ "px"
             });
             $('votebox').show();
         });
@@ -14,14 +22,12 @@
                  $('votebox').hide();
 
         });
-        $('removeflagbox"').observe('click', function() {
-                 $('votebox').hide();
-                 $('votebox').remove();
-
+        $('closeflag').observe('click', function() {
+               $('votebox').hide();
+            
         });
         
      }
-
 
 //     Event.observe('flagform', 'submit', function(event) {
 //         $('flagform').request({
@@ -39,9 +45,4 @@
 //         });
 //     });
     
- $('removeflagbox"').observe('click', function() {
-           $('votebox').hide();
-                 $('votebox').remove();
-
-
-});
+ 

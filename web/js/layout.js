@@ -22,6 +22,37 @@
 
      }
 
+     window.onload = function() {
+
+        $('addtag').observe('click', function() {
+            //get position
+            var pos = $('addtag').cumulativeOffset();
+            var width  = $('addtag').getWidth();
+            //alert(pos.left)
+
+            $('newtagbox').setStyle({
+
+                display: 'block',
+                position: 'absolute',
+                fontSize: '12px',
+                left: (pos.left-200) + "px",
+                top : (pos.top-500)+ "px"
+            });
+            $('newtagbox').show();
+          
+            $('tagTextfield').activate();
+            $('autoCompletetag').disable();
+        });
+
+        $('closetagbox').observe('click', function() {
+                 $('newtagbox').hide();
+                 $('autoCompletetag').enable();
+                 $('autoCompletetag').activate();
+
+        });
+
+     }
+
 //     $('articleform').request({
 //        onSuccess: function(){ alert('Form data saved!') }
 //      })

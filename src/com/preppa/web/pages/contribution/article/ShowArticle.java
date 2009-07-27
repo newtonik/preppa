@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.acegisecurity.annotation.Secured;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
@@ -214,7 +215,13 @@ void onActivate(int id) {
          return voted;
      }
  }
-
+//  void onValidateFormFromFlagForm() {
+//      if(reason == null) {
+//          flagform.recordError("?");
+//          System.out.println("You didn't select a reason");
+//      }
+//  }
+  @Secured("ROLE_USER")
   @CommitAfter
   Block onSuccessFromFlagForm () {
       if(reason != null) {
