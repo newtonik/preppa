@@ -23,7 +23,7 @@
             <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
         </p>
         <p>
-             <a href="#" id="flaglink" > Flag </a>
+             <a href="" id="flaglink" > Flag </a>
         </p>
         <div>
             <t:zone t:id="voteupZone">

@@ -22,6 +22,9 @@
             <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
             <br />
             <t:pagelink t:page="contribution/vocab/add">Add a new vocab word</t:pagelink>
+                        <br />
+            <t:pagelink t:page="contribution/gridin/new">Add Gridin</t:pagelink>
+
         </p>
 
 </div>

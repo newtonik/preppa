@@ -1,0 +1,26 @@
+<html t:type="layout" t:pageTitle="All Open Questions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+ <body>
+     <h2>
+         <a href="#" t:type="pagelink" t:page="openquestion/new" >
+             Add a Question
+         </a>
+     </h2>
+ <t:loop source="questions" value="question">
+     <h3>
+         <a href="#" t:type="pagelink" t:page="openquestion/show" t:context="${question.id}" >
+             ${question.title}
+         </a>
+     </h3>
+      <div id="author-time">
+            Created at ${question.updatedAt}
+        </div>
+
+     <div>
+        <p>
+            <t:outputraw t:value="${question.question}"/>
+        </p>
+    </div>
+
+ </t:loop>
+</body>
+</html>
