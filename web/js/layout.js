@@ -51,6 +51,34 @@
 
         });
 
+
+        $('addtopic').observe('click', function() {
+            //get position
+            var pos = $('addtag').cumulativeOffset();
+            var width  = $('addtag').getWidth();
+            //alert(pos.left)
+
+            $('newtopicbox').setStyle({
+
+                display: 'block',
+                position: 'absolute',
+                fontSize: '12px',
+                left: (pos.left-200) + "px",
+                top : (pos.top-500)+ "px"
+            });
+            $('newtopicbox').show();
+            $('content').setOpacity(0.5);
+            $('fTopicName').activate();
+            $('autoComplete').disable();
+        });
+
+        $('closetopicbox').observe('click', function() {
+                 $('newtopicbox').hide();
+                 $('autoComplete').enable();
+                 $('autoComplete').activate();
+
+        });
+
      }
 
 //     $('articleform').request({

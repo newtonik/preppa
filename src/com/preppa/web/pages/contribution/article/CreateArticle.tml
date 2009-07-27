@@ -43,7 +43,7 @@
                       <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
                         translate="prop:translator" label="name" type="text" size="10" readonly="true" t:validate="required" />
-                        <t:pagelink t:page="contribution/topic/new">Add a topic here</t:pagelink>
+                        <a href="#" id="addtopic">Add a topic here</a>
                          </td>
                          </tr>
                       </table>
@@ -167,5 +167,38 @@
     </div>
 
         </div>
+<div id="newtopicbox" class="tagboxklass" style='display:none'>
+     <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+        bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+    <div style="padding: 20px; background-color:#e8eefa;" >
+    <t:zone t:id="newtopiczone">
+           <t:form t:id="topicform" t:zone="newtopiczone">
 
+           <table>
+              <tr>
+                    <td>
+                        <input t:id="select2"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
+                    </td>
+               </tr>
+               <tr>
+                   <td>
+                   <input type="text" t:type="TextField" t:id="fTopicName" t:value="fTopicName" />
+                   </td>
+               </tr>
+               <tr>
+                      <td colspan="2" align="left">
+                        <input type="submit" value="Submit"/>
+                    </td>
+               </tr>
+
+           </table>
+           </t:form>
+    </t:zone>
+        <p>
+             <a href="#" id="closetopicbox">Close</a>
+        </p>
+    </div>
+</div>
+</div>
 </html>

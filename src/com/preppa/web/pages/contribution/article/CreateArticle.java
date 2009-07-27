@@ -56,6 +56,7 @@ import org.springframework.security.annotation.Secured;
 public class CreateArticle {
     @ApplicationState
     private User user;
+    //Article data
     @Property
     private Article article;
     @Property
@@ -96,6 +97,7 @@ public class CreateArticle {
     private AutoComplete autoComplete;
     @Component
     private AutoComplete autoCompleteTag;
+    //Tag Form data
     @Inject
     private Block newtagblock;
     @InjectComponent
@@ -106,6 +108,18 @@ public class CreateArticle {
     @Persist
     @Property
     private Boolean vote;
+    //Topic Form Data
+    @Property
+    private Testsubject topicSubject;
+    @Component(parameters = {"value=topicSubject"})
+    private Select select2;
+    @Component
+    private Form topicform;
+    @Property
+    private String fTopic;
+    @Property
+    private String fTopicName;
+
 
    
     @Component(parameters = {"value=testsubject",  "event=change",
@@ -405,5 +419,35 @@ public class CreateArticle {
             
             
             return json;
+        }
+        @CommitAfter
+        JSONObject onSuccessFromTopicForm() {
+            JSONObject json = new JSONObject();
+            System.out.println("trying to save " + fTopicName);
+          Topic topic = new Topic();
+           topic.setName(fTopicName);
+          topic.setTestsubject(topicSubject);
+
+         if(topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
+             String markup = "<p> There is already a <b>" + fTopicName +
+                    "</b> topic in " + topicSubject.getName() + " Section.<p>";
+                json.put("content", markup);
+
+         
+         }
+         else
+         {
+             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+             topic.setCreatedAt(now);
+             topic.setUpdatedAt(now);
+             System.out.println("Topic is being saved");
+            topicDAO.doSave(topic);
+             String markup = "<p> You just submitted <b>" + topic.getName() +
+                    "</b>. Please add it using the topics autocomplete. <p>";
+               json.put("content", markup);
+
+         }
+          return json;
         }
 }
