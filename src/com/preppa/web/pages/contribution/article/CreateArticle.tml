@@ -97,11 +97,7 @@
 
                      </td>
                   </tr>
-                  <tr>
-                      <t:zone t:id="tagZone">
-
-                      </t:zone>
-                  </tr>
+                  
                   <tr>
 
                       <td colspan="2" align="left">
@@ -116,26 +112,46 @@
              </table>
              </t:form>
     </div>
-    
 
-    <t:block t:id="newtagblock">
-        <div id="tagform">
-            <t:newtag />
-        </div>
-        <a t:type="actionlink" t:id="canceltag" href="#" t:zone="tagZone"> Cancel </a>
-
-    </t:block>
 
 
         <div id="newtagbox" class="tagboxklass" style='display:none'>
          <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
         bgcolor="#FFFFFF"
     style="padding: 20px;" align="center">
-    <div style="padding: 20px; background-color:#e8eefa;" >
+    <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
+
         <t:zone t:id="formzone">
+            <t:delegate to="newtagblock"/>
+        </t:zone>
+    
+        <p>
+             <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" id="closetagbox">Close</a>
+        </p>
+        </div>
+    </div>
+
+        </div>
+<div id="newtopicbox" class="tagboxklass" style='display:none'>
+     <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+        bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+    <div id="topiccorner" style="padding: 20px; background-color:#e8eefa;" >
+    <t:zone t:id="newtopiczone">
+         <t:delegate to="newtopicblock"/>
+    </t:zone>
+        <p>
+             <a href="#" t:type="actionlink" t:id="closetopic" t:zone="newtopiczone">Close</a>
+        </p>
+    </div>
+</div>
+</div>
+
+                  <t:block t:id="newtagblock">
+                       <h3> Add a Tag </h3>
         <t:form t:id="tagform" t:zone="formzone">
-            <t:errors />
-            <table id="userformtable">
+
+             <table id="userformtable">
                 <tr>
                     <td>
                         <t:label for="tagTextfield"/>
@@ -158,24 +174,12 @@
 
 
         </t:form>
-        </t:zone>
-    
-        <p>
-             <a href="#" id="closetagbox">Close</a>
-        </p>
-        </div>
-    </div>
-
-        </div>
-<div id="newtopicbox" class="tagboxklass" style='display:none'>
-     <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-        bgcolor="#FFFFFF"
-    style="padding: 20px;" align="center">
-    <div style="padding: 20px; background-color:#e8eefa;" >
-    <t:zone t:id="newtopiczone">
+        </t:block>
+        <t:block t:id="newtopicblock">
+            <h3> Add a Topic </h3>
            <t:form t:id="topicform" t:zone="newtopiczone">
 
-           <table>
+           <table id="atable">
               <tr>
                     <td>
                         <input t:id="select2"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
@@ -194,11 +198,5 @@
 
            </table>
            </t:form>
-    </t:zone>
-        <p>
-             <a href="#" id="closetopicbox">Close</a>
-        </p>
-    </div>
-</div>
-</div>
+            </t:block>
 </html>

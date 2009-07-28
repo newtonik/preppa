@@ -1,4 +1,27 @@
-    function countCharacters() {
+   
+    Tapestry.activateZone = function ( zoneId, url ) {
+            var zoneManager = Tapestry.findZoneManagerByZoneId( zoneId );
+            if ( zoneManager != null ) {
+                    zoneManager.updateFromURL( url );
+                    
+            }
+    };
+    Tapestry.findZoneManagerByZoneId = function( zoneId ) {
+        var zoneElement = $(zoneId);
+        if (!zoneElement) {
+                Tapestry.ajaxError("Unable to locate Ajax Zone '#{id}' for dynamic update.", { id:zoneId});
+                return null;
+        }
+        var manager = $T(zoneElement).zoneManager;
+        if (!manager) {
+                Tapestry.ajaxError("Ajax Zone '#{id}' does not have an associated Tapestry.ZoneManager object.", { id :zoneId });
+                return null;
+        }
+        return manager;
+};
+
+    //Tapestry.activateZone( 'formzone', '../create.tagform' );
+   function countCharacters() {
         // Get the editor instance that we want to interact with.
         var oEditor = FCKeditorAPI.GetInstance('body');
         // Get the Editor Area DOM (Document object).
@@ -21,15 +44,38 @@
 
 
      }
-
-     window.onload = function() {
-
+     document.observe("dom:loaded", function() {
+     var store = null;
+    // window.onload = function() {
+       
         $('addtag').observe('click', function() {
             //get position
             var pos = $('addtag').cumulativeOffset();
             var width  = $('addtag').getWidth();
             //alert(pos.left)
+//            if(store == null) {
+//                store = $('formzone').innerHTML;
+//            }
+//            else {
+//                $('formzone').update(store);
+//                 $('closetagbox').observe('click', function() {
+//                  $('newtagbox').hide();
+//                 $('autoCompletetag').enable();
+//                 $('autoCompletetag').activate();
+//                 Tapestry.activateZone( 'formzone', '../create.tagform' );
+//
+//        });
+//                Event.observe('tagform', 'submit', function(event) {
+//                 $('tagform').request( {
+//                     onSuccess: function(response) {
+//                        alert(response.evalJSON().content);
+//                        $('formzone').update(response.evalJSON().content);
+//                     }
+//                 })
+//                });
 
+         
+//            }
             $('newtagbox').setStyle({
 
                 display: 'block',
@@ -41,14 +87,30 @@
             $('newtagbox').show();
           
             $('tagTextfield').activate();
-            $('autoCompletetag').disable();
+          //  $('autoCompletetag').disable();
         });
 
-        $('closetagbox').observe('click', function() {
+        $('closetag').observe('click', function() {
+
+                $('newtagbox').setStyle({
+
+                display: 'none'
+                });
+                $('tagcorner').setStyle({
+                    'background-color': '#e8eefa'
+                });
                  $('newtagbox').hide();
                  $('autoCompletetag').enable();
                  $('autoCompletetag').activate();
-
+  //               Event.observe('tagform', 'submit', function(event) {
+//                 $('tagform').request( {
+//                     onSuccess: function(response) {
+//                        alert(response.evalJSON().content);
+//                        $('formzone').update(response.evalJSON().content);
+//                     }
+//                 })
+//                });
+//            Tapestry.activateZone( 'formzone', '../create.tagform' );
         });
 
 
@@ -67,19 +129,25 @@
                 top : (pos.top-500)+ "px"
             });
             $('newtopicbox').show();
-            $('content').setOpacity(0.5);
             $('fTopicName').activate();
-            $('autoComplete').disable();
+            //$('autoComplete').disable();
         });
 
-        $('closetopicbox').observe('click', function() {
+        $('closetopic').observe('click', function() {
+              $('newtopicbox').setStyle({
+
+                display: 'none'
+                });
+                $('topiccorner').setStyle({
+                    'background-color': '#e8eefa'
+                });
                  $('newtopicbox').hide();
                  $('autoComplete').enable();
                  $('autoComplete').activate();
 
         });
-
-     }
+     });
+  //   }
 
 //     $('articleform').request({
 //        onSuccess: function(){ alert('Form data saved!') }

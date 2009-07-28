@@ -1,12 +1,11 @@
 
-     window.onload = function() {
+   //  window.onload = function() {
         //$('votebox').hide();
         $('flaglink').observe('click', function() {
             //get position
             var pos = $('flagpass').cumulativeOffset();
             var width  = $('flagpass').getWidth();
-            //alert(pos.left)
-            
+           
             $('votebox').setStyle({
 
                 display: 'block',
@@ -16,18 +15,25 @@
                 top : (pos.top-250)+ "px"
             });
             $('votebox').show();
+             $('closeflag').observe('click', function() {
+               $('votebox').hide();
+
+        });
         });
 
         $('cancelflag').observe('click', function() {
                  $('votebox').hide();
 
         });
-        $('closeflag').observe('click', function() {
+        $('closeflagblock').observe('click', function() {
+               $('votebox').setStyle( {
+                 display: 'none'
+               })
                $('votebox').hide();
             
         });
         
-     }
+ //    }
 
 //     Event.observe('flagform', 'submit', function(event) {
 //         $('flagform').request({

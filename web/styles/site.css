@@ -290,7 +290,7 @@ DIV.t-error LI {
     margin-left: 20px;
     color: #000000;
 }
-#userformtable {
+#userformtable, #atable {
      border: none; background-color: #e8eefa; margin: 20px auto; border-collapse: collapse;
 }
 #navbarlogintable {

@@ -99,9 +99,11 @@ public class CreateArticle {
     private AutoComplete autoCompleteTag;
     //Tag Form data
     @Inject
+    @Property
     private Block newtagblock;
-    @InjectComponent
-    private Zone tagZone;
+    @Inject
+    @Property
+    private Block newtopicblock;
     @Component
     private Form articleform;
     private List<Integer> addTagIds;
@@ -398,8 +400,8 @@ public class CreateArticle {
         JSONObject onSuccessFromTagForm() {
             List<Tag> tolist =  tagDAO.findByName(fname);
             JSONObject json = new JSONObject();
-            
-            if(tolist != null) {
+            System.out.print(tolist);
+            if(tolist.size() > 0) {
                 String markup = "<p>  <b>" + fname +
                     "</b> already exists. <p>";
                 json.put("content", markup);
@@ -418,6 +420,7 @@ public class CreateArticle {
             }
             
             
+           // return new TextStreamResponse("text/json", json.toString());
             return json;
         }
         @CommitAfter
@@ -449,5 +452,13 @@ public class CreateArticle {
 
          }
           return json;
+        }
+
+        Block onActionFromCloseTag() {
+            return newtagblock;
+        }
+        Block onActionFromCloseTopic() {
+            return newtopicblock;
+
         }
 }

@@ -86,6 +86,9 @@ private Form flagform;
 @Inject
 private Block flagresponse;
 private List<Flag> articleflags;
+@Inject
+@Property
+private Block flagblock;
 
 void onActivate(int id) {
     if(id > 0) {
@@ -282,5 +285,8 @@ void onActivate(int id) {
 
   Block onActionFromRemoveFlagBox() {
       return null;
+  }
+  Block onActionFromCloseFlagBlock() {
+      return flagblock;
   }
 }

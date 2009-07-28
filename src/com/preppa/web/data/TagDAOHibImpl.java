@@ -37,8 +37,12 @@ public class TagDAOHibImpl extends AbstractHibernateDAO<Tag , Integer> implement
              sqlString.addWhereClause("t.name = '" + name + "'");
 
         }
-
-        return findByQuery(sqlString.toString());
+        List<Tag> result = findByQuery(sqlString.toString());
+        if(result != null ) {
+          return result;
+        }
+        else
+            return null;
     }
       @Override
     public List<Tag> findByPartialName(String partialName) {

@@ -69,6 +69,16 @@
        
     <div id="votebox" class="votemenu" style='display:none'>
     <t:zone t:id="flagZone">
+         <t:delegate to="flagblock"/>
+    </t:zone>
+         <div align="center">
+            <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
+        </div>
+
+    </div>
+
+
+            <t:block t:id="flagblock">
            <div id="submittable">
         <h3> Select a reason for flaging </h3>
         <t:form t:id="flagform" t:zone="flagZone">
@@ -84,7 +94,7 @@
                    <br />
                    <t:label for="reasonDesc"> Enter a Short Description of problem </t:label>
                        <br />
-                   
+
              </t:radiogroup>
             <input t:type="textfield" type="textfield" t:id="reasonDesc" size="30"/>
             <br />
@@ -96,14 +106,7 @@
             </p>
         </t:form>
                 </div>
-
-         </t:zone>
-         <div align="center">
-            <a href="#" id="closeflag" > Close </a>
-        </div>
-
-    </div>
-
+        </t:block>
     <t:block t:id="flagresponse" >
         <br />
         <br />
