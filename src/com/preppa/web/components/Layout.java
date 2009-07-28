@@ -57,10 +57,12 @@ public class Layout {
     @Property
     private Asset styles;
 
-    @Component(parameters = {"subject=Contributions", "closed=false", "options={duration:0.1}"})
-    private SlidingPanel panel1;
+    @Component(parameters = {"subject=Contribute", "closed=false", "options={duration:0.1}"})
+    private SlidingPanel contribute;
     @Component(parameters = {"subject=Testing", "closed=true", "options={duration:0.1}"})
-    private SlidingPanel panel2;
+    private SlidingPanel testing;
+     @Component(parameters = {"subject=View", "closed=true", "options={duration:0.1}"})
+    private SlidingPanel view;
 
     //final static ResourceBundle rb = ResourceBundle.getBundle("version.properties");
 

@@ -29,19 +29,28 @@
                     <h2>Left Side Bar </h2>
                      <div t:id="leftRegularContent">
                         <br/>
-                        <div t:id="panel1" style="width: 150px;">
+                        <div t:id="contribute" style="width: 150px;">
                         <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/article/home"> Articles </t:pagelink><br/>
+                        <t:pagelink t:page="contribution/article/create"> Articles </t:pagelink><br/>
+                        <t:pagelink t:page="contribution/vocab/add"> Vocabulary </t:pagelink><br/>
+                        <t:pagelink t:page="contribution/question/create"> Question </t:pagelink><br/>
+                        <t:pagelink t:page="contribution/longpassage/create"> Long Passages </t:pagelink><br/>
+                        <t:pagelink t:page="contribution/shortpassage/create"> Short Passages </t:pagelink><br/>
+                        </div>
+                        <br/>
+                        <div t:id="testing" style="width: 150px;">
+                            <a href="#">Practices Tests</a><br/>
+                            <a href="#">Build Vocabulary</a><br/>
+                            <a href="#">More Practice</a>
+                        </div>
+                        <br/>
+                        <div t:id="view" style="width: 150px;">
+                        <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
+                        <t:pagelink t:page="contribution/article/view"> Articles </t:pagelink><br/>
                         <t:pagelink t:page="contribution/vocab/view"> Vocabulary </t:pagelink><br/>
                         <t:pagelink t:page="contribution/question/view"> Question </t:pagelink><br/>
                         <t:pagelink t:page="contribution/longpassage/index"> Long Passages </t:pagelink><br/>
                         <t:pagelink t:page="contribution/shortpassage/index"> Short Passages </t:pagelink><br/>
-                        </div>
-                        <br/>
-                        <div t:id="panel2" style="width: 150px;">
-                            <a href="#">Practices Tests</a><br/>
-                            <a href="#">Build Vocabulary</a><br/>
-                            <a href="#">More Practice</a>
                         </div>
                      </div>
                      </t:block>

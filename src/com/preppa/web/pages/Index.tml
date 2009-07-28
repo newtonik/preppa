@@ -1,4 +1,48 @@
 <html t:type="layout" t:pageTitle="Preppa Home" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<head>
+	<style>
+		body {
+			margin: 0px;
+			padding: 20px;
+			font-family: verdana;
+			font-size: 12px;
+		}
+#shadow-container {
+	position: relative;
+	left: 3px;
+	top: 3px;
+	margin-right: 3px;
+	margin-bottom: 3px;
+}
+
+#shadow-container .shadow2,
+#shadow-container .shadow3,
+#shadow-container .container {
+	position: relative;
+	left: -1px;
+	top: -1px;
+}
+
+	#shadow-container .shadow1 {
+		background: #F1F0F1;
+	}
+
+	#shadow-container .shadow2 {
+		background: #DBDADB;
+	}
+
+	#shadow-container .shadow3 {
+		background: #B8B6B8;
+	}
+
+	#shadow-container .container {
+		background: #ffffff;
+		border: 1px solid #848284;
+		padding: 10px;
+	}
+	</style>
+</head>
+
        <h2>
             <t:if t:test="userExists">
                        Welcome to Preppa ${user.firstname}!
@@ -7,15 +51,21 @@
                     </t:parameter>
             </t:if>
         </h2>
+
     <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
         bgcolor="#FFFFFF"
-        style="padding: 20px;" align="center">
+        style="padding: 20px;">
     <div style="border-width: 2px; border-style: solid; border-color: #4186D3;padding: 20px;background-color:#e8eefa;" >
-        <h3>
-        Anouncements
-        </h3>
+        <div align="center"><h3>Anouncements</h3></div>
+   <t:loop t:source="Announcements" t:value="announcement">
+    <div class="announcement">
+            <div align="left"><h4>${announcement.title}</h4></div>
+            <t:outputraw t:value="${announcement.message}"/>
+            <b>Created at ${announcement.createdat}</b>
+            <br></br>
+    </div>
+    </t:loop>
     </div></div>
-
 
         <br/>
     <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
@@ -30,5 +80,17 @@
     </div>
     </div>
         <br/>
+
+	<div id="shadow-container">
+		<div class="shadow1">
+			<div class="shadow2">
+				<div class="shadow3">
+					<div class="container">
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </html>

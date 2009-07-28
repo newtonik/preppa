@@ -1,7 +1,9 @@
 package com.preppa.web.pages;
 
+import com.preppa.web.data.AnnouncementDAO;
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.VocabDAO;
+import com.preppa.web.entities.Announcement;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vocab;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.Random;
 import java.net.URL;
 import java.io.*;
 import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.security.Authentication;
 import org.springframework.security.context.SecurityContextHolder;
@@ -23,7 +26,11 @@ public class Index {
     @Inject
     private UserObDAO userDAO;
     private boolean userExists;
-    
+
+    @Inject
+    private AnnouncementDAO announcementDAO;
+    @Property
+    private Announcement announcement;
     void onActivate() {
         //Attempt to get the authentication token if the user is already logged in but not in
         //the ASO object.
@@ -125,4 +132,9 @@ public class Index {
         return vocabDAO.findAll();
     }
 
+    public List<Announcement> getAnnouncements() {
+        List<Announcement> returnVal;
+        returnVal = announcementDAO.findAllOrderedByDate();
+        return returnVal;
+    }
 }

@@ -23,5 +23,6 @@
   <br/>
   <br/>
   <div align="left">Buddy List</div>
+  <t:pagelink t:page="announcements/newannouncement">Create Announcement</t:pagelink>
 </body>
 </html>

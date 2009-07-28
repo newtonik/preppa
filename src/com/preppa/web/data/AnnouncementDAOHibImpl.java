@@ -36,6 +36,21 @@ public class AnnouncementDAOHibImpl  extends AbstractHibernateDAO<Announcement, 
          super(logger, session);
     }
 
+
+    public List<Announcement> findAllOrderedByDate() {
+        SQLString sqlString = new SQLString("FROM Announcement announcements");
+        sqlString.addOrderField("createdAt");
+
+        List<Announcement> returnVal = findByQuery(sqlString.toString());
+
+        if (returnVal.isEmpty()) {
+            return null;
+        }
+        else {
+            return returnVal;
+        }
+    }
+
     public Announcement findById(Integer id) {
         SQLString sqlString = new SQLString("FROM Announcement announcements");
         if(id != null)

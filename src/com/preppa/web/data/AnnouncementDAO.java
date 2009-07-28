@@ -6,6 +6,7 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.Announcement;
+import java.util.List;
 import org.chenillekit.hibernate.daos.GenericDAO;
 
 /**
@@ -14,4 +15,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  */
 public interface AnnouncementDAO extends GenericDAO< Announcement, Integer>  {
     Announcement findById(Integer id);
+
+    public List<Announcement> findAllOrderedByDate();
 }
