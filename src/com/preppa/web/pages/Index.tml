@@ -12,20 +12,29 @@
             </t:if>
         </h2>
 
-    <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-        bgcolor="#FFFFFF"
-        style="padding: 20px;">
-    <div style="border-width: 2px; border-style: solid; border-color: #4186D3;padding: 20px;background-color:#e8eefa;" >
+	<div id="shadow-container">
+	<div class="shadow1">
+	<div class="shadow2">
+	<div class="shadow3">
+	<div class="container">
         <div align="center"><h3>Anouncements</h3></div>
+        </div></div></div></div></div><br/>
+
    <t:loop t:source="Announcements" t:value="announcement">
     <div class="announcement">
+	<div id="shadow-container">
+	<div class="shadow1">
+	<div class="shadow2">
+	<div class="shadow3">
+	<div class="container">
             <div align="left"><h4>${announcement.title}</h4></div>
             <t:outputraw t:value="${announcement.message}"/>
             <b>Created at ${announcement.createdat}</b>
+    </div></div></div></div></div>
             <br></br>
     </div>
     </t:loop>
-    </div></div>
+
 
         <br/>
     <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
@@ -40,17 +49,5 @@
     </div>
     </div>
         <br/>
-
-	<div id="shadow-container">
-		<div class="shadow1">
-			<div class="shadow2">
-				<div class="shadow3">
-					<div class="container">
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 </html>

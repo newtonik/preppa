@@ -6,12 +6,13 @@
 package com.preppa.web.components;
 
 import com.preppa.web.entities.User;
+import javax.servlet.http.HttpServletRequest;
 import nu.localhost.tapestry5.springsecurity.services.LogoutService;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.services.Request;
-
+import org.apache.tapestry5.services.BaseURLSource;
 /**
  *
  * @author newtonik
@@ -52,6 +53,8 @@ public class NavBar {
   @ApplicationState
     private User user;
   private boolean userExists;
+  @Inject
+  private HttpServletRequest _request;
     /**
      * @return the logoutUrl
      */
@@ -79,6 +82,27 @@ public class NavBar {
      */
     public String getCheckUrl() {
          return request.getContextPath() + checkUrl;
+    }
+
+    public String getpath() {
+        String url = _request.getRequestURL().toString();
+        return url.substring(url.length() - 8, url.length());
+    }
+
+    public boolean getHome() {
+        String url = _request.getRequestURL().toString();
+        String check = url.substring(url.length() - 8, url.length());
+        return check.contains("/preppa/") || check.contains("/preppa");
+    }
+
+    public boolean getProfile() {
+        String url = _request.getRequestURL().toString();
+        return url.contains("/user/");
+    }
+
+    public boolean getOpenQuestion() {
+        String url = _request.getRequestURL().toString();
+        return url.contains("openquestion");
     }
 
 }
