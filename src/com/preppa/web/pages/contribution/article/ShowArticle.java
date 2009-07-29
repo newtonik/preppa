@@ -34,6 +34,7 @@ import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestGlobals;
 
 /**
@@ -57,8 +58,6 @@ private String authorname;
 private List<Tag> tags;
 @Property
 private List<Topic> topics;
-@Inject
-private RequestGlobals requestGlobals;
 @Inject
 private HttpServletRequest _request;
 @Inject
@@ -89,6 +88,8 @@ private List<Flag> articleflags;
 @Inject
 @Property
 private Block flagblock;
+@Inject
+private Request rqe;
 
 void onActivate(int id) {
     if(id > 0) {
@@ -153,9 +154,7 @@ void onActivate(int id) {
     }
 
  Block onActionFromVoteUp() {
-     requestGlobals.getHTTPServletRequest();
-     String  hostname = _request.getRemoteAddr();
-
+     String  hostname = _request.getRemoteHost();
      if(!(voteDAO.checkVoted(ContentType.Article, article.getId(), user)))
      {
          Vote v = new Vote();
@@ -185,9 +184,10 @@ void onActivate(int id) {
      }
  }
   Block onActionFromVoteDown() {
-     requestGlobals.getHTTPServletRequest();
-     String  hostname = _request.getRemoteAddr();
-
+   
+     String  hostname = _request.getRemoteHost();
+    // System.out.println(_request.getRequestURL());
+     
      if(!(voteDAO.checkVoted(ContentType.Article, article.getId(), user)))
      {
          Vote v = new Vote();
@@ -231,21 +231,21 @@ void onActivate(int id) {
           Flag f = new Flag();
           if(reason.equals("A") )
           {
-               System.out.println(reason);
               f.setFlagtype(ContentFlag.Inappropriate);
           }
           else if(reason.equals("B")) {
-               System.out.println(reason);
               f.setFlagtype(ContentFlag.Spam);
           }
           else if(reason.equals("C"))
           {
-               System.out.println(reason);
               f.setFlagtype(ContentFlag.Attention);
           }
           else if(reason.equals("D")) {
-               System.out.println(reason);
               f.setFlagtype(ContentFlag.Incorrect);
+          }
+           else if(reason.equals("E")) {
+
+              f.setFlagtype(ContentFlag.Copyright);
           } else
           {
                System.out.println(reason);
@@ -256,6 +256,7 @@ void onActivate(int id) {
           f.setContentType(ContentType.Article);
           f.setFlagger(user);
           f.setStatus(FlagStatus.NEW);
+          f.setArticle(article);
 
 
 

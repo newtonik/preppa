@@ -92,6 +92,9 @@
                    <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
                    Alert Moderator<br />
                    <br />
+                    <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
+                   Copyright Violation<br />
+                   <br />
                    <t:label for="reasonDesc"> Enter a Short Description of problem </t:label>
                        <br />
 

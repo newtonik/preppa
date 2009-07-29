@@ -7,6 +7,7 @@ package com.preppa.web.entities;
 
 import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -27,6 +28,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -69,7 +71,7 @@ public class Article implements Serializable {
     private ContentFlag status;
     private String revComment;
     private List<Flag> flags = new ArrayList<Flag>();
-
+ 
     @Id
     @NonVisual
     @Basic(optional = false)
@@ -327,24 +329,25 @@ public class Article implements Serializable {
         this.revComment = revComment;
     }
 
+
     /**
-     * @return the flags
+     *
+     * @return flags for article
      */
-    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @Audited
+    @OneToMany(mappedBy = "article", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     public List<Flag> getFlags() {
         return flags;
     }
 
     /**
-     * @param flags the flags to set
+     * @param realflags the realflags to set
      */
-    public void setFlags(List<Flag> flags) {
-        this.flags = flags;
+    public void setFlags(List<Flag> realflags) {
+        this.flags = realflags;
     }
 
-    public void addFlag(Flag f) {
-        this.flags.add(f);
-    }
+   
 
 }

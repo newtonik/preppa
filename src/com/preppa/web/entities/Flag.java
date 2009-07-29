@@ -37,8 +37,9 @@ import org.hibernate.envers.Audited;
  * @author newtonik
  */
 @Entity
+@Audited
 public class Flag implements Serializable {
-    private List<Article> articles;
+    private Article article;
     private static final long serialVersionUID = 1L;
    
     private Long id;
@@ -49,6 +50,7 @@ public class Flag implements Serializable {
     private FlagStatus status;
     private Date createdAt;
     private Date updatedAt;
+    private User assignee;
 
 
      @Id
@@ -162,15 +164,6 @@ public class Flag implements Serializable {
         this.status = status;
     }
 
-    @ManyToMany(mappedBy = "flags")
-    public List<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
-
     @NonVisual
     @Basic(optional = false)
     @Column(name = "created_at", nullable=false)
@@ -194,6 +187,47 @@ public class Flag implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="contentId")
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        if(contentType != null)
+        {
+            if(contentType == ContentType.Article) {
+                 this.article = article;
+            }
+            else
+            {
+                this.article = null;
+            }
+        }
+        else
+        {
+            this.contentType = ContentType.Article;
+             this.article = article;
+        }
+
+    }
+
+    /**
+     * @return the assignee
+     */
+    @ManyToOne
+    @JoinColumn(name="assignee_id")
+    public User getAssignee() {
+        return assignee;
+    }
+
+    /**
+     * @param assignee the assignee to set
+     */
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
     }
 
 }
