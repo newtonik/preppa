@@ -51,7 +51,7 @@ public class Flag implements Serializable {
     private Date createdAt;
     private Date updatedAt;
     private User assignee;
-
+    private Vocab vocab;
 
      @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -228,6 +228,35 @@ public class Flag implements Serializable {
      */
     public void setAssignee(User assignee) {
         this.assignee = assignee;
+    }
+
+    /**
+     * @return the vocab
+     */
+    @ManyToOne
+    public Vocab getVocab() {
+        return vocab;
+    }
+
+    /**
+     * @param vocab the vocab to set
+     */
+    public void setVocab(Vocab vocab) {
+        if(contentType != null)
+        {
+            if(contentType == ContentType.Vocab)
+            {
+                this.vocab = vocab;
+            }
+            else
+            {
+               this.vocab = null;
+            }
+        }
+        else {
+            this.contentType = ContentType.Vocab;
+            this.vocab = vocab;
+        }
     }
 
 }

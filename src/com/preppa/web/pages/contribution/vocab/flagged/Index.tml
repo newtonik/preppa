@@ -1,0 +1,74 @@
+<html t:type="layout" t:pageTitle="Flagged Articles" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <div id="aricleflagged">
+        <div id="filterbox">
+            <t:form>
+                <table>
+                    <tr>
+                        <td>
+                        <t:label for="flagSelect"> Select a Flag to filter on </t:label>
+                        <input t:id="flagSelect" model="literal:All,Active, Incorrect, Spam, Inappropriate, Copyright, Attention" />
+                        </td>
+                        <td align="left">
+                            <input t:type="textfield" t:value="username" type="textfield" size="30"/>
+                        </td>
+                        </tr>
+                </table>
+            <br />
+            </t:form>
+        </div>
+        <t:zone t:id="articleviewzone">
+            <t:delegate to="resultblock" />
+        </t:zone>
+
+    </div>
+
+    <t:block t:id="resultblock">
+        	<div id="shadow-container">
+		<div class="shadow1">
+			<div class="shadow2">
+				<div class="shadow3">
+					<div class="container">
+            <table>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Reason
+                </th>
+                <th>
+                    Flagged By
+                </th>
+                <th>
+                    Notes
+                </th>
+                <th>
+                    Date Flagged
+                </th>
+            <tr t:type="loop" value="flag" source="flags">
+                <td>     <a href="#" t:type="pagelink" t:page="contribution/vocab/show" t:context="${flag.vocab.id}">
+                            ${flag.vocab.name}
+                            </a>
+                </td>
+                <td>
+                    ${flag.flagtype}
+                </td>
+                <td>
+                    ${flag.flagger.username}
+                </td>
+                <td>
+                    ${flag.description}
+                </td>
+                <td>
+                    ${flag.createdAt}
+                </td>
+            </tr>
+        </table>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                </div>
+
+    </t:block>
+</html>

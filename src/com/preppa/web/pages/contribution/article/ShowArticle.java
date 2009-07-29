@@ -35,7 +35,6 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
-import org.apache.tapestry5.services.RequestGlobals;
 
 /**
  *
@@ -88,8 +87,7 @@ private List<Flag> articleflags;
 @Inject
 @Property
 private Block flagblock;
-@Inject
-private Request rqe;
+
 
 void onActivate(int id) {
     if(id > 0) {

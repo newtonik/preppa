@@ -8,19 +8,22 @@
            
             $('votebox').setStyle({
 
-                display: 'block',
+               // display: 'block',
                 position: 'absolute',
                 fontSize: '12px',
-                left: (pos.left-200) + "px",
-                top : (pos.top-250)+ "px"
+            //    left: (pos.left-200) + "px",
+                top : (pos.top-400)+ "px"
             });
             $('votebox').show();
+            //$('votebox').absolutize()
+            
+               
              $('closeflag').observe('click', function() {
                $('votebox').hide();
 
         });
         });
-
+window.scroll(0,  document.height);
         $('cancelflag').observe('click', function() {
                  $('votebox').hide();
 

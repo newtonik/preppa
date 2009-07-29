@@ -5,7 +5,7 @@
         <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math">Math</t:pagelink></li>
         <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading">Critical Reading</t:pagelink></li>
         <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing">Writing</t:pagelink></li>
-        <li><t:pagelink t:page="contribution/article/flagged" >Flagged</t:pagelink></li>
+        <li><t:pagelink t:page="contribution/article/flagged/index" >Flagged</t:pagelink></li>
     </ul>
 </div>
 <br/>

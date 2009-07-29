@@ -7,6 +7,7 @@ package com.preppa.web.entities;
 
 import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +26,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -52,9 +55,10 @@ public class Vocab implements Serializable {
     private User user;
     private Date createdAt;
     private Date updatedAt;
-    private List<Tag> vlist = new LinkedList<Tag>();
+    private List<Tag> taglist = new LinkedList<Tag>();
     private ContentFlag status;
     private String revComment;
+    private List<Flag> flags = new ArrayList<Flag>();
 
     public Vocab() {
     }
@@ -224,14 +228,14 @@ public class Vocab implements Serializable {
       @JoinColumn(name="Tag_id")
     })
    public List<Tag> getTaglist() {
-        return vlist;
+        return taglist;
     }
 
     /**
      * @param taglist the taglist to set
      */
-    public void setTaglist(LinkedList<Tag> taglist) {
-        this.vlist = taglist;
+    public void setTaglist(List<Tag> taglist) {
+        this.taglist = taglist;
     }
 
     /**
@@ -263,6 +267,23 @@ public class Vocab implements Serializable {
      */
     public void setRevComment(String revComment) {
         this.revComment = revComment;
+    }
+
+    /**
+     * @return the flags
+     */
+    @Audited
+    @OneToMany(mappedBy = "vocab", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 
 }
