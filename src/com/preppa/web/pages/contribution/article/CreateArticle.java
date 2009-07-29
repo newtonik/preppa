@@ -183,6 +183,7 @@ public class CreateArticle {
         {
             articleform.recordError("Articles should have a topic.");
         }
+
     }
     
     public StreamResponse onChangeFromSelect1(String c)
