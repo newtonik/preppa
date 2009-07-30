@@ -60,7 +60,8 @@ public class NewGeneral {
     @Mixins({"ck/OnEvent"})
     private Select testSubSelect;
 
-    @Component(parameters = {"value=testsubject",  "event=change" })
+    @Component(parameters = {"value=testsubject",  "event=change",
+                "onCompleteCallback=literal:onChangeQuestiontype"})
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
     @Component
@@ -103,8 +104,17 @@ public class NewGeneral {
         return json;
     }
 
+
     Block onChangeFromQuestiontypeSelect(String quesId) {
 
+        if(quesId.equals("1"))
+            return multiplequesblock;
+        else
+            return null;
+    }
+
+     Block onActionFromTestSelect() {
+        String quesId = "6";
         if(quesId.equals("6"))
             return multiplequesblock;
         else
