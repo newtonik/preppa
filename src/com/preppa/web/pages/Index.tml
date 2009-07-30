@@ -31,23 +31,29 @@
             <t:outputraw t:value="${announcement.message}"/>
             <b>Created at ${announcement.createdat}</b>
     </div></div></div></div></div>
-            <br></br>
     </div>
     </t:loop>
 
 
         <br/>
-    <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-        bgcolor="#FFFFFF"
-        style="padding: 20px;" align="center">
-    <div style="border-width: 2px; border-style: solid; border-color: #4186D3;padding: 20px;background-color:#e8eefa;" >
+	<div id="shadow-container">
+	<div class="shadow1">
+	<div class="shadow2">
+	<div class="shadow3">
+	<div class="container">
         <h3>
         Latest Blog Post
         </h3>
+        </div></div></div></div></div>
+        <br/>
+        <div id="shadow-container">
+	<div class="shadow1">
+	<div class="shadow2">
+	<div class="shadow3">
+	<div class="container">
         <t:outputraw t:value="${webpage}"/>
+        </div></div></div></div></div>
 
-    </div>
-    </div>
         <br/>
 
 </html>

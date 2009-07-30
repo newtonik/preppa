@@ -97,7 +97,7 @@ public class NavBar {
 
     public boolean getProfile() {
         String url = _request.getRequestURL().toString();
-        return url.contains("/user/");
+        return url.contains("/user/") || url.contains("loginpage");
     }
 
     public boolean getOpenQuestion() {

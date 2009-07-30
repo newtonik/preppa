@@ -1,9 +1,5 @@
 <html t:type="layout" t:pageTitle="Add a Vocabulary Word" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<head>
-<script language="javascript" type="text/javascript">
-</script>
-</head>
-<body onunload="confirm('Are you sure?');">
+
           <h3> Add a Vocab Word </h3>
         <p> Check our dictionary.
           <t:form t:id="addvocabform">
@@ -23,5 +19,4 @@
           <br/>
           <br/>
         </p>
-</body>
 </html>

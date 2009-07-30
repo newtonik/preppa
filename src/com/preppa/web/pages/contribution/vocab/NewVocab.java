@@ -122,13 +122,16 @@ public class NewVocab {
         return vocab;
     }
 
+    void cleanupRender() {
+        System.out.println("*** I'm in cleanuprender!");
+    }
+
     @CommitAfter
     Object onSuccess() {
          this.vocab = new Vocab();
          vocab.setName(fWord);
          vocab.setPartofspeech(partofspch);
          vocab.setDefinition(fDefinition);
-         //vocab.setTags(fTag);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
          vocab.setCreatedAt(now);
          vocab.setUpdatedAt(now);
@@ -155,7 +158,10 @@ public class NewVocab {
          dictionarywordDAO.doSave(dWord);
 
          showvocab.setvocab(vocab);
-        return showvocab;
+         addedTags.clear();
+         fWord = null;
+         partofspch = null;
+         return showvocab;
     }
 
 public FieldTranslator getTagTranslator()

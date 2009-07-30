@@ -50,14 +50,14 @@
 <div id="nav-menu">
     <ul>
         <t:if t:test="Home">
-            <li><a href="#" style="background:#FFFFFF;" t:type="PageLink" t:page="index">Home</a></li>
+            <li><a href="#" style="background:#C0C0C0;" t:type="PageLink" t:page="index">Home</a></li>
             <t:parameter name="else">
             <li><a href="#" t:type="PageLink" t:page="index">Home</a></li>
             </t:parameter>
         </t:if>
         <t:if t:test="userExists">
             <t:if t:test="profile">
-                <li><a href="#" style="background:#FFFFFF;" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a></li>
+                <li><a href="#" style="background:#C0C0C0;" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a></li>
                 <t:parameter name="else">
                 <li><a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a></li>
                 </t:parameter>
@@ -75,7 +75,7 @@
         <li><a href="#">Friends</a></li>
         <li><a href="#">Testing</a></li>
         <t:if t:test="OpenQuestion">
-            <li><a href="#" style="background:#FFFFFF;" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
+            <li><a href="#" style="background:#C0C0C0;" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
             <t:parameter name="else">
             <li><a href="#" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
             </t:parameter>
