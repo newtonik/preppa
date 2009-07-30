@@ -45,7 +45,6 @@
                         </div>
                         <br/>
                         <div t:id="view" style="width: 150px;">
-                        <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
                         <t:pagelink t:page="contribution/article/home"> Articles </t:pagelink><br/>
                         <t:pagelink t:page="contribution/vocab/view"> Vocabulary </t:pagelink><br/>
                         <t:pagelink t:page="contribution/question/view"> Question </t:pagelink><br/>
