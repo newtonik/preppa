@@ -22,6 +22,7 @@
 
     </t:form>
     </t:zone>
+    <a href="#" t:type="actionlink" t:context="literal:2" t:id="testSelect" t:zone="questionzone" > Click me </a>
     <t:zone t:id="questionzone">
     </t:zone>
     <t:block t:id="multiplequesblock">
