@@ -34,16 +34,6 @@
      }
 
 
-     function onChangeTestsubject(response) {
-         
-         //alert(response.testsubject);
-         $('result1').update(response.testsubject);
-         $('result1').setStyle({
-            backgroundColor: '#FFFF5C'
-            });
-
-
-     }
      document.observe("dom:loaded", function() {
      var store = null;
     // window.onload = function() {

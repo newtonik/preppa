@@ -1,0 +1,33 @@
+<html t:type="layout" t:pageTitle="Create New question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <h3> Contribute a Question </h3>
+    <t:zone t:id="formzone">
+    <t:form t:id="wizardform" t:zone="formzone">
+        <table id="atable" width="700" cellpadding="10">
+            <tr>
+                <td align="left">
+                    <t:label for="testSubSelect"> Select a Testsubject </t:label>
+                    <br />
+                    <input t:id="testSubSelect"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
+                </td>
+                <td align="right" >
+                    <t:label for="QuestiontypeSelect"> Select a Testsubject </t:label>
+                    <br />
+                    <input t:id="QuestiontypeSelect"  model="questiontypesSelectionModel" encoder="questiontypesValueEncoder"/>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+
+    </t:form>
+    </t:zone>
+    <t:zone t:id="questionzone">
+    </t:zone>
+    <t:block t:id="multiplequesblock">
+        <div t:id="multiplequestion">
+        </div>
+    </t:block>
+
+
+</html>
