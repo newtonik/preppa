@@ -103,6 +103,10 @@ public class EditArticle {
     private Logger logger;
     @Property
     private String fComment;
+    @Property
+    private String fname;
+    @Property
+    private Tag tag;
 
     void Article(Integer id) {
 
@@ -211,6 +215,34 @@ public class EditArticle {
      .replaceAll("(?i)<.*?\\s+on.*?>.*?</.*?>", "");     // case 3
     }
 
+    //Funtions for adding new tags and topics
+     @CommitAfter
+     JSONObject onSuccessFromTagForm() {
+            List<Tag> tolist =  tagDAO.findByName(fname);
+            JSONObject json = new JSONObject();
+            System.out.print(tolist);
+            if(tolist.size() > 0) {
+                String markup = "<p>  <b>" + fname +
+                    "</b> already exists. <p>";
+                json.put("content", markup);
+
+            }
+            else
+            {
+                tag = new Tag();
+                tag.setName(fname);
+
+                tagDAO.doSave(tag);
+                String markup = "<p> You just submitted <b>" + tag.getName() +
+                    "</b>. Please add it using the dropdown <p>";
+               json.put("content", markup);
+
+            }
+
+
+           // return new TextStreamResponse("text/json", json.toString());
+            return json;
+        }
         /**
      * @return the testsubjects
      */

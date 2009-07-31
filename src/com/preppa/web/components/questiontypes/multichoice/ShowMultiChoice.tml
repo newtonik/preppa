@@ -1,0 +1,31 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <div align="right">
+        <a href="#" t:type="pagelink" t:page="contribution/question/edit" t:context="${question.id}"> Edit </a>
+    </div>
+
+        <div class="multiple-choice-question">
+            <t:outputraw t:value="${question.question}"/>
+           
+        </div>
+        <div class="author-date">
+            Last updated ${question.updatedAt}
+        </div>
+
+        <h3>Choices</h3>
+        <t:loop t:source="AllAnswers" t:value="questionanswer">
+            <div class="questionanswer">
+                     <t:outputraw t:value="${questionanswer.answer}" />
+                    <t:if t:test="questionanswer.correct">
+                        <b>This answer is correct.</b>
+                    </t:if>
+            </div>
+            <br />
+        </t:loop>
+
+        <p>
+            <t:tagview t:alltags="tags" />
+            <br />
+        </p>
+
+
+</t:container>

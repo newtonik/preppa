@@ -1,0 +1,186 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+ 
+  
+ <div id="multiple-question" class="overlay"  >
+        <t:form t:id="createquestionform" >
+            <t:errors />
+            <table id="formtable">
+                <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
+                 <tr>
+                        <td width="10%" valign="top" align="right">
+                           <t:label for="questioneditor">Question: </t:label>
+                        </td>
+                           <td >
+                          <t:editor align="left" t:id="questioneditor" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="100"/>
+
+                     </td>
+                 </tr>
+                        <tr>
+                             <td width="10%" valign="top" align="right">
+                              <t:label for="choice1">A: </t:label>
+                              <br />
+                               <input t:type="radio" type="radio" t:value="literal:A" /> <br />
+                             </td>
+                        <td>
+                         <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="600" t:validate="required" t:height="70"/>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td width="10%" valign="top" align="right">
+                           <t:label for="choice2">B: </t:label>
+                           <br />
+                           <input t:type="radio" type="radio" t:value="literal:B" /> <br />
+                            </td>
+                            <td>
+                            <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="70"/>
+                            </td>
+                        </tr>
+
+                         <tr>
+                             <td width="10%" valign="top" align="right">
+                             <t:label for="choice3">C: </t:label>
+                              <br />
+                              <input t:type="radio" type="radio" t:value="literal:C" /> <br />
+
+                        </td>
+                        <td>
+                         <t:editor align="left" t:id="choice3" t:toolbarSet="Basic" t:validate="required"  t:width="600" t:height="70"/>
+                        </td>
+                        </tr>
+                         <tr>
+                            <td width="10%" valign="top" align="right">
+                            <t:label for="choice4">D: </t:label>
+                            <br />
+                            <input t:type="radio" type="radio" t:value="literal:D" /> <br />
+                            </td>
+                            <td>
+                            <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="600" t:validate="required" t:height="70"/>
+                            </td>
+                        </tr>
+                         <tr>
+                               <td width="10%" valign="top" align="right">
+
+                                  <br />
+                                <t:label for="choice5">E: </t:label>
+                                <br />
+                                 <input t:type="radio" type="radio" t:value="literal:E" />
+
+                        </td>
+                        <td>
+                         <t:editor align="left" t:id="choice5" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="70"/>
+                        </td>
+                        </tr>
+
+                  <tr>
+
+                        <td width="10%" valign="top" align="right">
+                             <t:label for="fExplanation"> Explain: </t:label>
+                        </td>
+                        <td>
+                          <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="3" cols="80" t:validate="required"/>
+                       </td>
+                 </tr>
+                        <tr>
+                     <td width="10%" valign="top" align="right">
+                         <t:label for="ratingField"> Difficulty: </t:label>
+
+                     </td>
+                     <td>
+
+                     <div t:type="ck/RatingField" t:id="ratingField" source="list:1,2,3,4,5" value="ratingValue" t:validate="required"/>
+                     </td>
+                 </tr>
+
+                     <tr>
+                            <td></td>
+                     <td align="left">
+                         <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                     </td>
+                   </tr>
+                   <tr>
+                       <td></td>
+                   <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
+                         </td>
+
+                 </tr>
+                 <tr>
+                     <td></td>
+                     <td align="left">
+                          <a  id="addtag" href="#" > Add a New Tag </a>
+                     </td>
+                  </tr>
+                 <tr>
+                     <td></td>
+                     <td align="left">
+                         <input t:type="checkbox" t:value="mywork" validators="validators:required"/>
+                         I certify that my contributions are my own original work and that all sources are cited where needed.
+                     </td>
+
+
+                 </tr>
+
+                  <tr>
+
+                      <td></td>
+                      <td colspan="2" align="left">
+                          <br />
+                        <input type="submit" value="Submit"/>
+                        <t:pagelink t:page="Index"><button type="button">Cancel</button></t:pagelink>
+                 </td>
+
+                 </tr>
+                 </t:radiogroup>
+             </table>
+
+        </t:form>
+     
+    </div>
+<div id="newtagbox" class="tagboxklass" style='display:none'>
+    <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+        bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+    <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
+
+        <t:zone t:id="formzone">
+            <t:delegate to="newtagblock"/>
+        </t:zone>
+
+        <p>
+             <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" id="closetagbox">Close</a>
+        </p>
+        </div>
+    </div>
+
+</div>
+
+                                     <t:block t:id="newtagblock">
+                       <h3> Add a Tag </h3>
+        <t:form t:id="tagform" t:zone="formzone">
+
+             <table id="userformtable">
+                <tr>
+                    <td>
+                        <t:label for="tagTextfield"/>
+                    </td>
+                </tr>
+             <tr>
+                 <td valign="top" align="left">
+                   <input t:type="TextField" t:id="tagTextfield" size="30"  t:value="fname" t:label="Tag Name" t:validate="required"/>
+                 </td>
+             </tr>
+             <tr>
+                    <td colspan="2" align="left">
+                          <br />
+                        <input t:id="submit" type="submit" t:type="submit" value="Submit"/>
+                    </td>
+            </tr>
+
+
+            </table>
+
+
+        </t:form>
+        </t:block>
+    </t:container>

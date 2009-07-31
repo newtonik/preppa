@@ -6,8 +6,9 @@ document.observe("dom:loaded", function() {
 $('QuestiontypeSelect').disable()
 
 
-Tapestry.activateZone("questionzone", "../new.questiontypeselect:internalEvent");
+//Tapestry.activateZone("questionzone", "../new.questiontypeselect:internalEvent");
 });
+
 
 function onChangeTestsubject(response) {
     //alert(response);
@@ -60,3 +61,5 @@ function onChangeQuestiontype(response) {
 document.observe(Tapestry.ZONE_UPDATED_EVENT, function() {
             alert("update event");
     });
+
+

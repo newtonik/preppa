@@ -5,7 +5,7 @@
       <div id ="artcont" align="center">
           <a href="#" > Best Practices</a>
           <t:form t:id="articleform">
-              <t:errors/>
+              <t:errors />
              <table id="articleformtable" width="700">
                   <tr  align="left">
                         <td>

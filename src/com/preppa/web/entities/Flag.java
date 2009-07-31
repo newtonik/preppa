@@ -39,6 +39,7 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 public class Flag implements Serializable {
+    private Question question;
     private Article article;
     private static final long serialVersionUID = 1L;
    
@@ -257,6 +258,15 @@ public class Flag implements Serializable {
             this.contentType = ContentType.Vocab;
             this.vocab = vocab;
         }
+    }
+
+    @ManyToOne
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
 }

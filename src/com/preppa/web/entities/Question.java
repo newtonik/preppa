@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,7 +39,6 @@ import org.hibernate.envers.Audited;
  * @author newtonik
  */
 @Entity
-@Audited
 public class Question implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -59,6 +59,10 @@ public class Question implements Serializable {
     private String revComment;
     private Boolean image;
     private String imagePath;
+    private List<Flag> flags  = new ArrayList<Flag>();
+    private Set<Vote> votes;
+    private Integer voteScore;
+
 
 
     public Question() {
@@ -89,6 +93,7 @@ public class Question implements Serializable {
 
     @Lob
     @Column(name = "question")
+    @Audited
     public String getQuestion() {
         return question;
     }
@@ -106,6 +111,7 @@ public class Question implements Serializable {
     
     @Lob
     @Column(name = "source")
+    @Audited
     public String getSource() {
         return source;
     }
@@ -116,6 +122,7 @@ public class Question implements Serializable {
 
     @Lob
     @Column(name = "explanation")
+    @Audited
     public String getExplanation() {
         return explanation;
     }
@@ -138,6 +145,7 @@ public class Question implements Serializable {
     @Basic(optional = false)
     @Column(name = "updated_at")
     @Temporal(value = TemporalType.TIMESTAMP)
+    @Audited
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -176,6 +184,7 @@ public class Question implements Serializable {
      */
     @ManyToOne(targetEntity = Questiontype.class)
     @JoinColumn(name = "questiontype_id")
+    @Audited
     public Questiontype getQuestiontype() {
         return questiontype;
     }
@@ -190,6 +199,7 @@ public class Question implements Serializable {
     /**
      * @return the difficulty
      */
+    @Audited
     public Integer getDifficulty() {
         return difficulty;
     }
@@ -204,6 +214,7 @@ public class Question implements Serializable {
     /**
      * @return the numCorrect
      */
+    @Audited
     public Integer getNumCorrect() {
         return numCorrect;
     }
@@ -220,6 +231,7 @@ public class Question implements Serializable {
      */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
+    @Audited
     public List<QuestionAnswer> getChoices() {
         return choices;
     }
@@ -248,6 +260,7 @@ public class Question implements Serializable {
     /**
      * @return the taglist
      */
+    @Audited
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class)
     @JoinTable(name = "Question_Tag", joinColumns = {@JoinColumn(name = "question_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     public List<Tag> getTaglist() {
@@ -265,6 +278,7 @@ public class Question implements Serializable {
      * @return the user
      */
     @ManyToOne
+    @Audited
     public User getUser() {
         return user;
     }
@@ -336,6 +350,51 @@ public class Question implements Serializable {
      */
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    /**
+     * @return the flags
+     */
+    @OneToMany(mappedBy = "question", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @Audited
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
+    }
+
+    /**
+     * @return the votes
+     */
+    @ManyToMany
+    public Set<Vote> getVotes() {
+        return votes;
+    }
+
+    /**
+     * @param votes the votes to set
+     */
+    public void setVotes(Set<Vote> votes) {
+        this.votes = votes;
+    }
+
+    /**
+     * @return the voteScore
+     */
+    public Integer getVoteScore() {
+        return voteScore;
+    }
+
+    /**
+     * @param voteScore the voteScore to set
+     */
+    public void setVoteScore(Integer voteScore) {
+        this.voteScore = voteScore;
     }
 
   

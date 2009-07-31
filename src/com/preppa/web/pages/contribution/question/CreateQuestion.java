@@ -6,6 +6,7 @@
 package com.preppa.web.pages.contribution.question;
 
 import com.preppa.web.components.CQuestion;
+import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Question;
@@ -82,10 +83,14 @@ public class CreateQuestion {
     /*@Component
     private AutoComplete autoCompleteTag;*/
     @Component
-    private CQuestion firstquestion;
+    private NewMultiChoice firstquestion;
 
     void pageLoaded() {
         firstquestion.setPageTrue();
+    }
+
+    void onValidateFormCreateQuestionForm(){
+        System.out.println("Caught Validate in page");
     }
 
 /*
@@ -100,7 +105,7 @@ public class CreateQuestion {
     Object onPassivate() {
         return question;
     }
-    @CommitAfter
+    @CommitAfte
     Object onSuccess(){
     question = new Question();
     question.setExplanation(fExplanation);

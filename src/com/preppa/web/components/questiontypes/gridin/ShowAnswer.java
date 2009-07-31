@@ -7,7 +7,7 @@
  */
 
 
-package com.preppa.web.components.gridin;
+package com.preppa.web.components.questiontypes.gridin;
 
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.entities.Gridin;

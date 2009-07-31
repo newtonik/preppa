@@ -1,6 +1,6 @@
 package com.preppa.web.pages.contribution.gridin;
 
-import com.preppa.web.components.gridin.NewAnswer;
+import com.preppa.web.components.questiontypes.gridin.NewAnswer;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;

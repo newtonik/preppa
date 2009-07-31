@@ -1,0 +1,15 @@
+DIV.t-error
+{
+    text-align: center;
+    width: 600px;
+    position: relative;
+}
+div.t-error div {
+    background-color:orange;
+    font-weight:bolder;
+    color: black
+}
+DIV.t-error LI {
+    margin-left: 20px;
+    color: #000000;
+}
