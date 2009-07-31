@@ -13,6 +13,7 @@ import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
 import java.sql.Timestamp;
@@ -22,6 +23,7 @@ import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
@@ -46,6 +48,8 @@ import org.slf4j.Logger;
 @IncludeStylesheet(value = {"context:styles/question.css"})
 @IncludeJavaScriptLibrary(value = {"context:js/multiplequestion.js"})
 public class NewMultiChoice {
+    @ApplicationState
+    private User user;
     @Property
     private Question question;
     @Inject
@@ -204,7 +208,7 @@ public class NewMultiChoice {
     }
 
     @CommitAfter
-    Object onSuccess(){
+    Object onSuccessFromCreateQuestionForm(){
     question = new Question();
     question.setExplanation(fExplanation);
     question.setQuestion(fQuestion);
@@ -239,6 +243,7 @@ public class NewMultiChoice {
                 question.getTaglist().add(t);
             }
      }
+     question.setUser(user);
     question.setCorrectAnswer(correct);
       numCorrect = 1;
      question.setNumCorrect(numCorrect);

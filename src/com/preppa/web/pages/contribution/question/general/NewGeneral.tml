@@ -26,9 +26,9 @@
     <t:zone t:id="questionzone">
     </t:zone>
     <t:block t:id="multiplequesblock">
-        <div t:id="multiplequestion">
-        </div>
+        
     </t:block>
-
+<div t:id="multiplequestion" style='display:none'>
+        </div>
 
 </html>

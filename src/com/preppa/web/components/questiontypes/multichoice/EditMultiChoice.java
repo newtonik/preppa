@@ -4,6 +4,7 @@ import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
 import java.sql.Timestamp;
@@ -13,6 +14,7 @@ import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
@@ -32,7 +34,8 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  * @author nwt
  */
 public class EditMultiChoice {
-
+     @ApplicationState
+    private User user;
     //@Property
     //private Question question;
     @Inject
@@ -100,6 +103,7 @@ public class EditMultiChoice {
     @Property
     private String fComment;
 
+
     void CreateQuestion() {
         //question = new Question();
     }
@@ -120,6 +124,7 @@ public class EditMultiChoice {
             addedTags = question.getTaglist();
             ratingValue = question.getDifficulty();
             correct = question.getCorrectAnswer();
+
         }
 
     }
@@ -188,6 +193,7 @@ public class EditMultiChoice {
                 question.getTaglist().add(t);
             }
         }
+        question.setUser(user);
         question.setRevComment(fComment);
         question.setDifficulty(ratingValue);
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());

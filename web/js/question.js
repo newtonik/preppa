@@ -4,11 +4,10 @@ document.observe("dom:loaded", function() {
         //$('questiontypes').disable()
 
 $('QuestiontypeSelect').disable()
-
+ $('multiple-question').hide();
 
 //Tapestry.activateZone("questionzone", "../new.questiontypeselect:internalEvent");
 });
-
 
 function onChangeTestsubject(response) {
     //alert(response);
@@ -41,7 +40,7 @@ function populateQuestionsTypes(id, c, ids, vs) {
         var optn = document.createElement("OPTION");
         optn.text = "";
         optn.value = "";
-
+        s.options.add(optn);
         c.each(function(x) {
             var optn = document.createElement("OPTION");
             optn.text = vs[x];
@@ -52,8 +51,8 @@ function populateQuestionsTypes(id, c, ids, vs) {
 }
 
 function onChangeQuestiontype(response) {
-
-   // $('questionblock').update( response.content);
+    $('multiple-question').highlight();
+    $('multiple-question').show();
     
     
 }
@@ -61,5 +60,3 @@ function onChangeQuestiontype(response) {
 document.observe(Tapestry.ZONE_UPDATED_EVENT, function() {
             alert("update event");
     });
-
-

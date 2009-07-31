@@ -11,6 +11,7 @@ import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import java.util.List;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -49,6 +50,8 @@ private LongDualPassage passage;
 private List<QuestionAnswer> returnVal;
 @Property
 private List<Tag> tags;
+@Property
+private User author;
 
 void onActivate() {
 //       if(pid != null) {
@@ -72,7 +75,7 @@ void intializeQuestion () {
             this.question = questionDAO.doRetrieve(question.getId(), false);
             returnVal = question.getChoices();
             tags = question.getTaglist();
-
+            author = question.getUser();
             System.out.println("there are " + tags.size() + " tags.");
         }
        

@@ -11,13 +11,16 @@
         <div id="author">
             
              written by ${authorname}
-            
-             <t:outputraw t:value="${article.body}"/>
-        </div>
+            </div>
+
+
         <div id="author-time">
             Created at ${article.createdAt}
         </div>
         <p>
+
+             <t:outputraw t:value="${article.body}"/>
+       
         </p>
         <p>
             <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
