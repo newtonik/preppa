@@ -1,8 +1,4 @@
 <html t:type="layout" t:pageTitle="Preppa Home" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<head>
-
-</head>
-
        <h2>
             <t:if t:test="userExists">
                        Welcome to Preppa ${user.firstname}!

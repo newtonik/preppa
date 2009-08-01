@@ -122,6 +122,54 @@ h1
 #header ul li a span {
     display:block;
 }
+
+
+#tabsB {
+background:#F4F4F4 none repeat scroll 0 0;
+float:left;
+font-size:93%;
+line-height:normal;
+width:100%;
+}
+
+#tabsB li {
+display:inline;
+margin:0;
+padding:0;
+}
+
+#tabsB ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0;
+padding:10px 10px 0 50px;
+}
+
+#tabsB a {
+background:transparent #FFFFFF no-repeat scroll left top;
+float:left;
+margin:0;
+padding:0 0 0 4px;
+text-decoration:none;
+}
+
+#tabsB a span {
+float:none;
+}
+
+#tabsB a span {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#000000 no-repeat scroll right top;
+color:#666666;
+display:block;
+float:left;
+padding:5px 15px 4px 6px;
+}
+
+
 #logo  {
     background-color: #D4E4FF;
     display:block;
