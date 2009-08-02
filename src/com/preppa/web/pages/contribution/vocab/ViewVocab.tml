@@ -1,4 +1,6 @@
 <html t:type="layout" t:pageTitle="All Vocab" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarArt />
+<div id="main">
 <p>
 <div class="vocab">
     <div align="right">  <t:pagelink t:page="contribution/vocab/flagged" > Flagged </t:pagelink> </div>
@@ -49,5 +51,5 @@
         <p>
             <t:pagelink t:page="contribution/vocab/add">Add a Vocab Word</t:pagelink>
         </p>
-
+</div>
 </html>

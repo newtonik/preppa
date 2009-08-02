@@ -1,5 +1,6 @@
 <html t:type ="layout" t:pageTitle="Articles" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+<t:practicebarArt />
+<div id="main">
 <t:loop t:source="articlelist"
     t:value="cursor">
     <div class="cursor">
@@ -11,6 +12,5 @@
     </div>
     <br />
 </t:loop>
-
-
+</div>
 </html>

@@ -1,4 +1,6 @@
 <html t:type="layout" t:pageTitle="${letter}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarArt />
+<div id="main">
 <p>
 
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:a"> A </t:pagelink>
@@ -51,5 +53,5 @@
         <p>
             <t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
         </p>
-
+</div>
 </html>

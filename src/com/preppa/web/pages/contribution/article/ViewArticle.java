@@ -53,7 +53,11 @@ private final static int bodysize = 100;
 
     public List<Article> getArticleList() {
         List<Article> returnVal = null;
-        if (input.compareTo("Test") == 0) {
+
+        if (input == null) {
+            returnVal = articleDAO.findAll();
+        }
+        else if (input.compareTo("Test") == 0) {
             returnVal = articleDAO.findBytestsubject_id(TESTINDEX);
         }
         else if (input.compareTo("Math") == 0) {

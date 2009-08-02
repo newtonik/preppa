@@ -1,125 +1,21 @@
 <html t:type="layout" t:pageTitle="Learning and Practice" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<head><style>
-#subheader {
-border-bottom:1px solid #666666;
-clear:both;
-height:34px;
-}
-#subheader h2 {
-float:left;
-font-size:30%;
-line-height:34px;
-margin-bottom:0;
-}
-#subheader a {
-color:#000000;
-}
-#tabs {
-float:left;
-font-weight:bold;
-}
-#tabs a {
-background:#EEEEEE none repeat scroll 0 0;
-border-left:1px solid #000000;
-border-top:1px solid #000000;
-border-right:1px solid #000000;
-color:#777777;
-display:block;
-float:left;
-font-size:83%;
-height:24px;
-line-height:22px;
-margin:9px 0px 0 0;
-padding:0 11px;
-text-decoration:none;
-}
-#tabs a:hover {
-background:#FFFFFF none repeat scroll 0 0;
-border-color:#777777 #777777 #FFFFFF;
-border-style:solid;
-border-width:1px;
-line-height:20px;
-margin-top:9px;
-color:#000000;
-}
-#tabs a.youarehere {
-background:#FFFFFF none repeat scroll 0 0;
-border-color:#777777 #777777 #FFFFFF;
-border-style:solid;
-border-width:1px;
-color:black;
-font-size:60%;
-height:30px;
-line-height:28px;
-margin-top:3px;
-padding:0 11px;
-}
-.tabs-question-user, .tabs-answer-user, .tabs-favorite-user {
-float:right;
-font-weight:;
-width:100%;
-}
-.tabs-question-user a, .tabs-answer-user a, .tabs-favorite-user a {
-border:1px solid #CCCCCC;
-color:#808185;
-display:block;
-float:right;
-font-family:Trebuchet MS,Helvetica,sans-serif;
-font-size:120%;
-margin-right:3px;
-padding:1px 4px 3px;
-text-decoration:none;
-}
-.tabs-question-user a.youarehere, .tabs-answer-user a.youarehere, .tabs-favorite-user a.youarehere {
-background-color:#808185;
-border:1px solid #808185;
-color:#FFFFFF;
-font-weight:bold;
-}
-
-#mainbar {
-float:left;
-margin-bottom:1px;
-width:426px;
-}
-#mainbar-full {
-width:426px;
-}
-#mainbar-footer {
-clear:both;
-width:100%;
-}
-
-#main {
-height: 900px;
-width:425px;
-border-left:1px solid #666666;
-border-bottom:1px solid #666666;
-border-right:1px solid #666666;
-top:200px;
-}
-#spacer {
-height: 34px;
-margin: 0px;
-padding: 0px;
-}
-</style>
-</head>
-
-
-<div id="mainbar">
-<div id="subheader">
-    <div id="tabs">
-<a title="questions that have been asked, answered, or updated recently" href="/?tab=active" class="youarehere"><span class="bounty-indicator-tab"></span>Articles & Guides</a>
-<a title="questions that have an active bounty" href="/?tab=featured" >Vocabulary</a>
-<a title="questions with the most activity and interest over the last few days" href="/?tab=hot">Free Response Viewer</a>
-<a title="questions with the most activity and interest this week" href="/?tab=week">Practice</a>
-
-    </div>
-</div>
-</div>
-<div id='spacer'></div>
+<t:practicebarArt />
 <div id="main">
+    <div>
+    <br/>
+        <t:articlemenu />
+        <t:articlesearch/>
+        <br/>
+         <a href="#" t:type="pagelink" t:page="contribution/article/search"> Search Page</a>
+    </div>
+    <div>
+        <t:featuredarticle />
+    </div>
+
+<br/>
+<t:pagelink t:page="contribution/article/create">Create Article</t:pagelink>
+<br/>
+<t:pagelink t:page="contribution/article/view">View Articles</t:pagelink>
 </div>
 
 </html>

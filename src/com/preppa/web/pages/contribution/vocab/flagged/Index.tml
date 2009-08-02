@@ -1,5 +1,6 @@
 <html t:type="layout" t:pageTitle="Flagged Articles" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+<t:practicebarArt />
+<div id="main">
     <div id="aricleflagged">
         <div id="filterbox">
             <t:form>
@@ -71,4 +72,5 @@
                 </div>
 
     </t:block>
+</div>
 </html>

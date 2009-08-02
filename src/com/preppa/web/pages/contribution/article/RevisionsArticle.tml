@@ -1,4 +1,6 @@
 <html t:type="layout" t:pageTitle="All revisions for ${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarArt />
+<div id="main">
    <div align="right">
             <a href="#" t:type="pagelink" t:context="${article.id}" t:page="contribution/article/show"> Current </a>
    </div>
@@ -36,5 +38,5 @@
         </tr>
         </table>
     </div>
-
+</div>
 </html>

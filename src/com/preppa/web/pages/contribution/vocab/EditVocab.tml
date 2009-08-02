@@ -1,5 +1,6 @@
 <html t:type="layout" t:pageTitle="Edit Vocab" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+<t:practicebarArt />
+<div id="main">
 <div id="editform">
        <t:form t:id="vocabform">
               <t:errors/>
@@ -67,5 +68,5 @@
               </table>
           </t:form>
 </div>
-
+</div>
 </html>

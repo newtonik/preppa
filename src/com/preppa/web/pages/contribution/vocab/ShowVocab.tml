@@ -1,7 +1,8 @@
 <html t:type ="layout" t:pageTitle="${vocab.name}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
-
+<t:practicebarArt />
+<div id="main">
         <h2>
            ${vocab.name}
         </h2>
@@ -31,6 +32,7 @@
         <p id="flagpass">
              <a href="#" id="flaglink" > Flag </a>
         </p>
+    </div>
     </body>
 
     <div id="votebox" class="votemenu" style='display:none'>
