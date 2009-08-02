@@ -59,10 +59,6 @@ public class Layout {
 
     @Component(parameters = {"subject=Contribute", "closed=false", "options={duration:0.1}"})
     private SlidingPanel contribute;
-    @Component(parameters = {"subject=Testing", "closed=false", "options={duration:0.1}"})
-    private SlidingPanel testing;
-     @Component(parameters = {"subject=View", "closed=false", "options={duration:0.1}"})
-    private SlidingPanel view;
 
     //final static ResourceBundle rb = ResourceBundle.getBundle("version.properties");
 

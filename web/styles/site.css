@@ -210,7 +210,7 @@ padding:5px 15px 4px 6px;
     margin-left:-50%;
     position:relative;
     left:400px;         	/* Left column width + right column width */
-    background: #D4E4FF;    	/* Left column background colour */
+    background: #FFFFFF;    	/* Left column background colour */
 }
 .holygrail .col1wrap {
     float:left;

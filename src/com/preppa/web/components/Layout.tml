@@ -23,7 +23,11 @@
                 </div>
                  <div class="roundedcornr_bottom"><div></div></div>
             </div>
-                <div class="col2">
+                <div class="col2" style="left:1px;">
+                <br/>
+                <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                style="padding: 1px; margins: 1px;" align="left">
+                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
                      <t:delegate to="leftContent" />
                     <t:block t:id="sideboxes">
                     <h2>Left Side Bar </h2>
@@ -38,21 +42,9 @@
                         <t:pagelink t:page="contribution/shortpassage/create"> Short Passages </t:pagelink><br/>
                         </div>
                         <br/>
-                        <div t:id="testing" style="width: 150px;">
-                            <a href="#">Practices Tests</a><br/>
-                            <a href="#">Build Vocabulary</a><br/>
-                            <a href="#">More Practice</a>
-                        </div>
-                        <br/>
-                        <div t:id="view" style="width: 150px;">
-                        <t:pagelink t:page="contribution/article/home"> Articles </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/vocab/view"> Vocabulary </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/question/view"> Question </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/longpassage/index"> Long Passages </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/shortpassage/index"> Short Passages </t:pagelink><br/>
-                        </div>
                      </div>
                      </t:block>
+                </div></div>
                 </div>
                 <div class="col3">
                  <t:delegate to="rightblockone" />
