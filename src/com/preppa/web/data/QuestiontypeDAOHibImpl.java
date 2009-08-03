@@ -40,4 +40,16 @@ public class QuestiontypeDAOHibImpl extends AbstractHibernateDAO<Questiontype, I
         return result;
 
     }
+
+    @Override
+    public Questiontype findById(Integer id) {
+           SQLString sqlString = new SQLString("FROM Questiontype q");
+        if(id > 0)
+        {
+
+                 sqlString.addWhereClause("q.id = '" + id + "'");
+        }
+
+        return  (Questiontype) findByQuery(sqlString.toString()).get(0);
+    }
 }

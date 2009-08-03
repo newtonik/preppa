@@ -1,107 +1,152 @@
 <html t:type="layout" t:pageTitle="${fTitle}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
- <div id="dualpassage" align="center">
-     
+    <div id="dualpassage" align="center">
+
         <t:form t:id="editdualpassageform">
-        <t:errors />
+            <t:errors />
             <table id="dualpasstable">
 
-               <tr align="left">
-                      <td align="right">
-                       <t:label for="fTitle"> Title: </t:label>
-                       </td>
-                       <td align="left">
-                      <input t:type="TextField" t:id="fTitle"  t:value="fTitle" size="80"/>
-                      </td>
-                 </tr>
-                     <tr>
-                     <td>
-                        <t:label for="fSummary"> Brief Introduction of Passage </t:label>
+                <tr align="left">
+                    <td align="right">
+                <t:label for="fTitle"> Title: </t:label>
+                </td>
+                <td align="left">
+                    <input t:type="TextField" t:id="fTitle"  t:value="fTitle" size="80"/>
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                <t:label for="fSummary"> Brief Introduction of Passage </t:label>
+                </td>
+                <td>
+                    <input t:type="textarea" t:id="fSummary" t:value="fSummary" t:validate="required" rows="4" cols="80"/>
+
+                </td>
+                </tr>
+                <tr>
+                <div id="pass1">
+                    <td valign="top" align="right">
+                    <t:label for="pass1">Passage: </t:label>
                     </td>
-                     <td>
-                         <input t:type="textarea" t:id="fSummary" t:value="fSummary" t:validate="required" rows="4" cols="80"/>
-
-                     </td>
-                 </tr>
-                <tr>
-                    <div id="pass1">
-                         <td valign="top" align="right">
-                           <t:label for="pass1">Passage: </t:label>
-                        </td>
-                           <td >
-                          <t:editor align="left" t:id="pass1" value="fBodyone" t:toolbarSet="Basic" t:width="600" t:height="300"/>
-                           </td>
-                    </div>
+                    <td >
+                    <t:editor align="left" t:id="pass1" value="fBodyone" t:toolbarSet="Basic" t:width="600" t:height="300"/>
+                    </td>
+                </div>
                 </tr>
                 <tr>
-                       <div id="pass2">
-                         <td valign="top" align="right">
-                           <t:label for="pass2">Passage: </t:label>
-                        </td>
-                           <td >
-                          <t:editor align="left" t:id="pass2" value="fBodytwo" t:toolbarSet="Basic" t:width="600" t:height="300"/>
-                           </td>
-                    </div>
+                <div id="pass2">
+                    <td valign="top" align="right">
+                    <t:label for="pass2">Passage: </t:label>
+                    </td>
+                    <td >
+                    <t:editor align="left" t:id="pass2" value="fBodytwo" t:toolbarSet="Basic" t:width="600" t:height="300"/>
+                    </td>
+                </div>
                 </tr>
 
                 <tr>
 
-                        <td valign="top" align="right">
-                             <t:label for="fSource"> Sources: </t:label>
-                        </td>
-                        <td>
-                          <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="80"/>
+                    <td valign="top" align="right">
+                <t:label for="fSource"> Sources: </t:label>
+                </td>
+                <td>
+                    <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="80"/>
 
-                     </td>
-                 </tr>
-                    <tr>
-                       <td></td>
-                     <td align="left">
-                         <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
-                     </td>
-                   </tr>
-                   <tr>
-                       <td></td>
-                   <td align="left">
+                </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="left">
+                <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
-                        translate="prop:tagtranslator" label="name" type="text" size="10" />
-                         </td>
+                               translate="prop:tagtranslator" label="name" type="text" size="10" />
+                    </td>
 
-                 </tr>
-                 <tr>
-                     <td></td>
-                     <td align="left">
-                         Can't find one, Create a <a href="#" t:type="PageLink" class="lbOn" t:page="contribution/tag/newtagpage"> New Tag </a>
-                     </td>
                 </tr>
                 <tr>
-                    
-                     <td></td>
-                      <td>
-                        <t:label for="fComment">
-                            Edit summary (Briefly describe the changes you have made)
-                        </t:label>
+                    <td></td>
+                    <td align="left">
+                        Can't find one
+                        <a  id="addtag" href="#" > Add a New Tag </a>
                     </td>
-                 </tr>
-                 <tr>
-                     <td></td>
-                     <td>
-                         <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
-                         <br />
-                     </td>
-                 </tr>
-         
-                  <tr>
-                      <td></td>
-                      <td colspan="2" align="left">
+                </tr>
+                <tr>
+
+                    <td></td>
+                    <td>
+                <t:label for="fComment">
+                    Edit summary (Briefly describe the changes you have made)
+                </t:label>
+                </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
+                        <br />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
                         <a href="#" t:type="pagelink" t:page="contribution/longpassage/showdual" t:context="${longDualpassage.id}" ><input type="button" value="Cancel" /></a>
                     </td>
 
-                 </tr>
+                </tr>
 
             </table>
         </t:form>
     </div>
+    <div id="newtagbox" class="tagboxklass" style='display:none'>
+        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+             bgcolor="#FFFFFF"
+             style="padding: 20px;" align="center">
+            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
 
+                <t:zone t:id="formzone">
+                    <t:delegate to="newtagblock"/>
+                </t:zone>
+
+                <p>
+                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" id="closetagbox">Close</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <t:block t:id="newtagblock">
+        <h3> Add a Tag </h3>
+        <t:form t:id="tagform" t:zone="formzone">
+
+            <table id="userformtable">
+                <tr>
+                    <td>
+                <t:label for="tagTextfield"/>
+                </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="left">
+                        <input t:type="TextField" t:id="tagTextfield" size="30"  t:value="fname" t:label="Tag Name" t:validate="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left">
+                        <br />
+                        <input t:id="submit" type="submit" t:type="submit" value="Submit"/>
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+        </t:form>
+    </t:block>
 </html>

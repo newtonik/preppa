@@ -1,4 +1,4 @@
-package com.preppa.web.pages.contribution.gridin;
+package com.preppa.web.components.questiontypes.gridin;
 
 import com.preppa.web.components.questiontypes.gridin.NewAnswer;
 import com.preppa.web.data.GridinDAO;
@@ -38,7 +38,10 @@ public class NewGridin {
     @Component(parameters = {"value=fQuestion"})
     private Editor questionBody;
     private List<GridinAnswer> answers;
-
+    @Component
+    private NewAnswer answerComp;
+    @Inject
+    private Block addanswer;
     @InjectPage
     private ShowGridin showgridin;
     void onActivate() {
@@ -58,6 +61,11 @@ public class NewGridin {
          return showgridin;
     }
 
+    Block onActionFromAddAnswer() {
+        
+
+        return addanswer;
+    }
 
 
 }

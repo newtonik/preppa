@@ -266,7 +266,21 @@ public class Flag implements Serializable {
     }
 
     public void setQuestion(Question question) {
-        this.question = question;
+         if(contentType != null)
+        {
+            if(contentType == ContentType.Question)
+            {
+                this.question = question;
+            }
+            else
+            {
+               this.question = null;
+            }
+        }
+        else {
+            this.contentType = ContentType.Question;
+            this.question = question;
+        }
     }
 
 }

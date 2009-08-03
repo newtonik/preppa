@@ -4,7 +4,7 @@ document.observe("dom:loaded", function() {
         //$('questiontypes').disable()
 
 $('QuestiontypeSelect').disable()
- $('multiple-question').hide();
+// $('multiple-question').hide();
 
 //Tapestry.activateZone("questionzone", "../new.questiontypeselect:internalEvent");
 });
@@ -55,6 +55,10 @@ function onChangeQuestiontype(response) {
     $('multiple-question').show();
     
     
+}
+
+function onChangeQuestionTestsubject(response) {
+
 }
 
 document.observe(Tapestry.ZONE_UPDATED_EVENT, function() {

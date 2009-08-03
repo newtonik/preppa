@@ -1,0 +1,16 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <h3>  ${question.title} </h3>
+
+    <div id="qridinbody">
+        <p>
+        <t:outputraw t:value="${question.question}" />
+        </p>
+
+        <p>
+            <a href="#" t:type="pagelink" t:page="conribution/gridin/edit" t:context="${question.id}" > Edit </a>
+        </p>
+    </div>
+
+
+</t:container>

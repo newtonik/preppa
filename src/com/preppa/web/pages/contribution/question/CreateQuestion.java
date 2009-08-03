@@ -5,30 +5,13 @@
 
 package com.preppa.web.pages.contribution.question;
 
-import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
-import com.preppa.web.data.QuestionDAO;
-import com.preppa.web.data.TagDAO;
-import com.preppa.web.entities.Question;
-import com.preppa.web.entities.QuestionAnswer;
-import com.preppa.web.entities.Tag;
-import com.preppa.web.pages.Index;
-import java.sql.Timestamp;
-import java.util.LinkedList;
+import com.preppa.web.data.TestsubjectDAO;
+import com.preppa.web.entities.Testsubject;
 import java.util.List;
-import org.apache.tapestry5.FieldTranslator;
-import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.InjectComponent;
-import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.corelib.components.Zone;
-import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.chenillekit.tapestry.core.components.Editor;
-import org.chenillekit.tapestry.core.components.RatingField;
-import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -84,6 +67,11 @@ public class CreateQuestion {
     private AutoComplete autoCompleteTag;*/
     @Component
     private NewMultiChoice firstquestion;
+    @Property
+    private List<Testsubject> subjects;
+    @Inject
+    private TestsubjectDAO testsubjectDAO;
+
 
     void pageLoaded() {
         firstquestion.setPageTrue();
@@ -92,7 +80,9 @@ public class CreateQuestion {
     void onValidateFormCreateQuestionForm(){
         System.out.println("Caught Validate in page");
     }
-
+    void onActivate() {
+        subjects = testsubjectDAO.findAll();
+    }
 /*
     void CreateQuestion() {
         //question = new Question();

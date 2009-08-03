@@ -1,6 +1,6 @@
-<html t:type="layout" t:pageTitle="New Gridin" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    <h3>Add a gridin question</h3>
+    <h3>Edit Gridin Question</h3>
 
     <t:form t:id="qridinForm">
         <table id="questiontable">
@@ -26,8 +26,7 @@
                           t:label="Body" t:validate="required" onkeyup="countCharacters();" />
                      </td>
                  </tr>
-                  
-                  <tr>
+                             <tr>
 
                       <td colspan="2" align="left">
                           <br />
@@ -36,12 +35,8 @@
                     </td>
 
                  </tr>
-               
+
         </table>
-
     </t:form>
-    
-  
 
-
-</html>
+</t:container>

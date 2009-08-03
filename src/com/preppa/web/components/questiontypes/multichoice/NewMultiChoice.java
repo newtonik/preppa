@@ -3,19 +3,24 @@ package com.preppa.web.components.questiontypes.multichoice;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.TagDAO;
+import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
+import com.preppa.web.entities.Questiontype;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
+import com.preppa.web.utils.InjectSelectionModel;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,15 +32,22 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Mixins;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.RadioGroup;
+import org.apache.tapestry5.corelib.components.Select;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.Request;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
@@ -46,7 +58,7 @@ import org.slf4j.Logger;
  * @author nwt
  */
 @IncludeStylesheet(value = {"context:styles/question.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/multiplequestion.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/multiplequestion.js", "context:js/question.js"})
 public class NewMultiChoice {
     @ApplicationState
     private User user;
@@ -145,7 +157,38 @@ public class NewMultiChoice {
     @Inject
     @Property
     private Block newtagblock;
-    
+
+    /** Components and Objects for Select forms **/
+    @Parameter
+    @InjectSelectionModel(labelField = "name", idField = "id")
+    private List<Testsubject> testsubjects;
+    @InjectSelectionModel(labelField = "name", idField = "id")
+    private List<Questiontype> questiontypes;
+    @Property
+    @Persist
+    private Testsubject testsubject;
+    @Property
+    @Persist
+    private Questiontype questiontype;
+    @Component(parameters = {"value=testsubject",  "event=change",
+                         "onCompleteCallback=literal:onChangeTestsubject"})
+    @Mixins({"ck/OnEvent"})
+    private Select testSubSelect;
+
+    @Component(parameters = {"value=questiontype",  "event=change",
+                         "onCompleteCallback=literal:onChangeQuestionTestsubject"})
+    @Mixins({"ck/OnEvent"})
+    private Select QuestiontypeSelect;
+    @InjectComponent
+    private Zone questionzone;
+
+    @Inject
+    private QuestiontypeDAO questiontypeDAO;
+    @Inject
+    private TestsubjectDAO testsubjectDAO;
+    @Inject
+    private Request request;
+
     public boolean getError() {
         return error;
     }
@@ -166,10 +209,17 @@ public class NewMultiChoice {
     void CreateQuestion() {
         question = new Question();
          newquestion = true;
+         testsubjects = testsubjectDAO.findAll();
     }
 
     void onActivate() {
         question = new Question();
+        
+    }
+    @SetupRender
+    void getSetupItems() {
+        testsubjects = testsubjectDAO.findAll();
+        questiontypes = questiontypeDAO.findAll();
     }
     Question getSubmittedQuestion() {
         return this.question;
@@ -189,7 +239,7 @@ public class NewMultiChoice {
     }
 
 
-    void onValidateFormFromCreateQuestionForm(){
+    Object onValidateFormFromCreateQuestionForm(){
         System.out.println("Validating");
         if(mywork == false) {
             error = true;
@@ -205,11 +255,71 @@ public class NewMultiChoice {
         if(ratingValue == null) {
             createquestionform.recordError(ratingField, "You need to select a difficulty");
         }
+        if(question != null) {
+        if(question.getQuestiontype() == null) {
+            System.out.println("There isn't a questiontype");
+            createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
+        }
+        }
+        if(request.isXHR() && createquestionform.getHasErrors()) {
+            return questionzone;
+        }
+        else
+        {
+            return null;
+        }
     }
+
+     JSONObject onChangeFromTestSubSelect(String testId) {
+        JSONObject json = new JSONObject();
+
+            JSONArray ids = new JSONArray();
+            JSONArray qt = new JSONArray();
+            JSONArray counter = new JSONArray();
+              System.out.println("Counter is " + testId);
+            System.out.println("Testsubjsets are " + testsubjects.size());
+            System.out.println("Index to get is " + (Integer.parseInt(testId)-1));
+        if(testId != null && !testId.equals("")) {
+            questiontypes = questiontypeDAO.findByTestsubject(testsubjects.get(Integer.parseInt(testId)-1));
+
+
+            ids.put("");
+            qt.put("");
+            int i = 1;
+            System.out.println("Counter is " + questiontypes.size());
+            for(Questiontype t: questiontypes) {
+                qt.put(i, t.getName());
+                ids.put(i, t.getId().toString());
+                counter.put(new Integer(i).toString());
+                i++;
+            }
+            System.out.println("Counter is " + i);
+        }
+        json.put("ids", ids);
+        json.put("qt", qt);
+        json.put("counter", counter);
+
+        //return new TextStreamResponse("text/json", json.toString());
+        return json;
+    }
+
+   void onChangeFromQuestiontypeSelect(String quesId) {
+
+       System.out.println("I just got selected " + quesId);
+        if(!quesId.equals("") && quesId != null)
+        {
+            questiontype = questiontypeDAO.findById(Integer.parseInt(quesId));
+            if(question == null)
+                question = new Question();
+            question.setQuestiontype(questiontype);
+        }
+    }
+
 
     @CommitAfter
     Object onSuccessFromCreateQuestionForm(){
-    question = new Question();
+        if(question == null)
+            question = new Question();
     question.setExplanation(fExplanation);
     question.setQuestion(fQuestion);
     int numCorrect = 0;
@@ -243,6 +353,7 @@ public class NewMultiChoice {
                 question.getTaglist().add(t);
             }
      }
+     //question.setQuestiontype(questiontype);
      question.setUser(user);
     question.setCorrectAnswer(correct);
       numCorrect = 1;

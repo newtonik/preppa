@@ -2,8 +2,27 @@
  
   
  <div id="multiple-question" class="overlay"  >
-        <t:form t:id="createquestionform" >
+     <t:zone t:id="questionzone">
+     <t:form t:id="createquestionform" t:zone="questionzone">
             <t:errors />
+               <table id="atable" width="700" cellpadding="10">
+            <tr>
+                <td align="left">
+                    <t:label for="testSubSelect"> Select a Testsubject </t:label>
+                    <br />
+                    <input t:id="testSubSelect"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
+                </td>
+                <td align="right" >
+                    <t:label for="QuestiontypeSelect"> Select a Questiontype </t:label>
+                    <br />
+                    <input t:id="QuestiontypeSelect"  model="questiontypesSelectionModel" encoder="questiontypesValueEncoder" />
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+             <br />
+
             <table id="formtable">
                 <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
                  <tr>
@@ -13,6 +32,11 @@
                            <td >
                           <t:editor align="left" t:id="questioneditor" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="100"/>
 
+                     </td>
+                 </tr>
+                 <tr>
+                     <td colspan="2">
+                         <h3> Answer Choices </h3>
                      </td>
                  </tr>
                         <tr>
@@ -135,7 +159,7 @@
              </table>
 
         </t:form>
-     
+     </t:zone>
     </div>
 <div id="newtagbox" class="tagboxklass" style='display:none'>
     <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"

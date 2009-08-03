@@ -1,4 +1,4 @@
-package com.preppa.web.components.questiontypes.multichoice;
+    package com.preppa.web.components.questiontypes.multichoice;
 
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.TagDAO;
@@ -193,7 +193,8 @@ public class EditMultiChoice {
                 question.getTaglist().add(t);
             }
         }
-        question.setUser(user);
+        //question.setUser(user);
+        question.setUpdatedBy(user);
         question.setRevComment(fComment);
         question.setDifficulty(ratingValue);
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());

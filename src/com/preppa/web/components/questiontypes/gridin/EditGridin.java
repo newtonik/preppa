@@ -1,13 +1,12 @@
-package com.preppa.web.pages.contribution.gridin;
+package com.preppa.web.components.questiontypes.gridin;
 
-import com.preppa.web.components.questiontypes.gridin.NewAnswer;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
 import com.preppa.web.entities.User;
+
 import java.sql.Timestamp;
 import java.util.List;
-import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -22,7 +21,7 @@ import org.springframework.security.annotation.Secured;
  * @author nwt
  */
 @Secured("ROLE_USER")
-public class NewGridin {
+public class EditGridin {
     @ApplicationState
     private User user;
     @Inject
@@ -38,11 +37,22 @@ public class NewGridin {
     @Component(parameters = {"value=fQuestion"})
     private Editor questionBody;
     private List<GridinAnswer> answers;
-
+    private Long gridId;
     @InjectPage
     private ShowGridin showgridin;
-    void onActivate() {
-        this.question = new Gridin();
+
+    void onActivate(Long id) {
+        if(id > 0) {
+        this.question = gridinDAO.findById(id);
+         this.gridId = id;
+         fQuestion = question.getQuestion();
+         fTitle = question.getTitle();
+
+        }
+    }
+    Long onPassivate() {
+
+        return gridId;
     }
     Object onSuccess() {
 
@@ -54,10 +64,9 @@ public class NewGridin {
                     question.setCreatedAt(now);
 
                     gridinDAO.doSave(question);
-                       showgridin.setGridin(question);
+             showgridin.setGridin(question);
          return showgridin;
     }
-
 
 
 }

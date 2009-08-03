@@ -62,6 +62,7 @@ public class Question implements Serializable {
     private List<Flag> flags  = new ArrayList<Flag>();
     private Set<Vote> votes;
     private Integer voteScore;
+    private User updatedBy;
 
 
 
@@ -246,6 +247,7 @@ public class Question implements Serializable {
     /**
      * @return the correctAnswer
      */
+    @Audited
     public String getCorrectAnswer() {
         return correctAnswer;
     }
@@ -371,6 +373,7 @@ public class Question implements Serializable {
     /**
      * @return the votes
      */
+
     @ManyToMany
     public Set<Vote> getVotes() {
         return votes;
@@ -395,6 +398,23 @@ public class Question implements Serializable {
      */
     public void setVoteScore(Integer voteScore) {
         this.voteScore = voteScore;
+    }
+
+    /**
+     * @return the updatedBy
+     */
+
+    @ManyToOne
+    @Audited
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    /**
+     * @param updatedBy the updatedBy to set
+     */
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
   

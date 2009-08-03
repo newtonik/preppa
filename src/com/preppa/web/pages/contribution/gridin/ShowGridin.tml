@@ -8,9 +8,20 @@
         </p>
 
         <p>
-            <a href="#" t:type="pagelink" t:page="conribution/gridin/edit" t:context="${question.id}" > Edit </a>
+            <a href="#" t:type="pagelink" t:page="contribution/gridin/edit" t:context="${question.id}" > Edit </a>
         </p>
     </div>
+    <a href="#" id="checklink"> Just Click me </a>
+      <a href="#" t:type="actionlink" t:zone="answerZone" t:id="addanswer"> Add Answer </a>
+       <t:zone t:id="answerZone">
+       </t:zone>
+
+
+
+        <t:block t:id="addanswer">
+                        <div t:id="answerComp" >
+                        </div>
+        </t:block>
 
 
 </html>

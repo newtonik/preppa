@@ -1,8 +1,23 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <t:form>
+    <t:form t:id="answerform">
     <b>${error}</b>
+    <br />
        <tr>
             <td> <t:label for="fAnswer">Answer * </t:label></td>
+        </tr>
+        <tr>
+            <td>
+                <t:radiogroup t:id="chooseanswer" t:value="answertype" >
+                 <input id="rangeradio" t:type="radio" type="radio" t:label="Yes" t:value="literal:Yes" name="answerchoiceB" onclick="radioButton()"/>
+                 <input id="norangeradio" t:type="radio" type="radio" t:label="No" t:value="literal:No" name="answerchoiceB" onclick="radioButton()"/>
+                </t:radiogroup>
+            </td>
+
+        </tr>
+        <tr>
+        <br />
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>
@@ -18,4 +33,6 @@
             </td>
         </tr>
     </t:form>
+
+    
 </t:container>

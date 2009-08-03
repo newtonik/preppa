@@ -1,4 +1,4 @@
-<html t:type="layout" t:pageTitle="New Gridin" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <h3>Add a gridin question</h3>
 
@@ -26,7 +26,10 @@
                           t:label="Body" t:validate="required" onkeyup="countCharacters();" />
                      </td>
                  </tr>
-                  
+                   <t:zone t:id="answerZone">
+                       </t:zone>
+                    
+
                   <tr>
 
                       <td colspan="2" align="left">
@@ -40,8 +43,12 @@
         </table>
 
     </t:form>
-    
+      <a href="#" t:type="actionlink" t:zone="answerZone" t:id="addanswer"> Add Answer </a>
   
-
-
-</html>
+        
+  
+<t:block t:id="addanswer">
+                        <div t:id="answerComp" >
+                        </div>
+                    </t:block>
+</t:container>

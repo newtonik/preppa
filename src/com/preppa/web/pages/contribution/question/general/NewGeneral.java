@@ -60,7 +60,7 @@ public class NewGeneral {
     @Mixins({"ck/OnEvent"})
     private Select testSubSelect;
 
-    @Component(parameters = {"value=testsubject",  "event=change",
+    @Component(parameters = {"value=questiontype",  "event=change",
                 "onCompleteCallback=literal:onChangeQuestiontype"})
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
@@ -79,7 +79,7 @@ public class NewGeneral {
             JSONArray ids = new JSONArray();
             JSONArray qt = new JSONArray();
             JSONArray counter = new JSONArray();
-            System.out.println("Counter is " + testId);
+          
         if(testId != null && !testId.equals("")) {
             questiontypes = questiontypeDAO.findByTestsubject(testsubjects.get(Integer.parseInt(testId)-1));
 

@@ -17,6 +17,7 @@ import com.preppa.web.services.PassageService;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -25,8 +26,10 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.springframework.security.annotation.Secured;
@@ -82,6 +85,15 @@ public class EditDualLongPassage {
     private PassageService passageService;
     @Property
     private String fComment;
+    @Inject
+    @Property
+    private Block newtagblock;
+    @Property
+    private String fname;
+    @Property
+    private Tag tag;
+    @Component
+    private Form editdualpassageform;
 
 
 
@@ -104,7 +116,7 @@ public class EditDualLongPassage {
         return longDualpassage.getId();
     }
     @CommitAfter
-    Object onSuccess() {
+    Object onSuccessFromEditDualPassageForm() {
 
 
          longDualpassage.setPassageone(fBodyone);
@@ -205,4 +217,32 @@ public class EditDualLongPassage {
     };
    }
 
+    @CommitAfter
+    JSONObject onSuccessFromTagForm() {
+        List<Tag> tolist = tagDAO.findByName(fname);
+        JSONObject json = new JSONObject();
+        if (tolist.size() > 0) {
+            String markup = "<p>  <b>" + fname +
+                    "</b> already exists. <p>";
+            json.put("content", markup);
+
+        } else {
+            tag = new Tag();
+            tag.setName(fname);
+
+            tagDAO.doSave(tag);
+            String markup = "<p> You just submitted <b>" + tag.getName() +
+                    "</b>. Please add it using the dropdown <p>";
+            json.put("content", markup);
+
+        }
+
+
+        // return new TextStreamResponse("text/json", json.toString());
+        return json;
+    }
+
+    Block onActionFromCloseTag() {
+        return newtagblock;
+    }
 }
