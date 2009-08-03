@@ -74,7 +74,6 @@ public class CreateUser {
     private EmailService emailer;
     @Property
     private int currYear;
-
     @Component(parameters = {"value=fdob", "firstYear=1930", "lastYear=prop:currYear"})
     private DateSelector datefield;
     @Component

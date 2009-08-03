@@ -50,7 +50,7 @@ public class RevisionArticle {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
 
         this.revisionNumber = revId;
-  
+ 
         this.article = reader.find(Article.class, artId, revId);
         //author = reader.find(User.class, article.getUser().getId(), revId);
         //this.article = articleDAO.findArticleByRevision(articleId, revId);

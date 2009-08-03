@@ -23,10 +23,10 @@
                 </div>
                  <div class="roundedcornr_bottom"><div></div></div>
             </div>
-                <div class="col2" style="left:1px;">
+                <div class="col2">
                 <br/>
                 <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-                style="padding: 1px; margins: 1px;" align="left">
+                style="padding: 1px; margins: 1px;" align="center">
                 <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
                      <t:delegate to="leftContent" />
                     <t:block t:id="sideboxes">
