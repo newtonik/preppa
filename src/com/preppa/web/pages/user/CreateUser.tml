@@ -95,6 +95,14 @@
                           <a href="#" >Preppa Terms of Service</a> and <a href="#">Preppa Privacy Policy</a>.
                       </td>
                   </tr>
+                  <tr>
+                     <td align="left">
+                          <br />
+                          <input t:type="checkbox"  t:value="isThirteen" />
+                          I certify that I am over the age of thirteen.
+                          <br />
+                     </td>
+                  </tr>
                    <tr>
                       <td colspan="2" align="left">
                           <br />
