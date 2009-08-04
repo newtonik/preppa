@@ -4,6 +4,7 @@ import com.preppa.web.data.GridinDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
 import com.preppa.web.entities.User;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,9 @@ import org.apache.tapestry5.corelib.components.RadioGroup;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Context;
+import org.apache.tapestry5.upload.components.Upload;
+import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.springframework.security.annotation.Secured;
 
@@ -31,6 +35,7 @@ import org.springframework.security.annotation.Secured;
 @Secured("ROLE_USER")
 @IncludeJavaScriptLibrary(value = {"context:js/gridin.js"})
 public class NewGridin {
+
     @ApplicationState
     private User user;
     @Inject
@@ -56,12 +61,20 @@ public class NewGridin {
     private Form singleform;
     @Component
     private RadioGroup chooserange;
-    @Component(parameters = { "event=onclick" })
+    @Component(parameters = {"event=onclick"})
     @Mixins({"ck/OnEvent"})
     private Radio yesradio;
-    @Component(parameters = { "event=onclick" })
+    @Component(parameters = {"event=onclick"})
     @Mixins({"ck/OnEvent"})
     private Radio noradio;
+    @Component
+    private RadioGroup chooseimage;
+    @Component(parameters = {"event=onclick"})
+    @Mixins({"ck/OnEvent"})
+    private Radio yesimage;
+    @Component(parameters = {"event=onclick"})
+    @Mixins({"ck/OnEvent"})
+    private Radio noimage;
     @Property
     private String answertype;
     @InjectComponent
@@ -77,31 +90,38 @@ public class NewGridin {
     private String fAnswer;
     @Property
     private String fDescription;
-
-
+    @Property
+    private String hasimage;
+    @Property
+    private UploadedFile imageupload;
+    @Component
+    private Upload upload;
+    @Inject
+    private Context context;
     @InjectPage
     private ShowGridin showgridin;
+
     void onActivate() {
         this.question = new Gridin();
     }
+
     void onValidateFormFromGridinForm() {
         System.out.println("Validating " + answertype);
-        if(answertype == null) {
-            gridinForm.recordError( "You need to select an answer");
-         }
-        else {
-            if((answertype.equals("single")) && ( fAnswer == null)) {
+        if (answertype == null) {
+            gridinForm.recordError("You need to select an answer");
+        } else {
+            if ((answertype.equals("single")) && (fAnswer == null)) {
                 gridinForm.recordError("Please enter an answer!");
             }
-            if((answertype.equals("range")) && ((fRangehigh == null) || fRangelow == null))
-            {
+            if ((answertype.equals("range")) && ((fRangehigh == null) || fRangelow == null)) {
                 gridinForm.recordError("Please Enter the ranges for your answer below!");
             }
 
         }
-        
-        
+
+
     }
+
     @CommitAfter
     Object onSuccessFromGridinForm() {
         question.setTitle(fTitle);
@@ -111,35 +131,38 @@ public class NewGridin {
         question.setUpdatedAt(now);
         question.setCreatedAt(now);
 
+
         GridinAnswer a = new GridinAnswer();
-        if(answertype.equals("range"))  {
-           
+        if (answertype.equals("range")) {
+
             a.setRange(true);
             a.setDescription(fDescription);
             a.setHighAnswer(fRangehigh);
             a.setLowAnswer(fRangelow);
-        }
-        else
-        {
+        } else {
             a.setRange(false);
             a.setAnswer(fAnswer);
             a.setDescription(fDescription);
         }
-         if(question.getAnswers() == null )
-         {
-             List<GridinAnswer> answerlist = new ArrayList<GridinAnswer>();
-             answerlist.add(a);
-             question.setAnswers(answerlist);
-         }
-         else {
-             question.getAnswers().add(a);
-         }
+        if (question.getAnswers() == null) {
+            List<GridinAnswer> answerlist = new ArrayList<GridinAnswer>();
+            answerlist.add(a);
+            question.setAnswers(answerlist);
+        } else {
+            question.getAnswers().add(a);
+        }
 
         gridinDAO.doSave(question);
-
-         
-         showgridin.setGridin(question);
-         return showgridin;
+        if(hasimage.equals("yes")) {
+           String impath = context.getRealFile("/").getPath() + "/images/gridin" + question.getId() + ".jpg";
+            System.out.println(impath);
+            File copied = new File( context.getRealFile("/").getPath() + "/images/gridin"  + question.getId() + ".jpg");
+            imageupload.write(copied);
+            question.setImagePath(impath);
+            question.setImage(Boolean.TRUE);
+        }
+        showgridin.setGridin(question);
+        return showgridin;
     }
 
     Block onClickFromYesRadio() {
@@ -147,8 +170,8 @@ public class NewGridin {
 
         return rangeblock;
     }
+
     Block onActionFromTestLink() {
         return testblock;
     }
-
 }

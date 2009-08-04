@@ -55,6 +55,15 @@ function hideRange() {
     $('fAnswer').focus();
 }
 
+function showUpload() {
+    $('upload').highlight();
+    Effect.BlindDown('upload', { duration: 1 });
+}
+
+function hideUpload() {
+    $('upload').hide();
+}
+
  $('cancelrange').observe('click', hideRange);
 
  
