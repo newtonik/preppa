@@ -179,8 +179,8 @@ public class NewMultiChoice {
                          "onCompleteCallback=literal:onChangeQuestionTestsubject"})
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
-    @InjectComponent
-    private Zone questionzone;
+    //@InjectComponent
+    //private Zone questionzone;
 
     @Inject
     private QuestiontypeDAO questiontypeDAO;
@@ -188,6 +188,8 @@ public class NewMultiChoice {
     private TestsubjectDAO testsubjectDAO;
     @Inject
     private Request request;
+    @InjectPage
+    private ShowQuestion showquestion;
 
     public boolean getError() {
         return error;
@@ -262,10 +264,12 @@ public class NewMultiChoice {
         }
         }
         if(request.isXHR() && createquestionform.getHasErrors()) {
-            return questionzone;
+           // return questionzone;
+            return null;
         }
         else
         {
+            //showquestion.setquestion(question);
             return null;
         }
     }

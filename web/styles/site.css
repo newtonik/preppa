@@ -13,9 +13,13 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 
 root { 
     display: block;
+    
 
 }
-
+* {
+ margin: 0;
+ padding: 0;
+}
 div.nav-top {
     background-color:aqua
 }
@@ -70,9 +74,13 @@ h1
 #header {
     clear:both;
     float:left;
-    width:100%;
-}
-#header {
+    width:850px;
+    display:block;
+    margin-top: 1px;
+    margin-left: 17%;
+    margin-right: auto;
+    margin-bottom: 0;
+    vertical-align:baseline;
     border-bottom:1px solid #000;
     background-color: #D4E4FF;
 }
@@ -85,7 +93,7 @@ h1
 #header ul {
     clear:left;
     float:left;
-    width:100%;
+    
     list-style:none;
     margin:10px 0 0 0;
     padding:0;
@@ -122,8 +130,15 @@ h1
 #header ul li a span {
     display:block;
 }
+#navbar {
 
-
+}
+#topright {
+    float:right;
+    margin: 5px 0 0;
+    text-align: right;
+    width: 650px;
+}
 #tabsB {
 background:#F4F4F4 none repeat scroll 0 0;
 float:left;
@@ -194,7 +209,7 @@ padding:5px 15px 4px 6px;
 }
 /* holy grail 3 column settings */
 .holygrail {
-    background: #D4E4FF;    	/* Right column background colour */
+    background: #FFF;    	/* Right column background colour */
 }
 .holygrail .colmid {
     float:left;
@@ -241,6 +256,7 @@ padding:5px 15px 4px 6px;
     margin-right:45px;  	/* Width of right column right-hand padding + left column left and right padding */
     position:relative;
     left:50%;
+    background-color:#D4E4FF;
 }
 
 /* Footer styles */
@@ -489,7 +505,7 @@ ul {
 
 body {
     margin: 0px;
-    padding: 20px;
+   
     font-family: verdana;
     font-size: 12px;
 }

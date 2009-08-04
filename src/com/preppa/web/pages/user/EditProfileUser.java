@@ -1,15 +1,14 @@
-  
-  /*
-   * Preppa, Inc.
-   * 
-   * Copyright 2009. All rights
-  reserved.
-   * 
-   * $Id$
-   */
-
+/*
+ * Preppa, Inc.
+ *
+ * Copyright 2009. All rights
+reserved.
+ *
+ * $Id$
+ */
 package com.preppa.web.pages.user;
 
+import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.UserProfileDAO;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserProfile;
@@ -30,6 +29,7 @@ import org.springframework.security.annotation.Secured;
  */
 @Secured("ROLE_USER")
 public class EditProfileUser {
+
     @ApplicationState
     private User user;
     @Persist
@@ -41,30 +41,36 @@ public class EditProfileUser {
     private String activities;
     @Property
     private String interests;
-	@Component(id = "profileform")
-	private Form _form;
+    @Component(id = "profileform")
+    private Form _form;
     @Inject
     private UserProfileDAO userprofileDAO;
-    
+    @Inject
+    private UserObDAO userDAO;
+
     void onActivate(int id) {
         userprofile = userprofileDAO.findById(id);
         aboutme = userprofile.getAboutMe();
         activities = userprofile.getActivities();
         interests = userprofile.getInterests();
+        //    user = userprofile.getUser();
     }
 
     @CommitAfter
     Object onSuccess() {
-         //userprofile = new UserProfile();
-         userprofile.setAboutMe(aboutme);
-         userprofile.setActivities(activities);
-         userprofile.setInterests(interests);
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         userprofile.setCreatedAt(now);
-         userprofile.setUpdatedAt(now);
-         userprofile.setUser(user);
-         userprofileDAO.doSave(userprofile);
+        //userprofile = new UserProfile();
+        userprofile.setAboutMe(aboutme);
+        userprofile.setActivities(activities);
+        userprofile.setInterests(interests);
+        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-         return Index.class;
+        userprofile.setUpdatedAt(now);
+
+        userprofileDAO.doSave(userprofile);
+        user.setUserProfile(userprofile);
+        user.setUpdatedAt(now);
+        userDAO.doSave(user);
+
+        return Index.class;
     }
 }

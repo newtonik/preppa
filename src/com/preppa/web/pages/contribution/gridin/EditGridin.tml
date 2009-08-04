@@ -2,41 +2,83 @@
 
     <h3>Edit Gridin Question</h3>
 
-    <t:form t:id="qridinForm">
+  <t:form t:id="gridinForm">
+        <t:errors />
         <table id="questiontable">
-               <tr  align="left">
-                        <td>
-                       <t:label for="fTitle" > Title: </t:label>
-                       </td>
-                  </tr>
-                  <tr>
-                       <td align="left">
-                        <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80"/>
-                      </td>
-                </tr>
-<tr>
-                       <td valign="top" align="left">
-                           <t:label for="questionBody"> Ask </t:label>
-                           <br />
-                        </td>
-                 </tr>
-                 <tr>
-                      <td>
-                          <t:editor align="left" t:id="questionBody" value="fQuestion" t:width="600" t:height="300"
-                          t:label="Body" t:validate="required" onkeyup="countCharacters();" />
-                     </td>
-                 </tr>
-                             <tr>
+            <tr  align="left">
+                <td>
+            <t:label for="fTitle" > Title: </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" align="left">
+            <t:label for="questionBody"> Ask </t:label>
+            <br />
+            </td>
+            </tr>
+            <tr>
+                <td>
+            <t:editor align="left" t:id="questionBody" value="fQuestion" t:width="600" t:height="300"
+                      t:label="Body" t:validate="required" onkeyup="countCharacters();" />
+            </td>
+            </tr>
+            <tr>
+            <t:zone t:id="questionzone">
+            </t:zone>
+            </tr>
+            <tr>
+                <td>
+                    <b> Is the answer within a range?</b>
+                    <br />
+            <t:radiogroup t:id="chooserange" t:value="answertype" style="display: none">
+                <b> Yes </b>
+                <input t:id="yesradio" t:type="radio" type="radio" t:label="Yes" t:value="literal:range" name="answertype" onclick="showRange()" />
+                <b> No </b>
+                <input t:id="noradio" t:type="radio" type="radio" t:label="No" t:value="literal:single" name="answertype" onclick="hideRange()" />
+            </t:radiogroup>
+            </td>
+            </tr>
+            <tr>
+                <td id="rangerow" style="display: none">
+            <t:label for="fRangelow"><b>Low</b></t:label>
+            <input t:type="TextField" t:id="fRangelow"  t:value="fRangelow" t:label="Low Value"  size="20" />
+            <t:label for="fRangelow"><b>High</b></t:label>
+            <input t:type="TextField" t:id="fRangehigh"  t:value="fRangehigh" t:label="High Value"  size="20" />
+            <a href="#" id="cancelrange" style="display: none"> Cancel </a>
+            </td>
+            <td id="singlerow" style="display: none">
+            <t:label for="fAnswer"><b> Answer </b></t:label>
+            <input t:type="TextField" t:id="fAnswer"  t:value="fAnswer" t:label="High Value" size="40" />
+            <a href="#" id="cancelrange" style="display: none"> Cancel </a>
+            </td>
+            </tr>
+            <tr>
+                <td>
+            <t:label for="fDescription"> Explaination </t:label>
+            <br />
+            <input t:type="textarea" type="textarea" t:id="fDescription" t:value="fDescription" t:validate="required" rows="3" cols="80" />
+            </td>
+            </tr>
 
-                      <td colspan="2" align="left">
-                          <br />
-                        <input type="submit" value="Submit"/>
-                        <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
-                    </td>
+            <tr>
 
-                 </tr>
+                <td colspan="2" align="left">
+                    <br />
+                    <input type="submit" value="Submit"/>
+                    <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                </td>
+
+            </tr>
 
         </table>
+
+
     </t:form>
+   
 
 </html>

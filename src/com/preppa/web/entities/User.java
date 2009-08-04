@@ -378,8 +378,8 @@ public class User implements UserDetails, Serializable
     /**
      * @return the userProfile
      */
+   
     @OneToOne
-    @JoinColumn(name="userprofile_id")
     public UserProfile getUserProfile() {
         return userProfile;
     }

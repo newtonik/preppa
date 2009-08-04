@@ -2,8 +2,7 @@
  
   
  <div id="multiple-question" class="overlay"  >
-     <t:zone t:id="questionzone">
-     <t:form t:id="createquestionform" t:zone="questionzone">
+     <t:form t:id="createquestionform" >
             <t:errors />
                <table id="atable" width="700" cellpadding="10">
             <tr>
@@ -159,7 +158,7 @@
              </table>
 
         </t:form>
-     </t:zone>
+     
     </div>
 <div id="newtagbox" class="tagboxklass" style='display:none'>
     <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"

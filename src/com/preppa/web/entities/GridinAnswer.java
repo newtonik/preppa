@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import org.hibernate.envers.Audited;
 
 /**
@@ -29,6 +30,9 @@ public class GridinAnswer implements Serializable {
     private String answer;
     //this can be used to explain the answer or it's format.
     private String description;
+    private Boolean range;
+    private String lowAnswer;
+    private String highAnswer;
 
     
     @Id
@@ -70,7 +74,6 @@ public class GridinAnswer implements Serializable {
      * @return the answer
      */
     @Audited
-    @Basic(optional = false)
     public String getAnswer() {
         return answer;
     }
@@ -85,6 +88,7 @@ public class GridinAnswer implements Serializable {
     /**
      * @return the description
      */
+    @Lob
     public String getDescription() {
         return description;
     }
@@ -94,6 +98,52 @@ public class GridinAnswer implements Serializable {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the range
+     */
+    @Basic(optional = false)
+    @Audited
+    public Boolean getRange() {
+        return range;
+    }
+
+    /**
+     * @param range the range to set
+     */
+    public void setRange(Boolean range) {
+        this.range = range;
+    }
+
+    /**
+     * @return the lowAnswer
+     */
+    @Audited
+    public String getLowAnswer() {
+        return lowAnswer;
+    }
+
+    /**
+     * @param lowAnswer the lowAnswer to set
+     */
+    public void setLowAnswer(String lowAnswer) {
+        this.lowAnswer = lowAnswer;
+    }
+
+    /**
+     * @return the highAnswer
+     */
+    @Audited
+    public String getHighAnswer() {
+        return highAnswer;
+    }
+
+    /**
+     * @param highAnswer the highAnswer to set
+     */
+    public void setHighAnswer(String highAnswer) {
+        this.highAnswer = highAnswer;
     }
 
 }

@@ -1,86 +1,85 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<p>
-<div id="logo" align="left">
-<a href="#" t:type="PageLink" t:page="index">
-    <img src="${asset:context:/images/logo.png}" align="left"/>
-</a>
-</div>
-<div align="right">
-<t:if t:test="userExists">
-   <a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> ${user.username} </a>
-   <a href="#" t:type="ActionLink" t:id="logouturl"> Log out </a>
-<t:parameter name="else">
-    <div id="navbarloginform" align="right">
-        <form xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" action="${CheckUrl}" method="POST">
-            <table id="navbarlogintable">
-                <tr>
-                <td>
-                    <label class="username" for="j_username">Username:</label>
-                    <input class="username" name="j_username" type="text" size="10"/>
-                </td>
-                    <td>
-                    <label class="password" for="j_password">Password</label>
-                    <input class="password" name="j_password" type="password" size="10" maxlength="30"/>
-                    </td>
-                    <td>
-                          Remember Me
-                          <input type="checkbox" name="_spring_security_remember_me" value="true"/>
-                    </td>
-                <td>
-                    <input id="submit" class="submit" type="submit" value="log in"/>
-                </td>
-                <td>
-                    <a href="#" t:type="PageLink" t:page="loginpage">Sign In</a>
-                </td>
-                <td>
-                    <a href="#" t:type="PageLink" t:page="user/create">Register</a>
-                </td>
-                </tr>
-
-            </table>
-        </form>
- 
-
-
-
- </div>
-</t:parameter>
-</t:if>
-</div>
-<div id="nav-menu">
-    <ul>
-        <t:if t:test="Home">
-            <li><a href="#" style="background:#C0C0C0;" t:type="PageLink" t:page="index">Home</a></li>
-            <t:parameter name="else">
-            <li><a href="#" t:type="PageLink" t:page="index">Home</a></li>
-            </t:parameter>
-        </t:if>
-        <t:if t:test="userExists">
-            <t:if t:test="profile">
-                <li><a href="#" style="background:#C0C0C0;" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a></li>
+    <div id="navbar" align="center">
+        <div id="logo" align="left">
+            <a href="#" t:type="PageLink" t:page="index">
+                <img src="${asset:context:/images/logo.png}" align="left"/>
+            </a>
+        </div>
+        <div id="topright" align="right">
+            <t:if t:test="userExists">
+                <a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> ${user.username} </a>
+                <a href="#" t:type="ActionLink" t:id="logouturl"> Log out </a>
                 <t:parameter name="else">
-                <li><a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a></li>
+                    <div id="navbarloginform" align="right">
+                        <form xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" action="${CheckUrl}" method="POST">
+                            <table id="navbarlogintable">
+                                <tr>
+                                    <td>
+                                        <label class="username" for="j_username">Username:</label>
+                                        <input class="username" name="j_username" type="text" size="10"/>
+                                    </td>
+                                    <td>
+                                        <label class="password" for="j_password">Password</label>
+                                        <input class="password" name="j_password" type="password" size="10" maxlength="30"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Remember Me
+                                        <input type="checkbox" name="_spring_security_remember_me" value="true"/>
+                                    </td>
+                                    <td>
+                                        <input id="submit" class="submit" type="submit" value="log in"/>
+                                    </td>
+                                </tr>
+                               
+                            </table>
+                        </form>
+   
+                                        <a href="#" t:type="PageLink" t:page="loginpage">Sign In</a>
+                                        <a href="#" t:type="PageLink" t:page="user/create">Register</a>
+
+
+
+
+                    </div>
                 </t:parameter>
             </t:if>
-
-            <t:parameter name="else">
-                <t:if t:test="profile">
-                <li><a href="#" t:type="pagelink" t:page="loginpage">Profile</a></li>
-                <t:parameter name="else">
-                <li><a href="#" t:type="pagelink" t:page="loginpage">Profile</a></li>
-                </t:parameter>
+        </div>
+        <div id="nav-menu">
+            <ul>
+                <t:if t:test="Home">
+                    <li><a href="#" style="background:#C0C0C0;" t:type="PageLink" t:page="index">Home</a></li>
+                    <t:parameter name="else">
+                        <li><a href="#" t:type="PageLink" t:page="index">Home</a></li>
+                    </t:parameter>
                 </t:if>
-           </t:parameter>
-        </t:if>
-        <li><a href="#" t:type="pagelink" t:page="learning/index"> Learning and Practice </a></li>
-        <li><a href="#">Testing</a></li>
-        <t:if t:test="OpenQuestion">
-            <li><a href="#" style="background:#C0C0C0;" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
-            <t:parameter name="else">
-            <li><a href="#" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
-            </t:parameter>
-        </t:if>
-    </ul>
-</div>
-</p>
+                <t:if t:test="userExists">
+                    <t:if t:test="profile">
+                        <li><a href="#" style="background:#C0C0C0;" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a></li>
+                        <t:parameter name="else">
+                            <li><a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> Profile </a></li>
+                        </t:parameter>
+                    </t:if>
+
+                    <t:parameter name="else">
+                        <t:if t:test="profile">
+                            <li><a href="#" t:type="pagelink" t:page="loginpage">Profile</a></li>
+                            <t:parameter name="else">
+                                <li><a href="#" t:type="pagelink" t:page="loginpage">Profile</a></li>
+                            </t:parameter>
+                        </t:if>
+                    </t:parameter>
+                </t:if>
+                <li><a href="#" t:type="pagelink" t:page="learning/index"> Learning and Practice </a></li>
+                <li><a href="#">Testing</a></li>
+                <t:if t:test="OpenQuestion">
+                    <li><a href="#" style="background:#C0C0C0;" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
+                    <t:parameter name="else">
+                        <li><a href="#" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
+                    </t:parameter>
+                </t:if>
+            </ul>
+        </div>
+    </div>
 </t:container>
