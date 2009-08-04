@@ -1,6 +1,5 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <div align="right">
-        <a href="#" t:type="pagelink" t:page="contribution/question/edit" t:context="${question.id}"> Edit </a>
     </div>
 
     <div id="author">
@@ -32,5 +31,5 @@
     <br />
 </p>
 
-
+<br/><a href="#" t:type="pagelink" t:page="contribution/question/edit" t:context="${question.id}"> Edit </a>
 </t:container>

@@ -163,7 +163,8 @@ public class CreateUser {
        emailer.sendSendRegistrationEmail(auser);
 
         this.user = auser;
-        return "loginpage";
+        //return "loginpage";
+        return Confirm.class;
     }
 
    public void RegisterUser(User user) {
