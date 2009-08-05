@@ -241,6 +241,7 @@ padding:5px 15px 4px 6px;
     position:relative;
     left:200%;
     overflow:hidden;
+    padding-bottom:25px;
 }
 .holygrail .col2 {
     float:left;
@@ -314,6 +315,7 @@ div.main {
     margin-right: auto;
     margin-left: auto;
     padding: 35px 70px;
+    padding-bottom:25px;
 }
 DIV.t-beaneditor
 {
@@ -466,11 +468,14 @@ ul {
 #question-links a:hover {
     border:solid 1px #666666
 }
-
+#tag-links ul {
+    padding-top:10px;
+}
 #tag-links li {
     border:0;margin:0; padding:0;
     font-size:15px;
     list-style:none;
+    padding-left:5px;
 }
 #tag-links a {
     border:solid 1px #DDDDDD;
@@ -637,6 +642,7 @@ border-right:1px solid #666666;
 border-top:1px solid #666666;
 top:200px;
 padding: 10px;
+padding-bottom:25px;
 }
 #spacer {
 height: 34px;

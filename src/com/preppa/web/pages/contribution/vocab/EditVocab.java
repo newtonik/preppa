@@ -69,6 +69,8 @@ public class EditVocab {
     private String fname;
     @Component
     private Form tagform;
+    @Property
+    private String fComment;
 
     
     void onActivate(int id) {
@@ -108,6 +110,7 @@ public class EditVocab {
          vocab.setPartofspeech(partofspch);
          vocab.setDefinition(fDefinition);
          vocab.setTags(fTag);
+         vocab.setRevComment(fComment);
          if (vocab.getSentence() != null) {
             if (fSentence == null) {
                 vocab.getSentence().setSentence("");

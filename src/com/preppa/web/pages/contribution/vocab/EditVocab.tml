@@ -65,10 +65,22 @@
 
                         </td>
                     </tr>
+                     <tr>
+                     <td>
+                        <t:label for="fComment">
+                            Edit summary (Briefly describe the changes you have made)
+                        </t:label>
+                    </td>
+                 </tr>
+                 <tr>
+                     <td>
+                         <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
+                     </td>
+                 </tr>
                     <tr>
                         <td colspan="2" align="left">
                             <input type="submit" value="Submit"/>
-                            <input type="button" onclick="window.location='Index'; return false;" value="Cancel"></input>
+                           <a href="#" t:type="pageLink" t:page="contribution/vocab/show" t:context="vocab.id">  <input type="button" value="Cancel" /></a>
                         </td>
 
                     </tr>
