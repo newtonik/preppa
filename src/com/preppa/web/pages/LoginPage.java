@@ -115,10 +115,14 @@ public class LoginPage
        provider.setPasswordEncoder(new ShaPasswordEncoder());
        authtoken = new UsernamePasswordAuthenticationToken(fLogin, fpass);
        provider.setSaltSource(salt);
-       
-
-      Authentication token = provider.authenticate(authtoken);
-     
+       Authentication token = null;
+       try {
+      token = provider.authenticate(authtoken);
+       }
+       catch (org.springframework.security.BadCredentialsException e) {
+           loginform.recordError("Either the Username or Password is incorrect, Please try again.");
+           return;
+       }
       if(token.isAuthenticated())
       {
           System.out.println("user has been authenticated");
@@ -146,6 +150,7 @@ public class LoginPage
       {
           //fpass = null;
           //fLogin = null;
+          System.out.println("I'm here!");
           loginform.recordError("Either the Username or Password is incorrect, Please try again.");
 
       }

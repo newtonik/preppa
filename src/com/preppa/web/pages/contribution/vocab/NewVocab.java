@@ -94,6 +94,10 @@ public class NewVocab {
         this.vocab = word;
     }*/
 
+    public Block getNewTagBlock() {
+        return newtagblock;
+    }
+
     public boolean getTitleFilled() {
         return (fWord != null);
     }

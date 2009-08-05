@@ -16,6 +16,7 @@ import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
@@ -45,6 +46,8 @@ public class CreateProfileUser {
     private UserProfileDAO userprofileDAO;
     @Inject
     private UserObDAO userDAO;
+    @InjectPage
+    private ShowUser show;
 
     @CommitAfter
     Object onSuccess() {
@@ -61,7 +64,8 @@ public class CreateProfileUser {
         user.setUserProfile(userprofile);
         user.setUpdatedAt(now);
         userDAO.doSave(user);
+        show.onActivate(user.getId());
 
-        return Index.class;
+        return show;
     }
 }
