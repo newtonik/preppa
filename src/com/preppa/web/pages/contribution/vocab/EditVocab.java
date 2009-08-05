@@ -19,9 +19,13 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.TextField;
+import org.apache.tapestry5.json.JSONObject;
 
 /**
  *
@@ -52,6 +56,20 @@ public class EditVocab {
     private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
     private TagDAO tagDAO;
+    @Component
+    private Form editform;
+     @Inject
+    @Property
+    private Block newtagblock;
+    @Property
+    private Tag tag;
+    @Component
+    private TextField tagTextfield;
+    @Property
+    private String fname;
+    @Component
+    private Form tagform;
+
     
     void onActivate(int id) {
         this.vocab = vocabDAO.findById(id);
@@ -84,7 +102,7 @@ public class EditVocab {
         return this.vocab.getId();
     }
     @CommitAfter
-    Object onSuccess() {
+    Object onSuccessFromEditForm() {
 
          vocab.setName(fWord);
          vocab.setPartofspeech(partofspch);
@@ -134,6 +152,11 @@ public class EditVocab {
      .replaceAll("(?i)<.*?javascript:.*?>.*?</.*?>", "") // case 2
      .replaceAll("(?i)<.*?\\s+on.*?>.*?</.*?>", "");     // case 3
     }
+List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+        List<Tag> matches = tagDAO.findByPartialName(partial);
+        return matches;
+
+    }
 
 public FieldTranslator getTagTranslator()
     {
@@ -174,5 +197,41 @@ public FieldTranslator getTagTranslator()
 
     };
   }
+         Block onActionFromCloseTag() {
+            return newtagblock;
+        }
+
+       Block onActionFromCancelTag() {
+            return null;
+       }
+             //Funtions for adding new tags and topics
+        @CommitAfter
+        JSONObject onSuccessFromTagForm() {
+            List<Tag> tolist =  tagDAO.findByName(fname);
+            JSONObject json = new JSONObject();
+            System.out.print(tolist);
+            if(tolist.size() > 0) {
+                String markup = "<p>  <b>" + fname +
+                    "</b> already exists. <p>";
+                json.put("content", markup);
+
+            }
+            else
+            {
+                tag = new Tag();
+                tag.setName(fname);
+
+                tagDAO.doSave(tag);
+                String markup = "<p> You just submitted <b>" + tag.getName() +
+                    "</b>. Please add it using the dropdown <p>";
+               json.put("content", markup);
+
+            }
+
+
+           // return new TextStreamResponse("text/json", json.toString());
+            return json;
+        }
+
 
 }

@@ -6,6 +6,7 @@ package com.preppa.web.pages.contribution.vocab;
 
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.Flag;
+import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vocab;
 import com.preppa.web.pages.Index;
@@ -62,6 +63,8 @@ public class ShowVocab {
     @Inject
     @Property
     private Block flagblock;
+    @Property
+    private List<Tag> tags;
 
     void onActivate(int id) {
         if (id > 0) {
@@ -76,6 +79,7 @@ public class ShowVocab {
                 }
                 vid = vocab.getId();
                 vocabflags = vocab.getFlags();
+                tags = vocab.getTaglist();
             }
 
         }

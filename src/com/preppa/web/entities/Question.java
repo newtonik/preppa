@@ -31,6 +31,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.envers.Audited;
 
 
@@ -357,8 +358,9 @@ public class Question implements Serializable {
     /**
      * @return the flags
      */
-    @OneToMany(mappedBy = "question", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "question", cascade=CascadeType.ALL, fetch=FetchType.LAZY, targetEntity=Flag.class)
     @Audited
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     public List<Flag> getFlags() {
         return flags;
     }

@@ -1,102 +1,139 @@
 <html t:type="layout" t:pageTitle="New Vocab Word" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-        <h3> Add a Vocab </h3>
-        <p>
-          <t:form t:id="vocabform">
-              <t:errors/>
-              <table>
-                  <tr>
-                      <td>
-                    <t:label for="fWord"> Word </t:label>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td>
-                         <t:if t:test="TitleFilled">
-                                <input type="text" disabled="true"  t:type="TextField" t:id="fWordBlank"  t:value="fWord" t:label="Word" size="30"/>
-                            <t:parameter name="else">
-                                <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
-                            </t:parameter>
-                        </t:if>
+    <h3> Add a Vocab </h3>
+   
+    <t:form t:id="vocabform">
+        <t:errors/>
+        <table>
+            <tr>
+                <td>
+            <t:label for="fWord"> Word </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td>
+            <t:if t:test="TitleFilled">
+                <input type="text" disabled="true"  t:type="TextField" t:id="fWordBlank"  t:value="fWord" t:label="Word" size="30"/>
+                <t:parameter name="else">
+                    <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
+                </t:parameter>
+            </t:if>
 
-                        </td>
-                    </tr>
-                  <tr>
-                      <td>
-                       <t:label for="partofspch"> Parts Of Speech </t:label>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                         <t:if t:test="POSFilled">
-                                <t:select disabled="true" t:id="partofspchdis" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
-                            <t:parameter name="else">
-                                <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
-                            </t:parameter>
-                        </t:if>
-                     
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                      <t:label for="fDefinition"> Definition: </t:label>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                                <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
-                      </td>
-                      
-                  </tr>
-                    <tr>
-                      <td>
-                      <t:label for="fSentence"> Example Sentence: </t:label>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="Sentence" rows="4" cols="80"/>
-                      </td>
+            </td>
+            </tr>
+            <tr>
+                <td>
+            <t:label for="partofspch"> Parts Of Speech </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td>
+            <t:if t:test="POSFilled">
+                <t:select disabled="true" t:id="partofspchdis" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
+                <t:parameter name="else">
+                    <t:select t:id="partofspch" value ="partofspch" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
+                </t:parameter>
+            </t:if>
 
-                  </tr>
-                        <tr>
-                      <td>
-                    <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
-                      </td>
-                    </tr>
-                    <tr>
-                   <td align="left">
-                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
-                        translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
-                         </td>
-                    </tr>
-                     <td align="left">
-                         Can't find one
-                          <a t:type="actionlink" t:id="addtag" href="#" t:zone="tagZone"> Add a New Tag </a>
+            </td>
+            </tr>
+            <tr>
+                <td>
+            <t:label for="fDefinition"> Definition: </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" t:type="TextArea" t:id="fDefinition" t:value="fDefinition" t:label="Definition" t:validate="required" rows="4" cols="80"/>
+                </td>
 
-                     </td>
-                   <tr>
-                      <td colspan="2" align="left">
-                        <input type="submit" value="Submit"/>
-                        <t:pagelink t:page="Index" t:mixins="confirm"><button type="button">Cancel</button></t:pagelink>
-                    </td>
+            </tr>
+            <tr>
+                <td>
+            <t:label for="fSentence"> Example Sentence: </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" t:type="TextArea" t:id="fSentence" t:value="fSentence" t:label="Sentence" rows="4" cols="80"/>
+                </td>
 
-                 </tr>
+            </tr>
+            <tr>
+                <td>
+            <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                           translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    Can't find one
+                    <a  id="addtag" href="#" > Add a New Tag </a>
 
-              </table>
-          </t:form>
+                </td>
+            </tr>
 
-          <br/>
-                      <t:zone t:id="tagZone">
-    <t:block t:id="newtagblock">
-        <div id="tagform">
-            <t:newtag />
+            <tr>
+                <td colspan="2" align="left">
+                    <input type="submit" value="Submit"/>
+            <t:pagelink t:page="Index" t:mixins="confirm"><button type="button">Cancel</button></t:pagelink>
+            </td>
+
+            </tr>
+
+        </table>
+    </t:form>
+
+    <br/>
+    <div id="newtagbox" class="tagboxklass" style='display:none'>
+        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+             bgcolor="#FFFFFF"
+             style="padding: 20px;" align="center">
+            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
+
+                <t:zone t:id="formzone">
+                    <t:delegate to="newtagblock"/>
+                </t:zone>
+
+                <p>
+                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" id="closetagbox">Close</a>
+                </p>
+            </div>
         </div>
-        <a t:type="actionlink" t:id="canceltag" href="#" t:zone="tagZone"> Cancel </a>
 
+    </div>
+    <br />
+    <t:block t:id="newtagblock">
+        <h3> Add a Tag </h3>
+        <t:form t:id="tagform" t:zone="formzone">
+
+            <table id="userformtable">
+                <tr>
+                    <td>
+                <t:label for="tagTextfield"/>
+                </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="left">
+                        <input t:type="TextField" t:id="tagTextfield" size="30"  t:value="fname" t:label="Tag Name" t:validate="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left">
+                        <br />
+                        <input t:id="submit" type="submit" t:type="submit" value="Submit"/>
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+        </t:form>
     </t:block>
-                      </t:zone>
-          <br/>
-          <br/>
-        </p>
 </html>

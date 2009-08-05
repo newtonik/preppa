@@ -1,11 +1,8 @@
-
-   //  window.onload = function() {
-        //$('votebox').hide();
-        $('flaglink').observe('click', function() {
+  $('flaglink').observe('click', function() {
             //get position
             var pos = $('flagpass').cumulativeOffset();
             var width  = $('flagpass').getWidth();
-           
+
             $('votebox').setStyle({
 
                // display: 'block',
@@ -15,10 +12,9 @@
                 top : (pos.top-400)+ "px"
             });
             $('votebox').show();
-            Effect.ScrollTo('footer');
             //$('votebox').absolutize()
-            
-               
+
+
              $('closeflag').observe('click', function() {
                $('votebox').hide();
 
@@ -34,24 +30,5 @@ window.scroll(0,  document.height);
                  display: 'none'
                })
                $('votebox').hide();
-            
-        });
-        
- //    }
 
-//     Event.observe('flagform', 'submit', function(event) {
-//         $('flagform').request({
-//            onSuccess: function() {
-//               //$('votebox').hide();
-//                  $('flagZone').setStyle({
-//                display: 'block',
-//                fontSize: '12px',
-//                width: '200px',
-//                height: '150px'
-//            });
-//
-//
-//         }
-//         });
-//     });
-    
+        });

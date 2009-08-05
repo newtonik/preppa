@@ -15,7 +15,7 @@ root {
     display: block;
 }
 #votebox, #flagresponse {
-    background-color:red;
+    background-color: #D4E4FF;
     
    
     border-right-style: solid;
