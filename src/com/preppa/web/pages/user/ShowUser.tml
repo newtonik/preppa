@@ -24,6 +24,5 @@
   <br/>
   <div align="left">Buddy List</div>
   <t:pagelink t:page="announcements/newannouncement">Create Announcement</t:pagelink>
-  <a href="javascript:history.go(-1);">insert code to link back</a>
 </body>
 </html>

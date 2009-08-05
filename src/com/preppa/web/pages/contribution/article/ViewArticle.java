@@ -15,6 +15,8 @@ import com.preppa.web.entities.Article;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import java.util.*;
+import java.util.regex.*;
 
 /**
  *
@@ -43,12 +45,47 @@ private final static int bodysize = 100;
 
     public String getsamplebody() {
         String returnVal = cursor.getBody();
-
+        returnVal = ClearHTMLTags(returnVal, -1);
         if (bodysize < returnVal.length()) {
             returnVal = returnVal.substring(0, bodysize);
         }
 
         return returnVal;
+    }
+
+    /* From http://javacupaday.blogspot.com/2008/01/how-to-remove-html-formatting-in-string.html
+     *
+     * */
+    public String ClearHTMLTags(String strHTML, int intWorkFlow){
+
+    	Pattern pattern = null;
+	    Matcher matcher = null;
+	   	String regex;
+	   	String strTagLess = null;
+    	strTagLess = strHTML;
+
+    	if(intWorkFlow == -1)
+  		{
+  			regex = "<[^>]*>";
+  			//removes all html tags
+			pattern = pattern.compile(regex);
+			strTagLess = pattern.matcher(strTagLess).replaceAll(" ");
+		}
+
+		if(intWorkFlow > 0 && intWorkFlow < 3)
+		{
+
+		  	regex = "[<]";
+			//matches a single <
+			pattern = pattern.compile(regex);
+			strTagLess = pattern.matcher(strTagLess).replaceAll("<");
+
+			regex = "[>]";
+			//matches a single >
+		 	pattern = pattern.compile(regex);
+			strTagLess = pattern.matcher(strTagLess).replaceAll(">");
+		}
+		return strTagLess;
     }
 
     public List<Article> getArticleList() {

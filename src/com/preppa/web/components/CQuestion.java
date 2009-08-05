@@ -177,15 +177,18 @@ public class CQuestion {
 
     void onValidateForm(){
         if(mywork == false) {
+            System.out.println("I'm in here!");
             error = true;
             emessage = "You must verify that this is your own work.";
             createquestionform.recordError("You must verify that this is your own work.");
         }
         if ((correct == null)) {
+            System.out.println("I'm in here!");
             error = true;
             emessage = "You did not specify an answer.";
             createquestionform.recordError("You did not specify an answer.");
         }
+             System.out.println("I'm in here!");
     }
 
     @CommitAfter
@@ -244,7 +247,6 @@ public class CQuestion {
      else {
          questionDAO.doSave(question);
      }
-
      if (showpage == false) {
          return null;
      }

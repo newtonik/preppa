@@ -37,6 +37,7 @@ public class AnnouncementDAOHibImpl  extends AbstractHibernateDAO<Announcement, 
     }
 
 
+    @Override
     public List<Announcement> findAllOrderedByDate() {
         SQLString sqlString = new SQLString("FROM Announcement announcements");
         sqlString.addOrderField("createdAt");
