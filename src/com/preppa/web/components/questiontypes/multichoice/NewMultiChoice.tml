@@ -7,12 +7,12 @@
                <table id="atable" width="700" cellpadding="10">
             <tr>
                 <td align="left">
-                    <t:label for="testSubSelect"> Select a Test subject </t:label>
+                    <t:label for="testSubSelect"> Select a Test Subject </t:label>
                     <br />
                     <input t:id="testSubSelect"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
                 </td>
                 <td align="right" >
-                    <t:label for="QuestiontypeSelect"> Select a Question type </t:label>
+                    <t:label for="QuestiontypeSelect"> Select a Question Type </t:label>
                     <br />
                     <input t:id="QuestiontypeSelect"  model="questiontypesSelectionModel" encoder="questiontypesValueEncoder" />
                 </td>
