@@ -157,6 +157,9 @@ public class NewMultiChoice {
     @Inject
     @Property
     private Block newtagblock;
+    @Property
+    @Persist
+    private Integer questType;
 
     /** Components and Objects for Select forms **/
     @Parameter
@@ -312,7 +315,8 @@ public class NewMultiChoice {
        System.out.println("I just got selected " + quesId);
         if(!quesId.equals("") && quesId != null)
         {
-            questiontype = questiontypeDAO.findById(Integer.parseInt(quesId));
+            questType = Integer.parseInt(quesId);
+            questiontype = questiontypeDAO.findById(questType);
             if(question == null)
                 question = new Question();
             question.setQuestiontype(questiontype);
@@ -350,6 +354,8 @@ public class NewMultiChoice {
         question.getChoices().add(ch);
     }
 
+    questiontype = questiontypeDAO.findById(questType);
+    question.setQuestiontype(questiontype);
      for(Tag t: addedTags)
      {
             if(!(question.getTaglist().contains(t)))

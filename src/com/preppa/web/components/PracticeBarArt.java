@@ -30,4 +30,8 @@ public class PracticeBarArt {
         String url = _request.getRequestURL().toString();
         return url.contains("/vocab");
     }
+    public boolean getQuestion() {
+        String url = _request.getRequestURL().toString();
+        return url.contains("/question");
+    }
 }

@@ -1,4 +1,7 @@
 <html t:type="layout" t:pageTitle="New Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-	
+
+<t:practicebarart />
+    <div id="main">
     <div t:id="firstquestion" t:testsubjects="subjects"></div>
+    </div>
 </html>

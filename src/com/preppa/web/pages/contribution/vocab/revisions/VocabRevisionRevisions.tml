@@ -1,0 +1,38 @@
+<html t:type ="layout" t:pageTitle="${vocab.name}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <body>
+<t:practicebarArt />
+<div id="main">
+        <h2>
+           ${vocab.name}
+        </h2>
+        <div id="author-time">
+            Created at ${vocab.createdAt}
+        </div>
+        <p>
+             <t:outputraw t:value="${vocab.partofspeech}"/>
+        </p>
+        <p>
+             <t:outputraw t:value="${vocab.definition}"/>
+        </p>
+        <p>
+            <b>Example</b><p/>
+            ${example}
+        </p>
+        <p>
+             <t:outputraw t:value="${vocab.tags}"/>
+        </p>
+        <p>
+            <a href="#" t:type="pageLink" t:page="contribution/vocab/Edit" t:context="vocab.id"> Edit </a>
+            <br />
+        </p>
+
+        
+          <t:tagview t:alltags="tags" />
+          <br />
+
+    </div>
+
+    </body>
+
+</html>
