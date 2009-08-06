@@ -1,5 +1,4 @@
 <html t:type="layout" t:pageTitle="New Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <t:pagelink t:page="contribution/article/home"> Back to Articles </t:pagelink>
     <br/>
     <br />
     <div id ="artcont" align="center">

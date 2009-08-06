@@ -1,5 +1,9 @@
 <html t:type="layout" t:pageTitle="All Questions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+<t:practicebarart />
+<div id="main">
 <p>
+
 <div class="question">
 
 
@@ -19,5 +23,5 @@
         <p>
             <t:pagelink t:page="contribution/question/create">Create Question</t:pagelink>
         </p>
-
+    </div>
 </html>

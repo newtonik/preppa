@@ -168,8 +168,6 @@ public class EditMultiChoice {
     @CommitAfter
     Object onSuccessFromEditQuestionForm() {
 
-        System.out.println(question);
-        System.out.print(fQuestion);
         question.setExplanation(fExplanation);
         question.setQuestion(fQuestion);
         if (ans1.length() > 0) {

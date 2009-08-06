@@ -1,0 +1,43 @@
+<html t:type="layout" t:pageTitle="All revisions for ${vocab.name}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+   <t:practicebarArt />
+    <div id="main">
+           <div align="right">
+            <a href="#" t:type="pagelink" t:context="${vocab.id}" t:page="contribution/vocab/show"> Current </a>
+   </div>
+
+    <div>
+        <table>
+            <tr>
+            <th>
+                Revision Number
+            </th>
+             <th>
+               Last Edited
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Edit Summary
+            </th>
+            </tr>
+        <tr t:type="loop" source="revisions" value="revision">
+            <td>
+            <a href="#" t:type="pagelink" t:context="${vocab.id}_${revision.revisionnumber}" t:page="contribution/vocab/revisions/revision"> ${revision.revisionnumber} </a>
+            </td>
+            <td>
+                ${revision.revisiontime}
+            </td>
+            <td>
+                <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
+
+            </td>
+            <td>
+                ${revision.revComment}
+            </td>
+
+        </tr>
+        </table>
+    </div>
+    </div>
+</html>

@@ -28,7 +28,7 @@ import org.hibernate.envers.AuditReaderFactory;
  */
 public class PassageRevisionRevisions {
 
-@Property
+    @Property
     @Persist
     private ShortPassage passage;
     @Inject
