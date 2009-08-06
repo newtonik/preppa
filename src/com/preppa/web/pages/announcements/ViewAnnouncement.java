@@ -34,7 +34,6 @@ public class ViewAnnouncement {
     public List<Announcement> getAllAnnouncements() {
         List<Announcement> returnVal;
         returnVal = announcementDAO.findAllOrderedByDate();
-
         return returnVal;
     }
 

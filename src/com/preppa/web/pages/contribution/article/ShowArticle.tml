@@ -3,6 +3,7 @@
     <body>
 <t:practicebarart />
 <div id="main">
+        <t:articlemenu />
         <div align="right">
             <a href="#" t:type="pagelink" t:context="${article.id}" t:page="contribution/article/revisions"> History </a>
         </div>

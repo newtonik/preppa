@@ -13,6 +13,8 @@
     <div class="announcement">
             <b>${announcement.title}</b>
             <br/>
+            By ${announcement.user.username}
+            <br/>
             ${announcement.updatedat}
             <t:outputraw t:value="${announcement.message}"/>
             <br></br>

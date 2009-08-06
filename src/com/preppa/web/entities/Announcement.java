@@ -14,13 +14,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.hibernate.envers.Audited;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.Indexed;
+
 
 /**
  *
@@ -55,6 +61,22 @@ public class Announcement implements Serializable {
     private Date updatedAt;
     @Column(name = "location_id")
     private Integer locationId;
+
+
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Fetch(value = FetchMode.JOIN)
+    @Audited
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Announcement() {
     }

@@ -29,18 +29,6 @@ public class ViewQuestion {
     @Persist
     private Question question;
 
-	void onAction(String pass) {
-		/*try {
-			list.set(pass);
-			return list;
-		}
-		catch (Exception e) {
-			_errorMessage = e.getMessage();
-			return null;
-		}*/
-	}
-
-
     Object onActivate() {
 
         return null;

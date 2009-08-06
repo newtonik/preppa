@@ -24,6 +24,9 @@
 	<div class="shadow3">
 	<div class="container">
             <div align="left"><h4>${announcement.title}</h4></div>
+            <br/>
+            By ${announcement.user.username}
+            <br/>
             <t:outputraw t:value="${announcement.message}"/>
             <b>Created at ${announcement.createdat}</b>
     </div></div></div></div></div>

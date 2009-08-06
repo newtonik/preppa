@@ -7,6 +7,8 @@ package com.preppa.web.pages.announcements;
 
 import com.preppa.web.data.AnnouncementDAO;
 import com.preppa.web.entities.Announcement;
+import com.preppa.web.entities.User;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
@@ -21,8 +23,8 @@ import org.chenillekit.tapestry.core.components.Editor;
  * @author newtonik
  */
 public class NewAnnouncement {
-
-
+    @ApplicationState
+    private User user;
     @Property
     @Persist
     private Announcement announce;
@@ -56,7 +58,7 @@ public class NewAnnouncement {
         announce.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
         announce.setMessage(aAnnouncement);
         announce.setTitle(aTitle);
-
+        announce.setUser(user);
 
          
 
