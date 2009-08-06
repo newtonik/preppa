@@ -56,7 +56,6 @@ private String example;
 private Index index;
 private Integer qid;
 @Property
-@Persist
 private QuestionAnswer questionanswer;
 @Parameter
 private Integer pid;
@@ -110,7 +109,7 @@ void intializeQuestion () {
             tags = question.getTaglist();
             author = question.getUser();
             questionflags = question.getFlags();
-            System.out.println("there are " + tags.size() + " tags.");
+            
         }
        
 }

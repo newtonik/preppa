@@ -9,6 +9,7 @@ import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.ExampleSentence;
 import com.preppa.web.entities.Vocab;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.User;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -22,6 +23,7 @@ import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
@@ -32,8 +34,8 @@ import org.apache.tapestry5.json.JSONObject;
  * @author newtonik
  */
 public class EditVocab {
-
-    @Persist
+    @ApplicationState
+    private User user;
     @Property
     private Vocab vocab;
     @Inject
@@ -111,6 +113,7 @@ public class EditVocab {
          vocab.setDefinition(fDefinition);
          vocab.setTags(fTag);
          vocab.setRevComment(fComment);
+         vocab.setUser(user);
          if (vocab.getSentence() != null) {
             if (fSentence == null) {
                 vocab.getSentence().setSentence("");
