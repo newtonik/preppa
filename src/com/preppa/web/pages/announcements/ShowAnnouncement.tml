@@ -16,6 +16,7 @@
 
         <a href="#" t:type="PageLink" t:page="Index">
         Home
-        </a>
+        </a><br/>
+        <a href="#" t:type="pagelink" t:page="user/show" t:context="${uid}"> Go to Profile </a>
     </body>
 </html>

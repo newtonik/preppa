@@ -18,11 +18,6 @@
                   </tr>
                  <tr>
                      <td align="left">
-                         <label for="testsubject"> Test Subject: </label>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td align="left">
                       <table>
                           <tr align="right">
                              <td align="left">
@@ -111,7 +106,7 @@
                       <br />
                       <td colspan="2" align="left">
                         <input type="submit" value="Submit"/>
-                         <a href="#" t:type="pageLink" t:page="contribution/article/show" t:context="aid"> <input type="button" value="Cancel"></input></a>
+                         <input type="button" onclick="javascript:history.go(-1);" value="Cancel"></input>
                     </td>
 
                  </tr>
