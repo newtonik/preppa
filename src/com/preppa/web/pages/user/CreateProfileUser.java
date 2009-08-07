@@ -48,7 +48,7 @@ public class CreateProfileUser {
     private UserObDAO userDAO;
     @InjectPage
     private ShowUser show;
-
+    
     @CommitAfter
     Object onSuccess() {
         this.userprofile = new UserProfile();

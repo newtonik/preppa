@@ -135,7 +135,7 @@ public class Index {
     public List<Announcement> getAnnouncements() {
         List<Announcement> returnVal;
         returnVal = announcementDAO.findAllOrderedByDate();
-        if (returnVal != null && returnVal.size() > 0) {
+        if (returnVal != null) {
             returnVal = returnVal.subList(0, 1);
         }
 

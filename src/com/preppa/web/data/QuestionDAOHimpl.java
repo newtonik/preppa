@@ -59,10 +59,8 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         super(logger, session);
     }
 
-
     @Override
     public List<Question> findByTag(String name) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

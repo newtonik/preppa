@@ -27,7 +27,7 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.AjaxCheckbox;
-import org.chenillekit.tapestry.core.components.DateSelector;
+//import org.chenillekit.tapestry.core.components.DateSelector;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.security.providers.dao.SaltSource;
@@ -88,6 +88,9 @@ public class CreateUser {
     @Property
     private Boolean isThirteen;
 
+    private int month;
+    private int day;
+    private int year;
 
     void CreateUser() {
         Calendar cal = Calendar.getInstance();
@@ -107,24 +110,31 @@ public class CreateUser {
     }
     
     void onValidateForm() {
-      long birth = fdob.getTime();
-      Date tester = new Date();
-      long current = tester.getTime();
 
-      long age = (current-birth);
+      if (fdob == null) {
+          userform.recordError("You must select a valid birth date.");
+          return;
+      }
+      else {
+        long birth = fdob.getTime();
+        Date tester = new Date();
+        long current = tester.getTime();
+
+        long age = (current-birth);
       // Get difference in days
-      long diffDays = age/(24*60*60*1000);  // 7
+        long diffDays = age/(24*60*60*1000);  // 7
 
       /*System.out.println("Day Age is " + diffDays);
       System.out.println("Age is " + diffDays/365);
       System.out.println("isThirteen is " + isThirteen);*/
 
-      age = diffDays/365;
+        age = diffDays/365;
       
-      if(age < 13 || !isThirteen) {
-          userform.recordError(passwordField, messages.get("age-min-message"));
-      }
+        if(age < 13 || !isThirteen) {
+            userform.recordError(passwordField, messages.get("age-min-message"));
+        }
 
+      }
       if(!fpass1.equals(fpass2)) {
             fpass1 = null;
             fpass2 = null;

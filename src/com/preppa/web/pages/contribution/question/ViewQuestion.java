@@ -29,8 +29,19 @@ public class ViewQuestion {
     @Persist
     private Question question;
 
+    private boolean tags;
+    private String tagstring;
+
     Object onActivate() {
 
+        return null;
+    }
+
+    Object onActivate(String input) {
+        if(input.contains("tags")) {
+            tags = true;
+            tagstring = tagstring.substring(4); //Get the substring tag
+        }
         return null;
     }
 
@@ -40,7 +51,12 @@ public class ViewQuestion {
     public List<Question> getAllQuestions() {
         List<Question> returnVal;
 
-        returnVal = questionDAO.findAllNoRepeat();
+        if (tags == true) {
+            returnVal = null;
+        }
+        else {
+            returnVal = questionDAO.findAllNoRepeat();
+        }
 
         return returnVal;
     }

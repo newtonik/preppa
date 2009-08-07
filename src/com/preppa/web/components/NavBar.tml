@@ -7,8 +7,8 @@
         </div>
         <div id="topright" align="right">
             <t:if t:test="userExists">
-                <a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> ${user.username} </a>
-                <br/><a href="#" t:type="ActionLink" t:id="logouturl">Log out </a>
+                <td><a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> ${user.username} </a></td>
+                <td><a href="#" t:type="ActionLink" t:id="logouturl">Log out </a></td>
                 <t:parameter name="else">
                     <div id="navbarloginform" align="right">
                         <form xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" action="${CheckUrl}" method="POST">

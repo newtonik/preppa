@@ -7,8 +7,8 @@
         <div id="author-time">
             Created at ${announce.createdAt}
         </div>
-        <br/>
-        By ${announcement.user.username}
+        <br>
+        By ${announce.user.username}
         </br>
         <p>
              <t:outputraw t:value="${announce.message}"/>

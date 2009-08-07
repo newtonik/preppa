@@ -29,7 +29,7 @@ public class Tag implements Serializable {
     private List<OpenQuestion> openquestions;
     private List<Article> articles;
     private List<Gridin> gridins;
-    
+
     public Tag() {
 
     }
