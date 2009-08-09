@@ -5,9 +5,14 @@
     t:value="definition">
     <div class="definition">
         <div class="body">
-            <a href="#" t:type="pageLink" t:page="contribution/vocab/New" t:context="definition.id">Select Definition</a>
-            <br></br>
-            <t:outputraw t:value="${definition.definition}"/>
+            <t:if t:test="definition.submitted">
+            <STRIKE><t:outputraw t:value="${definition.definition}"/></STRIKE>
+            <t:parameter name ="else">
+                <a href="#" t:type="pageLink" t:page="contribution/vocab/New" t:context="definition.id">Select Definition</a>
+                <br></br>
+                <t:outputraw t:value="${definition.definition}"/>
+            </t:parameter>
+            </t:if>
         </div>
 
     </div>

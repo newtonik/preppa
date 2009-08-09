@@ -65,13 +65,17 @@ public class DefinitionVocab {
 
         for (int i = 0; i < returnVal.size(); i++)
         {
-            if (returnVal.get(i).getSubmitted() == true)
+            /*if (returnVal.get(i).getSubmitted() == true)
             {
                 returnVal.remove(i);
-            }
+            }*/
         }
 
         return returnVal;
+    }
+
+    public boolean getSubmitted() {
+        return definition.getSubmitted();
     }
 
 }

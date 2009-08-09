@@ -48,13 +48,10 @@ public class NewVocab {
     @InjectPage
     private ShowVocab showvocab;
     @Property
-    @Persist
     private String fWord;
     @Property
-    @Persist
     private String partofspch;
     @Property
-    @Persist
     private String fDefinition;
     @Property
     private String fSentence;
@@ -114,8 +111,7 @@ public class NewVocab {
             this.dWord = dictionarywordDAO.findById(id);
         }
         //this.vocab = vocabDAO.findById(id);
-        System.out.println("***");
-        if(dWord != null) {
+        if(dWord != null && id != 0) {
             System.out.print("Here dWord is not null is is " + dWord);
             fWord = dWord.getName();
             partofspch = dWord.getPartofspeech();

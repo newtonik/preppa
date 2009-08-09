@@ -1,3 +1,5 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <div id="navbar" align="center">
         <div id="logo" align="left">
@@ -7,8 +9,7 @@
         </div>
         <div id="topright" align="right">
             <t:if t:test="userExists">
-                <td><a href="#" t:type="pagelink" t:page="user/show" t:context="user.id"> ${user.username} </a></td>
-                <td><a href="#" t:type="ActionLink" t:id="logouturl">Log out </a></td>
+                <a href="#" t:type="pagelink" t:page="user/show" t:context="user.id">${user.username}</a>&nbsp;&nbsp;&nbsp;<a href="#" t:type="ActionLink" t:id="logouturl">Log out</a>
                 <t:parameter name="else">
                     <div id="navbarloginform" align="right">
                         <form xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" action="${CheckUrl}" method="POST">
