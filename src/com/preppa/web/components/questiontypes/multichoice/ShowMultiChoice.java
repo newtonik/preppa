@@ -8,6 +8,7 @@ package com.preppa.web.components.questiontypes.multichoice;
 import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Question;
@@ -85,6 +86,8 @@ private String reason;
 private String reasonDesc;
 @Inject
 private FlagDAO flagDAO;
+@Inject
+private UserObDAO userDAO;
 void onActivate() {
 //       if(pid != null) {
 //        passage = passageDAO.findById(pid);
@@ -157,9 +160,12 @@ void setquestion(Question question) {
 
           f.setDescription(reasonDesc);
           f.setContentType(ContentType.Question);
-          f.setFlagger(user);
+
+          author = userDAO.doRetrieve(user.getId(), false);
+          System.out.println("author id is "+ user.getId());
+          f.setFlagger(author);
           f.setStatus(FlagStatus.NEW);
-          //f.setQuestion(question);
+          f.setQuestion(question);
           
 
 
@@ -180,11 +186,12 @@ void setquestion(Question question) {
           f.setUpdatedAt(now);
           f.setCreatedAt(now);
 
-          flagDAO.doSave(f);
+          //flagDAO.doSave(f);
           //question.setUpdatedAt(now);
+          questionDAO.doSave(question);
 
       }
-      questionDAO.doSave(question);
+      
       return flagresponse;
   }
 

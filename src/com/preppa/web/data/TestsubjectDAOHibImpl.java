@@ -5,6 +5,7 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.Testsubject;
+import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
@@ -30,5 +31,14 @@ public class TestsubjectDAOHibImpl extends AbstractHibernateDAO<Testsubject, Int
         }
 
         return  (Testsubject) findByQuery(sqlString.toString()).get(0);
+    }
+
+
+    @Override
+    public List<Testsubject> findAllWithQuestions() {
+          SQLString sqlString = new SQLString("FROM Testsubject t");
+          sqlString.addWhereClause("t.hasQuestions = true");
+
+          return findByQuery(sqlString.toString());
     }
 }

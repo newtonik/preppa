@@ -219,7 +219,7 @@ public class NewMultiChoice {
     void CreateQuestion() {
         question = new Question();
          newquestion = true;
-         testsubjects = testsubjectDAO.findAll();
+         
     }
 
     void onActivate() {
@@ -239,7 +239,8 @@ public class NewMultiChoice {
     }
     @SetupRender
     void getSetupItems() {
-        testsubjects = testsubjectDAO.findAll();
+        testsubjects = testsubjectDAO.findAllWithQuestions();
+         
         questiontypes = questiontypeDAO.findAll();
     }
     Question getSubmittedQuestion() {

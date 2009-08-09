@@ -6,7 +6,6 @@ import com.preppa.web.entities.GridinAnswer;
 import com.preppa.web.entities.User;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
@@ -70,6 +69,8 @@ public class EditGridin {
     private GridinAnswer gridinanswer;
     @InjectPage
     private ShowGridin showgridin;
+    @Property
+    private String fComment;
 
     void onActivate(Long id) {
         if (id > 0) {
@@ -133,9 +134,10 @@ public class EditGridin {
              question.getAnswers().get(0).setAnswer(fAnswer);
              question.getAnswers().get(0).setDescription(fDescription);
         }
-         
+        question.setRevComment(fComment);
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         question.setUpdatedAt(now);
+
 
         gridinDAO.doSave(question);
         showgridin.setGridin(question);

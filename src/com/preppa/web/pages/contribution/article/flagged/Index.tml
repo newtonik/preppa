@@ -1,6 +1,8 @@
 <html t:type="layout" t:pageTitle="Flagged Articles" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarArt />
 <div id="main">
+       <div align="right"><a href="#" t:type="pagelink" t:page="contribution/article/view" > Articles </a></div>
+    <h3>Flagged Articles</h3>
     <div id="aricleflagged">
         <div id="filterbox">
             <t:form>

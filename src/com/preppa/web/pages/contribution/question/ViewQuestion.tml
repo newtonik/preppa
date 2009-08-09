@@ -2,6 +2,7 @@
 
 <t:practicebarart />
 <div id="main">
+        <div align="right">  <t:pagelink t:page="contribution/question/flagged" > Flagged </t:pagelink> </div>
 <p>
 <div t:id="questionmenu"></div>
 <div class="question">

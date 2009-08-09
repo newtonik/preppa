@@ -2,7 +2,7 @@
 
     <h3>Edit Gridin Question</h3>
 
-  <t:form t:id="gridinForm">
+    <t:form t:id="gridinForm">
         <t:errors />
         <table id="questiontable">
             <tr  align="left">
@@ -64,13 +64,19 @@
             <input t:type="textarea" type="textarea" t:id="fDescription" t:value="fDescription" t:validate="required" rows="3" cols="80" />
             </td>
             </tr>
-
+            <tr>
+                <td>
+            <t:label for="fComment">
+                Edit summary (Briefly describe the changes you have made)
+            </t:label>
+            </td>
+            </tr>
             <tr>
 
                 <td colspan="2" align="left">
                     <br />
                     <input type="submit" value="Submit"/>
-                    <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                    <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${question.id}" > <input type="button" value="Cancel"></input> </a>
                 </td>
 
             </tr>
@@ -79,6 +85,6 @@
 
 
     </t:form>
-   
+
 
 </html>

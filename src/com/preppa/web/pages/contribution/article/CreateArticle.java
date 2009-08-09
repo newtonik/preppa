@@ -27,7 +27,7 @@ import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Mixins;
 
@@ -37,7 +37,6 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.corelib.components.TextField;
-import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -53,6 +52,7 @@ import org.springframework.security.annotation.Secured;
  * @author newtonik
  */
 @Secured("ROLE_USER")
+@IncludeJavaScriptLibrary(value = {"context:js/article.js"})
 public class CreateArticle {
     @ApplicationState
     private User user;

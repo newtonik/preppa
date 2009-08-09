@@ -30,7 +30,7 @@
                   <tr>
                       <td>
                           Remember Me
-                          <input type="checkbox" name="_spring_security_remember_me"/>
+                          <input type="checkbox" t:value="rememberme" name="_spring_security_remember_me"/>
                       </td>
                   </tr>
                     <tr>

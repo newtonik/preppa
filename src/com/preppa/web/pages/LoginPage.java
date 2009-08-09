@@ -76,6 +76,8 @@ public class LoginPage
     @Inject
     private RequestGlobals requestGlobals;
     private java.net.URL url = null;
+    @Property
+    private Boolean rememberme;
 
     public String getfLogin()
     {

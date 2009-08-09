@@ -3,7 +3,7 @@
 <div id="main">
 <p>
 <div class="vocab">
-    <div align="right">  <t:pagelink t:page="contribution/vocab/flagged" > Flagged </t:pagelink> </div>
+   
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:a"> A </t:pagelink>
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:b"> B </t:pagelink>
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:c"> C </t:pagelink>

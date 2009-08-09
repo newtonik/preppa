@@ -42,6 +42,7 @@ public class Testsubject implements Serializable {
     private String description;
     private Date createdAt;
     private Date updatedAt;
+    private Boolean hasquestions;
     private List questionTypes = new ArrayList();
 
     public Testsubject() {
@@ -142,6 +143,20 @@ public class Testsubject implements Serializable {
      */
     public void setQuestionTypes(List questionTypes) {
         this.questionTypes = questionTypes;
+    }
+
+    /**Boolean to see if this testsubject has questions.
+     * @return the questiontype
+     */
+    public Boolean getHasQuestions() {
+        return hasquestions;
+    }
+
+    /**
+     * @param questiontype the questiontype to set
+     */
+    public void setHasQuestions(Boolean questiontype) {
+        this.hasquestions = questiontype;
     }
 
 }
