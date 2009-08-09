@@ -15,19 +15,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import org.apache.commons.mail.EmailException;
+import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.annotations.Mixins;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
+import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.chenillekit.tapestry.core.components.AjaxCheckbox;
 //import org.chenillekit.tapestry.core.components.DateSelector;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.util.TextStreamResponse;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.security.providers.dao.SaltSource;
@@ -37,6 +42,7 @@ import org.springframework.security.providers.encoding.ShaPasswordEncoder;
  *
  * @author newtonik
  */
+@IncludeJavaScriptLibrary(value = {"context:js/user.js"})
 public class CreateUser {
 
     
@@ -87,7 +93,10 @@ public class CreateUser {
     private Boolean userAgreement;
     @Property
     private Boolean isThirteen;
-
+    @Component(parameters = {"value=fLogin",  "event=keyup",
+                         "onCompleteCallback=literal:onChangeLogin"})
+    @Mixins({"ck/OnEvent"})
+    private TextField loginfield;
     private int month;
     private int day;
     private int year;
@@ -109,7 +118,7 @@ public class CreateUser {
         return auser;
     }
     
-    void onValidateForm() {
+    void onValidateFormFromUserForm() {
 
       if (fdob == null) {
           userform.recordError("You must select a valid birth date.");
@@ -148,8 +157,37 @@ public class CreateUser {
       if(!userAgreement) {
           userform.recordError("You cannot create an Account without agreeing to the site policies!");
       }
+      if(fLogin != null) {
+          if(userDAO.findCountByLoginId(fLogin) > 0) {
+            userform.recordError(loginfield, "That username is already being used");
+             fLogin = null;
+          }
+         
+      }
+      if(femail == null) {
+          userform.recordError("You need an email to register!");
+
+      }
+      else
+      {
+          if(userDAO.findCountByEmail(femail) > 0 )
+          {
+              userform.recordError("This email address is currently being used.");
+              femail = null;
+          }
+      }
     }
    
+    StreamResponse onKeyUpFromLoginField(String login) {
+        long count = 0;
+        JSONObject json = new JSONObject();
+
+        if(login != null && login.length() > 0) {
+            count = userDAO.findCountByLoginId(login);
+            json.put("count", count);
+        }
+        return new TextStreamResponse("txt/json", json.toString());
+    }
     @CommitAfter
     @Log
     Object onSuccess() throws EmailException {

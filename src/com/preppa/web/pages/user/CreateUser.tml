@@ -1,4 +1,4 @@
-<html t:type="layout" t:pageTitle="New User" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="Register!" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
         <br/>
         <br />
       <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
@@ -10,12 +10,15 @@
              <table id="userformtable">
                  <tr>
                      <td valign="top" align="left">
-                 <t:label for="fLogin"> Login Name </t:label>
+                 <t:label for="loginfield"> Login Name </t:label>
                      </td>
                  </tr>
                  <tr>
                    <td>
-                     <input t:type="TextField" t:id="fLogin" size="60"  t:value="fLogin" t:label="Login" t:validate="required,minlength=4"/>
+                     <input t:type="TextField" t:id="loginfield" size="60"  t:value="fLogin" t:label="Login" t:validate="required,minlength=4"/>
+                   </td>
+                  <td id="usernamestatus">
+
                    </td>
                   </tr>
                   <tr>
@@ -118,5 +121,5 @@
              </t:form>
     </div>
     </div>
-
+  
 </html>
