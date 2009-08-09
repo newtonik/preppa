@@ -1,11 +1,37 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <div id="nav-menu">
     <ul>
-        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test">Test Info</t:pagelink></li>
-        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math">Math</t:pagelink></li>
-        <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading">Critical Reading</t:pagelink></li>
-        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing">Writing</t:pagelink></li>
-        <li><t:pagelink t:page="contribution/article/flagged/index" >Flagged</t:pagelink></li>
+        <t:if t:test="Testing">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test" style="background:#C0C0C0;">Test Info</t:pagelink></li>
+            <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test">Test Info</t:pagelink></li>
+            </t:parameter>
+        </t:if>
+        <t:if t:test="Math">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math" style="background:#C0C0C0;">Math</t:pagelink></li>
+            <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math">Math</t:pagelink></li>
+            </t:parameter>
+        </t:if>        
+        <t:if t:test="CriticalReading">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading" style="background:#C0C0C0;">Critical Reading</t:pagelink></li>
+            <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading">Critical Reading</t:pagelink></li>
+            </t:parameter>
+        </t:if>
+        <t:if t:test="Writing">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing" style="background:#C0C0C0;">Writing</t:pagelink></li>
+            <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing">Writing</t:pagelink></li>
+            </t:parameter>
+        </t:if>
+        <t:if t:test="Flagged">
+            <li><t:pagelink t:page="contribution/article/flagged/index" style="background:#C0C0C0;">Flagged</t:pagelink></li>
+            <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/article/flagged/index" >Flagged</t:pagelink></li>
+            </t:parameter>
+        </t:if>
+
     </ul>
 </div>
 <br/>
