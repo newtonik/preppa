@@ -27,7 +27,7 @@
     </t:loop>
 
     <p>
-    <t:tagview t:alltags="tags" />
+    <t:tagviewquestion t:alltags="tags" />
     <br />
 </p>
 

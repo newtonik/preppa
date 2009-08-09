@@ -29,6 +29,7 @@ public class Tag implements Serializable {
     private List<OpenQuestion> openquestions;
     private List<Article> articles;
     private List<Gridin> gridins;
+    private List<Question> questions;
 
     public Tag() {
 
@@ -104,6 +105,22 @@ public class Tag implements Serializable {
     @ManyToMany(mappedBy="taglist")
     public List<Article> getArticles() {
         return articles;
+    }
+
+    /**
+     * @return the questions with a tag
+     */
+    @ContainedIn
+    @ManyToMany(mappedBy="taglist")
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    /**
+     * @param questions the questions to set
+     */
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 
     /**

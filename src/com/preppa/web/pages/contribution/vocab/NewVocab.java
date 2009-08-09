@@ -81,6 +81,8 @@ public class NewVocab {
     private String fname;
     @Component
     private Form tagform;
+    @Property
+    private DictionaryWord dWord;
 
     void onValidateFormFromVocabForm() {
     }
@@ -107,17 +109,26 @@ public class NewVocab {
         return (partofspch != null);
     }
 
-    void onActivate(int id) {
-        DictionaryWord dWord = dictionarywordDAO.findById(id);
+    Object onActivate(int id) {
+        if (this.dWord == null) {
+            this.dWord = dictionarywordDAO.findById(id);
+        }
         //this.vocab = vocabDAO.findById(id);
+        System.out.println("***");
         if(dWord != null) {
+            System.out.print("Here dWord is not null is is " + dWord);
             fWord = dWord.getName();
             partofspch = dWord.getPartofspeech();
             fDefinition = dWord.getDefinition();
         }
-
+        return null;
     }
-
+    Integer onPassivate() {
+        if (dWord == null) {
+            return null;
+        }
+        return this.dWord.getId();
+    }
     List<String> onProvideCompletionsFromfWord(String partial)
     {
         List<DictionaryWord> matches = dictionarywordDAO.findByPartialName(partial);
@@ -132,9 +143,14 @@ public class NewVocab {
         return result;
     }
 
-    Object onPassivate() {
-        return vocab;
-    }
+    /*Object onPassivate() {
+        if (vocab == null) {
+            return vocab;
+        }
+        else {
+            return vocab.getId();
+        }
+    }*/
 
     void cleanupRender() {
         System.out.println("*** I'm in cleanuprender!");
@@ -165,13 +181,12 @@ public class NewVocab {
 
          vocabDAO.doSave(vocab);
 
-         DictionaryWord dWord = new DictionaryWord();
-         dWord.setName(fWord);
-         dWord.setDefinition(fDefinition);
-         dWord.setPartofspeech(partofspch);
-         dWord.setSubmitted(true);
-         dictionarywordDAO.doSave(dWord);
-
+         System.out.println("Setting dWord, it is "+ dWord);
+         if (dWord != null) {
+            System.out.println("dWord set");
+            dWord.setSubmitted(true);
+            dictionarywordDAO.doSave(dWord);
+         }
          showvocab.setvocab(vocab);
          addedTags.clear();
          fWord = null;

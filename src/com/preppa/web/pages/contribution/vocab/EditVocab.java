@@ -4,8 +4,10 @@
  */
 package com.preppa.web.pages.contribution.vocab;
 
+import com.preppa.web.data.DictionaryWordDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.VocabDAO;
+import com.preppa.web.entities.DictionaryWord;
 import com.preppa.web.entities.ExampleSentence;
 import com.preppa.web.entities.Vocab;
 import com.preppa.web.entities.Tag;
@@ -74,6 +76,10 @@ public class EditVocab {
     @Property
     private String fComment;
 
+    @Inject
+    private DictionaryWordDAO dictionarywordDAO;
+    @Property
+    private DictionaryWord dWord;
     
     void onActivate(int id) {
         this.vocab = vocabDAO.findById(id);
@@ -99,7 +105,7 @@ public class EditVocab {
                 fTag = vocab.getTags();
             }
         }
-
+        this.dWord = dictionarywordDAO.findById(5);
     }
     Integer onPassivate() {
 
@@ -132,6 +138,8 @@ public class EditVocab {
 
          //set the updated at tag to current time
          vocab.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
+
+         System.out.println(dWord.getId());
 
          vocabDAO.doSave(vocab);
          showvocab.setvocab(vocab);
