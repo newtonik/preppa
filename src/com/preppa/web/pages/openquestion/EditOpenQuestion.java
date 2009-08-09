@@ -34,6 +34,8 @@ public class EditOpenQuestion {
     @Component(parameters = {"value=fQuestion"})
     private Editor questionBody;
     private Long qid;
+    @Property
+    private String fComment;
 
 
     void onActivate(Long id) {
@@ -57,9 +59,10 @@ public class EditOpenQuestion {
         question.setTitle(fTitle);
         question.setQuestion(fQuestion);
         question.setOwner(user);
+        question.setRevComment(fComment);
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
                     
-         question.setCreatedAt(now);
+         question.setUpdatedAt(now);
 
          openDAO.doSave(question);
     }

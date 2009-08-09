@@ -5,16 +5,16 @@
 
 package com.preppa.web.pages.contribution.question;
 
+import com.preppa.web.components.questiontypes.QuestionMenu;
 import com.preppa.web.data.QuestionDAO;
-import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Question;
-import com.preppa.web.entities.Tag;
 import java.util.List;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.PersistenceConstants;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.annotations.InjectPage;
+
 
 /**
  *
@@ -28,43 +28,58 @@ public class ViewQuestion {
 	private String _errorMessage;
 
     @Property
-    @Persist
     private Question question;
+    @Property
+    private List<Question> allquestions;
+    @Component
+    private QuestionMenu questionmenu;
+    void onAction(String pass) {
+		/*try {
+			list.set(pass);
+			return list;
+		}
+		catch (Exception e) {
+			_errorMessage = e.getMessage();
+			return null;
+		}*/
+    }
 
-    @Inject
-    private TagDAO tagDAO;
 
-    private boolean tags;
-    private String tagstring;
+    Object onActivate(String questiontype) {
 
-    Object onActivate(String input) {
-        System.out.println("Input is " + input);
-        if(input.contains("tag")) {
-            tags = true;
-            tagstring = input.substring(4); //Get the substring tag
-            System.out.println("Tagstring is " + tagstring);
+        if(questiontype.equals("Math"))
+        {
+
+            return null;
         }
+        else if(questiontype.equals("CriticalReading"))
+        {
+
+            return null;
+        }
+        else if(questiontype.equals("Writing"))
+        {
+
+
+            return null;
+        }
+        else {
+            allquestions = questionDAO.findAllNoRepeat();
+        }
+
         return null;
     }
 
-    /**
-     * @return the the articles queried
-     */
-    public List<Question> getAllQuestions() {
-        List<Question> returnVal = null;
 
-        if (tags == true) {
-            System.out.println("I return Null");
-            if (tagDAO.findByName(tagstring) != null) {
-                Tag tag = tagDAO.findByName(tagstring).get(0);
-                returnVal = tag.getQuestions();
-            }
-        }
-        else {
-            returnVal = questionDAO.findAllNoRepeat();
-        }
-
-        return returnVal;
-    }
+//    /**
+//     * @return the the articles queried
+//     */
+//    public List<Question> getAllQuestions() {
+//        List<Question> returnVal;
+//
+//        returnVal = questionDAO.findAllNoRepeat();
+//
+//        return returnVal;
+//    }
 
 }

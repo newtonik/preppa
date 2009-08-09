@@ -68,6 +68,7 @@ public class OpenQuestion implements Serializable {
     private String revComment;
     private Boolean image;
     private String imagePath;
+    private User updatedBy;
 
 
     @Id
@@ -221,7 +222,7 @@ public class OpenQuestion implements Serializable {
      * @return the user
      */
     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
-    @Fetch(value = FetchMode.JOIN)
+    //@Fetch(value = FetchMode.JOIN)
     @JoinColumn(name="user_id")
     @Audited
     public User getOwner() {
@@ -319,6 +320,24 @@ public class OpenQuestion implements Serializable {
      */
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    /**
+     * @return the updatedBy
+     */
+    @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
+    //@Fetch(value = FetchMode.JOIN)
+    @JoinColumn(name="updatedby_id")
+    @Audited
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    /**
+     * @param updatedBy the updatedBy to set
+     */
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
 }

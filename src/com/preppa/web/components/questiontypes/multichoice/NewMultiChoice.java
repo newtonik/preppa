@@ -91,14 +91,19 @@ public class NewMultiChoice {
     @Property
     private Integer ratingValue;
     @Property
+    @Persist
     private String ans1;
     @Property
+    @Persist
     private String ans2;
     @Property
+    @Persist
     private String ans3;
     @Property
+    @Persist
     private String ans4;
     @Property
+    @Persist
     private String ans5;
     @Property
     private Boolean c1;
@@ -182,8 +187,8 @@ public class NewMultiChoice {
                          "onCompleteCallback=literal:onChangeQuestionTestsubject"})
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
-    //@InjectComponent
-    //private Zone questionzone;
+//    @InjectComponent
+  //  private Zone questionzone;
 
     @Inject
     private QuestiontypeDAO questiontypeDAO;
@@ -219,7 +224,18 @@ public class NewMultiChoice {
 
     void onActivate() {
         question = new Question();
-        
+        if(ans1 != null) {
+            ans1 = null;
+        }
+        if(ans2 != null) {
+            ans2 = null;
+        }if(ans3 != null) {
+            ans3 = null;
+        }if(ans4 != null) {
+            ans4 = null;
+        }if(ans5 != null) {
+            ans5 = null;
+        }
     }
     @SetupRender
     void getSetupItems() {
@@ -245,7 +261,7 @@ public class NewMultiChoice {
 
 
     Object onValidateFormFromCreateQuestionForm(){
-        System.out.println("Validating");
+        System.out.println("Choices are "+ans1 + ans2 + ans3 + ans4 + ans5);
         if(mywork == false) {
             error = true;
             emessage = "You must verify that this is your own work.";
@@ -267,7 +283,7 @@ public class NewMultiChoice {
         }
         }
         if(request.isXHR() && createquestionform.getHasErrors()) {
-           // return questionzone;
+    //        return questionzone;
             return null;
         }
         else
@@ -312,7 +328,7 @@ public class NewMultiChoice {
 
    void onChangeFromQuestiontypeSelect(String quesId) {
 
-       System.out.println("I just got selected " + quesId);
+      // System.out.println("I just got selected " + quesId);
         if(!quesId.equals("") && quesId != null)
         {
             questType = Integer.parseInt(quesId);
