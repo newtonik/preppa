@@ -1,0 +1,38 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html t:type="layout" t:pageTitle="Questions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+<t:practicebarart />
+<div id="main">
+<div id="nav-menu">
+    <ul>
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test" style="height: 3em; line-height: 1.5em;">Awaiting Approval</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math" style="height: 3em; ">Flagged</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading" style="height: 3em; line-height: 1.5em;">Sealed and Approved</t:pagelink></li>
+    </ul>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<table>
+<tr>
+<td>
+<div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+style="padding: 1px; margins: 1px; width: 500px;" align="center">
+<div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+<h1>Help us improve our questions and approve them!</h1>
+</div></div>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+style="padding: 1px; margins: 1px;" align="center">
+<div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 250px;">
+<h1>Help us fix our flagged questions!</h1>
+</div></div></td>
+</tr>
+</table>
+</div>
+</html>
