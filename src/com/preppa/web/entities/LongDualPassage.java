@@ -59,6 +59,7 @@ public class LongDualPassage implements Serializable {
     private Integer voteScore;
     private ContentFlag status;
     private String revComment;
+    private User updatedBy;
 
 
     @Id
@@ -354,6 +355,22 @@ public class LongDualPassage implements Serializable {
      */
     public void setRevComment(String revComment) {
         this.revComment = revComment;
+    }
+
+    /**
+     * @return the updatedBy
+     */
+    @Audited
+    @ManyToOne
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    /**
+     * @param updatedBy the updatedBy to set
+     */
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     

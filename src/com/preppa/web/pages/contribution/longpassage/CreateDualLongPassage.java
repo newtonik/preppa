@@ -128,7 +128,8 @@ public class CreateDualLongPassage {
 
         longDualpassage.setCreatedAt(now);
         longDualpassage.setUpdatedAt(now);
-        longDualpassage.setUser(user);
+       longDualpassage.setUser(user);
+       longDualpassage.setUpdatedBy(user);
 
 
         longDualpassageDAO.doSave(longDualpassage);

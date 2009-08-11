@@ -35,8 +35,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.search.annotations.Field;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Target;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
@@ -327,7 +325,7 @@ public class OpenQuestion implements Serializable {
      */
     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
     //@Fetch(value = FetchMode.JOIN)
-    @JoinColumn(name="updatedby_id")
+    @JoinColumn(name="updatedby")
     @Audited
     public User getUpdatedBy() {
         return updatedBy;

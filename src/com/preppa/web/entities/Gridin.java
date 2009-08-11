@@ -57,6 +57,7 @@ public class Gridin implements Serializable {
     private List<Topic> topics = new ArrayList<Topic>();
     private Boolean image;
     private String imagePath;
+    private User updatedBy;
     
 
     @Id
@@ -314,6 +315,22 @@ public class Gridin implements Serializable {
      */
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    /**
+     * @return the updatedBy
+     */
+    @ManyToOne
+    @Audited
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    /**
+     * @param updatedBy the updatedBy to set
+     */
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
 }

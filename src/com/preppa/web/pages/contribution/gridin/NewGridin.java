@@ -127,9 +127,8 @@ public class NewGridin {
         question.setTitle(fTitle);
         question.setQuestion(fQuestion);
         question.setUser(user);
-        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-        question.setUpdatedAt(now);
-        question.setCreatedAt(now);
+        question.setUpdatedBy(user);
+       
 
 
         GridinAnswer a = new GridinAnswer();
@@ -152,6 +151,9 @@ public class NewGridin {
             question.getAnswers().add(a);
         }
 
+         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        question.setUpdatedAt(now);
+        question.setCreatedAt(now);
         gridinDAO.doSave(question);
         if(hasimage.equals("yes")) {
            String impath = context.getRealFile("/").getPath() + "/images/gridin" + question.getId() + ".jpg";

@@ -215,13 +215,13 @@ public class EditArticle {
 
         }
         if (user != null) {
-            article.setUser(user);
+            article.setUpdatedBy(user);
         }
         System.out.println(article.getTitle());
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
         article.setUpdatedAt(now);
-
+        
         articleDAO.doSave(article);
 
         showarticle.setarticle(article);

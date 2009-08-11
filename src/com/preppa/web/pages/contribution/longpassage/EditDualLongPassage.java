@@ -137,7 +137,7 @@ public class EditDualLongPassage {
 
          longDualpassage.setUpdatedAt(now);
 
-         longDualpassage.setUser(user);
+         longDualpassage.setUpdatedBy(user);
          longDualpassage.setComplete(true);
 
          longDualpassageDAO.doSave(longDualpassage);

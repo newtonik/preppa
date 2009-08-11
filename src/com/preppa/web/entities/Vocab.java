@@ -59,6 +59,7 @@ public class Vocab implements Serializable {
     private ContentFlag status;
     private String revComment;
     private List<Flag> flags = new ArrayList<Flag>();
+    private User updatedBy;
 
     public Vocab() {
     }
@@ -284,6 +285,22 @@ public class Vocab implements Serializable {
      */
     public void setFlags(List<Flag> flags) {
         this.flags = flags;
+    }
+
+    /**
+     * @return the updatedBy
+     */
+    @Audited
+    @ManyToOne
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    /**
+     * @param updatedBy the updatedBy to set
+     */
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
 }

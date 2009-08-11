@@ -119,7 +119,7 @@ public class EditGridin {
 
         question.setTitle(fTitle);
         question.setQuestion(fQuestion);
-        question.setUser(user);
+        //question.setUser(user);
 
         if(answertype.equals("range"))  {
 
@@ -134,6 +134,7 @@ public class EditGridin {
              question.getAnswers().get(0).setAnswer(fAnswer);
              question.getAnswers().get(0).setDescription(fDescription);
         }
+        question.setUpdatedBy(user);
         question.setRevComment(fComment);
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         question.setUpdatedAt(now);

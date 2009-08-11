@@ -2,11 +2,8 @@ package com.preppa.web.pages.learning;
 
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.entities.Article;
-import java.util.Calendar;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.util.regex.*;
 
@@ -33,7 +30,9 @@ public class Index {
     void onActivate() {
         this.index = 1;
         article = articleDAO.findById(index);
-        System.out.println(article.getBody());
+        if(article != null) {
+            System.out.println(article.getBody());
+        }
     }
 
     public String getBodyParse() {

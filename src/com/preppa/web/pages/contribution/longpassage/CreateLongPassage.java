@@ -108,6 +108,7 @@ public class CreateLongPassage {
         longpassage.setTitle(fTitle);
         longpassage.setSummary(fSummary);
         longpassage.setUser(user);
+        longpassage.setUpdatedBy(user);
 
         for (Tag t : addedTags) {
             if (!(longpassage.getTaglist().contains(t))) {

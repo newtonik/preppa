@@ -230,6 +230,7 @@ public class CreateArticle {
 
          }
           article.setUser(user);
+          article.setUpdatedBy(user);
          System.out.println(article.getTitle());
             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 

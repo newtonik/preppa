@@ -71,6 +71,7 @@ public class Article implements Serializable {
     private ContentFlag status;
     private String revComment;
     private List<Flag> flags = new ArrayList<Flag>();
+    private User updatedBy;
  
     @Id
     @NonVisual
@@ -345,6 +346,22 @@ public class Article implements Serializable {
      */
     public void setFlags(List<Flag> realflags) {
         this.flags = realflags;
+    }
+
+    /**
+     * @return the updatedBy
+     */
+    @ManyToOne
+    @Audited
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    /**
+     * @param updatedBy the updatedBy to set
+     */
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
    

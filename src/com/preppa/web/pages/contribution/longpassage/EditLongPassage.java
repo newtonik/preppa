@@ -119,7 +119,7 @@ public class EditLongPassage {
          longpassage.setTitle(fTitle);
          longpassage.setComplete(true);
          longpassage.setSummary(fSummary);
-         longpassage.setUser(user);
+         longpassage.setUpdatedBy(user);
          longpassage.setRevComment(fComment);
 
           if(fBody.length() > 100) {
