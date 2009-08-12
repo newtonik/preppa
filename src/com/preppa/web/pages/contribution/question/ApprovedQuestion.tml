@@ -1,0 +1,13 @@
+<html t:type="layout" t:pageTitle="Sealed and Approved" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+    <div id="main">
+        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px;" align="center">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+        <h1>Sealed and Approved!</h1>
+        <t:loop t:source="approved" t:value="question">
+            <t:outputraw t:value="${question.question}" />
+        </t:loop>
+        </div></div>
+    </div>
+</html>
