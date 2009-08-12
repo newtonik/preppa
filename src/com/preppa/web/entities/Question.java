@@ -50,7 +50,7 @@ public class Question implements Serializable {
     private String explanation;
     private Integer difficulty;
     private List<QuestionAnswer> choices = new ArrayList<QuestionAnswer>();
-    //this will be used for validation.
+    //this will be used for validation
     private Integer numCorrect;
     private String correctAnswer;
     private Date createdAt;
@@ -64,8 +64,7 @@ public class Question implements Serializable {
     private Set<Vote> votes;
     private Integer voteScore;
     private User updatedBy;
-
-
+    private int approval;
 
     public Question() {
     }
@@ -226,6 +225,21 @@ public class Question implements Serializable {
      */
     public void setNumCorrect(Integer numCorrect) {
         this.numCorrect = numCorrect;
+    }
+
+    /**
+     * @return the approval rating
+     */
+    @Audited
+    public Integer getApproval() {
+        return approval;
+    }
+
+    /**
+     * @param numCorrect the numCorrect to set
+     */
+    public void setApproval(Integer approval) {
+        this.approval = approval;
     }
 
     /**
@@ -392,6 +406,7 @@ public class Question implements Serializable {
      * @return the voteScore
      */
     public Integer getVoteScore() {
+        //voteScore = votes.size();
         return voteScore;
     }
 

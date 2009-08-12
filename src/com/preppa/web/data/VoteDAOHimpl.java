@@ -8,6 +8,7 @@ import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 
 /**
@@ -18,6 +19,26 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
     public VoteDAOHimpl(Logger logger, Session session)
     {
         super(logger, session);
+    }
+
+    @Override
+    public List<Vote> findVoteByContentId(ContentType contentType) {
+        SQLString sqlString = new SQLString("FROM Vote v");
+        if(contentType != null)
+        {
+            sqlString.addWhereClause("v.contentTypeId  = '" + contentType + "'");
+        }
+
+
+        //List<Vote> result = findBySQLQuery(sqlString.toString());
+
+//
+        //Integer sum = 0;
+        //Integer sum = result.get(0).getValue();
+//        for(Vote v : all) {
+//            sum += v.getValue();
+//        }
+        return findByCriteria(Restrictions.eq("contentType", contentType));
     }
 
     @Override

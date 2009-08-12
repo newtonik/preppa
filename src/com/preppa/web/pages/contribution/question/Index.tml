@@ -6,9 +6,9 @@
 <div id="main">
 <div id="nav-menu">
     <ul>
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test" style="height: 3em; line-height: 1.5em;">Awaiting Approval</t:pagelink></li>
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math" style="height: 3em; ">Flagged</t:pagelink></li>
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading" style="height: 3em; line-height: 1.5em;">Sealed and Approved</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/question/approved" t:context="literal:Test" style="height: 3em; line-height: 1.5em;">Sealed and Approved</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/question/awaiting" t:context="literal:Math" style="height: 3em; line-height: 1.5em;">Awaiting Approval</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/question/flagged" t:context="literal:CriticalReading" style="height: 3em; line-height: 1.5em;">Flagged</t:pagelink></li>
     </ul>
 </div>
 <br/>
@@ -18,21 +18,41 @@
 <br/>
 
 <table>
-<tr>
-<td>
-<div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-style="padding: 1px; margins: 1px; width: 500px;" align="center">
-<div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
-<h1>Help us improve our questions and approve them!</h1>
-</div></div>
-</td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-style="padding: 1px; margins: 1px;" align="center">
-<div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 250px;">
-<h1>Help us fix our flagged questions!</h1>
-</div></div></td>
-</tr>
+    <tr>
+        <td>
+        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px; width: 500px;" align="center">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+        <h1>Help us improve our questions and approve them!</h1>
+        <t:loop t:source="nonApproved" t:value="question">
+            <t:outputraw t:value="${question.question}" />
+        </t:loop>
+        </div></div>
+        </td>
+
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px;" align="center">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 250px;">
+        <h3>Help us fix our flagged questions!</h3>
+        <t:loop t:source="flags" t:value="flag">
+            <div align="left">
+            <t:outputraw t:value="${flag.question.question}" />
+            <t:loop t:source="flag.question.choices" t:value="answer">
+            <div class="answer">
+            <u><t:outputraw t:value="${answer.answer}" /></u>
+            </div>
+            </t:loop>
+            Flaged by ${flag.flagger.username}
+            at ${flag.createdat}
+            <a href="#" t:type="pagelink" t:page="contribution/question/show" t:context="${flag.question.id}"> Click Here</a>
+            </div>
+            <br/>
+            <br/>
+        </t:loop>
+        </div></div>
+        </td>
+    </tr>
 </table>
 </div>
 </html>

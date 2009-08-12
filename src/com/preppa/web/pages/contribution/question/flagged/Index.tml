@@ -17,7 +17,7 @@
             <br />
             </t:form>
         </div>
-        <t:zone t:id="questionviewzone">
+        <t:zone t:id="articleviewzone">
             <t:delegate to="resultblock" />
         </t:zone>
 
@@ -47,7 +47,7 @@
                 </th>
             <tr t:type="loop" value="flag" source="flags">
                 <td>     <a href="#" t:type="pagelink" t:page="contribution/question/show" t:context="${flag.question.id}">
-                            ${flag.question.question}
+                            <t:outputraw t:value="${flag.question.question}" />
                             </a>
                 </td>
                 <td>

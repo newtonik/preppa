@@ -50,7 +50,7 @@ public class Index {
     @Property
     private Block resultblock;
     @InjectComponent
-    private Zone questionviewzone;
+    private Zone articleviewzone;
     @Persist
     @Property
     private String flagvalue;
@@ -72,9 +72,15 @@ public class Index {
     public void setType( FlagType type) { flagtype = type; }
 
     void onActivate() {
-        flags = flagDAO.FindAllByContentType(ContentType.Question);
+        List<Flag> temp = flagDAO.FindAllByContentType(ContentType.Question);
         questions = new ArrayList<Question>();
 
+        flags = new ArrayList();
+        for (int i = 0; i < temp.size(); i++) {
+            if(flags.contains(temp.get(i)) != true) {
+               flags.add(temp.get(i));
+            }
+        }
     }
 
     Block onChangeFromFlagSelect(String selected) {

@@ -59,8 +59,6 @@ public class ViewQuestion {
         }
         else if(questiontype.equals("Writing"))
         {
-
-
             return null;
         }
         else {
