@@ -62,9 +62,11 @@
                       t:label="Body" t:validate="required" onkeyup="countCharacters();" />
             </td>
             </tr>
-            <tr >
-                <td id="counter">
-                </td>
+            <tr>
+                <td><b> Word Count</b></td>
+            </tr>
+            <tr>
+                <td id="word_count"></td>
             </tr>
             <tr>
                 <td valign="top" align="left">

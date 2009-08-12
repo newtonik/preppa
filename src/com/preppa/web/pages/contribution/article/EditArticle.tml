@@ -59,6 +59,12 @@
                       t:label="Body" t:validate="required" />
             </td>
             </tr>
+             <tr>
+                <td><b> Word Count</b></td>
+            </tr>
+            <tr>
+                <td id="word_count"></td>
+            </tr>
             <tr>
                 <td valign="top" align="left">
             <t:label for="fSource"> Sources: </t:label>

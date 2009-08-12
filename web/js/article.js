@@ -64,3 +64,23 @@ function onChangeTestsubject(response) {
 //         });
 //     });
     
+ function FCKeditor_OnComplete( editorInstance )
+{
+
+    fckeditor_word_count(editorInstance);
+    editorInstance.Events.AttachEvent('OnSelectionChange', fckeditor_word_count);
+
+
+}
+
+function fckeditor_word_count(editorInstance) {
+
+    var matches = editorInstance.GetData().replace(/<[^<|>]+?>|&nbsp;/gi,' ').match(/\b/g);
+    var count = 0;
+    if(matches) {
+        count = matches.length/2;
+    }
+
+    $('word_count').innerHTML = count + " word" + (count == 1 ? "" : "s");
+
+}

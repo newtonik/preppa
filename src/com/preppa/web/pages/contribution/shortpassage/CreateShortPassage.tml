@@ -17,14 +17,21 @@
                 <tr>
                 <div id="pass1">
                     <td valign="top" align="right">
-                    <t:label for="passeditor">Passage: </t:label>
+                    <t:label for="pass1">Passage: </t:label>
                     </td>
                     <td >
-                    <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required" t:label="Passage"/>
+                    <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required" t:label="Passage"/>
                     </td>
                 </div>
                 </tr>
-
+                 <tr>
+                     <td></td>
+                    <td><b> Word Count</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="word_count"></td>
+                </tr>
                 <tr>
 
                     <td valign="top" align="right">

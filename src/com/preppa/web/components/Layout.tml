@@ -38,6 +38,7 @@
                         <t:pagelink t:page="contribution/article/create"> Articles </t:pagelink><br/>
                         <t:pagelink t:page="contribution/vocab/add"> Vocabulary </t:pagelink><br/>
                         <t:pagelink t:page="contribution/question/create"> Question </t:pagelink><br/>
+                        <t:pagelink t:page="contribution/gridin/new"> Qridin </t:pagelink><br/>
                         <t:pagelink t:page="contribution/longpassage/create"> Long Passages </t:pagelink><br/>
                         <t:pagelink t:page="contribution/shortpassage/create"> Short Passages </t:pagelink><br/>
                         </div>

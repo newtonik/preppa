@@ -33,7 +33,6 @@ import org.hibernate.search.annotations.Indexed;
  * @author newtonik
  */
 @Entity
-@Indexed
 //@NamedQueries({ @NamedQuery(name = "Announcements.findByStartsAt", query = "SELECT a FROM Announcements a WHERE a.startsAt = :startsAt"), @NamedQuery(name = "Announcements.findByEndsAt", query = "SELECT a FROM Announcements a WHERE a.endsAt = :endsAt"), @NamedQuery(name = "Announcements.findByCreatedAt", query = "SELECT a FROM Announcements a WHERE a.createdAt = :createdAt"), @NamedQuery(name = "Announcements.findByUpdatedAt", query = "SELECT a FROM Announcements a WHERE a.updatedAt = :updatedAt"), @NamedQuery(name = "Announcements.findByLocationId", query = "SELECT a FROM Announcements a WHERE a.locationId = :locationId")})
 public class Announcement implements Serializable {
     private static final long serialVersionUID = 1L;

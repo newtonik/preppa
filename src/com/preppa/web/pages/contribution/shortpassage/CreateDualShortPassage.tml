@@ -22,7 +22,15 @@
                     <t:editor align="left" t:id="passeditorone" value="fBodyone" t:validate="required" t:label="Passage 1" t:toolbarSet="Basic" t:width="600" t:height="300"/>
                     </td>
                 </div>
-                </tr>   
+                </tr>
+                 <tr>
+                     <td></td>
+                    <td><b> Word Count</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="word_count"></td>
+                </tr>
                 <tr>
                 <div id="pass2">
                     <td valign="top" align="right">
@@ -33,7 +41,14 @@
                     </td>
                 </div>
                 </tr>
-
+                  <tr>
+                     <td></td>
+                    <td><b> Word Count</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="word_count2"></td>
+                </tr>
                 <tr>
 
                     <td valign="top" align="right">

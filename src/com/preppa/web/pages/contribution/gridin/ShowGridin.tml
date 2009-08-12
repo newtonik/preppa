@@ -1,21 +1,29 @@
 <html t:type="layout" t:pageTitle="${question.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <h3>  ${question.title} </h3>
-
-    <div id="qridinbody">
-        <p>
-        <t:outputraw t:value="${question.question}" />
-    </p>
-
-</div>
-<div align="right">
+<div align="center">
     <t:if t:test="${question.image}">
-        <img src="/preppa/images/gridin${question.id}.jpg" align="left" width="85" height="100"/>
+        <img src="/preppa/images/gridin${question.id}.jpg" align="top" width="400" height="300"/>
+
         <t:parameter name ="else">
             <b>No Image </b>
         </t:parameter>
     </t:if>
 </div>
+    <div id="qridinbody">
+        <p>
+        <t:outputraw t:value="${question.question}" />
+         <br />
+        <br />
+        <br />
+    </p>
+
+</div>
+
+        <br />
+        <br />
+        <br />
+        <br />
 <div id="gridinanswer" align="left" >
     <h4>Answer</h4>
     <p>
