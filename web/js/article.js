@@ -3,19 +3,22 @@
 //$('votebox').hide();
 $('flaglink').observe('click', function() {
     //get position
-    var pos = $('flagpass').cumulativeOffset();
-    var width  = $('flagpass').getWidth();
+    var pos = $('main').cumulativeOffset();
+    
            
     $('votebox').setStyle({
 
         // display: 'block',
         position: 'absolute',
         fontSize: '12px',
-        //    left: (pos.left-200) + "px",
-        top : (pos.top-400)+ "px"
+        left: (pos.left+20) + "px",
+        top : (pos.top-120)+ "px"
     });
     $('votebox').show();
-    Effect.ScrollTo('footer');
+     $('votebox').clonePosition()
+    
+    $('flagfield').activate();
+    //Effect.ScrollTo('header');
     //$('votebox').absolutize()
             
                

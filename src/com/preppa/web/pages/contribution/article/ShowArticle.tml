@@ -100,11 +100,11 @@
                     <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
                    Copyright Violation<br />
                    <br />
-                   <t:label for="reasonDesc"> Enter a Short Description of problem </t:label>
+                   <t:label for="flagfield"> Enter a Short Description of problem </t:label>
                        <br />
 
              </t:radiogroup>
-            <input t:type="textfield" type="textfield" t:id="reasonDesc" size="30"/>
+            <input t:type="textfield" type="textfield" t:id="flagfield" t:value="reasonDesc" size="30"/>
             <br />
             <p align="center">
         <br />

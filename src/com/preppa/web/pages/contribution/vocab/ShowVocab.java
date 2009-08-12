@@ -35,7 +35,7 @@ import org.springframework.security.annotation.Secured;
  * @author newtonik
  */
 @IncludeStylesheet(value = {"context:styles/flag.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/article.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/vocab.js"})
 public class ShowVocab {
 
     @ApplicationState

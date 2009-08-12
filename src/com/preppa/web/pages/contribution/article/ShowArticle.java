@@ -30,6 +30,7 @@ import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -87,6 +88,8 @@ private List<Flag> articleflags;
 @Inject
 @Property
 private Block flagblock;
+@Component
+private TextField flagfield;
 
 
 void onActivate(int id) {
