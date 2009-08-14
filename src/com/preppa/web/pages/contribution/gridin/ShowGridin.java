@@ -1,10 +1,13 @@
 package com.preppa.web.pages.contribution.gridin;
 
+import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
@@ -20,6 +23,10 @@ public class ShowGridin {
     @Property
     private GridinAnswer answer;
     private Long gridId;
+    @Component
+    private Form flagform;
+    @Inject
+    private FlagDAO flagDAO;
     
     void onActivate(Long id)  {
         if(id > 0) {

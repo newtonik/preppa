@@ -15,4 +15,5 @@ public interface VoteDAO  extends GenericDAO <Vote, Long> {
     public List<Vote> findVoteByContentId(ContentType contentType);
     public Integer findVoteByContentId(ContentType contentType, Integer contentId);
     public Boolean checkVoted(ContentType contentType, Integer contentId, User user);
+    public Integer findSumByQuestionId(Integer contentId);
 }

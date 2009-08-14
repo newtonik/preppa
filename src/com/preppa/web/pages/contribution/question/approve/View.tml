@@ -1,0 +1,23 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html t:type ="layout" t:pageTitle="View Awaiting" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+<div id="main">
+
+                <b>Approved</b> - ${qType}
+        <div align="right">  <t:pagelink t:page="contribution/question/flagged" > Flagged </t:pagelink> </div>
+<div class="question">
+
+
+    <h2>Questions</h2>
+    <t:loop t:source="questions"
+    t:value="question">
+    <div class="question">
+            <a href="#" t:type="pageLink" t:page="contribution/question/approve/Show" t:context="question.id">${question.questionformatted}</a>
+            <br></br>
+    </div>
+    <br />
+</t:loop>
+</div>
+</div>
+</html>

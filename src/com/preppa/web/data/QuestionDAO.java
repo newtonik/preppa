@@ -22,4 +22,5 @@ public interface QuestionDAO extends GenericDAO <Question, Integer> {
     List<Question> findByTag(String name);
     List<Question> findAllByNonApproved();
     List<Question> findAllByApproved();
+    public List<Question> findAllByQuestionType(String qType);
 }

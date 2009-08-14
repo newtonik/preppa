@@ -74,7 +74,7 @@ public class ShowQuestion {
                 /*example = question.getSentence().getSentence();
                 vid = question.getId();*/
                 qid = id;
-                this.votes = voteDAO.findVoteByContentId(ContentType.Question, ques.getId());
+                this.votes = voteDAO.findSumByQuestionId(ques.getId());
             } else {
                 // return index;
             }
@@ -101,16 +101,16 @@ public class ShowQuestion {
 
     Block onActionFromVoteUp() {
      String  hostname = _request.getRemoteHost();
-     if(!(voteDAO.checkVoted(ContentType.Article, ques.getId(), user)))
+     if(!(voteDAO.checkVoted(ContentType.Question, ques.getId(), user)))
      {
          Vote v = new Vote();
          v.setContentId(ques.getId());
          v.setSource(hostname);
          if(user != null)
              v.setUser(user);
-
+         
          v.setValue(1);
-          v.setContentTypeId(ContentType.Article);
+          v.setContentTypeId(ContentType.Question);
 
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
          v.setCreatedAt(now);
@@ -134,7 +134,7 @@ public class ShowQuestion {
      String  hostname = _request.getRemoteHost();
     // System.out.println(_request.getRequestURL());
 
-     if(!(voteDAO.checkVoted(ContentType.Article, ques.getId(), user)))
+     if(!(voteDAO.checkVoted(ContentType.Question, ques.getId(), user)))
      {
          Vote v = new Vote();
          v.setContentId(ques.getId());
@@ -143,7 +143,7 @@ public class ShowQuestion {
              v.setUser(user);
 
          v.setValue(-1);
-         v.setContentTypeId(ContentType.Article);
+         v.setContentTypeId(ContentType.Question);
 
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
          v.setCreatedAt(now);

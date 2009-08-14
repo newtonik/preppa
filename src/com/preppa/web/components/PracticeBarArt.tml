@@ -3,9 +3,9 @@
 <div id="subheader">
     <div id="tabs">
   <t:if t:test="Question">
-    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/question/view"><span class="bounty-indicator-tab"></span>Questions</a>
+    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/question/index"><span class="bounty-indicator-tab"></span>Questions</a>
     <t:parameter name="else">
-        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/question/view">Questions</a>
+        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/question/index">Questions</a>
     </t:parameter>
 </t:if>
 <t:if t:test="Article">

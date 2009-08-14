@@ -33,6 +33,11 @@ public class Index {
         if(article != null) {
             System.out.println(article.getBody());
         }
+        else {
+            article = new Article();
+            article.setTitle("");
+            article.setBody("");
+        }
     }
 
     public String getBodyParse() {

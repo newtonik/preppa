@@ -42,6 +42,8 @@ public class Index {
     private List<Question> nonApproved;
     @Property
     private Question question;
+    @Inject
+    private VoteDAO voteDAO;
 
     void onActivate() {
         List<Flag> temp = flagDAO.FindAllByContentType(ContentType.Question);
@@ -56,9 +58,10 @@ public class Index {
         nonApproved = new ArrayList<Question>();
 
         for (int i = 0; i < qTemp.size(); i++) {
-            //System.out.println("Non approved flags " + nonApproved.get(i).getFlags());
             if (qTemp.get(i).getFlags().isEmpty()) {
-                nonApproved.add(qTemp.get(i));
+                if (voteDAO.findSumByQuestionId(qTemp.get(i).getId()) < 1) {
+                    nonApproved.add(qTemp.get(i));
+                }
             }
         }
 

@@ -41,6 +41,48 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         return findByCriteria(Restrictions.eq("contentType", contentType));
     }
 
+    public List findQuestionIdByApproved() {
+        SQLString sqlString = new SQLString("select contentId FROM Vote v");
+        sqlString.addWhereClause("v.contentTypeId  = '" + 6 + "'");
+        sqlString.addGroupField("v.contentTypeId");
+        sqlString.addGroupField("v.contentId");
+
+        List<Vote> v = findBySQLQuery(sqlString.toString());
+        System.out.println("v is " + v);
+        return findBySQLQuery(sqlString.toString());
+    }
+
+    @Override
+    public Integer findSumByQuestionId(Integer contentId) {
+        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
+        if(contentId > 0)
+        {
+            sqlString.addWhereClause("v.contentTypeId  = '" + 6 + "'");
+            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
+            sqlString.addGroupField("v.contentTypeId");
+        }
+
+
+        List<Vote> result = findBySQLQuery(sqlString.toString());
+        System.out.println("Sum is " + result);
+        Integer sum = 0;
+        if(result != null) {
+            if(result.toArray().length > 0) {
+                BigDecimal s = (BigDecimal) result.toArray()[0];
+                sum = Integer.valueOf(s.intValue());
+            }
+        }
+
+//
+        //Integer sum = 0;
+        //Integer sum = result.get(0).getValue();
+//        for(Vote v : all) {
+//            sum += v.getValue();
+//        }
+        return sum;
+
+    }
+
     @Override
     public Integer findVoteByContentId(ContentType contentType, Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
@@ -55,6 +97,7 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
 
         List<Vote> result = findBySQLQuery(sqlString.toString());
+        System.out.println("Sum is " + result);
         Integer sum = 0;
         if(result != null) {
             if(result.toArray().length > 0) {
@@ -83,7 +126,6 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
             sqlString.addWhereClause("v.user = '" + user.getId() + "'");
 
         }
-            List<Vote> votes;
 
             //votes = findBySQLQuery(sqlString.toString());
             Integer result =  0;
