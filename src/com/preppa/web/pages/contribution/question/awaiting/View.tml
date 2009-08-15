@@ -1,5 +1,34 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html t:type ="layout" t:pageTitle="Views Awaiting" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+<div id="main">
+                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - ${qType}
+        <div align="right">  <t:pagelink t:page="contribution/question/flagged" > Flagged </t:pagelink> </div>
+</div><div class="question">
 
+                <t:if t:test="isGridin">
+   <h2>Grid-In Questions</h2>
+    <t:loop t:source="gridins"
+    t:value="gridin">
+    <div class="gridin">
+            <a href="#" t:type="pageLink" t:page="contribution/gridin/Show" t:context="gridin.id">${gridin.title}</a>
+            <br></br>
+    </div>
+    </t:loop>
+                    <t:parameter name="else">
+
+    <h2>Questions</h2>
+    <t:loop t:source="questions"
+    t:value="question">
+    <div class="question">
+            <a href="#" t:type="pageLink" t:page="contribution/question/approve/Show" t:context="question.id"><t:outputraw t:value="${question.questionformatted}" /></a>
+            <br></br>
+    </div>
+</t:loop>
+    <br/>
+                    </t:parameter>
+                </t:if>
+
+</div>
 </html>

@@ -47,62 +47,39 @@
 <p>
     <a href="#" t:type="pagelink" t:page="contribution/gridin/edit" t:context="${question.id}" > Edit </a>
 </p>
-<div id="votebox" class="votemenu" style='display:none'>
-    <t:zone t:id="flagZone">
-         <t:delegate to="flagblock"/>
-    </t:zone>
-         <div align="center">
-            <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
+
+
+
+       <div>
+            <t:zone t:id="voteupZone">
+
+            <t:block t:id="voteBlock">
+
+            </t:block>
+                <b> ${votes} Stars</b>
+              <br />
+            <a href="#" t:type="actionlink" t:id="voteup" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
+                Vote Up </a>
+            <br />
+            <a href="#" t:type="actionlink" t:id="votedown" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
+                Vote Down </a>
+            </t:zone>
         </div>
 
-    </div>
-    <br/>
-<a href="#" t:type="pagelink" t:page="contribution/question/edit" t:context="${question.id}"> Edit </a>
-<br />
-<p id="flagpass">
-             <a href="#" id="flaglink" > Flag </a>
- </p>
-
-            <t:block t:id="flagblock">
-           <div id="submittable">
-        <h3> Select a reason for flaging </h3>
-        <t:form t:id="flagform" t:zone="flagZone">
-             <t:radiogroup value="reason" name="flaggroup">
-                  <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
-                 Incorrect<br />
-                 <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
-                 Offensive or Abusive<br />
-                   <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
-                   Spam <br />
-                   <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
-                   Alert Moderator<br />
-                   <br />
-                    <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
-                   Copyright Violation<br />
-                   <br />
-                   <t:label for="reasonDesc"> Enter a Short Description of problem </t:label>
-                       <br />
-
-             </t:radiogroup>
-            <input t:type="textfield" type="textfield" t:id="reasonDesc" size="30"/>
-            <br />
-            <p align="center">
+    <t:block t:id="upsuccess">
+        <b> ${votes} Stars</b>
         <br />
-                        <input type="submit" value="Submit"/>
-                            <a href="#" id="cancelflag" > Cancel </a>
-                            <br />
-            </p>
-        </t:form>
-                </div>
-        </t:block>
-    <t:block t:id="flagresponse" >
+        You Voted Up
+    </t:block>
+    <t:block t:id="downsuccess">
+        <b> ${votes} Stars</b>
         <br />
+        You Voted Down
+    </t:block>
+    <t:block t:id="voted">
+     <b> ${votes} Stars</b>
         <br />
-        <p>
-            Thanks for your feedback, we will look at the issue.
-        </p>
-        <br />
-
+       You have already voted.
     </t:block>
 
 </html>
