@@ -9,3 +9,12 @@ document.observe("dom:loaded", function() {
 function checkform() {
     alert("checking form");
 }
+
+function showUpload() {
+    $('upload').highlight();
+    Effect.BlindDown('upload', { duration: 1 });
+}
+
+function hideUpload() {
+    $('upload').hide();
+}

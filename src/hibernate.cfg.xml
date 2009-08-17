@@ -13,7 +13,6 @@
     <property name="current_session_context_class">thread</property>
     <property name="hibernate.search.default.directory_provider"> org.hibernate.search.store.FSDirectoryProvider </property>
     <property name="hibernate.search.default.indexBase"> lucene/indexes </property>
-    <property name="hibernate.c3p0.idle_test_period">25200</property>
     <listener class="org.hibernate.envers.event.AuditEventListener" type="post-insert"/>
     <listener class="org.hibernate.envers.event.AuditEventListener" type="post-update"/>
     <listener class="org.hibernate.envers.event.AuditEventListener" type="post-delete"/>

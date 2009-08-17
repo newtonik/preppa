@@ -10,7 +10,15 @@
     <div class="author-date">
         Last updated ${question.updatedAt}
     </div>
+<div align="center">
+    <t:if t:test="${question.image}">
+        <img src="/preppa/images/multiplechoice/question${question.id}/${question.id}.jpg" align="top" width="400" height="300"/>
 
+        <t:parameter name ="else">
+            <b>No Image </b>
+        </t:parameter>
+    </t:if>
+</div>
     <div class="multiple-choice-question">
         <t:outputraw t:value="${question.question}"/>
 

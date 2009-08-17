@@ -29,7 +29,7 @@ root {
     margin-left: 10px;
     text-indent: 2px;
     font-family: 'Times New Roman',Times,serif;
-    text-align: justify;
+    text-align: left;
     margin-top: 5px;
     margin-bottom: 5px;
     padding-left: 10px;
@@ -52,6 +52,8 @@ root {
 .votemenu {
     width: 300px;
     height: 250px;
+    z-index: 1;
+    
 }
 
 #submitable {

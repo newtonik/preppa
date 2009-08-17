@@ -13,7 +13,7 @@ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 
 root { 
     display: block;
-    
+    z-index: -1;
 
 }
 * {
@@ -205,11 +205,12 @@ padding:5px 15px 4px 6px;
     clear:both;
     float:left;
     width:100%;				/* width of whole page */
-    overflow:hidden;		/* This chops off any overhanging divs */
+    overflow:visible;		/* This chops off any overhanging divs */
 }
 /* holy grail 3 column settings */
 .holygrail {
     background: #FFF;    	/* Right column background colour */
+    
 }
 .holygrail .colmid {
     float:left;
@@ -240,7 +241,7 @@ padding:5px 15px 4px 6px;
                             	Right padding = right column width + centre column right padding width */
     position:relative;
     left:200%;
-    overflow:hidden;
+  
     padding-bottom:25px;
 }
 .holygrail .col2 {

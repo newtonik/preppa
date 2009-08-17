@@ -7,6 +7,7 @@ import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +26,9 @@ import org.apache.tapestry5.corelib.components.RadioGroup;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.Context;
+import org.apache.tapestry5.upload.components.Upload;
+import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
@@ -102,8 +106,16 @@ public class EditMultiChoice {
     private Block newtagblock;
     @Property
     private String fComment;
-
-
+    @Property
+    private String hasimage;
+    @Property
+    private UploadedFile imageupload;
+    @Component
+    private Upload upload;
+    @Inject
+    private Context context;
+    @Property
+    private String imgpath;
     void CreateQuestion() {
         //question = new Question();
     }
@@ -124,6 +136,11 @@ public class EditMultiChoice {
             addedTags = question.getTaglist();
             ratingValue = question.getDifficulty();
             correct = question.getCorrectAnswer();
+            if(question.getImage())
+            {
+                imgpath = question.getImagePath();
+            }
+
 
         }
 
@@ -191,6 +208,7 @@ public class EditMultiChoice {
                 question.getTaglist().add(t);
             }
         }
+       
         //question.setUser(user);
         question.setUpdatedBy(user);
         question.setRevComment(fComment);
@@ -198,7 +216,16 @@ public class EditMultiChoice {
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         question.setUpdatedAt(now);
         questionDAO.doSave(question);
-
+    
+        if(hasimage.equals("yes")) {
+           String impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/"+ question.getId() + ".jpg";
+            System.out.println(impath);
+            boolean status = new File(context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() ).mkdirs();
+            File copied = new File(impath);
+            imageupload.write(copied);
+            question.setImagePath(impath);
+            question.setImage(Boolean.TRUE);
+       }
         showquestion.setquestion(question);
         return showquestion;
     }

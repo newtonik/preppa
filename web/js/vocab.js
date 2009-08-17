@@ -6,14 +6,12 @@ $('flaglink').observe('click', function() {
     $('votebox').setStyle({
 
         // display: 'block',
-        position: 'absolute',
-        fontSize: '12px',
-        left: (pos.left-20) + "px",
-        top : (pos.top-150)+ "px"
+      position: 'absolute',
+        fontSize: '12px'
     });
     $('votebox').show();
-     $('votebox').clonePosition()
-
+     $('votebox').makePositioned();
+      $('votebox').focus();
     $('flagfield').activate();
     //Effect.ScrollTo('header');
     //$('votebox').absolutize()

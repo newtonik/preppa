@@ -21,6 +21,7 @@ import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
 import com.preppa.web.utils.InjectSelectionModel;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,7 +46,10 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.Context;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.upload.components.Upload;
+import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
@@ -163,7 +167,14 @@ public class NewMultiChoice {
     @Property
     @Persist
     private Integer questType;
-
+    @Property
+    private String hasimage;
+    @Property
+    private UploadedFile imageupload;
+    @Component
+    private Upload upload;
+    @Inject
+    private Context context;
     /** Components and Objects for Select forms **/
     @Parameter
     @InjectSelectionModel(labelField = "name", idField = "id")
@@ -378,6 +389,9 @@ public class NewMultiChoice {
                 question.getTaglist().add(t);
             }
      }
+     
+   
+     question.setImage(Boolean.FALSE);
      //question.setQuestiontype(questiontype);
      question.setUser(user);
     question.setCorrectAnswer(correct);
@@ -388,7 +402,16 @@ public class NewMultiChoice {
      question.setCreatedAt(now);
      question.setUpdatedAt(now);
      newquestion = true;
-
+     questionDAO.doSave(question);
+  if(hasimage.equals("yes")) {
+           String impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/"+ question.getId() +".jpg";
+             boolean status = new File(context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() ).mkdirs();
+            System.out.println(impath);
+            File copied = new File(impath);
+            imageupload.write(copied);
+            question.setImagePath(impath);
+            question.setImage(Boolean.TRUE);
+       }
      if(owner != null)
      {
         if(!saveQuestionToObject(owner, question))
