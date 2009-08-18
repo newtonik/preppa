@@ -2,21 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package com.preppa.web.pages.contribution.longpassage;
+package com.preppa.web.components.questiontypes.shortpassage;
 
 import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
-import com.preppa.web.data.LongPassageDAO;
-import com.preppa.web.data.PassageDAO;
-import com.preppa.web.entities.LongPassage;
+import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.ShortDualPassage;
+import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
@@ -27,13 +27,12 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author newtonik
  */
-public class ShowLongPassage {
+public class ShowShortPassage {
+
     @Property
-    private LongPassage passage;
+    private ShortPassage passage;
     @Inject
-    private LongPassageDAO passageDAO;
-    @Inject
-    private PassageDAO passDA0;
+    private ShortPassageDAO passageDAO;
     private Integer pid;
     @Inject
     @Property
@@ -68,118 +67,122 @@ public class ShowLongPassage {
     private List<Question> listquestions;
     @Property
     private List<Tag> tags = new LinkedList<Tag>();
+    @Parameter
+    private ShortDualPassage passParam;
 
-    void onpageLoaded() {
-            firstquestion.setPageFalse();
-
-    }
     @SetupRender
-    void setDefaults() {
-            lastquestion = true;
-            onequestion = true;
-    }
-    void onActivate(int id) {
-            this.passage = passageDAO.findById(id);
+    void onSetupPassage() {
+        if(passParam != null) {
+            this.passage = passageDAO.findById(passParam.getId());
             tags = passage.getTaglist();
             this.pid = passage.getId();
+            lastquestion = true;
+            onequestion = true;
+        }
     }
 
     Integer onPassivate() {
         return this.pid;
     }
-    public void setPassagePage(LongPassage passage) {
-        if(passage != null) {
+
+    void setPassagePage(ShortPassage passage) {
+        if (passage != null) {
             this.passage = passage;
             this.pid = passage.getId();
         }
+    }
 
-        }
-        Block onActionFromAddQuestion() {
+    Block onActionFromAddQuestion() {
 
         return questionblock;
     }
 
-      Block onActionFromShowQuestionlink() {
+    Block onActionFromShowQuestionlink() {
         count = 0;
 
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
         passage = passageDAO.findById(passage.getId());
         listquestions = passage.getQuestions();
         size = listquestions.size();
-         if(size == 0)
+        if (size == 0) {
             return null;
+        }
         q1 = listquestions.get(count);
 
         return showquestionBlock;
     }
+
     Block onActionFromRemoveShowQuestion() {
         questionschanged = true;
         return null;
     }
-     Block onActionFromRemoveNewQuestion() {
+
+    Block onActionFromRemoveNewQuestion() {
         return null;
     }
-     Block onActionFromNextShowQuestion() {
-         if(questionschanged) {
-             System.out.println("questions have been updated");
+
+    Block onActionFromNextShowQuestion() {
+        if (questionschanged) {
+            System.out.println("questions have been updated");
             passage = passageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
-         }
-         System.out.println("Size is " + size);
-         if(count < size-1 && (size != 0))
-             count++;
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
+        }
+        System.out.println("Size is " + size);
+        if (count < size - 1 && (size != 0)) {
+            count++;
+        }
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
 
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
 
 
-         q1 = listquestions.get(count);
-         return showquestionBlock;
-     }
-      Block onActionFromPrevShowQuestion() {
-         if(questionschanged) {
+        q1 = listquestions.get(count);
+        return showquestionBlock;
+    }
 
-          System.out.println("questions have been updated");
+    Block onActionFromPrevShowQuestion() {
+        if (questionschanged) {
+
+            System.out.println("questions have been updated");
             passage = passageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
-         }
-         if(count > 0 && count <= (size-1))
-         {
-             count--;
-         }
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
+        }
+        if (count > 0 && count <= (size - 1)) {
+            count--;
+        }
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
 
-         q1 = listquestions.get(count);
-         return showquestionBlock;
-     }
+        q1 = listquestions.get(count);
+        return showquestionBlock;
+    }
 }

@@ -5,10 +5,15 @@
 
 package com.preppa.web.pages.contribution.question;
 
+import com.preppa.web.components.CQuestion;
+import com.preppa.web.components.questiontypes.longpassage.NewDualLongPassage;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
+import com.preppa.web.components.questiontypes.shortpassage.NewDualShortPassage;
+import com.preppa.web.components.questiontypes.shortpassage.NewShortPassage;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.Testsubject;
 import java.util.List;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -71,8 +76,20 @@ public class CreateQuestion {
     private List<Testsubject> subjects;
     @Inject
     private TestsubjectDAO testsubjectDAO;
-
-
+    @Component
+    private NewDualShortPassage newshortpassage;
+    @Property
+    @Inject
+    private Block shortpassageblock;
+    @Component
+    private CQuestion aquestion;
+    @Inject
+    private Block cquestionblock;
+    @Component
+    private NewDualLongPassage newlongpassage;
+    @Property
+    @Inject
+    private Block longpassageblock;
     void pageLoaded() {
         firstquestion.setPageTrue();
     }
@@ -82,6 +99,9 @@ public class CreateQuestion {
     }
     void onActivate() {
         subjects = testsubjectDAO.findAll();
+    }
+    Block onActionFromGetPassage()  {
+        return longpassageblock;
     }
 /*
     void CreateQuestion() {

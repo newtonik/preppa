@@ -1,0 +1,87 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <body>
+         <div align="left">
+            <a href="#" t:type="pagelink" t:page="contribution/shortpassage"> Back to Short Passages </a>
+        </div>
+          <div align="right">
+            <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/shortpassage/revisions/DualPassage"> History </a>
+        </div>
+
+        <h2>
+           ${passage.title}
+        </h2>
+           <div class="author-date">
+            Created at ${passage.createdAt}
+        </div>
+        <p>
+             <t:outputraw t:value="${passage.passageone}"/>
+        </p>
+
+        <p>
+             <t:outputraw t:value="${passage.passagetwo}"/>
+        </p>
+  
+        <p>
+            <t:tagview t:alltags="tags" />
+            <br />
+        </p>
+              <p>
+        <a href="#" t:type="pageLink" t:page="contribution/shortpassage/editdual" t:context="passage.id"> Edit </a>
+        <br />
+           <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
+        <br/>
+         <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
+              </p>
+
+         <t:zone t:id="showquestionZone">
+
+         </t:zone>
+         <br/>
+        <t:zone t:id="questionZone">
+
+         </t:zone>
+
+
+        <t:block t:id="showquestionBlock">
+            <div t:id="showquestion" t:question="q1">
+            </div>
+            <div>
+        <ul id="question-links">
+              
+                    <t:if t:test="onequestion">
+                        <li class="prev">
+                        <a t:type="actionlink" t:id="prevshowquestion" href="#" t:zone="showquestionZone"> Previous </a>
+                        </li>
+                        <t:parameter name="else">
+                            <li class="prev-off"> Previous  </li>
+                        </t:parameter>
+                   </t:if>
+              
+              <li class="next">
+                  <t:if t:test="lastquestion">
+
+                <a t:type="actionlink" t:id="nextshowquestion" href="#" t:zone="showquestionZone"> Next </a>
+                     <t:parameter name="else">
+                            <li class="next-off"> Next </li>
+                        </t:parameter>
+                    </t:if>
+              </li>
+             </ul>
+                </div>
+                    <div align="right">
+                       <br />
+              <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
+                    </div>
+     
+        </t:block>
+
+        <t:block t:id="questionblock">
+        <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
+        </div>
+                    <div align="right">
+        <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
+                    </div>
+        </t:block>
+    </body>
+</t:container>

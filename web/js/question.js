@@ -3,7 +3,7 @@ document.observe("dom:loaded", function() {
 
         //$('questiontypes').disable()
 
-$('QuestiontypeSelect').disable()
+$('QuestiontypeSelect').disable();
 // $('multiple-question').hide();
 
 //Tapestry.activateZone("questionzone", "../new.questiontypeselect:internalEvent");
@@ -28,7 +28,7 @@ function onChangeTestsubject(response) {
         var selectId = document.getElementById("QuestiontypeSelect");
         selectId.innerHTML = "";
         if (c != undefined) {
-           populateQuestionsTypes("QuestiontypeSelect", c, ids, vals)
+           populateQuestionsTypes("QuestiontypeSelect", c, ids, vals);
         }
 
 }

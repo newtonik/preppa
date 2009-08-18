@@ -3,5 +3,20 @@
 <t:practicebarart />
     <div id="main">
         <div t:id="firstquestion" t:testsubjects="subjects"></div>
-    </div>
+        <br />
+         <div t:id="newlongpassage" ></div>
+    <br />
+    <a href="#" t:type="actionlink" t:id="getpassage" t:zone="questionzone" align="center"> Get Passage</a>
+    <t:zone t:id="questionzone">
+    </t:zone>
+    <t:block t:id="shortpassageblock">
+    <div t:id="newshortpassage" ></div>
+    </t:block>
+        <t:block t:id="longpassageblock">
+    
+    </t:block>
+    <t:block t:id="cquestionblock">
+        <div t:id="aquestion"></div>
+    </t:block>
+        </div>
 </html>

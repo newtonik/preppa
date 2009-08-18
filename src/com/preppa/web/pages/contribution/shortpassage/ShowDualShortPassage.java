@@ -96,7 +96,7 @@ public class ShowDualShortPassage {
     Integer onPassivate() {
         return passageid;
     }
-    void setShortDualPassage(ShortDualPassage passage) {
+    public void setShortDualPassage(ShortDualPassage passage) {
         if(passage != null) {
             this.passageid = passage.getId();
             this.passage = passage;

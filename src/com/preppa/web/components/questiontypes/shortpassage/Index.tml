@@ -1,0 +1,35 @@
+<html t:type="layout" t:pageTitle="All Short Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <h2>All Short Passages</h2>
+
+    <div class="completed">
+        <h3>Completed Passages</h3>
+
+        <strong>Short Passages</strong>
+        <table>
+        <tr t:type="loop" t:source="shortpassages" t:value="shortpassage">
+            <td>
+                <a href="#" t:type="pagelink" t:page="contribution/shortpassage/show" t:context="shortpassage.id"> ${shortpassage.title} </a>
+            </td>
+
+        </tr>
+        </table>
+        <strong>Short Dual Passages</strong>
+          <table>
+        <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">
+            <td>
+                <a href="#" t:type="pagelink" t:page="contribution/shortpassage/showdual" t:context="shortdualpassage.id"> ${shortdualpassage.title} </a>
+            </td>
+
+        </tr>
+        </table>
+
+    </div>
+
+    <div id="notcompleted">
+        <h3>Almost there</h3>
+        <strong>Passages</strong>
+
+        <strong>Dual Passages</strong>
+    </div>
+    <t:pagelink t:page="contribution/shortpassage/create"> Create Short Passage </t:pagelink>
+</html>

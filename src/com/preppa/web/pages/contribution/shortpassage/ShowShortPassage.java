@@ -77,7 +77,7 @@ void onActivate(int id) {
 Integer onPassivate() {
     return this.pid;
 }
-void setPassagePage(ShortPassage passage) {
+public void setPassagePage(ShortPassage passage) {
     if(passage != null) {
         this.passage = passage;
         this.pid = passage.getId();

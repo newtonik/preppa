@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.preppa.web.pages.contribution.longpassage;
+package com.preppa.web.components.questiontypes.longpassage;
 
 import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
@@ -16,6 +16,7 @@ import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
@@ -67,29 +68,32 @@ public class ShowDualLongPassage {
     private List<Question> listquestions;
     @Property
     private List<Tag> tags = new LinkedList<Tag>();
+    @Parameter(required = true)
+    private LongDualPassage passParam;
 
     void onpageLoaded() {
         firstquestion.setPageFalse();
-        
+
     }
+
     @SetupRender
     void setDefaults() {
         lastquestion = true;
         onequestion = true;
-    }
-    void onActivate(int id) {
-        this.passage = longpassageDAO.findById(id);
-        this.tags = passage.getTaglist();
-        passageid = id;
-
+        if (passParam != null) {
+            this.passage = longpassageDAO.findById(passParam.getId());
+            this.tags = passage.getTaglist();
+            passageid = passParam.getId();
+        }
 //        return this;
     }
- 
+
     Integer onPassivate() {
         return passageid;
     }
-    public void setLongDualPassage(LongDualPassage passage) {
-        if(passage != null) {
+
+   public void setLongDualPassage(LongDualPassage passage) {
+        if (passage != null) {
             this.passage = passage;
             this.passageid = passage.getId();
         }
@@ -100,92 +104,98 @@ public class ShowDualLongPassage {
         return questionblock;
     }
 
-      Block onActionFromShowQuestionlink() {
+    Block onActionFromShowQuestionlink() {
         count = 0;
 
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
         passage = longpassageDAO.findById(passage.getId());
         listquestions = passage.getQuestions();
         size = listquestions.size();
-         if(size == 0)
+        if (size == 0) {
             return null;
+        }
         q1 = listquestions.get(count);
 
         return showquestionBlock;
     }
+
     Block onActionFromRemoveShowQuestion() {
         questionschanged = true;
         return null;
     }
-     Block onActionFromRemoveNewQuestion() {
+
+    Block onActionFromRemoveNewQuestion() {
         return null;
     }
-     Block onActionFromNextShowQuestion() {
-         if(questionschanged) {
-             System.out.println("questions have been updated");
+
+    Block onActionFromNextShowQuestion() {
+        if (questionschanged) {
+            System.out.println("questions have been updated");
             passage = longpassageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
-         }
-             System.out.println("Size is " + size + " count is " + count);
-         
-         if(count < (size-1) && (size != 0))
-             count++;
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
+        }
+        System.out.println("Size is " + size + " count is " + count);
 
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
-             System.out.println("Size is " + size + " count is " + count);
-         
+        if (count < (size - 1) && (size != 0)) {
+            count++;
+        }
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
 
-         q1 = listquestions.get(count);
-         return showquestionBlock;
-     }
-      Block onActionFromPrevShowQuestion() {
-         if(questionschanged) {
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
+        System.out.println("Size is " + size + " count is " + count);
 
-          System.out.println("questions have been updated");
+
+        q1 = listquestions.get(count);
+        return showquestionBlock;
+    }
+
+    Block onActionFromPrevShowQuestion() {
+        if (questionschanged) {
+
+            System.out.println("questions have been updated");
             passage = longpassageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
-         }
-         if(count > 0 && count <= (size-1))
-         {
-             count--;
-         }
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
-          System.out.println("Size is " + size + " count is " + count);
+        }
+        if (count > 0 && count <= (size - 1)) {
+            count--;
+        }
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
+        System.out.println("Size is " + size + " count is " + count);
 
-         q1 = listquestions.get(count);
-         return showquestionBlock;
-     }
+        q1 = listquestions.get(count);
+        return showquestionBlock;
+    }
+
     void onSubmitForm() {
         System.out.println("submit event has been received here.!!!!");
     }

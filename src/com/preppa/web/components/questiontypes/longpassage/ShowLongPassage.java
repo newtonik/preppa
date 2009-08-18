@@ -2,13 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.preppa.web.pages.contribution.longpassage;
+
+package com.preppa.web.components.questiontypes.longpassage;
 
 import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
-import com.preppa.web.data.LongDualPassageDAO;
+import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.PassageDAO;
-import com.preppa.web.entities.LongDualPassage;
+import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.Tag;
 import java.util.LinkedList;
@@ -16,6 +17,7 @@ import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
@@ -24,16 +26,16 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  *
- * @author nwt
+ * @author newtonik
  */
-public class ShowDualLongPassage {
-
+public class ShowLongPassage {
     @Property
-    private LongDualPassage passage;
+    private LongPassage passage;
     @Inject
-    private LongDualPassageDAO longpassageDAO;
+    private LongPassageDAO passageDAO;
     @Inject
     private PassageDAO passDA0;
+    private Integer pid;
     @Inject
     @Property
     private Block questionblock;
@@ -67,35 +69,34 @@ public class ShowDualLongPassage {
     private List<Question> listquestions;
     @Property
     private List<Tag> tags = new LinkedList<Tag>();
-
+    @Parameter(required = true)
+    private LongPassage passParam;
     void onpageLoaded() {
-        firstquestion.setPageFalse();
-        
+            firstquestion.setPageFalse();
+
     }
     @SetupRender
     void setDefaults() {
-        lastquestion = true;
-        onequestion = true;
+            lastquestion = true;
+            onequestion = true;
+    if (passParam != null) {
+            this.passage = passageDAO.findById(passParam.getId());
+            tags = passage.getTaglist();
+            this.pid = passage.getId();
     }
-    void onActivate(int id) {
-        this.passage = longpassageDAO.findById(id);
-        this.tags = passage.getTaglist();
-        passageid = id;
+    }
 
-//        return this;
-    }
- 
     Integer onPassivate() {
-        return passageid;
+        return this.pid;
     }
-    public void setLongDualPassage(LongDualPassage passage) {
+    public void setPassagePage(LongPassage passage) {
         if(passage != null) {
             this.passage = passage;
-            this.passageid = passage.getId();
+            this.pid = passage.getId();
         }
-    }
 
-    Block onActionFromAddQuestion() {
+        }
+        Block onActionFromAddQuestion() {
 
         return questionblock;
     }
@@ -113,7 +114,7 @@ public class ShowDualLongPassage {
          }
          else
              lastquestion = true;
-        passage = longpassageDAO.findById(passage.getId());
+        passage = passageDAO.findById(passage.getId());
         listquestions = passage.getQuestions();
         size = listquestions.size();
          if(size == 0)
@@ -132,14 +133,13 @@ public class ShowDualLongPassage {
      Block onActionFromNextShowQuestion() {
          if(questionschanged) {
              System.out.println("questions have been updated");
-            passage = longpassageDAO.findById(passage.getId());
+            passage = passageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
          }
-             System.out.println("Size is " + size + " count is " + count);
-         
-         if(count < (size-1) && (size != 0))
+         System.out.println("Size is " + size);
+         if(count < size-1 && (size != 0))
              count++;
          if(count == 0) {
              onequestion = false;
@@ -152,8 +152,7 @@ public class ShowDualLongPassage {
          }
          else
              lastquestion = true;
-             System.out.println("Size is " + size + " count is " + count);
-         
+
 
          q1 = listquestions.get(count);
          return showquestionBlock;
@@ -162,7 +161,7 @@ public class ShowDualLongPassage {
          if(questionschanged) {
 
           System.out.println("questions have been updated");
-            passage = longpassageDAO.findById(passage.getId());
+            passage = passageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
@@ -181,12 +180,8 @@ public class ShowDualLongPassage {
          }
          else
              lastquestion = true;
-          System.out.println("Size is " + size + " count is " + count);
 
          q1 = listquestions.get(count);
          return showquestionBlock;
      }
-    void onSubmitForm() {
-        System.out.println("submit event has been received here.!!!!");
-    }
 }
