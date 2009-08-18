@@ -5,10 +5,12 @@
         <div t:id="firstquestion" t:testsubjects="subjects"></div>
         <br />
          <div t:id="newlongpassage" ></div>
+         <t:zone t:id="questionzone">
+        </t:zone>
+
     <br />
     <a href="#" t:type="actionlink" t:id="getpassage" t:zone="questionzone" align="center"> Get Passage</a>
-    <t:zone t:id="questionzone">
-    </t:zone>
+    
     <t:block t:id="shortpassageblock">
     <div t:id="newshortpassage" ></div>
     </t:block>

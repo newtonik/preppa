@@ -9,7 +9,6 @@ import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.questiontypes.longpassage.NewDualLongPassage;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.components.questiontypes.shortpassage.NewDualShortPassage;
-import com.preppa.web.components.questiontypes.shortpassage.NewShortPassage;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.Testsubject;
 import java.util.List;
@@ -101,7 +100,7 @@ public class CreateQuestion {
         subjects = testsubjectDAO.findAll();
     }
     Block onActionFromGetPassage()  {
-        return longpassageblock;
+        return cquestionblock;
     }
 /*
     void CreateQuestion() {

@@ -39,7 +39,7 @@ import org.springframework.security.annotation.Secured;
  *
  * @author nwt
  */
-@Secured("ROLE_USER")
+//@Secured("ROLE_USER")
 public class NewDualLongPassage {
 
     @Property
@@ -94,6 +94,17 @@ public class NewDualLongPassage {
     private Tag tag;
     @Component
     private Form dualpassageform;
+    private boolean showpage = false;
+
+
+    
+      public void setPageTrue() {
+        showpage = true;
+    }
+
+    public void setPageFalse() {
+        showpage = false;
+    }
 
     void onActivate() {
         this.longDualpassage = new LongDualPassage();
