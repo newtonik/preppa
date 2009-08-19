@@ -1,6 +1,9 @@
 package com.preppa.web.pages.contribution.question.general;
 
 import com.preppa.web.components.CQuestion;
+import com.preppa.web.components.questiontypes.longpassage.NewLongPassage;
+import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
+import com.preppa.web.components.questiontypes.shortpassage.NewDualShortPassage;
 import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.Questiontype;
@@ -66,8 +69,27 @@ public class NewGeneral {
     private Select QuestiontypeSelect;
     @Component
     private Form wizardform;
-
-
+    @Property
+    private List<Testsubject> subjects;
+    /** Questiontype Components **/
+    @Component
+    private NewMultiChoice firstquestion;
+    @Component
+    private NewDualShortPassage newshortpassage;
+    @Property
+    @Inject
+    private Block shortpassageblock;
+    @Component
+    private CQuestion aquestion;
+    @Inject
+    private Block cquestionblock;
+    @Component
+    private NewLongPassage newlongpassage;
+    @Property
+    @Inject
+    private Block longpassageblock;
+    @Inject
+    private Block firstblock;
     void onActivate() {
         testsubjects = testSubDAO.findAll();
         questiontypes = null;

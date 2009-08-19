@@ -1,5 +1,6 @@
 <html t:type="layout" t:pageTitle="Create New question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <h3> Contribute a Question </h3>
+    <div id="main">
     <t:zone t:id="formzone">
     <t:form t:id="wizardform" t:zone="formzone">
         <table id="atable" width="700" cellpadding="10">
@@ -25,10 +26,35 @@
     <a href="#" t:type="actionlink" t:context="literal:2" t:id="testSelect" t:zone="questionzone" > Click me </a>
     <t:zone t:id="questionzone">
     </t:zone>
+    </div>
     <t:block t:id="multiplequesblock">
         
     </t:block>
-<div t:id="multiplequestion" style='display:none'>
+        <t:block t:id="shortpassageblock">
+        <div align="center">
+    <div align="center" t:id="newshortpassage" />
+    </div>
+    </t:block>
+        <t:block t:id="longpassageblock">
+            <div align="center">
+            <div t:id="newlongpassage" />
+            <br />
+            <br />
+            <div t:type="questiontypes/longpassage/New" />
+         </div>
+    </t:block>
+    <t:block t:id="cquestionblock">
+        <div align="center">
+        <div t:id="aquestion"></div>
+        </div>
+    </t:block>
+    <t:block t:id="firstblock">
+        <div align="center">
+            <div t:id="firstquestion" t:testsubjects="subjects" />
+        </div>
+        </t:block>
+       
+        <div t:id="multiplequestion" style='display:none'>
         </div>
 
 </html>
