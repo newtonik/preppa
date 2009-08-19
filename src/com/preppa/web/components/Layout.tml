@@ -15,13 +15,13 @@
         <div class="colmid">
          <div class="colleft">
            
-            <div class=".roundedcornr_box">
+           
             <div class="col1wrap">
-                 <div class="roundedcornr_top"><div></div></div>
+                 
                 <div class="col1">
                     <t:body/>
                 </div>
-                 <div class="roundedcornr_bottom"><div></div></div>
+                 
             </div>
                 <div class="col2">
                 <br/>
@@ -71,7 +71,7 @@
             </div>
          
             </div>
-            </div>
+            
               
         </div>
         

@@ -6,7 +6,7 @@
 package com.preppa.web.pages.contribution.question;
 
 import com.preppa.web.components.CQuestion;
-import com.preppa.web.components.questiontypes.longpassage.NewDualLongPassage;
+import com.preppa.web.components.questiontypes.longpassage.NewLongPassage;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.components.questiontypes.shortpassage.NewDualShortPassage;
 import com.preppa.web.data.TestsubjectDAO;
@@ -71,6 +71,7 @@ public class CreateQuestion {
     private AutoComplete autoCompleteTag;*/
     @Component
     private NewMultiChoice firstquestion;
+    
     @Property
     private List<Testsubject> subjects;
     @Inject
@@ -85,12 +86,14 @@ public class CreateQuestion {
     @Inject
     private Block cquestionblock;
     @Component
-    private NewDualLongPassage newlongpassage;
+    private NewLongPassage newlongpassage;
     @Property
     @Inject
     private Block longpassageblock;
+    @Inject
+    private Block firstblock;
     void pageLoaded() {
-        firstquestion.setPageTrue();
+       // firstquestion.setPageTrue();
     }
 
     void onValidateFormCreateQuestionForm(){
@@ -100,7 +103,7 @@ public class CreateQuestion {
         subjects = testsubjectDAO.findAll();
     }
     Block onActionFromGetPassage()  {
-        return cquestionblock;
+        return longpassageblock;
     }
 /*
     void CreateQuestion() {

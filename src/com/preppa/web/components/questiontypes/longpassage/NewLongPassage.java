@@ -92,10 +92,10 @@ public class NewLongPassage {
     @Component
     private Form createpassageform;
 
-    void onActivate() {
+
+    public void NewLongPassage() {
         this.longpassage = new LongPassage();
     }
-
     @CommitAfter
     Object onSuccessFromCreatePassageForm() {
 

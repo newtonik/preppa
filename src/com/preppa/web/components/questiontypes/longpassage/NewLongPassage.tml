@@ -51,6 +51,7 @@
                 </tr>
                 <tr>
                     <td></td>
+                    
                     <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
                                translate="prop:tagtranslator" label="name" type="text" size="10" />
@@ -79,7 +80,7 @@
         </t:form>
     </div>
     <div id="newtagbox" class="tagboxklass" style='display:none'>
-        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+        <div fgcolor="#4186D3"
              bgcolor="#FFFFFF"
              style="padding: 20px;" align="center">
             <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
@@ -94,7 +95,7 @@
             </div>
         </div>
 
-    </div>
+    </div>-->
     <t:block t:id="newtagblock">
         <h3> Add a Tag </h3>
         <t:form t:id="tagform" t:zone="formzone">
