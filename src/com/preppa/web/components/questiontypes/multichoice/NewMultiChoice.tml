@@ -117,7 +117,7 @@
                         <td width="10%" valign="top" align="right">
                     <t:label for="fExplanation"> Explain: </t:label>
                     </td>
-                    <td>
+                    <td align="left">
                         <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="3" cols="80" t:validate="required"/>
                     </td>
                     </tr>
@@ -126,7 +126,7 @@
                     <t:label for="ratingField"> Difficulty: </t:label>
 
                     </td>
-                    <td>
+                    <td align="left">
 
                         <div t:type="ck/RatingField" t:id="ratingField" source="list:1,2,3,4,5" value="ratingValue" t:validate="required"/>
                     </td>

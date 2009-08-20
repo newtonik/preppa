@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Mixins;
@@ -32,6 +33,7 @@ import org.springframework.security.annotation.Secured;
  * @author nwt
  */
 @Secured("ROLE_USER")
+@IncludeJavaScriptLibrary(value = {"context:js/gridin.js"})
 public class NewGridin {
 
     @ApplicationState
