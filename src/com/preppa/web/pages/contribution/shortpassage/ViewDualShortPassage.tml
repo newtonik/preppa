@@ -1,0 +1,11 @@
+<html t:type ="layout" t:pageTitle="Short Dual Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+        <strong>Short Dual Passages</strong>
+          <table>
+        <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">
+            <td>
+                <a href="#" t:type="pagelink" t:page="contribution/shortpassage/showdual" t:context="shortdualpassage.id"> ${shortdualpassage.title} </a>
+            </td>
+
+        </tr>
+        </table>
+</html>

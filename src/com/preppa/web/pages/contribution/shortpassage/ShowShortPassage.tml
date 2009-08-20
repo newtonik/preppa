@@ -17,7 +17,23 @@
         <p>
              <t:outputraw t:value="${passage.passage}"/>
         </p>
-   
+
+        <div>
+            <t:zone t:id="voteupZone">
+
+            <t:block t:id="voteBlock">
+
+            </t:block>
+                <b> ${votes} Stars</b>
+              <br />
+            <a href="#" t:type="actionlink" t:id="voteup" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
+                Vote Up </a>
+            <br />
+            <a href="#" t:type="actionlink" t:id="votedown" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
+                Vote Down </a>
+            </t:zone>
+        </div>
+
            <p>
         <t:tagview t:alltags="tags" />
         <br />
@@ -80,5 +96,23 @@
         <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
                  </div>
         </t:block>
+
     </body>
+
+    <t:block t:id="upsuccess">
+        <b> ${votes} Stars</b>
+        <br />
+        You Voted Up
+    </t:block>
+    <t:block t:id="downsuccess">
+        <b> ${votes} Stars</b>
+        <br />
+        You Voted Down
+    </t:block>
+    <t:block t:id="voted">
+     <b> ${votes} Stars</b>
+        <br />
+       You have already voted.
+    </t:block>
+
 </html>

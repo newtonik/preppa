@@ -245,7 +245,7 @@ public class Question implements Serializable {
     /**
      * @return the choices
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     @Audited
     public List<QuestionAnswer> getChoices() {

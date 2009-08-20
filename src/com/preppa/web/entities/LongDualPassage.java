@@ -30,6 +30,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
@@ -60,7 +61,7 @@ public class LongDualPassage implements Serializable {
     private ContentFlag status;
     private String revComment;
     private User updatedBy;
-
+    private List<Flag> flags = new ArrayList<Flag>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -372,6 +373,4 @@ public class LongDualPassage implements Serializable {
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
     }
-
-    
 }

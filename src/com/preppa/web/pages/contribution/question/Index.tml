@@ -16,10 +16,9 @@
 <br/>
 <br/>
 <br/>
-
 <table>
     <tr>
-        <td>
+        <td style="vertical-align:top;">
         <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
         style="padding: 1px; margins: 1px; width: 500px;" align="center">
         <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
@@ -28,9 +27,18 @@
             <a href="#" t:type="pageLink" t:page="contribution/question/awaiting/Show" t:context="question.id"><t:outputraw t:value="${question.question}" /></a>
         </t:loop>
         </div></div>
-        </td>
 
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px;" align="center">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+        <h1>Check Out our approved questions!</h1>
+        <t:loop t:source="approved" t:value="question">
+            <a href="#" t:type="pageLink" t:page="contribution/question/awaiting/Show" t:context="question.id"><t:outputraw t:value="${question.question}" /></a>
+        </t:loop>
+        </div></div>
+
+        </td>
+        <td>&nbsp;</td>
         <td><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
         style="padding: 1px; margins: 1px;" align="center">
         <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 250px;">
@@ -40,7 +48,7 @@
             <a href="#" t:type="pageLink" t:page="contribution/question/awaiting/Show" t:context="flag.question.id"><t:outputraw t:value="${flag.question.question}" /></a>
             <t:loop t:source="flag.question.choices" t:value="answer">
             <div class="answer">
-            <u><t:outputraw t:value="${answer.answer}" /></u>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<t:outputraw t:value="${answer.answer}" />
             </div>
             </t:loop>
             Flaged by ${flag.flagger.username}
@@ -51,6 +59,10 @@
             <br/>
         </t:loop>
         </div></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
         </td>
     </tr>
 </table>

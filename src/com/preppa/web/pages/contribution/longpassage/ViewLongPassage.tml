@@ -1,0 +1,11 @@
+<html t:type="layout" t:pageTitle="Long Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+        <strong>Passages</strong>
+        <table>
+        <tr t:type="loop" t:source="longpassages" t:value="longpassage">
+            <td>
+                <a href="#" t:type="pagelink" t:page="contribution/longpassage/show" t:context="longpassage.id"> ${longpassage.title} </a>
+            </td>
+
+        </tr>
+        </table>
+</html>

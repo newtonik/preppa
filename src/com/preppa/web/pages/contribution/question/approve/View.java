@@ -80,47 +80,47 @@ public class View {
         }
         else if(questiontype.contains("ShortPassages"))
         {
-            System.out.println("Short Passages");
+            /*System.out.println("Short Passages");
             List<ShortPassage> passages = new ArrayList<ShortPassage>();
             allquestions = new ArrayList<Question>();
             for (int i = 0; i < passages.size(); i++) {
                 if (passages.get(i).getQuestions() != null) {
                     allquestions.addAll(passages.get(i).getQuestions());
                 }
-            }
+            }*/
         }
         else if(questiontype.contains("LongPassages"))
         {
-            System.out.println("Long Passages");
+            /*System.out.println("Long Passages");
             List<LongPassage> passages = new ArrayList<LongPassage>();
             allquestions = new ArrayList<Question>();
             for (int i = 0; i < passages.size(); i++) {
                 if (passages.get(i).getQuestions() != null) {
                     allquestions.addAll(passages.get(i).getQuestions());
                 }
-            }
+            }*/
         }
         else if(questiontype.contains("ShortDualPassages"))
         {
-            System.out.println("ShortDualPassages");
+            /*System.out.println("ShortDualPassages");
             List<ShortDualPassage> passages = new ArrayList<ShortDualPassage>();
             allquestions = new ArrayList<Question>();
             for (int i = 0; i < passages.size(); i++) {
                 if (passages.get(i).getQuestions() != null) {
                     allquestions.addAll(passages.get(i).getQuestions());
                 }
-            }
+            }*/
         }
         else if(questiontype.contains("LongDualPassages"))
         {
-            System.out.println("LongDualPassages");
+            /*System.out.println("LongDualPassages");
             List<LongDualPassage> passages = new ArrayList<LongDualPassage>();
             allquestions = new ArrayList<Question>();
             for (int i = 0; i < passages.size(); i++) {
                 if (passages.get(i).getQuestions() != null) {
                     allquestions.addAll(passages.get(i).getQuestions());
                 }
-            }
+            }*/
         }
         else if(questiontype.contains("Grid-ins"))
         {
