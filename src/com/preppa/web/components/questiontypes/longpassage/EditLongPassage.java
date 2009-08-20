@@ -25,6 +25,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
@@ -43,6 +44,7 @@ import org.springframework.security.annotation.Secured;
  * @author newtonik
  */
 @Secured("ROLE_USER")
+@IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
 public class EditLongPassage {
  @Property
     private LongPassage longpassage;

@@ -34,6 +34,7 @@
                      <div t:id="leftRegularContent">
                         <br/>
                         <div t:id="contribute" style="width: 150px;">
+                            <t:pagelink t:page="contribution/question/general/new"> Contribute Content </t:pagelink><br/>
                         <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
                         <t:pagelink t:page="contribution/article/create"> Articles </t:pagelink><br/>
                         <t:pagelink t:page="contribution/vocab/add"> Vocabulary </t:pagelink><br/>

@@ -1,9 +1,12 @@
 package com.preppa.web.pages.contribution.question.general;
 
 import com.preppa.web.components.CQuestion;
+import com.preppa.web.components.questiontypes.gridin.NewGridin;
+import com.preppa.web.components.questiontypes.longpassage.NewDualLongPassage;
 import com.preppa.web.components.questiontypes.longpassage.NewLongPassage;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.components.questiontypes.shortpassage.NewDualShortPassage;
+import com.preppa.web.components.questiontypes.shortpassage.NewShortPassage;
 import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.Questiontype;
@@ -12,7 +15,6 @@ import com.preppa.web.entities.User;
 import com.preppa.web.utils.InjectSelectionModel;
 import java.util.ArrayList;
 import java.util.List;
-import org.acegisecurity.annotation.Secured;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
@@ -26,6 +28,7 @@ import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
@@ -51,11 +54,10 @@ public class NewGeneral {
     private TestsubjectDAO testSubDAO;
     @Inject
     private QuestiontypeDAO questiontypeDAO;
-    @Component
-    private CQuestion multiplequestion;
-    @Inject
-    @Property
-    private Block multiplequesblock;
+    
+    //@Inject
+    //@Property
+    //private Block multiplequesblock;
 
     /**Components**/
     @Component(parameters = {"value=testsubject",  "event=change",
@@ -75,21 +77,30 @@ public class NewGeneral {
     @Component
     private NewMultiChoice firstquestion;
     @Component
-    private NewDualShortPassage newshortpassage;
-    @Property
-    @Inject
-    private Block shortpassageblock;
+    private NewDualShortPassage newshortdualpassage;
     @Component
-    private CQuestion aquestion;
-    @Inject
-    private Block cquestionblock;
+    private NewShortPassage newshortpassage;
+    @Component
+    private NewGridin newgridin;
+    
+    //@Inject
+    //private Block shortpassageblock;
+    @Component
+    private NewMultiChoice aquestion;
+    //@Inject
+    //private Block cquestionblock;
     @Component
     private NewLongPassage newlongpassage;
-    @Property
-    @Inject
-    private Block longpassageblock;
-    @Inject
-    private Block firstblock;
+    @Component
+    private NewDualLongPassage newlongdualpassage;
+    //@Property
+    //@Inject
+    //private Block longpassageblock;
+    //@Property
+    //@Inject
+    //private Block longdualpassageblock;
+    //@Inject
+    //private Block firstblock;
     void onActivate() {
         testsubjects = testSubDAO.findAll();
         questiontypes = null;
@@ -112,7 +123,7 @@ public class NewGeneral {
             System.out.println("Counter is " + questiontypes.size());
             for(Questiontype t: questiontypes) {
                 qt.put(i, t.getName());
-                ids.put(i, t.getId().toString());
+                ids.put(i, t.getName());
                 counter.put(new Integer(i).toString());
                 i++;
             }
@@ -127,19 +138,34 @@ public class NewGeneral {
     }
 
 
-    Block onChangeFromQuestiontypeSelect(String quesId) {
-
-        if(quesId.equals("1"))
-            return multiplequesblock;
-        else
-            return null;
+    JSONObject onChangeFromQuestiontypeSelect(String quesType) {
+        JSONObject json = new JSONObject();
+        if(quesType.equals("Multiple Choice"))
+        {
+            json.put("type", "multichoice");
+        }
+        else if(quesType.equals("Long Passage"))
+        {
+            json.put("type", "longpassage");
+        }
+        else if(quesType.equals("Long Dual Passage")) {
+            json.put("type", "longdualpassage");
+        }
+        else if(quesType.equals("Short Dual Passage")) {
+            json.put("type", "shortdualpassage");
+        }
+        else if(quesType.equals("Short Passage")) {
+            json.put("type", "shortpassage");
+        }
+        else if(quesType.equals("Grid In")) {
+            json.put("type", "gridin");
+        }
+        return json;
+        
     }
 
      Block onActionFromTestSelect() {
-        String quesId = "6";
-        if(quesId.equals("6"))
-            return multiplequesblock;
-        else
+        
             return null;
     }
 }

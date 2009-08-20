@@ -68,7 +68,7 @@ public class ShowGridin {
         return gridId;
     }
 
-    void setGridin(Gridin question) {
+    public void setGridin(Gridin question) {
         this.question = question;
         this.gridId = question.getId();
     }

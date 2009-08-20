@@ -24,6 +24,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -39,7 +40,8 @@ import org.springframework.security.annotation.Secured;
  *
  * @author nwt
  */
-//@Secured("ROLE_USER")
+@Secured("ROLE_USER")
+@IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
 public class NewDualLongPassage {
 
     @Property
@@ -106,14 +108,16 @@ public class NewDualLongPassage {
         showpage = false;
     }
 
-    void onActivate() {
+    public void NewDualLongPassage() {
         this.longDualpassage = new LongDualPassage();
     }
 
     @CommitAfter
     Object onSuccessFromDualPassageForm() {
-
-
+        if(longDualpassage == null)
+        {
+             this.longDualpassage = new LongDualPassage();
+        }
         longDualpassage.setPassageone(fBodyone);
         longDualpassage.setPassagetwo(fBodytwo);
         longDualpassage.setTitle(fTitle);

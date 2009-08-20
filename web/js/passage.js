@@ -1,13 +1,13 @@
-     function onChangeTestsubject(response) {
-
-         //alert(response.testsubject);
-         $('result1').update(response.testsubject);
-         $('result1').setStyle({
-            backgroundColor: '#FFFF5C'
-            });
-
-
-     }
+//     function onChangeTestsubject(response) {
+//
+//         //alert(response.testsubject);
+//         $('result1').update(response.testsubject);
+//         $('result1').setStyle({
+//            backgroundColor: '#FFFF5C'
+//            });
+//
+//
+//     }
 
       function FCKeditor_OnComplete( editorInstance )
 {

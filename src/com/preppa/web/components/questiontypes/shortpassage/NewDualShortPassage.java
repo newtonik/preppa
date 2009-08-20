@@ -100,7 +100,7 @@ public class NewDualShortPassage {
     private ShortDualPassage passed;
 
 
-    void onActivate() {
+    public void NewDualShortPassage() {
         this.shortDualpassage = new ShortDualPassage();
     }
 
@@ -113,8 +113,10 @@ public class NewDualShortPassage {
 
     @CommitAfter
     Object onSuccessFromDualPassageForm() {
-
-
+         if(shortDualpassage == null)
+         {
+             this.shortDualpassage = new ShortDualPassage();
+         }
          shortDualpassage.setPassageone(fBodyone);
          shortDualpassage.setPassagetwo(fBodytwo);
          shortDualpassage.setTitle(fTitle);

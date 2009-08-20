@@ -91,14 +91,17 @@ public class NewShortPassage {
     @Component
     private Form createpassageform;
 
-    void onActivate() {
+    public void NewShortPassage() {
         this.shortpassage = new ShortPassage();
     }
 
     @CommitAfter
     Object onSuccessFromCreatePassageForm() {
 
-
+        if(this.shortpassage == null)
+        {
+            this.shortpassage = new ShortPassage();
+        }
 
 
         // passageDAO.doSave(p);
