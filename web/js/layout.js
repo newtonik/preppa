@@ -42,30 +42,7 @@
             //get position
             var pos = $('addtag').cumulativeOffset();
             var width  = $('addtag').getWidth();
-            //alert(pos.left)
-//            if(store == null) {
-//                store = $('formzone').innerHTML;
-//            }
-//            else {
-//                $('formzone').update(store);
-//                 $('closetagbox').observe('click', function() {
-//                  $('newtagbox').hide();
-//                 $('autoCompletetag').enable();
-//                 $('autoCompletetag').activate();
-//                 Tapestry.activateZone( 'formzone', '../create.tagform' );
-//
-//        });
-//                Event.observe('tagform', 'submit', function(event) {
-//                 $('tagform').request( {
-//                     onSuccess: function(response) {
-//                        alert(response.evalJSON().content);
-//                        $('formzone').update(response.evalJSON().content);
-//                     }
-//                 })
-//                });
-
-         
-//            }
+            
             $('newtagbox').setStyle({
 
                 display: 'block',
@@ -77,7 +54,7 @@
             $('newtagbox').show();
           
             $('tagTextfield').activate();
-          //  $('autoCompletetag').disable();
+         
         });
 
         $('closetag').observe('click', function() {

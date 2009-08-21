@@ -1,6 +1,7 @@
 <html t:type ="layout" t:pageTitle="${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
+        <div id ="main">
          <div align="left">
             <a href="#" t:type="pagelink" t:page="contribution/shortpassage"> Back to Short Passages </a>
         </div>
@@ -83,5 +84,6 @@
         <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
                     </div>
         </t:block>
+         </div>
     </body>
 </html>

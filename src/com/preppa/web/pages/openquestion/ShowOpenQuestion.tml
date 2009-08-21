@@ -1,49 +1,63 @@
 <html t:type="layout" t:pageTitle="${question.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
- <body>
-     <div align="right">
-       <a href="#" t:type="pageLink" t:page="openquestion/Edit" t:context="question.id"> Edit </a>
-     </div>
-     <h3 align="center">
-         ${question.title}
-     </h3>
-      <div id="author-time">
-            Created at ${question.updatedAt}
+    <body>
+        <br />
+        <br />
+        <div id="main">
+            <div align="right">
+                <a href="#" t:type="pageLink" t:page="openquestion/Edit" t:context="question.id"> Edit </a>
+            </div>
+            <div align="center">
+                <h3 >
+                    ${question.title}
+                </h3>
+            </div>
+            <div align="left" id="author-time">
+                ${author}
+                <br />
+                ${question.updatedAt}
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="questionbox">
+                
+                <t:outputraw t:value="${question.question}"/>
+                
+            </div>
+            <div t:id="answerlist" t:answers="openanswers">
+
+            </div>
+            <br />
+            <br />
+            <br />
+            <div id="newanswer">
+                <t:form t:id="answerform">
+                    <table>
+                        <tr>
+                            <td>
+                        <t:label for="pass1"><h3> Answer here </h3> </t:label>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                        <t:editor align="left" t:id="pass1" toolbarSet="Gridin"  customConfiguration="asset:context:js/fck/gridin.js" value="fBody" t:width="600" t:height="200"
+                                  t:label="Answer" t:validate="required"  />
+
+                        <br />
+                        <b> Please be explain clearly!</b>
+                        <br />
+                        </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">
+                                <br />
+                                <input type="submit" value="Submit"/>
+                            </td>
+                        </tr>
+                    </table>
+                </t:form>
+            </div>
         </div>
-
-     <div>
-        <p>
-            <t:outputraw t:value="${question.question}"/>
-        </p>
-    </div>
-     <div t:id="answerlist" t:answers="openanswers">
-
-     </div>
-     <br />
-     <div id="newanswer">
-     <t:form t:id="answerform">
-         <table>
-             <tr>
-                 <td>
-                    <t:label for="fAnswer"> Answer here </t:label>
-                </td>
-             </tr>
-             <tr>
-                 <td>
-                <input t:type="textarea" type="textarea" t:id="fAnswer" t:value="fAnswer"/>
-                <br />
-                <b> Please be explain clearly!</b>
-                <br />
-                 </td>
-            </tr>
-            <tr>
-                    <td colspan="2" align="left">
-                          <br />
-                        <input type="submit" value="Submit"/>
-                    </td>
-            </tr>
-         </table>
-     </t:form>
-     </div>
     </body>
 
 

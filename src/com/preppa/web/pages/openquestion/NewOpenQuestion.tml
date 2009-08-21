@@ -4,38 +4,44 @@
 
     <t:form t:id="questionForm">
         <table id="questiontable">
-               <tr  align="left">
-                        <td>
-                       <t:label for="fTitle" > Title: </t:label>
-                       </td>
-                  </tr>
-                  <tr>
-                       <td align="left">
-                        <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80"/>
-                      </td>
-                </tr>
-<tr>
-                       <td valign="top" align="left">
-                           <t:label for="questionBody"> Ask </t:label>
-                           <br />
-                        </td>
-                 </tr>
-                 <tr>
-                      <td>
-                          <t:editor align="left" t:id="questionBody" value="fBody" t:width="600" t:height="300"
-                          t:label="Body" t:validate="required" onkeyup="countCharacters();" />
-                     </td>
-                 </tr>
-                             <tr>
+            <tr  align="left">
+                <td align="left">
+            <t:label for="titleField" > Title: </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <input t:type="TextField" t:id="titleField"  t:value="fTitle" t:label="Title" t:validate="required" size="80"/>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" align="left">
+            <t:label for="pass1"> Ask </t:label>
+            <br />
+            </td>
+            </tr>
+            <tr>
+                <td>
+            <t:editor align="left" t:id="pass1" toolbarSet="Gridin"  customConfiguration="asset:context:js/fck/gridin.js" value="fBody" t:width="600" t:height="300"
+                      t:label="Body" t:validate="required" />
+            </td>
+            </tr>
+            <tr>
+                <td align="left"><b> Word Count</b></td>
+            </tr>
+            <tr>
+                <td align="left" id="word_count"></td>
+            </tr>
+            <tr>
 
-                      <td colspan="2" align="left">
-                          <br />
-                        <input type="submit" value="Submit"/>
-                        <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
-                    </td>
+                <td colspan="2" align="left">
+                    <br />
+                    <input type="submit" value="Submit"/>
+                    <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                </td>
 
-                 </tr>
-                 
+            </tr>
+
         </table>
     </t:form>
 

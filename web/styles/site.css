@@ -667,3 +667,21 @@ padding: 0px;
     background-color: #D4E4FF;
 
 }
+.questionbox {
+
+    width:600px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 107%;
+    line-height: 130%
+
+}
+.questionanswer {
+    width:500px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 107%;
+    line-height: 130%;
+    background-color:#F2F2F2;
+    
+}
