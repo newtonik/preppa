@@ -1,4 +1,4 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <head>
         <title> ${pageTitle}</title>
@@ -6,79 +6,84 @@
         <link rel="stylesheet" href="${styles}" type="text/css"/>
     </head>
     <body>
+              <div id="fixed">
         <div id="header" class="container">
             <t:navbar/>
-           
+
         </div>
-    <div class="colmask holygrail">
-         
-        <div class="colmid">
-         <div class="colleft">
-           
-           
-            <div class="col1wrap">
-                 
-                <div class="col1">
-                    <t:body/>
-                </div>
-                 
-            </div>
-                <div class="col2">
-                <br/>
-                <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-                style="padding: 1px; margins: 1px;" align="center">
-                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
-                     <t:delegate to="leftContent" />
-                    <t:block t:id="sideboxes">
-                    <h2>Left Side Bar </h2>
-                     <div t:id="leftRegularContent">
-                        <br/>
-                        <div t:id="contribute" style="width: 150px;">
-                            <t:pagelink t:page="contribution/question/general/new"> Contribute Content </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/article/create"> Articles </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/vocab/add"> Vocabulary </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/question/create"> Question </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/gridin/new"> Qridin </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/longpassage/create"> Long Passages </t:pagelink><br/>
-                        <t:pagelink t:page="contribution/shortpassage/create"> Short Passages </t:pagelink><br/>
+  
+            <div class="colmask holygrail">
+
+                <div class="colmid">
+                    <div class="colleft">
+
+
+                        <div class="col1wrap">
+
+                            <div class="col1">
+                                 
+                                <t:body/>
+                                  
+                            </div>
+
                         </div>
-                        <br/>
-                     </div>
-                     </t:block>
-                </div></div>
-                </div>
-                <div class="col3">
-                 <t:delegate to="rightblockone" />
-                 <t:block>
-                      <div t:id="rightblockoneregularContent" align="center">
-                        <h3>Testing</h3>
-                      </div>
-                  </t:block>
-                 <t:delegate to="rightblocktwo" />
-                  <t:block>
-                  <h2></h2>
-                     <div t:id="rightblocktworegularContent" class="sideboxes">
+                        <div class="col2">
+                            <br/>
+                            <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                                 style="padding: 1px; margins: 1px;" align="center">
+                                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+                                    <t:delegate to="leftContent" />
+                                    <t:block t:id="sideboxes">
+                                        <h2>Left Side Bar </h2>
+                                        <div t:id="leftRegularContent">
+                                            <br/>
+                                            <div t:id="contribute" style="width: 150px;">
+                                                <t:pagelink t:page="contribution/question/general/new"> Contribute Content </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/article/create"> Articles </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/vocab/add"> Vocabulary </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/question/create"> Question </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/gridin/new"> Qridin </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/longpassage/create"> Long Passages </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/shortpassage/create"> Short Passages </t:pagelink><br/>
+                                            </div>
+                                            <br/>
+                                        </div>
+                                    </t:block>
+                                </div></div>
+                        </div>
+                        <div class="col3">
+                            <t:delegate to="rightblockone" />
+                            <t:block>
+                                <div t:id="rightblockoneregularContent" align="center">
+                                    <h3>Testing</h3>
+                                </div>
+                            </t:block>
+                            <t:delegate to="rightblocktwo" />
+                            <t:block>
+                                <h2></h2>
+                                <div t:id="rightblocktworegularContent" class="sideboxes">
+                                </div>
+                            </t:block>
+                            <t:delegate to="rightblockthree" />
+                            <t:block>
+                                <h2></h2>
+                                <div t:id="rightblockthreeregularContent" class="sideboxes">
+                                </div>
+                            </t:block>
+
+                        </div>
                     </div>
-                  </t:block>
-                 <t:delegate to="rightblockthree" />
-                  <t:block>
-                  <h2></h2>
-                     <div t:id="rightblockthreeregularContent" class="sideboxes">
-                    </div>
-                  </t:block>
 
                 </div>
+
             </div>
-         
-            </div>
-            
-              
-        </div>
-        
+           
+  
+
         <div id="footer">
             (C) 2009 Preppa, Inc. Build ${message:build.number}
         </div>
-
+ </div>
     </body>
 </html>

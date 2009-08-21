@@ -13,7 +13,7 @@
                      <t:outputraw t:value="${answer.answer}" />
                      <br />
                      <div id="author-time">
-                        Submitted by ${answer.user.username}
+                        Submitted by <b> ${answer.user.username} </b>
                         <br />
                         Updated at ${answer.updatedat}
                      </div>
