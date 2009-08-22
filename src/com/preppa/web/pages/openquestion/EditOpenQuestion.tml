@@ -1,5 +1,5 @@
 <html t:type="layout" t:pageTitle="Edit Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+    <div id="main">
     <h2>Ask a Question</h2>
 
     <t:form t:id="questionForm">
@@ -49,5 +49,5 @@
         </table>
     </t:form>
 
-
+</div>
 </html>
