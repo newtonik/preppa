@@ -24,6 +24,9 @@
                 <t:outputraw t:value="${question.question}"/>
                 
             </div>
+            <div id="voteseal" t:type="voteseal" />
+            <br />
+            <br />
             <div t:id="answerlist" t:answers="openanswers">
 
             </div>
