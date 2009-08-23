@@ -6,8 +6,11 @@ import com.preppa.web.entities.User;
 import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.TextField;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.springframework.security.annotation.Secured;
@@ -18,8 +21,9 @@ import org.springframework.security.annotation.Secured;
  * @author nwt
  */
 @Secured("ROLE_USER")
+@IncludeJavaScriptLibrary(value = {"context:js/openquestion.js"})
 public class EditOpenQuestion {
-  @ApplicationState
+    @ApplicationState
     private User user;
     @Property
     private OpenQuestion question;
@@ -32,11 +36,12 @@ public class EditOpenQuestion {
     @Property
     private String fQuestion;
     @Component(parameters = {"value=fQuestion"})
-    private Editor questionBody;
+    private Editor pass1;
     private Long qid;
     @Property
     private String fComment;
-
+    @Component
+    private TextField titleField;
 
     void onActivate(Long id) {
         if(id > 0) {
@@ -54,11 +59,12 @@ public class EditOpenQuestion {
         System.out.println(question.getTitle());
     }
 
+    @CommitAfter
     void onSuccess() {
 
         question.setTitle(fTitle);
         question.setQuestion(fQuestion);
-        question.setOwner(user);
+        question.setUpdatedBy(user);
         question.setRevComment(fComment);
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
                     

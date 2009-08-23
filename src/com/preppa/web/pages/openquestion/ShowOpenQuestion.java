@@ -11,15 +11,18 @@ import java.util.List;
 import org.acegisecurity.annotation.Secured;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.chenillekit.tapestry.core.components.Editor;
 
 /**
  *
  * @author nwt
  */
+@IncludeJavaScriptLibrary(value = {"context:js/openquestion.js"})
 public class ShowOpenQuestion {
     @Property
     private OpenQuestion question;
@@ -36,16 +39,21 @@ public class ShowOpenQuestion {
     private List<OpenAnswer> openanswers;
     @Component
     private ShowAnswers answerlist;
-
+    @Property
+    private String author;
+    @Component(parameters = {"value=fAnswer"})
+    private Editor pass1;
 
     private Long qid;
 
     void onActivate(Long id)
     {
+        author = "unknown";
         if(id > 0) {
             question = openDAO.doRetrieve(id, true);
             openanswers = question.getAnswers();
             qid = id;
+            author = question.getOwner().getUsername();
         }
     }
 
@@ -53,7 +61,7 @@ public class ShowOpenQuestion {
         return qid;
     }
 
-    void setOpenQuestion(OpenQuestion q) {
+    public void setOpenQuestion(OpenQuestion q) {
         if(q != null) {
             question = openDAO.findById(q.getId());
             this.qid = question.getId();

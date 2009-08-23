@@ -9,11 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Indexed;
 
 
 /**
@@ -21,6 +23,7 @@ import org.hibernate.envers.Audited;
  * @author nwt
  */
 @Entity
+@Indexed
 public class OpenAnswer implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
@@ -69,6 +72,8 @@ public class OpenAnswer implements Serializable {
      * @return the answer
      */
     @Basic(optional = false)
+    @Lob
+    @Audited
     public String getAnswer() {
         return answer;
     }
@@ -121,6 +126,7 @@ public class OpenAnswer implements Serializable {
     /**
      * @return the votes
      */
+    @Audited
     public Integer getVotes() {
         return votes;
     }
@@ -137,6 +143,7 @@ public class OpenAnswer implements Serializable {
      */
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @Audited
     public User getUser() {
         return user;
     }

@@ -9,24 +9,34 @@ import com.preppa.web.components.SQuestion;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.VoteDAO;
+import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
+import com.preppa.web.utils.FlagStatus;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.acegisecurity.annotation.Secured;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 
@@ -34,6 +44,8 @@ import org.apache.tapestry5.json.JSONObject;
  *
  * @author nwt
  */
+@IncludeStylesheet(value = {"context:styles/flag.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/vocab.js"})
 public class ShowDualShortPassage {
     @ApplicationState
     private User user;
@@ -90,14 +102,34 @@ public class ShowDualShortPassage {
     private Block downSuccess;
     @Inject
     private Block voted;
+
+
     @Property
     @Persist
     private Integer votes;
     @Inject
     private HttpServletRequest _request;
+    @Property
+    private String reason;
+    @Property
+    private String reasonDesc;
+    private Integer artId;
+    @Component
+    private Form flagform;
+    @Inject
+    private Block flagresponse;
+    private List<Flag> passageflags;
+    @Inject
+    @Property
+    private Block flagblock;
+    @Component
+    private TextField flagfield;
+
+
+
     void onpageLoaded() {
         firstquestion.setPageFalse();
-        
+
     }
     @SetupRender
     void setDefaults() {
@@ -114,10 +146,10 @@ public class ShowDualShortPassage {
             count = 0;
             q1 = passage.getQuestions().get(count);
         }
-        
+
 //        return this;
     }
- 
+
     Integer onPassivate() {
         return passageid;
     }
@@ -285,4 +317,75 @@ public class ShowDualShortPassage {
          return voted;
      }
  }
+
+
+
+
+  @Secured("ROLE_USER")
+  @CommitAfter
+  Block onSuccessFromFlagForm () {
+      if(reason != null) {
+          Flag f = new Flag();
+          if(reason.equals("A") )
+          {
+              f.setFlagtype(ContentFlag.Inappropriate);
+          }
+          else if(reason.equals("B")) {
+              f.setFlagtype(ContentFlag.Spam);
+          }
+          else if(reason.equals("C"))
+          {
+              f.setFlagtype(ContentFlag.Attention);
+          }
+          else if(reason.equals("D")) {
+              f.setFlagtype(ContentFlag.Incorrect);
+          }
+           else if(reason.equals("E")) {
+
+              f.setFlagtype(ContentFlag.Copyright);
+          } else
+          {
+               System.out.println(reason);
+              f.setFlagtype(ContentFlag.Attention);
+          }
+
+          f.setDescription(reasonDesc);
+          f.setContentType(ContentType.ShortDualPassage);
+
+          f.setStatus(FlagStatus.NEW);
+//          f.setArticle(article);
+          f.setshortdualpassage(passage);
+
+
+          if(passageflags == null) {
+              passageflags = new ArrayList<Flag>();
+              passageflags.add(f);
+            //  article.setFlags(articleflags);
+              passage.setFlags(passageflags);
+          }
+          else
+          {
+              //articleflags.add(f);
+          //    article.getFlags().add(f);
+              passageflags.add(f);
+              passage.getFlags().add(f);
+          }
+          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+          f.setUpdatedAt(now);
+          f.setCreatedAt(now);
+
+        //  article.setUpdatedAt(now);
+          passage.setUpdatedAt(now);
+      }
+      this.shortpassageDAO.doSave(passage);
+      return flagresponse;
+  }
+
+  Block onActionFromRemoveFlagBox() {
+      return null;
+  }
+  Block onActionFromCloseFlagBlock() {
+      return flagblock;
+  }
 }

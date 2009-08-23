@@ -3,7 +3,7 @@
     <div id="main">
         <t:zone t:id="formzone">
             <t:form t:id="wizardform" t:zone="questionzone">
-                <table id="atable" width="700" cellpadding="10">
+                <table id="atable" cellpadding="10">
                     <tr>
                         <td align="left">
                     <t:label for="testSubSelect"> Select a Testsubject </t:label>

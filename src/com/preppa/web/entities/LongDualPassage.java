@@ -203,7 +203,7 @@ public class LongDualPassage implements Serializable {
      * @return the taglist
      */
     @Audited
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "LongDualPassage_Tag", joinColumns = {@JoinColumn(name = "longdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     public List<Tag> getTaglist() {
         return taglist;
@@ -372,5 +372,22 @@ public class LongDualPassage implements Serializable {
      */
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    /**
+     * @return the flags
+     */
+    @Audited
+    @OneToMany(mappedBy = "longdualpassage", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 }

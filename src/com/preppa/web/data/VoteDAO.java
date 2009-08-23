@@ -12,6 +12,11 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  */
 public interface VoteDAO  extends GenericDAO <Vote, Long> {
 
+    public Integer findSumByDualLongPassage(Integer id);
+
+    public Integer findSumByDualShortPassage(Integer id);
+
+    public Integer findSumByShortPassage(Integer id);
     public List<Vote> findVoteByContentId(ContentType contentType);
     public Integer findVoteByContentId(ContentType contentType, Integer contentId);
     public Boolean checkVoted(ContentType contentType, Integer contentId, User user);

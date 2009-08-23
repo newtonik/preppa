@@ -31,6 +31,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
@@ -50,7 +51,7 @@ public class ShortDualPassage implements Serializable {
     private Date createdAt;
     private Date updatedAt;
     private Boolean complete = false;
-
+    private List<Flag> flags = new ArrayList<Flag>();
     private PassageType passagetype;
     private Integer numQuestions = 0;
     private String passageone;
@@ -185,7 +186,7 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the taglist
      */
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "ShortDualPassage_Tag", joinColumns = {@JoinColumn(name = "shortdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     @Audited
     public List<Tag> getTaglist() {
@@ -338,5 +339,23 @@ public class ShortDualPassage implements Serializable {
      */
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+
+    /**
+     * @return the flags
+     */
+    @Audited
+    @OneToMany(mappedBy = "longdualpassage", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 }

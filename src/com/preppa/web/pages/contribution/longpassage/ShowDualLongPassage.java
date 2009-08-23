@@ -27,6 +27,8 @@ import org.acegisecurity.annotation.Secured;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -42,6 +44,8 @@ import org.apache.tapestry5.json.JSONObject;
  *
  * @author nwt
  */
+@IncludeStylesheet(value = {"context:styles/flag.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
 public class ShowDualLongPassage {
     @ApplicationState
     private User user;
@@ -101,20 +105,21 @@ public class ShowDualLongPassage {
     @Property
     @Persist
     private Integer votes;
-    @Component
-    private Form flagform;
-    @Inject
-    private Block flagresponse;
-    private List<Flag> articleflags;
-    @Inject
-    @Property
-    private Block flagblock;
-    @Component
-    private TextField flagfield;
-    @Property
-    private String reason;
-    @Property
-    private String reasonDesc;
+@Property
+private String reason;
+@Property
+private String reasonDesc;
+private Integer artId;
+@Component
+private Form flagform;
+@Inject
+private Block flagresponse;
+private List<Flag> passageflags;
+@Inject
+@Property
+private Block flagblock;
+@Component
+private TextField flagfield;
 
     void onpageLoaded() {
         firstquestion.setPageFalse();
@@ -128,6 +133,7 @@ public class ShowDualLongPassage {
         this.passage = longpassageDAO.findById(id);
         this.tags = passage.getTaglist();
         passageid = id;
+        //this.passageflags = passage.getFlags();
         this.votes = voteDAO.findSumByDualLongPassage(id);
 //        return this;
     }
@@ -302,4 +308,81 @@ public class ShowDualLongPassage {
          return voted;
      }
  }
+
+
+    @Secured("ROLE_USER")
+  @CommitAfter
+  Block onSuccessFromFlagForm () {
+      if(reason != null) {
+          Flag f = new Flag();
+          if(reason.equals("A") )
+          {
+              f.setFlagtype(ContentFlag.Inappropriate);
+          }
+          else if(reason.equals("B")) {
+              f.setFlagtype(ContentFlag.Spam);
+          }
+          else if(reason.equals("C"))
+          {
+              f.setFlagtype(ContentFlag.Attention);
+          }
+          else if(reason.equals("D")) {
+              f.setFlagtype(ContentFlag.Incorrect);
+          }
+           else if(reason.equals("E")) {
+
+              f.setFlagtype(ContentFlag.Copyright);
+          } else
+          {
+               System.out.println(reason);
+              f.setFlagtype(ContentFlag.Attention);
+          }
+
+          f.setDescription(reasonDesc);
+          f.setContentType(ContentType.LongDualPassage);
+          f.setFlagger(user);
+          f.setStatus(FlagStatus.NEW);
+//          f.setArticle(article);
+          System.out.println("*A");
+          f.setlongdualpassage(passage);
+
+
+
+          if(passageflags == null) {
+              passageflags = new ArrayList<Flag>();
+              passageflags.add(f);
+            //  article.setFlags(passageflags);
+              passage.setFlags(passageflags);
+          }
+          else
+          {
+              //articleflags.add(f);
+          //    article.getFlags().add(f);
+
+          }
+          System.out.println("*B");
+          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+          f.setUpdatedAt(now);
+          f.setCreatedAt(now);
+
+        //  article.setUpdatedAt(now);
+          System.out.println("*C");
+          passage.setUpdatedAt(now);
+          System.out.println("*D");
+      }
+      System.out.println("*E");
+      this.longpassageDAO.doSave(passage);
+      
+      //articleDAO.doSave(article);
+      return flagresponse;
+  }
+
+  Block onActionFromRemoveFlagBox() {
+      return null;
+  }
+  Block onActionFromCloseFlagBlock() {
+      return flagblock;
+  }
+
 }

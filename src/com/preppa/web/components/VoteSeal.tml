@@ -1,0 +1,18 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <div class="vote-util">
+        <ul id="votelist">
+            <li>
+                <span id="up"> Up</span>
+                <span id="up-image"></span>
+            </li>
+            <li>
+                <span id="vote-count"> 0</span>
+            </li>
+            <li>
+                <span id="down"> Down </span>
+                <span id="down-image"></span>
+            </li>
+        </ul>
+    </div>
+</t:container>

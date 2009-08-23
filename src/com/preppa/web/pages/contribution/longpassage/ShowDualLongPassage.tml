@@ -1,6 +1,10 @@
 <html t:type ="layout" t:pageTitle="${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
+<t:practicebarart />
+<div id="main">
+        <t:articlemenu />
+
          <div align="left">
             <a href="#" t:type="pagelink" t:page="contribution/longpassage"> Back to Long Passages </a>
         </div>
@@ -21,7 +25,7 @@
         <p>
              <t:outputraw t:value="${passage.passageone}"/>
         </p>
-       
+
         <p>
              <t:outputraw t:value="${passage.passagetwo}"/>
         </p>
@@ -33,18 +37,18 @@
             <a href="#" t:type="pageLink" t:page="contribution/longpassage/editdual" t:context="passage.id"> Edit </a>
         </p>
 
-     
+
         <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
         <br/>
          <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
 
 
          <t:zone t:id="showquestionZone">
-           
+
          </t:zone>
          <br/>
         <t:zone t:id="questionZone">
-                
+
          </t:zone>
 
 
@@ -87,12 +91,16 @@
                  </div>
         </t:block>
 
+
+
         <p id="flagpass">
              <a href="#" id="flaglink" > Flag </a>
         </p>
 
-        <div>
-            <t:zone t:id="voteupZone">
+
+
+
+          <t:zone t:id="voteupZone">
 
             <t:block t:id="voteBlock">
 
@@ -105,9 +113,9 @@
             <a href="#" t:type="actionlink" t:id="votedown" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
                 Vote Down </a>
             </t:zone>
-        </div>
-
+</div>
     </body>
+
 
     <t:block t:id="upsuccess">
         <b> ${votes} Stars</b>
@@ -123,6 +131,66 @@
      <b> ${votes} Stars</b>
         <br />
        You have already voted.
+    </t:block>
+
+
+
+
+
+
+
+
+    <div id="votebox" class="votemenu" style='display:none'>
+    <t:zone t:id="flagZone">
+         <t:delegate to="flagblock"/>
+    </t:zone>
+         <div align="center">
+            <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
+        </div>
+
+    </div>
+
+
+            <t:block t:id="flagblock">
+           <div id="submittable">
+        <h3> Select a reason for flaging </h3>
+        <t:form t:id="flagform" t:zone="flagZone">
+             <t:radiogroup value="reason" name="flaggroup">
+                  <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
+                 Incorrect<br />
+                 <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
+                 Offensive or Abusive<br />
+                   <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
+                   Spam <br />
+                   <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
+                   Alert Moderator<br />
+                   <br />
+                    <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
+                   Copyright Violation<br />
+                   <br />
+                   <t:label for="flagfield"> Enter a Short Description of problem </t:label>
+                       <br />
+
+             </t:radiogroup>
+            <input t:type="textfield" type="textfield" t:id="flagfield" t:value="reasonDesc" size="30"/>
+            <br />
+            <p align="center">
+        <br />
+                        <input type="submit" value="Submit"/>
+                            <a href="#" id="cancelflag" > Cancel </a>
+                            <br />
+            </p>
+        </t:form>
+                </div>
+        </t:block>
+    <t:block t:id="flagresponse" >
+        <br />
+        <br />
+        <p>
+            Thanks for your feedback, we will look at the issue.
+        </p>
+        <br />
+
     </t:block>
 
 </html>
