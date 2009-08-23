@@ -30,6 +30,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
@@ -58,6 +59,7 @@ public class ShortPassage implements Serializable {
     private ContentFlag status;
     private String revComment;
     private User updatedBy;
+    private List<Flag> flags = new ArrayList<Flag>();
 
     @Id
     @NonVisual
@@ -331,5 +333,22 @@ public class ShortPassage implements Serializable {
      */
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    /**
+     * @return the flags
+     */
+    @Audited
+    @OneToMany(mappedBy = "shortpassage", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 }

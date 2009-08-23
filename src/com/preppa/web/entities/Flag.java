@@ -41,6 +41,10 @@ import org.hibernate.envers.Audited;
 public class Flag implements Serializable {
     private Question question;
     private Article article;
+    private LongDualPassage longdualpassage;
+    private ShortDualPassage shortdualpassage;
+    private LongPassage longpassage;
+    private ShortPassage shortpassage;
     private static final long serialVersionUID = 1L;
    
     private Long id;
@@ -283,4 +287,116 @@ public class Flag implements Serializable {
         }
     }
 
+    @ManyToOne
+    public LongDualPassage getlongdualpassage() {
+        return longdualpassage;
+    }
+
+    public void setlongdualpassage(LongDualPassage longdualpassage) {
+         if(contentType != null)
+        {
+            System.out.println("*A");
+            if(contentType == ContentType.LongDualPassage)
+            {
+                System.out.println("*B");
+                this.longdualpassage = longdualpassage;
+            }
+            else
+            {
+               System.out.println("*C");
+               System.out.println(contentType);
+               this.longdualpassage = null;
+            }
+        }
+        else {
+            System.out.println("*D");
+            this.contentType = ContentType.LongDualPassage;
+            this.longdualpassage = longdualpassage;
+        }
+    }
+
+    @ManyToOne
+    public LongPassage getlongpassage() {
+        return longpassage;
+    }
+
+    public void setlongpassage(LongPassage longpassage) {
+         if(contentType != null)
+        {
+            System.out.println("*A");
+            if(contentType == ContentType.LongPassage)
+            {
+                System.out.println("*B");
+                this.longpassage = longpassage;
+            }
+            else
+            {
+               System.out.println("*C");
+               System.out.println(contentType);
+               this.longpassage = null;
+            }
+        }
+        else {
+            System.out.println("*D");
+            this.contentType = ContentType.LongPassage;
+            this.longpassage = longpassage;
+        }
+    }
+
+    @ManyToOne
+    public ShortDualPassage getshortdualpassage() {
+        return shortdualpassage;
+    }
+
+    public void setshortdualpassage(ShortDualPassage shortdualpassage) {
+         if(contentType != null)
+        {
+            System.out.println("*A");
+            if(contentType == ContentType.ShortDualPassage)
+            {
+                System.out.println("*B");
+                this.shortdualpassage = shortdualpassage;
+            }
+            else
+            {
+               System.out.println("*C");
+               System.out.println(contentType);
+               this.shortdualpassage = null;
+            }
+        }
+        else {
+            System.out.println("*D");
+            this.contentType = ContentType.ShortDualPassage;
+            this.shortdualpassage = shortdualpassage;
+        }
+    }
+
+    @ManyToOne
+    public ShortPassage getshortpassage() {
+        return shortpassage;
+    }
+
+    public void setshortpassage(ShortPassage shortpassage) {
+         if(contentType != null)
+        {
+            System.out.println("*A");
+            if(contentType == ContentType.ShortPassage)
+            {
+                System.out.println("*B");
+                this.shortpassage = shortpassage;
+            }
+            else
+            {
+               System.out.println("*C");
+               System.out.println(contentType);
+               this.shortpassage = null;
+            }
+        }
+        else {
+            System.out.println("*D");
+            this.contentType = ContentType.ShortPassage;
+            this.shortpassage = shortpassage;
+        }
+    }
+    
 }
