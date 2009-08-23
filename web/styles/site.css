@@ -17,16 +17,16 @@ root {
 
 }
 * {
- margin: 0;
- padding: 0;
+    margin: 0;
+    padding: 0;
 }
 div.nav-top {
     background-color:aqua
 }
 body {
-     text-align:center;
-     margin: 0px;
-   font-family: verdana;
+    text-align:center;
+    margin: 0px;
+    font-family: verdana;
     font-size: 12px;
 }
 body, table, input, select
@@ -34,7 +34,7 @@ body, table, input, select
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10pt;
     background-color: #ffffff;
-    
+
 
 
 }
@@ -80,9 +80,9 @@ h1
 }
 /* Header styles */
 #header {
-     clear:both;
-		float:left;
-		width:100%;
+    clear:both;
+    float:left;
+    width:100%;
 
     display:inline-block;
     margin:0 auto;
@@ -101,7 +101,7 @@ h1
 #header ul {
     clear:left;
     float:left;
-    
+
     list-style:none;
     margin:10px 0 0 0;
     padding:0;
@@ -149,59 +149,59 @@ h1
     width: 650px;
 }
 #fixed {
-   margin:0 auto;
-   width:1200px;   /* you can use px, em or % */
-   min-width:750px;
-   text-align:left;
+    margin:0 auto;
+    width:1200px;   /* you can use px, em or % */
+    min-width:750px;
+    text-align:left;
 }
 #fixedcontent {
-   margin:0 auto;
-   width:900px;   /* you can use px, em or % */
-   text-align:left;
+    margin:0 auto;
+    width:900px;   /* you can use px, em or % */
+    text-align:left;
 }
 #tabsB {
-background:#F4F4F4 none repeat scroll 0 0;
-float:left;
-font-size:93%;
-line-height:normal;
-width:100%;
+    background:#F4F4F4 none repeat scroll 0 0;
+    float:left;
+    font-size:93%;
+    line-height:normal;
+    width:100%;
 }
 
 #tabsB li {
-display:inline;
-margin:0;
-padding:0;
+    display:inline;
+    margin:0;
+    padding:0;
 }
 
 #tabsB ul {
-list-style-image:none;
-list-style-position:outside;
-list-style-type:none;
-margin:0;
-padding:10px 10px 0 50px;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin:0;
+    padding:10px 10px 0 50px;
 }
 
 #tabsB a {
-background:transparent #FFFFFF no-repeat scroll left top;
-float:left;
-margin:0;
-padding:0 0 0 4px;
-text-decoration:none;
+    background:transparent #FFFFFF no-repeat scroll left top;
+    float:left;
+    margin:0;
+    padding:0 0 0 4px;
+    text-decoration:none;
 }
 
 #tabsB a span {
-float:none;
+    float:none;
 }
 
 #tabsB a span {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#000000 no-repeat scroll right top;
-color:#666666;
-display:block;
-float:left;
-padding:5px 15px 4px 6px;
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#000000 no-repeat scroll right top;
+    color:#666666;
+    display:block;
+    float:left;
+    padding:5px 15px 4px 6px;
 }
 
 
@@ -230,7 +230,7 @@ padding:5px 15px 4px 6px;
 /* holy grail 3 column settings */
 .holygrail {
     background: #FFF;    	/* Right column background colour */
-    
+
 }
 .holygrail .colmid {
     float:left;
@@ -261,7 +261,7 @@ padding:5px 15px 4px 6px;
                             	Right padding = right column width + centre column right padding width */
     position:relative;
     left:200%;
-  
+
     padding-bottom:25px;
 }
 .holygrail .col2 {
@@ -606,108 +606,108 @@ ul {
 
 
 #subheader {
-border-bottom:1px solid #666666;
-clear:both;
-height:34px;
+    border-bottom:1px solid #666666;
+    clear:both;
+    height:34px;
 }
 #subheader h2 {
-float:left;
-font-size:120%;
-line-height:34px;
-margin-bottom:0;
+    float:left;
+    font-size:120%;
+    line-height:34px;
+    margin-bottom:0;
 }
 #subheader a {
-color:#000000;
+    color:#000000;
 }
 #tabs {
-float:left;
-font-weight:bold;
+    float:left;
+    font-weight:bold;
 }
 #tabs a {
-background:#EEEEEE none repeat scroll 0 0;
-border-left:1px solid #000000;
-border-top:1px solid #000000;
-border-right:1px solid #000000;
-color:#777777;
-display:block;
-float:left;
-font-size:120%;
-height:24px;
-line-height:22px;
-margin:9px 0px 0 0;
-padding:0 11px;
-text-decoration:none;
+    background:#EEEEEE none repeat scroll 0 0;
+    border-left:1px solid #000000;
+    border-top:1px solid #000000;
+    border-right:1px solid #000000;
+    color:#777777;
+    display:block;
+    float:left;
+    font-size:120%;
+    height:24px;
+    line-height:22px;
+    margin:9px 0px 0 0;
+    padding:0 11px;
+    text-decoration:none;
 }
 #tabs a:hover {
-background:#FFFFFF none repeat scroll 0 0;
-border-color:#777777 #777777 #FFFFFF;
-border-style:solid;
-border-width:1px;
-line-height:20px;
-margin-top:9px;
-color:#000000;
+    background:#FFFFFF none repeat scroll 0 0;
+    border-color:#777777 #777777 #FFFFFF;
+    border-style:solid;
+    border-width:1px;
+    line-height:20px;
+    margin-top:9px;
+    color:#000000;
 }
 #tabs a.youarehere {
-background:#FFFFFF none repeat scroll 0 0;
-border-color:#777777 #777777 #FFFFFF;
-border-style:solid;
-border-width:1px;
-color:black;
-font-size:110%;
-height:30px;
-line-height:28px;
-margin-top:3px;
-padding:0 11px;
+    background:#FFFFFF none repeat scroll 0 0;
+    border-color:#777777 #777777 #FFFFFF;
+    border-style:solid;
+    border-width:1px;
+    color:black;
+    font-size:110%;
+    height:30px;
+    line-height:28px;
+    margin-top:3px;
+    padding:0 11px;
 }
 .tabs-question-user, .tabs-answer-user, .tabs-favorite-user {
-float:right;
-width:100%;
+    float:right;
+    width:100%;
 }
 .tabs-question-user a, .tabs-answer-user a, .tabs-favorite-user a {
-border:1px solid #CCCCCC;
-color:#808185;
-display:block;
-float:right;
-font-family:Trebuchet MS,Helvetica,sans-serif;
-font-size:120%;
-margin-right:3px;
-padding:1px 4px 3px;
-text-decoration:none;
+    border:1px solid #CCCCCC;
+    color:#808185;
+    display:block;
+    float:right;
+    font-family:Trebuchet MS,Helvetica,sans-serif;
+    font-size:120%;
+    margin-right:3px;
+    padding:1px 4px 3px;
+    text-decoration:none;
 }
 .tabs-question-user a.youarehere, .tabs-answer-user a.youarehere, .tabs-favorite-user a.youarehere {
-background-color:#808185;
-border:1px solid #808185;
-color:#FFFFFF;
-font-weight:bold;
+    background-color:#808185;
+    border:1px solid #808185;
+    color:#FFFFFF;
+    font-weight:bold;
 }
 
 #mainbar {
-float:left;
-margin-bottom:1px;
+    float:left;
+    margin-bottom:1px;
 }
 #mainbar-full {
 }
 #mainbar-footer {
-clear:both;
+    clear:both;
 }
 
 #main {
-border-left:1px solid #666666;
-border-bottom:1px solid #666666;
-border-right:1px solid #666666;
-border-top:1px solid #666666;
-top:200px;
-padding: 10px;
-padding-bottom:25px;
+    border-left:1px solid #666666;
+    border-bottom:1px solid #666666;
+    border-right:1px solid #666666;
+    border-top:1px solid #666666;
+    top:200px;
+    padding: 10px;
+    padding-bottom:25px;
 }
 #spacer {
-height: 34px;
-margin: 0px;
-padding: 0px;
+    height: 34px;
+    margin: 0px;
+    padding: 0px;
 }
 
 #questionsubmenu ul {
-     clear:left;
+    clear:left;
     float:left;
 
     list-style:none;
@@ -738,5 +738,5 @@ padding: 0px;
     font-size: 107%;
     line-height: 130%;
     background-color:#F2F2F2;
-    
+
 }
