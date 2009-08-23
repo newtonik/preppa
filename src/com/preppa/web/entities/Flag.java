@@ -41,7 +41,6 @@ import org.hibernate.envers.Audited;
 public class Flag implements Serializable {
     private Question question;
     private Article article;
-    private LongDualPassage longdualpassage;
     private static final long serialVersionUID = 1L;
    
     private Long id;

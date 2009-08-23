@@ -4,7 +4,7 @@
     <div id="multiple-question" class="overlay"  >
         <t:form t:id="createquestionform" >
             <t:errors />
-            <table id="atable" width="700" cellpadding="10">
+            <table id="atable" cellpadding="10">
                 <tr>
                     <td align="left">
                 <t:label for="testSubSelect"> Select a Test Subject </t:label>

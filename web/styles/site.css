@@ -23,12 +23,20 @@ root {
 div.nav-top {
     background-color:aqua
 }
-
+body {
+     text-align:center;
+     margin: 0px;
+   font-family: verdana;
+    font-size: 12px;
+}
 body, table, input, select
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10pt;
     background-color: #ffffff;
+    
+
+
 }
 h1
 {
@@ -72,17 +80,17 @@ h1
 }
 /* Header styles */
 #header {
-    clear:both;
-    float:left;
-    width:850px;
-    display:block;
-    margin-top: 1px;
-    margin-left: 17%;
-    margin-right: auto;
-    margin-bottom: 0;
+     clear:both;
+		float:left;
+		width:100%;
+
+    display:inline-block;
+    margin:0 auto;
     vertical-align:baseline;
     border-bottom:1px solid #000;
     background-color: #D4E4FF;
+    z-index: 9000;
+    margin-top:0px;
 }
 #header p,
 #header h1,
@@ -133,11 +141,23 @@ h1
 #navbar {
 
 }
+
 #topright {
     float:right;
     margin: 5px 0 0;
     text-align: right;
     width: 650px;
+}
+#fixed {
+   margin:0 auto;
+   width:1200px;   /* you can use px, em or % */
+   min-width:750px;
+   text-align:left;
+}
+#fixedcontent {
+   margin:0 auto;
+   width:900px;   /* you can use px, em or % */
+   text-align:left;
 }
 #tabsB {
 background:#F4F4F4 none repeat scroll 0 0;
@@ -267,6 +287,7 @@ padding:5px 15px 4px 6px;
     float:left;
     width:100%;
     border-top:1px solid #000;
+    text-align:left;
 
 }
 #footer p {
@@ -469,6 +490,45 @@ ul {
 #question-links a:hover {
     border:solid 1px #666666
 }
+#votelist {
+    padding:0;
+    margin:0;
+    white-space:nowrap;
+}
+#votelist ul {
+    border: 1px solid #CCCCCC;
+    float: left;
+    overflow: hidden;
+    height: 25px;
+}
+#votelist li {
+    margin:0; padding:0;
+    font-size:10px;
+    list-style-position: outside;
+    list-style-type: none;
+    padding-left:1px;
+    display:inline;
+    height: 25px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-right-color: #CCCCCC;
+    border-left-color: #CCCCCC;
+    border-bottom-color: #CCCCCC;
+    border-top-color: #CCCCCC;
+    padding-left:5px;
+    padding-right:5px;
+}
+.vote-util {
+    clear:right;
+    float: left;
+    margin-left: 20px;
+}
 #tag-links ul {
     padding-top:10px;
 }
@@ -509,12 +569,7 @@ ul {
     width:635px;
 }
 
-body {
-    margin: 0px;
-   
-    font-family: verdana;
-    font-size: 12px;
-}
+
 #shadow-container {
     position: relative;
     left: 3px;
@@ -666,4 +721,22 @@ padding: 0px;
     font-size:10px;
     background-color: #D4E4FF;
 
+}
+.questionbox {
+
+    width:600px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 107%;
+    line-height: 130%
+
+}
+.questionanswer {
+    width:500px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 107%;
+    line-height: 130%;
+    background-color:#F2F2F2;
+    
 }

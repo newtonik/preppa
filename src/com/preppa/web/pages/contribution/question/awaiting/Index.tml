@@ -2,53 +2,34 @@
 <t:practicebarart />
     <div id="main">
                 <b>Approved</b> -
-                <br/>
-                <br/>
-                <br/>
-<ul id="sddm">
-    <li><a href="#"
-        onmouseover="mopen('m1')"
-        onmouseout="mclosetime()">Critical Reading</a>
-        <div id="m1"
-            onmouseover="mcancelclosetime()"
-            onmouseout="mclosetime()">
+        <table>
+        <tr>
+        <td>
+        <div t:id="cr" style="width: 150px;">
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:SentenceCompletion"> Sentence Completion </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:ShortPassages"> Short Passages </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:LongPassages"> Long Passages </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:ShortDualPassages"> Short Dual Passages </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:LongDualPassages"> Long Dual Passages </t:pagelink><br/>
-
         </div>
-    </li>
-    <li><a href="#"
-        onmouseover="mopen('m2')"
-        onmouseout="mclosetime()">Math<br/><br/></a>
-        <div id="m2"
-            onmouseover="mcancelclosetime()"
-            onmouseout="mclosetime()">
+        </td>
+        <td>
+        <div t:id="math" style="width: 150px;">
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:MultipleChoice"> Multiple Choice </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:Grid-ins"> Grid-ins </t:pagelink><br/>
         </div>
-    </li>
-    <li><a href="#"
-        onmouseover="mopen('m3')"
-        onmouseout="mclosetime()">Writing<br/><br/></a>
-        <div id="m3"
-            onmouseover="mcancelclosetime()"
-            onmouseout="mclosetime()">
+        </td>
+        <td>
+        <div t:id="writing" style="width: 150px;">
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:SentenceErrors"> Identifying Sentence Errors </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:ImprovingSentences"> Improving Sentences </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:ImprovingParagraph"> Improving Paragraph </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:FreeResponseQuestion"> Free Response Question </t:pagelink><br/>
-        </div>
-    </li>
-</ul>
+       </div>
+        </td>
+        </tr>
+        </table>
 
-
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
         style="padding: 1px; margins: 1px;" align="left">
         <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">

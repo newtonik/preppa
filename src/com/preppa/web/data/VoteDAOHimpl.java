@@ -82,10 +82,42 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         return sum;
 
     }
-    
+
 
     @Override
-    public Integer findSumByLongPassage(Integer contentId) {
+    public Integer findSumByQuestionId(Integer contentId) {
+        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
+        if(contentId > 0)
+        {
+            sqlString.addWhereClause("v.contentTypeId  = '" + 6 + "'");
+            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
+            sqlString.addGroupField("v.contentTypeId");
+        }
+
+
+        List<Vote> result = findBySQLQuery(sqlString.toString());
+        System.out.println("Sum is " + result);
+        Integer sum = 0;
+        if(result != null) {
+            if(result.toArray().length > 0) {
+                BigDecimal s = (BigDecimal) result.toArray()[0];
+                sum = Integer.valueOf(s.intValue());
+            }
+        }
+
+//
+        //Integer sum = 0;
+        //Integer sum = result.get(0).getValue();
+//        for(Vote v : all) {
+//            sum += v.getValue();
+//        }
+        return sum;
+
+    }
+
+
+    @Override
+    public Integer findSumByLongPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
         if(contentId > 0)
         {
@@ -117,11 +149,11 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
 
     @Override
-    public Integer findSumByShortPassage(Integer contentId) {
+    public Integer findSumByShortDualPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
         if(contentId > 0)
         {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 1 + "'");
+            sqlString.addWhereClause("v.contentTypeId  = '" + 2 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
         }
@@ -147,8 +179,10 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
     }
 
+
+
     @Override
-    public Integer findSumByDualLongPassage(Integer contentId) {
+    public Integer findSumByLongDualPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
         if(contentId > 0)
         {
@@ -180,42 +214,11 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
 
     @Override
-    public Integer findSumByDualShortPassage(Integer contentId) {
+    public Integer findSumByShortPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
         if(contentId > 0)
         {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 2 + "'");
-            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addGroupField("v.contentTypeId");
-        }
-
-
-        List<Vote> result = findBySQLQuery(sqlString.toString());
-        System.out.println("Sum is " + result);
-        Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
-                BigDecimal s = (BigDecimal) result.toArray()[0];
-                sum = Integer.valueOf(s.intValue());
-            }
-        }
-
-//
-        //Integer sum = 0;
-        //Integer sum = result.get(0).getValue();
-//        for(Vote v : all) {
-//            sum += v.getValue();
-//        }
-        return sum;
-
-    }
-
-    @Override
-    public Integer findSumByQuestionId(Integer contentId) {
-        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 6 + "'");
+            sqlString.addWhereClause("v.contentTypeId  = '" + 1 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
         }

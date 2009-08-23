@@ -50,16 +50,10 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         /*SQLString sqlString = new SQLString("FROM Question q");
         sqlString.addWhereClause("q.votes.size >= 1");
 
-        return findByQuery(sqlString.toString());
-        SQLString sqlString = new SQLString("FROM Question q");
-        sqlString.addWhereClause("q.id IN (SELECT v.contentId FROM Vote v WHERE contentTypeId = 6 AND SUM(value) >= 1)");
         return findByQuery(sqlString.toString());*/
         SQLString sqlString = new SQLString("FROM Question q");
-
-        sqlString.addWhereClause("q.votes.size >= 1");
-
+        sqlString.addWhereClause("q.id IN (SELECT v.contentId FROM Vote v WHERE contentTypeId = 6 AND SUM(value) >= 1)");
         return findByQuery(sqlString.toString());
-
     }
 
     public List<Question> findAllByQuestionType(String qType) {

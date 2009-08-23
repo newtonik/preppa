@@ -185,7 +185,7 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the taglist
      */
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "ShortDualPassage_Tag", joinColumns = {@JoinColumn(name = "shortdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     @Audited
     public List<Tag> getTaglist() {

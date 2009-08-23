@@ -1,15 +1,23 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
+    <div>
+        <h2> ${count}</h2>
+    </div>
+    <br />
     <div id="answerlist">
+
          <t:loop t:source="answers"
             t:value="answer">
-             <div class="questionanswer">
+
+             <div class="questionanswer" align="center">
                      <t:outputraw t:value="${answer.answer}" />
                      <br />
-
-                     Submitted by ${answer.user.username}
+                     <div id="author-time">
+                        Submitted by <b> ${answer.user.username} </b>
+                        <br />
+                        Updated at ${answer.updatedat}
+                     </div>
                      <br />
-                     Modified at ${answer.updatedat}
                      <br />
             </div>
          </t:loop>

@@ -30,7 +30,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
@@ -61,7 +60,7 @@ public class LongDualPassage implements Serializable {
     private ContentFlag status;
     private String revComment;
     private User updatedBy;
-    private List<Flag> flags = new ArrayList<Flag>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -203,7 +202,7 @@ public class LongDualPassage implements Serializable {
      * @return the taglist
      */
     @Audited
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Tag.class)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "LongDualPassage_Tag", joinColumns = {@JoinColumn(name = "longdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     public List<Tag> getTaglist() {
         return taglist;
@@ -373,4 +372,6 @@ public class LongDualPassage implements Serializable {
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
     }
+
+    
 }
