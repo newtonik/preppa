@@ -134,7 +134,7 @@ private TextField flagfield;
         this.tags = passage.getTaglist();
         passageid = id;
         //this.passageflags = passage.getFlags();
-        this.votes = voteDAO.findSumByDualLongPassage(id);
+        this.votes = voteDAO.findSumByLongDualPassageId(id);
 //        return this;
     }
  

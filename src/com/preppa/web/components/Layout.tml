@@ -5,7 +5,9 @@
         <link rel="shortcut icon" href="${asset:context:/images/favicon.ico}"/>
         <link rel="stylesheet" href="${styles}" type="text/css"/>
     </head>
+   
     <body>
+         <div id="fixed">
         <div id="header" class="container">
             <t:navbar/>
            
@@ -79,6 +81,6 @@
         <div id="footer">
             (C) 2009 Preppa, Inc. Build ${message:build.number}
         </div>
-
+</div>
     </body>
 </html>

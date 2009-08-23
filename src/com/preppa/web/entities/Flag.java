@@ -398,5 +398,4 @@ public class Flag implements Serializable {
             this.shortpassage = shortpassage;
         }
     }
-    
 }

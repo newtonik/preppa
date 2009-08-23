@@ -2,9 +2,7 @@
 <t:practicebarart />
     <div id="main">
                 <b>Approved</b> -
-                <br/>
-                <br/>
-                <br/>
+        <br/><br/><br/>
 <ul id="sddm">
     <li><a href="#"
         onmouseover="mopen('m1')"
@@ -43,12 +41,11 @@
         </div>
     </li>
 </ul>
-
-
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
         <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
         style="padding: 1px; margins: 1px;" align="left">
         <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">

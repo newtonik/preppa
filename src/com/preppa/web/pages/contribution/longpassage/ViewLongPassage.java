@@ -41,8 +41,8 @@ public class ViewLongPassage {
             if (temp.isEmpty() == false) {
                 System.out.println("IN LOOP");
                 for (int i = 0; i < temp.size(); i++) {
-                    if (voteDAO.findSumByLongPassage(temp.get(i).getId()) >= 2) {
-                        System.out.println("Sum is " + voteDAO.findSumByLongPassage(temp.get(i).getId()));
+                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) >= 2) {
+                        System.out.println("Sum is " + voteDAO.findSumByLongPassageId(temp.get(i).getId()));
                         System.out.println("ADDING");
                         longpassages.add(temp.get(i));
                     }
@@ -56,7 +56,7 @@ public class ViewLongPassage {
             longpassages = new ArrayList<LongPassage>();
             if (temp.isEmpty() == false) {
                 for (int i = 0; i < temp.size(); i++) {
-                    if (voteDAO.findSumByLongPassage(temp.get(i).getId()) < 2) {
+                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) < 2) {
                         longpassages.add(temp.get(i));
                     }
                 }

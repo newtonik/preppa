@@ -82,197 +82,7 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         return sum;
 
     }
-    
 
-    @Override
-    public Integer findSumByLongPassage(Integer contentId) {
-        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 3 + "'");
-            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addGroupField("v.contentTypeId");
-        }
-
-
-        List<Vote> result = findBySQLQuery(sqlString.toString());
-        System.out.println("Sum is " + result);
-        Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
-                BigDecimal s = (BigDecimal) result.toArray()[0];
-                sum = Integer.valueOf(s.intValue());
-            }
-        }
-
-//
-        //Integer sum = 0;
-        //Integer sum = result.get(0).getValue();
-//        for(Vote v : all) {
-//            sum += v.getValue();
-//        }
-        return sum;
-
-    }
-
-
-    @Override
-    public Integer findSumByShortPassage(Integer contentId) {
-        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 1 + "'");
-            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addGroupField("v.contentTypeId");
-        }
-
-
-        List<Vote> result = findBySQLQuery(sqlString.toString());
-        System.out.println("Sum is " + result);
-        Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
-                BigDecimal s = (BigDecimal) result.toArray()[0];
-                sum = Integer.valueOf(s.intValue());
-            }
-        }
-
-//
-        //Integer sum = 0;
-        //Integer sum = result.get(0).getValue();
-//        for(Vote v : all) {
-//            sum += v.getValue();
-//        }
-        return sum;
-
-    }
-
-    @Override
-    public Integer findSumByDualLongPassage(Integer contentId) {
-        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 4 + "'");
-            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addGroupField("v.contentTypeId");
-        }
-
-
-        List<Vote> result = findBySQLQuery(sqlString.toString());
-        System.out.println("Sum is " + result);
-        Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
-                BigDecimal s = (BigDecimal) result.toArray()[0];
-                sum = Integer.valueOf(s.intValue());
-            }
-        }
-
-//
-        //Integer sum = 0;
-        //Integer sum = result.get(0).getValue();
-//        for(Vote v : all) {
-//            sum += v.getValue();
-//        }
-        return sum;
-
-    }
-
-
-    @Override
-    public Integer findSumByDualShortPassage(Integer contentId) {
-        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 2 + "'");
-            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addGroupField("v.contentTypeId");
-        }
-
-
-        List<Vote> result = findBySQLQuery(sqlString.toString());
-        System.out.println("Sum is " + result);
-        Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
-                BigDecimal s = (BigDecimal) result.toArray()[0];
-                sum = Integer.valueOf(s.intValue());
-            }
-        }
-
-//
-        //Integer sum = 0;
-        //Integer sum = result.get(0).getValue();
-//        for(Vote v : all) {
-//            sum += v.getValue();
-//        }
-        return sum;
-
-    }
-
-
-    @Override
-    public Integer findSumByShortPassage(Integer contentId) {
-        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 1 + "'");
-            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addGroupField("v.contentTypeId");
-        }
-
-
-        List<Vote> result = findBySQLQuery(sqlString.toString());
-        System.out.println("Sum is " + result);
-        Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
-                BigDecimal s = (BigDecimal) result.toArray()[0];
-                sum = Integer.valueOf(s.intValue());
-            }
-        }
-
-//
-        //Integer sum = 0;
-        //Integer sum = result.get(0).getValue();
-//        for(Vote v : all) {
-//            sum += v.getValue();
-//        }
-        return sum;
-
-    }
-
-
-    @Override
-    public Integer findSumByDualLongPassage(Integer contentId) {
-        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
-            sqlString.addWhereClause("v.contentTypeId  = '" + 2 + "'");
-            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
-            sqlString.addGroupField("v.contentTypeId");
-        }
-
-
-        List<Vote> result = findBySQLQuery(sqlString.toString());
-        System.out.println("Sum is " + result);
-        Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
-                BigDecimal s = (BigDecimal) result.toArray()[0];
-                sum = Integer.valueOf(s.intValue());
-            }
-        }
-
-//
-        //Integer sum = 0;
-        //Integer sum = result.get(0).getValue();
-//        for(Vote v : all) {
-//            sum += v.getValue();
-//        }
-        return sum;
-
-    }
 
     @Override
     public Integer findSumByQuestionId(Integer contentId) {
@@ -307,7 +117,72 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
 
     @Override
-    public Integer findSumByDualShortPassage(Integer contentId) {
+    public Integer findSumByLongPassageId(Integer contentId) {
+        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
+        if(contentId > 0)
+        {
+            sqlString.addWhereClause("v.contentTypeId  = '" + 3 + "'");
+            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
+            sqlString.addGroupField("v.contentTypeId");
+        }
+
+
+        List<Vote> result = findBySQLQuery(sqlString.toString());
+        System.out.println("Sum is " + result);
+        Integer sum = 0;
+        if(result != null) {
+            if(result.toArray().length > 0) {
+                BigDecimal s = (BigDecimal) result.toArray()[0];
+                sum = Integer.valueOf(s.intValue());
+            }
+        }
+
+//
+        //Integer sum = 0;
+        //Integer sum = result.get(0).getValue();
+//        for(Vote v : all) {
+//            sum += v.getValue();
+//        }
+        return sum;
+
+    }
+
+
+    @Override
+    public Integer findSumByShortDualPassageId(Integer contentId) {
+        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
+        if(contentId > 0)
+        {
+            sqlString.addWhereClause("v.contentTypeId  = '" + 2 + "'");
+            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
+            sqlString.addGroupField("v.contentTypeId");
+        }
+
+
+        List<Vote> result = findBySQLQuery(sqlString.toString());
+        System.out.println("Sum is " + result);
+        Integer sum = 0;
+        if(result != null) {
+            if(result.toArray().length > 0) {
+                BigDecimal s = (BigDecimal) result.toArray()[0];
+                sum = Integer.valueOf(s.intValue());
+            }
+        }
+
+//
+        //Integer sum = 0;
+        //Integer sum = result.get(0).getValue();
+//        for(Vote v : all) {
+//            sum += v.getValue();
+//        }
+        return sum;
+
+    }
+
+
+
+    @Override
+    public Integer findSumByLongDualPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
         if(contentId > 0)
         {
@@ -338,6 +213,36 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
     }
 
 
+    @Override
+    public Integer findSumByShortPassageId(Integer contentId) {
+        SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
+        if(contentId > 0)
+        {
+            sqlString.addWhereClause("v.contentTypeId  = '" + 1 + "'");
+            sqlString.addWhereClause("v.contentId = '" + contentId + "'");
+            sqlString.addGroupField("v.contentTypeId");
+        }
+
+
+        List<Vote> result = findBySQLQuery(sqlString.toString());
+        System.out.println("Sum is " + result);
+        Integer sum = 0;
+        if(result != null) {
+            if(result.toArray().length > 0) {
+                BigDecimal s = (BigDecimal) result.toArray()[0];
+                sum = Integer.valueOf(s.intValue());
+            }
+        }
+
+//
+        //Integer sum = 0;
+        //Integer sum = result.get(0).getValue();
+//        for(Vote v : all) {
+//            sum += v.getValue();
+//        }
+        return sum;
+
+    }
 
     @Override
     public Integer findVoteByContentId(ContentType contentType, Integer contentId) {

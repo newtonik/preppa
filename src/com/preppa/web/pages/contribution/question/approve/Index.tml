@@ -6,8 +6,6 @@
 
         <b>Approved</b> -
         <br/>
-        <br/>
-
 <ul id="sddm">
     <li><a href="#"
         onmouseover="mopen('m1')"
@@ -45,9 +43,6 @@
         </div>
     </li>
 </ul>
-
-
-<div style="clear:both"></div>
     <br/>
     <br/>
     <br/>

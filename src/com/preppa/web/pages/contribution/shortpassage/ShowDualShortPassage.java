@@ -45,7 +45,7 @@ import org.apache.tapestry5.json.JSONObject;
  * @author nwt
  */
 @IncludeStylesheet(value = {"context:styles/flag.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/vocab.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
 public class ShowDualShortPassage {
     @ApplicationState
     private User user;
@@ -139,7 +139,7 @@ public class ShowDualShortPassage {
     void onActivate(int id) {
         this.passage = shortpassageDAO.findById(id);
         tags = passage.getTaglist();
-        this.votes = voteDAO.findSumByDualShortPassage(id);
+        this.votes = voteDAO.findSumByShortDualPassageId(id);
         passageid = id;
         size = passage.getQuestions().size();
         if(size > 0) {
