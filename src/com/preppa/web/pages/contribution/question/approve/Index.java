@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.SlidingPanel;
@@ -25,6 +27,8 @@ import org.chenillekit.tapestry.core.components.SlidingPanel;
  *
  * @author Jan Jan
  */
+@IncludeStylesheet(value = {"context:styles/dropdown.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/dropdown.js"})
 public class Index {
     @Property
     private List<Question> approved;
@@ -36,12 +40,12 @@ public class Index {
     private Question question;
     @Inject
     private HttpServletRequest _request;
-    @Component(parameters = {"subject=Critical Reading", "closed=true", "options={duration:0.0}"})
+    /*@Component(parameters = {"subject=Critical Reading", "closed=true", "options={duration:0.0}"})
     private SlidingPanel cr;
     @Component(parameters = {"subject=Math", "closed=true", "options={duration:0.0}"})
     private SlidingPanel math;
     @Component(parameters = {"subject=Writing", "closed=true", "options={duration:0.0}"})
-    private SlidingPanel writing;
+    private SlidingPanel writing;*/
     
     void onActivate() {
         List<Question> qTemp = questionDAO.findAll();
