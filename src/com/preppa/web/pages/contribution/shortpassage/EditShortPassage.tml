@@ -16,7 +16,7 @@
                 <tr>
                 <div id="pass1">
                     <td valign="top" align="right">
-                    <t:label for="passeditor">Passage: </t:label>
+                    <t:label for="pass1">Passage: </t:label>
                     </td>
                     <td >
                     <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:label="Passage" t:validate="required" t:width="600" t:height="300"/>
