@@ -5,6 +5,7 @@ import com.preppa.web.data.OpenQuestionDAO;
 import com.preppa.web.entities.OpenAnswer;
 import com.preppa.web.entities.OpenQuestion;
 import com.preppa.web.entities.User;
+import com.preppa.web.utils.ContentType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,17 +44,19 @@ public class ShowOpenQuestion {
     private String author;
     @Component(parameters = {"value=fAnswer"})
     private Editor pass1;
-
+    @Property
+    private ContentType contType;
     private Long qid;
 
     void onActivate(Long id)
     {
         author = "unknown";
         if(id > 0) {
-            question = openDAO.doRetrieve(id, true);
+            question = openDAO.doRetrieve(id, false);
             openanswers = question.getAnswers();
             qid = id;
             author = question.getOwner().getUsername();
+            contType = ContentType.OpenQuestion;
         }
     }
 
@@ -67,8 +70,9 @@ public class ShowOpenQuestion {
             this.qid = question.getId();
         }
     }
-    @Secured("ROLE_USER")
+
     @CommitAfter
+    @Secured("ROLE_USER")
     Object onSuccessFromAnswerForm() {
         answer = new OpenAnswer();
         System.out.println(fAnswer);

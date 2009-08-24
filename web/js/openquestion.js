@@ -35,29 +35,3 @@ function fckeditor_word_count(editorInstance) {
      }
 }
 
-$('downimg').observe('click', function() {
-
-    $('downimg').hide();
-    $('downimgsel').show();
-});
-
-
-$('upimg').observe('click', function() {
-
-    $('upimg').hide();
-    $('upimgsel').show();
-});
-
-
-$('downimgsel').observe('click', function() {
-
-    $('downimgsel').hide();
-    $('downimg').show();
-});
-
-
-$('upimgsel').observe('click', function() {
-
-    $('upimgsel').hide();
-    $('upimg').show();
-});

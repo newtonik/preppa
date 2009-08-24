@@ -60,13 +60,14 @@ public class OpenQuestion implements Serializable {
     private Date createdAt;
     private Date updatedAt;
     private List<Tag> taglist = new ArrayList<Tag>();
-    private Integer votes;
+    private Integer totalvotes;
     private User user;
     private ContentFlag status;
     private String revComment;
     private Boolean image;
     private String imagePath;
     private User updatedBy;
+    private List<Vote> votes;
 
 
     @Id
@@ -201,19 +202,19 @@ public class OpenQuestion implements Serializable {
     }
 
     /**
-     * @return the votes
+     * @return the totalvotes
      */
     @Audited
     @Field(index=Index.UN_TOKENIZED, store=Store.YES)
     public Integer getRating() {
-        return votes;
+        return totalvotes;
     }
 
     /**
-     * @param votes the votes to set
+     * @param totalvotes the totalvotes to set
      */
     public void setRating(Integer rating) {
-        this.votes = rating;
+        this.totalvotes = rating;
     }
 
     /**
@@ -336,6 +337,21 @@ public class OpenQuestion implements Serializable {
      */
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    /**
+     * @return the votes
+     */
+    @ManyToMany
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    /**
+     * @param votes the votes to set
+     */
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 
 }

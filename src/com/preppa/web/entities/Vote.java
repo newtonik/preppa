@@ -35,6 +35,7 @@ import org.hibernate.annotations.Table;
     @Index(name="contType_userId", columnNames={"contentTypeId","user_id"}),
     @Index(name="content_source", columnNames={"contentTypeId","contentId","source"})    })
 public class Vote implements Serializable {
+    private List<OpenQuestion> openQuestions;
     private List<Question> questions;
     private static final long serialVersionUID = 1L;
     
@@ -194,6 +195,15 @@ public class Vote implements Serializable {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    @ManyToMany(mappedBy = "votes")
+    public List<OpenQuestion> getOpenQuestions() {
+        return openQuestions;
+    }
+
+    public void setOpenQuestions(List<OpenQuestion> openQuestions) {
+        this.openQuestions = openQuestions;
     }
 
 }

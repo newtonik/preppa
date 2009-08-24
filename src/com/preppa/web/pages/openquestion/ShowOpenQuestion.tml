@@ -20,11 +20,11 @@
             <br />
             <br />
             <div class="questionbox">
-                
+
                 <t:outputraw t:value="${question.question}"/>
-                
+
             </div>
-            <div id="voteseal" t:type="voteseal" />
+            <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
             <br />
             <br />
             <div t:id="answerlist" t:answers="openanswers">
@@ -50,6 +50,12 @@
                         <b> Please be explain clearly!</b>
                         <br />
                         </td>
+                        </tr>
+                        <tr>
+                            <td><b> Word Count</b></td>
+                        </tr>
+                        <tr>
+                            <td id="word_count"></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="left">
