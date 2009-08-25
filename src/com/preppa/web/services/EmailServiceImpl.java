@@ -74,7 +74,7 @@ public class EmailServiceImpl implements EmailService {
             HtmlEmail email = new HtmlEmail();
             email.addTo(user.getEmail());
             email.setFrom("email@preppa.com");
-            email.setSubject("Welcome to Preppa" + user.getFirstName());
+            email.setSubject("Welcome to Preppa " + user.getFirstName());
             //email.setTextMsg("Welcome " + user.getFirstName() + " to preppa!" + " Your username is " + user.getUsername());
             String activate = "<p> To activate account go to " + "http://test.preppa.com/user/activate/" + user.getActivationcode() + " </p>";
             String aHtml = "<html><body><h2> Welcome " + user.getFirstName() +" </h2> <p> Your username is " +  user.getUsername() + "</p> " + activate + " </body><html>";

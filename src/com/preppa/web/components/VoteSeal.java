@@ -6,6 +6,7 @@ import com.preppa.web.entities.Vote;
 import com.preppa.web.utils.ContentType;
 import java.sql.Timestamp;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.Parameter;
@@ -37,7 +38,7 @@ public class VoteSeal {
     private ContentType contenttype;
     @Parameter(required=true)
     private String votes;
-    @Parameter
+    @Persist
     private Boolean hasVoted;
     @Persist
     private Boolean up;
@@ -46,16 +47,25 @@ public class VoteSeal {
     @Inject
     private HttpServletRequest _request;
     private int ctype;
+    @Persist
+    private int cid;
+    @Persist
+    private ContentType ctid;
+    @Inject
+    private ComponentResources cresources;
     @SetupRender
     void setDefault() {
+           cresources.discardPersistentFieldChanges();
 
-
+           System.out.println(contentId);
             this.count = voteDAO.findVoteByContentId(contenttype, contentId);
+            hasVoted = voteDAO.checkVoted(contenttype, contentId, user);
 
         if(count == null) {
             count = 0;
         }
- 
+        cid = contentId;
+        ctid = contenttype;
 
         voted = "false";
         up = false;
@@ -63,9 +73,9 @@ public class VoteSeal {
     @CommitAfter
     @Secured("ROLE_USER")
     JSONObject onActionFromVoteUp() {
-        System.out.println("Clicked");
+        System.out.println("Clicked" + hasVoted);
         JSONObject json = new JSONObject();
-        if(voted.equals("false") ) {
+        if(voted.equals("false") && (!hasVoted)) {
             count++;
             voted = "true";
             up = true;
@@ -73,12 +83,14 @@ public class VoteSeal {
             json.put("count", count);
             Vote v = new Vote();
             v.setContentId(contentId);
-            v.setContentTypeId(ContentType.OpenQuestion);
+            v.setContentTypeId(contenttype);
             v.setValue(1);
             v.setUser(user);
             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
             v.setCreatedAt(now);
             String  hostname = _request.getRemoteHost();
+            System.out.println("here " + contenttype +" " + contentId + " " + user.getFirstName());
+            
             v.setSource(hostname);
             voteDAO.doSave(v);
         }
@@ -97,7 +109,7 @@ public class VoteSeal {
     JSONObject onActionFromVoteDown() {
         System.out.println("Clicked");
         JSONObject json = new JSONObject();
-        if(voted.equals("false")) {
+        if(voted.equals("false") && (!hasVoted)) {
             count--;
             voted = "true";
             up = false;
@@ -105,8 +117,10 @@ public class VoteSeal {
              json.put("count", count);
              Vote v = new Vote();
             v.setContentId(contentId);
-            v.setContentTypeId(ContentType.OpenQuestion);
+            v.setContentTypeId(contenttype);
             v.setValue(-1);
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+            v.setCreatedAt(now);
             v.setUser(user);
             voteDAO.doSave(v);
 

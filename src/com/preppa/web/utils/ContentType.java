@@ -13,6 +13,7 @@ public enum ContentType {
     OpenQuestion,
     Question,
     GridIn,
-    Vocab
+    Vocab,
+    OpenAnswer
 
 }

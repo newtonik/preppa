@@ -1,3 +1,7 @@
+  window.onload = function() {
+
+
+  }
 $('downimg').observe('click', function() {
     var path = window.location.pathname;
     var end = path.lastIndexOf("/");
@@ -7,6 +11,7 @@ $('downimg').observe('click', function() {
     method: 'post',
     onSuccess: function(transport) {
         var json = transport.responseText.evalJSON();
+        alert(json.count);
         if(json.voted == "true") {
             $('countid').update(json.count);
             $('downimg').hide();

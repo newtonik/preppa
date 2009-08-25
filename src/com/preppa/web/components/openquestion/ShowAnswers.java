@@ -1,6 +1,7 @@
 package com.preppa.web.components.openquestion;
 
 import com.preppa.web.entities.OpenAnswer;
+import com.preppa.web.utils.ContentType;
 import java.util.List;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
@@ -18,6 +19,8 @@ public class ShowAnswers {
     private OpenAnswer answer;
     @Property
     private String count;
+    @Property
+    private ContentType contType;
 
 
     @SetupRender
@@ -27,6 +30,8 @@ public class ShowAnswers {
             count = counter.toString() + " Answer";
         else
             count = counter.toString() + " Answers";
+        contType = ContentType.OpenAnswer;
     }
+
 
 }
