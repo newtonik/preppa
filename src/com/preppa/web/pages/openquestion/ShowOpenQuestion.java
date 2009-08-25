@@ -4,6 +4,7 @@ import com.preppa.web.components.openquestion.ShowAnswers;
 import com.preppa.web.data.OpenQuestionDAO;
 import com.preppa.web.entities.OpenAnswer;
 import com.preppa.web.entities.OpenQuestion;
+import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.utils.ContentType;
 import java.sql.Timestamp;
@@ -47,6 +48,8 @@ public class ShowOpenQuestion {
     @Property
     private ContentType contType;
     private Long qid;
+    @Property
+    private List<Tag> tags;
 
     void onActivate(Long id)
     {
@@ -57,6 +60,7 @@ public class ShowOpenQuestion {
             qid = id;
             author = question.getOwner().getUsername();
             contType = ContentType.OpenQuestion;
+            tags = question.getTaglist();
         }
     }
 

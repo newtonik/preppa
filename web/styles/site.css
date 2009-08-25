@@ -491,15 +491,15 @@ ul {
     border:solid 1px #666666
 }
 
-#vote {
+.vote {
     display:inline-block;
     vertical-align:middle;
     text-align:center;
 }
-#vote img {
+.vote img {
     cursor: pointer;
 }
-#vote .count {
+.vote .count {
     font-weight:bold;
     font-size: 18px;
     display: block;

@@ -26,7 +26,7 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         SQLString sqlString = new SQLString("FROM Vote v");
         if(contentType != null)
         {
-            sqlString.addWhereClause("v.contentTypeId  = '" + contentType + "'");
+            sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
         }
 
 
@@ -249,7 +249,7 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
         if(contentType != null && contentId > 0)
         {
-            sqlString.addWhereClause("v.contentTypeId  = '" + contentType + "'");
+            sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
             sqlString.addGroupField("v.contentId");
@@ -282,7 +282,7 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         SQLString sqlString = new SQLString("select v.value FROM Vote v");
         if(contentType != null && contentId > 0)
         {
-            sqlString.addWhereClause("v.contentTypeId  = '" + contentType + "'");
+            sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addWhereClause("v.user = '" + user.getId() + "'");
 

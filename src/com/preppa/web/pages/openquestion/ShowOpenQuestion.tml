@@ -24,6 +24,9 @@
                 <t:outputraw t:value="${question.question}"/>
 
             </div>
+            <br />
+            <t:tagview t:alltags="tags" />
+            <br />
             <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
             <br />
             <br />

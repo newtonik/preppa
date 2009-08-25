@@ -245,7 +245,7 @@ public class OpenQuestion implements Serializable {
     /**
      * @return the answers
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @IndexedEmbedded
     @Audited
     public List<OpenAnswer> getAnswers() {
@@ -262,8 +262,8 @@ public class OpenQuestion implements Serializable {
     /**
      * @return the status
      */
-    @Enumerated(EnumType.ORDINAL)
     @Audited
+    @Enumerated(EnumType.ORDINAL)
     public ContentFlag getStatus() {
         return status;
     }

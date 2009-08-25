@@ -27,18 +27,23 @@
     -->
     <br />
  
-    <div id="vote">
+    <div class="vote">
         <a href="#" t:type="actionlink" disabled="true" t:id="voteup" >
-            <img id="upimg" alt="Thumbs Up" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsup.jpg}"  style="border: 2px solid;"/>
-            <img id="upimgsel" alt="Thumbs Up" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsup-selected.jpg}" style="border: 2px solid  #f5e53e;display: none"/>
+            <img class="upimg" alt="Thumbs Up" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsup.jpg}"  style="border: 2px solid;"/>
+            <img class="upimgsel" alt="Thumbs Up" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsup-selected.jpg}" style="border: 2px solid  #f5e53e;display: none"/>
         </a>
         <br />
-        <span id="countid" class="count"> ${count}</span>
+        <span class="count"> ${count}</span>
         <a href="#" t:type="actionlink" disabled="true" t:id="votedown" >
-            <img id="downimg" alt="Thumbs Down" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsdown2.jpg}" style="border: 2px solid ;"/>
-            <img id="downimgsel" alt="Thumbs Down" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsdown2-selected.jpg}" style="border: 2px solid  #f5e53e;display: none"/>
+            <img class="downimg" alt="Thumbs Down" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsdown2.jpg}" style="border: 2px solid ;"/>
+            <img class="downimgsel" alt="Thumbs Down" align="middle" height="25" width="25" src="${asset:context:/images/voting/thumbsdown2-selected.jpg}" style="border: 2px solid  #f5e53e;display: none"/>
         </a>
+        <t:form class="hiddenform">
+        <input t:id="contidhidden" class="hiddenId"/>
+        <input t:id="conttypehidden" class="hiddentypeid" />
+        </t:form>
     </div>
+    
     <t:zone t:id="voteupZone">
         
     </t:zone>
