@@ -23,7 +23,8 @@ import org.chenillekit.tapestry.core.components.SlidingPanel;
  * @author newtonik
  */
 @IncludeStylesheet(value = {"context:styles/site.css", "context:js/lightbox/css/lightbox.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/Chenillekit.js", "context:js/layout.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/Chenillekit.js", "context:js/jquery-1.3.2.js",
+                                        "context:js/jquery/jqueryui/js/jquery-ui-1.7.2.custom.min.js", "context:js/layout.js"})
 public class Layout {
 
     @Inject

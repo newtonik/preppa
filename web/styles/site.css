@@ -45,23 +45,46 @@ h1
     font-weight: bold;
     color: #204060;
 }
+#topbar {
+    float:left;
+    overflow:hidden;
+    width:100%;
+}
 #nav-menu{
+   float:left;
+   overflow:hidden;
+   width:100%;
+   font-family:Verdana,Geneva,sans-serif;
+    font-size:110%;
 
 }
 #nav-menu ul
 {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    
+   clear:left;
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   left:50%;
+   text-align:center;
+
 }
 
-#nav-menu li
+#nav-menu ul li
 {
-    float: left;
-    margin: 0 0.15em;
+    display:block;
+    right:50%;
+       float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+
 }
 
-#nav-menu li a
+#nav-menu ul li a
 {
     background: url(background.gif) #fff bottom left repeat-x;
     height: 2em;
@@ -83,11 +106,10 @@ h1
     clear:both;
     float:left;
     width:100%;
-
     display:inline-block;
     margin:0 auto;
     vertical-align:baseline;
-    border-bottom:1px solid #000;
+    border:2px outset #CCCCCC;
     background-color: #D4E4FF;
     z-index: 9000;
     margin-top:0px;
@@ -107,7 +129,7 @@ h1
     padding:0;
 }
 #header ul li {
-    display:inline;
+    
     list-style:none;
     margin:0;
     padding:0;
@@ -115,7 +137,7 @@ h1
 #header ul li a {
     display:block;
     float:left;
-    margin:0 0 0 1px;
+    margin:0 0 0 0px;
     padding:3px 10px;
     text-align:center;
     background:#eee;
@@ -123,23 +145,26 @@ h1
     text-decoration:none;
     position:relative;
     left:15px;
-    line-height:1.3em;
+    line-height:1.5em;
+    padding-bottom:10px;
+
 }
-#header ul li a:hover {
+#nav-menu ul li a:hover {
     background:#369;
     color:#fff;
+
 }
-#header ul li a.active,
-#header ul li a.active:hover {
+#nav-menu ul li a.active,
+#nav-menu ul li a.active:hover {
     color:#fff;
     background:#000;
     font-weight:bold;
 }
-#header ul li a span {
+#nav-menu ul li a span {
     display:block;
 }
 #navbar {
-
+    
 }
 
 #topright {
@@ -147,6 +172,7 @@ h1
     margin: 5px 0 0;
     text-align: right;
     width: 650px;
+    padding-right: 10px;
 }
 #fixed {
     margin:0 auto;
@@ -278,7 +304,7 @@ h1
     margin-right:45px;  	/* Width of right column right-hand padding + left column left and right padding */
     position:relative;
     left:50%;
-    background-color:#D4E4FF;
+   
 }
 
 /* Footer styles */
@@ -757,5 +783,20 @@ ul {
     font-size: 107%;
     line-height: 130%;
     background-color:#F2F2F2;
+
+}
+
+.rightsideboxes {
+   background-color: #EFEFEF;
+   width:100px;
+   height:100px;
+   margin-right:auto;
+   margin-left:auto;
+   cursor:pointer;
+}
+
+.droppable {
+    width:120px;
+    height:150px;
 
 }

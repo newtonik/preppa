@@ -2,6 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <div id="navbar" align="center">
+        <div id="topbar">
         <div id="logo" align="left">
             <a href="#" t:type="PageLink" t:page="index">
                 <img src="${asset:context:/images/logo.png}" height="80" width="160" align="left"/>
@@ -47,8 +48,9 @@
                 </t:parameter>
             </t:if>
         </div>
-        <div id="nav-menu">
-            <ul>
+            </div>
+        <div id="nav-menu" align="center">
+            <ul class="nav">
                 <t:if t:test="Home">
                     <li><a href="#" style="background:#C0C0C0;" t:type="PageLink" t:page="index">Home</a></li>
                     <t:parameter name="else">

@@ -175,3 +175,12 @@ document.observe("dom:loaded", function() {
 //     $('articleform').request({
 //        onSuccess: function(){ alert('Form data saved!') }
 //      })
+
+
+jQuery(document).ready(function(){
+jQuery(".rightsideboxes").draggable({greedy:true,  activeClass: 'ui-state-hover', revert:'invalid'});
+    jQuery(".droppable").droppable({
+      drop: function() {
+            }
+    });
+});
