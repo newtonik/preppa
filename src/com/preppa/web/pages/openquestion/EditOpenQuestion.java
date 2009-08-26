@@ -26,7 +26,6 @@ import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.springframework.security.annotation.Secured;
 
-
 /**
  *
  * @author nwt
@@ -34,6 +33,7 @@ import org.springframework.security.annotation.Secured;
 @Secured("ROLE_USER")
 @IncludeJavaScriptLibrary(value = {"context:js/openquestion.js"})
 public class EditOpenQuestion {
+
     @ApplicationState
     private User user;
     @Property
@@ -57,7 +57,7 @@ public class EditOpenQuestion {
     private TagDAO tagDAO;
     @Component
     private TextField titleField;
-        @Component
+    @Component
     private AutoComplete autoCompleteTag;
     @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
@@ -69,9 +69,8 @@ public class EditOpenQuestion {
     @InjectPage
     private ShowOpenQuestion showquestion;
 
-
     void onActivate(Long id) {
-        if(id > 0) {
+        if (id > 0) {
             question = openDAO.findById(id);
             this.qid = id;
             fTitle = question.getTitle();
@@ -79,11 +78,13 @@ public class EditOpenQuestion {
             addedTags = question.getTaglist();
         }
     }
+
     Long onPassivate() {
         return qid;
 
     }
-    void onValidate()  {
+
+    void onValidate() {
         System.out.println(question.getTitle());
     }
 
@@ -100,13 +101,14 @@ public class EditOpenQuestion {
             }
         }
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-                    
-         question.setUpdatedAt(now);
 
-         openDAO.doSave(question);
-         showquestion.setOpenQuestion(question);
-         return showquestion;
+        question.setUpdatedAt(now);
+
+        openDAO.doSave(question);
+        showquestion.setOpenQuestion(question);
+        return showquestion;
     }
+
     @CommitAfter
     JSONObject onSuccessFromTagForm() {
         List<Tag> tolist = tagDAO.findByName(fname);
@@ -119,7 +121,7 @@ public class EditOpenQuestion {
             json.put("content", markup);
 
         } else {
-          tag = new Tag();
+            tag = new Tag();
             tag.setName(fname);
 
             tagDAO.doSave(tag);
@@ -133,7 +135,8 @@ public class EditOpenQuestion {
         // return new TextStreamResponse("text/json", json.toString());
         return json;
     }
-      List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+
+    List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         for (Tag t : matches) {
             if (addedTags.contains(t)) {
@@ -143,6 +146,7 @@ public class EditOpenQuestion {
         return matches;
 
     }
+
     public FieldTranslator getTagTranslator() {
         return new FieldTranslator<Tag>() {
 
@@ -181,5 +185,7 @@ public class EditOpenQuestion {
         };
     }
 
-
+    Block onActionFromCloseTag() {
+        return newtagblock;
+    }
 }

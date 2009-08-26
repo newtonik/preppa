@@ -98,7 +98,8 @@ public class NewOpenQuestion {
         showquestion.setOpenQuestion(question);
         return showquestion;
     }
-        //Funtions for adding new tags and topics
+    //Funtions for adding new tags and topics
+
     @CommitAfter
     JSONObject onSuccessFromTagForm() {
         List<Tag> tolist = tagDAO.findByName(fname);
@@ -124,7 +125,8 @@ public class NewOpenQuestion {
         // return new TextStreamResponse("text/json", json.toString());
         return json;
     }
-     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+
+    List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         for (Tag t : matches) {
             if (addedTags.contains(t)) {
@@ -134,6 +136,7 @@ public class NewOpenQuestion {
         return matches;
 
     }
+
     public FieldTranslator getTagTranslator() {
         return new FieldTranslator<Tag>() {
 
@@ -170,5 +173,9 @@ public class NewOpenQuestion {
                 return serverValue;
             }
         };
+    }
+
+    Block onActionFromCloseTag() {
+        return newtagblock;
     }
 }

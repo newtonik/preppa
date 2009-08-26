@@ -56,7 +56,7 @@ function voteDown(event) {
         },
         onSuccess: function(transport) {
             var json = transport.responseText.evalJSON();
-            alert(json.count);
+            //alert(json.count);
             if(json.voted == "true") {
                 countelement.update(json.count);
                 element.hide();
@@ -124,7 +124,7 @@ function voteUp(event) {
         },
         onSuccess: function(transport) {
             var json = transport.responseText.evalJSON();
-            alert(json.count);
+            //alert(json.count);
             if(json.voted == "true") {
                 countelement.update(json.count);
                 element.hide();

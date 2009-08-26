@@ -124,7 +124,7 @@
                     <tr>
                         <td></td>
                         <td align="left">
-                            <a  id="addtag" href="#" > Add a New Tag </a>
+                            <a  class="addtag" href="#" > Add a New Tag </a>
                         </td>
                     </tr>
                     <tr>
@@ -169,11 +169,11 @@
         </t:form>
     </div>
 
-    <div id="newtagbox" class="tagboxklass" style='display:none'>
+      <div id="newtagbox" class="tagboxklass" style='display:none'>
         <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
              bgcolor="#FFFFFF"
              style="padding: 20px;" align="center">
-            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
+            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" class="tagcornerclass">
 
                 <t:zone t:id="formzone">
                     <t:delegate to="newtagblock"/>

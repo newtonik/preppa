@@ -62,7 +62,7 @@
                     <td></td>
                     <td align="left">
                         Can't find one
-                        <a  id="addtag" href="#" > Add a New Tag </a>
+                        <a  class="addtag" href="#" > Add a New Tag </a>
                     </td>                  </tr>
                 <tr>
                     <td></td>
@@ -83,14 +83,14 @@
         <div fgcolor="#4186D3"
              bgcolor="#FFFFFF"
              style="padding: 20px;" align="center">
-            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
+            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" class="tagcornerclass">
 
                 <t:zone t:id="formzone">
                     <t:delegate to="newtagblock"/>
                 </t:zone>
 
                 <p>
-                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" id="closetagbox">Close</a>
+                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" class="closetagbox">Close</a>
                 </p>
             </div>
         </div>

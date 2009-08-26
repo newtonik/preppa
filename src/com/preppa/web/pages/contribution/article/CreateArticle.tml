@@ -95,7 +95,7 @@
             <tr>
                 <td align="left">
                     Can't find one
-                    <a  id="addtag" href="#" > Add a New Tag </a>
+                    <a  class="addtag" href="#" > Add a New Tag </a>
 
                 </td>
             </tr>
