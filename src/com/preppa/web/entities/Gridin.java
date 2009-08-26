@@ -114,6 +114,7 @@ public class Gridin implements Serializable {
      * @return the question
      */
        @Audited
+       @Lob
     public String getQuestion() {
         return question;
     }

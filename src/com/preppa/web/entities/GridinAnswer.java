@@ -74,6 +74,7 @@ public class GridinAnswer implements Serializable {
      * @return the answer
      */
     @Audited
+    @Lob
     public String getAnswer() {
         return answer;
     }

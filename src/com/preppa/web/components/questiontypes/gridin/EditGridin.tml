@@ -42,7 +42,7 @@
             </tr>
             <tr>
                 <td>
-            <t:editor align="left" t:id="questionBody" toolbarSet="Gridin"  customConfiguration="asset:context:js/fck/gridin.js" value="fQuestion" t:width="600" t:height="300"
+             <t:editor align="left" t:id="questionBody" toolbarSet="Gridin"  customConfiguration="asset:context:js/fck/gridin.js" value="fQuestion" t:width="600" t:height="300"
                       t:label="Body" t:validate="required" onkeyup="countCharacters();" />
             </td>
             </tr>
