@@ -35,6 +35,9 @@
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:Adjective"> Adjective </t:pagelink>
 <t:pagelink t:page="contribution/vocab/list" t:context="literal:Verb"> Verb </t:pagelink>
 
+<br />
+<a href="#" t:page="contribution/vocab/slideshow" t:type="pagelink" align="right"> See as Slide Show </a>
+<br />
     <h2>Vocabulary Words</h2>
 <t:loop t:source="allvocab"
     t:value="vocab">

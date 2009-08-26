@@ -1,0 +1,16 @@
+<html t:type="layout" t:pageTitle="Slide Show" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <br />
+    <br />
+    <div id="main">
+    <div class="scrollable">
+        <div class="items">
+        <t:loop t:source="allvocab"
+    t:value="listVocab">
+    <div>
+        <h2>${listVocab.name}</h2>
+    </div>
+</t:loop>
+    </div>
+ </div>
+    </div>
+</html>
