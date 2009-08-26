@@ -48,7 +48,12 @@ function voteDown(event) {
     var url = path.substring(0,end);
     if(url == "/preppa/contribution/question/approve/show")
      {
-        url = url + "showquestion.voteseal.votedown?t:ac=1";
+        url = url + ".showquestion.voteseal.votedown?t:ac=1";
+
+     }
+    else if(url == "/preppa/contribution/question/show")
+     {
+        url = url + ".showquestion.voteseal.votedown?t:ac=1";
 
      }
      else
@@ -130,9 +135,14 @@ function voteUp(event) {
         url = url + ".showquestion.voteseal.voteup?t:ac=1";
 
      }
+     else if(url == "/preppa/contribution/question/show")
+     {
+        url = url + ".showquestion.voteseal.voteup?t:ac=1";
+
+     }
      else
          {
-             url = url + ".voteseal.votedown?t:ac=1";
+             url = url + ".voteseal.voteup?t:ac=1";
 
          }
     new Ajax.Request(url, {

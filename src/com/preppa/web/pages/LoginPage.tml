@@ -1,61 +1,63 @@
 <html t:type="layout"  t:pageTitle="Login Page" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-    bgcolor="#FFFFFF"
-    style="padding: 20px;" align="center">
-<div style="padding: 20px; background-color:#e8eefa;" >
-  <t:form t:id="loginform">
-      <t:errors />
-      <table id="userformtable">
-           <tr>
-                     <td valign="top" align="left">
-           <t:label for="fLogin"> Login Name </t:label>
-
-                     </td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <input t:type="TextField" t:id="fLogin" size="30"  t:value="fLogin" t:label="Login"/>
-                   </td>
-                  </tr>
-                      <tr>
-                     <td valign="top" align="left">
-                         <t:label for="passwordField"/>
-                     </td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <input t:type="PasswordField" t:id="passwordField" size="30"  t:value="fpass" t:label="Password"/>
-                   </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          Remember Me
-                          <input type="checkbox" t:value="rememberme" name="_spring_security_remember_me"/>
-                      </td>
-                  </tr>
+    <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+         bgcolor="#FFFFFF"
+         style="padding: 20px;" align="center">
+        <div style="padding: 20px; background-color:#e8eefa;" >
+            <t:form t:id="loginform" clientValidation="false" >
+                <t:errors />
+                <table id="userformtable">
                     <tr>
-                      <td align="left">
-                          <br />
-                        <input type="submit" value="Submit"/>
-                    </td>
-                    <td alight="right">
-                        <br />
-                         <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
-                    </td>
+                        <td valign="top" align="left">
+                    <t:label for="fLogin"> Login Name </t:label>
 
-                 </tr>
-                 <tr>
-                     <br />
-                     <td align ="left">
-                         <a href="#" t:type="Pagelink" t:page="user/create" >Register</a>
-                     </td>
-                            <td align ="right">
-                         <a href="#" t:type="Pagelink" t:page="user/password/reset" >Forgot Password?</a>
-                     </td>
-                 </tr>
-      </table>
-  </t:form>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input t:type="TextField" t:id="fLogin" size="30"  t:value="fLogin" t:label="Login"/>
+                            <div class="tooltip">Must be at least 4 characters.</div><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" align="left">
+                    <t:label for="passwordField"/>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input t:type="PasswordField" t:id="passwordField" size="30"  t:value="fpass" t:label="Password"/>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Remember Me
+                            <input type="checkbox" t:value="rememberme" name="_spring_security_remember_me"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <br />
+                            <input type="submit" value="Submit"/>
+                        </td>
+                        <td alight="right">
+                            <br />
+                            <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                        </td>
 
-</div>
-</div>
+                    </tr>
+                    <tr>
+                    <br />
+                    <td align ="left">
+                        <a href="#" t:type="Pagelink" t:page="user/create" >Register</a>
+                    </td>
+                    <td align ="right">
+                        <a href="#" t:type="Pagelink" t:page="user/password/reset" >Forgot Password?</a>
+                    </td>
+                    </tr>
+                </table>
+            </t:form>
+
+        </div>
+    </div>
 </html>

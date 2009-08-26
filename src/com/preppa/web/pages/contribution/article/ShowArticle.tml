@@ -24,6 +24,9 @@
              <t:outputraw t:value="${article.body}"/>
        
         </p>
+        <br />
+        <div id="voteseal" t:type="voteseal" t:contentid="${article.id}" t:contenttype="contType" t:votes="votes" />
+        <br />
         <p>
             <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
         </p>

@@ -90,6 +90,9 @@ private List<Flag> articleflags;
 private Block flagblock;
 @Component
 private TextField flagfield;
+@Property
+private ContentType contType;
+
 
 
 void onActivate(int id) {
@@ -100,7 +103,8 @@ void onActivate(int id) {
             this.articleflags = article.getFlags();
             this.votes = voteDAO.findVoteByContentId(ContentType.Article, article.getId());
             this.topics = article.getTopics();
-            
+            contType = ContentType.Article;
+            votes = 0;
             if(author != null) {
                 authorname = author.getUsername();
             }

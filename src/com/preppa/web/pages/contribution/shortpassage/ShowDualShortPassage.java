@@ -124,7 +124,8 @@ public class ShowDualShortPassage {
     private Block flagblock;
     @Component
     private TextField flagfield;
-
+    @Property
+    private ContentType contType;
 
 
     void onpageLoaded() {
@@ -146,7 +147,7 @@ public class ShowDualShortPassage {
             count = 0;
             q1 = passage.getQuestions().get(count);
         }
-
+        contType = ContentType.ShortDualPassage;
 //        return this;
     }
 

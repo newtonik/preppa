@@ -134,7 +134,8 @@ public class ShowShortPassage {
     private Block flagblock;
     @Component
     private TextField flagfield;
-
+    @Property
+    private ContentType contType;
 
     void onActivate(int id) {
         this.passage = passageDAO.findById(id);
@@ -143,6 +144,7 @@ public class ShowShortPassage {
         this.votes = voteDAO.findSumByShortPassageId(passage.getId());
         lastquestion = true;
         onequestion = true;
+        contType = ContentType.ShortPassage;
 }
 
 Integer onPassivate() {

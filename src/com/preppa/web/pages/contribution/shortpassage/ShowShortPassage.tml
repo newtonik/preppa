@@ -1,186 +1,188 @@
 <html t:type ="layout" t:pageTitle="${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
-<t:practicebarart />
-<div id="main">
+    <t:practicebarart />
+    <div id="main">
         <t:articlemenu />
 
 
-         <div align="left">
+        <div align="left">
             <a href="#" t:type="pagelink" t:page="contribution/shortpassage"> Back to Short Passages </a>
         </div>
-           <div align="right">
+        <div align="right">
             <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/shortpassage/revisions/Passage"> History </a>
         </div>
 
         <h2>
-           ${passage.title}
+            ${passage.title}
         </h2>
-           <div class="author-date">
+        <div class="author-date">
             Created at ${passage.createdAt}
         </div>
         <p>
-             <t:outputraw t:value="${passage.passage}"/>
-        </p>
-
-        <div>
-            <t:zone t:id="voteupZone">
+        <t:outputraw t:value="${passage.passage}"/>
+    </p>
+    <br />
+    <div id="voteseal" t:type="voteseal" t:contentid="${passage.id}" t:contenttype="contType" t:votes="votes" />
+    <br />
+    <div>
+        <t:zone t:id="voteupZone">
 
             <t:block t:id="voteBlock">
 
             </t:block>
-                <b> ${votes} Stars</b>
-              <br />
+            <b> ${votes} Stars</b>
+            <br />
             <a href="#" t:type="actionlink" t:id="voteup" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
                 Vote Up </a>
             <br />
             <a href="#" t:type="actionlink" t:id="votedown" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
                 Vote Down </a>
-            </t:zone>
-        </div>
-
-           <p>
-        <t:tagview t:alltags="tags" />
-        <br />
-        </p>
-        <p>
-            <a href="#" t:type="pageLink" t:page="contribution/shortpassage/edit" t:context="passage.id"> Edit </a>
-        <br />
-        </p>
-        <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
-        <br/>
-         <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
-         <br />
-
-         <t:zone t:id="showquestionZone">
-
-         </t:zone>
-         <br/>
-        <t:zone t:id="questionZone">
-
-         </t:zone>
-
-
-        <t:block t:id="showquestionBlock">
-            <div t:id="showquestion" t:question="q1">
-            </div>
-            <div>
-            <ul id="question-links">
-
-                    <t:if t:test="onequestion">
-                        <li class="prev">
-                        <a t:type="actionlink" t:id="prevshowquestion" href="#" t:zone="showquestionZone"> Previous </a>
-                        </li>
-                        <t:parameter name="else">
-                            <li class="prev-off"> Previous  </li>
-                        </t:parameter>
-                   </t:if>
-
-              <li class="next">
-                  <t:if t:test="lastquestion">
-
-                <a t:type="actionlink" t:id="nextshowquestion" href="#" t:zone="showquestionZone"> Next </a>
-                     <t:parameter name="else">
-                            <li class="next-off"> Next </li>
-                        </t:parameter>
-                    </t:if>
-              </li>
-             </ul>
-            </div>
-                    <div align="right">
-            <br />
-              <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
-                    </div>
-        </t:block>
-
-        <t:block t:id="questionblock">
-        <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
-        </div>
-            <br />
-                 <div align="right">
-        <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
-                 </div>
-        </t:block>
-
-
-        <p id="flagpass">
-             <a href="#" id="flaglink" > Flag </a>
-        </p>
-</div>
-    </body>
-
-
-
-
-
-    <div id="votebox" class="votemenu" style='display:none'>
-    <t:zone t:id="flagZone">
-         <t:delegate to="flagblock"/>
-    </t:zone>
-         <div align="center">
-            <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
-        </div>
-
+        </t:zone>
     </div>
 
+    <p>
+    <t:tagview t:alltags="tags" />
+    <br />
+</p>
+<p>
+    <a href="#" t:type="pageLink" t:page="contribution/shortpassage/edit" t:context="passage.id"> Edit </a>
+    <br />
+</p>
+<a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
+<br/>
+<a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
+<br />
 
-            <t:block t:id="flagblock">
-           <div id="submittable">
+<t:zone t:id="showquestionZone">
+
+</t:zone>
+<br/>
+<t:zone t:id="questionZone">
+
+</t:zone>
+
+
+<t:block t:id="showquestionBlock">
+    <div t:id="showquestion" t:question="q1">
+    </div>
+    <div>
+        <ul id="question-links">
+
+            <t:if t:test="onequestion">
+                <li class="prev">
+                    <a t:type="actionlink" t:id="prevshowquestion" href="#" t:zone="showquestionZone"> Previous </a>
+                </li>
+                <t:parameter name="else">
+                    <li class="prev-off"> Previous  </li>
+                </t:parameter>
+            </t:if>
+
+            <li class="next">
+            <t:if t:test="lastquestion">
+
+                <a t:type="actionlink" t:id="nextshowquestion" href="#" t:zone="showquestionZone"> Next </a>
+                <t:parameter name="else">
+                    <li class="next-off"> Next </li>
+                </t:parameter>
+            </t:if>
+            </li>
+        </ul>
+    </div>
+    <div align="right">
+        <br />
+        <a t:type="actionlink" t:id="removeshowquestion" href="#" t:zone="showquestionZone"> Close </a>
+    </div>
+</t:block>
+
+<t:block t:id="questionblock">
+    <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
+    </div>
+    <br />
+    <div align="right">
+        <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
+    </div>
+</t:block>
+
+
+<p id="flagpass">
+    <a href="#" id="flaglink" > Flag </a>
+</p>
+</div>
+</body>
+
+
+
+
+
+<div id="votebox" class="votemenu" style='display:none'>
+    <t:zone t:id="flagZone">
+        <t:delegate to="flagblock"/>
+    </t:zone>
+    <div align="center">
+        <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
+    </div>
+
+</div>
+
+
+<t:block t:id="flagblock">
+    <div id="submittable">
         <h3> Select a reason for flaging </h3>
         <t:form t:id="flagform" t:zone="flagZone">
-             <t:radiogroup value="reason" name="flaggroup">
-                  <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
-                 Incorrect<br />
-                 <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
-                 Offensive or Abusive<br />
-                   <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
-                   Spam <br />
-                   <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
-                   Alert Moderator<br />
-                   <br />
-                    <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
-                   Copyright Violation<br />
-                   <br />
-                   <t:label for="flagfield"> Enter a Short Description of problem </t:label>
-                       <br />
+            <t:radiogroup value="reason" name="flaggroup">
+                <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
+                Incorrect<br />
+                <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
+                Offensive or Abusive<br />
+                <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
+                Spam <br />
+                <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
+                Alert Moderator<br />
+                <br />
+                <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
+                Copyright Violation<br />
+                <br />
+                <t:label for="flagfield"> Enter a Short Description of problem </t:label>
+                <br />
 
-             </t:radiogroup>
+            </t:radiogroup>
             <input t:type="textfield" type="textfield" t:id="flagfield" t:value="reasonDesc" size="30"/>
             <br />
             <p align="center">
-        <br />
-                        <input type="submit" value="Submit"/>
-                            <a href="#" id="cancelflag" > Cancel </a>
-                            <br />
+                <br />
+                <input type="submit" value="Submit"/>
+                <a href="#" id="cancelflag" > Cancel </a>
+                <br />
             </p>
         </t:form>
-                </div>
-        </t:block>
-    <t:block t:id="flagresponse" >
-        <br />
-        <br />
-        <p>
-            Thanks for your feedback, we will look at the issue.
-        </p>
-        <br />
+    </div>
+</t:block>
+<t:block t:id="flagresponse" >
+    <br />
+    <br />
+    <p>
+        Thanks for your feedback, we will look at the issue.
+    </p>
+    <br />
 
-    </t:block>
+</t:block>
 
 
-    <t:block t:id="upsuccess">
-        <b> ${votes} Stars</b>
-        <br />
-        You Voted Up
-    </t:block>
-    <t:block t:id="downsuccess">
-        <b> ${votes} Stars</b>
-        <br />
-        You Voted Down
-    </t:block>
-    <t:block t:id="voted">
-     <b> ${votes} Stars</b>
-        <br />
-       You have already voted.
-    </t:block>
+<t:block t:id="upsuccess">
+    <b> ${votes} Stars</b>
+    <br />
+    You Voted Up
+</t:block>
+<t:block t:id="downsuccess">
+    <b> ${votes} Stars</b>
+    <br />
+    You Voted Down
+</t:block>
+<t:block t:id="voted">
+    <b> ${votes} Stars</b>
+    <br />
+    You have already voted.
+</t:block>
 
 </html>

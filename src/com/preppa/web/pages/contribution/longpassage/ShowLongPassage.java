@@ -105,6 +105,8 @@ public class ShowLongPassage {
     private Block flagblock;
     @Component
     private TextField flagfield;
+    @Property
+    private ContentType contType;
 
 
     void onpageLoaded() {
@@ -120,6 +122,7 @@ public class ShowLongPassage {
             this.passage = passageDAO.findById(id);
             tags = passage.getTaglist();
             this.pid = passage.getId();
+            contType = ContentType.LongPassage;
     }
 
     Integer onPassivate() {

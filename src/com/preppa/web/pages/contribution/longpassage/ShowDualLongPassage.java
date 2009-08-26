@@ -120,7 +120,8 @@ private List<Flag> passageflags;
 private Block flagblock;
 @Component
 private TextField flagfield;
-
+    @Property
+    private ContentType contType;
     void onpageLoaded() {
         firstquestion.setPageFalse();
     }
@@ -135,6 +136,7 @@ private TextField flagfield;
         passageid = id;
         //this.passageflags = passage.getFlags();
         this.votes = voteDAO.findSumByLongDualPassageId(id);
+        contType = ContentType.LongDualPassage;
 //        return this;
     }
  

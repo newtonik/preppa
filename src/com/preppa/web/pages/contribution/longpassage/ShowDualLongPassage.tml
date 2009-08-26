@@ -33,6 +33,9 @@
         <t:tagview t:alltags="tags" />
         <br />
         </p>
+           <br />
+        <div id="voteseal" t:type="voteseal" t:contentid="${passage.id}" t:contenttype="contType" t:votes="votes" />
+        <br />
         <p>
             <a href="#" t:type="pageLink" t:page="contribution/longpassage/editdual" t:context="passage.id"> Edit </a>
         </p>

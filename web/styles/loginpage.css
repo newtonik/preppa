@@ -1,0 +1,30 @@
+/* 
+    Document   : loginpage
+    Created on : Aug 26, 2009, 1:26:38 AM
+    Author     : newtonik
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/* simple css-based tooltip */
+div.tooltip {
+    background-color:#000;
+    outline:1px solid #669;
+    border:2px solid #fff;
+    padding:10px 15px;
+    width:200px;
+    display:none;
+    color:#fff;
+    text-align:left;
+    font-size:12px;
+
+    /* outline radius for mozilla/firefox only */
+    outline-radius:4px;
+    -moz-outline-radius:4px;
+    -webkit-outline-radius:4px;
+}

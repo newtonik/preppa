@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
@@ -33,6 +35,8 @@ import org.springframework.security.userdetails.UserDetailsService;
  *
  * @author newtonik
  */
+@IncludeStylesheet(value = {"context:styles/loginpage.css"})
+@IncludeJavaScriptLibrary(value = { "context:js/jquery-1.3.2.js", "context:js/jquery/jquery.tools.min.js", "context:js/loginpage.js"})
 public class LoginPage
 {
     @Inject
