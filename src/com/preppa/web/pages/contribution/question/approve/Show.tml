@@ -6,6 +6,7 @@
     <div t:id="showquestion" t:question="question">
     </div>
 
+
         <div>
             <t:zone t:id="voteupZone">
 

@@ -17,7 +17,7 @@
 
 
         <div id="author-time">
-            Created at ${article.createdAt}
+            Created at <t:output format="literal:MMM. dd, yyyy" value="createdAt" />
         </div>
         <p>
 

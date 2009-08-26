@@ -9,6 +9,7 @@ import com.preppa.web.entities.User;
 import com.preppa.web.utils.ContentType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.acegisecurity.annotation.Secured;
 import org.apache.tapestry5.annotations.ApplicationState;
@@ -104,4 +105,10 @@ public class ShowOpenQuestion {
         openDAO.doSave(question);
         return null;
     }
+    public Date getcreatedAt() {
+    return question.getCreatedAt();
+}
+    public Date getUpdatedAt() {
+    return question.getUpdatedAt();
+}
 }

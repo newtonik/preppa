@@ -72,6 +72,13 @@
             </td>
             </tr>
             <tr>
+                  
+                    <td>
+                        <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
+                        <br />
+                    </td>
+                </tr>
+            <tr>
 
                 <td colspan="2" align="left">
                     <br />

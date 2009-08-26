@@ -54,13 +54,15 @@ public class ShowGridin {
     private Block downSuccess;
     @Inject
     private Block voted;
-    
+    @Property
+    private ContentType contType;
     void onActivate(Long id)  {
         if(id > 0) {
             question = gridinDAO.findById(id);
             answer = question.getAnswers().get(0);
             this.gridId = id;
             this.votes = voteDAO.findSumByGridInId(question.getId().intValue());
+            contType = ContentType.GridIn;
         }
     }
 

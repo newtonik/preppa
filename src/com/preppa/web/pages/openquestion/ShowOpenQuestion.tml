@@ -14,7 +14,7 @@
             <div align="left" id="author-time">
                 ${author}
                 <br />
-                ${question.updatedAt}
+                Last updated <t:output format="literal:MMM. dd, yyyy" value="updatedAt" />
             </div>
             <br />
             <br />

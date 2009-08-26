@@ -18,6 +18,7 @@ import com.preppa.web.utils.ContentType;
 import com.preppa.web.utils.FlagStatus;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.acegisecurity.annotation.Secured;
@@ -131,7 +132,12 @@ void onActivate(int id) {
             this.artId = article.getId();
           }
  }
-
+public Date getcreatedAt() {
+    return article.getCreatedAt();
+}
+public Date getUpdatedAt() {
+    return article.getUpdatedAt();
+}
 /**
  * Sets the article before the page is rendered.
  * @param article

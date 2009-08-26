@@ -15,7 +15,7 @@
                      <div id="author-time">
                         Submitted by <b> ${answer.user.username} </b>
                         <br />
-                        Updated at ${answer.updatedat}
+                        Last updated <t:output format="literal:MMM. dd, yyyy" value="answer.updatedat" />
                      </div>
                      <br />
                       <div id="voteseal" t:type="voteseal" t:contentid="${answer.id}" t:contenttype="contType" t:votes="${answer.votes}" />

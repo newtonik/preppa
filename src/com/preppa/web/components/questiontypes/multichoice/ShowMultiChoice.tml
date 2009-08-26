@@ -8,7 +8,7 @@
     </div>
 
     <div class="author-date">
-        Last updated ${question.updatedAt}
+        Last updated <t:output format="literal:MMM.dd, yyyy" value="UpdatedAt" />
     </div>
 <div align="center">
     <t:if t:test="${question.image}">
@@ -39,6 +39,8 @@
     <br />
 </p>
 
+<br />
+    <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="votes" />
 <div id="votebox" class="votemenu" style='display:none'>
     <t:zone t:id="flagZone">
          <t:delegate to="flagblock"/>

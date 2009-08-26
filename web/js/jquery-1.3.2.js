@@ -4373,6 +4373,11 @@ jQuery.each([ "Height", "Width" ], function(i, name){
 	};
 
 });
-jQuery.noConflict();}
-)();
+})();
+
+/*
+ * Must run in noConflict mode! 
+ */
 jQuery.noConflict();
+
+

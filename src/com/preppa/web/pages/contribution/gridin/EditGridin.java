@@ -25,8 +25,9 @@ import org.springframework.security.annotation.Secured;
  *
  * @author nwt
  */
-@Secured("ROLE_USER")
+
 @IncludeJavaScriptLibrary(value = {"context:js/gridin.js"})
+@Secured("ROLE_USER")
 public class EditGridin {
 
     @ApplicationState

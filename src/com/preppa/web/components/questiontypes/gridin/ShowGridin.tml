@@ -11,6 +11,8 @@
             <a href="#" t:type="pagelink" t:page="conribution/gridin/edit" t:context="${question.id}" > Edit </a>
         </p>
     </div>
+    <br />
+    <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
 
 
 </t:container>

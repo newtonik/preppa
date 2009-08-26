@@ -16,6 +16,7 @@ import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Mixins;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Radio;
 import org.apache.tapestry5.corelib.components.RadioGroup;
@@ -32,8 +33,8 @@ import org.springframework.security.annotation.Secured;
  *
  * @author nwt
  */
-@Secured("ROLE_USER")
 @IncludeJavaScriptLibrary(value = {"context:js/gridin.js"})
+@Secured("ROLE_USER")
 public class NewGridin {
 
     @ApplicationState
@@ -105,6 +106,12 @@ public class NewGridin {
     public void NewGridin() {
         this.question = new Gridin();
     }
+    @SetupRender
+    void setDefaults() {
+        hasimage = "false";
+        answertype = "range";
+        
+    }
 
     void onValidateFormFromGridinForm() {
         System.out.println("Validating " + answertype);
@@ -125,6 +132,7 @@ public class NewGridin {
 
     @CommitAfter
     Object onSuccessFromGridinForm() {
+        this.question = new Gridin();
         question.setTitle(fTitle);
         question.setQuestion(fQuestion);
         question.setUser(user);
