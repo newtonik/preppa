@@ -1,4 +1,6 @@
 <html t:type="layout" t:pageTitle="Dual Long Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+    <div id="main">
           <table>
         <tr t:type="loop" t:source="longdualpassages" t:value="longdualpassage">
             <td>
@@ -7,4 +9,5 @@
 
         </tr>
         </table>
+</div>
 </html>

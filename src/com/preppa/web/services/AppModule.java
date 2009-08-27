@@ -10,6 +10,10 @@ import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.ArticleDAOHibImpl;
 import com.preppa.web.data.DictionaryWordDAO;
 import com.preppa.web.data.DictionaryWordDAOHibImpl;
+import com.preppa.web.data.EssayDAO;
+import com.preppa.web.data.EssayDAOHimpl;
+import com.preppa.web.data.FeedBackDAO;
+import com.preppa.web.data.FeedBackDAOHimpl;
 import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.FlagDAOHimpl;
 import com.preppa.web.data.GridinDAO;
@@ -22,6 +26,8 @@ import com.preppa.web.data.OpenQuestionDAO;
 import com.preppa.web.data.OpenQuestionDAOHimpl;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.PassageDAOHibImpl;
+import com.preppa.web.data.PromptDAO;
+import com.preppa.web.data.PromptDAOHimpl;
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.QuestionDAOHimpl;
 import com.preppa.web.data.QuestiontypeDAO;
@@ -119,6 +125,9 @@ public final class AppModule {
         binder.bind(GridinDAO.class, GridinDAOHimpl.class);
         binder.bind(AnnouncementDAO.class, AnnouncementDAOHibImpl.class);
         binder.bind(FlagDAO.class, FlagDAOHimpl.class);
+        binder.bind(PromptDAO.class, PromptDAOHimpl.class);
+        binder.bind(EssayDAO.class, EssayDAOHimpl.class);
+        binder.bind(FeedBackDAO.class, FeedBackDAOHimpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 

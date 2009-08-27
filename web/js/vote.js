@@ -46,21 +46,7 @@ function voteDown(event) {
     var path = window.location.pathname;
     var end = path.lastIndexOf("/");
     var url = path.substring(0,end);
-    if(url == "/preppa/contribution/question/approve/show")
-     {
-        url = url + ".showquestion.voteseal.votedown?t:ac=1";
-
-     }
-    else if(url == "/preppa/contribution/question/show")
-     {
-        url = url + ".showquestion.voteseal.votedown?t:ac=1";
-
-     }
-     else
-         {
-             url = url + ".voteseal.votedown?t:ac=1";
-
-         }
+    url = url + ".voteseal.votedown?t:ac=1";
     new Ajax.Request(url, {
         method: 'post',
         parameters: {
@@ -70,7 +56,7 @@ function voteDown(event) {
         },
         onSuccess: function(transport) {
             var json = transport.responseText.evalJSON();
-            //alert(json.count);
+            alert(json.count);
             if(json.voted == "true") {
                 countelement.update(json.count);
                 element.hide();
@@ -128,23 +114,7 @@ function voteUp(event) {
     var path = window.location.pathname;
     var end = path.lastIndexOf("/");
     var url = path.substring(0,end);
- 
-        if(url == "/preppa/contribution/question/approve/show")
-     {
-
-        url = url + ".showquestion.voteseal.voteup?t:ac=1";
-
-     }
-     else if(url == "/preppa/contribution/question/show")
-     {
-        url = url + ".showquestion.voteseal.voteup?t:ac=1";
-
-     }
-     else
-         {
-             url = url + ".voteseal.voteup?t:ac=1";
-
-         }
+    url = url + ".voteseal.voteup?t:ac=1";
     new Ajax.Request(url, {
         method: 'post',
         parameters: {
@@ -154,7 +124,7 @@ function voteUp(event) {
         },
         onSuccess: function(transport) {
             var json = transport.responseText.evalJSON();
-            //alert(json.count);
+            alert(json.count);
             if(json.voted == "true") {
                 countelement.update(json.count);
                 element.hide();

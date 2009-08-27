@@ -32,6 +32,10 @@ public class PracticeBarArt {
     }
     public boolean getQuestion() {
         String url = _request.getRequestURL().toString();
-        return url.contains("/question");
+        return url.contains("/question") || url.contains("longpassage") || url.contains("shortpassage");
+    }
+    public boolean getFreeRes() {
+        String url = _request.getRequestURL().toString();
+        return url.contains("/essay") || url.contains("prompt");
     }
 }

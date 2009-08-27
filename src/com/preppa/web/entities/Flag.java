@@ -45,6 +45,7 @@ public class Flag implements Serializable {
     private ShortDualPassage shortdualpassage;
     private LongPassage longpassage;
     private ShortPassage shortpassage;
+    private Prompt prompt;
     private static final long serialVersionUID = 1L;
    
     private Long id;
@@ -396,6 +397,34 @@ public class Flag implements Serializable {
             System.out.println("*D");
             this.contentType = ContentType.ShortPassage;
             this.shortpassage = shortpassage;
+        }
+    }
+
+    @ManyToOne
+    public Prompt getPrompt() {
+        return prompt;
+    }
+
+    public void setPrompt(Prompt prompt) {
+         if(contentType != null)
+        {
+            System.out.println("*A");
+            if(contentType == ContentType.Prompt)
+            {
+                System.out.println("*B");
+                this.prompt = prompt;
+            }
+            else
+            {
+               System.out.println("*C");
+               System.out.println(contentType);
+               this.prompt = null;
+            }
+        }
+        else {
+            System.out.println("*D");
+            this.contentType = ContentType.Prompt;
+            this.prompt = prompt;
         }
     }
 }
