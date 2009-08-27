@@ -55,7 +55,9 @@ h1
    overflow:hidden;
    width:100%;
    font-family:Verdana,Geneva,sans-serif;
-    font-size:110%;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
 
 }
 #nav-menu ul
@@ -79,7 +81,8 @@ h1
        float:left;
    list-style:none;
    margin:0;
-   padding:0;
+   padding-bottom:8px;
+   padding-top:8px;
    position:relative;
 
 }
@@ -798,5 +801,94 @@ ul {
 .droppable {
     width:120px;
     height:150px;
+
+}
+
+
+
+
+/* initially all panes are hidden */
+div.panes div.pane {
+	display:none;
+}
+
+
+ul.css-tabs {
+	margin:0 !important;
+	padding:0;
+	height:30px;
+	border-bottom:1px solid #666;
+}
+
+/* single tab */
+ul.css-tabs li {
+	float:right;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+/* link inside the tab. uses a background image */
+ul.css-tabs a {
+	float:left;
+	font-size:13px;
+	display:block;
+	padding:5px 30px;
+	text-decoration:none;
+	border:1px solid #666;
+	border-bottom:0px;
+	height:18px;
+	background-color:#efefef;
+	color:#777;
+	margin-right:2px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright:4px;
+	position:relative;
+	top:1px;
+}
+
+ul.css-tabs a:hover {
+	background-color:#F7F7F7;
+	color:#333;
+}
+
+/* selected tab */
+ul.css-tabs a.current {
+	background-color:#ddd;
+	border-bottom:2px solid #ddd;
+	color:#000;
+	cursor:default;
+}
+
+
+/* tab pane */
+div.css-panes div {
+	display:none;
+	border:1px solid #666;
+	border-width:0 1px 1px 1px;
+	min-height:150px;
+	padding:15px 20px;
+	background-color:#ddd;
+}
+
+
+#commentbox
+{
+    border: 1px solid;
+}
+#commentbox ul {
+    list-style-type:none;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+#commentbox li {
+    border-top: 0.5px solid;
+    padding: 5px;
+}
+
+#commter-name {
+    font-weight:bold;
+    color:teal;
 
 }

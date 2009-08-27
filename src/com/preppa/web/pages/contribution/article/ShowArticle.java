@@ -42,7 +42,7 @@ import org.apache.tapestry5.json.JSONObject;
  * @author newtonik
  */
 @IncludeStylesheet(value = {"context:styles/flag.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/article.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/article.js"})
 public class ShowArticle {
 @ApplicationState
 private User user;

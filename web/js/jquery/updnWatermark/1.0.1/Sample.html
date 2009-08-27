@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en-GB">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Sample</title>
+<script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="jquery.updnWatermark.js"></script>
+<link type="text/css" rel="Stylesheet" href="Sample.css" />
+</head>
+<body>
+<p>
+	<label for="txtKeyword">Keyword:</label>
+	<input name="txtKeyword" id="txtKeyword" type="text" size="40" title="E.g. Restaurant or Supermarket" class="txt" />
+</p>
+<p>
+	<label for="txtLocation">Location:</label>
+	<input name="txtLocation" id="txtLocation" type="text" size="40" title="E.g. London or W1C 8TG" class="txt" />
+</p>
+<script>
+$(document).ready(function(){
+	$.updnWatermark.attachAll();
+});
+</script>
+</body>
+</html>

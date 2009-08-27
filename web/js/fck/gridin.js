@@ -1,6 +1,6 @@
 FCKConfig.AutoDetectPasteFromWord = false ;
 FCKConfig.PluginsPath = '/preppa/js/fck/plugins/' ;
-FCKConfig.SkinPath =  '/preppa/js/fck/skins/office2007/';
+FCKConfig.SkinPath =  '/preppa/js/fck/skins/Office2007Real/';
 FCKConfig.ToolbarSets["Gridin"] = [
 ['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
 ['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],

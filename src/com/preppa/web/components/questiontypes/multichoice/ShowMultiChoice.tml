@@ -8,7 +8,7 @@
     </div>
 
     <div class="author-date">
-        Last updated <t:output format="literal:MMM.dd, yyyy" value="UpdatedAt" />
+        Last updated <t:output format="literal:MMM. dd, yyyy" value="UpdatedAt" />
     </div>
 <div align="center">
     <t:if t:test="${question.image}">

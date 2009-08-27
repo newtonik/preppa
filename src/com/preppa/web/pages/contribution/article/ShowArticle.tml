@@ -1,19 +1,18 @@
 <html t:type ="layout" t:pageTitle="${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
-<t:practicebarart />
-<div id="main">
+    <t:practicebarart />
+    <div id="main">
         <t:articlemenu />
-        <div align="right">
-            <a href="#" t:type="pagelink" t:context="${article.id}" t:page="contribution/article/revisions"> History </a>
-        </div>
+        <br />
+        <div t:type="article/articletab" t:article="article" />
         <h2>
-           ${article.title}
+            ${article.title}
         </h2>
         <div id="author">
-            
-             written by ${authorname}
-            </div>
+
+            written by ${authorname}
+        </div>
 
 
         <div id="author-time">
@@ -21,111 +20,111 @@
         </div>
         <p>
 
-             <t:outputraw t:value="${article.body}"/>
-       
-        </p>
-        <br />
-        <div id="voteseal" t:type="voteseal" t:contentid="${article.id}" t:contenttype="contType" t:votes="votes" />
-        <br />
-        <p>
-            <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
-        </p>
-        <p id="flagpass">
-             <a href="#" id="flaglink" > Flag </a>
-        </p>
-        <div>
-            <t:zone t:id="voteupZone">
-            
+        <t:outputraw t:value="${article.body}"/>
+
+    </p>
+    <br />
+    <div id="voteseal" t:type="voteseal" t:contentid="${article.id}" t:contenttype="contType" t:votes="votes" />
+    <br />
+    <p>
+        <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
+    </p>
+    <p id="flagpass">
+        <a href="#" id="flaglink" > Flag </a>
+    </p>
+    <div>
+        <t:zone t:id="voteupZone">
+
             <t:block t:id="voteBlock">
-                
+
             </t:block>
-                <b> ${votes} Stars</b>
-              <br />
+            <b> ${votes} Stars</b>
+            <br />
             <a href="#" t:type="actionlink" t:id="voteup" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
                 Vote Up </a>
             <br />
             <a href="#" t:type="actionlink" t:id="votedown" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
                 Vote Down </a>
-            </t:zone>
-        </div>
-       
-        <t:tagview t:alltags="tags" />
-        <br />
-         <br />
-          <br />
-         <p>
-                    <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=1f0013ba-f916-4397-b4d4-2fda020283ae&amp;type=website&amp;buttonText=Share&amp;post_services=facebook%2Cmyspace%2Cdigg%2Cdelicious%2Cybuzz%2Ctwitter%2Cstumbleupon%2Creddit%2Ctechnorati%2Cwindows_live%2Cblogger%2Cwordpress%2Ctypepad%2Cgoogle_bmarks%2Cfark%2Cbus_exchange%2Cpropeller%2Cnewsvine%2Clinkedin%2Cmixx"></script>
-        </p>
-</div>
-    </body>
-
-    <t:block t:id="upsuccess">
-        <b> ${votes} Stars</b>
-        <br />
-        You Voted Up
-    </t:block>
-    <t:block t:id="downsuccess">
-        <b> ${votes} Stars</b>
-        <br />
-        You Voted Down
-    </t:block>
-    <t:block t:id="voted">
-     <b> ${votes} Stars</b>
-        <br />
-       You have already voted.
-    </t:block>
-       
-    <div id="votebox" class="votemenu" style='display:none'>
-    <t:zone t:id="flagZone">
-         <t:delegate to="flagblock"/>
-    </t:zone>
-         <div align="center">
-            <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
-        </div>
-
+        </t:zone>
     </div>
 
+    <t:tagview t:alltags="tags" />
+    <br />
+    <br />
+    <br />
+    <p>
+        <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=1f0013ba-f916-4397-b4d4-2fda020283ae&amp;type=website&amp;buttonText=Share&amp;post_services=facebook%2Cmyspace%2Cdigg%2Cdelicious%2Cybuzz%2Ctwitter%2Cstumbleupon%2Creddit%2Ctechnorati%2Cwindows_live%2Cblogger%2Cwordpress%2Ctypepad%2Cgoogle_bmarks%2Cfark%2Cbus_exchange%2Cpropeller%2Cnewsvine%2Clinkedin%2Cmixx"></script>
+    </p>
+</div>
+</body>
 
-            <t:block t:id="flagblock">
-           <div id="submittable">
+<t:block t:id="upsuccess">
+    <b> ${votes} Stars</b>
+    <br />
+    You Voted Up
+</t:block>
+<t:block t:id="downsuccess">
+    <b> ${votes} Stars</b>
+    <br />
+    You Voted Down
+</t:block>
+<t:block t:id="voted">
+    <b> ${votes} Stars</b>
+    <br />
+    You have already voted.
+</t:block>
+
+<div id="votebox" class="votemenu" style='display:none'>
+    <t:zone t:id="flagZone">
+        <t:delegate to="flagblock"/>
+    </t:zone>
+    <div align="center">
+        <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
+    </div>
+
+</div>
+
+
+<t:block t:id="flagblock">
+    <div id="submittable">
         <h3> Select a reason for flaging </h3>
         <t:form t:id="flagform" t:zone="flagZone">
-             <t:radiogroup value="reason" name="flaggroup">
-                  <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
-                 Incorrect<br />
-                 <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
-                 Offensive or Abusive<br />
-                   <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
-                   Spam <br />
-                   <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
-                   Alert Moderator<br />
-                   <br />
-                    <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
-                   Copyright Violation<br />
-                   <br />
-                   <t:label for="flagfield"> Enter a Short Description of problem </t:label>
-                       <br />
+            <t:radiogroup value="reason" name="flaggroup">
+                <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
+                Incorrect<br />
+                <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
+                Offensive or Abusive<br />
+                <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
+                Spam <br />
+                <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
+                Alert Moderator<br />
+                <br />
+                <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
+                Copyright Violation<br />
+                <br />
+                <t:label for="flagfield"> Enter a Short Description of problem </t:label>
+                <br />
 
-             </t:radiogroup>
+            </t:radiogroup>
             <input t:type="textfield" type="textfield" t:id="flagfield" t:value="reasonDesc" size="30"/>
             <br />
             <p align="center">
-        <br />
-                        <input type="submit" value="Submit"/>
-                            <a href="#" id="cancelflag" > Cancel </a>
-                            <br />
+                <br />
+                <input type="submit" value="Submit"/>
+                <a href="#" id="cancelflag" > Cancel </a>
+                <br />
             </p>
         </t:form>
-                </div>
-        </t:block>
-    <t:block t:id="flagresponse" >
-        <br />
-        <br />
-        <p>
-            Thanks for your feedback, we will look at the issue.
-        </p>
-        <br />
-       
-    </t:block>
+    </div>
+</t:block>
+<t:block t:id="flagresponse" >
+    <br />
+    <br />
+    <p>
+        Thanks for your feedback, we will look at the issue.
+    </p>
+    <br />
+
+</t:block>
 
 </html>

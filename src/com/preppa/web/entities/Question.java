@@ -27,6 +27,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -65,6 +66,7 @@ public class Question implements Serializable {
     private Integer voteScore;
     private User updatedBy;
     private int approval;
+    private List<ReviewComment> reviewcomments;
 
     public Question() {
     }
@@ -432,6 +434,30 @@ public class Question implements Serializable {
      */
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    /**
+     * @return the reviewcomments
+     */
+    @OneToMany(targetEntity=ReviewComment.class,  cascade=CascadeType.ALL)
+    @JoinTable(name="Question_ReviewComment",
+        joinColumns= {
+        @JoinColumn(name="question_id")
+        },
+        inverseJoinColumns = {
+        @JoinColumn(name="comment_id", unique=true)
+    }
+    )
+    @OrderBy("createdAt ASC")
+    public List<ReviewComment> getReviewcomments() {
+        return reviewcomments;
+    }
+
+    /**
+     * @param reviewcomments the reviewcomments to set
+     */
+    public void setReviewcomments(List<ReviewComment> reviewcomments) {
+        this.reviewcomments = reviewcomments;
     }
 
   

@@ -1,43 +1,43 @@
 <html t:type="layout" t:pageTitle="All revisions for ${article.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<t:practicebarArt />
-<div id="main">
-<t:articlemenu />
-   <div align="right">
-            <a href="#" t:type="pagelink" t:context="${article.id}" t:page="contribution/article/show"> Current </a>
-   </div>
-    <div>
-        <table>
-            <tr>
-            <th>
-                Revision Number
-            </th>
-             <th>
-               Last Edited
-            </th>
-            <th>
-                User
-            </th>
-            <th>
-                Edit Summary
-            </th>
-            </tr>
-        <tr t:type="loop" source="revisions" value="revision">
-            <td>
-            <a href="#" t:type="pagelink" t:encoder="mapencoder" t:value="${article.id}_${revision.revisionNumber}" t:context="${article.id}_${revision.revisionNumber}" t:page="contribution/article/revision"> ${revision.revisionnumber} </a>
-            </td>
-            <td>
-                ${revision.revisiontime}
-            </td>
-            <td>
-                <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
+    <t:practicebarArt />
+    <div id="main">
+        <t:articlemenu />
+        <br />
+        <div t:type="article/articletab" t:article="article" />
+        <br />
+        <div>
+            <table>
+                <tr>
+                    <th>
+                        Revision Number
+                    </th>
+                    <th>
+                        Last Edited
+                    </th>
+                    <th>
+                        User
+                    </th>
+                    <th>
+                        Edit Summary
+                    </th>
+                </tr>
+                <tr t:type="loop" source="revisions" value="revision">
+                    <td>
+                        <a href="#" t:type="pagelink" t:encoder="mapencoder" t:value="${article.id}_${revision.revisionNumber}" t:context="${article.id}_${revision.revisionNumber}" t:page="contribution/article/revision"> ${revision.revisionnumber} </a>
+                    </td>
+                    <td>
+                        ${revision.revisiontime}
+                    </td>
+                    <td>
+                        <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
 
-            </td>
-            <td>
-                ${revision.revComment}
-            </td>
-          
-        </tr>
-        </table>
+                    </td>
+                    <td>
+                        ${revision.revComment}
+                    </td>
+
+                </tr>
+            </table>
+        </div>
     </div>
-</div>
 </html>

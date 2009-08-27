@@ -1,0 +1,40 @@
+package com.preppa.web.pages.contribution.gridin;
+
+import com.preppa.web.data.GridinDAO;
+import com.preppa.web.entities.Gridin;
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.springframework.security.annotation.Secured;
+
+
+/**
+ *
+ * @author nwt
+ */
+
+@Secured("ROLE_USER")
+public class EditGridin {
+
+  @Component
+  private com.preppa.web.components.questiontypes.gridin.EditGridin editgridin;
+  @Property
+  private Long gid;
+  @Inject
+  private GridinDAO gridinDAO;
+  private Gridin question;
+  @Property
+  private String fTitle;
+
+  void onActivate(long id) {
+      if(id > 0) {
+        gid = id;
+
+      }
+  }
+
+  Long onPassivate() {
+      return gid;
+  }
+}

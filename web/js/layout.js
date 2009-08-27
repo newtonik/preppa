@@ -183,4 +183,8 @@ jQuery(".rightsideboxes").draggable({greedy:true,  activeClass: 'ui-state-hover'
       drop: function() {
             }
     });
+
+
+       jQuery.updnWatermark.attachAll();
+   
 });

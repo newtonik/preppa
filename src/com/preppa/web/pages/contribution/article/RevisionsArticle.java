@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -19,12 +20,12 @@ import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
 import org.hibernate.envers.query.AuditQuery;
-import org.hibernate.envers.query.order.AuditOrder;
 
 /**
  *
  * @author nwt
  */
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/article.js"})
 public class RevisionsArticle {
 
 
