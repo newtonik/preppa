@@ -17,7 +17,7 @@
             <a href="#" t:type="pageLink" t:page="contribution/shortpassage/view" t:context="literal:Approved"> Short Passages </a>
             <a href="#" t:type="pageLink" t:page="contribution/longpassage/view" t:context="literal:Approved"> Long Passages </a>
             <a href="#" t:type="pageLink" t:page="contribution/shortpassage/viewdual" t:context="literal:Approved"> Short Dual Passages </a>
-            <a href="#" t:type="pageLink" t:page="contribution/longpassage/viewdual" t:context="literal:approved"> Long Dual Passages </a>
+            <a href="#" t:type="pageLink" t:page="contribution/longpassage/viewdual" t:context="literal:Approved"> Long Dual Passages </a>
         </div>
     </li>
     <li><a href="#"

@@ -1,7 +1,7 @@
 <html t:type="layout" t:pageTitle="Awaiting Approval" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
     <div id="main">
-                <b>Approved</b> -
+                <b>Awaiting</b> -
         <br/><br/><br/>
 <ul id="sddm">
     <li><a href="#"
@@ -11,10 +11,10 @@
             onmouseover="mcancelclosetime()"
             onmouseout="mclosetime()">
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:SentenceCompletion"> Sentence Completion </t:pagelink><br/>
-            <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:ShortPassages"> Short Passages </t:pagelink><br/>
-            <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:LongPassages"> Long Passages </t:pagelink><br/>
-            <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:ShortDualPassages"> Short Dual Passages </t:pagelink><br/>
-            <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:LongDualPassages"> Long Dual Passages </t:pagelink><br/>
+            <a href="#" t:type="pageLink" t:page="contribution/shortpassage/view" t:context="literal:Awaiting"> Short Passages </a>
+            <a href="#" t:type="pageLink" t:page="contribution/longpassage/view" t:context="literal:Awaiting"> Long Passages </a>
+            <a href="#" t:type="pageLink" t:page="contribution/shortpassage/viewdual" t:context="literal:Awaiting"> Short Dual Passages </a>
+            <a href="#" t:type="pageLink" t:page="contribution/longpassage/viewdual" t:context="literal:Awaiting"> Long Dual Passages </a>
 
         </div>
     </li>

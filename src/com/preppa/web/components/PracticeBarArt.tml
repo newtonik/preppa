@@ -20,7 +20,6 @@
         <a href="/?tab=featured" t:type="pagelink" t:page="contribution/vocab/view">Vocabulary</a>
     </t:parameter>
 </t:if>
-
 <a href="/?tab=hot">Free Response Viewer</a>
 <a href="/?tab=week">Practice</a>
 

@@ -1,4 +1,6 @@
 <html t:type="layout" t:pageTitle="All Short Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+    <div id="main">
         <strong>Short Passages</strong>
         <table>
         <tr t:type="loop" t:source="shortpassages" t:value="shortpassage">
@@ -8,4 +10,5 @@
 
         </tr>
         </table>
+</div>
 </html>

@@ -135,7 +135,7 @@ void onActivate(int id) {
             }
             this.artId = article.getId();
           }
- }
+ } 
 public Date getcreatedAt() {
     return article.getCreatedAt();
 }

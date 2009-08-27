@@ -200,7 +200,7 @@ public class ShowMultiChoice {
     }
 
     public Date getUpdatedAt() {
-                return question.getUpdatedAt();
+                return question.getUpdatedAt(); 
      }
 
 }
