@@ -1,40 +1,43 @@
 <html t:type="layout" t:pageTitle="All revisions for ${passage.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-   <div align="right">
-            <a href="#" t:type="pagelink" t:context="${passage.id}" t:page="contribution/longpassage/showdual"> Current </a>
-   </div>
-    <div>
-        <table>
-            <tr>
-            <th>
-                Revision Number
-            </th>
-             <th>
-               Last Edited
-            </th>
-            <th>
-                User
-            </th>
-            <th>
-                Edit Summary
-            </th>
-            </tr>
-        <tr t:type="loop" source="revisions" value="revision">
-            <td>
-            <a href="#" t:type="pagelink" t:context="${passage.id}_${revision.revisionnumber}" t:page="contribution/longpassage/revisions/dualpassagerevision"> ${revision.revisionnumber} </a>
-            </td>
-            <td>
-                ${revision.revisiontime}
-            </td>
-            <td>
-                <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
+    <body>
+    <t:practicebarart />
+    <div id="main">
+        <br />
+        <div t:type="longpassage/longdualpassagetab" t:passage="passage" />
+        <div class="panes">
+            <table>
+                <tr>
+                    <th>
+                        Revision Number
+                    </th>
+                    <th>
+                        Last Edited
+                    </th>
+                    <th>
+                        User
+                    </th>
+                    <th>
+                        Edit Summary
+                    </th>
+                </tr>
+                <tr t:type="loop" source="revisions" value="revision">
+                    <td>
+                        <a href="#" t:type="pagelink" t:context="${passage.id}_${revision.revisionnumber}" t:page="contribution/longpassage/revisions/dualpassagerevision"> ${revision.revisionnumber} </a>
+                    </td>
+                    <td>
+                        ${revision.revisiontime}
+                    </td>
+                    <td>
+                        <a href="#" t:type="pagelink" t:page="user/show" t:context="${revision.userid}"> ${revision.username} </a>
 
-            </td>
-            <td>
-                ${revision.revComment}
-            </td>
-          
-        </tr>
-        </table>
+                    </td>
+                    <td>
+                        ${revision.revComment}
+                    </td>
+
+                </tr>
+            </table>
+        </div>
     </div>
-
+    </body>
 </html>
