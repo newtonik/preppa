@@ -23,7 +23,7 @@
             <br />
             <br />
 
-            <div id="responsbox">
+            <div id="responsebox">
                 <t:form t:id="commentform" clientValidation="false">
                     <t:errors />
 

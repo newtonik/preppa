@@ -3,7 +3,7 @@
     <t:practicebarArt />
     <div id="main">
         <br />
-        <div t:type="longpassage/longpassagetab" t:passage="passage" />
+        <div t:type="shortpassage/shortpassagetab" t:passage="passage" />
         <div class="panes">
             <br />
             <br />
