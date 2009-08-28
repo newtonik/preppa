@@ -29,14 +29,16 @@ body {
     font-family: verdana;
     font-size: 12px;
 }
+
 body, table, input, select
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10pt;
     background-color: #ffffff;
 
-
-
+}
+input {
+    padding: 1px;
 }
 h1
 {
@@ -816,8 +818,9 @@ div.panes div.pane {
 ul.css-tabs {
 	margin:0 !important;
 	padding:0;
-	height:30px;
+	height:25px;
 	border-bottom:1px solid #666;
+        z-index:10
 }
 
 /* single tab */
@@ -837,7 +840,7 @@ ul.css-tabs a {
 	text-decoration:none;
 	border:1px solid #666;
 	border-bottom:0px;
-	height:18px;
+	height:13px;
 	background-color:#efefef;
 	color:#777;
 	margin-right:2px;

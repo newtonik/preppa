@@ -25,7 +25,6 @@ import java.io.File;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
-import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -161,9 +160,6 @@ public class NewMultiChoice {
     private String fname;
     @Property
     private Tag tag;
-    @Inject
-    @Property
-    private Block newtagblock;
     @Property
     @Persist
     private Integer questType;
@@ -207,6 +203,7 @@ public class NewMultiChoice {
     private Request request;
     @InjectPage
     private ShowQuestion showquestion;
+    
 
     public boolean getError() {
         return error;
@@ -432,34 +429,7 @@ public class NewMultiChoice {
         return show;
      }
     }
-    //Funtions for adding new tags and topics
-        @CommitAfter
-        JSONObject onSuccessFromTagForm() {
-            List<Tag> tolist =  tagDAO.findByName(fname);
-            JSONObject json = new JSONObject();
-            System.out.print(tolist);
-            if(tolist.size() > 0) {
-                String markup = "<p>  <b>" + fname +
-                    "</b> already exists. <p>";
-                json.put("content", markup);
-
-            }
-            else
-            {
-                tag = new Tag();
-                tag.setName(fname);
-
-                tagDAO.doSave(tag);
-                String markup = "<p> You just submitted <b>" + tag.getName() +
-                    "</b>. Please add it using the dropdown <p>";
-               json.put("content", markup);
-
-            }
-
-            
-           // return new TextStreamResponse("text/json", json.toString());
-            return json;
-     }
+    
      List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
@@ -549,9 +519,6 @@ public class NewMultiChoice {
        }
 
    }
-         Block onActionFromCloseTag() {
-            return newtagblock;
-        }
         /**
          * <t:if t:test="error">
  <font color="FF0000">ERROR : ${emessage}</font>

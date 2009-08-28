@@ -1,7 +1,7 @@
 <html t:type="layout" t:pageTitle="Create New question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <h3> Contribute a Question </h3>
     <div id="main">
-        <t:zone t:id="formzone">
+        <t:zone t:id="questionzone">
             <t:form t:id="wizardform" t:zone="questionzone">
                 <table id="atable" cellpadding="10">
                     <tr>
@@ -23,9 +23,8 @@
 
             </t:form>
         </t:zone>
-        <a href="#" t:type="actionlink" t:context="literal:2" t:id="testSelect" t:zone="questionzone" > Click me </a>
-        <t:zone t:id="questionzone">
-        </t:zone>
+
+        
         <div id="shortpassage" class="questiontype" align="center" style='display:none'>
             <div align="center" t:id="newshortpassage" />
         </div>
@@ -50,5 +49,52 @@
             <div t:id="firstquestion" t:testsubjects="subjects" />
         </div>
 
+    
+    <div id="newtagbox" class="tagboxklass" style='display:none'>
+        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+             bgcolor="#FFFFFF"
+             style="padding: 20px;" align="center">
+            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" class="tagcornerclass">
+
+                <t:zone t:id="formzone">
+                    <t:delegate to="newtagblock"/>
+                </t:zone>
+
+                <p>
+                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" class="closetagbox">Close</a>
+                </p>
+            </div>
+        </div>
+
     </div>
+
+    <t:block t:id="newtagblock">
+        <h3> Add a Tag </h3>
+        <t:form t:id="tagform" t:zone="formzone">
+
+            <table id="userformtable">
+                <tr>
+                    <td>
+                <t:label for="tagTextfield"/>
+                </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="left">
+                        <input t:type="TextField" t:id="tagTextfield" size="30"  t:value="fname" t:label="Tag Name" t:validate="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left">
+                        <br />
+                        <input t:id="submit" type="submit" t:type="submit" value="Submit"/>
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+        </t:form>
+    </t:block>
+            </div>
 </html>

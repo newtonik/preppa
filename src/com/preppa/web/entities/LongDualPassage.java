@@ -27,6 +27,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -62,6 +63,7 @@ public class LongDualPassage implements Serializable {
     private String revComment;
     private User updatedBy;
     private List<Flag> flags = new ArrayList<Flag>();
+    private List<ReviewComment> reviewcomments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -390,4 +392,29 @@ public class LongDualPassage implements Serializable {
     public void setFlags(List<Flag> flags) {
         this.flags = flags;
     }
+        /**
+     * @return the reviewcomments
+     */
+    @OneToMany(targetEntity=ReviewComment.class, cascade=CascadeType.ALL)
+    @JoinTable(name="LongDualPassage_ReviewComment",
+        joinColumns= {
+        @JoinColumn(name="longdualpassage_id")
+        },
+        inverseJoinColumns = {
+        @JoinColumn(name="comment_id", unique=true)
+    }
+    )
+    @OrderBy("createdAt ASC")
+    public List<ReviewComment> getReviewcomments() {
+        return reviewcomments;
+    }
+
+    /**
+     * @param reviewcomments the reviewcomments to set
+     */
+    public void setReviewcomments(List<ReviewComment> reviewcomments) {
+        this.reviewcomments = reviewcomments;
+    }
+
+
 }

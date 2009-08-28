@@ -1,5 +1,7 @@
 <html t:type="layout" t:pageTitle="New Dual Passage" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+    <br />
+    <br />
+    <div id="main">
     <div id="dualpassage" align="center">
         <t:form t:id="dualpassageform">
             <t:errors />
@@ -85,6 +87,7 @@
 
             </table>
         </t:form>
+    </div>
     </div>
     <div id="newtagbox" class="tagboxklass" style='display:none'>
         <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"

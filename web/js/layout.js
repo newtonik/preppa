@@ -135,41 +135,8 @@ document.observe("dom:loaded", function() {
 
 
     }
-
-
-    $('addtopic').observe('click', function() {
-        //get position
-        var pos = $('addtag').cumulativeOffset();
-        var width  = $('addtag').getWidth();
-        //alert(pos.left)
-
-        $('newtopicbox').setStyle({
-
-            display: 'block',
-            position: 'absolute',
-            fontSize: '12px',
-            left: (pos.left-200) + "px",
-            top : (pos.top-500)+ "px"
-        });
-        $('newtopicbox').show();
-        $('fTopicName').activate();
-    //$('autoComplete').disable();
-    });
-
-    $('closetopic').observe('click', function() {
-        $('newtopicbox').setStyle({
-
-            display: 'none'
-        });
-        $('topiccorner').setStyle({
-            'background-color': '#e8eefa'
-        });
-        $('newtopicbox').hide();
-        $('autoComplete').enable();
-        $('autoComplete').activate();
-
-    });
 });
+
 //   }
 
 //     $('articleform').request({
@@ -184,7 +151,4 @@ jQuery(".rightsideboxes").draggable({greedy:true,  activeClass: 'ui-state-hover'
             }
     });
 
-
-       jQuery.updnWatermark.attachAll();
-   
 });

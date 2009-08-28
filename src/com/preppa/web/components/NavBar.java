@@ -9,7 +9,6 @@ import com.preppa.web.entities.User;
 import javax.servlet.http.HttpServletRequest;
 import nu.localhost.tapestry5.springsecurity.services.LogoutService;
 import org.apache.tapestry5.annotations.ApplicationState;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Value;
@@ -19,7 +18,6 @@ import org.apache.tapestry5.services.Request;
  * @author newtonik
  */
 @IncludeStylesheet(value = {"context:styles/site.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/jquery/jquery.updnWatermark.js"})
 public class NavBar {
     @Inject
     @Value("${spring-security.check.url}")

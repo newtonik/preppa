@@ -1,5 +1,7 @@
 <html t:type="layout" t:pageTitle="New Passage" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+    <br />
+    <br />
+    <div id="main">
     <div id="passage" align="center">
         <t:form t:id="createpassageform">
             <t:errors />
@@ -93,7 +95,7 @@
                 </p>
             </div>
         </div>
-
+</div>
     </div>
     <t:block t:id="newtagblock">
         <h3> Add a Tag </h3>
