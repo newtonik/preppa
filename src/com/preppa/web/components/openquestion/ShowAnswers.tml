@@ -1,8 +1,8 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    <div>
+    <div id="openanswers">
         <h2> ${count}</h2>
-    </div>
+    
     <br />
     <div id="answerlist">
 
@@ -12,16 +12,19 @@
              <div class="questionanswer" align="center">
                      <t:outputraw t:value="${answer.answer}" />
                      <br />
-                     <div id="author-time">
-                        Submitted by <b> ${answer.user.username} </b>
+                     <div class="author-time">
+                         Submitted by <span class="author"><b> ${answer.user.username} </b></span>
                         <br />
-                        Last updated <t:output format="literal:MMM. dd, yyyy" value="answer.updatedat" />
+                        Last updated <t:output format="literal:MMM. dd, yyyy h:mm a" value="answer.updatedat" />
                      </div>
                      <br />
                       <div id="voteseal" t:type="voteseal" t:contentid="${answer.id}" t:contenttype="contType" t:votes="${answer.votes}" />
                      <br />
+                     <br />
+                     <br />
+                     <br />
             </div>
          </t:loop>
     </div>
-
+</div>
 </t:container>

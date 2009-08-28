@@ -11,14 +11,11 @@
                     ${question.title}
                 </h3>
             </div>
-            <div align="left" id="author-time">
-                ${author}
+            <div align="left" class="author-time">
+                <span class="author"> ${author} </span>
                 <br />
-                Last updated <t:output format="literal:MMM. dd, yyyy" value="updatedAt" />
+                Last updated <t:output format="literal:MMM. dd, yyyy h:mm a" value="updatedAt" />
             </div>
-            <br />
-            <br />
-            <br />
             <div class="questionbox">
 
                 <t:outputraw t:value="${question.question}"/>
@@ -30,6 +27,12 @@
             <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
             <br />
             <br />
+            <br />
+            <br />
+
+            <br />
+            <br />
+
             <div t:id="answerlist" t:answers="openanswers">
 
             </div>

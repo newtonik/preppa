@@ -10,13 +10,13 @@
         <h2>
            ${article.title}
         </h2>
-        <div id="author">
+        <div class="author">
 
              written by ${authorname}
 
         </div>
-        <div id="author-time">
-            Created at ${article.createdAt}
+        <div class="author-time">
+            Created at <t:output format="literal:MMM. dd, yyyy" value="article.createdAt" />
         </div>
         <p>
              <t:outputraw t:value="${article.body}"/>

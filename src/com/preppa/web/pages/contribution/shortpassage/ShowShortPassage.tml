@@ -11,9 +11,9 @@
             <h2>
                 ${passage.title}
             </h2>
-            <div class="author-date">
-                Created at ${passage.createdAt}
-            </div>
+        <div class="author-time">
+            Last updated <t:output format="literal:MMM. dd, yyyy" value="passage.createdAt" />
+        </div>
             <p>
             <t:outputraw t:value="${passage.passage}"/>
             </p>

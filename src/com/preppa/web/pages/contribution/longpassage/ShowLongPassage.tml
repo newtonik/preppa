@@ -8,8 +8,8 @@
             <h2>
                 ${passage.title}
             </h2>
-            <div class="author-date">
-                ${passage.createdAt}
+            <div class="author-time">
+                Last updated <t:output format="literal:MMM. dd, yyyy" value="passage.updatedAt" />
             </div>
             <p>
             <h3> Brief Introduction of Passage </h3>

@@ -42,6 +42,9 @@
         <input t:id="contidhidden" class="hiddenId"/>
         <input t:id="conttypehidden" class="hiddentypeid" />
         </t:form>
+        <br />
+        <br />
+        
     </div>
     
     <t:zone t:id="voteupZone">
