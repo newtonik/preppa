@@ -8,7 +8,7 @@
    * $Id$
    */
 
-package com.preppa.web.pages.contribution.essay;
+package com.preppa.web.pages.contribution.prompt.essay;
 
 import com.preppa.web.data.EssayDAO;
 import com.preppa.web.data.PromptDAO;

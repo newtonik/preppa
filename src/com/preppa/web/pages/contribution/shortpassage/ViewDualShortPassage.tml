@@ -1,6 +1,8 @@
 <html t:type ="layout" t:pageTitle="Short Dual Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
     <div id="main">
+            <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - Short Dual Passages<br/>
+
         <strong>Short Dual Passages</strong>
           <table>
         <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">

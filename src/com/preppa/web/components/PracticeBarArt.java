@@ -36,6 +36,6 @@ public class PracticeBarArt {
     }
     public boolean getFreeRes() {
         String url = _request.getRequestURL().toString();
-        return url.contains("/essay") || url.contains("prompt");
+        return url.contains("/essay") || url.contains("/prompt");
     }
 }

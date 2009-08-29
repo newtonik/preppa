@@ -143,7 +143,7 @@ public class ShowShortPassage {
         this.pid = passage.getId();
         this.votes = voteDAO.findSumByShortPassageId(passage.getId());
         lastquestion = true;
-        onequestion = true;
+        onequestion = true; 
         contType = ContentType.ShortPassage;
 }
 

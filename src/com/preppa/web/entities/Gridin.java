@@ -11,7 +11,7 @@ package com.preppa.web.entities;
 
 import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;

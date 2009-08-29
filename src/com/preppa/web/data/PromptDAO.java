@@ -11,6 +11,7 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.Prompt;
+import java.util.List;
 import org.chenillekit.hibernate.daos.GenericDAO;
 
 /**
@@ -19,4 +20,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  */
 public interface PromptDAO extends GenericDAO<Prompt, Integer> {
     Prompt findById(Integer id);
+    List<Prompt> findByPartialName(String partialName);
+    List<Prompt> findByTopic(String topic);
 }

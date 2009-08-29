@@ -38,12 +38,15 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 /**
  *
  * @author Jan Jan
  */
 @Entity
+@Indexed
 public class Prompt implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -121,6 +124,7 @@ public class Prompt implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "Prompt_Tag", joinColumns = {@JoinColumn(name = "prompt_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     @Audited
+    @IndexedEmbedded
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -248,7 +252,7 @@ public class Prompt implements Serializable {
     }
 
     /**
-     * @return the question
+     * @return the topic
      */
     @Lob
     @Audited
@@ -257,7 +261,7 @@ public class Prompt implements Serializable {
     }
 
     /**
-     * @param quote the quote to set
+     * @param topic the topic to set
      */
     public void setTopic(String topic) {
         this.topic = topic;

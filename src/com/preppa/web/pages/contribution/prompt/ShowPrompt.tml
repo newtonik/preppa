@@ -18,7 +18,7 @@
 </p>
 
     <p>
-        <a href="#" t:type="pageLink" t:page="contribution/essay/create" t:context="prompt.id">Create Essay</a>
+        <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/create" t:context="prompt.id">Create Essay</a>
     </p>
 
 <div id="flagpass">
@@ -34,7 +34,7 @@
 
     </div>
 </div>
-<t:tagview t:alltags="tags" />
+<t:promptTag t:alltags="tags" />
 <br />
 
 </div>

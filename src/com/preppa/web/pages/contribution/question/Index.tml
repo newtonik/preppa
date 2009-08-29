@@ -30,10 +30,10 @@
         </div></div>
         </td>
 
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td></td>
         <td><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
         style="padding: 1px; margins: 1px;" align="center">
-        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 250px;">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 240px;">
         <h3>Help us fix our flagged questions!</h3>
         <t:loop t:source="flags" t:value="flag">
             <div align="left">

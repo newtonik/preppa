@@ -9,7 +9,7 @@
             </tr>
             <tr>
                 <td>
-                <input type="text" t:type="TextArea" t:id="quote" t:value="quote" t:label="Definition" t:validate="required" rows="4" cols="80"/>
+                <input type="text" t:type="TextArea" t:id="quote" t:value="quote" t:label="Quote" t:validate="required" rows="4" cols="80"/>
             </td>
             </tr>
             <tr>
@@ -20,7 +20,7 @@
             <tr>
                 <td>
 
-              <t:select t:id="topic" value ="topic" model="literal:Noun,Verb,Adjective,Adverb" t:validate="required"/>
+              <t:select t:id="topic" value ="topic" model="literal:Respond to Statement,Choosing Between Contrasting Statements,Complete a Statement" t:validate="required"/>
 
 
             </td>
