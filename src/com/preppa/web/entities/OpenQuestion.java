@@ -33,6 +33,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.hibernate.search.annotations.Field;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Target;
@@ -354,4 +355,8 @@ public class OpenQuestion implements Serializable {
         this.votes = votes;
     }
 
+    @Transient
+    public Integer getAnswerCount() {
+        return this.answers.size();
+    }
 }

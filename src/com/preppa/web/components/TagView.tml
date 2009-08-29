@@ -1,6 +1,5 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <div id="tagbox">
-        <h4> Tags </h4>
+    <div id="tagbox" class="tagboxclass">
         <ul id="tag-links">
         <li t:type="loop" source="allTags" value="tag">
             <a href="#" t:page="contribution/article/search" t:context="${tag.name}" t:type="pagelink"> ${tag.name} </a>

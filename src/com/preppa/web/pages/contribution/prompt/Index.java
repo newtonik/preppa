@@ -1,13 +1,11 @@
-  
-  /*
-   * Preppa, Inc.
-   * 
-   * Copyright 2009. All rights
-  reserved.
-   * 
-   * $Id$
-   */
-
+/*
+ * Preppa, Inc.
+ *
+ * Copyright 2009. All rights
+reserved.
+ *
+ * $Id$
+ */
 package com.preppa.web.pages.contribution.prompt;
 
 import com.preppa.web.data.EssayDAO;
@@ -22,6 +20,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  * @author Jan Jan
  */
 public class Index {
+
     @Property
     private List<Essay> newest;
     @Property
@@ -30,17 +29,15 @@ public class Index {
     private Essay featured;
     @Inject
     private EssayDAO essayDAO;
-
     private int featureInt = 1;
+   
 
     /* Setting featured essay
      *
      * */
     void onActivate() {
         featured = essayDAO.findById(featureInt);
-        System.out.println("Featured is " + featured);
-        System.out.println("Prompt is " + featured.getPrompt());
-        System.out.println("");
+
         if (featured == null) {
             featured = new Essay();
             Prompt temp = new Prompt();
@@ -48,6 +45,10 @@ public class Index {
             temp.setQuestion("");
             featured.setBody("");
             featured.setPrompt(temp);
+        } else {
+            System.out.println("Featured is " + featured);
+            System.out.println("Prompt is " + featured.getPrompt());
+            System.out.println("");
         }
 
         newest = essayDAO.findAllByNewest();

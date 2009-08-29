@@ -1,26 +1,47 @@
 <html t:type="layout" t:pageTitle="All Open Questions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
- <body>
-     <h2>
-         <a href="#" t:type="pagelink" t:page="openquestion/new" >
-             Add a Question
-         </a>
-     </h2>
- <t:loop source="questions" value="question">
-     <h3>
-         <a href="#" t:type="pagelink" t:page="openquestion/show" t:context="${question.id}" >
-             ${question.title}
-         </a>
-     </h3>
-      <div id="author-time">
-            Created at ${question.updatedAt}
+    <body>
+        <br />
+        <div >
+            <h2>
+                <a href="#" t:type="pagelink" t:page="openquestion/new" >
+                    Add a Question
+                </a>
+            </h2>
         </div>
 
-     <div>
-        <p>
-            <t:outputraw t:value="${question.question}"/>
-        </p>
-    </div>
+    <t:loop source="questions" value="question">
+        <div id="openquestion-list-${question.id}" class="openquestion-list-item">
+            <div class="questionteaser">
+                <strong>      <a href="#" t:type="pagelink" t:page="openquestion/show" t:context="${question.id}" >
+                        ${question.title}
+                    </a> </strong>
 
- </t:loop>
+                <div class="openquestion-list-question">
+                    <p>
+                    <t:outputraw t:value="${question.question}"/>
+                    </p>
+                </div>
+                <br />
+                <div class="author-time">
+                    <span class="author"> ${question.owner.username} </span>
+                    <br />
+                    <t:output format="literal:MMM. dd, yyyy" value="question.updatedAt" />
+                </div>
+
+            </div>
+            <br />
+            <div class="count-wrapper">
+            <div class="answers-count">
+                <span> ${question.answercount} </span>
+                Answers
+            </div>
+            </div>
+            <br />
+            <t:tagview t:alltags="question.taglist" />
+            <br />
+        </div>
+
+    </t:loop>
+
 </body>
 </html>

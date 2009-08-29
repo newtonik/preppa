@@ -1,0 +1,58 @@
+/* 
+    Document   : openquestion
+    Created on : Aug 29, 2009, 1:00:52 PM
+    Author     : newtonik
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.openquestion-list {
+        border-left:1px solid #666666;
+    border-bottom:1px solid #666666;
+    border-right:1px solid #666666;
+    border-top:1px solid #666666;
+    top:200px;
+    padding: 10px;
+    padding-bottom:25px;
+}
+.openquestion-list-item {
+    float:left;
+    width:100%;
+    border-bottom: solid 1px black;
+    overflow:hidden;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    font-size:larger;
+    margin-left: 5px;
+}
+.openquestion-list-question {
+
+}
+.questionteaser {
+    float:left;
+    width:100%;
+}
+
+.answers-count {
+    float:left;
+    width:70px;
+    height:50px;
+    font-size: 15px;
+    text-align:center;
+    background-color:#e8eefa;
+    padding: 10px;
+    font-weight:bold;
+}
+
+.count-wrapper {
+    width:100px;
+}
+
+.tagboxclass {
+    float:left;
+}

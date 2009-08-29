@@ -53,7 +53,7 @@
         <h1>Sealed and Approved!</h1>
         <t:loop t:source="approved" t:value="question">
             <t:outputraw t:value="${question.question}" />
-            <a href="#" t:type="pageLink" t:page="contribution/question/approve" t:context="question.id">See More</a>
+            <a href="#" t:type="pageLink" t:page="contribution/question/approve/show" t:context="question.id">See More</a>
         </t:loop>
         </div></div>
     </div>
