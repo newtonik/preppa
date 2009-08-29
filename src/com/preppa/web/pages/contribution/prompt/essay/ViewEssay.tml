@@ -1,0 +1,11 @@
+<html t:type="layout" t:pageTitle="View Essay" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+<div id="main">
+        <h1>Essays</h1>
+        <t:loop t:source="essays" t:value="essay">
+            <i>${essay.prompt.quote}</i><br/>
+            <t:outputraw t:value="${essay.body}" /><br/>
+            <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/show" t:context="essay.id">See More</a>
+        </t:loop>
+</div>
+</html>

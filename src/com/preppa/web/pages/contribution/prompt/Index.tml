@@ -1,0 +1,46 @@
+<html t:type="layout" t:pageTitle="Free Response" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+<div id="main">
+<div id="nav-menu" align="left">
+    <ul>
+            <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Non" style="height: 3em; line-height: 1.5em;">Non-Graded</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Graded" style="height: 3em; line-height: 1.5em;">Graded</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/prompt/view" style="height: 3em; line-height: 1.5em;">Prompts</t:pagelink></li>
+    </ul>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<table>
+    <tr>
+        <td>
+        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px; width: 500px;" align="left">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+        <h1>Featured Essay</h1>
+        <i>${featured.prompt.quote}</i><br/>
+        <b><t:outputraw t:value="${featured.prompt.question}" /></b><br/>
+        <t:outputraw t:value="${featured.body}" /><br/>
+        <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/show" t:context="featured.id">See More</a>
+        </div></div>
+        </td>
+
+        <td></td>
+        <td VALIGN="top"><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px;" align="left">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 240px;">
+        <h1>New Essays</h1>
+        <t:loop t:source="newest" t:value="newEssay">
+            <i>${newEssay.prompt.quote}</i><br/>
+            <t:outputraw t:value="${newEssay.body}" /><br/>
+            <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/show" t:context="newEssay.id">See More</a>
+        </t:loop>
+        </div></div>
+        </td>
+    </tr>
+</table>
+
+</div>
+</html>

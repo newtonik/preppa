@@ -1,0 +1,37 @@
+<html t:type="layout" t:pageTitle="Show Essay" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <body>
+    <t:practicebarArt />
+    <div id="main">
+        <i>${essay.prompt.quote}</i><br/>
+        <b><t:outputraw t:value="${essay.prompt.question}" /></b><br/>
+
+        <div id="author-time">
+            Created at ${essay.createdAt}<br/>
+                  By ${essay.user.username}<br/>
+        </div>
+    <p>
+    <t:outputraw t:value="${essay.body}"/><br/>
+</p>
+    <p>
+        <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/createfeedback" t:context="essay.id">Leave FeedBack</a>
+    </p>
+<t:tagview t:alltags="tags" />
+<br />
+<br/>
+<br/>
+                <h1>Feedback</h1>
+        <t:loop t:source="essay.feedback" t:value="feedback">
+            <b>Rating is ${feedback.rating}</b>
+            <t:outputraw t:value="${feedback.comment}" /><br/>
+            Submitted by ${feedback.user.username}
+         </t:loop>
+
+</div>
+
+</body>
+
+
+
+
+</html>

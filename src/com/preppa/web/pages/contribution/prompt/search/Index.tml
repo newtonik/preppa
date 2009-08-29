@@ -1,0 +1,32 @@
+<html t:type="layout" t:pageTitle="Prompt Search Results for ${searchString}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:practicebarart />
+<div id="main">
+    <div align="right">
+        <t:promptsearch t:searcher="${searchString}"/>
+    </div>
+    <br />
+    <h3>Results </h3>
+    <p>
+        <div class="prompts">
+
+            <t:loop t:source="allPrompt"
+                    t:value="prompt">
+                <div class="prompt">
+                    <i> ${prompt.quote}</i>
+                    <h2><a href="#" t:type="pagelink" t:page="contribution/prompt/show" t:context="prompt.id"> See More </a></h2>
+                    <div class="body">
+                        <t:outputraw t:value="${prompt.question}"/>
+                    </div>
+                    <div class="tags">
+                        <h3>Tags:</h3>
+                    </div>
+                    <a href="#" t:type="pageLink" t:page="contribution/article/edit" t:context="prompt.id">Edit</a>
+                </div>
+                <br />
+            </t:loop>
+
+        </div>
+
+    </p>
+</div>
+</html>

@@ -1,0 +1,12 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <div id="tagbox">
+        <h4> Tags </h4>
+        <ul id="tag-links">
+        <li t:type="loop" source="allTags" value="tag">
+            <a href="#" t:page="contribution/prompt/search" t:context="${tag.name}" t:type="pagelink"> ${tag.name} </a>
+        </li>
+        </ul>
+    </div>
+
+
+</t:container>
