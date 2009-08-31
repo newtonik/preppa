@@ -19,7 +19,11 @@ import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserProfile;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
@@ -27,15 +31,11 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Context;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
 import org.hibernate.envers.query.AuditQuery;
-import org.hibernate.envers.query.criteria.AuditConjunction;
 import org.hibernate.envers.query.criteria.AuditCriterion;
-import org.hibernate.envers.query.criteria.AuditProperty;
 import org.hibernate.envers.query.criteria.LogicalAuditExpression;
 
 /**
@@ -140,7 +140,7 @@ public class ShowUser {
 
     void onActivate(User user) {
         this.user = user;
-        articles = articleDAO.findByUserId(user.getId());
+        updateArticles();
     }
 
     public String getPathString() {
@@ -165,32 +165,174 @@ public class ShowUser {
 
     Block onActionFromGetArticles() {
 
-        //articles = articleDAO.findByUserId(user.getId());
+        updateArticles();
 
-        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-
-        
-
-                AuditCriterion usercrit =  AuditEntity.property("user").eq(user);
-                AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
-
-        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
-        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Article.class, true, false)
-                .add(orExp)
-                .addOrder(AuditEntity.revisionNumber().asc());
-         List<Article> results = query.getResultList();
-         if(results.size() > 0)
-            articles.addAll(results);
-
-         
         return resultblock;
     }
 
+    void updateLongPassages() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(LongPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        longpassages = longpassageDAO.findByUserIds(ids);
+    }
+
+    void updateLongDualPassages() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(LongDualPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+        longdualpassages = longdualpassageDAO.findByUserIds(ids);
+    }
+
+    void updateShortPassages() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        shortpassages = shortpassageDAO.findByUserIds(ids);
+    }
+
+    void updateShortDualPassages() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortDualPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        shortdualpassages = shortdualpassageDAO.findByUserIds(ids);
+    }
+
+    void updateArticles() {
+
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+
+
+
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Article.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        articles = articleDAO.findByUserIds(ids);
+
+
+    }
+
     Block onActionFromGetPassages() {
-        shortpassages = shortpassageDAO.findByUserId(user.getId());
-        shortdualpassages = shortdualpassageDAO.findByUserId(user.getId());
-        longpassages = longpassageDAO.findByUserId(user.getId());
-        longdualpassages = longdualpassageDAO.findByUserId(user.getId());
+
+        updateLongDualPassages();
+        updateLongPassages();
+        updateShortDualPassages();
+        updateShortPassages();
+
         return passageblock;
     }
 

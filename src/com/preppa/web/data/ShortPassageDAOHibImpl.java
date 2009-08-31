@@ -46,4 +46,19 @@ public class ShortPassageDAOHibImpl extends AbstractHibernateDAO<ShortPassage, I
         return findByQuery(sqlString.toString());
     }
 
+    @Override
+    public List<ShortPassage> findByUserIds(List<Integer> ids) {
+           SQLString sqlString = new SQLString("FROM ShortPassage lp");
+        if(ids.size() > 0)
+        {
+                   String rlist = ids.toString();
+
+             rlist = rlist.replace('[', '(');
+             rlist = rlist.replace(']', ')');
+             sqlString.addWhereClause("lp.id IN " + rlist);
+        }
+
+        return findByQuery(sqlString.toString());
+    }
+
 }

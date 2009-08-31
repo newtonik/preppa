@@ -47,4 +47,18 @@ public class LongDualPassageDAOHibImpl extends AbstractHibernateDAO<LongDualPass
         return  findByQuery(sqlString.toString());
     }
 
+    @Override
+    public List<LongDualPassage> findByUserIds(List<Integer> ids) {
+           SQLString sqlString = new SQLString("FROM LongDualPassage lp");
+        if(ids.size() > 0)
+        {
+                   String rlist = ids.toString();
+
+             rlist = rlist.replace('[', '(');
+             rlist = rlist.replace(']', ')');
+             sqlString.addWhereClause("lp.id IN " + rlist);
+        }
+
+        return findByQuery(sqlString.toString());
+    }
 }

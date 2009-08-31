@@ -45,4 +45,19 @@ public class ShortDualPassageDAOHibImpl extends AbstractHibernateDAO<ShortDualPa
         return findByQuery(sqlString.toString());
     }
 
+        @Override
+    public List<ShortDualPassage> findByUserIds(List<Integer> ids) {
+           SQLString sqlString = new SQLString("FROM ShortDualPassage lp");
+        if(ids.size() > 0)
+        {
+                   String rlist = ids.toString();
+
+             rlist = rlist.replace('[', '(');
+             rlist = rlist.replace(']', ')');
+             sqlString.addWhereClause("lp.id IN " + rlist);
+        }
+
+        return findByQuery(sqlString.toString());
+    }
+
 }

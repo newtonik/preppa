@@ -17,4 +17,5 @@ public interface LongPassageDAO extends GenericDAO<LongPassage, Integer> {
 
     LongPassage findById(Integer id);
     List<LongPassage> findByUserId(Integer id);
+    List<LongPassage> findByUserIds(List<Integer> ids);
 }

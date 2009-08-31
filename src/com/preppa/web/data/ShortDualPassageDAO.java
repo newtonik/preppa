@@ -16,4 +16,5 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface ShortDualPassageDAO extends GenericDAO<ShortDualPassage, Integer> {
     List<ShortDualPassage> findByUserId(Integer id);
     ShortDualPassage findById(Integer id);
+    List<ShortDualPassage> findByUserIds(List<Integer> ids);
 }

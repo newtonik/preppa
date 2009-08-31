@@ -13,7 +13,6 @@ import org.hibernate.Session;
 import java.util.List;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.hibernate.engine.SessionImplementor;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 
@@ -59,6 +58,30 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
         if(id != null)
         {
              sqlString.addWhereClause("articles.user = '" + id + "'");
+        }
+
+        List<Article> returnVal = findByQuery(sqlString.toString());
+
+        if (returnVal.isEmpty()) {
+            return null;
+        }
+        else {
+            return returnVal;
+        }
+
+    }
+
+    @Override
+    public List<Article> findByUserIds(List<Integer> ids) {
+        SQLString sqlString = new SQLString("FROM Article articles");
+        if(ids.size() > 0)
+        {
+             String rlist = ids.toString();
+
+             rlist = rlist.replace('[', '(');
+             rlist = rlist.replace(']', ')');
+             
+             sqlString.addWhereClause("articles.id IN "+ rlist );
         }
 
         List<Article> returnVal = findByQuery(sqlString.toString());
