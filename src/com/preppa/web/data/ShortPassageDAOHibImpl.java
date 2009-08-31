@@ -6,6 +6,7 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.ShortPassage;
+import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
@@ -32,6 +33,17 @@ public class ShortPassageDAOHibImpl extends AbstractHibernateDAO<ShortPassage, I
         }
 
         return (ShortPassage) findByQuery(sqlString.toString()).get(0);
+    }
+
+    @Override
+    public List<ShortPassage> findByUserId(Integer id) {
+         SQLString sqlString = new SQLString("FROM ShortPassage lp");
+        if(id != null)
+        {
+             sqlString.addWhereClause("lp.user = '" + id + "'");
+        }
+
+        return findByQuery(sqlString.toString());
     }
 
 }

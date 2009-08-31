@@ -114,7 +114,7 @@ public class EditShortPassage {
         shortpassage.setSources(fSource);
         shortpassage.setTitle(fTitle);
         shortpassage.setComplete(true);
-        shortpassage.setUser(user);
+        shortpassage.setUpdatedBy(user);
         shortpassage.setRevComment(fComment);
         if (fBody.length() > 100) {
             shortpassage.setPassagetype(PassageType.LONG_DUAL);

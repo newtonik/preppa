@@ -6,6 +6,7 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.LongPassage;
+import java.util.List;
 import org.chenillekit.hibernate.daos.GenericDAO;
 
 /**
@@ -15,4 +16,5 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface LongPassageDAO extends GenericDAO<LongPassage, Integer> {
 
     LongPassage findById(Integer id);
+    List<LongPassage> findByUserId(Integer id);
 }

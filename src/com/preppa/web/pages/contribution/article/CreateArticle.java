@@ -52,7 +52,7 @@ import org.springframework.security.annotation.Secured;
  * @author newtonik
  */
 @Secured("ROLE_USER")
-@IncludeJavaScriptLibrary(value = {"context:js/article.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js","context:js/article.js"})
 public class CreateArticle {
     @ApplicationState
     private User user;

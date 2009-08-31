@@ -745,7 +745,7 @@ li {
     clear:both;
 }
 
-#main {
+#main, .mainclass {
     border-left:1px solid #666666;
     border-bottom:1px solid #666666;
     border-right:1px solid #666666;
@@ -814,7 +814,7 @@ li {
 
 
 /* initially all panes are hidden */
-div.panes div.pane {
+div.realpanes div.pane {
 	display:none;
 }
 
@@ -869,7 +869,7 @@ ul.css-tabs a.current {
 
 
 /* tab pane */
-div.css-panes div {
+div.realpanes div {
 	display:none;
 	border:1px solid #666;
 	border-width:0 1px 1px 1px;

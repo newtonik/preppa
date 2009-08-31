@@ -22,4 +22,5 @@ public interface ArticleDAO extends GenericDAO< Article, Integer> {
     //Revisions information
     List<Article> findAllArticleRevisions(Integer articleId);
     Article findArticleByRevision(Integer articleId, Integer revisionId);
+    public List<Article> findByUserId(Integer id);
 }

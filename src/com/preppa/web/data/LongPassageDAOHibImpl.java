@@ -6,6 +6,7 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.LongPassage;
+import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
@@ -22,6 +23,7 @@ public class LongPassageDAOHibImpl extends AbstractHibernateDAO<LongPassage, Int
         super(logger, session);
     }
 
+    @Override
     public LongPassage findById(Integer id) {
         SQLString sqlString = new SQLString("FROM LongPassage lp");
         if(id != null)
@@ -30,6 +32,19 @@ public class LongPassageDAOHibImpl extends AbstractHibernateDAO<LongPassage, Int
         }
 
         return (LongPassage) findByQuery(sqlString.toString()).get(0);
+    }
+
+    @Override
+    public List<LongPassage> findByUserId(Integer id) {
+          SQLString sqlString = new SQLString("FROM LongPassage lp");
+        if(id != null)
+        {
+            if(id > 0) {
+                sqlString.addWhereClause("lp.user = '" + id + "'");
+            }
+        }
+
+        return findByQuery(sqlString.toString());
     }
 
 }

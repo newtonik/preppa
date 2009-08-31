@@ -53,6 +53,24 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
         }
 
     }
+    @Override
+    public List<Article> findByUserId(Integer id) {
+        SQLString sqlString = new SQLString("FROM Article articles");
+        if(id != null)
+        {
+             sqlString.addWhereClause("articles.user = '" + id + "'");
+        }
+
+        List<Article> returnVal = findByQuery(sqlString.toString());
+
+        if (returnVal.isEmpty()) {
+            return null;
+        }
+        else {
+            return returnVal;
+        }
+
+    }
 
     @Override
     public Article findByTitle(String title) {

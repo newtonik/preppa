@@ -121,7 +121,7 @@ public class EditDualShortPassage {
         shortDualpassage.setPassagetwo(fBodytwo);
         shortDualpassage.setTitle(fTitle);
         shortDualpassage.setSource(fSource);
-        shortDualpassage.setUser(user);
+        shortDualpassage.setUpdatedBy(user);
         shortDualpassage.setRevComment(fComment);
 
         for (Tag t : addedTags) {

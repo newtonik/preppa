@@ -18,5 +18,5 @@ jQuery("ul.css-tabs a:contains('Passage')").addClass("current");
     }
 
     // setup ul.tabs to work as tabs for each div directly under div.panes
-    jQuery("css-tabs").tabs("div.panes");
+   // jQuery("css-tabs").tabs("div.panes");
 });

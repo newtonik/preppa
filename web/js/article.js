@@ -2,7 +2,6 @@ jQuery(document).ready(function(){
     var url = document.location;
     var test = url.toString();
     
-jQuery("ul.css-tabs a:contains('Article')").addClass("current");
     if(test.indexOf("show") > 0) {
         jQuery("ul.css-tabs a").removeClass("current");
         jQuery("ul.css-tabs a:contains('Article')").addClass("current");
@@ -18,47 +17,10 @@ jQuery("ul.css-tabs a:contains('Article')").addClass("current");
     }
 
     // setup ul.tabs to work as tabs for each div directly under div.panes
-    jQuery("css-tabs").tabs("div.panes");
+   // jQuery("ul.css-tabs").tabs("div.panes");
 });
 
-$('flaglink').observe('click', function() {
-    //get position
-    var pos = $('main').cumulativeOffset();
-    
-           
-    $('votebox').setStyle({
 
-        // display: 'block',
-        position: 'absolute',
-        fontSize: '12px',
-        left: (pos.left+20) + "px",
-        top : (pos.top-120)+ "px"
-    });
-    $('votebox').show();
-     $('votebox').clonePosition()
-    
-    $('flagfield').activate();
-    //Effect.ScrollTo('header');
-    //$('votebox').absolutize()
-            
-               
-    $('closeflag').observe('click', function() {
-        $('votebox').hide();
-
-    });
-});
-window.scroll(0,  document.height);
-$('cancelflag').observe('click', function() {
-    $('votebox').hide();
-
-});
-$('closeflagblock').observe('click', function() {
-    $('votebox').setStyle( {
-        display: 'none'
-    })
-    $('votebox').hide();
-            
-});
 function onChangeTestsubject(response) {
 
     //alert(response.testsubject);
@@ -69,39 +31,41 @@ function onChangeTestsubject(response) {
 
 
 }
+ $('addtopic').observe('click', function() {
+            //get position
+            alert("clciked");
+            var pos = $('addtopic').cumulativeOffset();
+            var width  = $('addtopic').getWidth();
+            //alert(pos.left)
 
-    $('addtopic').observe('click', function() {
-        //get position
-        var pos = $('addtopic').cumulativeOffset();
-        var width  = $('addtopic').getWidth();
-        //alert(pos.left)
+            $('newtopicbox').setStyle({
 
-        $('newtopicbox').setStyle({
-
-            display: 'block',
-            position: 'absolute',
-            fontSize: '12px',
-            left: (pos.left-200) + "px",
-            top : (pos.top)+ "px"
+                display: 'block',
+                position: 'absolute',
+                fontSize: '12px',
+                left: (pos.left-200) + "px",
+                top : (pos.top)+ "px"
+            });
+            $('newtopicbox').show();
+            $('fTopicName').activate();
+            //$('autoComplete').disable();
         });
-        $('newtopicbox').show();
-        $('fTopicName').activate();
-    //$('autoComplete').disable();
-    });
 
-    $('closetopic').observe('click', function() {
-        $('newtopicbox').setStyle({
+        $('closetopic').observe('click', function() {
+              $('newtopicbox').setStyle({
 
-            display: 'none'
+                display: 'none'
+                });
+                $('topiccorner').setStyle({
+                    'background-color': '#e8eefa'
+                });
+                 $('newtopicbox').hide();
+                 $('autoComplete').enable();
+                 $('autoComplete').activate();
+
         });
-        $('topiccorner').setStyle({
-            'background-color': '#e8eefa'
-        });
-        $('newtopicbox').hide();
-        $('autoComplete').enable();
-        $('autoComplete').activate();
 
-    });
+
 
  //    }
 

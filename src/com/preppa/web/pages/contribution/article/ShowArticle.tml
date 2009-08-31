@@ -15,7 +15,7 @@
 
 
         <div class="author-time">
-            Created at <t:output format="literal:MMM. dd, yyyy" value="createdAt" />
+            Created at <t:output format="literal:MMM. dd, yyyy h:mm a"  value="createdAt" />
         </div>
         <p>
 

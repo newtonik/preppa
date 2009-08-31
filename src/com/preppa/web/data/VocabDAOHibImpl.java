@@ -23,6 +23,7 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         super(logger, session);
     }
 
+    @Override
     public Vocab findById(Integer id) {
         SQLString sqlString = new SQLString("FROM Vocab v");
         if(id != null)
@@ -33,6 +34,7 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         return (Vocab) findByQuery(sqlString.toString()).get(0);
     }
 
+    @Override
     public List<Vocab> findByLetter(Character lower) {
         Character upper = Character.toUpperCase(lower);
         SQLString sqlString = new SQLString("FROM Vocab v");
@@ -45,6 +47,7 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         return (List <Vocab>) findByQuery(sqlString.toString());
     }
 
+    @Override
     public List<Vocab> findAllOrderedByPartOfSpeech(String pos) {
         SQLString sqlString = new SQLString("FROM Vocab v");
         if(pos != null)
@@ -54,10 +57,12 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         return (List<Vocab>) findByQuery(sqlString.toString());
     }
 
+    @Override
     public List<Vocab> findAllOrderedByName() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
     public List<Vocab> findByPartialName(String partialName) {
         //throw new UnsupportedOperationException("Not supported yet.");
         SQLString sqlString = new SQLString("FROM Vocab v");
@@ -69,12 +74,24 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
         return (List <Vocab>) findByQuery(sqlString.toString());
     }
 
+    @Override
     public List<Vocab> findByName(String name) {
         //throw new UnsupportedOperationException("Not supported yet.");
         SQLString sqlString = new SQLString("FROM Vocab v");
         if(name != null)
         {
              sqlString.addWhereClause("v.name = '" + name + "'");
+        }
+
+        return (List <Vocab>) findByQuery(sqlString.toString());
+    }
+
+    @Override
+    public List<Vocab> findByUserId(Integer id) {
+         SQLString sqlString = new SQLString("FROM Vocab v");
+        if(id > 0)
+        {
+             sqlString.addWhereClause("v.user = '" + id + "'");
         }
 
         return (List <Vocab>) findByQuery(sqlString.toString());

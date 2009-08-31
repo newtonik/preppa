@@ -6,6 +6,7 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.ShortDualPassage;
+import java.util.List;
 import org.chenillekit.hibernate.daos.GenericDAO;
 
 /**
@@ -13,6 +14,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
  * @author nwt
  */
 public interface ShortDualPassageDAO extends GenericDAO<ShortDualPassage, Integer> {
-
+    List<ShortDualPassage> findByUserId(Integer id);
     ShortDualPassage findById(Integer id);
 }

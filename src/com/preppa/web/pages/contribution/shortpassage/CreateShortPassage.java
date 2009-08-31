@@ -106,6 +106,7 @@ public class CreateShortPassage {
         shortpassage.setPassage(fBody);
         shortpassage.setSources(fSource);
         shortpassage.setUser(user);
+        shortpassage.setUpdatedBy(user);
         shortpassage.setTitle(fTitle);
 
 

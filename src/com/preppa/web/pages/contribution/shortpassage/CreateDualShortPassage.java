@@ -126,6 +126,7 @@ public class CreateDualShortPassage {
 
          passageService.checkShortDualPassage(shortDualpassage);
          shortDualpassage.setUser(user);
+         shortDualpassage.setUpdatedBy(user);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
          shortDualpassage.setCreatedAt(now);
