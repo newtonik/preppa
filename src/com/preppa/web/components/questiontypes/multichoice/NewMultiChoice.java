@@ -25,6 +25,8 @@ import java.io.File;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -49,6 +51,7 @@ import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Context;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.upload.components.Upload;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
@@ -60,10 +63,10 @@ import org.slf4j.Logger;
  *
  * @author nwt
  */
-
 @IncludeStylesheet(value = {"context:styles/question.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/jquery.form.js","context:js/multiplequestion.js", "context:js/question.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/jquery.form.js", "context:js/multiplequestion.js", "context:js/question.js"})
 public class NewMultiChoice {
+
     @ApplicationState
     private User user;
     @Property
@@ -121,10 +124,10 @@ public class NewMultiChoice {
     private Boolean c5;
     @Property
     private String correct;
-     @Property
+    @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
-     @Inject
-     private TagDAO tagDAO;
+    @Inject
+    private TagDAO tagDAO;
     @Component
     private AutoComplete autoCompleteTag;
     @Parameter
@@ -145,6 +148,7 @@ public class NewMultiChoice {
     private ShowQuestion show;
     @Inject
     private Logger logger;
+    @Parameter
     private boolean showpage = false;
     private ShortPassage shortpassage;
     private ShortDualPassage shortdualpassage;
@@ -186,27 +190,28 @@ public class NewMultiChoice {
     @Property
     @Persist
     private Questiontype questiontype;
-    @Component(parameters = {"value=testsubject",  "event=change",
-                         "onCompleteCallback=literal:onChangeTestsubject"})
+    @Component(parameters = {"value=testsubject", "event=change",
+        "onCompleteCallback=literal:onChangeTestsubject"})
     @Mixins({"ck/OnEvent"})
     private Select testSubSelect;
-
-    @Component(parameters = {"value=questiontype",  "event=change",
-                         "onCompleteCallback=literal:onChangeQuestionTestsubject"})
+    @Component(parameters = {"value=questiontype", "event=change" })
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
     @InjectComponent
-    private Zone questionzone;
-
+    private Zone newquestionzone;
     @Inject
     private QuestiontypeDAO questiontypeDAO;
     @Inject
     private TestsubjectDAO testsubjectDAO;
     @Inject
     private Request request;
-    @InjectPage
-    private ShowQuestion showquestion;
-    
+    @Component
+    private ShowMultiChoice showquestion;
+    @Inject
+    private Block showquestionblock;
+    @Inject
+    private ComponentResources _resources;
+
 
     public boolean getError() {
         return error;
@@ -227,31 +232,38 @@ public class NewMultiChoice {
 
     void CreateQuestion() {
         question = new Question();
-         newquestion = true;
-         
+        newquestion = true;
+
     }
 
     void onActivate() {
         question = new Question();
-        if(ans1 != null) {
+        if (ans1 != null) {
             ans1 = null;
         }
-        if(ans2 != null) {
+        if (ans2 != null) {
             ans2 = null;
-        }if(ans3 != null) {
+        }
+        if (ans3 != null) {
             ans3 = null;
-        }if(ans4 != null) {
+        }
+        if (ans4 != null) {
             ans4 = null;
-        }if(ans5 != null) {
+        }
+        if (ans5 != null) {
             ans5 = null;
         }
     }
+
     @SetupRender
     void getSetupItems() {
+        _resources.discardPersistentFieldChanges();
         testsubjects = testsubjectDAO.findAllWithQuestions();
-         
+
         questiontypes = questiontypeDAO.findAll();
+        hasimage = "false";
     }
+
     Question getSubmittedQuestion() {
         return this.question;
     }
@@ -260,19 +272,20 @@ public class NewMultiChoice {
 //            passage.getQuestions().add(this.question);
 //        }
 //    }
+
     Object onPassivate() {
+        _resources.discardPersistentFieldChanges();
         return question;
     }
+
     void onSubmitForm() {
-        if(!mywork) {
+        if (!mywork) {
             createquestionform.recordError("You cannot submit a question to Preppa, that isn't your own work.");
         }
     }
 
-
-    Object onValidateFormFromCreateQuestionForm(){
-        System.out.println("Choices are "+ans1 + ans2 + ans3 + ans4 + ans5);
-        if(mywork == false) {
+    Object onValidateFormFromCreateQuestionForm() {
+        if (mywork == false) {
             error = true;
             emessage = "You must verify that this is your own work.";
             createquestionform.recordError("You must verify that this is your own work.");
@@ -283,44 +296,42 @@ public class NewMultiChoice {
             createquestionform.recordError(answergroup, "You did not specify an answer.");
         }
 
-        if(ratingValue == null) {
+        if (ratingValue == null) {
             createquestionform.recordError(ratingField, "You need to select a difficulty");
         }
-        if(question != null) {
-        if(question.getQuestiontype() == null) {
-            System.out.println("There isn't a questiontype");
-            createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
+        if (question != null) {
+            if (question.getQuestiontype() == null) {
+                System.out.println("There isn't a questiontype");
+                createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
+            }
         }
-        }
-        if(request.isXHR() && createquestionform.getHasErrors()) {
-            return questionzone;
+        if (request.isXHR() && createquestionform.getHasErrors()) {
+            return newquestionzone;
             //return null;
-        }
-        else
-        {
+        } else {
             //showquestion.setquestion(question);
             return null;
         }
     }
 
-     JSONObject onChangeFromTestSubSelect(String testId) {
+    JSONObject onChangeFromTestSubSelect(String testId) {
         JSONObject json = new JSONObject();
 
-            JSONArray ids = new JSONArray();
-            JSONArray qt = new JSONArray();
-            JSONArray counter = new JSONArray();
-              System.out.println("Counter is " + testId);
-            System.out.println("Testsubjsets are " + testsubjects.size());
-            System.out.println("Index to get is " + (Integer.parseInt(testId)-1));
-        if(testId != null && !testId.equals("")) {
-            questiontypes = questiontypeDAO.findByTestsubject(testsubjects.get(Integer.parseInt(testId)-1));
+        JSONArray ids = new JSONArray();
+        JSONArray qt = new JSONArray();
+        JSONArray counter = new JSONArray();
+        System.out.println("Counter is " + testId);
+        System.out.println("Testsubjsets are " + testsubjects.size());
+        System.out.println("Index to get is " + (Integer.parseInt(testId) - 1));
+        if (testId != null && !testId.equals("")) {
+            questiontypes = questiontypeDAO.findByTestsubject(testsubjects.get(Integer.parseInt(testId) - 1));
 
 
             ids.put("");
             qt.put("");
             int i = 1;
             System.out.println("Counter is " + questiontypes.size());
-            for(Questiontype t: questiontypes) {
+            for (Questiontype t : questiontypes) {
                 qt.put(i, t.getName());
                 ids.put(i, t.getId().toString());
                 counter.put(new Integer(i).toString());
@@ -336,196 +347,185 @@ public class NewMultiChoice {
         return json;
     }
 
-   void onChangeFromQuestiontypeSelect(String quesId) {
+    void onChangeFromQuestiontypeSelect(String quesId) {
 
-      // System.out.println("I just got selected " + quesId);
-        if(!quesId.equals("") && quesId != null)
-        {
+        // System.out.println("I just got selected " + quesId);
+        if (!quesId.equals("") && quesId != null) {
             questType = Integer.parseInt(quesId);
             questiontype = questiontypeDAO.findById(questType);
-            if(question == null)
+            if (question == null) {
                 question = new Question();
+            }
             question.setQuestiontype(questiontype);
         }
     }
 
-
     @CommitAfter
-    Object onSuccessFromCreateQuestionForm(){
-        if(question == null)
+    Object onSuccessFromCreateQuestionForm() {
+        if (question == null) {
             question = new Question();
-    question.setExplanation(fExplanation);
-    question.setQuestion(fQuestion);
-    int numCorrect = 0;
-    if(ans1.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans1);
-        question.getChoices().add(ch);
+        }
+        question.setExplanation(fExplanation);
+        question.setQuestion(fQuestion);
+        int numCorrect = 0;
+        if (ans1.length() > 0) {
+            QuestionAnswer ch = new QuestionAnswer(ans1);
+            question.getChoices().add(ch);
 
 
-    }
-        if(ans2.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans2);
-        question.getChoices().add(ch);
-    }
-        if(ans3.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans3);
-        question.getChoices().add(ch);
-    }
-        if(ans4.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans4);
-        question.getChoices().add(ch);
-    }
-        if(ans5.length() > 0) {
-        QuestionAnswer ch = new QuestionAnswer(ans5);
-        question.getChoices().add(ch);
-    }
+        }
+        if (ans2.length() > 0) {
+            QuestionAnswer ch = new QuestionAnswer(ans2);
+            question.getChoices().add(ch);
+        }
+        if (ans3.length() > 0) {
+            QuestionAnswer ch = new QuestionAnswer(ans3);
+            question.getChoices().add(ch);
+        }
+        if (ans4.length() > 0) {
+            QuestionAnswer ch = new QuestionAnswer(ans4);
+            question.getChoices().add(ch);
+        }
+        if (ans5.length() > 0) {
+            QuestionAnswer ch = new QuestionAnswer(ans5);
+            question.getChoices().add(ch);
+        }
 
-    questiontype = questiontypeDAO.findById(questType);
-    question.setQuestiontype(questiontype);
-     for(Tag t: addedTags)
-     {
-            if(!(question.getTaglist().contains(t)))
-            {
+        questiontype = questiontypeDAO.findById(questType);
+        question.setQuestiontype(questiontype);
+        for (Tag t : addedTags) {
+            if (!(question.getTaglist().contains(t))) {
                 question.getTaglist().add(t);
             }
-     }
-     
-   
-     question.setImage(Boolean.FALSE);
-     //question.setQuestiontype(questiontype);
-     question.setUser(user);
-     question.setUpdatedBy(user);
-    question.setCorrectAnswer(correct);
-      numCorrect = 1;
-     question.setNumCorrect(numCorrect);
-     question.setDifficulty(ratingValue);
-     Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-     question.setCreatedAt(now);
-     question.setUpdatedAt(now);
-     newquestion = true;
-     questionDAO.doSave(question);
-  if(hasimage.equals("yes")) {
-           String impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/"+ question.getId() +".jpg";
-             boolean status = new File(context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() ).mkdirs();
+        }
+
+
+        question.setImage(Boolean.FALSE);
+        //question.setQuestiontype(questiontype);
+        question.setUser(user);
+        question.setUpdatedBy(user);
+        question.setCorrectAnswer(correct);
+        numCorrect = 1;
+        question.setNumCorrect(numCorrect);
+        question.setDifficulty(ratingValue);
+        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        question.setCreatedAt(now);
+        question.setUpdatedAt(now);
+        newquestion = true;
+        questionDAO.doSave(question);
+        if (hasimage.equals("yes")) {
+            String impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/" + question.getId() + ".jpg";
+            boolean status = new File(context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId()).mkdirs();
             System.out.println(impath);
             File copied = new File(impath);
             imageupload.write(copied);
             question.setImagePath(impath);
             question.setImage(Boolean.TRUE);
-       }
-     if(owner != null)
-     {
-        if(!saveQuestionToObject(owner, question))
-        {
-            logger.debug("Just saving the question, object is null");
+        }
+        if (owner != null) {
+            if (!saveQuestionToObject(owner, question)) {
+                logger.debug("Just saving the question, object is null");
+                questionDAO.doSave(question);
+            }
+        } else {
             questionDAO.doSave(question);
         }
-     }
-     else {
-         questionDAO.doSave(question);
-     }
 
-     if (showpage == false) {
-         return null;
-     }
-     else {
-        show.setquestion(this.question);
-        return show;
-     }
+        if (showpage == false) {
+            showquestion.setquestion(question);
+            return showquestionblock;
+        } else {
+            show.setquestion(this.question);
+            return show;
+        }
     }
-    
-     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+
+    List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
 
     }
-        public FieldTranslator getTagTranslator()
-    {
-        return new FieldTranslator<Tag>()
-        {
+
+    public FieldTranslator getTagTranslator() {
+        return new FieldTranslator<Tag>() {
+
             @Override
-          public String toClient(Tag value)
-          {
+            public String toClient(Tag value) {
                 String clientValue = "0";
-                if (value != null)
-                clientValue = String.valueOf(value.getName());
+                if (value != null) {
+                    clientValue = String.valueOf(value.getName());
+                }
 
                 return clientValue;
-          }
+            }
 
             @Override
-          public void render(MarkupWriter writer) { }
+            public void render(MarkupWriter writer) {
+            }
 
             @Override
-          public Class<Tag> getType() { return Tag.class; }
+            public Class<Tag> getType() {
+                return Tag.class;
+            }
 
             @Override
-          public Tag parse(String clientValue) throws ValidationException
-          {
-            Tag serverValue = null;
+            public Tag parse(String clientValue) throws ValidationException {
+                Tag serverValue = null;
 //            if(clientValue == null) {
 //                Tag t = new Tag();
 //                t.setName(clientValue);
 //            }
-            System.out.println(clientValue);
-
-            if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
                 System.out.println(clientValue);
-                serverValue = tagDAO.findByName(clientValue).get(0);
-            }
-            return serverValue;
-          }
 
-    };
-   }
-        /**
-         *This function determines the object passed to the component then saves a question to it.
-         * @param toSave
-         * @param questiontoSave
-         * @return
-         */
-        @CommitAfter
-   Boolean saveQuestionToObject(Object toSave, Question questiontoSave) {
-       if(toSave instanceof LongPassage) {
-          longpassage = (LongPassage)toSave;
+                if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                    System.out.println(clientValue);
+                    serverValue = tagDAO.findByName(clientValue).get(0);
+                }
+                return serverValue;
+            }
+        };
+    }
+
+    /**
+     *This function determines the object passed to the component then saves a question to it.
+     * @param toSave
+     * @param questiontoSave
+     * @return
+     */
+    @CommitAfter
+    Boolean saveQuestionToObject(Object toSave, Question questiontoSave) {
+        if (toSave instanceof LongPassage) {
+            longpassage = (LongPassage) toSave;
             longpassage = longpassageDAO.findById(longpassage.getId());
             longpassage.getQuestions().add(question);
             logger.debug("Object to save is long passage");
             return true;
-       }
-       else if(toSave instanceof ShortPassage)
-       {
-           shortpassage = (ShortPassage)toSave;
-           shortpassage = shortpassageDAO.findById(shortpassage.getId());
-           shortpassage.getQuestions().add(question);
-           logger.debug("Object to save is sshortpassage");
-           return true;
-       }
-       else if(toSave instanceof ShortDualPassage)
-       {
-           shortdualpassage = (ShortDualPassage)toSave;
-           shortdualpassage = shortdualpassageDAO.findById(shortdualpassage.getId());
-           shortdualpassage.getQuestions().add(question);
+        } else if (toSave instanceof ShortPassage) {
+            shortpassage = (ShortPassage) toSave;
+            shortpassage = shortpassageDAO.findById(shortpassage.getId());
+            shortpassage.getQuestions().add(question);
+            logger.debug("Object to save is sshortpassage");
+            return true;
+        } else if (toSave instanceof ShortDualPassage) {
+            shortdualpassage = (ShortDualPassage) toSave;
+            shortdualpassage = shortdualpassageDAO.findById(shortdualpassage.getId());
+            shortdualpassage.getQuestions().add(question);
 
-           return true;
-       }
-       else if(toSave instanceof LongDualPassage)
-       {
-           longdualpassage = (LongDualPassage)toSave;
-           longdualpassage = longdualpassageDAO.findById(longdualpassage.getId());
-           longdualpassage.getQuestions().add(question);
-          return true;
-       }
-       else
-       {
+            return true;
+        } else if (toSave instanceof LongDualPassage) {
+            longdualpassage = (LongDualPassage) toSave;
+            longdualpassage = longdualpassageDAO.findById(longdualpassage.getId());
+            longdualpassage.getQuestions().add(question);
+            return true;
+        } else {
             logger.error("Object to save is not handled");
             return false;
-       }
+        }
 
-   }
-        /**
-         * <t:if t:test="error">
- <font color="FF0000">ERROR : ${emessage}</font>
- </t:if>
-         */
+    }
+    /**
+     * <t:if t:test="error">
+    <font color="FF0000">ERROR : ${emessage}</font>
+    </t:if>
+     */
 }

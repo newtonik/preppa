@@ -162,9 +162,10 @@ public class ShowDualShortPassage {
         }
     }
 
-       Block onActionFromAddQuestion() {
+       void onActionFromAddQuestion() {
 
-        return questionblock;
+//        return questionblock;
+           //return null
     }
 
       Block onActionFromShowQuestionlink() {

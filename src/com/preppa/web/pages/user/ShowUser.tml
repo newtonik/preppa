@@ -33,22 +33,38 @@
             <li><a href="#" t:id="getpassages" t:type="actionlink" t:zone="passagezone">Passages</a></li>
             <li><a href="#" t:id="getquestions" t:type="actionlink"  t:zone="multiplezone" >Multiple Choice</a></li>
             <li><a href="#" t:id="getgridins" t:type="actionlink" t:zone="gridinzone" >Gridin</a></li>
-            <li><a href="#" t:id="getopenquestions" t:type="actionlink" t:zone="openzone" >Open Question</a></li>
             <li><a href="#" t:id="getvocabs" t:type="actionlink" t:zone="vocabzone" >Vocab</a></li>
 
         </ul>
         <div class="realpanes">
             <div t:type="zone" t:id="articlezone" style="display:block"> <t:delegate to="resultblock" /> </div>
-            <div t:type="zone" t:id="passagezone" >pane 2 content</div>
-            <div t:type="zone" t:id="multiplezone">pane 3 content</div>
-            <div t:type="zone" t:id="gridinzone">pane 1 content</div>
-            <div t:type="zone" t:id="openzone">pane 2 content</div>
+            <div t:type="zone" t:id="passagezone" >Passages</div>
+            <div t:type="zone" t:id="multiplezone">Quesitons</div>
+            <div t:type="zone" t:id="gridinzone"> Gridin </div>
             <div t:type="zone" t:id="vocabzone"></div>
         </div>
 
 
     </div>
-
+    <t:block t:id="gridinblock">
+        <h3> Gridins Contributed</h3>
+        <table class="questiontable">
+            <tr>
+                <th> Title</th>
+                <th> Question </th>
+                <th> Time Submitted </th>
+                <th> Last Updated </th>
+                <th> Last Updated By </th>
+            </tr>
+            <tr t:type="loop" source="gridins" value="gridin">
+                    <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${gridin.id}" >${gridin.title} </a> </td>
+                    <td align="left"> <t:outputraw value="gridin.question" /> </td>
+                <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="gridin.createdat" /> </td>
+            <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="gridin.updatedat" /> </td>
+            <td align="left"> ${gridin.updatedBy.username} </td>
+            </tr>
+        </table>
+    </t:block>
 
     <t:block t:id="questionblock">
         <h3> Questions Contributed</h3>

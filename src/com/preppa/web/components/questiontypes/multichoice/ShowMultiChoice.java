@@ -92,23 +92,6 @@ public class ShowMultiChoice {
     @Property
     private Integer votes;
 
-    void onActivate() {
-//       if(pid != null) {
-//        passage = passageDAO.findById(pid);
-//        allQuestions = passage.getQuestions();
-//
-//        question = allQuestions.get(0);
-//
-//        if(question != null) {
-//            System.out.println("question is not null");
-//            /*example = question.getSentence().getSentence();
-//            vid = question.getId();*/
-//            returnVal = question.getChoices();
-//        }
-//      setquestion(question);
-//       }
-    }
-
     @SetupRender
     void intializeQuestion() {
         if (question != null) {

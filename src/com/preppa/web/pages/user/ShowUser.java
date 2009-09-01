@@ -5,6 +5,7 @@
 package com.preppa.web.pages.user;
 
 import com.preppa.web.data.ArticleDAO;
+import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.QuestionDAO;
@@ -14,6 +15,7 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.UserProfileDAO;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.Article;
+import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
@@ -118,6 +120,15 @@ public class ShowUser {
     @Inject
     @Property
     private Block questionblock;
+    @Property
+    private List<Gridin> gridins;
+    @Property
+    private Gridin gridin;
+    @Inject
+    @Property
+    private Block gridinblock;
+    @Inject
+    private GridinDAO gridinDAO;
 
     void onActivate(Integer id) {
         this.user = userDAO.findById(id);
@@ -220,6 +231,36 @@ public class ShowUser {
         }
 
         longpassages = longpassageDAO.findByUserIds(ids);
+    }
+
+     void updateGridins() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(LongPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Long> ids = new ArrayList<Long>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+             Integer in = new Integer((Integer) test.get("id"));
+            Long i = in.longValue();
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        gridins = gridinDAO.findByUserIds(ids);
     }
     void updateVocabs() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
@@ -422,7 +463,8 @@ public class ShowUser {
     }
 
     Block onActionFromGetGridins() {
-        return clickblock;
+        updateGridins();
+        return gridinblock;
 
     }
 

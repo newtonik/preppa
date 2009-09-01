@@ -2,8 +2,8 @@
 
 
     <div id="multiple-question" class="overlay"  >
-        <t:zone t:id="questionzone">
-            <t:form t:id="createquestionform" >
+        <t:zone t:id="newquestionzone" id="newquestionzone" >
+            <t:form t:id="createquestionform" t:zone="newquestionzone" class="multiquestionclass">
                 <t:errors />
                 <table id="atable" cellpadding="10">
                     <tr>
@@ -179,5 +179,9 @@
             </t:form>
         </t:zone>
     </div>
+
+    <t:block t:id="showquestionblock">
+        <div t:id="showquestion" t:question="question"/>
+    </t:block>
 
 </t:container>

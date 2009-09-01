@@ -36,11 +36,11 @@
                 <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
             </p>
 
-            <t:zone t:id="showquestionZone">
+            <t:zone t:id="showquestionZone" id="showquestionZone" >
 
             </t:zone>
             <br/>
-            <t:zone t:id="questionZone">
+            <t:zone t:id="questionZone" id="questionZone">
 
             </t:zone>
 

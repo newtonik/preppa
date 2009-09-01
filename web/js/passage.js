@@ -9,7 +9,40 @@
 //
 //     }
 
-      function FCKeditor_OnComplete( editorInstance )
+document.observe("dom:loaded", function() {
+    $('addquestion').observe('click', bindelements);
+
+    function bindelements() {
+
+    
+        $('questionZone').setStyle({
+            display: 'block'
+            }
+
+        );
+        Event.observe('createquestionform', 'submit', function() {
+            FCKeditorAPI.Instances['questioneditor'].UpdateLinkedField();
+            FCKeditorAPI.Instances['choice1'].UpdateLinkedField();
+            FCKeditorAPI.Instances['choice2'].UpdateLinkedField();
+            FCKeditorAPI.Instances['choice3'].UpdateLinkedField();
+            FCKeditorAPI.Instances['choice4'].UpdateLinkedField();
+            FCKeditorAPI.Instances['choice5'].UpdateLinkedField();
+
+        });
+
+    }
+
+     $('removenewquestion').observe('click', remove);
+
+     function remove() {
+            $('questionZone').setStyle({
+            display: 'none'
+            }
+
+        );
+     }
+});
+function FCKeditor_OnComplete( editorInstance )
 {
 
     fckeditor_word_count(editorInstance);
@@ -26,24 +59,24 @@ function fckeditor_word_count(editorInstance) {
         count = matches.length/2;
     }
     if(editorInstance.Name == "passeditorone")
-     {
+    {
         $('word_count').innerHTML = count + " word" + (count == 1 ? "" : "s");
         
-     }
-     if(editorInstance.Name == "passeditortwo") {
+    }
+    if(editorInstance.Name == "passeditortwo") {
 
-          $('word_count2').innerHTML = count + " word" + (count == 1 ? "" : "s");
-      }
-  if(editorInstance.Name == "pass1")
-     {
+        $('word_count2').innerHTML = count + " word" + (count == 1 ? "" : "s");
+    }
+    if(editorInstance.Name == "pass1")
+    {
         $('word_count').innerHTML = count + " word" + (count == 1 ? "" : "s");
         
-     }
-     if(editorInstance.Name == "pass2")
-     {
+    }
+    if(editorInstance.Name == "pass2")
+    {
         $('word_count2').innerHTML = count + " word" + (count == 1 ? "" : "s");
 
-     }
+    }
 }
 
 $('flaglink').observe('click', function() {
@@ -54,12 +87,12 @@ $('flaglink').observe('click', function() {
     $('votebox').setStyle({
 
         // display: 'block',
-      position: 'absolute',
+        position: 'absolute',
         fontSize: '12px'
     });
     $('votebox').show();
-     $('votebox').makePositioned();
-      $('votebox').focus();
+    $('votebox').makePositioned();
+    $('votebox').focus();
     $('flagfield').activate();
     //Effect.ScrollTo('header');
     //$('votebox').absolutize()
