@@ -61,7 +61,8 @@ public class ShowPrompt {
     private Block flagblock;
     @Property
     private String reasonDesc;
-
+    @Property
+    private String type;
 
     void onActivate(int id) {
         if (id > 0) {
@@ -72,6 +73,7 @@ public class ShowPrompt {
                 flags = prompt.getFlags();
                 tags = prompt.getTaglist();
             }
+            type = prompt.getTopic();
         }
     }
 

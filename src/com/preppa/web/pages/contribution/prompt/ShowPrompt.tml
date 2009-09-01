@@ -2,9 +2,8 @@
 
     <body>
     <t:practicebarArt />
-
     <div id="main">
-
+                <br/><b><t:pagelink t:page="contribution/prompt/view" t:context="literal:${type}">${type}</t:pagelink></b> - Prompt<br/>
     <i>${prompt.quote}</i>
 
         <div id="author-time">
@@ -20,6 +19,11 @@
     <p>
         <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/create" t:context="prompt.id">Create Essay</a>
     </p>
+
+<p>
+    <a href="#" t:type="pageLink" t:page="contribution/prompt/Edit" t:context="prompt.id"> Edit </a>
+    <br />
+</p>
 
 <div id="flagpass">
     <a href="#" id="flaglink" > Flag </a>

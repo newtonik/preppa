@@ -1,4 +1,6 @@
 <html t:type="layout" t:pageTitle="New Prompt" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<head>
+</head>
 <t:form t:id="promptform">
         <t:errors/>
         <table>

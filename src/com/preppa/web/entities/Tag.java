@@ -30,6 +30,7 @@ public class Tag implements Serializable {
     private List<Article> articles;
     private List<Gridin> gridins;
     private List<Question> questions;
+    private List<Prompt> prompt;
 
     public Tag() {
 
@@ -137,6 +138,8 @@ public class Tag implements Serializable {
         this.articles = articles;
     }
 
+    
+    @ContainedIn
     @ManyToMany(mappedBy = "taglist")
     public List<Gridin> getGridins() {
         return gridins;
@@ -144,6 +147,17 @@ public class Tag implements Serializable {
 
     public void setGridins(List<Gridin> gridins) {
         this.gridins = gridins;
+    }
+
+
+    @ContainedIn
+    @ManyToMany(mappedBy = "taglist")
+    public List<Prompt> getPrompts() {
+        return prompt;
+    }
+
+    public void setPrompts(List<Prompt> prompts) {
+        this.prompt = prompts;
     }
 
 }

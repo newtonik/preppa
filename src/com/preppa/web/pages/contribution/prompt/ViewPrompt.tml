@@ -1,8 +1,9 @@
 <html t:type="layout" t:pageTitle="Prompts" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+                <br/><b>${type}</b> - <br/>
 <div id="nav-menu" align="left">
     <ul>
             <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Respond" style="height: 3em; line-height: 1.5em;">Respond to Statement</t:pagelink></li>
-            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Choose" style="height: 3em; line-height: 1.5em;">Choosing Between Contrasting Statements</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Choosing" style="height: 3em; line-height: 1.5em;">Choosing Between Contrasting Statements</t:pagelink></li>
             <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Complete" style="height: 3em; line-height: 1.5em;">Complete a Statement</t:pagelink></li>
     </ul>
 </div>
@@ -21,6 +22,10 @@
         <p>
         <t:outputraw t:value="${prompt.question}"/>
         </p>
+        <p>
+        <a href="#" t:type="pageLink" t:page="contribution/prompt/Show" t:context="prompt.id">See More</a>
+        </p>
+        <br/><br/>
             </t:loop>
             </t:if>
 

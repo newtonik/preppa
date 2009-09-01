@@ -26,6 +26,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
@@ -39,6 +40,7 @@ import org.chenillekit.tapestry.core.components.Editor;
  *
  * @author Jan Jan
  */
+@IncludeJavaScriptLibrary(value = {"context:js/confirmexit.js"})
 @Secured("ROLE_USER")
 public class CreatePrompt {
     @ApplicationState
@@ -76,6 +78,45 @@ public class CreatePrompt {
     
     void onValidateForm() {
 
+    }
+
+
+    Object onValidateFormFromPromptForm(){
+        /*if(mywork == false) {
+            error = true;
+            emessage = "You must verify that this is your own work.";
+            createquestionform.recordError("You must verify that this is your own work.");
+        }
+        if ((correct == null)) {
+            error = true;
+            emessage = "You did not specify an answer.";
+            createquestionform.recordError(answergroup, "You did not specify an answer.");
+        }
+
+        if(ratingValue == null) {
+            createquestionform.recordError(ratingField, "You need to select a difficulty");
+        }
+        if(question != null) {
+        if(question.getQuestiontype() == null) {
+            System.out.println("There isn't a questiontype");
+            createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
+        }
+        }
+        if(request.isXHR() && createquestionform.getHasErrors()) {
+    //        return questionzone;
+            return null;
+        }
+        else
+        {
+            //showquestion.setquestion(question);
+            return null;
+        }
+
+        if (question == null) {
+            promptform.recordError(answergroup, "You did not specify an answer.");
+        }*/
+
+        return null;
     }
 
     @CommitAfter
