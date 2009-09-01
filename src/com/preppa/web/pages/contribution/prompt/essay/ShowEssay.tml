@@ -22,7 +22,7 @@
 <br/>
                 <h1>Feedback</h1>
         <t:loop t:source="essay.feedback" t:value="feedback">
-            <b>Rating is ${feedback.rating}</b>
+            <b>Rating is ${feedback.rating}</b><br/>
             <t:outputraw t:value="${feedback.comment}" /><br/>
             Submitted by ${feedback.user.username}
          </t:loop>

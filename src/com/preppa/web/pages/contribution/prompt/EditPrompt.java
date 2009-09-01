@@ -15,18 +15,15 @@ import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
-import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
-import org.springframework.security.annotation.Secured;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
@@ -35,14 +32,14 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.springframework.security.annotation.Secured;
 
 /**
  *
  * @author Jan Jan
  */
-@IncludeJavaScriptLibrary(value = {"context:js/confirmexit.js"})
 @Secured("ROLE_USER")
-public class CreatePrompt {
+public class EditPrompt {
     @ApplicationState
     private User user;
     @Property
@@ -75,12 +72,29 @@ public class CreatePrompt {
     @InjectPage
     private ShowPrompt showprompt;
 
-    
-    void onValidateForm() {
 
+    void onActivate(int id) {
+        this.prompt = promptDAO.findById(id);
+        if(prompt != null) {
+            quote = prompt.getQuote();
+            question = prompt.getQuestion();
+            topic = prompt.getTopic();
+            addedTags = prompt.getTaglist();
+
+            /*if (prompt.getTags() == null)
+            {
+                fTag = "";
+            }
+            else
+            {
+                fTag = vocab.getTags();
+            }*/
+        }
     }
+    Integer onPassivate() {
 
-
+        return this.prompt.getId();
+    }
     Object onValidateFormFromPromptForm(){
         /*if(mywork == false) {
             error = true;

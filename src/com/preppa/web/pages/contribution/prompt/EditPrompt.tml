@@ -1,6 +1,4 @@
-<html t:type="layout" t:pageTitle="New Prompt" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<head>
-</head>
+<html t:type="layout" t:pageTitle="Edit Prompt" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:form t:id="promptform">
         <t:errors/>
         <table>
@@ -36,7 +34,7 @@
                 <td>
             <t:editor align="left" t:id="body" value="question" t:toolbarSet="Basic" t:width="600" t:height="300"
                       t:label="Body" t:validate="required" onkeyup="countCharacters();" />
-                    
+
                 </td>
 
             </tr>
