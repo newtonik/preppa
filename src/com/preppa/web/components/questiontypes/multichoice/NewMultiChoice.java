@@ -306,6 +306,9 @@ public class NewMultiChoice {
             }
         }
         if (request.isXHR() && createquestionform.getHasErrors()) {
+            testsubjects = testsubjectDAO.findAllWithQuestions();
+
+        questiontypes = questiontypeDAO.findAll();
             return newquestionzone;
             //return null;
         } else {
