@@ -96,4 +96,19 @@ public class VocabDAOHibImpl extends AbstractHibernateDAO<Vocab, Integer> implem
 
         return (List <Vocab>) findByQuery(sqlString.toString());
     }
+
+    @Override
+    public List<Vocab> findByUserIds(List<Integer> ids) {
+         SQLString sqlString = new SQLString("FROM Vocab v");
+        if(ids.size() > 0)
+        {
+             String rlist = ids.toString();
+
+             rlist = rlist.replace('[', '(');
+             rlist = rlist.replace(']', ')');
+             sqlString.addWhereClause("v.id IN  " + rlist);
+        }
+
+        return (List <Vocab>) findByQuery(sqlString.toString());
+    }
 }

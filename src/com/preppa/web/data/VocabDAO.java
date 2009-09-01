@@ -23,4 +23,5 @@ public interface VocabDAO extends GenericDAO <Vocab, Integer> {
     List<Vocab> findAllOrderedByPartOfSpeech(String pos);
     public List<Vocab> findByLetter(Character lower);
     List<Vocab> findByPartialName(String partialName);
+    List<Vocab> findByUserIds(List<Integer> ids);
 }

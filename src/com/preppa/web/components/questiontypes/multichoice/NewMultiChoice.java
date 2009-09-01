@@ -32,6 +32,7 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Mixins;
 import org.apache.tapestry5.annotations.Parameter;
@@ -41,6 +42,7 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.RadioGroup;
 import org.apache.tapestry5.corelib.components.Select;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
@@ -58,8 +60,9 @@ import org.slf4j.Logger;
  *
  * @author nwt
  */
+
 @IncludeStylesheet(value = {"context:styles/question.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/multiplequestion.js", "context:js/question.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/jquery.form.js","context:js/multiplequestion.js", "context:js/question.js"})
 public class NewMultiChoice {
     @ApplicationState
     private User user;
@@ -192,8 +195,8 @@ public class NewMultiChoice {
                          "onCompleteCallback=literal:onChangeQuestionTestsubject"})
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
-//    @InjectComponent
-  //  private Zone questionzone;
+    @InjectComponent
+    private Zone questionzone;
 
     @Inject
     private QuestiontypeDAO questiontypeDAO;
@@ -290,8 +293,8 @@ public class NewMultiChoice {
         }
         }
         if(request.isXHR() && createquestionform.getHasErrors()) {
-    //        return questionzone;
-            return null;
+            return questionzone;
+            //return null;
         }
         else
         {
@@ -391,6 +394,7 @@ public class NewMultiChoice {
      question.setImage(Boolean.FALSE);
      //question.setQuestiontype(questiontype);
      question.setUser(user);
+     question.setUpdatedBy(user);
     question.setCorrectAnswer(correct);
       numCorrect = 1;
      question.setNumCorrect(numCorrect);

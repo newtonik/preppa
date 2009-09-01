@@ -44,6 +44,7 @@ import org.hibernate.envers.Audited;
 public class Question implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
+    private String title;
     private Questiontype questiontype;
     private String question;
     private List<Tag> taglist = new ArrayList<Tag>();
@@ -458,6 +459,21 @@ public class Question implements Serializable {
      */
     public void setReviewcomments(List<ReviewComment> reviewcomments) {
         this.reviewcomments = reviewcomments;
+    }
+
+    /**
+     * @return the title
+     */
+    @Audited
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
   

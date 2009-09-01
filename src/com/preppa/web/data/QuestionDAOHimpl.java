@@ -91,4 +91,20 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
     public List<Question> findByTag(String name) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public List<Question> findByUserIds(List<Integer> ids) {
+         SQLString sqlString = new SQLString("FROM Question q");
+        if(ids.size() > 0)
+        {
+
+             String rlist = ids.toString();
+
+             rlist = rlist.replace('[', '(');
+             rlist = rlist.replace(']', ')');
+             sqlString.addWhereClause("q.id IN " + rlist );
+        }
+
+         return findByQuery(sqlString.toString());
+    }
 }

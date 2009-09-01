@@ -7,6 +7,7 @@ package com.preppa.web.pages.contribution.shortpassage;
 
 import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
+import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
@@ -79,7 +80,7 @@ public class ShowShortPassage {
     @Property
     private Block showquestionBlock;
     @Component
-    private CQuestion firstquestion;
+    private NewMultiChoice firstquestion;
     @Component
     private SQuestion showquestion;
     @Property

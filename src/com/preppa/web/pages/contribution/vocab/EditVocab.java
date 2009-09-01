@@ -119,7 +119,7 @@ public class EditVocab {
          vocab.setDefinition(fDefinition);
          vocab.setTags(fTag);
          vocab.setRevComment(fComment);
-         vocab.setUser(user);
+         vocab.setUpdatedBy(user);
          if (vocab.getSentence() != null) {
             if (fSentence == null) {
                 vocab.getSentence().setSentence("");

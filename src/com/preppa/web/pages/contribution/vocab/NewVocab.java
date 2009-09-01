@@ -159,6 +159,7 @@ public class NewVocab {
          vocab.setPartofspeech(partofspch);
          vocab.setDefinition(fDefinition);
          vocab.setUser(user);
+         vocab.setUpdatedBy(user);
          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
          vocab.setCreatedAt(now);
          vocab.setUpdatedAt(now);

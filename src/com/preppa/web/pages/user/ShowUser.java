@@ -7,17 +7,21 @@ package com.preppa.web.pages.user;
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.UserProfileDAO;
+import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.Article;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.Question;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserProfile;
+import com.preppa.web.entities.Vocab;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -96,6 +100,24 @@ public class ShowUser {
     @Inject
     @Property
     private Block passageblock;
+    @Property
+    private List<Vocab> vocabs;
+    @Property
+    private Vocab vocab;
+    @Inject
+    private VocabDAO vocabDAO;
+     @Inject
+    @Property
+    private Block vocabblock;
+    @Property
+    private List<Question> questions;
+    @Property
+    private Question question;
+    @Inject
+    private QuestionDAO questionDAO;
+    @Inject
+    @Property
+    private Block questionblock;
 
     void onActivate(Integer id) {
         this.user = userDAO.findById(id);
@@ -199,6 +221,35 @@ public class ShowUser {
 
         longpassages = longpassageDAO.findByUserIds(ids);
     }
+    void updateVocabs() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Vocab.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        vocabs = vocabDAO.findByUserIds(ids);
+    }
 
     void updateLongDualPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
@@ -259,6 +310,35 @@ public class ShowUser {
         shortpassages = shortpassageDAO.findByUserIds(ids);
     }
 
+    void updateQuestions() {
+                AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Question.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+        questions = questionDAO.findByUserIds(ids);
+
+    }
     void updateShortDualPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
         AuditCriterion usercrit = AuditEntity.property("user").eq(user);
@@ -336,8 +416,9 @@ public class ShowUser {
         return passageblock;
     }
 
-    Block onActionFromGetMultipleChoices() {
-        return clickblock;
+    Block onActionFromGetQuestions() {
+        updateQuestions();
+        return questionblock;
     }
 
     Block onActionFromGetGridins() {
@@ -347,5 +428,10 @@ public class ShowUser {
 
     Block onActionFromGetOpenQuestions() {
         return clickblock;
+    }
+    Block onActionFromGetVocabs() {
+        updateVocabs();
+
+        return vocabblock;
     }
 }

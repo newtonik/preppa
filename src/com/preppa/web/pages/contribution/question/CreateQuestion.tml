@@ -2,9 +2,9 @@
 
 <t:practicebarart />
     <div id="main">
- <!--       <div align="center">
+     <div align="center">
         <div t:id="firstquestion" t:testsubjects="subjects" />
-        </div>-->
+        </div>
         <br />
 
          <t:zone t:id="questionzone">
@@ -32,9 +32,9 @@
         </div>
     </t:block>
     <t:block t:id="firstblock">
-        <div align="center">
+    <!--    <div align="center">
             <div t:id="firstquestion" t:testsubjects="subjects" />
-        </div>
+        </div>-->
     </t:block>
         </div>
 </html>
