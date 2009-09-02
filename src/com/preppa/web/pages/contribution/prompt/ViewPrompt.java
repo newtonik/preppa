@@ -54,6 +54,7 @@ public class ViewPrompt {
                 }
             }
         }
+        //this.type = "";
     }
 
     Object onActivate(String type) {
