@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <td>
-                <input type="text" t:type="TextArea" t:id="quote" t:value="quote" t:label="Quote" t:validate="required" rows="4" cols="80"/>
+                <input type="text" t:type="TextArea" t:id="quote" t:value="quote" t:label="Quote" t:validate="required" rows="4" cols="80" />
             </td>
             </tr>
             <tr>
@@ -35,7 +35,7 @@
             <tr>
                 <td>
             <t:editor align="left" t:id="body" value="question" t:toolbarSet="Basic" t:width="600" t:height="300"
-                      t:label="Body" t:validate="required" onkeyup="countCharacters();" />
+                      t:label="Body" t:validate="required" onkeyup="countCharacters();"/>
                     
                 </td>
 
@@ -48,7 +48,8 @@
             <tr>
                 <td align="left">
                     <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
-                           translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
+                           translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false" onchange="IGNORE_UNLOAD = false"
+                 onkeypress="IGNORE_UNLOAD = false" />
                 </td>
             </tr>
             <tr>
@@ -61,8 +62,8 @@
 
             <tr>
                 <td colspan="2" align="left">
-                    <input type="submit" value="Submit"/>
-            <t:pagelink t:page="Index" t:mixins="confirm"><button type="button">Cancel</button></t:pagelink>
+                    <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true" />
+            <t:pagelink t:page="Index"><button type="button">Cancel</button></t:pagelink>
             </td>
 
             </tr>

@@ -80,7 +80,7 @@
 
             <tr>
                 <td colspan="2" align="left">
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true" />
             <t:pagelink t:page="Index" t:mixins="confirm"><button type="button">Cancel</button></t:pagelink>
             </td>
 

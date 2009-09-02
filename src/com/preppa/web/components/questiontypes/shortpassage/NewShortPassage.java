@@ -39,7 +39,7 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  * @author newtonik
  */
 //@Secured("ROLE_USER")
-@IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/passage.js", "context:js/confirmexit.js"})
 public class NewShortPassage {
 
     @Property
