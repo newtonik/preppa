@@ -17,4 +17,5 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface QuestiontypeDAO  extends GenericDAO <Questiontype, Integer>{
     List<Questiontype> findByTestsubject(Testsubject testsubject);
     Questiontype findById(Integer id);
+     Questiontype findByName(String name);
 }

@@ -44,6 +44,8 @@
                                                 <t:pagelink t:page="contribution/gridin/new"> Gridin </t:pagelink><br/>
                                                 <t:pagelink t:page="contribution/longpassage/create"> Long Passages </t:pagelink><br/>
                                                 <t:pagelink t:page="contribution/shortpassage/create"> Short Passages </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/longpassage/createdual"> Long Dual Passages </t:pagelink><br/>
+                                                <t:pagelink t:page="contribution/shortpassage/createdual"> Short DualPassages </t:pagelink><br/>
                                                 <t:pagelink t:page="contribution/prompt/create"> Prompts </t:pagelink><br/>
                                             </div>
                                             <br/>

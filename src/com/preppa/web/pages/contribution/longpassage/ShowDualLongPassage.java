@@ -4,15 +4,16 @@
  */
 package com.preppa.web.pages.contribution.longpassage;
 
-import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.Questiontype;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
@@ -124,6 +125,10 @@ public class ShowDualLongPassage {
     private TextField flagfield;
     @Property
     private ContentType contType;
+    @Property
+    private Questiontype questiontype;
+    @Inject
+    private QuestiontypeDAO questiontypeDAO;
 
     void onpageLoaded() {
         firstquestion.setPageFalse();
@@ -133,6 +138,7 @@ public class ShowDualLongPassage {
     void setDefaults() {
         lastquestion = true;
         onequestion = true;
+        questiontype = questiontypeDAO.findByName("Long Dual Passage");
     }
 
     void onActivate(int id) {
@@ -173,6 +179,7 @@ public class ShowDualLongPassage {
             lastquestion = false;
         } else {
             lastquestion = true;
+            
         }
         passage = longpassageDAO.findById(passage.getId());
         listquestions = passage.getQuestions();
@@ -180,6 +187,12 @@ public class ShowDualLongPassage {
         if (size == 0) {
             return null;
         }
+        else if(size == 1)
+        {
+            lastquestion = false;
+            onequestion = false;
+        }
+
         q1 = listquestions.get(count);
 
         return showquestionBlock;

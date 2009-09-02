@@ -5,6 +5,7 @@
         <t:zone t:id="newquestionzone" id="newquestionzone" >
             <t:form t:id="createquestionform" t:zone="newquestionzone" class="multiquestionclass">
                 <t:errors />
+                 <t:if t:test="questiontExists">
                 <table id="atable" cellpadding="10">
                     <tr>
                         <td align="left">
@@ -39,6 +40,7 @@
                         </td>
                     </tr>
                 </table>
+                 </t:if>
                 <br />
 
                 <table id="formtable">

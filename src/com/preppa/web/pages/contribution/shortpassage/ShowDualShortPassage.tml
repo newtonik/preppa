@@ -12,7 +12,7 @@
                 ${passage.title}
             </h2>
              <div class="author-time">
-            Last updated <t:output format="literal:MMM. dd, yyyy" value="passage.createdAt" />
+            Last updated <t:output format="literal:MMM. dd, yyyy h:mm a" value="passage.createdAt" />
         </div>
             <p>
             <t:outputraw t:value="${passage.passageone}"/>
@@ -93,7 +93,7 @@
             </t:block>
 
             <t:block t:id="questionblock">
-                <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" style='display: none' >
+                <div t:id="firstquestion" t:qtype="questiontype" t:owner="passage" t:newquestion="questionschanged" style='display: none' >
                 </div>
                 <div align="right">
                     <a id="removenewquestion" href="#" > Cancel </a>

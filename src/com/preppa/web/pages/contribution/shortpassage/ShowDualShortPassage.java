@@ -9,9 +9,11 @@ import com.preppa.web.components.SQuestion;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.PassageDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.Questiontype;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
@@ -127,7 +129,10 @@ public class ShowDualShortPassage {
     private TextField flagfield;
     @Property
     private ContentType contType;
-
+    @Property
+    private Questiontype questiontype;
+    @Inject 
+    private QuestiontypeDAO questiontypeDAO;
 
     void onpageLoaded() {
         firstquestion.setPageFalse();
@@ -137,9 +142,11 @@ public class ShowDualShortPassage {
     void setDefaults() {
         lastquestion = true;
         onequestion = true;
+         questiontype = questiontypeDAO.findByName("Short Dual Passage");
     }
     void onActivate(int id) {
         this.passage = shortpassageDAO.findById(id);
+       
         tags = passage.getTaglist();
         this.votes = voteDAO.findSumByShortDualPassageId(id);
         passageid = id;
@@ -186,6 +193,11 @@ public class ShowDualShortPassage {
         size = listquestions.size();
           if(size == 0)
             return null;
+         else if(count == 1)
+        {
+            lastquestion = false;
+            onequestion = false;
+        }
         q1 = listquestions.get(count);
 
         return showquestionBlock;
@@ -219,7 +231,6 @@ public class ShowDualShortPassage {
          }
          else
              lastquestion = true;
-
 
          q1 = listquestions.get(count);
          return showquestionBlock;

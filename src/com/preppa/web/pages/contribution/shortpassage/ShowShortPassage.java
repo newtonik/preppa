@@ -2,28 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.preppa.web.pages.contribution.shortpassage;
 
-import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
-import com.preppa.web.data.ArticleDAO;
-import com.preppa.web.data.LongDualPassageDAO;
-import com.preppa.web.data.LongPassageDAO;
-import com.preppa.web.data.PassageDAO;
-import com.preppa.web.data.ShortDualPassageDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.VoteDAO;
-import com.preppa.web.entities.Article;
 import com.preppa.web.entities.Flag;
-import com.preppa.web.entities.LongDualPassage;
-import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
-import com.preppa.web.entities.ShortDualPassage;
+import com.preppa.web.entities.Questiontype;
 import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
-import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
 import com.preppa.web.utils.ContentFlag;
@@ -43,15 +33,12 @@ import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Request;
-
 
 /**
  *
@@ -60,13 +47,13 @@ import org.apache.tapestry5.services.Request;
 @IncludeStylesheet(value = {"context:styles/flag.css"})
 @IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
 public class ShowShortPassage {
+
     @ApplicationState
     private User user;
     @Property
     private ShortPassage passage;
     @Inject
     private ShortPassageDAO passageDAO;
-
     private Integer pid;
     @Inject
     @Property
@@ -113,8 +100,6 @@ public class ShowShortPassage {
     private Block downSuccess;
     @Inject
     private Block voted;
-
-
     @Property
     @Persist
     private Integer votes;
@@ -137,6 +122,10 @@ public class ShowShortPassage {
     private TextField flagfield;
     @Property
     private ContentType contType;
+    @Property
+    private Questiontype questiontype;
+    @Inject
+    private QuestiontypeDAO questiontypeDAO;
 
     void onActivate(int id) {
         this.passage = passageDAO.findById(id);
@@ -144,244 +133,240 @@ public class ShowShortPassage {
         this.pid = passage.getId();
         this.votes = voteDAO.findSumByShortPassageId(passage.getId());
         lastquestion = true;
-        onequestion = true; 
+        onequestion = true;
         contType = ContentType.ShortPassage;
-}
-
-Integer onPassivate() {
-    return this.pid;
-}
-public void setPassagePage(ShortPassage passage) {
-    if(passage != null) {
-        this.passage = passage;
-        this.pid = passage.getId();
-    }
+        questiontype = questiontypeDAO.findByName("Short Passage");
     }
 
+    Integer onPassivate() {
+        return this.pid;
+    }
 
-   Block onActionFromAddQuestion() {
+    public void setPassagePage(ShortPassage passage) {
+        if (passage != null) {
+            this.passage = passage;
+            this.pid = passage.getId();
+        }
+    }
+
+    Block onActionFromAddQuestion() {
 
         return questionblock;
     }
 
-      Block onActionFromShowQuestionlink() {
+    Block onActionFromShowQuestionlink() {
         count = 0;
 
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
         passage = passageDAO.findById(passage.getId());
         listquestions = passage.getQuestions();
         size = listquestions.size();
-          if(size == 0)
+        if (size == 0) {
             return null;
+        } else if (count == 1) {
+            lastquestion = false;
+            onequestion = false;
+        }
         q1 = listquestions.get(count);
 
         return showquestionBlock;
     }
+
     Block onActionFromRemoveShowQuestion() {
         questionschanged = true;
         return null;
     }
-     Block onActionFromRemoveNewQuestion() {
+
+    Block onActionFromRemoveNewQuestion() {
         return null;
     }
-     Block onActionFromNextShowQuestion() {
-         if(questionschanged) {
-             System.out.println("questions have been updated");
+
+    Block onActionFromNextShowQuestion() {
+        if (questionschanged) {
+            System.out.println("questions have been updated");
             passage = passageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
-         }
-         System.out.println("Size is " + size);
-         if(count < size-1 && (size != 0))
-             count++;
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
+        }
+        System.out.println("Size is " + size);
+        if (count < size - 1 && (size != 0)) {
+            count++;
+        }
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
 
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
 
 
-         q1 = listquestions.get(count);
-         return showquestionBlock;
-     }
-      Block onActionFromPrevShowQuestion() {
-         if(questionschanged) {
+        q1 = listquestions.get(count);
+        return showquestionBlock;
+    }
 
-          System.out.println("questions have been updated");
+    Block onActionFromPrevShowQuestion() {
+        if (questionschanged) {
+
+            System.out.println("questions have been updated");
             passage = passageDAO.findById(passage.getId());
             listquestions = passage.getQuestions();
             size = listquestions.size();
             questionschanged = false;
-         }
-         if(count > 0 && count <= (size-1))
-         {
-             count--;
-         }
-         if(count == 0) {
-             onequestion = false;
-         }
-         else
-             onequestion = true;
-         if(count == size-1) {
-             lastquestion = false;
-         }
-         else
-             lastquestion = true;
+        }
+        if (count > 0 && count <= (size - 1)) {
+            count--;
+        }
+        if (count == 0) {
+            onequestion = false;
+        } else {
+            onequestion = true;
+        }
+        if (count == size - 1) {
+            lastquestion = false;
+        } else {
+            lastquestion = true;
+        }
 
-         q1 = listquestions.get(count);
-         return showquestionBlock;
-     }
+        q1 = listquestions.get(count);
+        return showquestionBlock;
+    }
 
+    Block onActionFromVoteUp() {
+        String hostname = _request.getRemoteHost();
+        if (!(voteDAO.checkVoted(ContentType.ShortPassage, passage.getId(), user))) {
+            Vote v = new Vote();
+            v.setContentId(passage.getId());
+            v.setSource(hostname);
+            if (user != null) {
+                v.setUser(user);
+            }
 
- Block onActionFromVoteUp() {
-     String  hostname = _request.getRemoteHost();
-     if(!(voteDAO.checkVoted(ContentType.ShortPassage, passage.getId(), user)))
-     {
-         Vote v = new Vote();
-         v.setContentId(passage.getId());
-         v.setSource(hostname);
-         if(user != null)
-             v.setUser(user);
+            v.setValue(1);
+            v.setContentTypeId(ContentType.ShortPassage);
 
-         v.setValue(1);
-          v.setContentTypeId(ContentType.ShortPassage);
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+            v.setCreatedAt(now);
 
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         v.setCreatedAt(now);
+            voteDAO.doSave(v);
 
-         voteDAO.doSave(v);
+            JSONObject json = new JSONObject();
+            json.put("vote", "down");
+            //decrement the vote
+            votes++;
 
-         JSONObject json = new JSONObject();
-         json.put("vote", "down");
-         //decrement the vote
-         votes++;
+            return upSuccess;
+        }//return new TextStreamResponse("text/json", json.toString());
+        else {
+            return voted;
+        }
+    }
 
-         return upSuccess;
-     }//return new TextStreamResponse("text/json", json.toString());
-     else
-     {
-         return voted;
-     }
- }
-  Block onActionFromVoteDown() {
+    Block onActionFromVoteDown() {
 
-     String  hostname = _request.getRemoteHost();
-    // System.out.println(_request.getRequestURL());
+        String hostname = _request.getRemoteHost();
+        // System.out.println(_request.getRequestURL());
 
-     if(!(voteDAO.checkVoted(ContentType.ShortPassage, passage.getId(), user)))
-     {
-         Vote v = new Vote();
-         v.setContentId(passage.getId());
-         v.setSource(hostname);
-         if(user != null)
-             v.setUser(user);
+        if (!(voteDAO.checkVoted(ContentType.ShortPassage, passage.getId(), user))) {
+            Vote v = new Vote();
+            v.setContentId(passage.getId());
+            v.setSource(hostname);
+            if (user != null) {
+                v.setUser(user);
+            }
 
-         v.setValue(-1);
-         v.setContentTypeId(ContentType.ShortPassage);
+            v.setValue(-1);
+            v.setContentTypeId(ContentType.ShortPassage);
 
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         v.setCreatedAt(now);
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+            v.setCreatedAt(now);
 
-         voteDAO.doSave(v);
-         //update the vote
-         votes--;
+            voteDAO.doSave(v);
+            //update the vote
+            votes--;
 
 
-         JSONObject json = new JSONObject();
-         json.put("vote", "down");
+            JSONObject json = new JSONObject();
+            json.put("vote", "down");
 
-     //return new TextStreamResponse("text/json", json.toString());
-         return downSuccess;
-     }
-     else
-     {
-         return voted;
-     }
- }
+            //return new TextStreamResponse("text/json", json.toString());
+            return downSuccess;
+        } else {
+            return voted;
+        }
+    }
 
+    @Secured("ROLE_USER")
+    @CommitAfter
+    Block onSuccessFromFlagForm() {
+        if (reason != null) {
+            Flag f = new Flag();
+            if (reason.equals("A")) {
+                f.setFlagtype(ContentFlag.Inappropriate);
+            } else if (reason.equals("B")) {
+                f.setFlagtype(ContentFlag.Spam);
+            } else if (reason.equals("C")) {
+                f.setFlagtype(ContentFlag.Attention);
+            } else if (reason.equals("D")) {
+                f.setFlagtype(ContentFlag.Incorrect);
+            } else if (reason.equals("E")) {
 
-  @Secured("ROLE_USER")
-  @CommitAfter
-  Block onSuccessFromFlagForm () {
-      if(reason != null) {
-          Flag f = new Flag();
-          if(reason.equals("A") )
-          {
-              f.setFlagtype(ContentFlag.Inappropriate);
-          }
-          else if(reason.equals("B")) {
-              f.setFlagtype(ContentFlag.Spam);
-          }
-          else if(reason.equals("C"))
-          {
-              f.setFlagtype(ContentFlag.Attention);
-          }
-          else if(reason.equals("D")) {
-              f.setFlagtype(ContentFlag.Incorrect);
-          }
-           else if(reason.equals("E")) {
+                f.setFlagtype(ContentFlag.Copyright);
+            } else {
+                System.out.println(reason);
+                f.setFlagtype(ContentFlag.Attention);
+            }
 
-              f.setFlagtype(ContentFlag.Copyright);
-          } else
-          {
-               System.out.println(reason);
-              f.setFlagtype(ContentFlag.Attention);
-          }
+            f.setDescription(reasonDesc);
+            f.setContentType(ContentType.ShortPassage);
 
-          f.setDescription(reasonDesc);
-          f.setContentType(ContentType.ShortPassage);
-
-          f.setStatus(FlagStatus.NEW);
+            f.setStatus(FlagStatus.NEW);
 //          f.setArticle(article);
-          f.setshortpassage(passage);
+            f.setshortpassage(passage);
 
 
-          if(passageflags == null) {
-              passageflags = new ArrayList<Flag>();
-              passageflags.add(f);
-            //  article.setFlags(articleflags);
-              passage.setFlags(passageflags);
-          }
-          else
-          {
-              //articleflags.add(f);
-          //    article.getFlags().add(f);
-              passageflags.add(f);
-              passage.getFlags().add(f);
-          }
-          Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+            if (passageflags == null) {
+                passageflags = new ArrayList<Flag>();
+                passageflags.add(f);
+                //  article.setFlags(articleflags);
+                passage.setFlags(passageflags);
+            } else {
+                //articleflags.add(f);
+                //    article.getFlags().add(f);
+                passageflags.add(f);
+                passage.getFlags().add(f);
+            }
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-          f.setUpdatedAt(now);
-          f.setCreatedAt(now);
+            f.setUpdatedAt(now);
+            f.setCreatedAt(now);
 
-        //  article.setUpdatedAt(now);
-          passage.setUpdatedAt(now);
-      }
+            //  article.setUpdatedAt(now);
+            passage.setUpdatedAt(now);
+        }
         this.passageDAO.doSave(passage);
-      return flagresponse;
-  }
+        return flagresponse;
+    }
 
-  Block onActionFromRemoveFlagBox() {
-      return null;
-  }
-  Block onActionFromCloseFlagBlock() {
-      return flagblock;
-  }
+    Block onActionFromRemoveFlagBox() {
+        return null;
+    }
 
+    Block onActionFromCloseFlagBlock() {
+        return flagblock;
+    }
 }

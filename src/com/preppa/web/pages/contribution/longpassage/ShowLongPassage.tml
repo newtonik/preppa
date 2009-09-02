@@ -9,7 +9,7 @@
                 ${passage.title}
             </h2>
             <div class="author-time">
-                Last updated <t:output format="literal:MMM. dd, yyyy" value="passage.updatedAt" />
+                Last updated <t:output format="literal:MMM. dd, yyyy h:mm a" value="passage.updatedAt" />
             </div>
             <p>
             <h3> Brief Introduction of Passage </h3>
@@ -31,7 +31,7 @@
             </p>
 
             <p>
-                <a t:type="actionlink" t:id="addquestion" t:context="passage.id" href="#" t:zone="questionZone"> Add Question</a>
+                <a id="addquestion" href="#"> Add Question</a>
                 <br/>
                 <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
             </p>
@@ -40,8 +40,8 @@
 
             </t:zone>
             <br/>
-            <t:zone t:id="questionZone" id="questionZone">
-
+            <t:zone t:id="questionZone" id="questionZone" visible="false">
+                            <t:delegate to="questionblock" />
             </t:zone>
 
 
@@ -80,7 +80,7 @@
             </t:block>
 
             <t:block t:id="questionblock">
-                <div t:id="firstquestion" t:owner="passage" t:newquestion="questionschanged" >
+                <div t:id="firstquestion"  t:qtype="questiontype" t:owner="passage" t:newquestion="questionschanged" >
                 </div>
                 <div align="right">
                     <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>

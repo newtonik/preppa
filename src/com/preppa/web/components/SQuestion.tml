@@ -6,7 +6,7 @@
            
         </div>
         <div class="author-date">
-            Last updated ${question.updatedAt}
+               Last updated <t:output format="literal:MMM. dd, yyyy h:mm a" value="question.updatedAt" />
         </div>
 
         <h3>Choices</h3>

@@ -51,7 +51,6 @@ import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Context;
 import org.apache.tapestry5.services.Request;
-import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.upload.components.Upload;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
@@ -98,19 +97,14 @@ public class NewMultiChoice {
     @Property
     private Integer ratingValue;
     @Property
-    @Persist
     private String ans1;
     @Property
-    @Persist
     private String ans2;
     @Property
-    @Persist
     private String ans3;
     @Property
-    @Persist
     private String ans4;
     @Property
-    @Persist
     private String ans5;
     @Property
     private Boolean c1;
@@ -187,6 +181,8 @@ public class NewMultiChoice {
     @Property
     @Persist
     private Testsubject testsubject;
+    @Parameter
+    private Questiontype qtype;
     @Property
     @Persist
     private Questiontype questiontype;
@@ -211,7 +207,9 @@ public class NewMultiChoice {
     private Block showquestionblock;
     @Inject
     private ComponentResources _resources;
-
+    @Property
+    @Persist
+    private Boolean questiontExists;
 
     public boolean getError() {
         return error;
@@ -258,6 +256,14 @@ public class NewMultiChoice {
     @SetupRender
     void getSetupItems() {
         _resources.discardPersistentFieldChanges();
+        if(qtype != null) {
+            questiontype = qtype;
+            questiontExists = false;
+        }
+        else
+        {
+            questiontExists = true;
+        }
         testsubjects = testsubjectDAO.findAllWithQuestions();
 
         questiontypes = questiontypeDAO.findAll();
@@ -394,8 +400,10 @@ public class NewMultiChoice {
             question.getChoices().add(ch);
         }
 
-        questiontype = questiontypeDAO.findById(questType);
-        question.setQuestiontype(questiontype);
+        if(qtype != null) {
+            questiontype = questiontypeDAO.findById(questType);
+            question.setQuestiontype(questiontype);
+        }
         for (Tag t : addedTags) {
             if (!(question.getTaglist().contains(t))) {
                 question.getTaglist().add(t);
@@ -416,6 +424,7 @@ public class NewMultiChoice {
         question.setUpdatedAt(now);
         newquestion = true;
         questionDAO.doSave(question);
+        if(qtype != null) {
         if (hasimage.equals("yes")) {
             String impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/" + question.getId() + ".jpg";
             boolean status = new File(context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId()).mkdirs();
@@ -424,6 +433,7 @@ public class NewMultiChoice {
             imageupload.write(copied);
             question.setImagePath(impath);
             question.setImage(Boolean.TRUE);
+        }
         }
         if (owner != null) {
             if (!saveQuestionToObject(owner, question)) {
