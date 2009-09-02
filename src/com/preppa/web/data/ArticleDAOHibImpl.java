@@ -126,6 +126,18 @@ public class ArticleDAOHibImpl  extends AbstractHibernateDAO<Article, Integer> i
     }
 
     @Override
+    public List<Article>  findByTestSubjectName(String name) {
+        SQLString sqlString = new SQLString("FROM Article articles");
+        if(name != null)
+        {
+            sqlString.addWhereClause("articles.testsubject.name LIKE '" + name + "%'");
+        }
+
+        return findByQuery(sqlString.toString());
+    }
+
+
+    @Override
     public List<Article> findByPartialName(String partialName) {
         SQLString sqlString = new SQLString("FROM Article a");
         if(partialName != null)

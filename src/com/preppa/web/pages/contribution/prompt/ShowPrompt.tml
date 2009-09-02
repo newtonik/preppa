@@ -40,6 +40,9 @@
 </div>
 <t:promptTag t:alltags="tags" />
 <br />
+   <div id="voteseal" t:type="voteseal" t:contentid="${prompt.id}" t:contenttype="contType" t:votes="votes" />
+
+
     <div>
         <t:zone t:id="voteupZone">
 

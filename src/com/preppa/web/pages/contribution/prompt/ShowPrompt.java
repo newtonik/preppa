@@ -86,7 +86,9 @@ public class ShowPrompt {
     @Property
     @Persist
     private Integer votes;
-
+    @Property
+    private ContentType contType;
+    
     void onActivate(int id) {
         if (id > 0) {
             prompt = promptDAO.findById(id);
@@ -99,6 +101,7 @@ public class ShowPrompt {
             }
             type = prompt.getTopic();
         }
+        contType = ContentType.Prompt;
     }
 
     void setprompt(Prompt prompt) {

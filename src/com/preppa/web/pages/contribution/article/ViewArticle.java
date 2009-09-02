@@ -95,16 +95,20 @@ private final static int bodysize = 100;
             returnVal = articleDAO.findAll();
         }
         else if (input.compareTo("Test") == 0) {
-            returnVal = articleDAO.findBytestsubject_id(TESTINDEX);
+            //returnVal = articleDAO.findBytestsubject_id(TESTINDEX);
+            returnVal = articleDAO.findByTestSubjectName("Test");
         }
         else if (input.compareTo("Math") == 0) {
-            returnVal = articleDAO.findBytestsubject_id(MATHINDEX);
+            //returnVal = articleDAO.findBytestsubject_id(MATHINDEX);
+            returnVal = articleDAO.findByTestSubjectName("Math");
         }
         else if (input.compareTo("CriticalReading") == 0) {
-            returnVal = articleDAO.findBytestsubject_id(CRINDEX);
+            //returnVal = articleDAO.findBytestsubject_id(CRINDEX);
+            returnVal = articleDAO.findByTestSubjectName("Critical");
         }
         else if (input.compareTo("Writing") == 0) {
-            articleDAO.findBytestsubject_id(WRITINGINDEX);
+            //articleDAO.findBytestsubject_id(WRITINGINDEX);
+            returnVal = articleDAO.findByTestSubjectName("Writing");
         }
 
         return returnVal;
