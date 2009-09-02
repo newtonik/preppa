@@ -19,17 +19,17 @@
                 <td>
                     <b> Does your question contain a graph or an Image?</b>
                     <br />
-            <t:radiogroup t:id="chooseimage" t:value="hasimage" >
+            <t:radiogroup t:id="gridinchooseimage" t:value="hasimage" >
                 <b> Yes </b>
-                <input t:id="yesimage" t:type="radio" type="radio" t:label="Yes" t:value="literal:yes" name="answertype" onclick="showUpload()" />
+                <input t:id="gridinyesimage" t:type="radio" type="radio" t:label="Yes" t:value="literal:yes" name="answertype" onclick="showGridinUpload()" />
                 <b> No </b>
-                <input t:id="noimage" t:type="radio" type="radio" t:label="No" t:value="literal:no" name="answertype" onclick="hideUpload()" />
+                <input t:id="gridinnoimage" t:type="radio" type="radio" t:label="No" t:value="literal:no" name="answertype" onclick="hideGridinUpload()" />
             </t:radiogroup>
             </td>
             </tr>
             <tr>
                 <td>
-                    <input t:type="upload" t:id="upload" value="imageupload" style="display: none"/>
+                    <input t:type="upload" t:id="gridinupload" value="imageupload" style="display: none"/>
                     <br />
                 </td>
             </tr>
@@ -55,23 +55,23 @@
                 <td>
                     <b> Is the answer within a range?</b>
                     <br />
-            <t:radiogroup t:id="chooserange" t:value="answertype" style="display: none">
+            <t:radiogroup t:id="gridinchooserange" t:value="answertype" style="display: none">
                 <b> Yes </b>
-                <input t:id="yesradio" t:type="radio" type="radio" t:label="Yes" t:value="literal:range" name="answertype" onclick="showRange()" />
+                <input t:id="gridinyesradio" t:type="radio" type="radio" t:label="Yes" t:value="literal:range" name="answertype" onclick="showGridinRange()" />
                 <b> No </b>
-                <input t:id="noradio" t:type="radio" type="radio" t:label="No" t:value="literal:single" name="answertype" onclick="hideRange()" />
+                <input t:id="gridinnoradio" t:type="radio" type="radio" t:label="No" t:value="literal:single" name="answertype" onclick="hideGridinRange()" />
             </t:radiogroup>
             </td>
             </tr>
             <tr>
-                <td id="rangerow" style="display: none">
+                <td id="gridinrangerow" style="display: none">
             <t:label for="fRangelow"><b>Low</b></t:label>
             <input t:type="TextField" t:id="fRangelow"  t:value="fRangelow" t:label="Low Value"  size="20" />
             <t:label for="fRangelow"><b>High</b></t:label>
             <input t:type="TextField" t:id="fRangehigh"  t:value="fRangehigh" t:label="High Value"  size="20" />
             <a href="#" id="cancelrange" style="display: none"> Cancel </a>
             </td>
-            <td id="singlerow" style="display: none">
+            <td id="gridinsinglerow" style="display: none">
             <t:label for="fAnswer"><b> Answer </b></t:label>
             <input t:type="TextField" t:id="fAnswer"  t:value="fAnswer" t:label="High Value" size="40" />
             <a href="#" id="cancelrange" style="display: none"> Cancel </a>

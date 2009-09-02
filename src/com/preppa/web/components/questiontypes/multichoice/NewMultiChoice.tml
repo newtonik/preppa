@@ -21,24 +21,7 @@
                     <td></td>
                     <td></td>
                     </tr>
-                    <tr>
-                        <td>
-                            <b> Does your question contain a graph or an Image?</b>
-                            <br />
-                    <t:radiogroup t:id="chooseimage" t:value="hasimage" >
-                        <b> Yes </b>
-                        <input t:id="yesimage" t:type="radio" type="radio" t:label="Yes" t:value="literal:yes" name="answertype" onclick="showUpload()" />
-                        <b> No </b>
-                        <input t:id="noimage" t:type="radio" type="radio" t:label="No" t:value="literal:no" name="answertype" onclick="hideUpload()" />
-                    </t:radiogroup>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input t:type="upload" t:id="upload" value="imageupload" style="display: none"/>
-                            <br />
-                        </td>
-                    </tr>
+ 
                 </table>
                  </t:if>
                 <br />
@@ -54,6 +37,26 @@
 
                         </td>
                         </tr>
+                        <tr>
+                            <td></td>
+                        <td>
+                            <b> Does your question contain a graph or an Image?</b>
+                            <br />
+                    <t:radiogroup t:id="chooseimage" t:value="hasimage" >
+                        <b> Yes </b>
+                        <input t:id="yesimage" t:type="radio" type="radio" t:label="Yes" t:value="literal:yes" name="answertype" onclick="showUpload()" />
+                        <b> No </b>
+                        <input t:id="noimage" t:type="radio" type="radio" t:label="No" t:value="literal:no" name="answertype" onclick="hideUpload()" />
+                    </t:radiogroup>
+                    </td>
+                    </tr>
+                    <tr>
+                         <td></td>
+                        <td>
+                            <input t:type="upload" t:id="upload" value="imageupload" style="display: none"/>
+                            <br />
+                        </td>
+                    </tr>
                         <tr>
                             <td colspan="2">
                                 <h3> Answer Choices </h3>

@@ -151,16 +151,22 @@ public class NewGeneral {
         JSONObject json = new JSONObject();
         if (quesType.equals("Multiple Choice")) {
             json.put("type", "multichoice");
+            questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Long Passage")) {
             json.put("type", "longpassage");
+            questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Long Dual Passage")) {
             json.put("type", "longdualpassage");
+            questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Short Dual Passage")) {
             json.put("type", "shortdualpassage");
+            questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Short Passage")) {
             json.put("type", "shortpassage");
+            questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Grid In")) {
             json.put("type", "gridin");
+            questiontype = questiontypeDAO.findByName(quesType);
         }
         return json;
 

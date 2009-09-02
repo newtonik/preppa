@@ -210,6 +210,8 @@ public class NewMultiChoice {
     @Property
     @Persist
     private Boolean questiontExists;
+    @Parameter
+    private String hasquestiontype;
 
     public boolean getError() {
         return error;
@@ -257,12 +259,20 @@ public class NewMultiChoice {
     void getSetupItems() {
         _resources.discardPersistentFieldChanges();
         if(qtype != null) {
-            questiontype = qtype;
+             questiontype = qtype;
             questiontExists = false;
         }
         else
         {
             questiontExists = true;
+        }
+         System.out.println(hasquestiontype);
+        if(hasquestiontype != null) {
+            
+            if(hasquestiontype.equals("true")) {
+                System.out.println(hasquestiontype + " " + questiontExists);
+                questiontExists = false;
+            }
         }
         testsubjects = testsubjectDAO.findAllWithQuestions();
 
@@ -400,7 +410,7 @@ public class NewMultiChoice {
             question.getChoices().add(ch);
         }
 
-        if(qtype != null) {
+        if(qtype == null) {
             questiontype = questiontypeDAO.findById(questType);
             question.setQuestiontype(questiontype);
         }
@@ -424,27 +434,32 @@ public class NewMultiChoice {
         question.setUpdatedAt(now);
         newquestion = true;
         questionDAO.doSave(question);
-        if(qtype != null) {
+        String impath = null;
+        Integer newid = question.getId();
         if (hasimage.equals("yes")) {
-            String impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/" + question.getId() + ".jpg";
+            impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/" + question.getId() + ".jpg";
+            question.setImagePath(impath);
+            question.setImage(Boolean.TRUE);
             boolean status = new File(context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId()).mkdirs();
             System.out.println(impath);
             File copied = new File(impath);
             imageupload.write(copied);
-            question.setImagePath(impath);
-            question.setImage(Boolean.TRUE);
+            
         }
-        }
-        if (owner != null) {
-            if (!saveQuestionToObject(owner, question)) {
+        question = questionDAO.findById(newid);
+//        System.out.println(impath);
+//        if(impath != null) {
+//            question.setImagePath(impath);
+//            question.setImage(Boolean.TRUE);
+//        }
+        System.out.println(question);
+       if (!saveQuestionToObject(owner, question)) {
                 logger.debug("Just saving the question, object is null");
                 questionDAO.doSave(question);
-            }
-        } else {
-            questionDAO.doSave(question);
         }
+        
 
-        if (showpage == false) {
+        if (request.isXHR() ) {
             showquestion.setquestion(question);
             return showquestionblock;
         } else {
@@ -507,6 +522,8 @@ public class NewMultiChoice {
      */
     @CommitAfter
     Boolean saveQuestionToObject(Object toSave, Question questiontoSave) {
+        if(toSave == null)
+            return false;
         if (toSave instanceof LongPassage) {
             longpassage = (LongPassage) toSave;
             longpassage = longpassageDAO.findById(longpassage.getId());

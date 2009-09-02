@@ -61,21 +61,21 @@ public class NewGridin {
     @Component
     private Form singleform;
     @Component
-    private RadioGroup chooserange;
+    private RadioGroup gridinchooserange;
     @Component(parameters = {"event=onclick"})
     @Mixins({"ck/OnEvent"})
-    private Radio yesradio;
+    private Radio gridinyesradio;
     @Component(parameters = {"event=onclick"})
     @Mixins({"ck/OnEvent"})
-    private Radio noradio;
+    private Radio gridinnoradio;
     @Component
-    private RadioGroup chooseimage;
+    private RadioGroup gridinchooseimage;
     @Component(parameters = {"event=onclick"})
     @Mixins({"ck/OnEvent"})
-    private Radio yesimage;
+    private Radio gridinyesimage;
     @Component(parameters = {"event=onclick"})
     @Mixins({"ck/OnEvent"})
-    private Radio noimage;
+    private Radio gridinnoimage;
     @Property
     private String answertype;
     @InjectComponent
@@ -96,7 +96,7 @@ public class NewGridin {
     @Property
     private UploadedFile imageupload;
     @Component
-    private Upload upload;
+    private Upload gridinupload;
     @Inject
     private Context context;
     @InjectPage

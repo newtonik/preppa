@@ -46,7 +46,7 @@
             <div t:id="newgridin" />
         </div>
         <div  class="questiontype" align="center" style='display:none'>
-            <div t:id="firstquestion" t:testsubjects="subjects" />
+            <div t:id="firstquestion" t:testsubjects="subjects" t:qtype="questiontype" t:hasquestiontype="true"/>
         </div>
 
     

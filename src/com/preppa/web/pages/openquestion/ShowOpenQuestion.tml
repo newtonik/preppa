@@ -3,8 +3,10 @@
         <br />
         <br />
         <div id="main">
+            <div t:id="iflogged">
             <div align="right">
                 <a href="#" t:type="pageLink" t:page="openquestion/Edit" t:context="question.id"> Edit </a>
+            </div>
             </div>
             <div align="center">
                 <h3 >

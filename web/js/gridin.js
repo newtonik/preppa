@@ -27,12 +27,14 @@ document.observe("dom:loaded", function() {
          }
 
  });
+
+  $('cancelrange').observe('click', hideGridinRange);
 });
 
 
-function showRange() {
-     $('singlerow').hide()
-    $('rangerow').show();
+function showGridinRange() {
+     $('gridinsinglerow').hide()
+    $('gridinrangerow').show();
    $('fRangelow').focus();
    $('fAnswer').writeAttribute("validate", "");
    $('fRangehigh').writeAttribute("validate", "required");
@@ -42,9 +44,9 @@ function showRange() {
 //    $('cancelrange').show()
 }
 
-function hideRange() {
-    $('rangerow').hide()
-    $('singlerow').show()
+function hideGridinRange() {
+    $('gridinrangerow').hide()
+    $('gridinsinglerow').show()
     $('fRangehigh').writeAttribute("validate", "");
     $('ffRangehigh').writeAttribute("validate", "");
     $('fAnswer').writeAttribute("validate", "required");
@@ -55,16 +57,16 @@ function hideRange() {
     $('fAnswer').focus();
 }
 
-function showUpload() {
-    $('upload').highlight();
-    Effect.BlindDown('upload', { duration: 1 });
+function showGridinUpload() {
+    $('gridinupload').highlight();
+    Effect.BlindDown('gridinupload', { duration: 1 });
 }
 
-function hideUpload() {
-    $('upload').hide();
+function hideGridinUpload() {
+    $('gridinupload').hide();
 }
 
- $('cancelrange').observe('click', hideRange);
+
 
  function FCKeditor_OnComplete( editorInstance )
 {

@@ -53,6 +53,7 @@ public class EditQuestion {
 
     void onActivate(int id) {
         this.ques = questionDAO.findById(id);
+
 //        if(ques != null) {
 //            fQuestion = ques.getQuestion();
 //            fExplanation = ques.getExplanation();

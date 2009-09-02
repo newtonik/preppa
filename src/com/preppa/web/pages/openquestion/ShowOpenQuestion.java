@@ -20,7 +20,7 @@ import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
-
+import nu.localhost.tapestry5.springsecurity.components.IfLoggedIn;
 /**
  *
  * @author nwt
@@ -51,7 +51,8 @@ public class ShowOpenQuestion {
     private Long qid;
     @Property
     private List<Tag> tags;
-
+    @Component
+    private IfLoggedIn iflogged;
     void onActivate(Long id)
     {
         author = "unknown";

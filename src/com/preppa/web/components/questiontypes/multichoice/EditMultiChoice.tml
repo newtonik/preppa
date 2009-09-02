@@ -6,6 +6,7 @@
                 <t:radiogroup t:id="answergroup" t:value="correct">
 
                     <tr>
+                        <td></td>
                         <td>
                             <b> Does your question contain a graph or an Image?</b>
                             <br />
@@ -18,6 +19,7 @@
                     </td>
                     </tr>
                     <tr>
+                         <td></td>
                         <td>
                             <input t:type="upload" t:id="upload" value="imageupload" style="display: none"/>
                             <br />

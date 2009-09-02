@@ -361,6 +361,7 @@ public class Question implements Serializable {
      * @return the imagePath
      */
     @Audited
+    @Lob
     public String getImagePath() {
         return imagePath;
     }

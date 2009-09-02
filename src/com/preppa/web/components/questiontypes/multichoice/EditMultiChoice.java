@@ -3,6 +3,7 @@
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
@@ -116,6 +117,8 @@ public class EditMultiChoice {
     private Context context;
     @Property
     private String imgpath;
+    @Property
+    private List<QuestionAnswer> choices;
     void CreateQuestion() {
         //question = new Question();
     }
@@ -128,11 +131,12 @@ public class EditMultiChoice {
             this.question = questionDAO.findById(question.getId());
             fQuestion = question.getQuestion();
             fExplanation = question.getExplanation();
-            ans1 = question.getChoices().get(0).getAnswer();
-            ans2 = question.getChoices().get(1).getAnswer();
-            ans3 = question.getChoices().get(2).getAnswer();
-            ans4 = question.getChoices().get(3).getAnswer();
-            ans5 = question.getChoices().get(4).getAnswer();
+            choices = question.getChoices();
+            ans1 = choices.get(0).getAnswer();
+            ans2 = choices.get(1).getAnswer();
+            ans3 = choices.get(2).getAnswer();
+            ans4 = choices.get(3).getAnswer();
+            ans5 = choices.get(4).getAnswer();
             addedTags = question.getTaglist();
             ratingValue = question.getDifficulty();
             correct = question.getCorrectAnswer();
