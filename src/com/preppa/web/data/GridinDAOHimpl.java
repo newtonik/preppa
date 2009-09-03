@@ -47,6 +47,7 @@ public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Integer> implem
 
     @Override
     public void preDoSave(Gridin question) {
+        if(question.getId() != null) {
         Integer vote = voteDAO.findVoteByContentId(ContentType.GridIn, question.getId().intValue());
         question.setVoteScore(vote);
 
@@ -54,6 +55,12 @@ public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Integer> implem
             question.setApproval(Boolean.TRUE);
         } else {
             question.setApproval(Boolean.FALSE);
+        }
+
+        }
+        else {
+            question.setApproval(Boolean.FALSE);
+            question.setVoteScore(0);
         }
     }
 

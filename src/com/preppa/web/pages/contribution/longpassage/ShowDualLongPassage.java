@@ -4,6 +4,7 @@
  */
 package com.preppa.web.pages.contribution.longpassage;
 
+import com.preppa.web.components.CQuestion;
 import com.preppa.web.components.SQuestion;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
 import com.preppa.web.data.LongDualPassageDAO;
@@ -70,7 +71,7 @@ public class ShowDualLongPassage {
     @Property
     private Block showquestionBlock;
     @Component
-    private NewMultiChoice firstquestion;
+    private CQuestion firstquestion;
     @Component
     private SQuestion showquestion;
     @Property

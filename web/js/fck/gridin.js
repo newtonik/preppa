@@ -1,8 +1,14 @@
 FCKConfig.AutoDetectPasteFromWord = false ;
+FCKConfig.FlashBrowser = false ;
+FCKConfig.ImageBrowser = false ;
+FCKConfig.LinkUpload = false ;
+FCKConfig.ImageUpload = true;
+FCKConfig.ImageUploadURL = '/preppa/test/ad.jpg'
+FCKConfig.ImageUploadAllowedExtensions = ".(jpg|gif|jpeg|png|bmp)$" ;
 FCKConfig.PluginsPath = '/preppa/js/fck/plugins/' ;
 FCKConfig.SkinPath =  '/preppa/js/fck/skins/Office2007Real/';
 FCKConfig.ToolbarSets["Gridin"] = [
-['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
+['Source','DocProps','-','Save','Preview','-','Templates'],
 ['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
 ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
 '/',

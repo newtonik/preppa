@@ -3,7 +3,7 @@
 
     <div id="multiple-question" class="overlay"  >
         <t:zone t:id="newquestionzone" id="newquestionzone" >
-            <t:form t:id="createquestionform" t:zone="newquestionzone" class="multiquestionclass">
+            <t:form t:id="createquestionform" class="multiquestionclass">
                 <t:errors />
                  <t:if t:test="questiontExists">
                 <table id="atable" cellpadding="10">

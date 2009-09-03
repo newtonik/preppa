@@ -157,6 +157,8 @@ public class NewMultiChoice {
     private String emessage;
     @Component
     private RadioGroup answergroup;
+    @Component
+    private RadioGroup chooseimage;
     @Property
     private String fname;
     @Property
@@ -212,6 +214,8 @@ public class NewMultiChoice {
     private Boolean questiontExists;
     @Parameter
     private String hasquestiontype;
+    @Persist
+    private String hasOwner;
 
     public boolean getError() {
         return error;
@@ -278,6 +282,12 @@ public class NewMultiChoice {
 
         questiontypes = questiontypeDAO.findAll();
         hasimage = "false";
+        if(owner != null)
+            hasOwner = "true";
+        else
+        {
+            hasOwner = "false";
+        }
     }
 
     Question getSubmittedQuestion() {
@@ -320,6 +330,10 @@ public class NewMultiChoice {
                 System.out.println("There isn't a questiontype");
                 createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
             }
+        }
+
+        if(hasimage == null) {
+            createquestionform.recordError(chooseimage, "Please specify if you have an image");
         }
         if (request.isXHR() && createquestionform.getHasErrors()) {
             testsubjects = testsubjectDAO.findAllWithQuestions();
@@ -435,7 +449,7 @@ public class NewMultiChoice {
         newquestion = true;
         questionDAO.doSave(question);
         String impath = null;
-        Integer newid = question.getId();
+        
         if (hasimage.equals("yes")) {
             impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/" + question.getId() + ".jpg";
             question.setImagePath(impath);
@@ -446,18 +460,13 @@ public class NewMultiChoice {
             imageupload.write(copied);
             
         }
-        question = questionDAO.findById(newid);
-//        System.out.println(impath);
-//        if(impath != null) {
-//            question.setImagePath(impath);
-//            question.setImage(Boolean.TRUE);
-//        }
-        System.out.println(question);
+        
+     if(hasOwner.equals("true")) {
        if (!saveQuestionToObject(owner, question)) {
                 logger.debug("Just saving the question, object is null");
                 questionDAO.doSave(question);
         }
-        
+     }
 
         if (request.isXHR() ) {
             showquestion.setquestion(question);

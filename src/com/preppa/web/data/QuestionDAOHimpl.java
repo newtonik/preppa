@@ -123,6 +123,7 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
 
     @Override
     public void preDoSave(Question question) {
+        if(question.getId() != null) {
             Integer vote = voteDAO.findVoteByContentId(ContentType.Question, question.getId());
             question.setVoteScore(vote);
 
@@ -133,6 +134,11 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
             {
                 question.setApproval(Boolean.FALSE);
             }
+        }
+        else {
+            question.setApproval(Boolean.FALSE);
+            question.setVoteScore(0);
+        }
     }
 
     @Override
