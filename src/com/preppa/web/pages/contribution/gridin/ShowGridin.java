@@ -58,10 +58,11 @@ public class ShowGridin {
     private ContentType contType;
     void onActivate(Long id)  {
         if(id > 0) {
-            question = gridinDAO.findById(id);
+            question = gridinDAO.doRetrieve(id.intValue(), false);
             answer = question.getAnswers().get(0);
             this.gridId = id;
-            this.votes = voteDAO.findSumByGridInId(question.getId().intValue());
+            //this.votes = voteDAO.findSumByGridInId(question.getId().intValue());
+            votes = question.getVoteScore();
             contType = ContentType.GridIn;
         }
     }

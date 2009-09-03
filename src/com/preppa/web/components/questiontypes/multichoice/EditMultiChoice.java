@@ -142,9 +142,13 @@ public class EditMultiChoice {
             correct = question.getCorrectAnswer();
             if(question.getImage())
             {
+                hasimage = "yes";
                 imgpath = question.getImagePath();
             }
-
+            else
+            {
+                hasimage = "no";
+            }
 
         }
 
@@ -172,7 +176,7 @@ public class EditMultiChoice {
     }
 
     void onValidateFormFromEditQuestionForm() {
-        System.out.println("Validating");
+
         if (mywork == false) {
             editquestionform.recordError("You must verify that this is your own work.");
         }

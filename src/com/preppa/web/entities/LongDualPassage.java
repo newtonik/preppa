@@ -60,6 +60,7 @@ public class LongDualPassage implements Serializable {
     private User user;
     private Integer voteScore;
     private ContentFlag status;
+    private Boolean approval;
     private String revComment;
     private User updatedBy;
     private List<Flag> flags = new ArrayList<Flag>();

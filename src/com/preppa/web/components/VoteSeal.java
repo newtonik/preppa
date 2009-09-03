@@ -194,8 +194,7 @@ public class VoteSeal {
             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
             v.setCreatedAt(now);
             String hostname = _request.getRemoteHost();
-            System.out.println("here " + contenttype + " " + contentId + " " + user.getFirstName());
-
+          
             v.setSource(hostname);
             voteDAO.doSave(v);
         }

@@ -59,6 +59,8 @@ public class Gridin implements Serializable {
     private Boolean image;
     private String imagePath;
     private User updatedBy;
+    private Integer votescore;
+    private Boolean approval;
     private List<ReviewComment> reviewcomments;
     
 
@@ -357,6 +359,34 @@ public class Gridin implements Serializable {
      */
     public void setReviewcomments(List<ReviewComment> reviewcomments) {
         this.reviewcomments = reviewcomments;
+    }
+
+    /**
+     * @return the votescore
+     */
+    public Integer getVoteScore() {
+        return votescore;
+    }
+
+    /**
+     * @param votescore the votescore to set
+     */
+    public void setVoteScore(Integer votescore) {
+        this.votescore = votescore;
+    }
+
+    /**
+     * @return the approval
+     */
+    public Boolean getApproval() {
+        return approval;
+    }
+
+    /**
+     * @param approval the approval to set
+     */
+    public void setApproval(Boolean approval) {
+        this.approval = approval;
     }
 
 

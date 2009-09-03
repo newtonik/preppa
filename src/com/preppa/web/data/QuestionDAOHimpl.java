@@ -7,7 +7,9 @@ package com.preppa.web.data;
 
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.Questiontype;
+import com.preppa.web.utils.ContentType;
 import java.util.List;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
 import org.hibernate.Session;
@@ -18,7 +20,15 @@ import org.slf4j.Logger;
  * @author nwt
  */
 public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> implements  QuestionDAO {
+        @Inject
+        private VoteDAO voteDAO;
+        private Logger slogger;
 
+    public QuestionDAOHimpl(Logger logger, Session session) {
+        super(logger, session);
+        slogger = logger;
+    }
+    @Override
     public Question findById(Integer id) {
         SQLString sqlString = new SQLString("FROM Question q");
         if(id != null)
@@ -29,11 +39,13 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         return (Question)findByQuery(sqlString.toString()).get(0);
     }
 
+    @Override
     public List<Question> findAllNoRepeat() {
         SQLString sqlString = new SQLString("FROM Question q");
         return findByQuery(sqlString.toString());
     }
 
+    @Override
     public List<Question> findAllByNonApproved() {
         SQLString sqlString = new SQLString("FROM Question q");
 
@@ -46,6 +58,7 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         return findByQuery(sqlString.toString());*/
     }
 
+    @Override
     public List<Question> findAllByApproved() {
         /*SQLString sqlString = new SQLString("FROM Question q");
         sqlString.addWhereClause("q.votes.size >= 1");
@@ -56,12 +69,14 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         return findByQuery(sqlString.toString());
     }
 
+    @Override
     public List<Question> findAllByQuestionType(String qType) {
         SQLString sqlString = new SQLString("FROM Question q");
         sqlString.addWhereClause("q.questiontype.name = '" + qType + "')");
         return findByQuery(sqlString.toString());
     }
 
+    @Override
     public List<Question> findByQuestiontype(Questiontype q) {
         SQLString sqlString = new SQLString("FROM Question q");
         if(q.getId() > 0)
@@ -83,9 +98,7 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
         return findByQuery(sqlString.toString());
     }
 
-    public QuestionDAOHimpl(Logger logger, Session session) {
-        super(logger, session);
-    }
+
 
     @Override
     public List<Question> findByTag(String name) {
@@ -107,4 +120,38 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
 
          return findByQuery(sqlString.toString());
     }
+
+    @Override
+    public void preDoSave(Question question) {
+            Integer vote = voteDAO.findVoteByContentId(ContentType.Question, question.getId());
+            question.setVoteScore(vote);
+
+            if(vote >= 1) {
+                question.setApproval(Boolean.TRUE);
+            }
+            else
+            {
+                question.setApproval(Boolean.FALSE);
+            }
+    }
+
+    @Override
+    public void postDoRetrieve(Integer id) {
+
+        Question question = findById(id);
+        if (question != null) {
+            Integer vote = voteDAO.findVoteByContentId(ContentType.Question, question.getId());
+            question.setVoteScore(vote);
+
+            if (vote >= 1) {
+                question.setApproval(Boolean.TRUE);
+            } else {
+                question.setApproval(Boolean.FALSE);
+            }
+            doSave(question);
+        }
+
+        slogger.debug("do post retreive");
+    }
+    
 }

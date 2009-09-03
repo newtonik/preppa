@@ -66,7 +66,7 @@ public class Question implements Serializable {
     private Set<Vote> votes;
     private Integer voteScore;
     private User updatedBy;
-    private int approval;
+    private Boolean approval;
     private List<ReviewComment> reviewcomments;
 
     public Question() {
@@ -234,21 +234,21 @@ public class Question implements Serializable {
      * @return the approval rating
      */
     @Audited
-    public Integer getApproval() {
+    public Boolean getApproval() {
         return approval;
     }
 
     /**
      * @param numCorrect the numCorrect to set
      */
-    public void setApproval(Integer approval) {
+    public void setApproval(Boolean approval) {
         this.approval = approval;
     }
 
     /**
      * @return the choices
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id")
     @Audited
     public List<QuestionAnswer> getChoices() {

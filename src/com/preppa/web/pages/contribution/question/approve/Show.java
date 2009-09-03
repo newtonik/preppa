@@ -61,7 +61,7 @@ public class Show {
 
     void onActivate(int id) {
         if (id > 0) {
-            question = questionDAO.findById(id);
+            question = questionDAO.doRetrieve(id, false);
             if (this.question != null) {
                 if (question.getQuestiontype() != null) {
                     qType = question.getQuestiontype().getName();
