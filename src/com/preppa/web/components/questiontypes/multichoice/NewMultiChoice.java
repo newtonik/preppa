@@ -277,6 +277,7 @@ public class NewMultiChoice {
                 System.out.println(hasquestiontype + " " + questiontExists);
                 questiontExists = false;
             }
+
         }
         testsubjects = testsubjectDAO.findAllWithQuestions();
 

@@ -82,6 +82,7 @@
                 <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.createdat" /> </td>
             <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.updatedat" /> </td>
             <td align="left"> ${question.updatedBy.username} </td>
+            <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/question/show" t:context="${question.id}" > Show </a>  </td>
             </tr>
         </table>
     </t:block>

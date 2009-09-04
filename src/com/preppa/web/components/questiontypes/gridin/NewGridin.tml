@@ -83,7 +83,27 @@
             <br />
             <input t:type="textarea" type="textarea" t:id="fDescription" t:value="fDescription" t:title="Explaination" t:validate="required" rows="3" cols="80" />
             </td>
+            <tr>
+                <td align="left">
+            <t:label for="autoCompletegridintag"> Tags (Select up to 5 tags) </t:label>
+            </td>
             </tr>
+            </tr>
+            <tr>
+                <td align="left">
+                    <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletegridintag" selected="addedTags"
+                           translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td align="left">
+                    Can't find one
+                    <a  class="addtag" href="#" > Add a New Tag </a>
+
+                </td>
+            </tr>
+
 
             <tr>
 
@@ -99,14 +119,7 @@
 
 
     </t:form>
-    <div>
-        <br />
-        <a href="#" t:type="actionlink" t:zone="questionzone" t:id="testlink" > Test </a>
-        <t:form>
 
-            <br />
-        </t:form>
-    </div>
     <t:zone t:id="rangezone">
 
     </t:zone>
@@ -125,5 +138,6 @@
             <input t:type="TextField" t:id="fSingle"  t:value="fSingle" t:label="Value" t:validate="required" size="20"/>
         </t:form>
     </t:block>
+
 
 </t:container>

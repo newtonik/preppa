@@ -1,4 +1,5 @@
 <html t:type="layout" t:pageTitle="New Gridin" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div t:id="newgridin" />
+     <div t:type="newtag" />
 </html>

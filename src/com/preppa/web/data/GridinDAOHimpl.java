@@ -13,7 +13,7 @@ import org.slf4j.Logger;
  *
  * @author nwt
  */
-public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Integer> implements GridinDAO {
+public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Long> implements GridinDAO {
 
     @Inject
     private VoteDAO voteDAO;

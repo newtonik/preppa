@@ -23,7 +23,7 @@
 
             </t:form>
         </t:zone>
-
+            <div t:type="newtag" />
         
         <div id="shortpassage" class="questiontype" align="center" style='display:none'>
             <div align="center" t:id="newshortpassage" />
@@ -40,7 +40,7 @@
             <br />
         </div>
         <div id="multichoice" class="questiontype" align="center" style='display:none'>
-            <div t:id="aquestion"></div>
+            <div t:id="aquestion" t:hasquestiontype="true"></div>
         </div>
             <div id="gridin" class="questiontype" align="center" style='display:none'>
             <div t:id="newgridin" />

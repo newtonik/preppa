@@ -40,7 +40,7 @@ function countCharacters() {
 
 document.observe("dom:loaded", function() {
 
-    $$('.addtag').invoke('observe', 'click', showTag);
+  //  $$('.addtag').invoke('observe', 'click', showTag);
     var store = null;
     // window.onload = function() {
        
@@ -100,7 +100,7 @@ document.observe("dom:loaded", function() {
          
     }
 
-    $$('.closetagbox').invoke('observe', 'click', closeTag);
+ //   $$('.closetagbox').invoke('observe', 'click', closeTag);
     function closeTag(event) {
         var element = event.element();
         var parent = element.ancestors();

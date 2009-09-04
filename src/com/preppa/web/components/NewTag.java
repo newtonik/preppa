@@ -7,6 +7,7 @@ import com.preppa.web.pages.contribution.tag.TagSubmitted;
 import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
@@ -16,6 +17,8 @@ import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.services.Request;
 import org.slf4j.Logger;
 
 
@@ -23,6 +26,7 @@ import org.slf4j.Logger;
  *
  * @author nwt
  */
+@IncludeJavaScriptLibrary(value = {"context:js/tagcomp.js"})
 public class NewTag {
 
     @Inject
@@ -45,43 +49,59 @@ public class NewTag {
     private Zone formzone;
     @Inject
     private Logger logger;
+    @Inject
+    private Request request;
+    //Tag Form data
+    @Inject
+    @Property
+    private Block newtagblock;
 
-    void onValidateForm() {
+   Object onValidateFormFromTagForm() {
         List<Tag> tolist =  tagDAO.findByName(fname);
 
         if(tolist.size() > 0) {
             fname=null;
             tagform.recordError(tagTextfield, "Tag Exists!");
         }
-    }
-//    @CommitAfter
-//    Object onSuccessFromTagForm()
-//    {
-//        tag = new Tag();
-//        tag.setName(fname);
-//
-//        tagDAO.doSave(tag);
-//
-//        return tagform;
-//    }
-    void onActionFromFormZone() {
-        System.out.println("I have been submitted Ajax stype");
-    }
-   Object onActionFromSubmitButton() {
-        System.out.println("I have been submitted Ajax stype");
-        return tagform;
-    }
-     void onSelectedFromSubmitButton() {
-        System.out.println("I have been submitted Ajax stype");
-    }
-     Block onActionFromSubmitLink() {
-           logger.debug("I have been submitted Ajax stype");
-                   tag = new Tag();
-        tag.setName(fname);
 
-        tagDAO.doSave(tag);
+        if(tagform.getHasErrors() && request.isXHR())
+        {
+            return formzone;
+        }
+        else
+        {
+            return null;
+        }
+    }
+           //Funtions for adding new tags and topics
+        @CommitAfter
+        JSONObject onSuccessFromTagForm() {
+            List<Tag> tolist =  tagDAO.findByName(fname);
+            JSONObject json = new JSONObject();
+            System.out.print(tolist);
+            if(tolist.size() > 0) {
+                String markup = "<p>  <b>" + fname +
+                    "</b> already exists. <p>";
+                json.put("content", markup);
+
+            }
+            else
+            {
+                tag = new Tag();
+                tag.setName(fname);
+
+                tagDAO.doSave(tag);
+                String markup = "<p> You just submitted <b>" + tag.getName() +
+                    "</b>. Please add it using the dropdown <p>";
+               json.put("content", markup);
+
+            }
 
 
-         return responseblock;
-     }
+           // return new TextStreamResponse("text/json", json.toString());
+            return json;
+        }
+          Block onActionFromCloseTag() {
+            return newtagblock;
+        }
 }

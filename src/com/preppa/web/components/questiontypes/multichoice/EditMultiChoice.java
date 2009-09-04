@@ -18,6 +18,8 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
@@ -38,6 +40,8 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  *
  * @author nwt
  */
+@IncludeStylesheet(value = {"context:styles/question.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/jquery.form.js", "context:js/multiplequestion.js", "context:js/question.js", "context:js/confirmexit.js"})
 public class EditMultiChoice {
      @ApplicationState
     private User user;

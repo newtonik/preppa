@@ -112,7 +112,7 @@ public class NewGeneral {
     //private Block firstblock;
 
     void onActivate() {
-        testsubjects = testSubDAO.findAll();
+        testsubjects = testSubDAO.findAllWithQuestions();
         questiontypes = null;
     }
 

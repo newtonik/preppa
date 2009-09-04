@@ -2,154 +2,154 @@
     <br/>
     <br />
     <div id="main">
-    <div id ="artcont" align="center" class="questiontype">
-        <a href="#" > Best Practices</a>
-        <t:form t:id="articleform">
-            <t:errors />
-            <table id="articleformtable" width="700">
-                <tr  align="left">
+        <div id ="artcont" align="center" class="questiontype">
+            <a href="#" > Best Practices</a>
+            <t:form t:id="articleform">
+                <t:errors />
+                <table id="articleformtable" width="700">
+                    <tr  align="left">
+                        <td>
+                    <t:label for="fTitle"> Title: </t:label>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" onkeyup="countCharacters();"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <table>
+                                <tr align="right">
+                                    <td align="left">
+                                        <label for="testsubject"> Test Subject: </label>
+                                    </td>
+                                    <td>Section: </td>
+                                    <td align="left" id="result1">
+
+                                    </td>
+                                </tr>
+                                <tr>
+
+
+                                    <td align="left">
+                                        <input t:id="select1"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
+
+                                    </td>
+
+                                    <td align="left">
+                                <t:label for="autoComplete"> Topics: </t:label>
+                        </td>
+
+                        <td align="left">
+                            <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
+                                   translate="prop:translator" label="name" type="text" size="10" readonly="true" t:validate="required" />
+                            <a href="#" id="addtopic">Add a topic here</a>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+
+                </tr>
+
+                <tr>
+                    <td valign="top" align="left">
+                <t:label for="body">Article: </t:label>
+                </td>
+                </tr>
+                <tr>
                     <td>
-                <t:label for="fTitle"> Title: </t:label>
+                <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"
+                          t:label="Body" t:validate="required" onkeyup="countCharacters();" />
+                </td>
+                </tr>
+                <tr>
+                    <td><b> Word Count</b></td>
+                </tr>
+                <tr>
+                    <td id="word_count"></td>
+                </tr>
+                <tr>
+                    <td valign="top" align="left">
+                <t:label for="fSource"> Sources: </t:label>
+                </td>
+                </tr>
+                <tr>
+
+                    <td align="left">
+                        <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="80"/>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
                 </td>
                 </tr>
                 <tr>
                     <td align="left">
-                        <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" onkeyup="countCharacters();"/>
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                               translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
                     </td>
+
                 </tr>
                 <tr>
                     <td align="left">
-                        <table>
-                            <tr align="right">
-                                <td align="left">
-                                    <label for="testsubject"> Test Subject: </label>
-                                </td>
-                                <td>Section: </td>
-                                <td align="left" id="result1">
+                        Can't find one
+                        <a  class="addtag" href="#" > Add a New Tag </a>
 
-                                </td>
-                            </tr>
-                            <tr>
-
-
-                                <td align="left">
-                                    <input t:id="select1"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
-
-                                </td>
-
-                                <td align="left">
-                            <t:label for="autoComplete"> Topics: </t:label>
-                    </td>
-
-                    <td align="left">
-                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoComplete" selected="addedTopics"
-                               translate="prop:translator" label="name" type="text" size="10" readonly="true" t:validate="required" />
-                        <a href="#" id="addtopic">Add a topic here</a>
                     </td>
                 </tr>
-            </table>
-            </td>
 
-            </tr>
+                <tr>
 
-            <tr>
-                <td valign="top" align="left">
-            <t:label for="body">Article: </t:label>
-            </td>
-            </tr>
-            <tr>
-                <td>
-            <t:editor align="left" t:id="body" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"
-                      t:label="Body" t:validate="required" onkeyup="countCharacters();" />
-            </td>
-            </tr>
-            <tr>
-                <td><b> Word Count</b></td>
-            </tr>
-            <tr>
-                <td id="word_count"></td>
-            </tr>
-            <tr>
-                <td valign="top" align="left">
-            <t:label for="fSource"> Sources: </t:label>
-            </td>
-            </tr>
-            <tr>
+                    <td colspan="2" align="left">
+                        <br />
+                        <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true" />
+                        <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                    </td>
 
-                <td align="left">
-                    <input t:type="TextArea" t:id="fSource" value="fSource" rows="4" cols="80"/>
-
-                </td>
-            </tr>
-            <tr>
-                <td align="left">
-            <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
-            </td>
-            </tr>
-            <tr>
-                <td align="left">
-                    <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
-                           translate="prop:tagtranslator" label="name" type="text" size="10" readonly="false"/>
-                </td>
-
-            </tr>
-            <tr>
-                <td align="left">
-                    Can't find one
-                    <a  class="addtag" href="#" > Add a New Tag </a>
-
-                </td>
-            </tr>
-
-            <tr>
-
-                <td colspan="2" align="left">
-                    <br />
-                    <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true" />
-                    <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
-                </td>
-
-            </tr>
+                </tr>
 
 
-            </table>
-        </t:form>
-    </div>
-
-
-
-    <div id="newtagbox" class="tagboxklass" style='display:none'>
-        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-             bgcolor="#FFFFFF"
-             style="padding: 20px;" align="center">
-            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" class="tagcornerclass" >
-
-                <t:zone t:id="formzone">
-                    <t:delegate to="newtagblock"/>
-                </t:zone>
-
-                <p>
-                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" class="closetagbox">Close</a>
-                </p>
-            </div>
+                </table>
+            </t:form>
         </div>
 
-    </div>
-    <div id="newtopicbox" class="topicboxklass" style='display:none'>
-        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-             bgcolor="#FFFFFF"
-             style="padding: 20px;" align="center">
-            <div id="topiccorner" style="padding: 20px; background-color:#e8eefa;" >
-                <t:zone t:id="newtopiczone">
-                    <t:delegate to="newtopicblock"/>
-                </t:zone>
-                <p>
-                    <a href="#" t:type="actionlink" t:id="closetopic" t:zone="newtopiczone">Close</a>
-                </p>
+
+
+        <div id="newtagbox" class="tagboxklass" style='display:none'>
+            <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+                 bgcolor="#FFFFFF"
+                 style="padding: 20px;" align="center">
+                <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" class="tagcornerclass" >
+
+                    <t:zone t:id="formzone">
+                        <t:delegate to="newtagblock"/>
+                    </t:zone>
+
+                    <p>
+                        <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" class="closetagbox">Close</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div id="newtopicbox" class="topicboxklass" style='display:none'>
+            <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+                 bgcolor="#FFFFFF"
+                 style="padding: 20px;" align="center">
+                <div id="topiccorner" style="padding: 20px; background-color:#e8eefa;" >
+                    <t:zone t:id="newtopiczone">
+                        <t:delegate to="newtopicblock"/>
+                    </t:zone>
+                    <p>
+                        <a href="#" t:type="actionlink" t:id="closetopic" t:zone="newtopiczone">Close</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <t:block t:id="newtagblock">
         <h3> Add a Tag </h3>
         <t:form t:id="tagform" t:zone="formzone">

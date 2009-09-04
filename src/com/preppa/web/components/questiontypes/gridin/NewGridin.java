@@ -1,14 +1,21 @@
 package com.preppa.web.components.questiontypes.gridin;
 
 import com.preppa.web.data.GridinDAO;
+import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
+import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.FieldTranslator;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
@@ -27,6 +34,7 @@ import org.apache.tapestry5.services.Context;
 import org.apache.tapestry5.upload.components.Upload;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -101,7 +109,12 @@ public class NewGridin {
     private Context context;
     @InjectPage
     private com.preppa.web.pages.contribution.gridin.ShowGridin showgridin;
-
+    @Component
+    private AutoComplete autoCompletegridinTag;
+    @Property
+    private List<Tag> addedTags = new LinkedList<Tag>();
+    @Inject
+    private TagDAO tagDAO;
 
     public void NewGridin() {
         this.question = new Gridin();
@@ -139,7 +152,13 @@ public class NewGridin {
         question.setUpdatedBy(user);
 
 
+         for(Tag t: addedTags) {
+            if(!(question.getTaglist().contains(t)))
+            {
+                question.getTaglist().add(t);
+            }
 
+         }
         GridinAnswer a = new GridinAnswer();
         if (answertype.equals("range")) {
 
@@ -181,8 +200,52 @@ public class NewGridin {
 
         return rangeblock;
     }
+  List<Tag> onProvideCompletionsFromAutocompleteGridinTag(String partial) {
+        List<Tag> matches = tagDAO.findByPartialName(partial);
 
-    Block onActionFromTestLink() {
-        return testblock;
+        return matches;
+
     }
+
+
+       public FieldTranslator getTagTranslator()
+    {
+        return new FieldTranslator<Tag>()
+        {
+            @Override
+          public String toClient(Tag value)
+          {
+                String clientValue = "0";
+                if (value != null)
+                clientValue = String.valueOf(value.getName());
+
+                return clientValue;
+          }
+
+            @Override
+          public void render(MarkupWriter writer) { }
+
+            @Override
+          public Class<Tag> getType() { return Tag.class; }
+
+            @Override
+          public Tag parse(String clientValue) throws ValidationException
+          {
+            Tag serverValue = null;
+//            if(clientValue == null) {
+//                Tag t = new Tag();
+//                t.setName(clientValue);
+//            }
+
+
+            if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                System.out.println(clientValue);
+                serverValue = tagDAO.findByName(clientValue).get(0);
+            }
+            return serverValue;
+          }
+
+    };
+   }
+
 }
