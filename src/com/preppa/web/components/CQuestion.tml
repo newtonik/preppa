@@ -81,7 +81,7 @@
                         <tr>
 
                             <td width="10%" valign="top" align="right">
-                        <t:label for="fExplanation"> Explain: </t:label>
+                        <t:label for="fExplanation"> Explanation: </t:label>
                         </td>
                         <td align="left">
                             <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="3" cols="80" t:validate="required"/>

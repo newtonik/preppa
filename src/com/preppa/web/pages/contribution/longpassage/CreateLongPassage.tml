@@ -34,7 +34,14 @@
                     </td>
                 </div>
                 </tr>
-
+              <tr>
+                     <td></td>
+                    <td><b> Word Count</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="word_count"></td>
+                </tr>
                 <tr>
 
                     <td valign="top" align="right">

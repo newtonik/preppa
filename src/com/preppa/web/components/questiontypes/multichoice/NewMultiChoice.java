@@ -63,7 +63,7 @@ import org.slf4j.Logger;
  * @author nwt
  */
 @IncludeStylesheet(value = {"context:styles/question.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/jquery.form.js", "context:js/multiplequestion.js", "context:js/question.js", "context:js/confirmexit.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/jquery.form.js", "context:js/multiplequestion.js", "context:js/question.js"})
 public class NewMultiChoice {
 
     @ApplicationState

@@ -4,7 +4,9 @@
 <div id="main">
         <div align="right">  <t:pagelink t:page="contribution/question/flagged" > Flagged </t:pagelink> </div>
 <p>
-<div t:id="questionmenu"></div>
+<br/>
+<br/>
+<div t:id="questionmenu"/>
 <div class="question">
 
 

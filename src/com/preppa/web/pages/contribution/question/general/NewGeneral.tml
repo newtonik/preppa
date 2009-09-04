@@ -8,7 +8,7 @@
                         <td align="left">
                     <t:label for="testSubSelect"> Select a Testsubject </t:label>
                     <br />
-                    <input t:id="testSubSelect"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder"/>
+                    <input t:id="testSubSelect"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder" onchange="IGNORE_UNLOAD = false" onkeypress="IGNORE_UNLOAD = false" />
                     </td>
                     <td align="right" >
                     <t:label for="QuestiontypeSelect"> Select a Testsubject </t:label>

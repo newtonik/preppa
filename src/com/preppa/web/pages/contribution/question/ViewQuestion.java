@@ -34,14 +34,7 @@ public class ViewQuestion {
     @Component
     private QuestionMenu questionmenu;
     void onAction(String pass) {
-		/*try {
-			list.set(pass);
-			return list;
-		}
-		catch (Exception e) {
-			_errorMessage = e.getMessage();
-			return null;
-		}*/
+
     }
 
 
