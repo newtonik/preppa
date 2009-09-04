@@ -46,7 +46,12 @@ function voteDown(event) {
     var path = window.location.pathname;
     var end = path.lastIndexOf("/");
     var url = path.substring(0,end);
-       if((path.lastIndexOf("question") >= 0) && (path.lastIndexOf("show") >= 0))
+
+    if(path.lastIndexOf("openquestion") >= 0)
+    {
+       url = url + ".voteseal.votedown?t:ac=1"
+    }
+    else if((path.lastIndexOf("question") >= 0) && (path.lastIndexOf("show") >= 0))
     {
        url = url + ".showquestion.voteseal.votedown?t:ac=1"
     }
@@ -54,7 +59,7 @@ function voteDown(event) {
     {
         url = url + ".voteseal.votedown?t:ac=1";
     }
-    alert(url);
+   // alert(url);
     new Ajax.Request(url, {
         method: 'post',
         parameters: {
@@ -122,7 +127,12 @@ function voteUp(event) {
     var path = window.location.pathname;
     var end = path.lastIndexOf("/");
     var url = path.substring(0,end);
-    if((path.lastIndexOf("question") >= 0) && (path.lastIndexOf("show") >= 0))
+
+    if(path.lastIndexOf("openquestion") >= 0)
+    {
+       url = url + ".voteseal.voteup?t:ac=1"
+    }
+    else if((path.lastIndexOf("question") >= 0) && (path.lastIndexOf("show") >= 0))
     {
        url = url + ".showquestion.voteseal.voteup?t:ac=1"
     }

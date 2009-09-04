@@ -69,14 +69,24 @@ public class EditOpenQuestion {
     @InjectPage
     private ShowOpenQuestion showquestion;
 
-    void onActivate(Long id) {
+    Object onActivate(Long id) {
         if (id > 0) {
             question = openDAO.findById(id);
             this.qid = id;
             fTitle = question.getTitle();
             fQuestion = question.getQuestion();
             addedTags = question.getTaglist();
+            if(question.getOwner().getId() != user.getId())
+            {
+                showquestion.setOpenQuestion(question);
+                return showquestion;
+            }
+            else
+            {
+                return null;
+            }
         }
+        return null;
     }
 
     Long onPassivate() {
@@ -84,9 +94,6 @@ public class EditOpenQuestion {
 
     }
 
-    void onValidate() {
-        System.out.println(question.getTitle());
-    }
 
     @CommitAfter
     Object onSuccessFromQuestionForm() {

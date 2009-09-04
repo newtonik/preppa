@@ -3,11 +3,11 @@
         <br />
         <br />
         <div id="main">
-            <div t:id="iflogged">
+            <t:if t:test="sameUser">
             <div align="right">
                 <a href="#" t:type="pageLink" t:page="openquestion/Edit" t:context="question.id"> Edit </a>
             </div>
-            </div>
+            </t:if>
             <div align="center">
                 <h3 >
                     ${question.title}

@@ -51,6 +51,11 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        Enter a reason for edit.
+                    </td>
+                </tr>
+                <tr>
                     <td align="left">
                         <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
                     </td>
@@ -59,7 +64,7 @@
                     <td colspan="2" align="left">
                         <br />
                         <input type="submit" value="Submit"/>
-                        <input type="button"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                        <a href="#" t:page="openquestion/show" t:context="${question.id}" t:type="pagelink" >  <input type="button" value="Cancel" /> </a>
                     </td>
 
                 </tr>

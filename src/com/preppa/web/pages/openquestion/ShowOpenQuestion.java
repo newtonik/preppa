@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.acegisecurity.annotation.Secured;
+
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
@@ -21,6 +21,7 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import nu.localhost.tapestry5.springsecurity.components.IfLoggedIn;
+import org.springframework.security.annotation.Secured;
 /**
  *
  * @author nwt
@@ -51,8 +52,9 @@ public class ShowOpenQuestion {
     private Long qid;
     @Property
     private List<Tag> tags;
-    @Component
-    private IfLoggedIn iflogged;
+    @Property
+    private Boolean sameUser;
+
     void onActivate(Long id)
     {
         author = "unknown";
@@ -63,6 +65,13 @@ public class ShowOpenQuestion {
             author = question.getOwner().getUsername();
             contType = ContentType.OpenQuestion;
             tags = question.getTaglist();
+            sameUser = false;
+            if(user != null) {
+                if(question.getOwner().getId() == user.getId() )
+                {
+                    sameUser = true;
+                }
+            }
         }
     }
 

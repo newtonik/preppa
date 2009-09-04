@@ -1,23 +1,22 @@
 package com.preppa.web.pages.contribution.gridin;
 
-import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
+import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
 import com.preppa.web.utils.ContentType;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
-import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
@@ -56,6 +55,9 @@ public class ShowGridin {
     private Block voted;
     @Property
     private ContentType contType;
+    @Property
+    private List<Tag> tags;
+
     void onActivate(Long id)  {
         if(id > 0) {
             question = gridinDAO.doRetrieve(id, false);
@@ -64,6 +66,7 @@ public class ShowGridin {
             //this.votes = voteDAO.findSumByGridInId(question.getId().intValue());
             votes = question.getVoteScore();
             contType = ContentType.GridIn;
+            tags = question.getTaglist();
         }
     }
 
