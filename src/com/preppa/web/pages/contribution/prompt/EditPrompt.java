@@ -24,6 +24,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
@@ -39,6 +40,7 @@ import org.springframework.security.annotation.Secured;
  * @author Jan Jan
  */
 @Secured("ROLE_USER")
+@IncludeJavaScriptLibrary(value = {"context:js/confirmexit.js"})
 public class EditPrompt {
     @ApplicationState
     private User user;

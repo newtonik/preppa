@@ -33,7 +33,7 @@ import org.springframework.security.annotation.Secured;
  * @author nwt
  */
 
-@IncludeJavaScriptLibrary(value = {"context:js/gridin.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/gridin.js", "context:js/confirmexit.js"})
 @Secured("ROLE_USER")
 public class EditGridin {
 

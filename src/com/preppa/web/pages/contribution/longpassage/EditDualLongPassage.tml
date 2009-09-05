@@ -95,7 +95,7 @@
                 <tr>
                     <td></td>
                     <td colspan="2" align="left">
-                        <input type="submit" value="Submit"/>
+                        <input type="submit" value="Submit"  onclick="IGNORE_UNLOAD = true" />
                         <a href="#" t:type="pagelink" t:page="contribution/longpassage/showdual" t:context="${longDualpassage.id}" ><input type="button" value="Cancel" /></a>
                     </td>
 

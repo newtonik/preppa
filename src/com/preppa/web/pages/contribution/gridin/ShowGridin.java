@@ -43,7 +43,7 @@ public class ShowGridin {
     @Inject
     private Block voteBlock;
     @Property
-    @Persist
+    @Persist 
     private Integer votes;
     @Inject
     private HttpServletRequest _request;

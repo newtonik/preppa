@@ -108,7 +108,7 @@
 
                 <td colspan="2" align="left">
                     <br />
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" value="Submit"  onclick="IGNORE_UNLOAD = true" />
                     <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${question.id}" > <input type="button" value="Cancel"></input> </a>
                 </td>
 

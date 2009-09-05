@@ -144,6 +144,7 @@ public class EditMultiChoice {
             addedTags = question.getTaglist();
             ratingValue = question.getDifficulty();
             correct = question.getCorrectAnswer();
+            System.out.println("Question is " + question);
             if(question.getImage())
             {
                 hasimage = "yes";

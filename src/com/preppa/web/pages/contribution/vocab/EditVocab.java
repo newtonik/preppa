@@ -27,6 +27,7 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.json.JSONObject;
@@ -35,6 +36,7 @@ import org.apache.tapestry5.json.JSONObject;
  *
  * @author newtonik
  */
+@IncludeJavaScriptLibrary(value = {"context:js/confirmexit.js"})
 public class EditVocab {
     @ApplicationState
     private User user;

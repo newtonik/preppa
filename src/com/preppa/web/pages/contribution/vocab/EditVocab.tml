@@ -79,7 +79,7 @@
                  </tr>
                     <tr>
                         <td colspan="2" align="left">
-                            <input type="submit" value="Submit"/>
+                            <input type="submit" value="Submit"  onclick="IGNORE_UNLOAD = true" />
                            <a href="#" t:type="pageLink" t:page="contribution/vocab/show" t:context="vocab.id">  <input type="button" value="Cancel" /></a>
                         </td>
 

@@ -11,6 +11,7 @@ import com.preppa.web.entities.Tag;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.security.annotation.Secured;
@@ -20,6 +21,7 @@ import org.springframework.security.annotation.Secured;
  * @author newtonik
  */
 @Secured("ROLE_USER")
+@IncludeJavaScriptLibrary(value = {"context:js/confirmexit.js"})
 public class EditQuestion {
 
     @Component

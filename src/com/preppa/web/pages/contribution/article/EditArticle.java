@@ -48,7 +48,7 @@ import org.springframework.security.annotation.Secured;
  * @author newtonik
  */
 @Secured("ROLE_USER")
-@IncludeJavaScriptLibrary(value = {"context:js/article.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/article.js", "context:js/confirmexit.js"})
 public class EditArticle {
 
     @ApplicationState
