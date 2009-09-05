@@ -1,0 +1,41 @@
+/* 
+    Document   : practice
+    Created on : Sep 4, 2009, 11:55:40 PM
+    Author     : nwt
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#practiceleft {
+    float:left;
+    width: 250px;
+    height: 600px;
+}
+#practiceright {
+    float:left;
+    width: 200px;
+    height: 600px;
+
+}
+#accordion {
+    border:1px solid #333333;
+}
+#accordion h3 {
+    cursor:pointer;
+}
+#accordion div.pane {
+    display:none;
+    border-color:#ffffff;
+    border-style:solid;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    color: #ffffff;
+    padding:10px;
+    height: 100px;
+    background-color:gray;
+}

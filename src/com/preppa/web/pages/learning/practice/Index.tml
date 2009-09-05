@@ -1,0 +1,42 @@
+<html t:type="layout" t:pageTitle="Testing" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <div id="main"> 
+        <h2>Create Practice Set</h2>
+
+        <div>
+            <div id="practiceleft">
+                <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+                     bgcolor="#FFFFFF"
+                     style="padding: 20px;" align="center">
+                    <div class="practicebox" style="padding: 20px; background-color:#e8eefa;">
+                        <div id="accordion"> 
+                        <h2>Choose By Topics</h2>
+                        <h3>Preferences</h3>
+                        <div class="pane">preferences section</div>
+                        <h3>Math</h3>
+                        <div class="pane">mathematics section</div>
+                        <h3>Critical Reading</h3>
+                        <div class="pane">crticial reading section</div>
+                        <h3>Writing</h3>
+                        <div class="pane">writing section</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div id="practiceright">
+                <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+                     bgcolor="#FFFFFF"
+                     style="padding: 20px;" align="center">
+
+                    <div class="practicebox" style="padding: 20px; background-color:#e8eefa;">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</html>

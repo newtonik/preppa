@@ -754,6 +754,7 @@ li {
     padding: 10px;
     padding-bottom:25px;
     text-align:left;
+    overflow:auto;
 }
 #spacer {
     height: 34px;

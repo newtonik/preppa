@@ -26,7 +26,7 @@
         <a href="/?tab=featured" t:type="pagelink" t:page="contribution/prompt/index">Free Response Viewer</a>
     </t:parameter>
 </t:if>
-<a href="/?tab=week">Practice</a>
+<a href="#" t:page="learning/practice" t:type="pagelink">Practice</a>
 
     </div>
 </div>

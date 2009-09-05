@@ -73,7 +73,7 @@
                     </t:parameter>
                 </t:if>
                 <li><a href="#" t:type="pagelink" t:page="learning/index"> Learning and Practice </a></li>
-                <li><a href="#">Testing</a></li>
+                <li><a href="#" >Testing</a></li>
                 <t:if t:test="OpenQuestion">
                     <li><a href="#" style="background:#C0C0C0;" t:type="pagelink" t:page="openquestion/index"> Questions </a> </li>
                     <t:parameter name="else">
