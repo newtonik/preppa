@@ -754,6 +754,17 @@ li {
     padding: 10px;
     padding-bottom:25px;
     text-align:left;
+}
+
+.mainclass {
+    border-left:1px solid #666666;
+    border-bottom:1px solid #666666;
+    border-right:1px solid #666666;
+    border-top:1px solid #666666;
+    top:200px;
+    padding: 10px;
+    padding-bottom:25px;
+    text-align:left;
     overflow:auto;
 }
 #spacer {

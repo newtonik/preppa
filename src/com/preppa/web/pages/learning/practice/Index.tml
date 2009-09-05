@@ -1,5 +1,6 @@
 <html t:type="layout" t:pageTitle="Testing" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <div id="main"> 
+    <br />
+    <div class="mainclass">
         <h2>Create Practice Set</h2>
 
         <div>
