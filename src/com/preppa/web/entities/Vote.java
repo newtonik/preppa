@@ -22,23 +22,21 @@ import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Table;
 
-
-
 /**
  *
  * @author nwt
  */
 @javax.persistence.Entity
-@javax.persistence.Table(name="Vote", uniqueConstraints={@UniqueConstraint(columnNames={"contentTypeId","contentId", "user_id"})})
-@Table(appliesTo="Vote", indexes = {
-    @Index(name="contType_contId_uid", columnNames={"contentTypeId","contentId", "user_id"}),
-    @Index(name="contType_userId", columnNames={"contentTypeId","user_id"}),
-    @Index(name="content_source", columnNames={"contentTypeId","contentId","source"})    })
+@javax.persistence.Table(name = "Vote", uniqueConstraints = {@UniqueConstraint(columnNames = {"contentTypeId", "contentId", "user_id"})})
+@Table(appliesTo = "Vote", indexes = {
+    @Index(name = "contType_contId_uid", columnNames = {"contentTypeId", "contentId", "user_id"}),
+    @Index(name = "contType_userId", columnNames = {"contentTypeId", "user_id"}),
+    @Index(name = "content_source", columnNames = {"contentTypeId", "contentId", "source"})})
 public class Vote implements Serializable {
+
     private List<OpenQuestion> openQuestions;
     private List<Question> questions;
     private static final long serialVersionUID = 1L;
-    
     private Long id;
     private List<Article> articles;
     private Integer value;
@@ -47,8 +45,8 @@ public class Vote implements Serializable {
     private String source;
     private Integer contentId;
     private ContentType contentTypeId;
-    
-     @Id
+
+    @Id
     @NonVisual
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,8 +54,6 @@ public class Vote implements Serializable {
         return id;
     }
 
-
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -83,10 +79,10 @@ public class Vote implements Serializable {
         return "com.preppa.web.entities.Vote[id=" + id + "]";
     }
 
-    
     public void setId(Long id) {
         this.id = id;
     }
+
     /**
      * @return the value
      */
@@ -101,9 +97,8 @@ public class Vote implements Serializable {
     @ManyToMany
     @JoinTable(name = "Article_Vote",
     joinColumns = {
-      @JoinColumn(name="article_id")
-        }
-    )
+        @JoinColumn(name = "article_id")
+    })
     public List<Article> getArticles() {
         return articles;
     }
@@ -131,7 +126,6 @@ public class Vote implements Serializable {
     /**
      * @return the user
      */
-
     @ManyToOne
     public User getUser() {
         return user;
@@ -140,7 +134,7 @@ public class Vote implements Serializable {
     /**
      * @param user the user to set
      */
-     public void setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -157,7 +151,6 @@ public class Vote implements Serializable {
     public void setSource(String source) {
         this.source = source;
     }
-
 
     /**
      * @return the contentId
@@ -205,5 +198,4 @@ public class Vote implements Serializable {
     public void setOpenQuestions(List<OpenQuestion> openQuestions) {
         this.openQuestions = openQuestions;
     }
-
 }

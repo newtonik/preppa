@@ -9,11 +9,15 @@
 
 package com.preppa.web.entities;
 
+import com.preppa.web.utils.PracticeSetType;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,6 +28,7 @@ public class PracticeSet implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    private PracticeSetType setType;
     private Integer numofquestions;
     private Boolean randomsubjects;
     private Boolean math;
@@ -33,6 +38,17 @@ public class PracticeSet implements Serializable {
     private Boolean gridin;
     private Integer multinum;
     private Integer gridinnum;
+    private Boolean sentencecompletion;
+    private Boolean longpassage;
+    private Boolean longdualpassage;
+    private Boolean shortpassage;
+    private Boolean shortdualpassage;
+    private Integer longpassnum;
+    private Integer longdualpassnum;
+    private Integer shortpassnum;
+    private Integer shortdualpassnum;
+    private Integer sentcompnum;
+    private User owner;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -193,6 +209,176 @@ public class PracticeSet implements Serializable {
      */
     public void setGridinnum(Integer gridinnum) {
         this.gridinnum = gridinnum;
+    }
+
+    /**
+     * @return the setType
+     */
+    @Enumerated(EnumType.ORDINAL)
+    public PracticeSetType getSetType() {
+        return setType;
+    }
+
+    /**
+     * @param setType the setType to set
+     */
+    public void setSetType(PracticeSetType setType) {
+        this.setType = setType;
+    }
+
+    /**
+     * @return the sentencecompletion
+     */
+    public Boolean getSentencecompletion() {
+        return sentencecompletion;
+    }
+
+    /**
+     * @param sentencecompletion the sentencecompletion to set
+     */
+    public void setSentencecompletion(Boolean sentencecompletion) {
+        this.sentencecompletion = sentencecompletion;
+    }
+
+    /**
+     * @return the longpassage
+     */
+    public Boolean getLongpassage() {
+        return longpassage;
+    }
+
+    /**
+     * @param longpassage the longpassage to set
+     */
+    public void setLongpassage(Boolean longpassage) {
+        this.longpassage = longpassage;
+    }
+
+    /**
+     * @return the longdualpassage
+     */
+    public Boolean getLongdualpassage() {
+        return longdualpassage;
+    }
+
+    /**
+     * @param longdualpassage the longdualpassage to set
+     */
+    public void setLongdualpassage(Boolean longdualpassage) {
+        this.longdualpassage = longdualpassage;
+    }
+
+    /**
+     * @return the shortpassage
+     */
+    public Boolean getShortpassage() {
+        return shortpassage;
+    }
+
+    /**
+     * @param shortpassage the shortpassage to set
+     */
+    public void setShortpassage(Boolean shortpassage) {
+        this.shortpassage = shortpassage;
+    }
+
+    /**
+     * @return the longpassnum
+     */
+    public Integer getLongpassnum() {
+        return longpassnum;
+    }
+
+    /**
+     * @param longpassnum the longpassnum to set
+     */
+    public void setLongpassnum(Integer longpassnum) {
+        this.longpassnum = longpassnum;
+    }
+
+    /**
+     * @return the longdualpassnum
+     */
+    public Integer getLongdualpassnum() {
+        return longdualpassnum;
+    }
+
+    /**
+     * @param longdualpassnum the longdualpassnum to set
+     */
+    public void setLongdualpassnum(Integer longdualpassnum) {
+        this.longdualpassnum = longdualpassnum;
+    }
+
+    /**
+     * @return the shortpassnum
+     */
+    public Integer getShortpassnum() {
+        return shortpassnum;
+    }
+
+    /**
+     * @param shortpassnum the shortpassnum to set
+     */
+    public void setShortpassnum(Integer shortpassnum) {
+        this.shortpassnum = shortpassnum;
+    }
+
+    /**
+     * @return the shortdualpassnum
+     */
+    public Integer getShortdualpassnum() {
+        return shortdualpassnum;
+    }
+
+    /**
+     * @param shortdualpassnum the shortdualpassnum to set
+     */
+    public void setShortdualpassnum(Integer shortdualpassnum) {
+        this.shortdualpassnum = shortdualpassnum;
+    }
+
+    /**
+     * @return the shortdualpassage
+     */
+    public Boolean getShortdualpassage() {
+        return shortdualpassage;
+    }
+
+    /**
+     * @param shortdualpassage the shortdualpassage to set
+     */
+    public void setShortdualpassage(Boolean shortdualpassage) {
+        this.shortdualpassage = shortdualpassage;
+    }
+
+    /**
+     * @return the sentcompnum
+     */
+    public Integer getSentcompnum() {
+        return sentcompnum;
+    }
+
+    /**
+     * @param sentcompnum the sentcompnum to set
+     */
+    public void setSentcompnum(Integer sentcompnum) {
+        this.sentcompnum = sentcompnum;
+    }
+
+    /**
+     * @return the owner
+     */
+    @ManyToOne
+    public User getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
 }

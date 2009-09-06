@@ -1,5 +1,4 @@
 <html t:type="layout" t:pageTitle="Testing" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <br />
     <div class="mainclass">
         <h2>Create Practice Set</h2>
 
@@ -48,12 +47,110 @@
                                             </tr>
                                         </table>
                                     </div>
+                                    <div id="mathtopicsdetails">
+                                        <h4>Topics</h4>
+                                        <table>
+                                            <tr>
+                                            <th>
+                                                Multiple Choice
+                                            </th>
+                                            <th>
+                                                Grid-Ins
+                                            </th>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                  </td>
+                                                 <td align="left">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+
+                                                </td>
+                                                 <td align="left">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+
+                                                </td>
+                                                 <td align="left">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+
+                                                </td>
+                                                 <td align="left">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+
+                                                </td>
+                                                 <td align="left">
+
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
 
 
                                 </div>
                                 <h3>Critical Reading</h3>
-                                <div class="pane">crticial reading section
+                                <div class="pane">
                                     <div id="criticalpracticedetails">
+                                        <h4>Question Types</h4>
+                                         <table>
+                                            <tr>
+                                                <td align="left">
+                                                <t:label for="shortpasscheck"><t:checkbox t:id="shortpasscheck" value="pset.shortpassage"/>  Short Passages </t:label>
+                                                  </td>
+                                                 <td align="left">
+                                                  <t:label for="shortpassnumberofq"> <t:select t:id="shortpassnumberofq" model="message:subnumberoptions-message" value="pset.shortpassnum" /> Number of Passages</t:label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                <t:label for="shortdualpasscheck"><t:checkbox t:id="shortdualpasscheck" value="pset.shortdualpassage"/>  Short Dual Passages </t:label>
+                                                </td>
+                                                 <td align="left">
+                                                    <t:label for="shortdualpassnumberofq"> <t:select t:id="shortdualpassnumberofq" model="message:subnumberoptions-message" value="pset.shortdualpassnum" /> Number of Passages</t:label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                <t:label for="longpasscheck"><t:checkbox t:id="longpasscheck" value="pset.longpassage"/> Long Passages </t:label>
+                                                </td>
+                                                 <td align="left">
+                                                <t:label for="longpassnumberofq"> <t:select t:id="longpassnumberofq" model="message:subnumberoptions-message" value="pset.longpassnum" /> Number of Passages</t:label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                <t:label for="longdualpasscheck"><t:checkbox t:id="longdualpasscheck" value="pset.longdualpassage"/>  Long Dual Passages </t:label>
+                                                </td>
+                                                 <td align="left">
+                                                    <t:label for="longdualpassnumberofq"> <t:select t:id="longdualpassnumberofq" model="message:subnumberoptions-message" value="pset.longdualpassnum" /> Number of Passages</t:label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                <t:label for="sentencecompcheck"><t:checkbox t:id="sentencecompcheck" value="pset.sentencecompletion"/>  Sentence Completion </t:label>
+                                                </td>
+                                                 <td align="left">
+                                                  <t:label for="sentcompnumberofq"> <t:select t:id="sentcompnumberofq" model="message:subnumberoptions-message" value="pset.sentcompnum" /> Number of Questions</t:label>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+
                                     </div>
                                 </div>
                                 <h3>Writing</h3>
