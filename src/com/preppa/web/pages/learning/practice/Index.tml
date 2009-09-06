@@ -8,34 +8,68 @@
                 <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
                      bgcolor="#FFFFFF"
                      style="padding: 20px;" align="center">
-                    <div class="practicebox" style="padding: 20px; background-color:#e8eefa;">
-                        <div id="accordion"> 
-                        <h2>Choose By Topics</h2>
-                        <h3>Preferences</h3>
-                        <div class="pane">preferences section</div>
-                        <h3>Math</h3>
-                        <div class="pane">mathematics section</div>
-                        <h3>Critical Reading</h3>
-                        <div class="pane">crticial reading section</div>
-                        <h3>Writing</h3>
-                        <div class="pane">writing section</div>
-                        </div>
+                    <div class="practicebox" style="padding: 20px;">
+                        <t:form t:id="practicesetupform" clientvalidation="false">
+                            <div id="accordion">
+                                <h2>Choose By Topics</h2>
+                                <h3>Preferences</h3>
 
+                                <div class="pane">
+                                    <t:errors />
+                                    <t:label for="randomsubjects"><t:checkbox t:id="randomsubjects" value="pset.randomsubjects"/>  QuickPick </t:label>
+                                    <t:label for="addmathcheck"><t:checkbox t:id="addmathcheck" value="pset.math"/>  Math</t:label>
+                                    <t:label for="addwritingcheck"><t:checkbox t:id="addwritingcheck" value="pset.writing"/>  Writing </t:label>
+                                    <t:label for="addcriticalcheck"><t:checkbox t:id="addcriticalcheck" value="pset.reading" />  Critical Reading</t:label>
+                                    
+                                    <t:label for="numberofq"> <t:select t:id="numberofq" model="message:numberoptions-message" value="pset.numofquestions" /> Number of Questions</t:label>
+
+
+                                </div>
+                                <h3>Math</h3>
+                                <div class="pane">mathematics section
+                                    <div id="mathpracticedetails">
+                                        <table>
+                                            <tr>
+                                                <td align="left">
+                                                    <t:label for="multichoicecheck"><t:checkbox t:id="multichoicecheck" value="pset.multichoice"/>  Multiple Choice </t:label>
+
+                                                </td>
+                                                <td align="left">
+                                                     <t:label for="multinumberofq"> <t:select t:id="multinumberofq" model="message:subnumberoptions-message" value="pset.multinum" /> Number of Questions</t:label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                <t:label for="gridincheck"><t:checkbox t:id="gridincheck" value="pset.gridin"/>  Gridin </t:label>
+                                                </td>
+                                                <td align="left">
+                                                     <t:label for="gridinnumberofq"> <t:select t:id="gridinnumberofq" model="message:subnumberoptions-message" value="pset.gridinnum" /> Number of Questions</t:label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <h3>Critical Reading</h3>
+                                <div class="pane">crticial reading section
+                                    <div id="criticalpracticedetails">
+                                    </div>
+                                </div>
+                                <h3>Writing</h3>
+                                <div class="pane">writing section
+                                <div id="writingpracticedetails">
+                                </div>
+                                </div>
+
+                            </div>
+                             <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true" />
+                        </t:form>
                     </div>
 
                 </div>
             </div>
-            <div id="practiceright">
-                <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-                     bgcolor="#FFFFFF"
-                     style="padding: 20px;" align="center">
 
-                    <div class="practicebox" style="padding: 20px; background-color:#e8eefa;">
-
-                    </div>
-
-                </div>
-            </div>
         </div>
 
     </div>

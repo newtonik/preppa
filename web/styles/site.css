@@ -396,13 +396,15 @@ DIV.t-beaneditor-submit {
 }
 DIV.t-error
 {
-    width: 600px;
+    width: 100%;
     text-align: center;
+
 }
 div.t-error div {
     background-color:orange;
     font-weight:bolder;
-    color: black
+    color: black;
+
 }
 DIV.t-error LI {
     margin-left: 20px;
