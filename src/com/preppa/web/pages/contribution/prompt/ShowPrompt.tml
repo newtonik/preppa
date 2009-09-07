@@ -1,8 +1,8 @@
 <html t:type="layout" t:pageTitle="Free Response Prompt" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <body>
-    <t:practicebarArt />
     <div id="main">
+<t:promptmenu />
                 <br/><t:pagelink t:page="contribution/prompt/index">Free Response Home</t:pagelink> - <b><t:pagelink t:page="contribution/prompt/view" t:context="literal:${type}">${type}</t:pagelink></b> - Prompt<br/>
     <i>${prompt.quote}</i>
 

@@ -7,7 +7,10 @@ package com.preppa.web.pages.contribution.question;
 
 import com.preppa.web.components.questiontypes.QuestionMenu;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.TagDAO;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.Tag;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.PersistenceConstants;
@@ -33,14 +36,38 @@ public class ViewQuestion {
     private List<Question> allquestions;
     @Component
     private QuestionMenu questionmenu;
+    @Inject
+    private TagDAO tagDAO;
+    @Property
+    private Tag tag;
+
     void onAction(String pass) {
 
     }
 
 
     Object onActivate(String questiontype) {
+        System.out.println("Qtype is " + questiontype);
+        if (questiontype.contains("tag:")) {
+            String tagString = questiontype.substring(4); //get the tag
+            System.out.println("Tag String is " + tagString);
+            List<Tag> temp = tagDAO.findByName(tagString);
+            allquestions = new ArrayList<Question>();
 
-        if(questiontype.equals("Math"))
+            for (int i = 0; i < temp.size(); i++) {
+                if (temp.get(i) != null) {
+                    //allquestions.addAll(temp.get(i).getQuestions());
+                    Question tempAdd;
+                    for (int j = 0; j < temp.get(i).getQuestions().size(); j++) {
+                        tempAdd = temp.get(i).getQuestions().get(j);
+                        if (allquestions.contains(tempAdd) == false && tempAdd != null) {
+                            allquestions.add(tempAdd);
+                        }
+                    }
+                }
+            }
+        }
+        else if(questiontype.equals("Math"))
         {
 
             return null;

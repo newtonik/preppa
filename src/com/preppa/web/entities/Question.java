@@ -34,6 +34,7 @@ import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Indexed;
 
 
 /**
@@ -41,6 +42,7 @@ import org.hibernate.envers.Audited;
  * @author newtonik
  */
 @Entity
+@Indexed
 public class Question implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;

@@ -1,6 +1,7 @@
 <html t:type="layout" t:pageTitle="Flagged Prompts" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarArt />
 <div id="main">
+<t:promptmenu />
        <div align="right"><a href="#" t:type="pagelink" t:page="contribution/prompt/view" > Prompts </a></div>
     <h3>Flagged Prompts</h3>
     <div id="promptflagged">

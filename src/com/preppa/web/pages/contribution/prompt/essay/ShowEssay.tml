@@ -3,6 +3,8 @@
     <body>
     <t:practicebarArt />
     <div id="main">
+        <t:promptmenu />
+
         <i>${essay.prompt.quote}</i><br/>
         <b><t:outputraw t:value="${essay.prompt.question}" /></b><br/>
 

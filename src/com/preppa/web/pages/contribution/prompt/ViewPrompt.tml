@@ -1,5 +1,9 @@
 <html t:type="layout" t:pageTitle="Prompts" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <t:practicebarArt />
+    <div id="main">
+
                 <br/><t:pagelink t:page="contribution/prompt/index">Free Response Home</t:pagelink> - <b>${type}</b><br/>
+<t:promptmenu />
 <div id="nav-menu" align="left">
     <ul>
             <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Respond" style="height: 3em; line-height: 1.5em;">Respond to Statement</t:pagelink></li>
@@ -29,7 +33,8 @@
             </t:loop>
             </t:if>
 
-
 <br/><h2>By Tags</h2>
 <t:promptTag t:alltags="alltags" />
+<br/><br/>
+</div>
 </html>

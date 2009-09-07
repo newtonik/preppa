@@ -14,7 +14,7 @@
 <t:loop t:source="allquestions"
     t:value="question">
     <div class="question">
-            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="question.id">${question.questionformatted}</a>
+            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="question.id"><t:outputraw t:value="${question.questionformatted}"/></a>
             <br></br>
     </div>
     <br />

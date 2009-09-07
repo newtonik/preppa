@@ -1,6 +1,8 @@
 <html t:type="layout" t:pageTitle="View Essay" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
 <div id="main">
+<t:promptmenu />
+
         <h1>Essays</h1>
         <t:loop t:source="essays" t:value="essay">
             <i>${essay.prompt.quote}</i><br/>

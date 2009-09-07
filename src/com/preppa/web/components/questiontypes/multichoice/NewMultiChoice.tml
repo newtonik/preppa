@@ -1,6 +1,5 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-
     <div id="multiple-question" class="overlay"  >
         <t:zone t:id="newquestionzone" id="newquestionzone" >
             <t:form t:id="createquestionform" class="multiquestionclass">
@@ -33,7 +32,8 @@
                         <t:label for="questioneditor">Question: </t:label>
                         </td>
                         <td >
-                        <t:editor align="left" t:id="questioneditor" t:toolbarSet="Basic" t:validate="required" t:width="600" t:height="100"/>
+
+            <t:editor align="left" t:id="questioneditor" t:toolbarSet="Gridin" customConfiguration="asset:context:js/fck/gridin.js" t:validate="required" t:width="600" t:height="300"/>
 
                         </td>
                         </tr>

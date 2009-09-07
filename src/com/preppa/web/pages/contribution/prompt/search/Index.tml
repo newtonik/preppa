@@ -4,6 +4,7 @@
     <div align="right">
         <t:promptsearch t:searcher="${searchString}"/>
     </div>
+<t:promptmenu />
     <br />
     <h3>Results </h3>
     <p>
