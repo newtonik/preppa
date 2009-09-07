@@ -1,0 +1,25 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id="nav-menu" align="left">
+    <ul>
+    <t:if t:test="NonGraded">
+        <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Non" style="height: 3em; line-height: 1.5em; color:#fff; background:#000;">Non-Graded</t:pagelink></li>
+        <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Non" style="height: 3em; line-height: 1.5em;">Non-Graded</t:pagelink></li>
+        </t:parameter>
+    </t:if>
+    <t:if t:test="Graded">
+        <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Graded" style="height: 3em; line-height: 1.5em; color:#fff; background:#000;">Graded</t:pagelink></li>
+        <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Graded" style="height: 3em; line-height: 1.5em;">Graded</t:pagelink></li>
+        </t:parameter>
+    </t:if>
+    <t:if t:test="Prompt">
+        <li><t:pagelink t:page="contribution/prompt/view" style="height: 3em; line-height: 1.5em; color:#fff; background:#000;">Prompts</t:pagelink></li>
+        <t:parameter name="else">
+            <li><t:pagelink t:page="contribution/prompt/view" style="height: 3em; line-height: 1.5em;">Prompts</t:pagelink></li>
+        </t:parameter>
+    </t:if>
+    </ul>
+</div>
+
+</t:container>
