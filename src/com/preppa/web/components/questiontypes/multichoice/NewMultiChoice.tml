@@ -1,8 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="multiple-question" class="overlay"  >
-        <t:zone t:id="newquestionzone" id="newquestionzone" >
-            <t:form t:id="createquestionform" class="multiquestionclass">
+          <t:form t:id="createquestionform" class="multiquestionclass">
                 <t:errors />
                  <t:if t:test="questiontExists">
                 <table id="atable" cellpadding="10">
@@ -182,7 +181,6 @@
                 </table>
 
             </t:form>
-        </t:zone>
     </div>
 
     <t:block t:id="showquestionblock">

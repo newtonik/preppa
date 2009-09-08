@@ -28,7 +28,16 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
             sqlString.addWhereClause("p.id = '" + id + "'");
         }
 
-        return (User) findByQuery(sqlString.toString()).get(0);
+
+        List<User> urs = findByQuery(sqlString.toString());
+        if(urs.size() == 0) {
+            return null;
+        }
+        else
+        {
+            return urs.get(0);
+        }
+                 
     }
 
     @Override
@@ -99,7 +108,16 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
             sqlString.addWhereClause("u.username = '" + username + "'");
         }
 
-        return (User) findByQuery(sqlString.toString()).get(0);
+
+        List<User> urs = findByQuery(sqlString.toString());
+        if(urs.size() == 0) {
+            return null;
+        }
+        else
+        {
+            return urs.get(0);
+        }
+
     }
 
     @Override
@@ -109,9 +127,16 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
             sqlString.addWhereClause("u.email = '" + email + "'");
         }
 
-        User out = null;
-        out = (User) findByQuery(sqlString.toString()).get(0);
-        return out;
+
+        List<User> urs = findByQuery(sqlString.toString());
+        if(urs.size() == 0) {
+            return null;
+        }
+        else
+        {
+            return urs.get(0);
+        }
+
     }
 
     @Override
@@ -121,7 +146,16 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
             sqlString.addWhereClause("u.activationcode = '" + code + "'");
         }
 
-        return (User) findByQuery(sqlString.toString()).get(0);
+
+        List<User> urs = findByQuery(sqlString.toString());
+        if(urs.size() == 0) {
+            return null;
+        }
+        else
+        {
+            return urs.get(0);
+        }
+
     }
 
     @Override
@@ -131,6 +165,15 @@ public class UserObDAOHibImpl extends AbstractHibernateDAO<User, Integer> implem
             sqlString.addWhereClause("u.passwordResetCode = '" + code + "'");
         }
 
-        return (User) findByQuery(sqlString.toString()).get(0);
+        List<User> urs = findByQuery(sqlString.toString());
+        if(urs.size() == 0) {
+            return null;
+        }
+        else
+        {
+            return urs.get(0);
+        }
+
+
     }
 }

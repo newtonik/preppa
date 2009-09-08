@@ -97,10 +97,7 @@ public class CreateArticle {
     private AutoComplete autoComplete;
     @Component
     private AutoComplete autoCompleteTag;
-    //Tag Form data
-    @Inject
-    @Property
-    private Block newtagblock;
+
     @Inject
     @Property
     private Block newtopicblock;
@@ -134,14 +131,6 @@ public class CreateArticle {
 
     @Inject
     private TagDAO tagDAO;
-    @Property
-    private Tag tag;
-    @Component
-    private TextField tagTextfield;
-    @Property
-    private String fname;
-    @Component
-    private Form tagform;
 
 
 
@@ -156,8 +145,8 @@ public class CreateArticle {
        this.article = new Article();
        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
        testsubjects.addAll(setItems);
-        addedTopics =  topicDAO.findAll();
-        addedTags = tagDAO.findAll();
+        
+        
 
     }
 
@@ -382,49 +371,8 @@ public class CreateArticle {
     };
    }
 
-       Block onActionFromAddTag() {
-           
-            return newtagblock;
-       }
-       Block onActionFromCancelTag() {
-            return null;
-       }
 
-        @OnEvent(component = "inPlaceEditor", value = InPlaceEditor.SAVE_EVENT)
-        void actionFromEditor(String titleValue)
-        {
-            Topic topic = new Topic(titleValue);
-            topicDAO.doSave(topic);
-        }
 
-        //Funtions for adding new tags and topics
-        @CommitAfter
-        JSONObject onSuccessFromTagForm() {
-            List<Tag> tolist =  tagDAO.findByName(fname);
-            JSONObject json = new JSONObject();
-            System.out.print(tolist);
-            if(tolist.size() > 0) {
-                String markup = "<p>  <b>" + fname +
-                    "</b> already exists. <p>";
-                json.put("content", markup);
-                
-            }
-            else 
-            {
-                tag = new Tag();
-                tag.setName(fname);
-
-                tagDAO.doSave(tag);
-                String markup = "<p> You just submitted <b>" + tag.getName() +
-                    "</b>. Please add it using the dropdown <p>";
-               json.put("content", markup);
-
-            }
-            
-            
-           // return new TextStreamResponse("text/json", json.toString());
-            return json;
-        }
         @CommitAfter
         JSONObject onSuccessFromTopicForm() {
             JSONObject json = new JSONObject();
@@ -456,9 +404,7 @@ public class CreateArticle {
           return json;
         }
 
-        Block onActionFromCloseTag() {
-            return newtagblock;
-        }
+     
         Block onActionFromCloseTopic() {
             return newtopicblock;
 

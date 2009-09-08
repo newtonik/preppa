@@ -1,13 +1,13 @@
-<html t:type="layout" t:pageTitle="${user.firstName}'s Page" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="${owner.firstName}'s Page" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <body>
-        <h3>${user.username}</h3>
+        <h3>${owner.username}</h3>
     <t:if t:test="imageexist">
         <t:pagelink t:page="user/uploadimage"><img src="${pathstring}" align="left" width="85" height="100"/></t:pagelink>
         <t:parameter name ="else">
             <t:pagelink t:page="user/uploadimage"><img src="${asset:context:/images/placeholder.jpg}" align="left"/></t:pagelink>
         </t:parameter>
     </t:if>
-    Name: ${user.firstName}  ${user.LastName}
+    Name: ${owner.firstName}  ${owner.LastName}
     <t:if t:test="isprofile">
         <br>Activities: ${userprofile.activities}</br>
         <br>About Me: ${userprofile.aboutme} </br>

@@ -46,7 +46,7 @@ public class NewTag {
     @Inject
     private Block responseblock;
     @InjectComponent
-    private Zone formzone;
+    private Zone tagzone;
     @Inject
     private Logger logger;
     @Inject
@@ -66,7 +66,7 @@ public class NewTag {
 
         if(tagform.getHasErrors() && request.isXHR())
         {
-            return formzone;
+            return tagzone;
         }
         else
         {

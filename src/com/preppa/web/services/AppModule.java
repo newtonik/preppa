@@ -4,7 +4,6 @@
 package com.preppa.web.services;
 
 import com.preppa.web.data.AnnouncementDAO;
-import com.preppa.web.data.AnnouncementDAO;
 import com.preppa.web.data.AnnouncementDAOHibImpl;
 import com.preppa.web.data.ArticleDAO;
 import com.preppa.web.data.ArticleDAOHibImpl;
@@ -75,7 +74,6 @@ import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
 import org.apache.tapestry5.services.ValueEncoderFactory;
-import org.apache.tapestry5.upload.services.UploadSymbols;
 import org.chenillekit.mail.ChenilleKitMailConstants;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.reader.AuditReaderImpl;
@@ -191,12 +189,13 @@ public final class AppModule {
         configuration.add(ChenilleKitMailConstants.SMTP_SSL, "true");
         configuration.add(ChenilleKitMailConstants.SMTP_SSLPORT, "465");
         configuration.add(ChenilleKitMailConstants.SMTP_TLS, "true");
+        configuration.add("spring-security.afterlogout.url", "/");
   //      configuration.add(UploadSymbols.FILESIZE_MAX, "1000000"  );
        // configuration.add(UploadSymbols.REPOSITORY_LOCATION, "resources"  );
         
 
        // configuration.add("acegi.failure.url", "/loginpage/failed");
-        //configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
+        configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
 //         configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.Md5PasswordEncoder");
 
 

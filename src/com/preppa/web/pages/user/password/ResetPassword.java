@@ -63,7 +63,7 @@ void onValidateForm() {
 
     this.user = userDAO.findByEmail(femail);
     if(user == null) {
-        userform.recordError("The email does not exist!");
+        userform.recordError("Email address not found. Please submit the email address you used for registering your account.");
     }
     tries++;
     if(tries > 5) {

@@ -24,6 +24,7 @@ import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.UserProfile;
 import com.preppa.web.entities.Vocab;
+import com.preppa.web.pages.Index;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,8 +32,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -51,9 +54,10 @@ import org.hibernate.envers.query.criteria.LogicalAuditExpression;
 @IncludeStylesheet(value = {"context:styles/showuser.css"})
 @IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/tools.tabs-1.0.1.js", "context:js/showuser.js"})
 public class ShowUser {
-
-    @Property
+    @ApplicationState
     private User user;
+    @Property
+    private User owner;
     @Property
     private UserProfile userprofile;
     @Inject
@@ -129,12 +133,27 @@ public class ShowUser {
     private Block gridinblock;
     @Inject
     private GridinDAO gridinDAO;
+    @InjectPage
+    private Index index;
 
-    void onActivate(Integer id) {
-        this.user = userDAO.findById(id);
-        userprofile = user.getUserProfile();
-//        userprofile = userprofileDAO.findByUserId(user.getId());
+    Object onActivate(Integer id) {
+        if(user != null ) {
 
+            this.owner = userDAO.findById(id);
+            if(user.getId() == owner.getId()) {
+                userprofile = owner.getUserProfile();
+                return null;
+            }
+            else 
+            {
+                return index;
+            }
+        }
+        else
+        {
+            return index;
+        }
+        
     }
 
     /*public String getImageURL() {
@@ -143,7 +162,7 @@ public class ShowUser {
     String copyLocation = loader.getResource(classLocation).toString();
     copyLocation = copyLocation.substring(8, 73); // Remove "file" from the string
     copyLocation = this.formatSpace(copyLocation);
-    return copyLocation + "images/" + user.getId() + ".jpg";
+    return copyLocation + "images/" + owner.getId() + ".jpg";
     }*/
     public boolean getImageExist() {
         /*String classLocation = UploadImageUser.class.getName().replace('.', '/') + ".class";
@@ -151,11 +170,11 @@ public class ShowUser {
         String copyLocation = loader.getResource(classLocation).toString();
         copyLocation = copyLocation.substring(8, 73); // Remove "file" from the string
         copyLocation = this.formatSpace(copyLocation);
-        System.out.println(copyLocation + "images/" + user.getId() + ".jpg");
-        File check = new File(copyLocation + "images/" + user.getId()  +  ".jpg");*/
+        System.out.println(copyLocation + "images/" + owner.getId() + ".jpg");
+        File check = new File(copyLocation + "images/" + owner.getId()  +  ".jpg");*/
         char slash = (char) 92;
-        System.out.println("This " + c.getRealFile("/").getPath() + "/images/" + user.getId() + ".jpg");
-        File check = new File(c.getRealFile("/").getPath() + "/images/" + user.getId() + ".jpg");
+        System.out.println("This " + c.getRealFile("/").getPath() + "/images/" + owner.getId() + ".jpg");
+        File check = new File(c.getRealFile("/").getPath() + "/images/" + owner.getId() + ".jpg");
 
         return check.exists();
     }
@@ -172,12 +191,12 @@ public class ShowUser {
     }
 
     void onActivate(User user) {
-        this.user = user;
+        this.owner = user;
         updateArticles();
     }
 
     public String getPathString() {
-        return "/preppa/images/" + user.getId() + ".jpg";
+        return "/preppa/images/" + owner.getId() + ".jpg";
     }
 
     //public IAsset getImageAsset() { return new ExternalAsset(imageURL, null); }
@@ -186,12 +205,12 @@ public class ShowUser {
     }
 
     User onPassivate() {
-        return user;
+        return owner;
     }
 
     void setUserPage(User u) {
         if (u != null) {
-            this.user = userDAO.findById(u.getId());
+            this.owner = userDAO.findById(u.getId());
 
         }
     }
@@ -205,8 +224,8 @@ public class ShowUser {
 
     void updateLongPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(LongPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
@@ -230,13 +249,19 @@ public class ShowUser {
 
         }
 
-        longpassages = longpassageDAO.findByUserIds(ids);
+        if(ids.size() > 0) {
+            longpassages = longpassageDAO.findByUserIds(ids);
+        }
+        else
+        {
+            longpassages = null;
+        }
     }
 
      void updateGridins() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(LongPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
@@ -260,12 +285,18 @@ public class ShowUser {
 
         }
 
-        gridins = gridinDAO.findByUserIds(ids);
+         if(ids.size() > 0) {
+            gridins = gridinDAO.findByUserIds(ids);
+         }
+         else
+         {
+            gridins = null;
+         }
     }
     void updateVocabs() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(Vocab.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
@@ -289,13 +320,19 @@ public class ShowUser {
 
         }
 
-        vocabs = vocabDAO.findByUserIds(ids);
+         if(ids.size() > 0) {
+            vocabs = vocabDAO.findByUserIds(ids);
+         }
+         else
+         {
+            vocabs = null;
+         }
     }
 
     void updateLongDualPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(LongDualPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
@@ -318,13 +355,19 @@ public class ShowUser {
             }
 
         }
-        longdualpassages = longdualpassageDAO.findByUserIds(ids);
+         if(ids.size() > 0) {
+            longdualpassages = longdualpassageDAO.findByUserIds(ids);
+         }
+         else
+         {
+            longdualpassages = null;
+         }
     }
 
     void updateShortPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
@@ -348,13 +391,19 @@ public class ShowUser {
 
         }
 
-        shortpassages = shortpassageDAO.findByUserIds(ids);
+         if(ids.size() > 0) {
+            shortpassages = shortpassageDAO.findByUserIds(ids);
+         }
+         else
+         {
+            shortpassages = null;
+         }
     }
 
     void updateQuestions() {
                 AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(Question.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
@@ -377,13 +426,19 @@ public class ShowUser {
             }
 
         }
-        questions = questionDAO.findByUserIds(ids);
+         if(ids.size() > 0) {
+            questions = questionDAO.findByUserIds(ids);
+         }
+         else
+         {
+            questions = null;
+         }
 
     }
     void updateShortDualPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(ShortDualPassage.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
@@ -407,7 +462,13 @@ public class ShowUser {
 
         }
 
-        shortdualpassages = shortdualpassageDAO.findByUserIds(ids);
+         if(ids.size() > 0) {
+            shortdualpassages = shortdualpassageDAO.findByUserIds(ids);
+         }
+         else
+         {
+            shortdualpassages = null;
+         }
     }
 
     void updateArticles() {
@@ -416,13 +477,17 @@ public class ShowUser {
 
 
 
-        AuditCriterion usercrit = AuditEntity.property("user").eq(user);
-        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(user);
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion updatercrit = AuditEntity.property("updatedBy").eq(owner);
+        AuditCriterion orcrit = AuditEntity.or(updatercrit, usercrit);
 
+    
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Article.class, false, false)
+                .add(orcrit)
+                
+                .addProjection(AuditEntity.property("id").distinct());
 
-        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
-        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Article.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
-
+        
 
 
         List results = query.getResultList();
@@ -439,11 +504,15 @@ public class ShowUser {
             if (!ids.contains(i)) {
                 ids.add(i);
             }
-
+          
         }
 
-        articles = articleDAO.findByUserIds(ids);
-
+        if(ids.size() > 0) {
+            articles = articleDAO.findByUserIds(ids);
+        }
+        else {
+            articles = null;
+        }
 
     }
 

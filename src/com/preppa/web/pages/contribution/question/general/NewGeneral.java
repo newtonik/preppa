@@ -38,7 +38,7 @@ import org.springframework.security.annotation.Secured;
  */
 @Secured("ROLE_USER")
 @IncludeStylesheet(value = {"context:styles/question.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/question.js", "context:js/confirmexitoff.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/question.js"})
 public class NewGeneral {
 
     @ApplicationState
@@ -84,9 +84,6 @@ public class NewGeneral {
     private NewShortPassage newshortpassage;
     @Component
     private NewGridin newgridin;
-    @Inject
-    @Property
-    private Block newtagblock;
     //@Inject
     //private Block shortpassageblock;
     @Component
@@ -99,8 +96,7 @@ public class NewGeneral {
     private NewDualLongPassage newlongdualpassage;
     @Inject
     private TagDAO tagDAO;
-    @Component
-    private Form tagform;
+
     
     //@Property
     //@Inject
@@ -177,35 +173,5 @@ public class NewGeneral {
         return null;
     }
 
-    Block onActionFromCloseTag() {
-        return newtagblock;
-    }
-    //Funtions for adding new tags and topics
 
-    @CommitAfter
-    JSONObject onSuccessFromTagForm() {
-        List<Tag> tolist = tagDAO.findByName(fname);
-        JSONObject json = new JSONObject();
-        Tag tag = new Tag();
-        System.out.print(tolist);
-        if (tolist.size() > 0) {
-            String markup = "<p>  <b>" + fname +
-                    "</b> already exists. <p>";
-            json.put("content", markup);
-
-        } else {
-            tag = new Tag();
-            tag.setName(fname);
-
-            tagDAO.doSave(tag);
-            String markup = "<p> You just submitted <b>" + tag.getName() +
-                    "</b>. Please add it using the dropdown <p>";
-            json.put("content", markup);
-
-        }
-
-
-        // return new TextStreamResponse("text/json", json.toString());
-        return json;
-    }
 }

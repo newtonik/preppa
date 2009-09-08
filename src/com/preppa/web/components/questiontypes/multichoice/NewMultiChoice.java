@@ -195,8 +195,6 @@ public class NewMultiChoice {
     @Component(parameters = {"value=questiontype", "event=change" })
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
-    @InjectComponent
-    private Zone newquestionzone;
     @Inject
     private QuestiontypeDAO questiontypeDAO;
     @Inject
@@ -340,7 +338,7 @@ public class NewMultiChoice {
             testsubjects = testsubjectDAO.findAllWithQuestions();
 
         questiontypes = questiontypeDAO.findAll();
-            return newquestionzone;
+            return null;
             //return null;
         } else {
             //showquestion.setquestion(question);
