@@ -1,4 +1,40 @@
 
+ $('addtopic').observe('click', function() {
+            //get position
+            alert("clciked");
+            var pos = $('addtopic').cumulativeOffset();
+            var width  = $('addtopic').getWidth();
+            //alert(pos.left)
+
+            $('newtopicbox').setStyle({
+
+                display: 'block',
+                position: 'absolute',
+                fontSize: '12px',
+                left: (pos.left-200) + "px",
+                top : (pos.top)+ "px"
+            });
+            $('newtopicbox').show();
+            $('fTopicName').activate();
+            //$('autoComplete').disable();
+        });
+
+        $('closetopic').observe('click', function() {
+              $('newtopicbox').setStyle({
+
+                display: 'none'
+                });
+                $('topiccorner').setStyle({
+                    'background-color': '#e8eefa'
+                });
+                 $('newtopicbox').hide();
+                 $('autoComplete').enable();
+                 $('autoComplete').activate();
+
+        });
+
+
+
 document.observe("dom:loaded", function() {
 
     //$('questiontypes').disable()

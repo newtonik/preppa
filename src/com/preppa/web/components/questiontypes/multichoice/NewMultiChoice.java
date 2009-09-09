@@ -8,6 +8,7 @@ import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
+import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
@@ -17,14 +18,18 @@ import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
 import com.preppa.web.utils.InjectSelectionModel;
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
@@ -215,6 +220,35 @@ public class NewMultiChoice {
     @Persist
     private String hasOwner;
 
+    //Topics
+    @Inject
+    private TopicDAO topicDAO;
+    @Inject
+    @Property
+    private Block newtopicblock;
+    @Property
+    private Topic top;
+    @Property
+    private List<Topic> addedTopics = new LinkedList<Topic>();
+    @Property
+    private Testsubject topicSubject;
+    @Component(parameters = {"value=topicSubject"})
+    private Select select2;
+    @Property
+    private String fTopic;
+    @Property
+    private String fTopicName;
+    @Component
+    private Form topicform;
+    @InjectSelectionModel(labelField = "name", idField = "id")
+    private List<Testsubject> testsubjects1 = new ArrayList<Testsubject>();
+    @Component
+    private AutoComplete autoComplete;
+    @Property
+    @Persist
+    private Testsubject testsubject1;
+
+
     public boolean getError() {
         return error;
     }
@@ -383,6 +417,7 @@ public class NewMultiChoice {
 
         // System.out.println("I just got selected " + quesId);
         if (!quesId.equals("") && quesId != null) {
+            System.out.println("Setting questType");
             questType = Integer.parseInt(quesId);
             questiontype = questiontypeDAO.findById(questType);
             if (question == null) {
@@ -459,13 +494,24 @@ public class NewMultiChoice {
             imageupload.write(copied);
             
         }
-        
+
+
+        //add new topics and verify no duplicates
+       for(Topic e: addedTopics) {
+            if(!(question.getTopics().contains(e)))
+            {
+                question.getTopics().add(e);
+            }
+
+         }
+
      if(hasOwner.equals("true")) {
        if (!saveQuestionToObject(owner, question)) {
                 logger.debug("Just saving the question, object is null");
                 questionDAO.doSave(question);
         }
      }
+
 
         if (request.isXHR() ) {
             showquestion.setquestion(question);
@@ -566,4 +612,110 @@ public class NewMultiChoice {
     <font color="FF0000">ERROR : ${emessage}</font>
     </t:if>
      */
+
+    public void onPrepare(){
+              Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+                testsubjects1.clear();
+              testsubjects1.addAll(setItems);
+
+    }
+
+    void Article() {
+       Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+       testsubjects1.addAll(setItems);
+
+
+
+    }
+
+    public FieldTranslator getTranslator()
+  {
+    return new FieldTranslator<Topic>()
+    {
+            @Override
+      public String toClient(Topic value)
+      {
+        String clientValue = "0";
+        if (value != null)
+          clientValue = String.valueOf(value.getId());
+
+        return clientValue;
+      }
+
+            @Override
+      public void render(MarkupWriter writer) { }
+
+            @Override
+      public Class<Topic> getType() { return Topic.class; }
+
+            @Override
+      public Topic parse(String clientValue) throws ValidationException
+      {
+        Topic serverValue = null;
+
+        if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+            System.out.println(clientValue);
+          serverValue = topicDAO.findById(new Integer(clientValue));
+        }
+        return serverValue;
+      }
+    };
+  }
+
+    List<Topic> onProvideCompletionsFromAutocomplete(String partial) {
+         List<Topic> matches = null;
+
+        if(testsubject1 != null)
+        {
+            logger.warn("Test subject is not null");
+            matches = topicDAO.findByPartialName(partial, testsubject1);
+            logger.warn("Size is " + matches.size());
+        }
+        else
+        {
+            System.out.println("Partial is " + partial);
+            matches = topicDAO.findByPartialName(partial);
+        }
+       // matches = topicDAO.findByPartialName(partial);
+        return matches;
+
+    }
+
+        Block onActionFromCloseTopic() {
+            return newtopicblock;
+
+        }
+
+
+        @CommitAfter
+        JSONObject onSuccessFromTopicForm() {
+            JSONObject json = new JSONObject();
+            System.out.println("trying to save " + fTopicName);
+          Topic topic = new Topic();
+           topic.setName(fTopicName);
+          topic.setTestsubject(topicSubject);
+          System.out.println("Topic name and subject set.");
+         if(topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
+             String markup = "<p> There is already a <b>" + fTopicName +
+                    "</b> topic in " + topicSubject.getName() + " Section.<p>";
+                json.put("content", markup);
+
+
+         }
+         else
+         {
+             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+             topic.setCreatedAt(now);
+             topic.setUpdatedAt(now);
+             System.out.println("Topic is being saved");
+             System.out.println("Topic is " + topicSubject);
+            topicDAO.doSave(topic);
+             String markup = "<p> You just submitted <b>" + topic.getName() +
+                    "</b>. Please add it using the topics autocomplete. <p>";
+               json.put("content", markup);
+
+         }
+          return json;
+        }
 }

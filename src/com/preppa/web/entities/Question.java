@@ -9,6 +9,7 @@ import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -35,6 +36,7 @@ import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 
 /**
@@ -70,6 +72,7 @@ public class Question implements Serializable {
     private User updatedBy;
     private Boolean approval;
     private List<ReviewComment> reviewcomments;
+    private List<Topic> topics = new LinkedList<Topic>();
 
     public Question() {
     }
@@ -479,6 +482,28 @@ public class Question implements Serializable {
         this.title = title;
     }
 
-  
+    /**
+     * @return the topics
+     */
+     @ManyToMany(targetEntity=Topic.class)
+    @JoinTable(name = "QuestionTopic",
+    joinColumns = {
+      @JoinColumn(name="questionId")
+        },
+    inverseJoinColumns = {
+      @JoinColumn(name="topicId")
+    })
+    @Audited
+    @IndexedEmbedded
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    /**
+     * @param topics the topics to set
+     */
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
 
 }
