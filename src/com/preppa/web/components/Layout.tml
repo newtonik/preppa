@@ -36,6 +36,18 @@
                                         <div t:id="leftRegularContent">
                                             <br/>
                                             <div t:id="contribute" style="width: 150px;">
+                                                <a href="#" t:page="contribution/question/general/new" t:type="pagelink" >
+                                                     <img align="middle" height="50" width="125" src="${asset:context:/images/layout/contribute-questions2.png}" />
+                                                </a>
+                                                <br />
+                                                <a href="#" t:page="contribution/article/create" t:type="pagelink" >
+                                                     <img align="middle" height="50" width="125" src="${asset:context:/images/layout/contribute-articles2.png}" />
+                                                </a>
+                                                <br />
+                                                <a href="#" t:page="contribution/vocab/add" t:type="pagelink" >
+                                                     <img align="middle" height="50" width="125" src="${asset:context:/images/layout/contribute-vocab2.png}"  />
+                                                </a>
+                                                <br />
                                                 <t:pagelink t:page="contribution/question/general/new"> Contribute Content </t:pagelink><br/>
                                                 <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
                                                 <t:pagelink t:page="contribution/article/create"> Articles </t:pagelink><br/>

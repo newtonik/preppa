@@ -325,6 +325,16 @@ h1
     margin:0;
 }
 
+/** Left Contribute Box style **/
+
+#contribute_content img {
+    border:none;
+    margin-top: 5px;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+
 .roundedcornr_box {
     background: #ffffff;
 }
@@ -410,8 +420,28 @@ DIV.t-error LI {
     margin-left: 20px;
     color: #000000;
 }
-#userformtable, #atable {
+#userformtable {
     border: none; background-color: #e8eefa; margin: 20px auto; border-collapse: collapse;
+}
+
+
+#atable {
+    width: 350px;
+    font-size: 12px;
+    margin-right:auto;
+    margin-left:auto;
+    border: none;
+    border-collapse:collapse;
+    border-spacing:0px;
+}
+
+ label {
+    font-weight:bold;
+  
+}
+
+#atable label {
+    font-size:larger;
 }
 #navbarlogintable {
     border: none; background-color: #D4E4FF; border-collapse: collapse;

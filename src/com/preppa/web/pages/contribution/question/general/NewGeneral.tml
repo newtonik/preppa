@@ -11,7 +11,7 @@
                     <input t:id="testSubSelect"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder" onchange="IGNORE_UNLOAD = false" onkeypress="IGNORE_UNLOAD = false" />
                     </td>
                     <td align="right" >
-                    <t:label for="QuestiontypeSelect"> Select a Testsubject </t:label>
+                    <t:label for="QuestiontypeSelect"> Question Type </t:label>
                     <br />
                     <input t:id="QuestiontypeSelect"  model="questiontypesSelectionModel" encoder="questiontypesValueEncoder"/>
                     </td>
