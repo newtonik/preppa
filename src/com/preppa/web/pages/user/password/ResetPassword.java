@@ -71,7 +71,7 @@ void onValidateForm() {
     }
 }
 @CommitAfter
-void onSuccess()
+Object onSuccess()
 {
 
     ShaPasswordEncoder enc = new ShaPasswordEncoder();
@@ -87,6 +87,6 @@ void onSuccess()
         } catch (EmailException ex) {
            logger.debug(ex.toString());
         }
-
+        return Confirm.class;
 }
 }

@@ -1,0 +1,9 @@
+<html t:type="layout"  t:pageTitle="Confirmation" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
+    bgcolor="#FFFFFF"
+    style="padding: 20px;" align="center">
+<div style="padding: 20px; background-color:#e8eefa;" >
+Please check your email for a link to reset your password.
+<br/><t:pagelink t:page="loginpage"> Log In </t:pagelink>
+</div></div>
+</html>

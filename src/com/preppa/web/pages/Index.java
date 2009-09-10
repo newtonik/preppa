@@ -136,7 +136,9 @@ public class Index {
         List<Announcement> returnVal;
         returnVal = announcementDAO.findAllOrderedByDate();
         if (returnVal != null) {
-            returnVal = returnVal.subList(0, 1);
+            // Getting the latest announcement
+            System.out.println(returnVal);
+            returnVal = returnVal.subList(returnVal.size()-1, returnVal.size());
         }
 
         return returnVal;
