@@ -462,6 +462,10 @@ public class NewMultiChoice {
             questiontype = questiontypeDAO.findById(questType);
             question.setQuestiontype(questiontype);
         }
+        else
+        {
+            question.setQuestiontype(qtype);
+        }
         for (Tag t : addedTags) {
             if (!(question.getTaglist().contains(t))) {
                 question.getTaglist().add(t);
@@ -505,13 +509,14 @@ public class NewMultiChoice {
 
          }
 
+    if(owner != null) {
      if(hasOwner.equals("true")) {
        if (!saveQuestionToObject(owner, question)) {
                 logger.debug("Just saving the question, object is null");
                 questionDAO.doSave(question);
         }
      }
-
+    }
 
         if (request.isXHR() ) {
             showquestion.setquestion(question);
