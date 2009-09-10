@@ -34,9 +34,14 @@ body, table, input, select
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10pt;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
 
 }
+
+body {
+    background-color: #000000;
+}
+
 input {
     padding: 1px;
 }
@@ -276,7 +281,8 @@ h1
     margin-left:-50%;
     position:relative;
     left:400px;         	/* Left column width + right column width */
-    background: #FFFFFF;    	/* Left column background colour */
+    /*background: #FFFFFF;*/    	/* Left column background colour */
+    background: #000000;
 }
 .holygrail .col1wrap {
     float:left;
@@ -304,11 +310,13 @@ h1
 .holygrail .col3 {
     float:left;
     float:right;			/* This overrides the float:left above */
-    width:170px;        	/* Width of right column content (right column width minus left and right padding) */
-    margin-right:45px;  	/* Width of right column right-hand padding + left column left and right padding */
+    /*width:170px;*/        	/* Width of right column content (right column width minus left and right padding) */
+    width:230px;
+    margin-right:0px;
+    /*margin-right:45px;*/  	/* Width of right column right-hand padding + left column left and right padding */
     position:relative;
     left:50%;
-   
+    background: #000000;
 }
 
 /* Footer styles */
