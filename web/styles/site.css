@@ -21,6 +21,11 @@ root {
     padding: 0;
 }
 
+root,html {
+   background: #cbcbcb url(../images/layout/gradient.png)
+    repeat-x top;
+}
+
 
 div.nav-top {
     background-color:black
@@ -40,9 +45,7 @@ body, table, input, select
 
 }
 
-body {
-    background-color: #000000;
-}
+
 
 input {
     padding: 1px;
@@ -124,7 +127,9 @@ h1
     /*border:2px outset #CCCCCC;
     background-color: #D4E4FF;*/
     border:0px outset #CCCCCC;
-    background-color: #000000;
+    /*background-color: #000000;*/
+   /* background: #f9f9f9 url(../images/layout/gradient.png) repeat-x top; */
+    background:inherit;
     z-index: 9000;
     margin-top:0px;
 }
@@ -177,7 +182,7 @@ h1
     display:block;
 }
 #navbar {
-    background:black;
+      background:inherit;
 }
 
 #topright {
@@ -270,7 +275,7 @@ h1
 }
 /* holy grail 3 column settings */
 .holygrail {
-    background: #FFF;    	/* Right column background colour */
+      background:inherit; 	/* Right column background colour */
 
 }
 .holygrail .colmid {
@@ -280,7 +285,7 @@ h1
     position:relative;
     right:100%;
     height:100%;
-    background:#fff;    	/* Centre column background colour */
+  
 }
 .holygrail .colleft {
     float:left;
@@ -289,7 +294,7 @@ h1
     position:relative;
     left:400px;         	/* Left column width + right column width */
     /*background: #FFFFFF;*/    	/* Left column background colour */
-    background: #000000;
+  
 }
 .holygrail .col1wrap {
     float:left;
@@ -305,7 +310,7 @@ h1
                             	Right padding = right column width + centre column right padding width */
     position:relative;
     left:200%;
-
+  background:#fff;    	/* Centre column background colour */
     padding-bottom:25px;
 }
 .holygrail .col2 {
@@ -327,7 +332,7 @@ h1
     height:100%;
     right:0;
     /*left:50%;*/
-    background: #000000;
+    background:inherit;
 }
 
 /* Footer styles */
@@ -465,7 +470,8 @@ DIV.t-error LI {
 }
 #navbarlogintable {
     /*border: none; background-color: #D4E4FF; border-collapse: collapse;*/
-    border: none; background-color: #000000; border-collapse: collapse;
+    border: none; background-color:inherit; border-collapse: collapse;
+    color:white;
 }
 #showquestion h1,h2, h3{
 
