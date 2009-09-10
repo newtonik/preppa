@@ -20,8 +20,10 @@ root {
     margin: 0;
     padding: 0;
 }
+
+
 div.nav-top {
-    background-color:aqua
+    background-color:black
 }
 body {
     text-align:center;
@@ -119,8 +121,10 @@ h1
     display:inline-block;
     margin:0 auto;
     vertical-align:baseline;
-    border:2px outset #CCCCCC;
-    background-color: #D4E4FF;
+    /*border:2px outset #CCCCCC;
+    background-color: #D4E4FF;*/
+    border:0px outset #CCCCCC;
+    background-color: #000000;
     z-index: 9000;
     margin-top:0px;
 }
@@ -173,7 +177,7 @@ h1
     display:block;
 }
 #navbar {
-    
+    background:black;
 }
 
 #topright {
@@ -241,7 +245,8 @@ h1
 
 
 #logo  {
-    background-color: #D4E4FF;
+    /*background-color: #D4E4FF;*/
+    background-color: #000000;
     display:block;
 }
 /* 'widths' sub menu */
@@ -260,6 +265,7 @@ h1
     clear:both;
     float:left;
     width:100%;				/* width of whole page */
+    height:100%;
     overflow:visible;		/* This chops off any overhanging divs */
 }
 /* holy grail 3 column settings */
@@ -273,6 +279,7 @@ h1
     margin-left:-200px; 	/* Width of right column */
     position:relative;
     right:100%;
+    height:100%;
     background:#fff;    	/* Centre column background colour */
 }
 .holygrail .colleft {
@@ -289,6 +296,7 @@ h1
     width:50%;
     position:relative;
     right:200px;        	/* Width of left column */
+    height:100%;
     padding-bottom:1em; 	/* Centre column bottom padding. Leave it out if it's zero */
 }
 .holygrail .col1 {
@@ -306,16 +314,19 @@ h1
     width:170px;        	/* Width of left column content (left column width minus left and right padding) */
     position:relative;
     right:15px;         	/* Width of the left-had side padding on the left column */
+    
 }
 .holygrail .col3 {
     float:left;
     float:right;			/* This overrides the float:left above */
     /*width:170px;*/        	/* Width of right column content (right column width minus left and right padding) */
-    width:230px;
-    margin-right:0px;
-    /*margin-right:45px;*/  	/* Width of right column right-hand padding + left column left and right padding */
-    position:relative;
-    left:50%;
+    width:170px;
+    /*margin-right:0px;*/
+    margin-right:0px;  	/* Width of right column right-hand padding + left column left and right padding */
+    position:absolute;
+    height:100%;
+    right:0;
+    /*left:50%;*/
     background: #000000;
 }
 
@@ -429,7 +440,8 @@ DIV.t-error LI {
     color: #000000;
 }
 #userformtable {
-    border: none; background-color: #e8eefa; margin: 20px auto; border-collapse: collapse;
+    /*border: none; background-color: #e8eefa; margin: 20px auto; border-collapse: collapse;*/
+    border: none; background-color: #000000; margin: 20px auto; border-collapse: collapse;
 }
 
 
@@ -452,7 +464,8 @@ DIV.t-error LI {
     font-size:larger;
 }
 #navbarlogintable {
-    border: none; background-color: #D4E4FF; border-collapse: collapse;
+    /*border: none; background-color: #D4E4FF; border-collapse: collapse;*/
+    border: none; background-color: #000000; border-collapse: collapse;
 }
 #showquestion h1,h2, h3{
 

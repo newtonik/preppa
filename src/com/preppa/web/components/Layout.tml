@@ -27,7 +27,7 @@
                         </div>
                         <div class="col2">
                             <br/>
-                            <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                            <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
                                  style="padding: 1px; margins: 1px;" align="center">
                                 <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
                                     <t:delegate to="leftContent" />
@@ -69,15 +69,19 @@
                             <div class="droppable">
                             </div>
                         </div>
-                        <div class="col3">
+                        
+                        </div>
+                    </div>
 
+
+                    <div class="col3">
                             <br clear="none" />
-                            <div >
+                            <div align="center" style="height:100%">
                                 <t:delegate to="rightblockone" />
                                 <t:block>
                                     <div t:id="rightblockoneregularContent" align="center">
                                         <div class="droppable">
-                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
                                                  style="padding: 1px; margins: 1px;" align="center">
                                                 <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
                                                     <div class="rightsideboxes">
@@ -96,7 +100,7 @@
                                     <h2></h2>
                                     <div t:id="rightblocktworegularContent" >
                                         <div class="droppable">
-                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
                                                  style="padding: 1px; margins: 1px;" align="center">
                                                 <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
                                                     <div class="rightsideboxes">
@@ -115,24 +119,24 @@
                                     <h2></h2>
                                     <div t:id="rightblockthreeregularContent" >
                                         <div class="droppable">
-                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
                                                  style="padding: 1px; margins: 1px;" align="center">
                                                 <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
                                                     <div class="rightsideboxes">
-
-
                                                         Movable Block 3
                                                            <br  />
                                                     </div>
                                                 </div>
-                                             
+
                                             </div>
                                         </div>
                                     </div>
                                 </t:block>
+                                <br/>
                             </div>
-                        </div>
-                    </div>
+
+
+
 
                 </div>
 
