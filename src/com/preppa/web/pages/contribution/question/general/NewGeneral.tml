@@ -40,7 +40,7 @@
             <br />
         </div>
         <div id="multichoice" class="questiontype" align="center" style='display:none'>
-            <div t:id="aquestion" t:hasquestiontype="true"></div>
+            <div t:id="aquestion" t:hasquestiontype="true" t:qtype="questiontype"></div>
         </div>
             <div id="gridin" class="questiontype" align="center" style='display:none'>
             <div t:id="newgridin" />
