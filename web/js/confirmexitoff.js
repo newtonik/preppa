@@ -8,7 +8,7 @@
    * $Id$
    */
 
-var UNLOAD_MSG = "You will lose any unsaved changes!";
+/*var UNLOAD_MSG = "You will lose any unsaved changes!";
 
 var IGNORE_UNLOAD = true;
 
@@ -30,4 +30,15 @@ function SetTxtFocus(txtId) {
    var oTxt = document.getElementById(txtId);
    oTxt.focus();
    oTxt.select();
+}*/
+
+  var UNLOAD_MSG = "You will lose any unsaved changes!";
+var IGNORE_UNLOAD = true;
+
+function doBeforeUnload()  {
+    if (IGNORE_UNLOAD) return;
+    else
+    return UNLOAD_MSG;
 }
+
+window.onbeforeunload = doBeforeUnload;

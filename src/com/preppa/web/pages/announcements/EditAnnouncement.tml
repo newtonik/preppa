@@ -4,5 +4,6 @@
                 <br/>Announcement: <br/><t:editor align="left" t:id="messageedit" value="aAnnouncement" t:toolbarSet="Basic" t:width="600" t:height="300"
                         t:label="Body" t:validate="required" />
                 <br/><input type="submit" value="Submit"/>
+                <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="50" width="125" onclick="javascript:history.go(-1);" value="Cancel"></input>
           </t:form>
 </html>

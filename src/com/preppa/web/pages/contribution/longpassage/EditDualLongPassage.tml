@@ -95,8 +95,8 @@
                 <tr>
                     <td></td>
                     <td colspan="2" align="left">
-                        <input type="submit" value="Submit"  onclick="IGNORE_UNLOAD = true" />
-                        <a href="#" t:type="pagelink" t:page="contribution/longpassage/showdual" t:context="${longDualpassage.id}" ><input type="button" value="Cancel" /></a>
+                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="50" width="125" value="Submit"  onclick="IGNORE_UNLOAD = true" />
+                        <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="50" width="125" onclick="javascript:history.go(-1);" value="Cancel"></input>
                     </td>
 
                 </tr>

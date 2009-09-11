@@ -109,7 +109,7 @@
                 <td colspan="2" align="left">
                     <br />
                     <input type="submit" value="Submit"  onclick="IGNORE_UNLOAD = true" />
-                    <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${question.id}" > <input type="button" value="Cancel"></input> </a>
+                    <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="50" width="125" onclick="javascript:history.go(-1);" value="Cancel"></input>
                 </td>
 
             </tr>

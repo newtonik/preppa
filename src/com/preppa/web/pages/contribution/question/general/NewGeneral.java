@@ -36,7 +36,7 @@ import org.springframework.security.annotation.Secured;
  */
 @Secured("ROLE_USER")
 @IncludeStylesheet(value = {"context:styles/question.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/question.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/question.js", "context:js/confirmexitoff.js"})
 public class NewGeneral {
 
     @ApplicationState

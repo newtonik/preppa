@@ -78,8 +78,8 @@
                 <tr>
                     <td></td>
                     <td colspan="2" align="left">
-                        <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                        <input type="button" onclick="window.location='Index'; return false;" value="Cancel"></input>
+                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="50" width="125" value="Submit" onclick="IGNORE_UNLOAD = true"/>
+                                            <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="50" width="125" onclick="javascript:history.go(-1);" value="Cancel"></input>
                     </td>
 
                 </tr>
