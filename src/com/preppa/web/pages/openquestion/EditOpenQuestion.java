@@ -70,6 +70,7 @@ public class EditOpenQuestion {
     private ShowOpenQuestion showquestion;
 
     Object onActivate(Long id) {
+
         if (id > 0) {
             question = openDAO.findById(id);
             this.qid = id;
@@ -83,7 +84,8 @@ public class EditOpenQuestion {
             }
             else
             {
-                return null;
+                showquestion.setOpenQuestion(question);
+                return showquestion;
             }
         }
         return null;

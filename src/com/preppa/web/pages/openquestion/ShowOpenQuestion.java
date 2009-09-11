@@ -69,7 +69,9 @@ public class ShowOpenQuestion {
             if(user != null) {
                 if(question.getOwner().getId() == user.getId() )
                 {
-                    sameUser = true;
+                    //setting as false for now as we are not allowing users to edit their questions.
+                    //That may change
+                    sameUser = false;
                 }
             }
         }

@@ -6,4 +6,14 @@ jQuery("ul.css-tabs").tabs("div.realpanes > div", {
   }
 });
 
+jQuery('tr').click(function () {
+  $(this).toggleClass('highlight_row');
 });
+
+});
+
+
+function DoClick(theUrl) {
+    document.location.href = theUrl;
+
+}

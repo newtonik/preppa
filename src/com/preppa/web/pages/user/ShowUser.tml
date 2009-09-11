@@ -29,18 +29,16 @@
         <h3> Watchlist </h3>
         <!-- tab "panes" -->
         <ul class="css-tabs">
-            <li><a href="#" t:id="getarticles" t:type="actionlink" t:zone="articlezone"  >Articles</a></li>
-            <li><a href="#" t:id="getpassages" t:type="actionlink" t:zone="passagezone">Passages</a></li>
-            <li><a href="#" t:id="getquestions" t:type="actionlink"  t:zone="multiplezone" >Multiple Choice</a></li>
-            <li><a href="#" t:id="getgridins" t:type="actionlink" t:zone="gridinzone" >Gridin</a></li>
+            <li><a href="#" t:id="getarticles" t:type="actionlink" t:zone="articlezone"  >Articles and Guides</a></li>
+            <li><a href="#" t:id="getquestions" t:type="actionlink"  t:zone="multiplezone" >Questions</a></li>
+            <li><a href="#" t:id="getgridins" t:type="actionlink" t:zone="gridinzone" >Essay Responses</a></li>
             <li><a href="#" t:id="getvocabs" t:type="actionlink" t:zone="vocabzone" >Vocab</a></li>
 
         </ul>
         <div class="realpanes">
             <div t:type="zone" t:id="articlezone" style="display:block"> <t:delegate to="resultblock" /> </div>
-            <div t:type="zone" t:id="passagezone" >Passages</div>
-            <div t:type="zone" t:id="multiplezone">Quesitons</div>
-            <div t:type="zone" t:id="gridinzone"> Gridin </div>
+            <div t:type="zone" t:id="multiplezone"></div>
+            <div t:type="zone" t:id="gridinzone"></div>
             <div t:type="zone" t:id="vocabzone"></div>
         </div>
 
@@ -75,8 +73,9 @@
                 <th> Time Submitted </th>
                 <th> Last Updated </th>
                 <th> Last Updated By </th>
+                <th></th>
             </tr>
-            <tr t:type="loop" source="questions" value="question">
+            <tr class="clickablerow" t:type="loop" source="questions" value="question" onclick="DoClick('../../contribution/question/show/${question.id}');">
                     <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/question/show" t:context="${question.id}" >${question.title} </a> </td>
                     <td align="left"> <t:outputraw value="question.question" /> </td>
                 <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.createdat" /> </td>

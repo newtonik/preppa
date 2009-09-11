@@ -127,7 +127,9 @@ public class NewGridin {
     }
 
     void onValidateFormFromGridinForm() {
-        System.out.println("Validating " + answertype);
+        if(hasimage == null) {
+            gridinForm.recordError(gridinchooseimage, "Please specify if you have an image");
+        }
         if (answertype == null) {
             gridinForm.recordError("You need to select an answer");
         } else {

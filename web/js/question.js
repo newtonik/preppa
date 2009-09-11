@@ -94,18 +94,24 @@ function onChangeQuestiontype(response) {
         eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
+            eBlocks[i].removeClassName("current");
          
         }
         $('multichoice').addClassName("current");
         $('multichoice').show();
         $('multichoice').highlight();
-        document.title = "Create New MultiChoice";
+        if(response.title != null) {
+            document.title = response.title;
+        }
+        else {
+            document.title = "Create New MultiChoice";
+        }
     }
     if(response.type == "longpassage") {
          eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
-         
+            eBlocks[i].removeClassName("current");
         }
         $('shortdualpassage').addClassName("current");
         $('longpassage').show();
@@ -116,7 +122,7 @@ function onChangeQuestiontype(response) {
          eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
-         
+         eBlocks[i].removeClassName("current");
         }
         $('shortdualpassage').addClassName("current");
         $('longdualpassage').show();
@@ -128,7 +134,7 @@ function onChangeQuestiontype(response) {
          eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
-         
+            eBlocks[i].removeClassName("current");
         }
         $('shortdualpassage').addClassName("current");
         $('shortpassage').show();
@@ -151,6 +157,7 @@ function onChangeQuestiontype(response) {
          eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
+            eBlocks[i].removeClassName("current");
 
         }
         $('gridin').addClassName("current");

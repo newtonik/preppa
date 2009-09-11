@@ -10,7 +10,6 @@ import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TestsubjectDAO;
 import com.preppa.web.entities.Questiontype;
-import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.User;
 import com.preppa.web.utils.InjectSelectionModel;
@@ -26,7 +25,6 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Select;
-import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
@@ -162,6 +160,11 @@ public class NewGeneral {
             questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Grid In")) {
             json.put("type", "gridin");
+            questiontype = questiontypeDAO.findByName(quesType);
+        }
+        else {
+            json.put("type", "multichoice");
+            json.put("title", quesType);
             questiontype = questiontypeDAO.findByName(quesType);
         }
         return json;
