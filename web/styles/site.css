@@ -101,7 +101,8 @@ h1
 
 #nav-menu ul li a
 {
-    background: url(background.gif) #fff bottom left repeat-x;
+        background: #cccccc url(../images/layout/topnavli.png)
+    repeat-x top;
     height: 2em;
     line-height: 2em;
     float: left;
@@ -138,36 +139,38 @@ h1
 #header h2 {
     margin:0;
 }
-#header ul {
+#nav-menu ul {
     clear:left;
     float:left;
-
     list-style:none;
     margin:10px 0 0 0;
     padding:0;
+    background:inherit;
 }
-#header ul li {
-    
+#nav-menu li {
+    background: #cccccc url(../images/layout/topnavli.png)
+    repeat-x top;
+}
+#nav-menu ul li {
+   
     list-style:none;
     margin:0;
     padding:0;
 }
-#header ul li a {
+#nav-menu ul li a {
     display:block;
     float:left;
     margin:0 0 0 0px;
     padding:3px 10px;
     text-align:center;
-    background:#eee;
     color:#000;
     text-decoration:none;
     position:relative;
-    left:15px;
     line-height:1.5em;
     padding-bottom:10px;
 
 }
-#nav-menu ul li a:hover {
+#nav-menu ul a:hover {
     background:#369;
     color:#fff;
 
@@ -175,8 +178,7 @@ h1
 #nav-menu ul li a.active,
 #nav-menu ul li a.active:hover {
     color:#fff;
-    background:#000;
-    font-weight:bold;
+    font-weight:bolder;
 }
 #nav-menu ul li a span {
     display:block;
@@ -446,7 +448,7 @@ DIV.t-error LI {
 }
 #userformtable {
     /*border: none; background-color: #e8eefa; margin: 20px auto; border-collapse: collapse;*/
-    border: none; background-color: #000000; margin: 20px auto; border-collapse: collapse;
+    border: none; background-color:inherit; margin: 20px auto; border-collapse: collapse;
 }
 
 
