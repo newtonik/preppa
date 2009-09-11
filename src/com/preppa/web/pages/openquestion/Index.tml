@@ -1,6 +1,7 @@
 <html t:type="layout" t:pageTitle="All Open Questions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <body>
         <br />
+        <div class="mainclass">
         <div >
             <h2>
                 <a href="#" t:type="pagelink" t:page="openquestion/new" >
@@ -42,6 +43,6 @@
         </div>
 
     </t:loop>
-
+        </div>
 </body>
 </html>
