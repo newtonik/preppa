@@ -1,0 +1,76 @@
+/* 
+    Document   : navmenu
+    Created on : Sep 12, 2009, 1:06:20 AM
+    Author     : nwt
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+
+#nmenu {
+    float:left;
+    width:100%;
+    font-size:93%;
+    line-height:normal;
+     background: url(../images/layout/tabbar.png)
+     repeat-x bottom;
+}
+
+#nmenu ul {
+    margin:0;
+    float:left;
+    list-style:none;
+    padding:10px 10px 0;
+        font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+
+}
+#nmenu li {
+    float:left;
+    margin:0;
+    padding:0;
+    background:url(../images/layout/topmenuleft.jpg)
+        no-repeat left top;
+   padding:0 0 0 9px;
+  margin-bottom:18px;
+  height: 35px;
+}
+
+#nmenu a {
+    float:left;
+    display:block;
+    background:url(../images/layout/topmenuright.jpg)
+        no-repeat right top;
+    padding:5px 15px 4px;
+    text-decoration:none;
+    color:#000000;
+    padding:5px 15px 4px 6px;
+
+
+}
+
+#nmenu .active {
+    background: #3d3d3d url(../images/layout/topmenuleftactive.png)
+         no-repeat left top;
+    color:#ffffff;
+}
+#nmenu .active a {
+    padding-bottom:5px;
+    background:#3d3d3d  url(../images/layout/topmenurightactive.png)
+         no-repeat right top;
+    color:#ffffff;
+}
+#testnavbar {
+ float:none;
+ background:inherit;
+}
