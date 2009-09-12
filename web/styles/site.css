@@ -351,12 +351,14 @@ h1
     margin-left:-50%;
     position:relative;
     left:400px;         	/* Left column width + right column width */
+    background:inherit;
     /*background: #FFFFFF;*/    	/* Left column background colour */
   
 }
 .holygrail .col1wrap {
     float:left;
     width:50%;
+    background:inherit;
     position:relative;
     right:200px;        	/* Width of left column */
     height:100%;
@@ -368,12 +370,20 @@ h1
                             	Right padding = right column width + centre column right padding width */
     position:relative;
     left:200%;
-  background:#fff;    	/* Centre column background colour */
+  background:inherit;    	/* Centre column background colour */
     padding-bottom:25px;
 }
-
-#contentwrap {
+#mainwrap {
+    background:inherit;
     
+}
+#contentwrap {
+    float:none;
+    margin-top:10px;
+    background-color:#ffffff;
+}
+#content {
+    background-color:#ffffff;
     margin-right: 10px;
     margin-left: 10px;
     margin-bottom: 10px;

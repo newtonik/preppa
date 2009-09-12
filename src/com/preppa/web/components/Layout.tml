@@ -21,8 +21,13 @@
                         <div class="col1wrap">
 
                             <div class="col1">
+                                <div id="mainwrap">
+                                <div t:type="navmenu" />
                                 <div id="contentwrap">
-                                <t:body/>
+                                    <div id="content">
+                                    <t:body/>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
 
