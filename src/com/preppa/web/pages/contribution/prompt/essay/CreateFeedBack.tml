@@ -8,6 +8,12 @@
             Feedback:
             </td>
             </tr>
+            <t:if t:test="IsAuthor">
+                <b>You are the author and cannot leave feedback or you have already left feedback.</b>
+                <t:parameter name="else">
+
+
+
             <tr>
             <td>
             <input type="text" t:type="TextArea" t:id="comment"  t:value="comment" t:label="FeedBack" t:validate="required" rows="4" cols="80"/>
@@ -27,6 +33,11 @@
             </td>
 
             </tr>
+
+
+
+                </t:parameter>
+            </t:if>
 
         </table>
     </t:form>

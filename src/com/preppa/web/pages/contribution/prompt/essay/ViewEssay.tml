@@ -1,6 +1,8 @@
 <html t:type="layout" t:pageTitle="View Essay" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
 <div id="main">
+
+<br/><t:pagelink t:page="contribution/prompt/index">Free Response Home</t:pagelink> - <b>${type}</b><br/>
 <t:promptmenu />
 
         <h1>Essays</h1>

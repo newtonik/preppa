@@ -27,12 +27,16 @@ public class ViewEssay {
     private List<Essay> essays;
     @Property
     private Essay essay;
+    @Property
+    private String type;
     
     Object onActivate(String type) {
         if (type.contains("Graded")) {
+            type = "Graded";
             essays = essayDAO.findAllByGraded();
         }
         else if (type.contains("Non")) {
+            type = "Non-Graded";
             essays = essayDAO.findAllByNonGraded();
         }
         return null;

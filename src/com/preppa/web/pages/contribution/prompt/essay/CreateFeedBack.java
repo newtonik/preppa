@@ -17,6 +17,7 @@ import com.preppa.web.entities.FeedBack;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import java.sql.Timestamp;
+import java.util.List;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Persist;
@@ -24,12 +25,14 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.springframework.security.annotation.Secured;
 //import org.chenillekit.tapestry.core.components.Slider;
 
 /**
  *
  * @author Jan Jan
  */
+@Secured("ROLE_USER")
 public class CreateFeedBack {
     @ApplicationState
     private User user;
@@ -74,6 +77,26 @@ public class CreateFeedBack {
 
     void onValidateForm() {
 
+    }
+
+    public boolean getIsAuthor() {
+        if (this.essay != null) {
+
+            List<FeedBack> list = essay.getFeedBack();
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) != null) {
+                    if (list.get(i).getUser().getId() == user.getId()) {
+                        return true;
+                    }
+                }
+            }
+
+            System.out.println(essay.getUser().getId() + " being compared to " + user.getId());
+            return essay.getUser().getId() == user.getId();
+        }
+        else {
+            return true;
+        }
     }
 
     @CommitAfter

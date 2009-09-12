@@ -50,7 +50,6 @@ public class ShowEssay {
         this.eid = essay.getId();
     }
 
-
     Integer onPassivate() {
         return this.eid;
 
