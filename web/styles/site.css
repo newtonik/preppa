@@ -45,7 +45,31 @@ body, table, input, select
 
 }
 
+#contribute_content .leftlinks {
+    margin-left:auto;
+    margin-right:auto;
+    background: #cccccc url(../images/layout/contributebuttongeneric.jpg);
+    width: 110px;
+    height:50px;
+    text-align:center;
+    margin-top:10px;
+    font-family: 'Georgia';
+}
 
+#contribute_content .leftlinks a:link,
+#contribute_content .leftlinks a:visited {
+    color:#000000;
+    display:block;
+    float:left;
+    
+    width:100%;
+    height:100%;
+    font-size:15px;
+    font-weight:700;
+    text-decoration:none;
+
+    padding-top:10px;
+}
 
 input {
     padding: 1px;
@@ -62,7 +86,7 @@ h1
     overflow:hidden;
     width:100%;
 }
-#nav-menu{
+  .nav-menu {
    float:left;
    overflow:hidden;
    width:100%;
@@ -72,7 +96,7 @@ h1
     text-transform:uppercase;
 
 }
-#nav-menu ul
+  .nav-menu ul
 {
     
    clear:left;
@@ -86,7 +110,7 @@ h1
 
 }
 
-#nav-menu ul li
+   .nav-menu ul li
 {
     display:block;
     right:50%;
@@ -99,9 +123,18 @@ h1
 
 }
 
-#nav-menu ul li a
+#qtypemenu ul {
+    margin-bottom:10px;
+    background:inherit;
+}
+#qtypemenu li a {
+       background: #cccccc url(../images/layout/qtypebutton.png)
+     no-repeat top;
+        color:#ffffff;
+}
+  .nav-menu li a
 {
-        background: #cccccc url(../images/layout/topnavli.png)
+        background: #cccccc url(../images/layout/contributebuttongeneric.jpg)
     repeat-x top;
     height: 2em;
     line-height: 2em;
@@ -139,7 +172,7 @@ h1
 #header h2 {
     margin:0;
 }
-#nav-menu ul {
+  .nav-menu ul {
     clear:left;
     float:left;
     list-style:none;
@@ -147,17 +180,22 @@ h1
     padding:0;
     background:inherit;
 }
-#nav-menu li {
-    background: #cccccc url(../images/layout/topnavli.png)
+  .nav-menu  li {
+    background: #cccccc url(../images/layout/contributebuttongeneric.jpg)
     repeat-x top;
 }
-#nav-menu ul li {
+#qtypemenu li {
+        background: #cccccc url(../images/layout/qtypebutton.png)
+     no-repeat top;
+        color:#ffffff;
+}
+  .nav-menu  ul li {
    
     list-style:none;
     margin:0;
     padding:0;
 }
-#nav-menu ul li a {
+   .nav-menu ul li a {
     display:block;
     float:left;
     margin:0 0 0 0px;
@@ -170,17 +208,35 @@ h1
     padding-bottom:10px;
 
 }
-#nav-menu ul a:hover {
-    background:#369;
+   .nav-menu ul a:hover {
+   background: #000000 url(../images/layout/qtypebutton.png)
+    repeat-x top;
     color:#fff;
 
 }
-#nav-menu ul li a.active,
-#nav-menu ul li a.active:hover {
+
+   #qtypemenu.nav-menu ul a:hover {
+   background: #cccccc url(../images/layout/contributebuttongeneric.jpg)
+    no-repeat top;
+    color:#000000;
+
+}
+  .nav-menu ul li a.active,
+   .nav-menu ul li a.active:hover {
     color:#fff;
     font-weight:bolder;
+    background: #000000 url(../images/layout/qtypebutton.png)
+    no-repeat top;
 }
-#nav-menu ul li a span {
+
+  #qtypemenu.nav-menu ul li a.active,
+  #qtypemenu.nav-menu ul li a.active:hover {
+    color:black;
+    font-weight:bolder;
+    background: #cccccc url(../images/layout/contributebuttongeneric.jpg)
+    repeat-x top;
+}
+  .nav-menu ul li a span {
     display:block;
 }
 #navbar {
@@ -314,6 +370,14 @@ h1
     left:200%;
   background:#fff;    	/* Centre column background colour */
     padding-bottom:25px;
+}
+
+#contentwrap {
+    
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .holygrail .col2 {
     float:left;

@@ -21,7 +21,9 @@
                         <div class="col1wrap">
 
                             <div class="col1">
+                                <div id="contentwrap">
                                 <t:body/>
+                                </div>
                             </div>
 
                         </div>
@@ -36,29 +38,27 @@
                                         <div t:id="leftRegularContent">
                                             <br/>
                                             <div t:id="contribute" style="width: 150px;">
-                                                <a href="#" t:page="contribution/question/general/new" t:type="pagelink" >
-                                                     <img align="middle" height="50" width="125" src="${asset:context:/images/layout/contribute-questions2.png}" />
-                                                </a>
+                                                <div class="leftlinks">
+                                                    <a href="#" t:page="contribution/question/general/new" t:type="pagelink" >
+                                                        Question
+                                                    </a>
+                                                </div>
                                                 <br />
-                                                <a href="#" t:page="contribution/article/create" t:type="pagelink" >
-                                                     <img align="middle" height="50" width="125" src="${asset:context:/images/layout/contribute-articles2.png}" />
-                                                </a>
+                                                <div class="leftlinks">
+                                                    <a href="#" t:page="contribution/article/create" t:type="pagelink" >
+                                                        Article
+                                                    </a>
+                                                </div>
                                                 <br />
-                                                <a href="#" t:page="contribution/vocab/add" t:type="pagelink" >
-                                                     <img align="middle" height="50" width="125" src="${asset:context:/images/layout/contribute-vocab2.png}"  />
-                                                </a>
+                                                <div class="leftlinks">
+                                                    <a href="#" t:page="contribution/vocab/add" t:type="pagelink" >
+                                                        Vocab
+                                                    </a>
+                                                </div>
                                                 <br />
-                                                <t:pagelink t:page="contribution/question/general/new"> Contribute Content </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/index"> Old Contribution Link </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/article/create"> Articles </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/vocab/add"> Vocabulary </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/question/create"> Question </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/gridin/new"> Gridin </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/longpassage/create"> Long Passages </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/shortpassage/create"> Short Passages </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/longpassage/createdual"> Long Dual Passages </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/shortpassage/createdual"> Short DualPassages </t:pagelink><br/>
-                                                <t:pagelink t:page="contribution/prompt/create"> Prompts </t:pagelink><br/>
+                                                <div class="leftlinks">
+                                                 <t:pagelink t:page="contribution/prompt/create"> Prompts </t:pagelink>
+                                                </div>
                                             </div>
                                             <br/>
                                         </div>
@@ -69,71 +69,71 @@
                             <div class="droppable">
                             </div>
                         </div>
-                        
-                        </div>
+
                     </div>
+                </div>
 
 
-                    <div class="col3">
-                            <br clear="none" />
-                            <div align="center" style="height:100%">
-                                <t:delegate to="rightblockone" />
-                                <t:block>
-                                    <div t:id="rightblockoneregularContent" align="center">
-                                        <div class="droppable">
-                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
-                                                 style="padding: 1px; margins: 1px;" align="center">
-                                                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
-                                                    <div class="rightsideboxes">
+                <div class="col3">
+                    <br clear="none" />
+                    <div align="center" style="height:100%">
+                        <t:delegate to="rightblockone" />
+                        <t:block>
+                            <div t:id="rightblockoneregularContent" align="center">
+                                <div class="droppable">
+                                    <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
+                                         style="padding: 1px; margins: 1px;" align="center">
+                                        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+                                            <div class="rightsideboxes">
 
-                                                        Movable Block 1
-                                                        <br  />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br  />
-                                    </div>
-                                </t:block>
-                                <t:delegate to="rightblocktwo" />
-                                <t:block>
-                                    <h2></h2>
-                                    <div t:id="rightblocktworegularContent" >
-                                        <div class="droppable">
-                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
-                                                 style="padding: 1px; margins: 1px;" align="center">
-                                                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
-                                                    <div class="rightsideboxes">
-
-                                                        Movable Block 2
-                                                        <br  />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br  />
-                                    </div>
-                                </t:block>
-                                <t:delegate to="rightblockthree" />
-                                <t:block>
-                                    <h2></h2>
-                                    <div t:id="rightblockthreeregularContent" >
-                                        <div class="droppable">
-                                            <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
-                                                 style="padding: 1px; margins: 1px;" align="center">
-                                                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
-                                                    <div class="rightsideboxes">
-                                                        Movable Block 3
-                                                           <br  />
-                                                    </div>
-                                                </div>
-
+                                                Movable Block 1
+                                                <br  />
                                             </div>
                                         </div>
                                     </div>
-                                </t:block>
-                                <br/>
+                                </div>
+                                <br  />
                             </div>
+                        </t:block>
+                        <t:delegate to="rightblocktwo" />
+                        <t:block>
+                            <h2></h2>
+                            <div t:id="rightblocktworegularContent" >
+                                <div class="droppable">
+                                    <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
+                                         style="padding: 1px; margins: 1px;" align="center">
+                                        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+                                            <div class="rightsideboxes">
+
+                                                Movable Block 2
+                                                <br  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br  />
+                            </div>
+                        </t:block>
+                        <t:delegate to="rightblockthree" />
+                        <t:block>
+                            <h2></h2>
+                            <div t:id="rightblockthreeregularContent" >
+                                <div class="droppable">
+                                    <div t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#000000"
+                                         style="padding: 1px; margins: 1px;" align="center">
+                                        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+                                            <div class="rightsideboxes">
+                                                Movable Block 3
+                                                <br  />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </t:block>
+                        <br/>
+                    </div>
 
 
 

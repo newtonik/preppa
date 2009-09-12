@@ -1,7 +1,7 @@
 <html t:type="layout" t:pageTitle="Free Response" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
 <div id="main">
-<div id="nav-menu" align="left">
+<div class="nav-menu" align="left">
     <ul>
             <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Non" style="height: 3em; line-height: 1.5em;">Non-Graded</t:pagelink></li>
             <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Graded" style="height: 3em; line-height: 1.5em;">Graded</t:pagelink></li>

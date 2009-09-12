@@ -109,4 +109,8 @@ public class NavBar {
         return url.contains("openquestion");
     }
 
+    public boolean getLearning() {
+        String url = _request.getRequestURL().toString();
+        return url.contains("learning");
+    }
 }

@@ -4,7 +4,7 @@
 
 <t:practicebarart />
 <div id="main">
-<div id="nav-menu">
+<div class="nav-menu">
     <ul>
             <li><t:pagelink t:page="contribution/question/awaiting/index" style="height: 3em; line-height: 1.5em;">Awaiting Approval</t:pagelink></li>
             <li><t:pagelink t:page="contribution/question/flagged/index" style="height: 3em; line-height: 1.5em;">Flagged</t:pagelink></li>
