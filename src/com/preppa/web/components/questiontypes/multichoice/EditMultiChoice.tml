@@ -209,8 +209,8 @@
                     </td>
                     <td colspan="2">
                         <br />
-                        <input t:id="submit" type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="50" width="125" t:type="submit" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="50" width="125"  onclick="window.location='Index'; return false;" value="Cancel"></input>
+                        <input t:id="submit" type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" t:type="submit" value="Submit" onclick="IGNORE_UNLOAD = true"/>
+                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" onclick="window.location='Index'; return false;" value="Cancel"></input>
                     </td>
                 </tr>
 
