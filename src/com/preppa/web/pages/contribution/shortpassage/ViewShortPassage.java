@@ -13,6 +13,7 @@ package com.preppa.web.pages.contribution.shortpassage;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.ShortPassage;
+import com.preppa.web.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
@@ -33,7 +34,7 @@ public class ViewShortPassage {
     private VoteDAO voteDAO;
 
 
-    private final int APPROVESIZE = 1;
+    private final int APPROVESIZE = Constants.getApprovalThreshhold() ;
     /*Object onActivate() {
         this.shortpassages = shortpassageDAO.findAll();
         return null;

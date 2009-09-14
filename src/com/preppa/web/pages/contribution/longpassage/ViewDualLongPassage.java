@@ -13,6 +13,7 @@ package com.preppa.web.pages.contribution.longpassage;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.LongDualPassage;
+import com.preppa.web.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
@@ -32,7 +33,7 @@ public class ViewDualLongPassage {
     @Inject
     private VoteDAO voteDAO;
 
-    private final int APPROVESIZE = 1;
+    private final int APPROVESIZE = Constants.getApprovalThreshhold();
 
     /*void onActivate() {
         List<LongDualPassage> temp = longdualpDAO.findAll();

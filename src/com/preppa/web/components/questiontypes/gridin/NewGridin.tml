@@ -55,7 +55,7 @@
                 <td>
                     <b> Is the answer within a range?</b>
                     <br />
-            <t:radiogroup t:id="gridinchooserange" t:value="answertype" style="display: none">
+            <t:radiogroup t:id="gridinchooserange" t:value="answertype" >
                 <b> Yes </b>
                 <input t:id="gridinyesradio" t:type="radio" type="radio" t:label="Yes" t:value="literal:range" name="answertype" onclick="showGridinRange()" />
                 <b> No </b>

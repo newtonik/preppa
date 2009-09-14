@@ -122,7 +122,7 @@ public class NewGridin {
     @SetupRender
     void setDefaults() {
         hasimage = "false";
-        answertype = "range";
+        //answertype = "range";
         
     }
 

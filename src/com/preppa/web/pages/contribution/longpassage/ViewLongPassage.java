@@ -13,6 +13,7 @@ package com.preppa.web.pages.contribution.longpassage;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.LongPassage;
+import com.preppa.web.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
@@ -41,7 +42,7 @@ public class ViewLongPassage {
             if (temp.isEmpty() == false) {
                 System.out.println("IN LOOP");
                 for (int i = 0; i < temp.size(); i++) {
-                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) >= 2) {
+                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) >= Constants.getApprovalThreshhold() ) {
                         System.out.println("Sum is " + voteDAO.findSumByLongPassageId(temp.get(i).getId()));
                         System.out.println("ADDING");
                         longpassages.add(temp.get(i));
@@ -56,7 +57,7 @@ public class ViewLongPassage {
             longpassages = new ArrayList<LongPassage>();
             if (temp.isEmpty() == false) {
                 for (int i = 0; i < temp.size(); i++) {
-                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) < 2) {
+                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) < Constants.getApprovalThreshhold() ) {
                         longpassages.add(temp.get(i));
                     }
                 }

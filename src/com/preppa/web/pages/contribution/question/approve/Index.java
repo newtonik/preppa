@@ -13,6 +13,7 @@ package com.preppa.web.pages.contribution.question.approve;
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Question;
+import com.preppa.web.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +54,7 @@ public class Index {
 
         for (int i = 0; i < qTemp.size(); i++) {
 
-            if (voteDAO.findSumByQuestionId(qTemp.get(i).getId()) >= 1 && qTemp.get(i).getFlags().isEmpty() && approved.contains(qTemp.get(i)) == false) {
+            if (voteDAO.findSumByQuestionId(qTemp.get(i).getId()) >= Constants.getApprovalThreshhold() && qTemp.get(i).getFlags().isEmpty() && approved.contains(qTemp.get(i)) == false) {
                 approved.add(qTemp.get(i));
             }
         }
