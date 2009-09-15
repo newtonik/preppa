@@ -20,6 +20,7 @@ import com.preppa.web.entities.Vote;
 import java.util.List;
 import com.preppa.web.utils.ContentType;
 import java.util.ArrayList;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
@@ -27,6 +28,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author Jan Jan
  */
+@IncludeStylesheet(value = {"context:styles/innerroundcontainer.css"})
 public class Index {
     @Inject
     private FlagDAO flagDAO;

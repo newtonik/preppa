@@ -12,20 +12,37 @@
    <h2>Grid-In Questions</h2>
     <t:loop t:source="gridins"
     t:value="gridin">
+
+        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px;" align="left">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+
     <div class="gridin">
-            <a href="#" t:type="pageLink" t:page="contribution/gridin/Show" t:context="gridin.id">${gridin.title}</a>
+            ${gridin.title}<br/>
+            <a href="#" t:type="pageLink" t:page="contribution/gridin/Show" t:context="gridin.id">(See More)</a>
             <br></br>
     </div>
+
+
+
+        </div></div><br/>
     </t:loop>
                     <t:parameter name="else">
 
     <h2>Questions</h2>
     <t:loop t:source="questions"
     t:value="question">
+
+        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px;" align="left">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+
     <div class="question">
-            <a href="#" t:type="pageLink" t:page="contribution/question/approve/Show" t:context="question.id"><t:outputraw t:value="${question.questionformatted}" /></a>
-            <br></br>
+            <t:outputraw t:value="${question.question}" />
+            &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/approve/show" t:context="question.id">See More</a>
     </div>
+
+        </div></div>
 </t:loop>
     <br/>
                     </t:parameter>

@@ -27,6 +27,7 @@ import com.preppa.web.entities.ShortPassage;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
@@ -34,6 +35,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author Jan Jan
  */
+@IncludeStylesheet(value = {"context:styles/innerroundcontainer.css"})
 public class View {
     @Inject
     private QuestionDAO questionDAO;

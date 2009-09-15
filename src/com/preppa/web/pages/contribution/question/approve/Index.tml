@@ -52,8 +52,16 @@
         <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
         <h1>Sealed and Approved!</h1>
         <t:loop t:source="approved" t:value="question">
+            <div id="nifty">
+            <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
+
+
             <t:outputraw t:value="${question.question}" />
-            <a href="#" t:type="pageLink" t:page="contribution/question/approve/show" t:context="question.id">See More</a>
+            &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/approve/show" t:context="question.id">See More</a>
+        
+
+            <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
+            </div><br/>
         </t:loop>
         </div></div>
     </div>

@@ -27,7 +27,7 @@ import org.chenillekit.tapestry.core.components.SlidingPanel;
  *
  * @author Jan Jan
  */
-@IncludeStylesheet(value = {"context:styles/dropdown.css"})
+@IncludeStylesheet(value = {"context:styles/dropdown.css", "context:styles/innerroundcontainer.css"})
 @IncludeJavaScriptLibrary(value = {"context:js/dropdown.js"})
 public class Index {
     @Property
