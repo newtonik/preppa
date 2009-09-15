@@ -3,6 +3,7 @@ package com.preppa.web.components;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentType;
 import java.sql.Timestamp;
 import javax.servlet.http.HttpServletRequest;
@@ -205,5 +206,16 @@ public class VoteSeal {
         }
 
         return json;
+    }
+
+    public boolean getApproved() {
+        if (count >= Constants.getApprovalThreshhold() /*1*/) {
+            System.out.println("COUNT IS " + count);
+            return true;
+        }
+        else {
+            System.out.println("COUNT IS " + count);
+            return false;
+        }
     }
 }
