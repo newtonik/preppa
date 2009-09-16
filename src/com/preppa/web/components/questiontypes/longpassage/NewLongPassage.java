@@ -89,14 +89,19 @@ public class NewLongPassage {
     @Property
     private Tag tag;
     @Component
-    private Form createpassageform;
+    private Form createlongpassageform;
 
 
     public void NewLongPassage() {
         this.longpassage = new LongPassage();
     }
+    void onValidateFormFromCreateLongPassageForm() {
+        if(fBody == null) {
+            createlongpassageform.recordError(passeditor, "You need a value for Passage!");
+        }
+    }
     @CommitAfter
-    Object onSuccessFromCreatePassageForm() {
+    Object onSuccessFromCreateLongPassageForm() {
         if(this.longpassage == null) {
                this.longpassage = new LongPassage();
         }

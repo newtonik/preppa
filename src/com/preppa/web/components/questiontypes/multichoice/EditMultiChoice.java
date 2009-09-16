@@ -106,9 +106,7 @@ public class EditMultiChoice {
     @Parameter(required = true)
     @Property
     private Question question;
-    @Inject
-    @Property
-    private Block newtagblock;
+
     @Property
     private String fComment;
     @Property
@@ -317,7 +315,5 @@ public class EditMultiChoice {
         };
     }
 
-    Block onActionFromCloseTag() {
-        return newtagblock;
-    }
+
 }

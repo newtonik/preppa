@@ -1,40 +1,41 @@
 <html t:type="layout" t:pageTitle="New Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-<t:practicebarart />
+    <t:practicebarart />
     <div id="main">
-     <div align="center">
-        <div t:id="firstquestion" t:testsubjects="subjects" />
+        <div align="center">
+            <div t:id="firstquestion" t:testsubjects="subjects" />
         </div>
         <br />
 
-         <t:zone t:id="questionzone">
+        <t:zone t:id="questionzone">
         </t:zone>
+        <div t:type="newtag" />
+        <div t:type="newtopic" />
+        <br />
+        <a href="#" t:type="actionlink" t:id="getpassage" t:zone="questionzone" align="center"> Get Passage</a>
 
-    <br />
-    <a href="#" t:type="actionlink" t:id="getpassage" t:zone="questionzone" align="center"> Get Passage</a>
-    
-    <t:block t:id="shortpassageblock">
-        <div align="center">
-    <div align="center" t:id="newshortpassage" />
-    </div>
-    </t:block>
+        <t:block t:id="shortpassageblock">
+            <div align="center">
+                <div align="center" t:id="newshortpassage" />
+            </div>
+        </t:block>
         <t:block t:id="longpassageblock">
             <div align="center">
-            <div t:id="newlongpassage" />
-            <br />
-            <br />
-            <div t:type="questiontypes/longpassage/New" />
-         </div>
-    </t:block>
-    <t:block t:id="cquestionblock">
-        <div align="center">
-        <div t:id="aquestion"></div>
-        </div>
-    </t:block>
-    <t:block t:id="firstblock">
-    <!--    <div align="center">
-            <div t:id="firstquestion" t:testsubjects="subjects" />
-        </div>-->
-    </t:block>
-        </div>
+                <div t:id="newlongpassage" />
+                <br />
+                <br />
+                <div t:type="questiontypes/longpassage/New" />
+            </div>
+        </t:block>
+        <t:block t:id="cquestionblock">
+            <div align="center">
+                <div t:id="aquestion"></div>
+            </div>
+        </t:block>
+        <t:block t:id="firstblock">
+            <!--    <div align="center">
+                    <div t:id="firstquestion" t:testsubjects="subjects" />
+                </div>-->
+        </t:block>
+    </div>
 </html>

@@ -63,9 +63,6 @@ public class EditOpenQuestion {
     private List<Tag> addedTags = new LinkedList<Tag>();
     @Property
     private Tag tag;
-    @Inject
-    @Property
-    private Block newtagblock;
     @InjectPage
     private ShowOpenQuestion showquestion;
 
@@ -194,7 +191,4 @@ public class EditOpenQuestion {
         };
     }
 
-    Block onActionFromCloseTag() {
-        return newtagblock;
-    }
 }

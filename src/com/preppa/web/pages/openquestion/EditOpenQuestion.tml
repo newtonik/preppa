@@ -74,50 +74,6 @@
 
     </div>
 
-    <div id="newtagbox" class="tagboxklass" style='display:none'>
-        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-             bgcolor="#FFFFFF"
-             style="padding: 20px;" align="center">
-            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" class="tagcornerclass">
-
-                <t:zone t:id="formzone">
-                    <t:delegate to="newtagblock"/>
-                </t:zone>
-
-                <p>
-                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone"  class="closetagbox">Close</a>
-                </p>
-            </div>
-        </div>
-
-    </div>
-    <t:block t:id="newtagblock">
-        <h3> Add a Tag </h3>
-        <t:form t:id="tagform" t:zone="formzone">
-
-            <table id="userformtable">
-                <tr>
-                    <td>
-                <t:label for="tagTextfield"/>
-                </td>
-                </tr>
-                <tr>
-                    <td valign="top" align="left">
-                        <input t:type="TextField" t:id="tagTextfield" size="30"   class="tagfield" t:value="fname" t:label="Tag Name" t:validate="required"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="left">
-                        <br />
-                        <input t:id="submit" type="submit" t:type="submit" value="Submit"/>
-                    </td>
-                </tr>
-
-
-            </table>
-
-
-        </t:form>
-    </t:block>
+   <div t:type="newtag" />
 
 </html>

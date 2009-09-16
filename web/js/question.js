@@ -1,49 +1,17 @@
 
- $('addtopic').observe('click', function() {
-            //get position
-            alert("clciked");
-            var pos = $('addtopic').cumulativeOffset();
-            var width  = $('addtopic').getWidth();
-            //alert(pos.left)
 
-            $('newtopicbox').setStyle({
-
-                display: 'block',
-                position: 'absolute',
-                fontSize: '12px',
-                left: (pos.left-200) + "px",
-                top : (pos.top)+ "px"
-            });
-            $('newtopicbox').show();
-            $('fTopicName').activate();
-            //$('autoComplete').disable();
-        });
-
-        $('closetopic').observe('click', function() {
-              $('newtopicbox').setStyle({
-
-                display: 'none'
-                });
-                $('topiccorner').setStyle({
-                    'background-color': '#e8eefa'
-                });
-                 $('newtopicbox').hide();
-                 $('autoComplete').enable();
-                 $('autoComplete').activate();
-
-        });
 
 
 
 document.observe("dom:loaded", function() {
 
-    //$('questiontypes').disable()
 
     $('QuestiontypeSelect').disable();
-// $('multiple-question').hide();
-
-//Tapestry.activateZone("questionzone", "../new.questiontypeselect:internalEvent");
-});
+    //alert($('vhidden').value);
+    var res ={type:$('vhidden').value, title: null };
+    showQuestionBlock(res);
+       
+   });
 
 function onChangeTestsubject(response) {
     //aleart(response);
@@ -87,9 +55,15 @@ function populateQuestionsTypes(id, c, ids, vs) {
 }
 
 function onChangeQuestiontype(response) {
+    alert(response.type);
+
+    showQuestionBlock(response);
+}
+
+function showQuestionBlock( vblock) {
     var eBlocks = new Array();
     var i;
-    if(response.type == "multichoice") {
+    if(vblock.type == "multichoice") {
         
         eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
@@ -100,49 +74,49 @@ function onChangeQuestiontype(response) {
         $('multichoice').addClassName("current");
         $('multichoice').show();
         $('multichoice').highlight();
-        if(response.title != null) {
-            document.title = response.title;
+        if(vblock.title != null) {
+            document.title =vblock.title;
         }
         else {
             document.title = "Create New MultiChoice";
         }
     }
-    if(response.type == "longpassage") {
-         eBlocks = $$(".questiontype");
+    if(vblock.type == "longpassage") {
+        eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
             eBlocks[i].removeClassName("current");
         }
-        $('shortdualpassage').addClassName("current");
+        $('longpassage').addClassName("current");
         $('longpassage').show();
         $('longpassage').highlight();
         document.title = "Create Long Passage";
     }
-    if(response.type == "longdualpassage") {
-         eBlocks = $$(".questiontype");
+    if(vblock.type == "longdualpassage") {
+        eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
-         eBlocks[i].removeClassName("current");
+            eBlocks[i].removeClassName("current");
         }
-        $('shortdualpassage').addClassName("current");
+        $('longdualpassage').addClassName("current");
         $('longdualpassage').show();
         $('longdualpassage').highlight();
         document.title = "Create Long Dual Passage";
 
     }
-    if(response.type == "shortpassage") {
-         eBlocks = $$(".questiontype");
+    if(vblock.type == "shortpassage") {
+        eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
             eBlocks[i].removeClassName("current");
         }
-        $('shortdualpassage').addClassName("current");
+        $('shortpassage').addClassName("current");
         $('shortpassage').show();
         $('shortpassage').highlight();
         document.title = "Create Short Passage";
     }
-    if(response.type == "shortdualpassage") {
-         eBlocks = $$(".questiontype");
+    if(vblock.type == "shortdualpassage") {
+        eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
          
@@ -153,8 +127,8 @@ function onChangeQuestiontype(response) {
         $('shortdualpassage').highlight();
         document.title = "Create Short Dual Passage";
     }
-     if(response.type == "gridin") {
-         eBlocks = $$(".questiontype");
+    if(vblock.type == "gridin") {
+        eBlocks = $$(".questiontype");
         for(i = 0; i < eBlocks.length; i++) {
             eBlocks[i].hide();
             eBlocks[i].removeClassName("current");

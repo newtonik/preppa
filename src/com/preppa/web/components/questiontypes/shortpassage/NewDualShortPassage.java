@@ -104,10 +104,16 @@ public class NewDualShortPassage {
     /**
      * Add form validation here
      */
-    void onValidateFormFromDualPassageForm() {
-            System.out.println("Controller validation here");
-    }
+  
+     void onValidateFromDualPassageForm() {
+            if(fBodyone == null) {
+                dualpassageform.recordError(passeditorone, "You need a value for Passage 1");
+            }
+            if(fBodytwo == null) {
+                dualpassageform.recordError(passeditortwo, "You need a value for Passage 2");
+            }
 
+        }
     @CommitAfter
     Object onSuccessFromDualPassageForm() {
          if(shortDualpassage == null)

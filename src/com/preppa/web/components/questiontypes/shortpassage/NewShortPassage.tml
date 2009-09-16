@@ -20,7 +20,7 @@
                     <t:label for="pass1">Passage: </t:label>
                     </td>
                     <td >
-                    <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required" t:label="Passage"/>
+                    <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="200" t:label="Passage"/>
                     </td>
                 </div>
                 </tr>
@@ -45,13 +45,13 @@
                 <tr>
                     <td></td>
                     <td align="left">
-                <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                <t:label for="autoCompleteshortpassagetag"> Tags (Select up to 5 tags) </t:label>
                 </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td align="left">
-                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteshortpassagetag" selected="addedTags"
                                translate="prop:tagtranslator" label="name" type="text" size="10" />
                     </td>
 

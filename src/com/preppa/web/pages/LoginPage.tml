@@ -52,7 +52,7 @@
                         <a href="#" t:type="Pagelink" t:page="user/create" >Register</a>
                     </td>
                     <td align ="right">
-                        <a href="#" t:type="Pagelink" t:page="user/password/reset" >Forgot Password?</a>
+                        <a href="#" t:type="Pagelink" t:page="user/password/reset" >Forgot your Password?</a>
                     </td>
                     </tr>
                 </table>

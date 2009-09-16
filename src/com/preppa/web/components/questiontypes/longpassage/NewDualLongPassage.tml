@@ -1,7 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="dualpassage" align="center">
-        <t:form t:id="dualpassageform">
+        <t:form t:id="duallongpassageform">
             <t:errors />
             <table id="dualpasstable">
 
@@ -29,7 +29,7 @@
                     <t:label for="passeditorone">Passage 1: </t:label>
                     </td>
                     <td >
-                    <t:editor align="left" t:id="passeditorone" value="fBodyone" t:validate="required" t:label="Passage 1" t:toolbarSet="Basic" t:width="600" t:height="300"/>
+                    <t:editor align="left" t:id="passeditorone" value="fBodyone" t:label="Passage 1" t:toolbarSet="Basic" t:width="600" t:height="300"/>
                     </td>
                 </div>
                 </tr>   
@@ -39,7 +39,7 @@
                     <t:label for="passeditortwo">Passage 2: </t:label>
                     </td>
                     <td >
-                    <t:editor align="left" t:id="passeditortwo" value="fBodytwo" t:toolbarSet="Basic" t:label="Passage 1" t:validate="required" t:width="600" t:height="300"/>
+                    <t:editor align="left" t:id="passeditortwo" value="fBodytwo" t:label="Passage 1" t:validate="required" t:width="600" t:height="300"/>
                     </td>
                 </div>
                 </tr>

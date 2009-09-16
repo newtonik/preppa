@@ -62,9 +62,7 @@ public class NewOpenQuestion {
     private ShowOpenQuestion showquestion;
     @Property
     private Tag tag;
-    @Inject
-    @Property
-    private Block newtagblock;
+
 
     void onActivate() {
         question = new OpenQuestion();
@@ -175,7 +173,5 @@ public class NewOpenQuestion {
         };
     }
 
-    Block onActionFromCloseTag() {
-        return newtagblock;
-    }
+
 }

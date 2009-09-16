@@ -55,7 +55,7 @@
                 <th> Last Updated By </th>
             </tr>
             <tr t:type="loop" source="gridins" value="gridin">
-                    <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${gridin.id}" >${gridin.title} </a> </td>
+                    <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${gridin.id}">${gridin.title} </a> </td>
                     <td align="left"> <t:outputraw value="gridin.question" /> </td>
                 <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="gridin.createdat" /> </td>
             <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="gridin.updatedat" /> </td>
@@ -81,8 +81,7 @@
                 <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.createdat" /> </td>
             <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.updatedat" /> </td>
             <td align="left"> ${question.updatedBy.username} </td>
-            <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/question/show" t:context="${question.id}" > Show </a>  </td>
-            </tr>
+             </tr>
         </table>
     </t:block>
     <t:block t:id="clickblock">

@@ -92,7 +92,7 @@ public class NewDualLongPassage {
     @Property
     private Tag tag;
     @Component
-    private Form dualpassageform;
+    private Form duallongpassageform;
     private boolean showpage = false;
 
 
@@ -108,9 +108,17 @@ public class NewDualLongPassage {
     public void NewDualLongPassage() {
         this.longDualpassage = new LongDualPassage();
     }
+    void onValidateFormFromDualLongPassageForm() {
+        if(fBodyone == null) {
+            duallongpassageform.recordError(passeditorone, "You need a value for Passage 1");
+        }
+        if(fBodytwo == null) {
+            duallongpassageform.recordError(passeditortwo, "You need a value for Passage 2");
+        }
 
+    }
     @CommitAfter
-    Object onSuccessFromDualPassageForm() {
+    Object onSuccessFromDualLongPassageForm() {
         if(longDualpassage == null)
         {
              this.longDualpassage = new LongDualPassage();

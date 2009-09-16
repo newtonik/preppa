@@ -5,7 +5,7 @@
         <div >
             <h2>
                 <a href="#" t:type="pagelink" t:page="openquestion/new" >
-                    Add a Question
+                    Ask a Question
                 </a>
             </h2>
         </div>

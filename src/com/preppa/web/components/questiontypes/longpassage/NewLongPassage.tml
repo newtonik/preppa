@@ -1,7 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="passage" align="center">
-        <t:form t:id="createpassageform">
+        <t:form t:id="createlongpassageform">
             <t:errors />
             <table id="passtable">
 
@@ -28,7 +28,7 @@
                     <t:label for="passeditor">Passage: </t:label>
                     </td>
                     <td >
-                    <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300" t:validate="required" t:label="Passage"/>
+                    <t:editor align="left" t:id="passeditor" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="300"  t:label="Passage"/>
                     </td>
                 </div>
                 </tr>

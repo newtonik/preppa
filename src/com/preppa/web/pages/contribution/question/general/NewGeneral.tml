@@ -6,7 +6,7 @@
                 <table id="atable" cellpadding="10">
                     <tr>
                         <td align="left">
-                    <t:label for="testSubSelect"> Select a Testsubject </t:label>
+                    <t:label for="testSubSelect"> Testsubject </t:label>
                     <br />
                     <input t:id="testSubSelect"  model="testsubjectsSelectionModel" encoder="testsubjectsValueEncoder" onchange="IGNORE_UNLOAD = false" onkeypress="IGNORE_UNLOAD = false" />
                     </td>
@@ -15,20 +15,24 @@
                     <br />
                     <input t:id="QuestiontypeSelect"  model="questiontypesSelectionModel" encoder="questiontypesValueEncoder"/>
                     </td>
-                    <td></td>
+                    <td><input t:id="vhidden" t:value="visiblequestiontype" /></td>
                     <td></td>
                     </tr>
                 </table>
-
-
+                <br />
             </t:form>
+
         </t:zone>
-            <div t:type="newtag" />
-        
-        <div id="shortpassage" class="questiontype" align="center" style='display:none'>
+        <div t:type="newtag" />
+
+     <div t:type="newtopic" />
+         <div id="multichoice" class="questiontype" align="center" style='display:none'>
+            <div t:id="aquestion" t:hasquestiontype="true" t:qtype="questiontype"></div>
+        </div>
+       <div id="shortpassage" class="questiontype" align="center" style='display:none'>
             <div align="center" t:id="newshortpassage" />
         </div>
-        <div id="shortdualpassage"  class="questiontype" align="center" style='display:none'>
+      <div id="shortdualpassage"  class="questiontype" align="center" style='display:none'>
             <div align="center" t:id="newshortdualpassage" />
         </div>
         <div id="longpassage"  class="questiontype" align="center" style='display:none'>
@@ -39,17 +43,12 @@
             <div t:id="newlongdualpassage" />
             <br />
         </div>
-        <div id="multichoice" class="questiontype" align="center" style='display:none'>
-            <div t:id="aquestion" t:hasquestiontype="true" t:qtype="questiontype"></div>
-        </div>
-            <div id="gridin" class="questiontype" align="center" style='display:none'>
+       
+        <div id="gridin" class="questiontype" align="center" style='display:none'>
             <div t:id="newgridin" />
         </div>
-        <div  class="questiontype" align="center" style='display:none'>
-            <div t:id="firstquestion" t:testsubjects="subjects" t:qtype="questiontype" t:hasquestiontype="true"/>
-        </div>
+       
 
-    
-   
-            </div>
+
+    </div>
 </html>

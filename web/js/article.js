@@ -16,8 +16,8 @@ jQuery(document).ready(function(){
         jQuery("ul.css-tabs a:contains('History')").addClass("current");
     }
 
-    // setup ul.tabs to work as tabs for each div directly under div.panes
-   // jQuery("ul.css-tabs").tabs("div.panes");
+// setup ul.tabs to work as tabs for each div directly under div.panes
+// jQuery("ul.css-tabs").tabs("div.panes");
 });
 
 
@@ -31,61 +31,10 @@ function onChangeTestsubject(response) {
 
 
 }
- $('addtopic').observe('click', function() {
-            //get position
-            alert("clciked");
-            var pos = $('addtopic').cumulativeOffset();
-            var width  = $('addtopic').getWidth();
-            //alert(pos.left)
-
-            $('newtopicbox').setStyle({
-
-                display: 'block',
-                position: 'absolute',
-                fontSize: '12px',
-                left: (pos.left-200) + "px",
-                top : (pos.top)+ "px"
-            });
-            $('newtopicbox').show();
-            $('fTopicName').activate();
-            //$('autoComplete').disable();
-        });
-
-        $('closetopic').observe('click', function() {
-              $('newtopicbox').setStyle({
-
-                display: 'none'
-                });
-                $('topiccorner').setStyle({
-                    'background-color': '#e8eefa'
-                });
-                 $('newtopicbox').hide();
-                 $('autoComplete').enable();
-                 $('autoComplete').activate();
-
-        });
 
 
 
- //    }
-
-//     Event.observe('flagform', 'submit', function(event) {
-//         $('flagform').request({
-//            onSuccess: function() {
-//               //$('votebox').hide();
-//                  $('flagZone').setStyle({
-//                display: 'block',
-//                fontSize: '12px',
-//                width: '200px',
-//                height: '150px'
-//            });
-//
-//
-//         }
-//         });
-//     });
-    
- function FCKeditor_OnComplete( editorInstance )
+function FCKeditor_OnComplete( editorInstance )
 {
 
     fckeditor_word_count(editorInstance);

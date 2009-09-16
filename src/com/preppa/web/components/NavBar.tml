@@ -5,44 +5,53 @@
         <div id="topbar">
         <div id="logo" align="left">
             <a href="#" t:type="PageLink" t:page="index">
-                <img src="${asset:context:/images/logo.png}" height="80" width="160" align="left"/>
+                <img src="${asset:context:/images/logo.png}" height="50" width="100" align="left"/>
             </a>
         </div>
-        <div id="topright" align="right">
+        <div id="topright" >
             <t:if t:test="userExists">
+                <div class="navlinks">
                 <a href="#" t:type="pagelink" t:page="user/show" t:context="user.id">${user.username}</a>&nbsp;&nbsp;&nbsp;<a href="#" t:type="ActionLink" t:id="logouturl">Log out</a>
+                </div>
+
                 <t:parameter name="else">
-                    <div id="navbarloginform" align="right">
+                      <div class="navlinks">
+                                        <a href="#" t:type="PageLink" t:page="loginpage">Sign In</a>
+                                        <a href="#" t:type="PageLink" t:page="user/create">Register</a>
+                        </div>
+                    <div id="navbarloginform" >
                         <form xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" action="${CheckUrl}" method="POST" clientValidation="false">
-                            <table id="navbarlogintable">
+                            <table id="navbarlogintable" cellspacing="10px">
                                 <tr>
                                     <td>
-                                        <input title="Username" class="username" name="j_username" type="text" size="10"/>
+                                        <input title="Username" class="username" name="j_username" type="text" size="13"/>
                                     </td>
                                     <td>
-                                        <input title="Password" class="password" name="j_password" type="password" size="10" maxlength="30"/>
+                                        <input title="Password" class="password" name="j_password" type="password" size="13" maxlength="30"/>
+                                    </td>
+                                    <td>
+                                          <span class="button">
+                                        <input id="submit" class="submit" type="submit" value="Login"/>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        Remember Me
-                                        <input type="checkbox" name="_spring_security_remember_me" value="true"/>
+                                    <td class="login_form_label">
+                                        <label>  <input type="checkbox" name="_spring_security_remember_me" value="true"/> Remember Me </label>
                                     </td>
-                                    <td>
-                                        <input id="submit" class="submit" type="submit" value="log in"/>
+                                     <td>
+                                    <a href="#" t:type="Pagelink" t:page="user/password/reset" >Forgot your Password?</a>
                                     </td>
                                 </tr>
                                
                             </table>
                         </form>
-   
-                                        <a href="#" t:type="PageLink" t:page="loginpage">Sign In</a>
-                                        <a href="#" t:type="PageLink" t:page="user/create">Register</a>
+</div>
+                      
 
 
 
-
-                    </div>
+                    
                 </t:parameter>
             </t:if>
         </div>

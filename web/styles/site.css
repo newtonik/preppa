@@ -478,6 +478,7 @@ div.main {
     margin-left: auto;
     padding: 35px 70px;
     padding-bottom:25px;
+    text-align:left;
 }
 DIV.t-beaneditor
 {
@@ -548,6 +549,42 @@ DIV.t-error LI {
     /*border: none; background-color: #D4E4FF; border-collapse: collapse;*/
     border: none; background-color:inherit; border-collapse: collapse;
     color:white;
+}
+#navbarloginform {
+    float:right;
+    font-size:8px;
+
+}
+#navbarloginform input {
+    font-size:10px;
+}
+#topright .navlinks {
+    float:right;
+}
+#topright .navlinks a {
+    text-decoration:none;
+    color:#C1C1C1;
+}
+#topright .navlinks a:hover {
+    text-decoration:underline;
+}
+#navbarloginform .login_form_label {
+    padding-bottom: 1px;
+    padding-top: 3px;
+}
+
+
+#navbarloginform  table, tr, td {
+    padding-right: 10px;
+   
+}
+#navbarloginform a {
+     text-decoration:none;
+    color:#C1C1C1;
+}
+
+#navbarloginform a:hover {
+    text-decoration:underline;
 }
 #showquestion h1,h2, h3{
 
@@ -890,7 +927,10 @@ li {
     padding-bottom:25px;
     text-align:left;
 }
-
+.pui-autocomplete-result {
+    text-align:left;
+    padding-left:5px;
+}
 .mainclass {
     border-left:1px solid #666666;
     border-bottom:1px solid #666666;

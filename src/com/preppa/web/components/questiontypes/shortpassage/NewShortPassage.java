@@ -17,20 +17,17 @@ import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
-import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONObject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 
@@ -39,7 +36,7 @@ import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
  * @author newtonik
  */
 //@Secured("ROLE_USER")
-@IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
+//@IncludeJavaScriptLibrary(value = {"context:js/passage.js"})
 public class NewShortPassage {
 
     @Property
@@ -74,7 +71,7 @@ public class NewShortPassage {
     @InjectPage
     private com.preppa.web.pages.contribution.shortpassage.ShowShortPassage showpassage;
     @Component
-    private AutoComplete autoCompleteTag;
+    private AutoComplete autoCompleteshortpassagetag;
     @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
@@ -92,6 +89,11 @@ public class NewShortPassage {
         this.shortpassage = new ShortPassage();
     }
 
+    void onValidateFormFromCreatePassageForm() {
+          if(fBody == null) {
+                createpassageform.recordError(pass1, "You need a value for Passage");
+            }
+    }
     @CommitAfter
     Object onSuccessFromCreatePassageForm() {
 
@@ -153,7 +155,7 @@ public class NewShortPassage {
         this.testsubjects = testsubjects;
     }
 
-    List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
+    List<Tag> onProvideCompletionsFromAutoCompleteshortpassagetag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
 

@@ -223,27 +223,20 @@ public class NewMultiChoice {
     //Topics
     @Inject
     private TopicDAO topicDAO;
-    @Inject
-    @Property
-    private Block newtopicblock;
     @Property
     private Topic top;
     @Property
     private List<Topic> addedTopics = new LinkedList<Topic>();
     @Property
     private Testsubject topicSubject;
-    @Component(parameters = {"value=topicSubject"})
-    private Select select2;
-    @Property
+     @Property
     private String fTopic;
     @Property
     private String fTopicName;
-    @Component
-    private Form topicform;
     @InjectSelectionModel(labelField = "name", idField = "id")
     private List<Testsubject> testsubjects1 = new ArrayList<Testsubject>();
     @Component
-    private AutoComplete autoComplete;
+    private AutoComplete autoCompleteMultiTopics;
     @Property
     @Persist
     private Testsubject testsubject1;
@@ -391,7 +384,7 @@ public class NewMultiChoice {
         System.out.println("Index to get is " + (Integer.parseInt(testId) - 1));
         if (testId != null && !testId.equals("")) {
             questiontypes = questiontypeDAO.findByTestsubject(testsubjects.get(Integer.parseInt(testId) - 1));
-
+            testsubject1 = testsubjects.get(Integer.parseInt(testId) - 1);
 
             ids.put("");
             qt.put("");
@@ -667,7 +660,7 @@ public class NewMultiChoice {
     };
   }
 
-    List<Topic> onProvideCompletionsFromAutocomplete(String partial) {
+    List<Topic> onProvideCompletionsFromAutoCompleteMultiTopics(String partial) {
          List<Topic> matches = null;
 
         if(testsubject1 != null)
@@ -686,10 +679,6 @@ public class NewMultiChoice {
 
     }
 
-        Block onActionFromCloseTopic() {
-            return newtopicblock;
-
-        }
 
 
         @CommitAfter

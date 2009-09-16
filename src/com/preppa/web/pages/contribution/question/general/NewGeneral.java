@@ -16,6 +16,7 @@ import com.preppa.web.utils.InjectSelectionModel;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
@@ -28,6 +29,7 @@ import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
+import org.chenillekit.tapestry.core.components.Hidden;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -75,26 +77,24 @@ public class NewGeneral {
     private List<Testsubject> subjects;
     /** Questiontype Components **/
     @Component
-    private NewMultiChoice firstquestion;
+    private NewMultiChoice aquestion;
     @Component
     private NewDualShortPassage newshortdualpassage;
     @Component
     private NewShortPassage newshortpassage;
     @Component
     private NewGridin newgridin;
-    //@Inject
-    //private Block shortpassageblock;
-    @Component
-    private NewMultiChoice aquestion;
-    //@Inject
-    //private Block cquestionblock;
     @Component
     private NewLongPassage newlongpassage;
     @Component
     private NewDualLongPassage newlongdualpassage;
     @Inject
     private TagDAO tagDAO;
-
+    @Property
+    @Persist
+    private String visiblequestiontype;
+    @Component
+    private Hidden vhidden;
     
     //@Property
     //@Inject
@@ -107,9 +107,41 @@ public class NewGeneral {
 
     void onActivate() {
         testsubjects = testSubDAO.findAllWithQuestions();
-        questiontypes = null;
+        questiontypes = questiontypeDAO.findAll();
+        
     }
+    /*
+    void onValidateForm() {
+        System.out.println(visiblequestiontype);
+         if (questiontype.getName().equals("Multiple Choice")) {
+            visiblequestiontype = "multichoice";
 
+        } else if (questiontype.getName().equals("Long Passage")) {
+
+            visiblequestiontype = "longpassage";
+
+        } else if (questiontype.getName().equals("Long Dual Passage")) {
+
+            visiblequestiontype = "longdualpassage";
+
+        } else if (questiontype.getName().equals("Short Dual Passage")) {
+            visiblequestiontype = "shortdualpassage";
+
+        } else if (questiontype.getName().equals("Short Passage")) {
+
+            visiblequestiontype = "shortpassage";
+
+        } else if (questiontype.getName().equals("Grid In")) {
+            visiblequestiontype = "gridin";
+
+        }
+        else {
+            visiblequestiontype = "multichoice";
+
+        }
+        
+    }
+*/
     JSONObject onChangeFromTestSubSelect(String testId) {
         JSONObject json = new JSONObject();
 
@@ -143,30 +175,40 @@ public class NewGeneral {
 
     JSONObject onChangeFromQuestiontypeSelect(String quesType) {
         JSONObject json = new JSONObject();
+        
         if (quesType.equals("Multiple Choice")) {
             json.put("type", "multichoice");
+            visiblequestiontype = "multichoice";
             questiontype = questiontypeDAO.findByName(quesType);
+
         } else if (quesType.equals("Long Passage")) {
             json.put("type", "longpassage");
+            visiblequestiontype = "longpassage";
             questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Long Dual Passage")) {
             json.put("type", "longdualpassage");
+            visiblequestiontype = "longdualpassage";
             questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Short Dual Passage")) {
             json.put("type", "shortdualpassage");
+            visiblequestiontype = "shortdualpassage";
             questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Short Passage")) {
             json.put("type", "shortpassage");
+            visiblequestiontype = "shortpassage";
             questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Grid In")) {
+            visiblequestiontype = "gridin";
             json.put("type", "gridin");
             questiontype = questiontypeDAO.findByName(quesType);
         }
         else {
             json.put("type", "multichoice");
             json.put("title", quesType);
+            visiblequestiontype = "multichoice";
             questiontype = questiontypeDAO.findByName(quesType);
         }
+        
         return json;
 
     }

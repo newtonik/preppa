@@ -22,12 +22,12 @@
 
                             <div class="col1">
                                 <div id="mainwrap">
-                                <div t:type="navmenu" />
-                                <div id="contentwrap">
-                                    <div id="content">
-                                    <t:body/>
+
+                                    <div id="contentwrap">
+                                        <div id="content">
+                                            <t:body/>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
 
@@ -59,10 +59,6 @@
                                                     <a href="#" t:page="contribution/vocab/add" t:type="pagelink" >
                                                         Vocab
                                                     </a>
-                                                </div>
-                                                <br />
-                                                <div class="leftlinks">
-                                                 <t:pagelink t:page="contribution/prompt/create"> Prompts </t:pagelink>
                                                 </div>
                                             </div>
                                             <br/>
