@@ -16,7 +16,15 @@
     <t:outputraw t:value="${essay.body}"/><br/>
 </p>
     <p>
-        <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/createfeedback" t:context="essay.id">Leave FeedBack</a>
+            <t:if t:test="IsAuthor">
+                <a href="#" onClick='alert("You are the author and cannot leave feedback or you have already left feedback.")'>Leave FeedBack</a>
+                <t:parameter name="else">
+
+                <a href="#" t:type="pageLink" t:page="contribution/prompt/essay/createfeedback" t:context="essay.id">Leave FeedBack</a>
+
+                </t:parameter>
+            </t:if>
+
     </p>
 <t:tagview t:alltags="tags" />
 <br />
