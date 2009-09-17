@@ -47,7 +47,9 @@
         <div id="gridin" class="questiontype" align="center" style='display:none'>
             <div t:id="newgridin" />
         </div>
-       
+         <div id="prompt" class="questiontype" align="center" style='display:none'>
+            <div t:id="newprompt" />
+        </div>
 
 
     </div>

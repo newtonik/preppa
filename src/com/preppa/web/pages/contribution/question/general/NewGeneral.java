@@ -4,6 +4,7 @@ import com.preppa.web.components.questiontypes.gridin.NewGridin;
 import com.preppa.web.components.questiontypes.longpassage.NewDualLongPassage;
 import com.preppa.web.components.questiontypes.longpassage.NewLongPassage;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
+import com.preppa.web.components.questiontypes.prompt.NewPrompt;
 import com.preppa.web.components.questiontypes.shortpassage.NewDualShortPassage;
 import com.preppa.web.components.questiontypes.shortpassage.NewShortPassage;
 import com.preppa.web.data.QuestiontypeDAO;
@@ -88,6 +89,8 @@ public class NewGeneral {
     private NewLongPassage newlongpassage;
     @Component
     private NewDualLongPassage newlongdualpassage;
+    @Component
+    private NewPrompt newprompt;
     @Inject
     private TagDAO tagDAO;
     @Property
@@ -200,6 +203,18 @@ public class NewGeneral {
         } else if (quesType.equals("Grid In")) {
             visiblequestiontype = "gridin";
             json.put("type", "gridin");
+            questiontype = questiontypeDAO.findByName(quesType);
+        }
+        else if(quesType.equals("Free Response Question")) {
+            visiblequestiontype = "newprompt";
+             json.put("type", "newprompt");
+             json.put("title", "Create Prompt");
+            questiontype = questiontypeDAO.findByName(quesType);
+        }
+         else if(quesType.equals("Sentence Completion")) {
+            visiblequestiontype = "Sentence Completion";
+             json.put("type", "multichoice");
+             json.put("title", "Sentence Completion");
             questiontype = questiontypeDAO.findByName(quesType);
         }
         else {

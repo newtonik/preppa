@@ -96,7 +96,7 @@
                     <t:label for="fExplanation"> Explain: </t:label>
                     </td>
                     <td>
-                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="4" cols="50"/>
+                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="4" cols="50"/>
                     </td>
                     </tr>
                     <tr>

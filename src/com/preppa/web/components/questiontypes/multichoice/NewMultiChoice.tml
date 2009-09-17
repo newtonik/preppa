@@ -134,7 +134,7 @@
                     <t:label for="fExplanation"> Explanation: </t:label>
                     </td>
                     <td align="left">
-                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" rows="3" cols="80" t:validate="required"/>
+                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="3" cols="80" t:validate="required"/>
                     </td>
                     </tr>
                     <tr>

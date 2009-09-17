@@ -73,16 +73,9 @@ public class ShowPrompt {
     private HttpServletRequest _request;
     @Inject
     private VoteDAO voteDAO;
-    @InjectComponent
-    private Zone voteupZone;
-    @Inject
-    private Block voteBlock;
-    @Inject
-    private Block upSuccess;
-    @Inject
-    private Block downSuccess;
-    @Inject
-    private Block voted;
+
+
+   
     @Property
     @Persist
     private Integer votes;
@@ -104,7 +97,7 @@ public class ShowPrompt {
         contType = ContentType.Prompt;
     }
 
-    void setprompt(Prompt prompt) {
+    public void setprompt(Prompt prompt) {
         this.prompt = prompt;
         this.pid = prompt.getId();
     }
@@ -170,69 +163,5 @@ public class ShowPrompt {
 
 
 
- Block onActionFromVoteUp() {
-     String  hostname = _request.getRemoteHost();
-     if(!(voteDAO.checkVoted(ContentType.Prompt, prompt.getId(), user)))
-     {
-         Vote v = new Vote();
-         v.setContentId(prompt.getId());
-         v.setSource(hostname);
-         if(user != null)
-             v.setUser(user);
-
-         v.setValue(1);
-          v.setContentTypeId(ContentType.Prompt);
-
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         v.setCreatedAt(now);
-
-         voteDAO.doSave(v);
-
-         JSONObject json = new JSONObject();
-         json.put("vote", "down");
-         //decrement the vote
-         votes++;
-
-         return upSuccess;
-     }//return new TextStreamResponse("text/json", json.toString());
-     else
-     {
-         return voted;
-     }
- }
-  Block onActionFromVoteDown() {
-
-     String  hostname = _request.getRemoteHost();
-    // System.out.println(_request.getRequestURL());
-
-     if(!(voteDAO.checkVoted(ContentType.Prompt, prompt.getId(), user)))
-     {
-         Vote v = new Vote();
-         v.setContentId(prompt.getId());
-         v.setSource(hostname);
-         if(user != null)
-             v.setUser(user);
-
-         v.setValue(-1);
-         v.setContentTypeId(ContentType.Prompt);
-
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-         v.setCreatedAt(now);
-
-         voteDAO.doSave(v);
-         //update the vote
-         votes--;
-
-
-         JSONObject json = new JSONObject();
-         json.put("vote", "down");
-
-     //return new TextStreamResponse("text/json", json.toString());
-         return downSuccess;
-     }
-     else
-     {
-         return voted;
-     }
- }
+ 
 }

@@ -55,7 +55,6 @@ function populateQuestionsTypes(id, c, ids, vs) {
 }
 
 function onChangeQuestiontype(response) {
-    alert(response.type);
 
     showQuestionBlock(response);
 }
@@ -140,6 +139,21 @@ function showQuestionBlock( vblock) {
         $('gridin').highlight();
         document.title = "New Gridin";
     }
+    if(vblock.type == "newprompt") {
+        eBlocks = $$(".questiontype");
+        for(i = 0; i < eBlocks.length; i++) {
+            eBlocks[i].hide();
+            eBlocks[i].removeClassName("current");
+
+        }
+        $('prompt').addClassName("current");
+
+        $('prompt').show();
+        $('prompt').highlight();
+        document.title = "New Prompt";
+    }
+
+
 //alert(response.type);
 }
 

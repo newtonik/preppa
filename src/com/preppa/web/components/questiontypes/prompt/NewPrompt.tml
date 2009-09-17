@@ -1,4 +1,4 @@
-<html t:type="layout" t:pageTitle="New Prompt" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <br />
     <div class="mainclass">
         <t:form t:id="promptform">
@@ -74,4 +74,4 @@
     <br />
     <div t:type="newtag" />
 
-</html>
+</t:container>

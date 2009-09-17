@@ -69,17 +69,8 @@ public class NewVocab {
     private TagDAO tagDAO;
     @Property
     private List<Tag> addedTags = new LinkedList<Tag>();
-    @Inject
-    @Property
-    private Block newtagblock;
     @Property
     private Tag tag;
-    @Component
-    private TextField tagTextfield;
-    @Property
-    private String fname;
-    @Component
-    private Form tagform;
     @Property
     private DictionaryWord dWord;
 
@@ -96,9 +87,7 @@ public class NewVocab {
         this.vocab = word;
     }*/
 
-    public Block getNewTagBlock() {
-        return newtagblock;
-    }
+
 
     public boolean getTitleFilled() {
         return (fWord != null);
@@ -233,44 +222,6 @@ public FieldTranslator getTagTranslator()
     };
    }
 
-       Block onActionFromAddTag() {
-            return newtagblock;
-       }
-         Block onActionFromCloseTag() {
-            return newtagblock;
-        }
-
-       Block onActionFromCancelTag() {
-            return null;
-       }
-             //Funtions for adding new tags and topics
-        @CommitAfter
-        JSONObject onSuccessFromTagForm() {
-            List<Tag> tolist =  tagDAO.findByName(fname);
-            JSONObject json = new JSONObject();
-            System.out.print(tolist);
-            if(tolist.size() > 0) {
-                String markup = "<p>  <b>" + fname +
-                    "</b> already exists. <p>";
-                json.put("content", markup);
-
-            }
-            else
-            {
-                tag = new Tag();
-                tag.setName(fname);
-
-                tagDAO.doSave(tag);
-                String markup = "<p> You just submitted <b>" + tag.getName() +
-                    "</b>. Please add it using the dropdown <p>";
-               json.put("content", markup);
-
-            }
-
-
-           // return new TextStreamResponse("text/json", json.toString());
-            return json;
-        }
 
 
 }

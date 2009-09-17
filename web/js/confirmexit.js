@@ -21,7 +21,11 @@ var UNLOAD_MSG = "You will lose any unsaved changes!";
 var IGNORE_UNLOAD = false;
 
 function doBeforeUnload()  {
-    if (IGNORE_UNLOAD) return;
+    if (IGNORE_UNLOAD)
+    {
+        IGNORE_UNLOAD = false;
+        return;
+    }
     else
     return UNLOAD_MSG;
 }
