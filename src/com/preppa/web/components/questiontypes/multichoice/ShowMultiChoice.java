@@ -8,6 +8,7 @@ import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.UserObDAO;
+import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Question;
@@ -15,6 +16,7 @@ import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
 import com.preppa.web.utils.FlagStatus;
@@ -91,6 +93,12 @@ public class ShowMultiChoice {
     private ContentType contType;
     @Property
     private Integer votes;
+    @Property
+    private Integer votecount;
+    @Inject
+    private VoteDAO voteDAO;
+    @Property
+    private boolean isApproved;
 
     @SetupRender
     void intializeQuestion() {
@@ -101,8 +109,15 @@ public class ShowMultiChoice {
             author = question.getUser();
             questionflags = question.getFlags();
             contType = ContentType.Question;
+            votecount = voteDAO.findVoteByContentId(contType, question.getId());
+            if (votecount >= Constants.getApprovalThreshhold()) {
+                isApproved = true;
+            }
+            else {
+                isApproved = false;
+            }
         }
-
+        
     }
 
     public List<QuestionAnswer> getAllAnswers() {

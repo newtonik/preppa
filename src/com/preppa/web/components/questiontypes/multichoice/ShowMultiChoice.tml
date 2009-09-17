@@ -51,11 +51,17 @@
 
         </div>
         <br/>
+            <t:if t:test="${isApproved}">
+
+                <t:parameter name ="else">
         <a href="#" t:type="pagelink" t:page="contribution/question/edit" t:context="${question.id}"> Edit </a>
         <br />
         <p id="flagpass">
             <a href="#" id="flaglink" > Flag </a>
         </p>
+                </t:parameter>
+            </t:if>
+
 
         <t:block t:id="flagblock">
             <div id="submittable">

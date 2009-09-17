@@ -83,7 +83,7 @@ public class Vocab implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "name", length = 255, unique = true)
+    @Column(name = "name", length = 255, unique = false)
     public String getName() {
         return name;
     }

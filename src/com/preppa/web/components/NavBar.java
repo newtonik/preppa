@@ -78,6 +78,12 @@ public class NavBar {
     }
     public boolean getuserExists()
     {
+        System.out.println("User ID is " + user.getId());
+
+        if (user.getId() == 0) {
+            return false;
+        }
+
         return userExists;
     }
 
