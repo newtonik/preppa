@@ -99,7 +99,7 @@ public class ShowQuestion {
         this.qid = question.getId();
     }
 
-    Block onActionFromVoteUp() {
+    /*Block onActionFromVoteUp() {
      String  hostname = _request.getRemoteHost();
      if(!(voteDAO.checkVoted(ContentType.Question, ques.getId(), user)))
      {
@@ -163,5 +163,5 @@ public class ShowQuestion {
      {
          return voted;
      }
- }
+ }*/
 }

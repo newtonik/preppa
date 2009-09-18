@@ -48,12 +48,12 @@ public class Show {
     private Integer qid;
     @Inject
     private HttpServletRequest _request;
-    @Inject
+    /*@Inject
     private Block upSuccess;
     @Inject
     private Block voted;
     @Inject
-    private Block downSuccess;
+    private Block downSuccess;*/
     @Component
     private ShowMultiChoice showquestion;
     @Property
@@ -87,7 +87,7 @@ public class Show {
         this.qid = question.getId();
     }
 
-    Block onActionFromVoteUp() {
+    /*Block onActionFromVoteUp() {
         String  hostname = _request.getRemoteHost();
      if(!(voteDAO.checkVoted(ContentType.Question, question.getId(), user)))
         {
@@ -152,7 +152,7 @@ public class Show {
      {
          return voted;
      }
- }
+ }*/
 
     Integer onPassivate() {
         return this.qid;

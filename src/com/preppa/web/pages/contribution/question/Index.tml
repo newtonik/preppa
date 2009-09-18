@@ -23,7 +23,7 @@
     <tr>
         <td>
         <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-        style="padding: 1px; margins: 1px; width: 500px;" align="center">
+        style="padding: 1px; margins: 1px; width: 350px;" align="left">
         <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
         <h1>Help us improve our questions and approve them!</h1>
         <t:loop t:source="nonApproved" t:value="question">
@@ -43,9 +43,9 @@
         </td>
 
         <td></td>
-        <td><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-        style="padding: 1px; margins: 1px;" align="center">
-        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 240px;">
+        <td valign="top"><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+        style="padding: 1px; margins: 1px;" align="left">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 320px;">
         <h3>Help us fix our flagged questions!</h3>
         <t:loop t:source="flags" t:value="flag">
             <div id="nifty">

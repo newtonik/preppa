@@ -23,7 +23,7 @@
     <tr>
         <td VALIGN="top">
         <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-        style="padding: 1px; margins: 1px; width: 450px;" align="left">
+        style="padding: 1px; margins: 1px; width: 400px;" align="left">
         <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
         <h1>Featured Essay</h1>
         <i>${featured.prompt.quote}</i><br/>
@@ -36,7 +36,7 @@
         <td></td>
         <td VALIGN="top"><div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
         style="padding: 1px; margins: 1px;" align="left">
-        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 250px;">
+        <div style="padding: 1px; background-color:#e8eefa; margins: 1px; width: 275px;">
         <h1>New Essays</h1>
         <t:loop t:source="newest" t:value="newEssay">
             <i>${newEssay.prompt.quote}</i><br/>
