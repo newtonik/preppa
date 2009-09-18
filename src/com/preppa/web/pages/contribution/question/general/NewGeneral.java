@@ -154,7 +154,7 @@ public class NewGeneral {
 
         if (testId != null && !testId.equals("")) {
             questiontypes = questiontypeDAO.findByTestsubject(testsubjects.get(Integer.parseInt(testId) - 1));
-
+            testsubject = testsubjects.get(Integer.parseInt(testId) - 1);
 
             ids.put("");
             qt.put("");
@@ -171,7 +171,6 @@ public class NewGeneral {
         json.put("ids", ids);
         json.put("qt", qt);
         json.put("counter", counter);
-
         //return new TextStreamResponse("text/json", json.toString());
         return json;
     }
@@ -183,7 +182,7 @@ public class NewGeneral {
             json.put("type", "multichoice");
             visiblequestiontype = "multichoice";
             questiontype = questiontypeDAO.findByName(quesType);
-
+            aquestion.setSubject(testsubject);
         } else if (quesType.equals("Long Passage")) {
             json.put("type", "longpassage");
             visiblequestiontype = "longpassage";
@@ -204,6 +203,7 @@ public class NewGeneral {
             visiblequestiontype = "gridin";
             json.put("type", "gridin");
             questiontype = questiontypeDAO.findByName(quesType);
+            newgridin.setSubject(testsubject);
         }
         else if(quesType.equals("Free Response Question")) {
             visiblequestiontype = "newprompt";
@@ -222,6 +222,7 @@ public class NewGeneral {
             json.put("title", quesType);
             visiblequestiontype = "multichoice";
             questiontype = questiontypeDAO.findByName(quesType);
+            aquestion.setSubject(testsubject);
         }
         
         return json;

@@ -3,6 +3,16 @@
         <t:form t:id="editquestionform">
             <t:errors />
             <table id="formtableedit">
+
+                <tr >
+                    <td width="10%" valign="top" align="right"><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
+                    <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
+                               translate="prop:translator" label="name" type="text" size="10"  />
+                        <a href="#" class="addtopic">Add a topic here</a>
+                    </td>
+                </tr>
+
                 <t:radiogroup t:id="answergroup" t:value="correct">
 
                     <tr>
@@ -172,6 +182,7 @@
         </t:form>
     </div>
 
+    <div t:type="newtopic" />
      <div t:type="newtag" />
 
 </t:container>

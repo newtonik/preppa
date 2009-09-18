@@ -2,16 +2,23 @@
 
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.TagDAO;
+import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
+import com.preppa.web.utils.InjectSelectionModel;
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
@@ -22,6 +29,7 @@ import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
@@ -35,6 +43,7 @@ import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.slf4j.Logger;
 
 /**
  *
@@ -121,6 +130,30 @@ public class EditMultiChoice {
     private String imgpath;
     @Property
     private List<QuestionAnswer> choices;
+
+    //Topics
+    @Inject
+    private TopicDAO topicDAO;
+    @Property
+    private Topic top;
+    @Property
+    private List<Topic> addedTopics = new LinkedList<Topic>();
+    @Property
+    private Testsubject topicSubject;
+     @Property
+    private String fTopic;
+    @Property
+    private String fTopicName;
+    @InjectSelectionModel(labelField = "name", idField = "id")
+    private List<Testsubject> testsubjects1 = new ArrayList<Testsubject>();
+    @Component
+    private AutoComplete autoCompleteMultiTopics;
+    @Property
+    @Persist
+    private Testsubject testsubject1;
+    @Inject
+    private Logger logger;
+    
     void CreateQuestion() {
         //question = new Question();
     }
@@ -142,6 +175,7 @@ public class EditMultiChoice {
             addedTags = question.getTaglist();
             ratingValue = question.getDifficulty();
             correct = question.getCorrectAnswer();
+            addedTopics = question.getTopics();
             System.out.println("Question is " + question);
             if(question.getImage())
             {
@@ -224,6 +258,7 @@ public class EditMultiChoice {
         question.setUpdatedBy(user);
         question.setRevComment(fComment);
         question.setDifficulty(ratingValue);
+        question.setTopics(addedTopics);
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         question.setUpdatedAt(now);
         questionDAO.doSave(question);
@@ -315,5 +350,92 @@ public class EditMultiChoice {
         };
     }
 
+
+    public FieldTranslator getTranslator()
+  {
+    return new FieldTranslator<Topic>()
+    {
+            @Override
+      public String toClient(Topic value)
+      {
+        String clientValue = "0";
+        if (value != null)
+          clientValue = String.valueOf(value.getId());
+
+        return clientValue;
+      }
+
+            @Override
+      public void render(MarkupWriter writer) { }
+
+            @Override
+      public Class<Topic> getType() { return Topic.class; }
+
+            @Override
+      public Topic parse(String clientValue) throws ValidationException
+      {
+        Topic serverValue = null;
+
+        if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+            System.out.println(clientValue);
+          serverValue = topicDAO.findById(new Integer(clientValue));
+        }
+        return serverValue;
+      }
+    };
+  }
+
+    List<Topic> onProvideCompletionsFromAutoCompleteMultiTopics(String partial) {
+         List<Topic> matches = null;
+        testsubject1 = question.getQuestiontype().getTestsubject();
+        if(testsubject1 != null)
+        {
+            logger.warn("Test subject is not null");
+            matches = topicDAO.findByPartialName(partial, testsubject1);
+            logger.warn("Size is " + matches.size());
+        }
+        else
+        {
+            System.out.println("Partial is " + partial);
+            matches = topicDAO.findByPartialName(partial);
+        }
+       // matches = topicDAO.findByPartialName(partial);
+        return matches;
+
+    }
+
+
+
+        @CommitAfter
+        JSONObject onSuccessFromTopicForm() {
+            JSONObject json = new JSONObject();
+            System.out.println("trying to save " + fTopicName);
+          Topic topic = new Topic();
+           topic.setName(fTopicName);
+          topic.setTestsubject(topicSubject);
+          System.out.println("Topic name and subject set.");
+         if(topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
+             String markup = "<p> There is already a <b>" + fTopicName +
+                    "</b> topic in " + topicSubject.getName() + " Section.<p>";
+                json.put("content", markup);
+
+
+         }
+         else
+         {
+             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+             topic.setCreatedAt(now);
+             topic.setUpdatedAt(now);
+             System.out.println("Topic is being saved");
+             System.out.println("Topic is " + topicSubject);
+            topicDAO.doSave(topic);
+             String markup = "<p> You just submitted <b>" + topic.getName() +
+                    "</b>. Please add it using the topics autocomplete. <p>";
+               json.put("content", markup);
+
+         }
+          return json;
+        }
 
 }

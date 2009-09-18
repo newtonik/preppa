@@ -242,6 +242,11 @@ public class NewMultiChoice {
     private Testsubject testsubject1;
 
 
+    public void setSubject(Testsubject testsubject1) {
+        System.out.println("Setting subject in newmultichoice." + testsubject1.getName());
+        this.testsubject1 = testsubject1;
+    }
+
     public boolean getError() {
         return error;
     }
@@ -384,6 +389,7 @@ public class NewMultiChoice {
         System.out.println("Index to get is " + (Integer.parseInt(testId) - 1));
         if (testId != null && !testId.equals("")) {
             questiontypes = questiontypeDAO.findByTestsubject(testsubjects.get(Integer.parseInt(testId) - 1));
+            System.out.println("Setting testsubject.");
             testsubject1 = testsubjects.get(Integer.parseInt(testId) - 1);
 
             ids.put("");
@@ -478,6 +484,7 @@ public class NewMultiChoice {
         question.setCreatedAt(now);
         question.setUpdatedAt(now);
         newquestion = true;
+        question.setTopics(addedTopics);
         questionDAO.doSave(question);
         String impath = null;
         

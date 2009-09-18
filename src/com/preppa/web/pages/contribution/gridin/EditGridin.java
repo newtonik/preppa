@@ -2,14 +2,22 @@ package com.preppa.web.pages.contribution.gridin;
 
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.TagDAO;
+import com.preppa.web.data.TestsubjectDAO;
+import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 
+import com.preppa.web.utils.InjectSelectionModel;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -18,14 +26,17 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Mixins;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Radio;
 import org.apache.tapestry5.corelib.components.RadioGroup;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.slf4j.Logger;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -86,6 +97,32 @@ public class EditGridin {
     @Inject
     private TagDAO tagDAO;
 
+    //Topics
+    @Inject
+    private TopicDAO topicDAO;
+    @Property
+    private Topic top;
+    @Property
+    private List<Topic> addedTopics = new LinkedList<Topic>();
+    @Property
+    private Testsubject topicSubject;
+     @Property
+    private String fTopic;
+    @Property
+    private String fTopicName;
+    @InjectSelectionModel(labelField = "name", idField = "id")
+    private List<Testsubject> testsubjects1 = new ArrayList<Testsubject>();
+    @Component
+    private AutoComplete autoCompleteMultiTopics;
+    @Property
+    @Persist
+    private Testsubject testsubject1;
+    @Inject
+    private TestsubjectDAO testsubjectDAO;
+    @Inject
+    private Logger logger;
+
+
     void onActivate(Long id) {
         if (id > 0) {
             this.question = gridinDAO.findById(id);
@@ -94,7 +131,7 @@ public class EditGridin {
             fTitle = question.getTitle();
             gridinanswer = question.getAnswers().get(0);
             fDescription = gridinanswer.getDescription();
-
+            this.addedTopics = question.getTopics();
 
             if(gridinanswer.getRange())
             {
@@ -166,7 +203,7 @@ public class EditGridin {
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         question.setUpdatedAt(now);
 
-
+        question.setTopics(addedTopics);
         gridinDAO.doSave(question);
         showgridin.setGridin(question);
         return showgridin;
@@ -218,4 +255,118 @@ public class EditGridin {
 
     };
    }
+
+
+
+//Topic
+
+    public void onPrepare(){
+              Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+                testsubjects1.clear();
+              testsubjects1.addAll(setItems);
+
+    }
+
+    void Article() {
+       Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+       testsubjects1.addAll(setItems);
+
+
+
+    }
+
+    public FieldTranslator getTranslator()
+  {
+    return new FieldTranslator<Topic>()
+    {
+            @Override
+      public String toClient(Topic value)
+      {
+        String clientValue = "0";
+        if (value != null)
+          clientValue = String.valueOf(value.getId());
+
+        return clientValue;
+      }
+
+            @Override
+      public void render(MarkupWriter writer) { }
+
+            @Override
+      public Class<Topic> getType() { return Topic.class; }
+
+            @Override
+      public Topic parse(String clientValue) throws ValidationException
+      {
+        Topic serverValue = null;
+
+        if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+            System.out.println(clientValue);
+          serverValue = topicDAO.findById(new Integer(clientValue));
+        }
+        return serverValue;
+      }
+    };
+  }
+
+    List<Topic> onProvideCompletionsFromAutoCompleteMultiTopics(String partial) {
+         List<Topic> matches = null;
+         //Setting test subject
+         testsubject1 = testsubjectDAO.findByName("Math");
+        if(testsubject1 != null)
+        {
+            logger.warn("Test subject is not null");
+            matches = topicDAO.findByPartialName(partial, testsubject1);
+            logger.warn("Size is " + matches.size());
+        }
+        else
+        {
+            System.out.println("Partial is " + partial);
+            matches = topicDAO.findByPartialName(partial);
+        }
+       // matches = topicDAO.findByPartialName(partial);
+        return matches;
+
+    }
+
+
+
+        @CommitAfter
+        JSONObject onSuccessFromTopicForm() {
+            JSONObject json = new JSONObject();
+            System.out.println("trying to save " + fTopicName);
+          Topic topic = new Topic();
+           topic.setName(fTopicName);
+          topic.setTestsubject(topicSubject);
+          System.out.println("Topic name and subject set.");
+         if(topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
+             String markup = "<p> There is already a <b>" + fTopicName +
+                    "</b> topic in " + topicSubject.getName() + " Section.<p>";
+                json.put("content", markup);
+
+
+         }
+         else
+         {
+             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+             topic.setCreatedAt(now);
+             topic.setUpdatedAt(now);
+             System.out.println("Topic is being saved");
+             System.out.println("Topic is " + topicSubject);
+            topicDAO.doSave(topic);
+             String markup = "<p> You just submitted <b>" + topic.getName() +
+                    "</b>. Please add it using the topics autocomplete. <p>";
+               json.put("content", markup);
+
+         }
+          return json;
+        }
+
+    public void setSubject(Testsubject testsubject1) {
+        System.out.println("Setting subject in grid in." + testsubject1.getName());
+        this.testsubject1 = testsubject1;
+    }
+
+
 }

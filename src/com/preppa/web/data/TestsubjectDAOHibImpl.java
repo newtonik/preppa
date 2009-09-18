@@ -33,6 +33,17 @@ public class TestsubjectDAOHibImpl extends AbstractHibernateDAO<Testsubject, Int
         return  (Testsubject) findByQuery(sqlString.toString()).get(0);
     }
 
+    @Override
+    public Testsubject findByName(String name) {
+           SQLString sqlString = new SQLString("FROM Testsubject t");
+        if(name != null)
+        {
+
+                 sqlString.addWhereClause("t.name LIKE '" + name + "%'");
+        }
+
+        return  (Testsubject) findByQuery(sqlString.toString()).get(0);
+    }
 
     @Override
     public List<Testsubject> findAllWithQuestions() {

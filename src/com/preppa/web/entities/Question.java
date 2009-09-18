@@ -73,6 +73,7 @@ public class Question implements Serializable {
     private Boolean approval;
     private List<ReviewComment> reviewcomments;
     private List<Topic> topics = new LinkedList<Topic>();
+    private Testsubject testsubject;
 
     public Question() {
     }

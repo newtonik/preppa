@@ -128,7 +128,7 @@ public final class AppModule {
         binder.bind(PromptDAO.class, PromptDAOHimpl.class);
         binder.bind(EssayDAO.class, EssayDAOHimpl.class);
         binder.bind(FeedBackDAO.class, FeedBackDAOHimpl.class);
-        binder.bind(PracticeSetDAO.class, PracticeSetDAOHimpl.class); 
+        binder.bind(PracticeSetDAO.class, PracticeSetDAOHimpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 

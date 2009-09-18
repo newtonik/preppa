@@ -15,6 +15,22 @@
                     <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" />
                 </td>
             </tr>
+
+                <tr >
+
+                    <td><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
+
+                </tr>
+
+                <tr>
+
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
+                               translate="prop:translator" label="name" type="text" size="10"  />
+                        <a href="#" class="addtopic">Add a topic here</a>
+
+                </tr>
+
+
             <tr>
                 <td valign="top" align="left">
             <t:label for="questionBody"> Ask </t:label>
