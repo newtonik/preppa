@@ -22,6 +22,14 @@
         <t:outputraw t:value="${article.body}"/>
 
     </p>
+
+            <br/>
+            <b>Sources:</b>
+            <p>
+            ${article.sources}
+            </p>
+            <br/>
+
     <br />
     <div id="voteseal" t:type="voteseal" t:contentid="${article.id}" t:contenttype="contType" t:votes="votes" />
     <br />

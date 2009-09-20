@@ -23,6 +23,16 @@
 <p>
 <t:outputraw t:value="${passage.passagetwo}"/>
 </p>
+
+
+            <br/>
+            <b>Sources:</b>
+            <p>
+            ${passage.source}
+            </p>
+            <br/>
+
+
 <p>
 <t:tagview t:alltags="tags" />
 <br />

@@ -21,6 +21,15 @@
             <p>
             <t:outputraw t:value="${passage.passagetwo}"/>
             </p>
+
+            <br/>
+            <b>Sources:</b>
+            <p>
+            ${passage.source}
+            </p>
+            <br/>
+
+
             <br />
             <div id="voteseal" t:type="voteseal" t:contentid="${passage.id}" t:contenttype="contType" t:votes="votes" />
             <br />

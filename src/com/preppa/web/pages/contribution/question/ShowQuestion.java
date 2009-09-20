@@ -51,21 +51,21 @@ public class ShowQuestion {
     private QuestionAnswer questionanswer;
     @Inject
     private VoteDAO voteDAO;
-    @InjectComponent
+    /*@InjectComponent
     private Zone voteupZone;
     @Inject
-    private Block voteBlock;
+    private Block voteBlock;*/
     @Property
     @Persist
     private Integer votes;
     @Inject
     private HttpServletRequest _request;
-    @Inject
+    /*@Inject
     private Block upSuccess;
     @Inject
     private Block downSuccess;
     @Inject
-    private Block voted;
+    private Block voted;*/
 
     void onActivate(int id) {
         if (id > 0) {
