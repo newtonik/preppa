@@ -61,8 +61,8 @@
             <tr>
                 <td colspan="2" align="left">
                     <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit"/>
-                    <a href="#" t:type="pagelink" t:page="contribution/prompt/show" t:context="${prompt.id}" >
-                    <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" value="Cancel" />
+                    <a href="#" t:type="pagelink" t:page="contribution/prompt/show" t:context="${prompt.id}" onclick="IGNORE_UNLOAD = true" >
+                    <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" value="Cancel" onclick="IGNORE_UNLOAD = true"/>
                     </a>
 
             </td>
