@@ -60,7 +60,7 @@ private List<Tag> tags;
 private List<Topic> topics;
 @Inject
 private HttpServletRequest _request;
-@Inject
+/*@Inject
 private VoteDAO voteDAO;
 @InjectComponent
 private Zone voteupZone;
@@ -71,7 +71,7 @@ private Block upSuccess;
 @Inject
 private Block downSuccess;
 @Inject
-private Block voted;
+private Block voted;*/
 @Property
 private String reason;
 @Property
@@ -101,7 +101,7 @@ void onActivate(int id) {
             this.author = article.getUser();
             this.tags = article.getTaglist();
             this.articleflags = article.getFlags();
-            this.votes = voteDAO.findVoteByContentId(ContentType.Article, article.getId());
+            //this.votes = voteDAO.findVoteByContentId(ContentType.Article, article.getId());
             this.topics = article.getTopics();
             contType = ContentType.Article;
             votes = 0;
@@ -163,7 +163,7 @@ public Date getUpdatedAt() {
         }
     }
 
- Block onActionFromVoteUp() {
+ /*Block onActionFromVoteUp() {
      String  hostname = _request.getRemoteHost();
      if(!(voteDAO.checkVoted(ContentType.Article, article.getId(), user)))
      {
@@ -227,7 +227,7 @@ public Date getUpdatedAt() {
      {
          return voted;
      }
- }
+ }*/
 //  void onValidateFormFromFlagForm() {
 //      if(reason == null) {
 //          flagform.recordError("?");

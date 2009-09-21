@@ -1,9 +1,0 @@
-<html t:type="layout" t:pageTitle="Awaiting Approval" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<t:practicebarart />
-    <div id="main">
-                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - <t:pagelink t:page="contribution/question/approve/view" t:context="${qType}">${qType}</t:pagelink> - Show Question
-    <div t:id="showquestion" t:question="question">
-    </div>
-
-    </div>
-</html>

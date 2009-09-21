@@ -15,7 +15,7 @@
             <t:if t:test="TitleFilled">
                 <input type="text" disabled="true"  t:type="TextField" t:id="fWordBlank"  t:value="fWord" t:label="Word" size="30"/>
                 <t:parameter name="else">
-                    <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30" t:mixins="autocomplete"/>
+                    <input type="text" t:type="TextField" t:id="fWord"  t:value="fWord" t:label="Word" t:validate="required" size="30" />
                 </t:parameter>
             </t:if>
 
