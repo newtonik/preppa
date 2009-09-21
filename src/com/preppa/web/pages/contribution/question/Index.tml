@@ -33,7 +33,7 @@
 
 
             <t:outputraw t:value="${question.question}" />
-            <a href="#" t:type="pageLink" t:page="contribution/question/awaiting/Show" t:context="question.id">(See More)</a>
+            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="question.id">(See More)</a>
 
 
             <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
@@ -53,7 +53,7 @@
 
 
             <div align="left">
-            <a href="#" t:type="pageLink" t:page="contribution/question/awaiting/Show" t:context="flag.question.id"><t:outputraw t:value="${flag.question.question}" /></a>
+            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="flag.question.id"><t:outputraw t:value="${flag.question.question}" /></a>
             <t:loop t:source="flag.question.choices" t:value="answer">
             <div class="answer">
             <u><t:outputraw t:value="${answer.answer}" /></u>

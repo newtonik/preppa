@@ -2,9 +2,18 @@
     
 <t:practicebarart />
     <div id="main">
+
+
+            <t:if t:test="isApproved">
+                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - <t:pagelink t:page="contribution/question/approve/view" t:context="${qType}">${qType}</t:pagelink> - Show Question
+                <t:parameter name="else">
+                <t:pagelink t:page="contribution/question/approve/index"><b>Awaiting Approval</b></t:pagelink> - <t:pagelink t:page="contribution/question/awaiting/view" t:context="${qType}">${qType}</t:pagelink> - Show Question
+                </t:parameter>
+            </t:if>
+
     <div t:id="showquestion" t:question="ques">
     </div>
 
 
-
+    </div>
 </html>

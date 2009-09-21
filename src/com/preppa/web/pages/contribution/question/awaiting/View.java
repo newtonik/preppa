@@ -23,6 +23,7 @@ import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.ShortPassage;
+import com.preppa.web.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
@@ -160,7 +161,7 @@ public class View {
                     System.out.println("Criteria is " + (voteDAO.findSumByQuestionId(allquestions.get(i).getId()) < 1));
                     System.out.println("Criteria is " + (allquestions.get(i).getFlags().isEmpty()));
                     //System.out.println("Criteria is " + (questions.contains(allquestions.get(i)) == false));
-                    if (voteDAO.findSumByQuestionId(allquestions.get(i).getId()) < 1 && allquestions.get(i).getFlags().isEmpty() && questions.contains(allquestions.get(i)) == false) {
+                    if (voteDAO.findSumByQuestionId(allquestions.get(i).getId()) < Constants.getApprovalThreshhold() && allquestions.get(i).getFlags().isEmpty() && questions.contains(allquestions.get(i)) == false) {
                         questions.add(allquestions.get(i));
                     }
                 }

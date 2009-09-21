@@ -12,6 +12,7 @@ import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
 import com.preppa.web.pages.Index;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentType;
 import java.sql.Timestamp;
 import java.util.List;
@@ -51,25 +52,46 @@ public class ShowQuestion {
     private QuestionAnswer questionanswer;
     @Inject
     private VoteDAO voteDAO;
-    @InjectComponent
+    /*@InjectComponent
     private Zone voteupZone;
     @Inject
-    private Block voteBlock;
+    private Block voteBlock;*/
     @Property
     @Persist
     private Integer votes;
     @Inject
     private HttpServletRequest _request;
-    @Inject
+    /*@Inject
     private Block upSuccess;
     @Inject
     private Block downSuccess;
     @Inject
-    private Block voted;
-
+    private Block voted;*/
+    @Property
+    private boolean isApproved;
+    @Property
+    private String qType;
+    @Property
+    private Integer votecount;
+    @Property
+    private ContentType contType;
+    
     void onActivate(int id) {
         if (id > 0) {
             this.ques = questionDAO.findById(id);
+            isApproved = this.ques.getApproval();
+            if (ques.getQuestiontype() != null) {
+                qType = ques.getQuestiontype().getName();
+            }
+            contType = ContentType.Question;
+            votecount = voteDAO.findVoteByContentId(contType, ques.getId());
+            if (votecount >= Constants.getApprovalThreshhold()) {
+                isApproved = true;
+            }
+            else {
+                isApproved = false;
+            }
+
             if (this.ques != null) {
                 /*example = question.getSentence().getSentence();
                 vid = question.getId();*/

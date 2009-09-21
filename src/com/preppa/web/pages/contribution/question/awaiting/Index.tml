@@ -70,7 +70,7 @@
 
 
             <t:outputraw t:value="${question.question}" />
-            &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/awaiting/show" t:context="question.id">See More</a>
+            &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/show" t:context="question.id">See More</a>
 
             <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
             </div><br/>

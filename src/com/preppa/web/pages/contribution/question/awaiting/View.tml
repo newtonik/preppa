@@ -7,7 +7,7 @@
 </head>
 <t:practicebarart />
 <div id="main">
-                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - ${qType}
+                <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - ${qType}
         <div align="right">  <t:pagelink t:page="contribution/question/flagged" > Flagged </t:pagelink> </div>
 <div class="question">
 
@@ -41,7 +41,7 @@
 
     <div class="question">
             <t:outputraw t:value="${question.question}" />
-            &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/approve/show" t:context="question.id">See More</a>
+            &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/show" t:context="question.id">See More</a>
             <br></br>
     </div>
 
