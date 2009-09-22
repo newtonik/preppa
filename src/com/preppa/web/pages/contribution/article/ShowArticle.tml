@@ -26,9 +26,6 @@
     <p>
         <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
     </p>
-    <p id="flagpass">
-        <a href="#" id="flaglink" > Flag </a>
-    </p>
 
     <t:tagview t:alltags="tags" />
     <br />

@@ -25,12 +25,6 @@
             <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing">Writing</t:pagelink></li>
             </t:parameter>
         </t:if>
-        <t:if t:test="Flagged">
-            <li><t:pagelink t:page="contribution/article/flagged/index" class="active">Flagged</t:pagelink></li>
-            <t:parameter name="else">
-            <li><t:pagelink t:page="contribution/article/flagged/index" >Flagged</t:pagelink></li>
-            </t:parameter>
-        </t:if>
 
     </ul>
 </div>
