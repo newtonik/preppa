@@ -6,7 +6,7 @@ jQuery("ul.css-tabs a:contains('Passage')").addClass("current");
     if(test.indexOf("show") > 0) {
         jQuery("ul.css-tabs a").removeClass("current");
         jQuery("ul.css-tabs a:contains('Passage')").addClass("current");
-
+        jQuery("ul.css-tabs a:contains('Article')").addClass("current");
     }
     if(test.indexOf("talk") > 0) {
         jQuery("ul.css-tabs a").removeClass("current");

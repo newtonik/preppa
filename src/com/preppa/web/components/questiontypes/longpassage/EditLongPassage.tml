@@ -84,7 +84,7 @@
                     <td></td>
                     <td colspan="2" align="left">
                         <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="50" width="125" value="Submit"/>
-                                            <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="50" width="125" onclick="javascript:history.go(-1);" value="Cancel"></input>
+                        <t:pagelink t:page="contribution/longpassage/show" t:context="passage.id"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
                     </td>
 
                 </tr>

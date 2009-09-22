@@ -3,6 +3,6 @@
               <ul class="css-tabs">
                 <li><a href="#" t:type="pagelink" t:context="id" t:page="contribution/article/revisions"> History </a></li>
                 <li><a href="#" t:type="pagelink" t:page="contribution/article/talk" t:context="id"> Discuss</a></li>
-                 <li><a href="#" t:type="pagelink" t:page="contribution/article/show" t:context="id" class="current"> Article</a></li>
+                 <li><a href="#" t:type="pagelink" t:page="contribution/article/show" t:context="id"> Article</a></li>
               </ul>
 </t:container>

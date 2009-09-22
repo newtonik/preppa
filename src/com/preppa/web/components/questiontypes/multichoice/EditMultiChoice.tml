@@ -172,7 +172,7 @@
                     <td></td>
                     <td colspan="2" align="left">
                         <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                        <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="50" width="125" onclick="javascript:history.go(-1);" value="Cancel" />
+                        <t:pagelink t:page="contribution/question/show" t:context="question.id"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
 
                     </td>
 
