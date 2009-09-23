@@ -17,7 +17,14 @@
         <p>
              <t:outputraw t:value="${passage.passage}"/>
         </p>
-   
+
+            <br/>
+            <b>Sources:</b>
+            <p>
+            ${passage.source}
+            </p>
+            <br/>
+
            <p>
         <t:tagview t:alltags="tags" />
         <br />

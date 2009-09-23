@@ -32,7 +32,7 @@ function SetTxtFocus(txtId) {
    oTxt.select();
 }*/
 
-  var UNLOAD_MSG = "You will lose any unsaved changes!";
+  var UNLOAD_MSG = "Are you sure you want to leave this page? You will lose any changes made.";
 var IGNORE_UNLOAD = true;
 
 function doBeforeUnload()  {

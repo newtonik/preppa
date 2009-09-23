@@ -16,16 +16,33 @@
         <h3> Brief Introduction of Passage </h3>
         <t:outputraw t:value="${passage.summary}" />
     </p>
-    <p>
-    <t:outputraw t:value="${passage.passageone}"/>
-</p>
+    <div class="passwrap">
+        <h4>Passage 1: </h4>
+        <p>
+        <t:outputraw t:value="${passage.passageone}"/>
+        </p>
+    </div>
+    <br />
 
-<p>
-<t:outputraw t:value="${passage.passagetwo}"/>
-</p>
-<p>
-<t:tagview t:alltags="tags" />
-<br />
+    <div class="passwrap">
+        <h4>Passage 2: </h4>
+        <p>
+        <t:outputraw t:value="${passage.passagetwo}"/>
+        </p>
+    </div>
+    <br/>
+
+    <br/>
+    <b>Sources:</b>
+    <p>
+        ${passage.source}
+    </p>
+    <br/>
+
+
+    <p>
+    <t:tagview t:alltags="tags" />
+    <br />
 </p>
 <br />
 <div id="voteseal" t:type="voteseal" t:contentid="${passage.id}" t:contenttype="contType" t:votes="votes" />

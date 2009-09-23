@@ -17,6 +17,7 @@ import com.preppa.web.utils.InjectSelectionModel;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
@@ -98,7 +99,8 @@ public class NewGeneral {
     private String visiblequestiontype;
     @Component
     private Hidden vhidden;
-    
+    @Inject
+    private ComponentResources resources;
     //@Property
     //@Inject
     //private Block longpassageblock;
@@ -111,7 +113,7 @@ public class NewGeneral {
     void onActivate() {
         testsubjects = testSubDAO.findAllWithQuestions();
         questiontypes = questiontypeDAO.findAll();
-        
+        //resources.discardPersistentFieldChanges();
     }
     /*
     void onValidateForm() {

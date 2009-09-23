@@ -67,7 +67,7 @@ public class NavBar {
 
     void onActionFromLogoutUrl() {
         logout.logout();
-        user = null;
+       
     }
 
     /**
@@ -76,13 +76,8 @@ public class NavBar {
     public User getUser() {
         return user;
     }
-    public boolean getuserExists()
+    public boolean getUserExists()
     {
-        System.out.println("User ID is " + user.getId());
-
-        if (user.getId() == 0) {
-            return false;
-        }
 
         return userExists;
     }
