@@ -1,6 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="dualpassage">
+         <div align="left"> <a href="#" > Best Practices</a> </div>
         <t:form t:id="dualpassageform">
             <t:errors />
             <table id="dualpasstable">

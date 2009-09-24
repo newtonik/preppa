@@ -81,6 +81,24 @@ public class Prompt implements Serializable {
         return hash;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Prompt other = (Prompt) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.quote == null) ? (other.quote != null) : !this.quote.equals(other.quote)) {
+            return false;
+        }
+        return true;
+    }
+
 
     @Basic(optional = false)
     @Column(name = "created_at", nullable = false)

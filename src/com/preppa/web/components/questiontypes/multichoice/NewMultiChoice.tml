@@ -1,7 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+     <div align="left"> <a href="#" > Best Practices</a> </div>
     <div id="multiple-question" class="overlay"  >
-        <t:form t:id="createquestionform" class="multiquestionclass">
+        <t:form t:id="createquestionform" class="multiquestionclass" clientvalidation="false">
             <t:errors />
             <t:if t:test="questiontExists">
                 <table id="atable" cellpadding="10">
@@ -29,25 +29,19 @@
 
 
                 <tr >
-                    <td width="10%" valign="top" align="right"><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
+                    <td></td>
+                    <td width="10%" valign="top" ><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
                                translate="prop:translator" label="name" type="text" size="10"  />
+                        <br />
                         <a href="#" class="addtopic">Add a topic here</a>
+                    </td>
                 </tr>
-                <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
-                    <tr>
-                        <td width="10%" valign="top" align="right">
-                    <t:label for="questioneditor">Question: </t:label>
-                    </td>
-                    <td >
-
-                    <t:editor align="left" t:id="questioneditor" t:toolbarSet="Gridin" customConfiguration="asset:context:js/fck/gridin.js" t:width="600" t:height="300"/>
-
-                    </td>
-                    </tr>
-                    <tr>
+                                    <tr>
                         <td></td>
                         <td>
                             <b> Does your question contain a graph or an Image?</b>
@@ -67,6 +61,18 @@
                             <br />
                         </td>
                     </tr>
+                <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
+                    <tr>
+                        <td width="10%" valign="top" align="right">
+                    <t:label for="questioneditor">Question: </t:label>
+                    </td>
+                    <td >
+
+                    <t:editor align="left" t:id="questioneditor" t:toolbarSet="Gridin" customConfiguration="asset:context:js/fck/gridin.js" t:width="600" t:height="300"/>
+
+                    </td>
+                    </tr>
+
                     <tr>
                         <td colspan="2">
                             <h3> Answer Choices </h3>
@@ -79,7 +85,7 @@
                     <input t:type="radio" type="radio" t:value="literal:A" /> <br />
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="600"  t:height="70"/>
+                    <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="500"  t:height="70"/>
                     </td>
                     </tr>
                     <tr>
@@ -89,7 +95,7 @@
                     <input t:type="radio" type="radio" t:value="literal:B" /> <br />
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:width="600" t:height="70"/>
+                    <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:width="500" t:height="70"/>
                     </td>
                     </tr>
 
@@ -101,7 +107,7 @@
 
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice3" t:toolbarSet="Basic"   t:width="600" t:height="70"/>
+                    <t:editor align="left" t:id="choice3" t:toolbarSet="Basic"   t:width="500" t:height="70"/>
                     </td>
                     </tr>
                     <tr>
@@ -111,7 +117,7 @@
                     <input t:type="radio" type="radio" t:value="literal:D" /> <br />
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="600" t:height="70"/>
+                    <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="500" t:height="70"/>
                     </td>
                     </tr>
                     <tr>
@@ -124,7 +130,7 @@
 
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice5" t:toolbarSet="Basic"  t:width="600" t:height="70"/>
+                    <t:editor align="left" t:id="choice5" t:toolbarSet="Basic"  t:width="500" t:height="70"/>
                     </td>
                     </tr>
 
@@ -134,7 +140,7 @@
                     <t:label for="fExplanation"> Explanation: </t:label>
                     </td>
                     <td align="left">
-                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="3" cols="80" t:validate="required"/>
+                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="3" cols="60" t:validate="required"/>
                     </td>
                     </tr>
                     <tr>
@@ -183,8 +189,9 @@
                         <td></td>
                         <td colspan="2" align="left">
                             <br />
-                            <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                            <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" onclick="javascript:history.go(-1);" value="Cancel"></input>
+                             <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
+
+                             <a t:type="actionlink" t:id="cancel"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83"  value="Cancel"  /></a>
                         </td>
 
                     </tr>

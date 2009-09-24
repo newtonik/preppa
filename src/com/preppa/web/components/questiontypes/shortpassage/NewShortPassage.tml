@@ -1,7 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="passage" align="center">
-
+         <div align="left"> <a href="#" > Best Practices</a> </div>
         <t:form t:id="createpassageform">
             <t:errors />
             <table id="passtable">

@@ -1,6 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <br />
     <div class="mainclass">
+         <div align="left"> <a href="#" > Best Practices</a> </div>
         <t:form t:id="promptform">
             <t:errors/>
             <table>

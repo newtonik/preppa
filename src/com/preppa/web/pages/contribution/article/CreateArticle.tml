@@ -3,7 +3,7 @@
     <br />
     <div id="main">
         <div id ="artcont" align="center" class="questiontype">
-            <a href="#" > Best Practices</a>
+            <div align="right"> <a href="#" > Best Practices</a> </div>
             <t:form t:id="articleform">
                 <t:errors />
                 <table id="articleformtable" width="700">

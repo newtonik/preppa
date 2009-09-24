@@ -1,35 +1,40 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<div id="mainbar">
-<div id="subheader">
-    <div id="tabs">
-  <t:if t:test="Question">
-    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/question/index"><span class="bounty-indicator-tab"></span>Questions</a>
-    <t:parameter name="else">
-        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/question/index">Questions</a>
-    </t:parameter>
-</t:if>
-<t:if t:test="Article">
-    <a href="#" class="youarehere" t:type="pagelink" t:page="learning/index"><span class="bounty-indicator-tab"></span>Articles and Guides</a>
-    <t:parameter name="else">
-        <a href="#" t:type="pagelink" t:page="learning/index">Articles and Guides</a>
-    </t:parameter>
-</t:if>
-<t:if t:test="Vocab">
-    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/vocab/view"><span class="bounty-indicator-tab"></span>Vocabulary</a>
-    <t:parameter name="else">
-        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/vocab/view">Vocabulary</a>
-    </t:parameter>
-</t:if>
-<t:if t:test="FreeRes">
-    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/prompt/index"><span class="bounty-indicator-tab"></span>Free Response Viewer</a>
-    <t:parameter name="else">
-        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/prompt/index">Free Response Viewer</a>
-    </t:parameter>
-</t:if>
-<a href="#" t:page="learning/practice" t:type="pagelink">Practice</a>
+    <div id="mainbar">
+        <div id="subheader">
+            <div id="tabs">
+                <t:if t:test="Question">
+                    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/question/index"><span class="bounty-indicator-tab"></span>Questions</a>
+                    <t:parameter name="else">
+                        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/question/index">Questions</a>
+                    </t:parameter>
+                </t:if>
+                <t:if t:test="Article">
+                    <a href="#" class="youarehere" t:type="pagelink" t:page="learning/index"><span class="bounty-indicator-tab"></span>Articles and Guides</a>
+                    <t:parameter name="else">
+                        <a href="#" t:type="pagelink" t:page="learning/index">Articles and Guides</a>
+                    </t:parameter>
+                </t:if>
+                <t:if t:test="Vocab">
+                    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/vocab/view"><span class="bounty-indicator-tab"></span>Vocabulary</a>
+                    <t:parameter name="else">
+                        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/vocab/view">Vocabulary</a>
+                    </t:parameter>
+                </t:if>
+                <t:if t:test="FreeRes">
+                    <a href="#" class="youarehere" t:type="pagelink" t:page="contribution/prompt/index"><span class="bounty-indicator-tab"></span>Free Response Viewer</a>
+                    <t:parameter name="else">
+                        <a href="/?tab=featured" t:type="pagelink" t:page="contribution/prompt/index">Free Response Viewer</a>
+                    </t:parameter>
+                </t:if>
+                <t:if t:test="Practice">
+                    <a href="#" class="youarehere" t:page="learning/practice" t:type="pagelink"><span class="bounty-indicator-tab"></span>Practice Sets</a>
+                    <t:parameter name="else">
+                        <a href="#" t:page="learning/practice" t:type="pagelink">Practice Sets</a>
+                    </t:parameter>
+                </t:if>
 
+            </div>
+        </div>
     </div>
-</div>
-</div>
-<div id='spacer'></div>
+    <div id='spacer'></div>
 </t:container>

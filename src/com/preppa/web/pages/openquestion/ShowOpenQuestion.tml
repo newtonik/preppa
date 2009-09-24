@@ -55,7 +55,7 @@
                                   t:label="Answer" t:validate="required"  />
 
                         <br />
-                        <b> Please be explain clearly!</b>
+                        <b> Please explain clearly</b>
                         <br />
                         </td>
                         </tr>

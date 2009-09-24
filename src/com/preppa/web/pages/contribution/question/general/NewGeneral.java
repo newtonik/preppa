@@ -18,14 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Mixins;
+import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -101,6 +102,10 @@ public class NewGeneral {
     private Hidden vhidden;
     @Inject
     private ComponentResources resources;
+    //checks if form has been viewed
+    @Persist
+    @Property
+    private String viewed;
     //@Property
     //@Inject
     //private Block longpassageblock;
@@ -113,40 +118,62 @@ public class NewGeneral {
     void onActivate() {
         testsubjects = testSubDAO.findAllWithQuestions();
         questiontypes = questiontypeDAO.findAll();
-        //resources.discardPersistentFieldChanges();
+
+
     }
+
+    @SetupRender
+    void setDefaults() {
+        System.out.println(viewed);
+        if (viewed == null) {
+            resources.discardPersistentFieldChanges();
+            questiontype = null;
+            testsubject = null;
+            visiblequestiontype = null;
+        }
+        else
+        {
+            testsubject = questiontype.getTestsubject();
+        }
+        viewed = null;
+    }
+
     /*
     void onValidateForm() {
-        System.out.println(visiblequestiontype);
-         if (questiontype.getName().equals("Multiple Choice")) {
-            visiblequestiontype = "multichoice";
+    System.out.println(visiblequestiontype);
+    if (questiontype.getName().equals("Multiple Choice")) {
+    visiblequestiontype = "multichoice";
 
-        } else if (questiontype.getName().equals("Long Passage")) {
+    } else if (questiontype.getName().equals("Long Passage")) {
 
-            visiblequestiontype = "longpassage";
+    visiblequestiontype = "longpassage";
 
-        } else if (questiontype.getName().equals("Long Dual Passage")) {
+    } else if (questiontype.getName().equals("Long Dual Passage")) {
 
-            visiblequestiontype = "longdualpassage";
+    visiblequestiontype = "longdualpassage";
 
-        } else if (questiontype.getName().equals("Short Dual Passage")) {
-            visiblequestiontype = "shortdualpassage";
+    } else if (questiontype.getName().equals("Short Dual Passage")) {
+    visiblequestiontype = "shortdualpassage";
 
-        } else if (questiontype.getName().equals("Short Passage")) {
+    } else if (questiontype.getName().equals("Short Passage")) {
 
-            visiblequestiontype = "shortpassage";
+    visiblequestiontype = "shortpassage";
 
-        } else if (questiontype.getName().equals("Grid In")) {
-            visiblequestiontype = "gridin";
+    } else if (questiontype.getName().equals("Grid In")) {
+    visiblequestiontype = "gridin";
 
-        }
-        else {
-            visiblequestiontype = "multichoice";
-
-        }
-        
     }
-*/
+    else {
+    visiblequestiontype = "multichoice";
+
+    }
+
+    }
+     */
+    void onValidateForm() {
+        viewed = "true";
+    }
+
     JSONObject onChangeFromTestSubSelect(String testId) {
         JSONObject json = new JSONObject();
 
@@ -179,7 +206,7 @@ public class NewGeneral {
 
     JSONObject onChangeFromQuestiontypeSelect(String quesType) {
         JSONObject json = new JSONObject();
-        
+
         if (quesType.equals("Multiple Choice")) {
             json.put("type", "multichoice");
             visiblequestiontype = "multichoice";
@@ -206,27 +233,24 @@ public class NewGeneral {
             json.put("type", "gridin");
             questiontype = questiontypeDAO.findByName(quesType);
             newgridin.setSubject(testsubject);
-        }
-        else if(quesType.equals("Free Response Question")) {
+        } else if (quesType.equals("Free Response Question")) {
             visiblequestiontype = "newprompt";
-             json.put("type", "newprompt");
-             json.put("title", "Create Prompt");
+            json.put("type", "newprompt");
+            json.put("title", "Create Prompt");
             questiontype = questiontypeDAO.findByName(quesType);
-        }
-         else if(quesType.equals("Sentence Completion")) {
+        } else if (quesType.equals("Sentence Completion")) {
             visiblequestiontype = "Sentence Completion";
-             json.put("type", "multichoice");
-             json.put("title", "Sentence Completion");
+            json.put("type", "multichoice");
+            json.put("title", "Sentence Completion");
             questiontype = questiontypeDAO.findByName(quesType);
-        }
-        else {
+        } else {
             json.put("type", "multichoice");
             json.put("title", quesType);
             visiblequestiontype = "multichoice";
             questiontype = questiontypeDAO.findByName(quesType);
             aquestion.setSubject(testsubject);
         }
-        
+
         return json;
 
     }
@@ -235,6 +259,4 @@ public class NewGeneral {
 
         return null;
     }
-
-
 }

@@ -77,39 +77,7 @@ public class CreatePrompt {
 
 
     Object onValidateFormFromPromptForm(){
-        /*if(mywork == false) {
-            error = true;
-            emessage = "You must verify that this is your own work.";
-            createquestionform.recordError("You must verify that this is your own work.");
-        }
-        if ((correct == null)) {
-            error = true;
-            emessage = "You did not specify an answer.";
-            createquestionform.recordError(answergroup, "You did not specify an answer.");
-        }
-
-        if(ratingValue == null) {
-            createquestionform.recordError(ratingField, "You need to select a difficulty");
-        }
-        if(question != null) {
-        if(question.getQuestiontype() == null) {
-            System.out.println("There isn't a questiontype");
-            createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
-        }
-        }
-        if(request.isXHR() && createquestionform.getHasErrors()) {
-    //        return questionzone;
-            return null;
-        }
-        else
-        {
-            //showquestion.setquestion(question);
-            return null;
-        }
-
-        if (question == null) {
-            promptform.recordError(answergroup, "You did not specify an answer.");
-        }*/
+      
 
         return null;
     }
@@ -124,7 +92,14 @@ public class CreatePrompt {
         prompt.setQuestion(question);
         prompt.setTopic(topic);
         prompt.setUser(user);
-        prompt.setTaglist(addedTags);
+        for(Tag t: addedTags) {
+            if(!(prompt.getTaglist().contains(t)))
+            {
+                prompt.getTaglist().add(t);
+            }
+          //  article.setTopics(tset);
+
+         }
         prompt.setUpdatedBy(user);
         promptDAO.doSave(prompt);
         showprompt.setprompt(prompt);

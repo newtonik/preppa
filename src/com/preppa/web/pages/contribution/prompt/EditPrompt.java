@@ -16,8 +16,9 @@ import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import java.sql.Timestamp;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -58,7 +59,7 @@ public class EditPrompt {
     @Inject
     private TagDAO tagDAO;
     @Property
-    private List<Tag> addedTags = new LinkedList<Tag>();
+    private List<Tag> addedTags;
     @Component(parameters = {"value=question"})
     private Editor body;
     @Property
@@ -68,6 +69,7 @@ public class EditPrompt {
 
 
     void onActivate(int id) {
+        if(id > 0) {
         this.prompt = promptDAO.findById(id);
         if(prompt != null) {
             quote = prompt.getQuote();
@@ -83,6 +85,7 @@ public class EditPrompt {
             {
                 fTag = vocab.getTags();
             }*/
+        }
         }
     }
     Integer onPassivate() {
@@ -130,13 +133,15 @@ public class EditPrompt {
     @CommitAfter
     Object onSuccessFromPromptForm() {
         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-        this.prompt = new Prompt();
-        prompt.setCreatedAt(now);
         prompt.setUpdatedAt(now);
         prompt.setQuote(quote);
         prompt.setQuestion(question);
         prompt.setTopic(topic);
-        prompt.setUser(user);
+
+        Set tagset = new HashSet<Tag>();
+        tagset.addAll(addedTags);
+       addedTags.clear();
+        addedTags.addAll(tagset);
         prompt.setTaglist(addedTags);
         prompt.setUpdatedBy(user);
         promptDAO.doSave(prompt);

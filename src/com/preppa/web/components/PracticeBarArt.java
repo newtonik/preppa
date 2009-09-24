@@ -23,7 +23,7 @@ public class PracticeBarArt {
 
     public boolean getArticle() {
         String url = _request.getRequestURL().toString();
-        return url.contains("/article") || url.contains("/learning");
+        return (url.contains("/article") || url.contains("/learning")) && !(url.contains("learning/practice"));
     }
 
     public boolean getVocab() {
@@ -37,5 +37,9 @@ public class PracticeBarArt {
     public boolean getFreeRes() {
         String url = _request.getRequestURL().toString();
         return url.contains("/essay") || url.contains("/prompt");
+    }
+    public boolean getPractice() {
+        String url = _request.getRequestURL().toString();
+        return url.contains("learning/practice");
     }
 }

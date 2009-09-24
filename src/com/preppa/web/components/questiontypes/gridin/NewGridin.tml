@@ -2,33 +2,25 @@
 
     <h3>Add a gridin question</h3>
 
+    <div align="left"> <a href="#" > Best Practices</a> </div>
     <t:form t:id="gridinForm">
         <t:errors />
         <table id="questiontable">
-            <tr  align="left">
-                <td>
-            <t:label for="fTitle" > Title: </t:label>
-            </td>
+
+            <tr >
+                
+                <td><t:label for="autoCompleteGridinTopics" >Topics:</t:label></td>
+
             </tr>
+
             <tr>
-                <td align="left">
-                    <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" />
+                
+                <td>
+                    <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteGridinTopics" selected="addedTopics"
+                           translate="prop:translator" label="name" type="text" size="10"  />
+                    <a href="#" class="addtopic">Add a topic here</a>
                 </td>
             </tr>
-
-                <tr >
-
-                    <td><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
-
-                </tr>
-
-                <tr>
-
-                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
-                               translate="prop:translator" label="name" type="text" size="10"  />
-                        <a href="#" class="addtopic">Add a topic here</a>
-
-                </tr>
 
             <tr>
                 <td>
@@ -92,17 +84,32 @@
             <a href="#" id="cancelrange" style="display: none"> Cancel </a>
             </td>
             </tr>
+
             <tr>
                 <td>
             <t:label for="fDescription"> Explanation </t:label>
             <br />
             <input t:type="textarea" type="textarea" t:id="fDescription" t:value="fDescription" t:title="Explaination" t:validate="required" rows="3" cols="80" />
             </td>
+            </tr>
+            <tr>
+                <td width="10%" valign="top" align="left">
+            <t:label for="ratingField"> Difficulty: </t:label>
+
+            </td>
+            </tr>
+            <tr>
+
+                <td align="left">
+
+                    <div t:type="ck/RatingField" t:id="ratingField" source="list:1,2,3,4,5" value="ratingValue" t:validate="required"/>
+                </td>
+            </tr>
+
             <tr>
                 <td align="left">
             <t:label for="autoCompletegridintag"> Tags (Select up to 5 tags) </t:label>
             </td>
-            </tr>
             </tr>
             <tr>
                 <td align="left">
@@ -125,8 +132,8 @@
                 <td colspan="2" align="left">
                     <br />
                     <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                    <t:pagelink t:page="Index"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
-                </td>
+            <t:pagelink t:page="Index"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
+            </td>
 
             </tr>
 

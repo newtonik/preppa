@@ -22,6 +22,7 @@ import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import com.preppa.web.utils.InjectSelectionModel;
 import java.io.File;
 import java.sql.Timestamp;
@@ -35,11 +36,11 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
+import org.apache.tapestry5.ValidationTracker;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
-import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Mixins;
 import org.apache.tapestry5.annotations.Parameter;
@@ -49,12 +50,13 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.RadioGroup;
 import org.apache.tapestry5.corelib.components.Select;
-import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Context;
+import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.upload.components.Upload;
 import org.apache.tapestry5.upload.services.UploadedFile;
@@ -240,6 +242,17 @@ public class NewMultiChoice {
     @Property
     @Persist
     private Testsubject testsubject1;
+    @Inject
+    private ComponentResources resources;
+    @InjectPage
+    private NewGeneral newgeneral;
+    private boolean cancelform;
+    @Inject
+    private Messages messages;
+    @Parameter
+    private String clear;
+    @Inject
+    private Environment _environment;
 
 
     public void setSubject(Testsubject testsubject1) {
@@ -287,6 +300,12 @@ public class NewMultiChoice {
         if (ans5 != null) {
             ans5 = null;
         }
+        if(clear == null)
+        {
+           _resources.discardPersistentFieldChanges();
+           ValidationTracker tracker = _environment.peek(ValidationTracker.class);
+           tracker.clear();
+        }
     }
 
     @SetupRender
@@ -300,7 +319,7 @@ public class NewMultiChoice {
         {
             questiontExists = true;
         }
-         System.out.println(hasquestiontype);
+        // System.out.println(hasquestiontype);
         if(hasquestiontype != null) {
             
             if(hasquestiontype.equals("true")) {
@@ -318,6 +337,23 @@ public class NewMultiChoice {
         else
         {
             hasOwner = "false";
+        }
+        //clear the tags from showing up in new questions if the form is not being reloaded
+        //for errors
+        if(!createquestionform.getHasErrors())
+        {
+            addedTags.clear();
+            addedTopics.clear();
+        }
+        if(clear == null)
+        {
+           _resources.discardPersistentFieldChanges();
+           ValidationTracker tracker = _environment.peek(ValidationTracker.class);
+           if(tracker != null) {
+            tracker.clear();
+            System.out.println("Clearing Tracker");
+            _resources.discardPersistentFieldChanges();
+           }
         }
     }
 
@@ -342,6 +378,7 @@ public class NewMultiChoice {
     }
 
     Object onValidateFormFromCreateQuestionForm() {
+        if(!cancelform) {
         if (mywork == false) {
             error = true;
             emessage = "You must verify that this is your own work.";
@@ -362,6 +399,22 @@ public class NewMultiChoice {
                 createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
             }
         }
+        if(fQuestion == null) {
+                        createquestionform.recordError(questioneditor, messages.get("answer-required-message"));
+        }
+        if(ans1 == null) {
+            createquestionform.recordError(choice1, messages.get("choice-message"));
+        }
+       if(ans2 == null) {
+            createquestionform.recordError(choice2, messages.get("choice-message"));
+        }
+        if(ans3 == null) {
+            createquestionform.recordError(choice3, messages.get("choice-message"));
+        }if(ans4 == null) {
+            createquestionform.recordError(choice4, messages.get("choice-message"));
+        }if(ans5 == null) {
+            createquestionform.recordError(choice5, messages.get("choice-message"));
+        }
 
         if(hasimage == null) {
             createquestionform.recordError(chooseimage, "Please specify if you have an image");
@@ -374,6 +427,11 @@ public class NewMultiChoice {
             //return null;
         } else {
             //showquestion.setquestion(question);
+            return null;
+        }
+        }
+        else
+        {
             return null;
         }
     }
@@ -509,6 +567,7 @@ public class NewMultiChoice {
 
          }
 
+       resources.discardPersistentFieldChanges();
     if(owner != null) {
      if(hasOwner.equals("true")) {
        if (!saveQuestionToObject(owner, question)) {
@@ -670,6 +729,9 @@ public class NewMultiChoice {
     List<Topic> onProvideCompletionsFromAutoCompleteMultiTopics(String partial) {
          List<Topic> matches = null;
 
+         if(questiontype != null) {
+            testsubject1 = questiontype.getTestsubject();
+         }
         if(testsubject1 != null)
         {
             logger.warn("Test subject is not null");
@@ -690,6 +752,7 @@ public class NewMultiChoice {
 
         @CommitAfter
         JSONObject onSuccessFromTopicForm() {
+
             JSONObject json = new JSONObject();
             System.out.println("trying to save " + fTopicName);
           Topic topic = new Topic();
@@ -718,5 +781,27 @@ public class NewMultiChoice {
 
          }
           return json;
+        }
+
+        void onSelectedFromCancel() {
+            resources.discardPersistentFieldChanges();
+            cancelform = true;
+
+
+            
+        }
+        Object onActionFromCancel() {
+            resources.discardPersistentFieldChanges();
+            return newgeneral;
+        }
+        Object onSuccess() {
+            if(cancelform)
+            {
+                return newgeneral;
+            }
+            else
+            {
+                return null;
+            }
         }
 }

@@ -17,8 +17,10 @@ import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.contribution.prompt.ShowPrompt;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import org.springframework.security.annotation.Secured;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
@@ -71,42 +73,9 @@ public class NewPrompt {
     void onValidateForm() {
 
     }
-
+    
 
     Object onValidateFormFromPromptForm(){
-        /*if(mywork == false) {
-            error = true;
-            emessage = "You must verify that this is your own work.";
-            createquestionform.recordError("You must verify that this is your own work.");
-        }
-        if ((correct == null)) {
-            error = true;
-            emessage = "You did not specify an answer.";
-            createquestionform.recordError(answergroup, "You did not specify an answer.");
-        }
-
-        if(ratingValue == null) {
-            createquestionform.recordError(ratingField, "You need to select a difficulty");
-        }
-        if(question != null) {
-        if(question.getQuestiontype() == null) {
-            System.out.println("There isn't a questiontype");
-            createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
-        }
-        }
-        if(request.isXHR() && createquestionform.getHasErrors()) {
-    //        return questionzone;
-            return null;
-        }
-        else
-        {
-            //showquestion.setquestion(question);
-            return null;
-        }
-
-        if (question == null) {
-            promptform.recordError(answergroup, "You did not specify an answer.");
-        }*/
 
         return null;
     }
@@ -121,8 +90,13 @@ public class NewPrompt {
         prompt.setQuestion(question);
         prompt.setTopic(topic);
         prompt.setUser(user);
+        Set tagset = new HashSet<Tag>();
+        tagset.addAll(addedTags);
+        addedTags.clear();
+        addedTags.addAll(tagset);
         prompt.setTaglist(addedTags);
         prompt.setUpdatedBy(user);
+       
         promptDAO.doSave(prompt);
         showprompt.setprompt(prompt);
         return showprompt;

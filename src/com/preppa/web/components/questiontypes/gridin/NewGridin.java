@@ -42,6 +42,7 @@ import org.apache.tapestry5.services.Context;
 import org.apache.tapestry5.upload.components.Upload;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.slf4j.Logger;
 import org.springframework.security.annotation.Secured;
@@ -108,6 +109,10 @@ public class NewGridin {
     private String fAnswer;
     @Property
     private String fDescription;
+    @Component
+    private RatingField ratingField;
+    @Property
+    private Integer ratingValue;
     @Property
     private String hasimage;
     @Property
@@ -141,7 +146,7 @@ public class NewGridin {
     @InjectSelectionModel(labelField = "name", idField = "id")
     private List<Testsubject> testsubjects1 = new ArrayList<Testsubject>();
     @Component
-    private AutoComplete autoCompleteMultiTopics;
+    private AutoComplete autoCompleteGridinTopics;
     @Property
     @Persist
     private Testsubject testsubject1;
@@ -157,6 +162,7 @@ public class NewGridin {
     void setDefaults() {
         hasimage = "false";
         //answertype = "range";
+        testsubject1 = testsubjectDAO.findByName("Mathematics");
         
     }
 
@@ -186,6 +192,7 @@ public class NewGridin {
         question.setQuestion(fQuestion);
         question.setUser(user);
         question.setUpdatedBy(user);
+        question.setRating(ratingValue);
 
 
          for(Tag t: addedTags) {
@@ -336,7 +343,7 @@ public class NewGridin {
     };
   }
 
-    List<Topic> onProvideCompletionsFromAutoCompleteMultiTopics(String partial) {
+    List<Topic> onProvideCompletionsFromAutoCompleteGridinTopics(String partial) {
          List<Topic> matches = null;
 
         if(testsubject1 != null)

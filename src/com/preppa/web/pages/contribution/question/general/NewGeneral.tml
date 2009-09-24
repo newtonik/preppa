@@ -27,7 +27,7 @@
 
      <div t:type="newtopic" />
          <div id="multichoice" class="questiontype" align="center" style='display:none'>
-            <div t:id="aquestion" t:hasquestiontype="true" t:qtype="questiontype"></div>
+            <div t:id="aquestion" t:hasquestiontype="true" t:qtype="questiontype" t:clear="viewed"></div>
         </div>
        <div id="shortpassage" class="questiontype" align="center" style='display:none'>
             <div align="center" t:id="newshortpassage" />

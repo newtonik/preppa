@@ -35,6 +35,7 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.slf4j.Logger;
 import org.springframework.security.annotation.Secured;
@@ -84,6 +85,10 @@ public class EditGridin {
     private String fAnswer;
     @Property
     private String fDescription;
+    @Component
+    private RatingField ratingField;
+    @Property
+    private Integer ratingValue;
     @Property
     private GridinAnswer gridinanswer;
     @InjectPage
@@ -146,6 +151,7 @@ public class EditGridin {
                 answertype = "single";
             }
             addedTags = question.getTaglist();
+            ratingValue = question.getRating();
         }
     }
 
@@ -175,7 +181,7 @@ public class EditGridin {
 
         question.setTitle(fTitle);
         question.setQuestion(fQuestion);
-        //question.setUser(user);
+                question.setRating(ratingValue);
 
 
          for(Tag t: addedTags) {

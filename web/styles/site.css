@@ -697,10 +697,17 @@ li {
 }
 
 .vote {
-    display:inline-block;
-    float:left;
+
+    height:100px;
     text-align:left;
     width:100%;
+}
+
+.vote .thumb {
+    float:left;
+}
+.vote .countdiv {
+    float:left;
 }
 .vote img {
     cursor: pointer;
@@ -709,7 +716,8 @@ li {
     font-weight:bold;
     font-size: 18px;
     display: block;
-    padding-left: 10px;
+    padding-left:2px;
+    padding-right:2px;
     
 }
 #votelist {

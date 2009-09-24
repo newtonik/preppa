@@ -1,14 +1,21 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
     <div id="multiple-question-edit">
+        <div align="left"> <a href="#" > Best Practices</a> </div>
         <t:form t:id="editquestionform">
             <t:errors />
             <table id="formtableedit">
 
                 <tr >
-                    <td width="10%" valign="top" align="right"><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
+                    <td></td>
+                    <td width="10%" valign="top"><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
+                </tr>
+                <tr>
+                    <td></td>
                     <td align="left">
                         <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
                                translate="prop:translator" label="name" type="text" size="10"  />
+                        <br />
                         <a href="#" class="addtopic">Add a topic here</a>
                     </td>
                 </tr>
@@ -29,7 +36,7 @@
                     </td>
                     </tr>
                     <tr>
-                         <td></td>
+                        <td></td>
                         <td>
                             <input t:type="upload" t:id="upload" value="imageupload" style="display: none"/>
                             <br />
@@ -51,7 +58,7 @@
                     <input t:type="radio" type="radio" t:value="literal:A" /> <br />
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                    <t:editor align="left" t:id="choice1" t:toolbarSet="Basic" t:width="500" t:height="80"/>
                     </td>
                     </tr>
                     <tr>
@@ -61,7 +68,7 @@
                     <input t:type="radio" type="radio" t:value="literal:B" /> <br />
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                    <t:editor align="left" t:id="choice2" t:toolbarSet="Basic" t:width="500" t:height="80"/>
                     </td>
                     </tr>
 
@@ -73,7 +80,7 @@
 
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice3" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                    <t:editor align="left" t:id="choice3" t:toolbarSet="Basic" t:width="500" t:height="80"/>
                     </td>
                     </tr>
                     <tr>
@@ -83,7 +90,7 @@
                     <input t:type="radio" type="radio" t:value="literal:D" /> <br />
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                    <t:editor align="left" t:id="choice4" t:toolbarSet="Basic" t:width="500" t:height="80"/>
                     </td>
                     </tr>
                     <tr>
@@ -96,7 +103,7 @@
 
                     </td>
                     <td>
-                    <t:editor align="left" t:id="choice5" t:toolbarSet="Basic" t:width="600" t:height="80"/>
+                    <t:editor align="left" t:id="choice5" t:toolbarSet="Basic" t:width="500" t:height="80"/>
                     </td>
                     </tr>
 
@@ -161,7 +168,7 @@
                         <td></td>
 
                         <td>
-                            <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
+                            <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="60"/>
                         </td>
                     </tr>
 
@@ -171,9 +178,9 @@
                     <br />
                     <td></td>
                     <td colspan="2" align="left">
-                        <input type="submit" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                        <t:pagelink t:page="contribution/question/show" t:context="question.id"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
-
+                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
+                    <a t:type="pagelink" t:page="contribution/question/show" t:context="question.id"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></a>
+                    <input type="submit" value="cancel" />
                     </td>
 
                     </tr>
@@ -183,6 +190,6 @@
     </div>
 
     <div t:type="newtopic" />
-     <div t:type="newtag" />
+    <div t:type="newtag" />
 
 </t:container>

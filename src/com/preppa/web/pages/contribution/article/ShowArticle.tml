@@ -23,37 +23,9 @@
 
     </p>
 
-            <br/>
-            <b>Sources:</b>
-            <p>
-            ${article.sources}
-            </p>
-            <br/>
-
-    <br />
-    <div id="voteseal" t:type="voteseal" t:contentid="${article.id}" t:contenttype="contType" t:votes="votes" />
-    <br />
     <p>
         <a href="#" t:type="pageLink" t:page="contribution/article/Edit" t:context="article.id"> Edit </a>
     </p>
-    <p id="flagpass">
-        <a href="#" id="flaglink" > Flag </a>
-    </p>
-    <div>
-        <t:zone t:id="voteupZone">
-
-            <t:block t:id="voteBlock">
-
-            </t:block>
-            <b> ${votes} Stars</b>
-            <br />
-            <a href="#" t:type="actionlink" t:id="voteup" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
-                Vote Up </a>
-            <br />
-            <a href="#" t:type="actionlink" t:id="votedown" t:zone="voteupZone" onclick="javascript:Tapestry.waitForPage(event);">
-                Vote Down </a>
-        </t:zone>
-    </div>
 
     <t:tagview t:alltags="tags" />
     <br />

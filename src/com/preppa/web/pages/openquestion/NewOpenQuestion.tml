@@ -27,12 +27,7 @@
                           t:label="Body" t:validate="required" />
                 </td>
                 </tr>
-                <tr>
-                    <td align="left"><b> Word Count</b></td>
-                </tr>
-                <tr>
-                    <td align="left" id="word_count"></td>
-                </tr>
+            
                 <tr>
                     <td align="left">
                 <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>

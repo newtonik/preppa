@@ -254,7 +254,7 @@ public class EditMultiChoice {
             }
         }
        
-        //question.setUser(user);
+        
         question.setUpdatedBy(user);
         question.setRevComment(fComment);
         question.setDifficulty(ratingValue);
@@ -306,6 +306,7 @@ public class EditMultiChoice {
 
     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
+        matches.removeAll(addedTags);
         return matches;
 
     }
@@ -393,6 +394,7 @@ public class EditMultiChoice {
             logger.warn("Test subject is not null");
             matches = topicDAO.findByPartialName(partial, testsubject1);
             logger.warn("Size is " + matches.size());
+
         }
         else
         {

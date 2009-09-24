@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.preppa.web.components;
 
 import com.preppa.web.entities.User;
@@ -14,6 +13,7 @@ import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Value;
 import org.apache.tapestry5.services.Request;
+
 /**
  *
  * @author newtonik
@@ -21,10 +21,10 @@ import org.apache.tapestry5.services.Request;
 @IncludeStylesheet(value = {"context:styles/site.css"})
 @IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery.tools.min.js", "context:js/navbar.js"})
 public class NavBar {
+
     @Inject
     @Value("${spring-security.check.url}")
     private String checkUrl;
-
 //    @Parameter(defaultPrefix="literal", required=true)
 //    private String pages;
 //
@@ -46,18 +46,19 @@ public class NavBar {
 //
 //        return null;
 //    }
- @Inject
- @Value("${spring-security.logout}")
- private String logoutUrl;
+    @Inject
+    @Value("${spring-security.logout}")
+    private String logoutUrl;
     @Inject
     private Request request;
     @Inject
     private LogoutService logout;
-  @ApplicationState
+    @ApplicationState
     private User user;
-  private boolean userExists;
-  @Inject
-  private HttpServletRequest _request;
+    private boolean userExists;
+    @Inject
+    private HttpServletRequest _request;
+
     /**
      * @return the logoutUrl
      */
@@ -67,7 +68,7 @@ public class NavBar {
 
     void onActionFromLogoutUrl() {
         logout.logout();
-       
+
     }
 
     /**
@@ -76,8 +77,8 @@ public class NavBar {
     public User getUser() {
         return user;
     }
-    public boolean getUserExists()
-    {
+
+    public boolean getUserExists() {
 
         return userExists;
     }
@@ -86,7 +87,7 @@ public class NavBar {
      * @return the checkUrl
      */
     public String getCheckUrl() {
-         return request.getContextPath() + checkUrl;
+        return request.getContextPath() + checkUrl;
     }
 
     public String getpath() {

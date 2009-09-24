@@ -2,9 +2,13 @@ package com.preppa.web.components.questiontypes.gridin;
 
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.TagDAO;
+import com.preppa.web.data.TestsubjectDAO;
+import com.preppa.web.data.TopicDAO;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
 import com.preppa.web.entities.Tag;
+import com.preppa.web.entities.Testsubject;
+import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 
 import java.sql.Timestamp;
@@ -18,6 +22,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Mixins;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Radio;
@@ -25,7 +30,9 @@ import org.apache.tapestry5.corelib.components.RadioGroup;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
+import org.chenillekit.tapestry.core.components.RatingField;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
+import org.slf4j.Logger;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -72,6 +79,10 @@ public class EditGridin {
     private String fAnswer;
     @Property
     private String fDescription;
+    @Component
+    private RatingField ratingField;
+    @Property
+    private Integer ratingValue;
     @Property
     private GridinAnswer gridinanswer;
     @InjectPage
@@ -84,6 +95,19 @@ public class EditGridin {
     private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
     private TagDAO tagDAO;
+    @Component
+    private AutoComplete autoCompleteGridinTopics;
+        @Property
+    @Persist
+    private Testsubject testsubject1;
+    @Inject
+    private Logger logger;
+    @Property
+    private List<Topic> addedTopics;
+    @Inject
+    private TopicDAO topicDAO;
+    @Inject
+    private TestsubjectDAO testsubjectDAO;
 
     void onActivate(Long id) {
         if (id > 0) {
@@ -102,6 +126,8 @@ public class EditGridin {
 
             }
             addedTags = question.getTaglist();
+            ratingValue = question.getRating();
+            testsubject1 = testsubjectDAO.findByName("Mathematics");
         }
     }
 
@@ -130,7 +156,7 @@ public class EditGridin {
 
         question.setTitle(fTitle);
         question.setQuestion(fQuestion);
-        //question.setUser(user);
+        question.setRating(ratingValue);
 
 
          for(Tag t: addedTags) {
@@ -209,4 +235,23 @@ public class EditGridin {
             }
         };
     }
+        List<Topic> onProvideCompletionsFromAutoCompleteGridinTopics(String partial) {
+         List<Topic> matches = null;
+
+        if(testsubject1 != null)
+        {
+            logger.warn("Test subject is not null");
+            matches = topicDAO.findByPartialName(partial, testsubject1);
+            logger.warn("Size is " + matches.size());
+        }
+        else
+        {
+            System.out.println("Partial is " + partial);
+            matches = topicDAO.findByPartialName(partial);
+        }
+       // matches = topicDAO.findByPartialName(partial);
+        return matches;
+
+    }
+
 }
