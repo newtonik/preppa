@@ -15,7 +15,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 
 
 /**
@@ -74,6 +78,7 @@ public class OpenAnswer implements Serializable {
     @Basic(optional = false)
     @Lob
     @Audited
+    @Field(index=Index.TOKENIZED, store=Store.NO)
     public String getAnswer() {
         return answer;
     }

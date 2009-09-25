@@ -34,7 +34,9 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Target;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
@@ -90,6 +92,7 @@ public class Question implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @DocumentId
     @Basic(optional = false)
     @Column(name = "id")
     @NonVisual
@@ -289,6 +292,8 @@ public class Question implements Serializable {
     @Audited
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class)
     @JoinTable(name = "Question_Tag", joinColumns = {@JoinColumn(name = "question_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    @IndexedEmbedded
+    @Target(Tag.class)
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -496,6 +501,7 @@ public class Question implements Serializable {
     })
     @Audited
     @IndexedEmbedded
+    @Target(Topic.class)
     public List<Topic> getTopics() {
         return topics;
     }

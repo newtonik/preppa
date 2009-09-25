@@ -1,16 +1,11 @@
-<html t:type="layout" t:pageTitle="All Open Questions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-    <br />
-        <br />
-        <div class="mainclass">
-        <div >
-            <h2>
-                <a href="#" t:type="pagelink" t:page="openquestion/new" >
-                    Ask a Question
-                </a>
-            </h2>
-        </div>
+<html t:type="layout" t:pageTitle="Search Results for ${searchString}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
-    <t:loop source="questions" value="question">
+    <br />
+    <br />
+
+    <div class="mainclass">
+
+    <t:loop source="allquestions" value="question">
         <div id="openquestion-list-${question.id}" class="openquestion-list-item">
             <div class="questionteaser">
                 <strong>      <a href="#" t:type="pagelink" t:page="openquestion/show" t:context="${question.id}" >
@@ -38,11 +33,15 @@
             </div>
             </div>
             <br />
-            <t:tagview t:alltags="question.taglist" t:searchlink="${slink}" />
+            <t:tagview t:alltags="question.taglist" t:searchlink="${slink}"/>
+            <br />
             <br />
         </div>
 
     </t:loop>
-        </div>
-        <br />
+    </div>
+    <br />
+    <br />
+    
+
 </html>

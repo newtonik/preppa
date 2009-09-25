@@ -36,12 +36,18 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
-
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Fields;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
 /**
  *
  * @author nwt
  */
 @Entity
+@Indexed
 public class ShortDualPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -191,6 +197,7 @@ public class ShortDualPassage implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "ShortDualPassage_Tag", joinColumns = {@JoinColumn(name = "shortdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     @Audited
+    @IndexedEmbedded
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -234,6 +241,11 @@ public class ShortDualPassage implements Serializable {
      */
     @Audited
     @Validate("required")
+        @Fields( {
+            @Field(index=Index.TOKENIZED, store=Store.NO),
+            @Field(name = "title_sort", index=Index.UN_TOKENIZED,
+                    store=Store.YES)
+    })
     public String getTitle() {
         return title;
     }
@@ -265,6 +277,7 @@ public class ShortDualPassage implements Serializable {
      * @return the questions
      */
     @Audited
+    @IndexedEmbedded
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
     public List<Question> getQuestions() {
         return questions;

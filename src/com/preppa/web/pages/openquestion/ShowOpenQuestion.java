@@ -20,7 +20,6 @@ import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
-import nu.localhost.tapestry5.springsecurity.components.IfLoggedIn;
 import org.springframework.security.annotation.Secured;
 /**
  *
@@ -55,6 +54,8 @@ public class ShowOpenQuestion {
     @Property
     private Boolean sameUser;
 
+    @Property
+    private String slink;
     void onActivate(Long id)
     {
         author = "unknown";
@@ -74,6 +75,8 @@ public class ShowOpenQuestion {
                     sameUser = false;
                 }
             }
+
+            slink = "openquestion/search";
         }
     }
 

@@ -5,6 +5,7 @@
 
 package com.preppa.web.entities;
 
+
 import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.PassageType;
 import java.io.Serializable;
@@ -31,10 +32,17 @@ import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.apache.tapestry5.beaneditor.Validate;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Fields;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
 
 
 
@@ -43,6 +51,7 @@ import org.hibernate.envers.Audited;
  * @author nwt
  */
 @Entity
+@Indexed
 public class ShortPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -182,6 +191,12 @@ public class ShortPassage implements Serializable {
      * @return the title
      */
     @Audited
+    @Validate("required")
+        @Fields( {
+            @Field(index=Index.TOKENIZED, store=Store.NO),
+            @Field(name = "title_sort", index=Index.UN_TOKENIZED,
+                    store=Store.YES)
+    })
     public String getTitle() {
         return title;
     }
@@ -199,6 +214,7 @@ public class ShortPassage implements Serializable {
     @ManyToMany(targetEntity = Tag.class)
     @JoinTable(name = "ShortPassage_Tag", joinColumns = {@JoinColumn(name = "ShortPassage_id")}, inverseJoinColumns = {@JoinColumn(name = "Tag_id")})
     @Audited
+    @IndexedEmbedded
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -260,6 +276,7 @@ public class ShortPassage implements Serializable {
      */
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Question.class)
     @Audited
+    @IndexedEmbedded
     public List<Question> getQuestions() {
         return questions;
     }

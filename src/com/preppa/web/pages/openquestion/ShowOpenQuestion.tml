@@ -24,7 +24,7 @@
 
             </div>
             <br />
-            <t:tagview t:alltags="tags" />
+            <t:tagview t:alltags="tags" t:searchlink="${slink}"/>
             <br />
             <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
             <br />

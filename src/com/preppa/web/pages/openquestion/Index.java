@@ -19,10 +19,13 @@ public class Index {
     private List<OpenQuestion> questions;
     @Property
     private OpenQuestion question;
+    @Property
+    private String slink;
 
 
     void onActivate() {
         questions = openDAO.findAll();
+        slink = "openquestion/search";
     }
 
 }

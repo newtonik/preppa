@@ -5,13 +5,11 @@
  * 
  * $Id$
  */
-
-
 package com.preppa.web.entities;
 
 import com.preppa.web.utils.ContentFlag;
 import java.io.Serializable;
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -34,16 +32,21 @@ import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Target;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 /**
  *
  * @author newtonik
  */
 @Entity
+@Indexed
 public class Gridin implements Serializable {
-    private static long serialVersionUID = 1L;
 
+    private static long serialVersionUID = 1L;
     private Long id;
     private String title;
     private String question;
@@ -62,9 +65,9 @@ public class Gridin implements Serializable {
     private Integer votescore;
     private Boolean approval;
     private List<ReviewComment> reviewcomments;
-    
 
     @Id
+    @DocumentId
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
@@ -117,8 +120,8 @@ public class Gridin implements Serializable {
     /**
      * @return the question
      */
-       @Audited
-       @Lob
+    @Audited
+    @Lob
     public String getQuestion() {
         return question;
     }
@@ -173,12 +176,14 @@ public class Gridin implements Serializable {
     @ManyToMany
     @JoinTable(name = "Gridin_Tag",
     joinColumns = {
-      @JoinColumn(name="gridin_id")
-        },
+        @JoinColumn(name = "gridin_id")
+    },
     inverseJoinColumns = {
-      @JoinColumn(name="tag_id")
+        @JoinColumn(name = "tag_id")
     })
     @Audited
+    @IndexedEmbedded
+    @Target(Tag.class)
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -224,7 +229,7 @@ public class Gridin implements Serializable {
     /**
      * @return the answers
      */
-    @OneToMany(targetEntity = GridinAnswer.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = GridinAnswer.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Audited
     public List<GridinAnswer> getAnswers() {
         return answers;
@@ -272,15 +277,17 @@ public class Gridin implements Serializable {
     /**
      * @return the topics
      */
-    @ManyToMany(targetEntity=Topic.class)
+    @ManyToMany(targetEntity = Topic.class)
     @JoinTable(name = "Gridin_Topic",
     joinColumns = {
-      @JoinColumn(name="gridinId")
-        },
+        @JoinColumn(name = "gridinId")
+    },
     inverseJoinColumns = {
-      @JoinColumn(name="topicId")
+        @JoinColumn(name = "topicId")
     })
     @Audited
+    @IndexedEmbedded
+    @Target(Topic.class)
     public List<Topic> getTopics() {
         return topics;
     }
@@ -337,18 +344,18 @@ public class Gridin implements Serializable {
     public void setUpdatedBy(User updatedBy) {
         this.updatedBy = updatedBy;
     }
+
     /**
      * @return the reviewcomments
      */
-    @OneToMany(targetEntity=ReviewComment.class, cascade=CascadeType.ALL)
-    @JoinTable(name="Gridin_ReviewComment",
-        joinColumns= {
-        @JoinColumn(name="grdin_id")
-        },
-        inverseJoinColumns = {
-        @JoinColumn(name="comment_id", unique=true)
-    }
-    )
+    @OneToMany(targetEntity = ReviewComment.class, cascade = CascadeType.ALL)
+    @JoinTable(name = "Gridin_ReviewComment",
+    joinColumns = {
+        @JoinColumn(name = "grdin_id")
+    },
+    inverseJoinColumns = {
+        @JoinColumn(name = "comment_id", unique = true)
+    })
     @OrderBy("createdAt ASC")
     public List<ReviewComment> getReviewcomments() {
         return reviewcomments;
@@ -388,7 +395,4 @@ public class Gridin implements Serializable {
     public void setApproval(Boolean approval) {
         this.approval = approval;
     }
-
-
-
 }

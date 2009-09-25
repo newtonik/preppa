@@ -21,10 +21,18 @@ public class TagView {
     private Tag tag;
     @Parameter
     private Object content;
+    @Property
+    private String taglink;
+    @Parameter
+    private String searchlink;
     @SetupRender
     void initializeTags()
     {
-        
+        taglink = "contribution/article/search";
+        if(searchlink != null)
+        {
+            taglink = searchlink;
+        }
     }
     /**
      * @return the allTags
@@ -33,6 +41,9 @@ public class TagView {
         return allTags;
     }
 
+    String getTagLinsk() {
+        return "contribution/article/search";
+    }
 
 
 }

@@ -5,16 +5,6 @@
     <t:form t:id="gridinForm">
         <t:errors />
         <table id="questiontable">
-            <tr  align="left">
-                <td>
-            <t:label for="fTitle" > Title: </t:label>
-            </td>
-            </tr>
-            <tr>
-                <td align="left">
-                    <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="80" />
-                </td>
-            </tr>
 
             <tr >
 
