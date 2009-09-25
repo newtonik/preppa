@@ -43,10 +43,30 @@ public class Index {
 
     void onActivate(String toSearch) {
         slink = "openquestion/search";
+        this.searchString = toSearch;
+        session = sessionManager.getSession();
 
-        if(toSearch != null) {
-            search(toSearch);
+        FullTextSession fullTextSession = Search.getFullTextSession(session);
+        Transaction tx = fullTextSession.beginTransaction();
+
+        //create Lucene Search query
+        String[] fields = new String[]{"title", "question", "taglist.name", "answers.answer"};
+
+        MultiFieldQueryParser parser = new MultiFieldQueryParser(fields,
+                new StandardAnalyzer());
+        Query query = null;
+        try {
+            //Note this is Lucene query
+            query = parser.parse(searchString);
+        } catch (ParseException ex) {
+            logger.warn(ex.getMessage());
         }
+        //wrap lucene query in Hibernate query
+        org.hibernate.Query hiQuery = fullTextSession.createFullTextQuery(query, OpenQuestion.class);
+        List<OpenQuestion> results = hiQuery.list();
+
+        this.allquestions = results;
+        tx.commit();
     }
 
     String onPassivate() {
@@ -61,7 +81,7 @@ public class Index {
 
     }
 
-    public void setSearchString(String searchterm) {
+    public void setSearchPageString(String searchterm) {
         if(searchterm != null)
             search(searchterm);
     }
