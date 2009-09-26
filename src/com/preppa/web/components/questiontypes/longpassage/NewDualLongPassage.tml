@@ -30,7 +30,7 @@
                     <t:label for="passeditorone">Passage 1: </t:label>
                     </td>
                     <td >
-                    <t:editor align="left" t:id="passeditorone" value="fBodyone" t:label="Passage 1" t:toolbarSet="Basic" t:width="600" t:height="300"/>
+                    <t:editor align="left" t:id="passeditorone" value="fBodyone" t:label="Passage 1" t:toolbarSet="Basic" t:width="500" t:height="300"/>
                     </td>
                 </div>
                 </tr>   
@@ -40,18 +40,25 @@
                     <t:label for="passeditortwo">Passage 2: </t:label>
                     </td>
                     <td >
-                    <t:editor align="left" t:id="passeditortwo" value="fBodytwo" t:label="Passage 1" t:validate="required" t:width="600" t:height="300"/>
+                    <t:editor align="left" t:id="passeditortwo" value="fBodytwo" t:label="Passage 1" t:toolbarSet="Basic" t:width="500" t:height="300"/>
                     </td>
                 </div>
                 </tr>
-
+                 <tr>
+                     <td></td>
+                    <td><b> Word Count</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="word_count"></td>
+                </tr>
                 <tr>
 
                     <td valign="top" align="right">
                 <t:label for="fSource"> Sources: </t:label>
                 </td>
                 <td>
-                    <input align="left" t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="80"/>
+                    <input align="left" t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="70"/>
 
                 </td>
                 </tr>
@@ -69,6 +76,7 @@
                     </td>
 
                 </tr>
+
                 <tr>
                     <td></td>
                     <td align="left">

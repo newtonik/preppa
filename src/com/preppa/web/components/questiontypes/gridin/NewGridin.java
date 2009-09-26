@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -154,6 +155,9 @@ public class NewGridin {
     private TestsubjectDAO testsubjectDAO;
     @Inject
     private Logger logger;
+    @Inject
+    private ComponentResources resources;
+
     
     public void NewGridin() {
         this.question = new Gridin();
@@ -163,6 +167,12 @@ public class NewGridin {
         hasimage = "false";
         //answertype = "range";
         testsubject1 = testsubjectDAO.findByName("Mathematics");
+
+        if(!gridinForm.getHasErrors())
+        {
+            addedTags.clear();
+            addedTopics.clear();
+        }
         
     }
 
@@ -234,6 +244,7 @@ public class NewGridin {
             question.setImagePath(impath);
             question.setImage(Boolean.TRUE);
         }
+         resources.discardPersistentFieldChanges();
         showgridin.setGridin(question);
         return showgridin;
     }

@@ -15,9 +15,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Boost;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
 
 
@@ -149,6 +151,7 @@ public class OpenAnswer implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id")
     @Audited
+    @IndexedEmbedded(depth=1, prefix ="ownedBy_")
     public User getUser() {
         return user;
     }

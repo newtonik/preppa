@@ -17,6 +17,7 @@ import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -25,6 +26,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -84,21 +86,33 @@ public class NewShortPassage {
     private Tag tag;
     @Component
     private Form createpassageform;
+    @Inject
+    private ComponentResources resources;
 
     public void NewShortPassage() {
         this.shortpassage = new ShortPassage();
     }
 
-    void onValidateFormFromCreatePassageForm() {
-          if(fBody == null) {
-                createpassageform.recordError(pass1, "You need a value for Passage");
-            }
+    @SetupRender
+    void getSetupItems() {
+
+        if (!createpassageform.getHasErrors()) {
+            addedTags.clear();
+
+        }
+
     }
+
+    void onValidateFormFromCreatePassageForm() {
+        if (fBody == null) {
+            createpassageform.recordError(pass1, "You need a value for Passage");
+        }
+    }
+
     @CommitAfter
     Object onSuccessFromCreatePassageForm() {
 
-        if(this.shortpassage == null)
-        {
+        if (this.shortpassage == null) {
             this.shortpassage = new ShortPassage();
         }
 
@@ -130,7 +144,10 @@ public class NewShortPassage {
 
 
         shortpassageDAO.doSave(shortpassage);
+         resources.discardPersistentFieldChanges();
         showpassage.setPassagePage(shortpassage);
+
+
         return showpassage;
     }
 
@@ -200,5 +217,4 @@ public class NewShortPassage {
             }
         };
     }
-    
 }

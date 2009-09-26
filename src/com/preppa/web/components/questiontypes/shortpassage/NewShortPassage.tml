@@ -15,14 +15,14 @@
                 </td>
                 </tr>
                 <tr>
-                <div id="pass1">
+            
                     <td valign="top" align="right">
                     <t:label for="pass1">Passage: </t:label>
                     </td>
                     <td >
                     <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="200" t:label="Passage"/>
                     </td>
-                </div>
+
                 </tr>
                  <tr>
                      <td></td>

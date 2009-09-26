@@ -37,6 +37,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Target;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
@@ -106,6 +108,7 @@ public class Question implements Serializable {
 
     @Lob
     @Column(name = "question")
+    @Field(index = Index.TOKENIZED)
     @Audited
     public String getQuestion() {
         return question;
@@ -124,6 +127,7 @@ public class Question implements Serializable {
     
     @Lob
     @Column(name = "source")
+    @Field(index = Index.TOKENIZED)
     @Audited
     public String getSource() {
         return source;
@@ -258,6 +262,7 @@ public class Question implements Serializable {
      * @return the choices
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @IndexedEmbedded
     @JoinColumn(name = "question_id")
     @Audited
     public List<QuestionAnswer> getChoices() {
@@ -317,6 +322,7 @@ public class Question implements Serializable {
     /**
      * @param user the user to set
      */
+    @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     public void setUser(User user) {
         this.user = user;
     }
@@ -438,6 +444,7 @@ public class Question implements Serializable {
 
     @ManyToOne
     @Audited
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     public User getUpdatedBy() {
         return updatedBy;
     }

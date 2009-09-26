@@ -215,6 +215,7 @@ public class Gridin implements Serializable {
      */
     @Audited
     @ManyToOne
+    @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     public User getUser() {
         return user;
     }
@@ -334,6 +335,7 @@ public class Gridin implements Serializable {
      */
     @ManyToOne
     @Audited
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     public User getUpdatedBy() {
         return updatedBy;
     }

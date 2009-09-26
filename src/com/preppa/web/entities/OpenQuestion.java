@@ -222,7 +222,7 @@ public class OpenQuestion implements Serializable {
      * @return the user
      */
     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
-    //@Fetch(value = FetchMode.JOIN)
+    @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     @JoinColumn(name="user_id")
     @Audited
     public User getOwner() {
@@ -328,6 +328,7 @@ public class OpenQuestion implements Serializable {
     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
     //@Fetch(value = FetchMode.JOIN)
     @JoinColumn(name="updatedby")
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     @Audited
     public User getUpdatedBy() {
         return updatedBy;

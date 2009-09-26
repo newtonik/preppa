@@ -35,12 +35,18 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
 
 /**
  *
  * @author nwt
  */
 @Entity
+@Indexed
 public class LongDualPassage implements Serializable {
     private static final long serialVersionUID = 1L;
    private Integer id;
@@ -105,6 +111,7 @@ public class LongDualPassage implements Serializable {
      * @return the title
      */
     @Audited
+    @Field(index = Index.TOKENIZED, store = Store.COMPRESS)
     public String getTitle() {
         return title;
     }
@@ -173,6 +180,7 @@ public class LongDualPassage implements Serializable {
      */
     @Lob
     @Audited
+    @Field(index = Index.TOKENIZED, store=Store.NO)
     public String getPassageone() {
         return passageone;
     }
@@ -191,6 +199,7 @@ public class LongDualPassage implements Serializable {
     //@JoinColumn(name = "passage2_id")
     @Lob
     @Audited
+    @Field(index = Index.TOKENIZED, store=Store.NO)
     public String getPassagetwo() {
         return passagetwo;
     }
@@ -208,6 +217,7 @@ public class LongDualPassage implements Serializable {
     @Audited
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "LongDualPassage_Tag", joinColumns = {@JoinColumn(name = "longdualpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    @IndexedEmbedded
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -224,6 +234,7 @@ public class LongDualPassage implements Serializable {
      */
     @Audited
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Question.class)
+    @IndexedEmbedded(prefix = "questions_")
     public List<Question> getQuestions() {
         return questions;
     }
@@ -286,6 +297,7 @@ public class LongDualPassage implements Serializable {
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
     @Audited
+     @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     public User getUser() {
         return user;
     }
@@ -366,6 +378,7 @@ public class LongDualPassage implements Serializable {
      */
     @Audited
     @ManyToOne
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     public User getUpdatedBy() {
         return updatedBy;
     }

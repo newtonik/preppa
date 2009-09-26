@@ -176,6 +176,7 @@ public class ShortPassage implements Serializable {
      */
     @Lob
     @Audited
+    @Field(index = Index.TOKENIZED, store = Store.NO)
     public String getPassage() {
         return passage;
     }
@@ -276,7 +277,7 @@ public class ShortPassage implements Serializable {
      */
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Question.class)
     @Audited
-    @IndexedEmbedded
+    @IndexedEmbedded(prefix="questions_")
     public List<Question> getQuestions() {
         return questions;
     }
@@ -295,6 +296,7 @@ public class ShortPassage implements Serializable {
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
     @Audited
+    @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     public User getUser() {
         return user;
     }
@@ -343,6 +345,7 @@ public class ShortPassage implements Serializable {
      */
     @Audited
     @ManyToOne
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     public User getUpdatedBy() {
         return updatedBy;
     }

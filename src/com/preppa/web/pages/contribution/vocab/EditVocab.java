@@ -98,14 +98,7 @@ public class EditVocab {
             {
                 fSentence = vocab.getSentence().getSentence();
             }
-            if (vocab.getTags() == null)
-            {
-                fTag = "";
-            }
-            else
-            {
-                fTag = vocab.getTags();
-            }
+            
         }
         this.dWord = dictionarywordDAO.findById(5);
     }
@@ -119,7 +112,6 @@ public class EditVocab {
          vocab.setName(fWord);
          vocab.setPartofspeech(partofspch);
          vocab.setDefinition(fDefinition);
-         vocab.setTags(fTag);
          vocab.setRevComment(fComment);
          vocab.setUpdatedBy(user);
          if (vocab.getSentence() != null) {

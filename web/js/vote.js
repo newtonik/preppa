@@ -5,30 +5,29 @@ window.onload = function() {
 $$('.downimg').invoke('observe', 'click', voteDown);
 function voteDown(event) {
     var element = event.element();
-    var parent = element.ancestors()[0];
+    var parent = element.ancestors()[1];
     var parentname = parent.identify();
+    if(parent.hasClassName("vote")) {
+        var achildren = new Array();
 
 
+      
+        var hform;
+        var countelement;
+        achildren = parent.childElements();
 
-    var siblings = new Array();
-    var countelement;
-    var selectedimage;
-    var hform;
-    siblings = element.siblings();
+        for(i = 0; i < achildren.length; i++) {
 
-    for(i = 0; i < siblings.length; i++) {
+            if(achildren[i].hasClassName('hiddenform')) {
+                hform = achildren[i];
+            }
+            if(achildren[i].hasClassName('countdiv')) {
 
-        if(siblings[i].hasClassName('count')) {
-            countelement = siblings[i];
-        }
-        if(siblings[i].hasClassName('downimgsel'))
-        {
-            selectedimage = siblings[i];
-        }
-        if(siblings[i].hasClassName('hiddenform')) {
-            hform = siblings[i];
+                countelement = achildren[i].childElements()[0];
+            }
         }
     }
+
 
     var formelements = hform.getElements();
     var hId;
@@ -49,17 +48,17 @@ function voteDown(event) {
 
     if(path.lastIndexOf("openquestion") >= 0)
     {
-       url = url + ".voteseal.votedown?t:ac=1"
+        url = url + ".voteseal.votedown?t:ac=1"
     }
     else if((path.lastIndexOf("question") >= 0) && (path.lastIndexOf("show") >= 0))
     {
-       url = url + ".showquestion.voteseal.votedown?t:ac=1"
+        url = url + ".showquestion.voteseal.votedown?t:ac=1"
     }
     else
     {
         url = url + ".voteseal.votedown?t:ac=1";
     }
-   // alert(url);
+    // alert(url);
     new Ajax.Request(url, {
         method: 'post',
         parameters: {
@@ -69,11 +68,11 @@ function voteDown(event) {
         },
         onSuccess: function(transport) {
             var json = transport.responseText.evalJSON();
-          //  alert(json.count);
+            //  alert(json.count);
             if(json.voted == "true") {
-                countelement.update(json.count);
-                element.hide();
-                selectedimage.show()
+               countelement.update(json.count);
+               element.writeAttribute('src', '/preppa/images/voting/thumbsdown-selected.jpg')
+            //selectedimage.show()
             }
             else if(json.voted == "false")
             {
@@ -86,30 +85,29 @@ function voteDown(event) {
 $$('.upimg').invoke('observe', 'click', voteUp);
 function voteUp(event) {
     var element = event.element();
-    var parent = element.ancestors()[0];
+    var parent = element.ancestors()[1];
     var parentname = parent.identify();
+    if(parent.hasClassName("vote")) {
+        var achildren = new Array();
 
 
 
-    var siblings = new Array();
-    var countelement;
-    var selectedimage;
-    var hform;
-    siblings = element.siblings();
+        var hform;
+        var countelement;
+        achildren = parent.childElements();
 
-    for(i = 0; i < siblings.length; i++) {
+        for(i = 0; i < achildren.length; i++) {
 
-        if(siblings[i].hasClassName('count')) {
-            countelement = siblings[i];
-        }
-        if(siblings[i].hasClassName('upimgsel'))
-        {
-            selectedimage = siblings[i];
-        }
-        if(siblings[i].hasClassName('hiddenform')) {
-            hform = siblings[i];
+            if(achildren[i].hasClassName('hiddenform')) {
+                hform = achildren[i];
+            }
+            if(achildren[i].hasClassName('countdiv')) {
+
+                countelement = achildren[i].childElements()[0];
+            }
         }
     }
+
 
     var formelements = hform.getElements();
     var hId;
@@ -130,11 +128,11 @@ function voteUp(event) {
 
     if(path.lastIndexOf("openquestion") >= 0)
     {
-       url = url + ".voteseal.voteup?t:ac=1"
+        url = url + ".voteseal.voteup?t:ac=1"
     }
     else if((path.lastIndexOf("question") >= 0) && (path.lastIndexOf("show") >= 0))
     {
-       url = url + ".showquestion.voteseal.voteup?t:ac=1"
+        url = url + ".showquestion.voteseal.voteup?t:ac=1"
     }
     else
     {
@@ -149,11 +147,10 @@ function voteUp(event) {
         },
         onSuccess: function(transport) {
             var json = transport.responseText.evalJSON();
-           // alert(json.count);
+            // alert(json.count);
             if(json.voted == "true") {
                 countelement.update(json.count);
-                element.hide();
-                selectedimage.show()
+                element.writeAttribute('src', '/preppa/images/voting/thumbsup-selected.jpg')
             }
             else if(json.voted == "false")
             {

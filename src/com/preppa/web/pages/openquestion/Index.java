@@ -36,17 +36,19 @@ public class Index {
 
         slink = "openquestion/search";
 
-         session = sessionManager.getSession();
-         FullTextSession fullTextSession = Search.getFullTextSession(session);
-            Transaction tx = fullTextSession.beginTransaction();
 
+         session = sessionManager.getSession();
+   
+            FullTextSession fullTextSession = Search.getFullTextSession(session);
+            Transaction tx = fullTextSession.beginTransaction();
+            tx.begin();
 
 
             for(OpenQuestion q: questions) {
                 fullTextSession.index(q);
             }
             tx.commit();
-
-    }
-
+         }
 }
+
+

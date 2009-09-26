@@ -61,7 +61,7 @@ public class Article implements Serializable {
     private String body;
     private String teaser;
     private Testsubject testsubject;
-    private String sources;
+    private String  sources;
     private Date createdAt;
     private Date updatedAt;
     private User user;
@@ -168,6 +168,7 @@ public class Article implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    @IndexedEmbedded( prefix = "ownedBy_")
     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
@@ -352,6 +353,7 @@ public class Article implements Serializable {
     /**
      * @return the updatedBy
      */
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     @ManyToOne
     @Audited
     public User getUpdatedBy() {

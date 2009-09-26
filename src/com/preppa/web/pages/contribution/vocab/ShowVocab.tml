@@ -24,9 +24,7 @@
     <b>Example</b><p/>
 ${example}
 </p>
-<p>
-<t:outputraw t:value="${vocab.tags}"/>
-</p>
+
 <p>
     <a href="#" t:type="pageLink" t:page="contribution/vocab/Edit" t:context="vocab.id"> Edit </a>
     <br />

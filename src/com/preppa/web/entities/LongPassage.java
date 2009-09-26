@@ -35,6 +35,11 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
 
 
 /**
@@ -42,6 +47,7 @@ import org.hibernate.envers.Audited;
  * @author nwt
  */
 @Entity
+@Indexed
 public class LongPassage implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -157,6 +163,7 @@ public class LongPassage implements Serializable {
      */
     @Lob
     @Audited
+    @Field(index = Index.TOKENIZED, store = Store.NO)
     public String getPassage() {
         return passage;
     }
@@ -167,6 +174,7 @@ public class LongPassage implements Serializable {
     public void setPassage(String passage) {
         this.passage = passage;
     }
+    @Field(index = Index.TOKENIZED, store = Store.COMPRESS)
     public void setTitle(String title){
         this.title = title;
     }
@@ -180,6 +188,7 @@ public class LongPassage implements Serializable {
      */
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "LongPassage_Tag", joinColumns = {@JoinColumn(name = "longpassage_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    @IndexedEmbedded
     @Audited
     public List<Tag> getTaglist() {
         return taglist;
@@ -242,6 +251,7 @@ public class LongPassage implements Serializable {
      * @return the questions
      */
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Question.class)
+    @IndexedEmbedded(prefix = "questions_")
     @Audited
     public List<Question> getQuestions() {
         return questions;
@@ -260,6 +270,7 @@ public class LongPassage implements Serializable {
      @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
+     @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     @Audited
     public User getUser() {
         return user;
@@ -278,6 +289,7 @@ public class LongPassage implements Serializable {
     @Lob
     @Audited
     @Column(nullable=false)
+    @Field( index = Index.TOKENIZED)
     public String getSummary() {
         return summary;
     }
@@ -326,6 +338,7 @@ public class LongPassage implements Serializable {
      */
     @Audited
     @ManyToOne
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     public User getUpdatedBy() {
         return updatedBy;
     }

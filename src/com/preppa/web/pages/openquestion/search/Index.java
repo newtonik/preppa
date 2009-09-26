@@ -50,7 +50,7 @@ public class Index {
         Transaction tx = fullTextSession.beginTransaction();
 
         //create Lucene Search query
-        String[] fields = new String[]{"title", "question", "taglist.name", "answers.answer"};
+        String[] fields = new String[]{"title", "question", "taglist.name", "answers.answer", "updatedBy.updatedBy_username", "user.ownedBy_username"};
 
         MultiFieldQueryParser parser = new MultiFieldQueryParser(fields,
                 new StandardAnalyzer());
@@ -92,6 +92,7 @@ public class Index {
 
         FullTextSession fullTextSession = Search.getFullTextSession(session);
         Transaction tx = fullTextSession.beginTransaction();
+        tx.begin();
 
         //create Lucene Search query
         String[] fields = new String[]{"title", "question", "taglist.name", "answers.answer"};

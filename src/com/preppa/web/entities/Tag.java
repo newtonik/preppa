@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.Boost;
 import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
@@ -35,6 +36,7 @@ public class Tag implements Serializable {
     public Tag() {
 
     }
+
 
     public Tag(String name) {
         this.name = name;
@@ -85,7 +87,7 @@ public class Tag implements Serializable {
      * @return the name
      */
     @Column(unique=true)
-    @Field(index=Index.TOKENIZED)
+    @Field(index=Index.TOKENIZED, boost=@Boost(2f))
     public String getName() {
         return name;
     }

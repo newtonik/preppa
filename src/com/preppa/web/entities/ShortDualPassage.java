@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.preppa.web.entities;
 
 import com.preppa.web.utils.ContentFlag;
@@ -42,6 +41,7 @@ import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
+
 /**
  *
  * @author nwt
@@ -49,11 +49,12 @@ import org.hibernate.search.annotations.Store;
 @Entity
 @Indexed
 public class ShortDualPassage implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String title;
     private String source;
-    private List<Question> questions =  new ArrayList<Question>();
+    private List<Question> questions = new ArrayList<Question>();
     private List<Tag> taglist = new ArrayList<Tag>();
     private Date createdAt;
     private Date updatedAt;
@@ -68,7 +69,6 @@ public class ShortDualPassage implements Serializable {
     private String revComment;
     private User updatedBy;
     private List<ReviewComment> reviewcomments;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -105,7 +105,6 @@ public class ShortDualPassage implements Serializable {
         return "com.preppa.web.entities.ShortDualPassages[id=" + id + "]";
     }
 
-   
     /**
      * @return the source
      */
@@ -143,11 +142,11 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the updatedAt
      */
-     @NonVisual
+    @NonVisual
     @Basic(optional = false)
     @Column(name = "updated_at", nullable = false)
     @Temporal(value = TemporalType.TIMESTAMP)
-     @Audited
+    @Audited
     public Date getUpdatedAt() {
         return updatedAt;
     }
@@ -164,6 +163,7 @@ public class ShortDualPassage implements Serializable {
      */
     @Lob
     @Audited
+    @Field(index = Index.TOKENIZED, store = Store.NO)
     public String getPassageone() {
         return passageone;
     }
@@ -180,6 +180,7 @@ public class ShortDualPassage implements Serializable {
      */
     @Lob
     @Audited
+    @Field(index = Index.TOKENIZED, store = Store.NO)
     public String getPassagetwo() {
         return passagetwo;
     }
@@ -208,6 +209,7 @@ public class ShortDualPassage implements Serializable {
     public void setTaglist(List<Tag> taglist) {
         this.taglist = taglist;
     }
+
     /**
      * @return the complete
      */
@@ -216,13 +218,15 @@ public class ShortDualPassage implements Serializable {
     public Boolean getComplete() {
         return complete;
     }
+
     /**
      * @param complete the complete to set
      */
     public void setComplete(Boolean complete) {
         this.complete = complete;
     }
-        /**
+
+    /**
      * @return the passagetype
      */
     public PassageType getPassagetype() {
@@ -241,10 +245,10 @@ public class ShortDualPassage implements Serializable {
      */
     @Audited
     @Validate("required")
-        @Fields( {
-            @Field(index=Index.TOKENIZED, store=Store.NO),
-            @Field(name = "title_sort", index=Index.UN_TOKENIZED,
-                    store=Store.YES)
+    @Fields({
+        @Field(index = Index.TOKENIZED, store = Store.NO),
+        @Field(name = "title_sort", index = Index.UN_TOKENIZED,
+        store = Store.YES)
     })
     public String getTitle() {
         return title;
@@ -277,8 +281,8 @@ public class ShortDualPassage implements Serializable {
      * @return the questions
      */
     @Audited
-    @IndexedEmbedded
-    @OneToMany(cascade=CascadeType.ALL, targetEntity=Question.class)
+    @IndexedEmbedded(prefix = "questions_")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Question.class)
     public List<Question> getQuestions() {
         return questions;
     }
@@ -293,9 +297,10 @@ public class ShortDualPassage implements Serializable {
     /**
      * @return the user
      */
-     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
+    @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     @Audited
     public User getUser() {
         return user;
@@ -345,6 +350,7 @@ public class ShortDualPassage implements Serializable {
      */
     @Audited
     @ManyToOne
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     public User getUpdatedBy() {
         return updatedBy;
     }
@@ -356,12 +362,11 @@ public class ShortDualPassage implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-
     /**
      * @return the flags
      */
     @Audited
-    @OneToMany(mappedBy = "longdualpassage", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "longdualpassage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     public List<Flag> getFlags() {
         return flags;
@@ -373,15 +378,15 @@ public class ShortDualPassage implements Serializable {
     public void setFlags(List<Flag> flags) {
         this.flags = flags;
     }
-    @OneToMany(targetEntity=ReviewComment.class, cascade=CascadeType.ALL)
-    @JoinTable(name="ShortDualPassage_ReviewComment",
-        joinColumns= {
-        @JoinColumn(name="shortdualpassage_id")
-        },
-        inverseJoinColumns = {
-        @JoinColumn(name="comment_id", unique=true)
-    }
-    )
+
+    @OneToMany(targetEntity = ReviewComment.class, cascade = CascadeType.ALL)
+    @JoinTable(name = "ShortDualPassage_ReviewComment",
+    joinColumns = {
+        @JoinColumn(name = "shortdualpassage_id")
+    },
+    inverseJoinColumns = {
+        @JoinColumn(name = "comment_id", unique = true)
+    })
     @OrderBy("createdAt ASC")
     public List<ReviewComment> getReviewcomments() {
         return reviewcomments;
@@ -393,6 +398,4 @@ public class ShortDualPassage implements Serializable {
     public void setReviewcomments(List<ReviewComment> reviewcomments) {
         this.reviewcomments = reviewcomments;
     }
-
-
 }

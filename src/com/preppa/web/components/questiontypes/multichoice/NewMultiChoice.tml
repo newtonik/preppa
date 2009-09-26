@@ -1,6 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="multiple-question" class="overlay"  >
+        <div align="left"> <a href="#" > Best Practices</a> </div>
         <t:form t:id="createquestionform" class="multiquestionclass">
             <t:errors />
             <t:if t:test="questiontExists">
@@ -34,18 +35,7 @@
                                translate="prop:translator" label="name" type="text" size="10"  />
                 <a href="#" class="addtopic">Add a topic here</a></td>
                 </tr>
-                <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
-                    <tr>
-                        <td width="10%" valign="top" align="right">
-                    <t:label for="questioneditor">Question: </t:label>
-                    </td>
-                    <td >
-
-                    <t:editor align="left" t:id="questioneditor" t:toolbarSet="Gridin" customConfiguration="asset:context:js/fck/gridin.js" t:width="600" t:height="300"/>
-
-                    </td>
-                    </tr>
-                    <tr>
+                                    <tr>
                         <td></td>
                         <td>
                             <b> Does your question contain a graph or an Image?</b>
@@ -65,6 +55,18 @@
                             <br />
                         </td>
                     </tr>
+                <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
+                    <tr>
+                        <td width="10%" valign="top" align="right">
+                    <t:label for="questioneditor">Question: </t:label>
+                    </td>
+                    <td >
+
+                    <t:editor align="left" t:id="questioneditor" t:toolbarSet="Gridin" customConfiguration="asset:context:js/fck/gridin.js" t:width="600" t:height="300"/>
+
+                    </td>
+                    </tr>
+                 
                     <tr>
                         <td colspan="2">
                             <h3> Answer Choices </h3>

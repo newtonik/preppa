@@ -1,13 +1,11 @@
-  
-  /*
-   * Preppa, Inc.
-   * 
-   * Copyright 2009. All rights
-  reserved.
-   * 
-   * $Id$
-   */
-
+/*
+ * Preppa, Inc.
+ *
+ * Copyright 2009. All rights
+reserved.
+ *
+ * $Id$
+ */
 package com.preppa.web.components.questiontypes.prompt;
 
 import com.preppa.web.data.PromptDAO;
@@ -21,6 +19,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import org.apache.tapestry5.ComponentResources;
 import org.springframework.security.annotation.Secured;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
@@ -30,6 +29,7 @@ import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -42,6 +42,7 @@ import org.chenillekit.tapestry.core.components.Editor;
 @IncludeJavaScriptLibrary(value = {"context:js/confirmexit.js"})
 @Secured("ROLE_USER")
 public class NewPrompt {
+
     @ApplicationState
     private User user;
     @Property
@@ -68,14 +69,23 @@ public class NewPrompt {
     private String fname;
     @InjectPage
     private ShowPrompt showprompt;
+    @Inject
+    private ComponentResources resources;
 
-    
     void onValidateForm() {
+    }
+
+    @SetupRender
+    void getSetupItems() {
+
+        if (!promptform.getHasErrors()) {
+            addedTags.clear();
+
+        }
 
     }
-    
 
-    Object onValidateFormFromPromptForm(){
+    Object onValidateFormFromPromptForm() {
 
         return null;
     }
@@ -96,12 +106,12 @@ public class NewPrompt {
         addedTags.addAll(tagset);
         prompt.setTaglist(addedTags);
         prompt.setUpdatedBy(user);
-       
+
         promptDAO.doSave(prompt);
+         resources.discardPersistentFieldChanges();
         showprompt.setprompt(prompt);
         return showprompt;
     }
-
 
     List<Tag> onProvideCompletionsFromAutocompleteTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
@@ -110,49 +120,43 @@ public class NewPrompt {
 
     }
 
+    public FieldTranslator getTagTranslator() {
+        return new FieldTranslator<Tag>() {
 
-       public FieldTranslator getTagTranslator()
-    {
-        return new FieldTranslator<Tag>()
-        {
             @Override
-          public String toClient(Tag value)
-          {
+            public String toClient(Tag value) {
                 String clientValue = "0";
-                if (value != null)
-                clientValue = String.valueOf(value.getName());
+                if (value != null) {
+                    clientValue = String.valueOf(value.getName());
+                }
 
                 return clientValue;
-          }
+            }
 
             @Override
-          public void render(MarkupWriter writer) { }
+            public void render(MarkupWriter writer) {
+            }
 
             @Override
-          public Class<Tag> getType() { return Tag.class; }
+            public Class<Tag> getType() {
+                return Tag.class;
+            }
 
             @Override
-          public Tag parse(String clientValue) throws ValidationException
-          {
-            Tag serverValue = null;
+            public Tag parse(String clientValue) throws ValidationException {
+                Tag serverValue = null;
 //            if(clientValue == null) {
 //                Tag t = new Tag();
 //                t.setName(clientValue);
 //            }
 
 
-            if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
-                System.out.println(clientValue);
-                serverValue = tagDAO.findByName(clientValue).get(0);
+                if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                    System.out.println(clientValue);
+                    serverValue = tagDAO.findByName(clientValue).get(0);
+                }
+                return serverValue;
             }
-            return serverValue;
-          }
-
-
-    };
-   }
-
-
-
-
+        };
+    }
 }

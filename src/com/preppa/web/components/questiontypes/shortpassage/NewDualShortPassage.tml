@@ -15,14 +15,13 @@
                 </td>
                 </tr>
                 <tr>
-                <div id="pass1">
+
                     <td valign="top" align="right">
                     <t:label for="passeditorone">Passage 1: </t:label>
                     </td>
                     <td >
                     <t:editor align="left" t:id="passeditorone" value="fBodyone"  t:label="Passage 1" t:toolbarSet="Basic" t:width="600" t:height="300"/>
                     </td>
-                </div>
                 </tr>
                  <tr>
                      <td></td>
@@ -33,14 +32,14 @@
                     <td id="word_count"></td>
                 </tr>
                 <tr>
-                <div id="pass2">
+      
                     <td valign="top" align="right">
                     <t:label for="passeditortwo">Passage 2: </t:label>
                     </td>
                     <td >
                     <t:editor align="left" t:id="passeditortwo" value="fBodytwo" t:toolbarSet="Basic" t:label="Passage 1"  t:width="600" t:height="200"/>
                     </td>
-                </div>
+    
                 </tr>
                   <tr>
                      <td></td>

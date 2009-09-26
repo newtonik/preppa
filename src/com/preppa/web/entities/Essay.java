@@ -1,13 +1,11 @@
-  
-  /*
-   * Preppa, Inc.
-   * 
-   * Copyright 2009. All rights
-  reserved.
-   * 
-   * $Id$
-   */
-
+/*
+ * Preppa, Inc.
+ *
+ * Copyright 2009. All rights
+reserved.
+ *
+ * $Id$
+ */
 package com.preppa.web.entities;
 
 import java.io.Serializable;
@@ -35,13 +33,18 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 /**
  *
  * @author Jan Jan
  */
 @Entity
-public class Essay  implements Serializable {
+@Indexed
+public class Essay implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String body;
@@ -53,13 +56,13 @@ public class Essay  implements Serializable {
     private List<Tag> taglist = new ArrayList<Tag>();
     private List<FeedBack> feedback = new ArrayList<FeedBack>();
 
-
     /**
      * @return the taglist
      */
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Tag.class)
     @JoinTable(name = "Essay_Tag", joinColumns = {@JoinColumn(name = "essay_id")}, inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     @Audited
+    @IndexedEmbedded
     public List<Tag> getTaglist() {
         return taglist;
     }
@@ -71,12 +74,12 @@ public class Essay  implements Serializable {
         this.taglist = taglist;
     }
 
-
     /**
      * @return the updatedBy
      */
     @Audited
     @ManyToOne
+    @IndexedEmbedded(depth = 1, prefix = "updatedBy_")
     public User getUpdatedBy() {
         return updatedBy;
     }
@@ -104,9 +107,9 @@ public class Essay  implements Serializable {
         this.body = body;
     }
 
-
     @Id
     @NonVisual
+    @DocumentId
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
         return id;
@@ -115,8 +118,6 @@ public class Essay  implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-
 
     @Basic(optional = false)
     @Column(name = "created_at", nullable = false)
@@ -132,7 +133,6 @@ public class Essay  implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
 
     /**
      * @return the updatedAt
@@ -153,15 +153,13 @@ public class Essay  implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-
-
-
     /**
      * @return the user
      */
-     @ManyToOne(targetEntity = User.class, fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.JOIN)
     @JoinColumn(name = "user_id")
+    @IndexedEmbedded(depth = 1, prefix = "ownedBy_")
     @Audited
     public User getUser() {
         return user;
@@ -173,8 +171,6 @@ public class Essay  implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
-
 
     /**
      * @return the prompt
@@ -195,7 +191,7 @@ public class Essay  implements Serializable {
      * @return the essays
      */
     @Audited
-    @OneToMany(mappedBy = "essay", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "essay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     public List<FeedBack> getFeedBack() {
         return feedback;

@@ -17,7 +17,7 @@ import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
-import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -27,10 +27,10 @@ import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONObject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.springframework.security.annotation.Secured;
@@ -90,20 +90,33 @@ public class NewLongPassage {
     private Tag tag;
     @Component
     private Form createlongpassageform;
-
+    @Inject
+    private ComponentResources resources;
 
     public void NewLongPassage() {
         this.longpassage = new LongPassage();
     }
+
+    @SetupRender
+    void getSetupItems() {
+
+        if (!createlongpassageform.getHasErrors()) {
+            addedTags.clear();
+
+        }
+
+    }
+
     void onValidateFormFromCreateLongPassageForm() {
-        if(fBody == null) {
+        if (fBody == null) {
             createlongpassageform.recordError(passeditor, "You need a value for Passage!");
         }
     }
+
     @CommitAfter
     Object onSuccessFromCreateLongPassageForm() {
-        if(this.longpassage == null) {
-               this.longpassage = new LongPassage();
+        if (this.longpassage == null) {
+            this.longpassage = new LongPassage();
         }
 
 
@@ -136,7 +149,9 @@ public class NewLongPassage {
 
 
         longpassageDAO.doSave(longpassage);
+         resources.discardPersistentFieldChanges();
         showpassage.setPassagePage(longpassage);
+
         return showpassage;
     }
 

@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -28,10 +28,10 @@ import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONObject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
 import org.springframework.security.annotation.Secured;
@@ -94,6 +94,8 @@ public class NewDualLongPassage {
     @Component
     private Form duallongpassageform;
     private boolean showpage = false;
+    @Inject
+    private ComponentResources resources;
 
 
     
@@ -104,6 +106,15 @@ public class NewDualLongPassage {
     public void setPageFalse() {
         showpage = false;
     }
+        @SetupRender
+    void getSetupItems() {
+
+            if(!duallongpassageform.getHasErrors()) {
+                addedTags.clear();
+                
+            }
+
+        }
 
     public void NewDualLongPassage() {
         this.longDualpassage = new LongDualPassage();
@@ -153,7 +164,9 @@ public class NewDualLongPassage {
 
 
         longDualpassageDAO.doSave(longDualpassage);
+         resources.discardPersistentFieldChanges();
         showdualpasage.setLongDualPassage(longDualpassage);
+
         return showdualpasage;
     }
 

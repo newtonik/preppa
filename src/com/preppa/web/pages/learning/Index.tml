@@ -1,6 +1,6 @@
 <html t:type="layout" t:pageTitle="Learning and Practice" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarArt />
-<div id="main">
+<div class="mainclass">
     <div>
     <br/>
         <t:articlemenu />

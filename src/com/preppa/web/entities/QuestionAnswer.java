@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.ContainedIn;
 
 /**
  *
@@ -94,6 +95,7 @@ public class QuestionAnswer implements Serializable {
     /**
      * @return the question
      */
+    @ContainedIn
     public Question getQuestion() {
         return question;
     }
