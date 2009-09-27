@@ -4,7 +4,7 @@
     <div id="main">
         <div id ="artcont" align="center" class="questiontype">
             <div align="right"> <a href="#" > Best Practices</a> </div>
-            <t:form t:id="articleform">
+            <t:form t:id="articleform" clientvalidation="false">
                 <t:errors />
                 <table id="articleformtable" width="700">
                     <tr  align="left">

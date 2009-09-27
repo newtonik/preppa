@@ -34,6 +34,10 @@
             <br />
         </t:loop>
 
+            <p>
+            Difficulty: <b>${question.difficulty}</b>
+            </p><br/>
+
         <p>
         <t:tagviewquestion t:alltags="tags" />
         <br />

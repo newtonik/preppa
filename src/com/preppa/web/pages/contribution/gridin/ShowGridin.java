@@ -38,21 +38,21 @@ public class ShowGridin {
     private Long gridId;
     @Inject
     private VoteDAO voteDAO;
-    @InjectComponent
+    /*@InjectComponent
     private Zone voteupZone;
     @Inject
     private Block voteBlock;
     @Property
     @Persist 
-    private Integer votes;
+    private Integer votes;*/
     @Inject
     private HttpServletRequest _request;
-    @Inject
+    /*@Inject
     private Block upSuccess;
     @Inject
     private Block downSuccess;
     @Inject
-    private Block voted;
+    private Block voted;*/
     @Property
     private ContentType contType;
     @Property
@@ -64,7 +64,7 @@ public class ShowGridin {
             answer = question.getAnswers().get(0);
             this.gridId = id;
             //this.votes = voteDAO.findSumByGridInId(question.getId().intValue());
-            votes = question.getVoteScore();
+            //votes = question.getVoteScore();
             contType = ContentType.GridIn;
             tags = question.getTaglist();
         }
@@ -80,7 +80,7 @@ public class ShowGridin {
     }
 
     
-    Block onActionFromVoteUp() {
+    /*Block onActionFromVoteUp() {
      String  hostname = _request.getRemoteHost();
      if(!(voteDAO.checkVoted(ContentType.GridIn, question.getId().intValue(), user)))
      {
@@ -144,5 +144,5 @@ public class ShowGridin {
      {
          return voted;
      }
- }
+ }*/
 }

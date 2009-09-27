@@ -2,7 +2,7 @@
 
     <div id="dualpassage" align="center">
 
-        <t:form t:id="editdualpassageform">
+        <t:form t:id="editdualpassageform" clientvalidation="false">
             <t:errors />
             <table id="dualpasstable">
 

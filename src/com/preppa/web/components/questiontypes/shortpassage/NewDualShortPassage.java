@@ -90,7 +90,7 @@ public class NewDualShortPassage {
     @Property
     private Tag tag;
     @Component
-    private Form dualpassageform;
+    private Form dualshortpassageform;
     @Parameter
     private ShortDualPassage passed;
     @Inject
@@ -103,7 +103,7 @@ public class NewDualShortPassage {
     @SetupRender
     void getSetupItems() {
 
-        if (!dualpassageform.getHasErrors()) {
+        if (!dualshortpassageform.getHasErrors()) {
             addedTags.clear();
 
         }
@@ -112,19 +112,20 @@ public class NewDualShortPassage {
 
     /**
      * Add form validation here
-     */
-    void onValidateFromDualPassageForm() {
+     */  
+    void onValidateFormFromDualShortPassageForm() {
+        System.out.println("******");
         if (fBodyone == null) {
-            dualpassageform.recordError(passeditorone, "You need a value for Passage 1");
+            dualshortpassageform.recordError(passeditorone, "You need a value for Passage 1");
         }
         if (fBodytwo == null) {
-            dualpassageform.recordError(passeditortwo, "You need a value for Passage 2");
+            dualshortpassageform.recordError(passeditortwo, "You need a value for Passage 2");
         }
 
     }
 
     @CommitAfter
-    Object onSuccessFromDualPassageForm() {
+    Object onSuccessFromDualShortPassageForm() {
         if (shortDualpassage == null) {
             this.shortDualpassage = new ShortDualPassage();
         }
