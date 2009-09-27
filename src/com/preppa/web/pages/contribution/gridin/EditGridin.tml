@@ -3,7 +3,7 @@
     <div class="mainclass">
         <h3>Edit Gridin Question</h3>
 
-        <t:form t:id="gridinForm">
+        <t:form t:id="gridinForm" clientvalidation="false">
             <t:errors />
             <table id="questiontable">
 
