@@ -133,7 +133,10 @@ public class NewGeneral {
         }
         else
         {
-            testsubject = questiontype.getTestsubject();
+	    if(questiontype != null )
+	    {
+		testsubject = questiontype.getTestsubject();
+	    }
         }
         viewed = null;
     }
