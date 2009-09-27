@@ -1,7 +1,7 @@
 <html t:type="layout" t:pageTitle="Edit Article" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <br/>
      <div id ="artcont" align="center">
-        <t:form t:id="articleform">
+        <t:form t:id="articleform" clientvalidation="false">
             <t:errors/>
             <table id="articleformtable" width="700">
                 <tr  align="left">

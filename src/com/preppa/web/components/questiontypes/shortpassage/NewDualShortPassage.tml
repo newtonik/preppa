@@ -2,7 +2,7 @@
 
     <div id="dualpassage">
          <div align="left"> <a href="#" > Best Practices</a> </div>
-        <t:form t:id="dualpassageform">
+        <t:form t:id="dualshortpassageform" clientvalidation="false">
             <t:errors />
             <table id="dualpasstable">
 

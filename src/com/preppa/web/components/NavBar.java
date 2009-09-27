@@ -113,6 +113,6 @@ public class NavBar {
 
     public boolean getLearning() {
         String url = _request.getRequestURL().toString();
-        return url.contains("learning");
+        return url.contains("/learning") || url.contains("/contribution/");
     }
 }

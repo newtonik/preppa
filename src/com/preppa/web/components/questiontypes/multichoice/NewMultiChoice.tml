@@ -2,7 +2,7 @@
 
     <div id="multiple-question" class="overlay"  >
         <div align="left"> <a href="#" > Best Practices</a> </div>
-        <t:form t:id="createquestionform" class="multiquestionclass">
+        <t:form t:id="createquestionform" class="multiquestionclass" clientvalidation="false">
             <t:errors />
             <t:if t:test="questiontExists">
                 <table id="atable" cellpadding="10">
