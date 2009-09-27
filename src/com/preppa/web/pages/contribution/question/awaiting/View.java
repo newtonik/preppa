@@ -65,6 +65,7 @@ public class View {
 
     Object onActivate(String questiontype) {
         System.out.println("In onActivate");
+        System.out.println("Questiontype is " + questiontype);
         this.qType = questiontype;
         List<Question> allquestions = null;
         isGridin = false;
