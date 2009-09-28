@@ -65,10 +65,23 @@ public class View {
 
     Object onActivate(String questiontype) {
         System.out.println("In onActivate");
+        System.out.println("Questiontype is " + questiontype);
         this.qType = questiontype;
         List<Question> allquestions = null;
         isGridin = false;
-        if(questiontype.contains("SentenceCompletion"))
+
+        if(questiontype.contains("Grid-ins")) {
+            System.out.println("Grid-ins");
+            isGridin = true;
+            gridins = gridinDAO.findAll();
+        }
+        else {
+            allquestions = questionDAO.findAllByQuestionType(questiontype);
+        }
+
+
+
+        /*if(questiontype.contains("SentenceCompletion"))
         {
             System.out.println("Sentence Completion");
             allquestions = questionDAO.findAllByQuestionType("Sentence Completion");
@@ -151,7 +164,7 @@ public class View {
         }
         else {
             allquestions = questionDAO.findAllNoRepeat();
-        }
+        }*/
 
 
         if (isGridin == false) {
