@@ -20,6 +20,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.StreamResponse;
@@ -109,6 +110,8 @@ public class CreateArticle {
     private Logger logger;
     @Inject
     private TagDAO tagDAO;
+    @Inject
+    private ComponentResources resources;
 
     public void onPrepare() {
         Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
@@ -127,6 +130,7 @@ public class CreateArticle {
     }
 
     void setupRender() {
+        resources.discardPersistentFieldChanges();
     }
 
     void onActivate(Article article) {

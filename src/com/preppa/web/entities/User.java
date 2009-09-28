@@ -68,6 +68,8 @@ public class User implements UserDetails, Serializable
     private boolean recentlyreset;
     private UserProfile userProfile;
     private Set<Role> roles;
+    private Integer logincount;
+    private Date lastlogintime;
 
     @Id
     @NonVisual
@@ -400,5 +402,35 @@ public class User implements UserDetails, Serializable
 
     public void setFlags(List<Flag> flags) {
         this.flags = flags;
+    }
+
+    /**
+     * @return the logincount
+     */
+    public Integer getLogincount() {
+        return logincount;
+    }
+
+    /**
+     * @param logincount the logincount to set
+     */
+    public void setLogincount(Integer logincount) {
+        this.logincount = logincount;
+    }
+
+    /**
+     * @return the lastlogintime
+     */
+    @NonVisual
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    public Date getLastlogintime() {
+        return lastlogintime;
+    }
+
+    /**
+     * @param lastlogintime the lastlogintime to set
+     */
+    public void setLastlogintime(Date lastlogintime) {
+        this.lastlogintime = lastlogintime;
     }
 }

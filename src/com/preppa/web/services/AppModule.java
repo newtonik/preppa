@@ -194,7 +194,7 @@ public final class AppModule {
        // configuration.add(UploadSymbols.REPOSITORY_LOCATION, "resources"  );
         
 
-       // configuration.add("acegi.failure.url", "/loginpage/failed");
+       configuration.add("spring-security.failure.url", "/loginfailed");
        // configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.ShaPasswordEncoder");
 //         configuration.add("spring-security.password.encoder", "org.springframework.security.providers.encoding.Md5PasswordEncoder");
 

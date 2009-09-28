@@ -4,12 +4,14 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.User;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
 import org.apache.tapestry5.ioc.Messages;
@@ -37,7 +39,7 @@ import org.springframework.security.userdetails.UserDetailsService;
  */
 @IncludeStylesheet(value = {"context:styles/loginpage.css"})
 @IncludeJavaScriptLibrary(value = { "context:js/jquery-1.3.2.js", "context:js/jquery/jquery.tools.min.js", "context:js/loginpage.js"})
-public class LoginPage
+public class LoginFailed
 {
     @Inject
     @Value("${spring-security.check.url}")
@@ -82,6 +84,8 @@ public class LoginPage
     private java.net.URL url = null;
     @Property
     private Boolean rememberme;
+    @Inject
+    private ComponentResources resources;
 
     public String getfLogin()
     {
@@ -112,8 +116,13 @@ public class LoginPage
         {
             failed = true;
         }
+        
     }
 
+    @SetupRender
+    void setupForm() {
+      
+    }
     void onValidateForm() {
 
        provider.setUserDetailsService(userserve);
