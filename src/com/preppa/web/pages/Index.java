@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Random;
 import java.net.URL;
 import java.io.*;
+import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.security.Authentication;
 import org.springframework.security.context.SecurityContextHolder;
@@ -31,6 +33,8 @@ public class Index {
     private AnnouncementDAO announcementDAO;
     @Property
     private Announcement announcement;
+
+    @CommitAfter
     void onActivate() {
         //Attempt to get the authentication token if the user is already logged in but not in
         //the ASO object.
@@ -44,10 +48,15 @@ public class Index {
                     if(username != null && !username.equals("anonymous"))
                             user = userDAO.findByUsername(username);
 
+                    if(user != null) {
+                                user.setLogincount(user.getLogincount() + 1);
+                                Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+                                user.setLastlogintime(now);
+                    }
                 }
                 else
                 {
-                    user = (User)token.getPrincipal();
+                    user = null;
                 }
             }
 

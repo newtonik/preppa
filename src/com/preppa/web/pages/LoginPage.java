@@ -4,6 +4,7 @@ import com.preppa.web.data.UserObDAO;
 import com.preppa.web.entities.User;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
@@ -12,6 +13,7 @@ import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Value;
@@ -163,7 +165,12 @@ public class LoginPage
 
     }
 
+    @CommitAfter
     Object onSuccess() {
+
+        user.setLogincount(user.getLogincount() + 1);
+        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        user.setLastlogintime(now);
         if(url != null)
         {
     
