@@ -132,8 +132,8 @@
                 <td colspan="2" align="left">
                     <br />
                     <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-            <t:pagelink t:page="Index"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
-            </td>
+                     <a href="#" t:type="actionlink" t:id="cancel"> <img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" /> </a>
+                  </td>
 
             </tr>
 

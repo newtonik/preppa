@@ -10,6 +10,7 @@ import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import com.preppa.web.utils.InjectSelectionModel;
 import java.io.File;
 import java.sql.Timestamp;
@@ -130,7 +131,6 @@ public class NewGridin {
     private List<Tag> addedTags = new LinkedList<Tag>();
     @Inject
     private TagDAO tagDAO;
-
     //Topics
     @Inject
     private TopicDAO topicDAO;
@@ -140,7 +140,7 @@ public class NewGridin {
     private List<Topic> addedTopics = new LinkedList<Topic>();
     @Property
     private Testsubject topicSubject;
-     @Property
+    @Property
     private String fTopic;
     @Property
     private String fTopicName;
@@ -157,27 +157,28 @@ public class NewGridin {
     private Logger logger;
     @Inject
     private ComponentResources resources;
+    @InjectPage
+    private NewGeneral newgeneral;
 
-    
     public void NewGridin() {
         this.question = new Gridin();
     }
+
     @SetupRender
     void setDefaults() {
         hasimage = "false";
         //answertype = "range";
         testsubject1 = testsubjectDAO.findByName("Mathematics");
 
-        if(!gridinForm.getHasErrors())
-        {
+        if (!gridinForm.getHasErrors()) {
             addedTags.clear();
             addedTopics.clear();
         }
-        
+
     }
 
     void onValidateFormFromGridinForm() {
-        if(hasimage == null) {
+        if (hasimage == null) {
             gridinForm.recordError(gridinchooseimage, "Please specify if you have an image");
         }
         if (answertype == null) {
@@ -205,13 +206,12 @@ public class NewGridin {
         question.setRating(ratingValue);
 
 
-         for(Tag t: addedTags) {
-            if(!(question.getTaglist().contains(t)))
-            {
+        for (Tag t : addedTags) {
+            if (!(question.getTaglist().contains(t))) {
                 question.getTaglist().add(t);
             }
 
-         }
+        }
         GridinAnswer a = new GridinAnswer();
         if (answertype.equals("range")) {
 
@@ -232,19 +232,19 @@ public class NewGridin {
             question.getAnswers().add(a);
         }
 
-         Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
         question.setUpdatedAt(now);
         question.setCreatedAt(now);
         gridinDAO.doSave(question);
-        if(hasimage.equals("yes")) {
-           String impath = context.getRealFile("/").getPath() + "/images/gridin" + question.getId() + ".jpg";
+        if (hasimage.equals("yes")) {
+            String impath = context.getRealFile("/").getPath() + "/images/gridin" + question.getId() + ".jpg";
             System.out.println(impath);
-            File copied = new File( context.getRealFile("/").getPath() + "/images/gridin"  + question.getId() + ".jpg");
+            File copied = new File(context.getRealFile("/").getPath() + "/images/gridin" + question.getId() + ".jpg");
             imageupload.write(copied);
             question.setImagePath(impath);
             question.setImage(Boolean.TRUE);
         }
-         resources.discardPersistentFieldChanges();
+        resources.discardPersistentFieldChanges();
         showgridin.setGridin(question);
         return showgridin;
     }
@@ -254,161 +254,158 @@ public class NewGridin {
 
         return rangeblock;
     }
-  List<Tag> onProvideCompletionsFromAutocompleteGridinTag(String partial) {
+
+    List<Tag> onProvideCompletionsFromAutocompleteGridinTag(String partial) {
         List<Tag> matches = tagDAO.findByPartialName(partial);
 
         return matches;
 
     }
 
+    public FieldTranslator getTagTranslator() {
+        return new FieldTranslator<Tag>() {
 
-       public FieldTranslator getTagTranslator()
-    {
-        return new FieldTranslator<Tag>()
-        {
             @Override
-          public String toClient(Tag value)
-          {
+            public String toClient(Tag value) {
                 String clientValue = "0";
-                if (value != null)
-                clientValue = String.valueOf(value.getName());
+                if (value != null) {
+                    clientValue = String.valueOf(value.getName());
+                }
 
                 return clientValue;
-          }
+            }
 
             @Override
-          public void render(MarkupWriter writer) { }
+            public void render(MarkupWriter writer) {
+            }
 
             @Override
-          public Class<Tag> getType() { return Tag.class; }
+            public Class<Tag> getType() {
+                return Tag.class;
+            }
 
             @Override
-          public Tag parse(String clientValue) throws ValidationException
-          {
-            Tag serverValue = null;
+            public Tag parse(String clientValue) throws ValidationException {
+                Tag serverValue = null;
 //            if(clientValue == null) {
 //                Tag t = new Tag();
 //                t.setName(clientValue);
 //            }
 
 
-            if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
-                System.out.println(clientValue);
-                serverValue = tagDAO.findByName(clientValue).get(0);
+                if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                    System.out.println(clientValue);
+                    serverValue = tagDAO.findByName(clientValue).get(0);
+                }
+                return serverValue;
             }
-            return serverValue;
-          }
-
-    };
-   }
-
+        };
+    }
 
 //Topic
-
-    public void onPrepare(){
-              Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
-                testsubjects1.clear();
-              testsubjects1.addAll(setItems);
+    public void onPrepare() {
+        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+        testsubjects1.clear();
+        testsubjects1.addAll(setItems);
 
     }
 
     void Article() {
-       Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
-       testsubjects1.addAll(setItems);
+        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+        testsubjects1.addAll(setItems);
 
 
 
     }
 
-    public FieldTranslator getTranslator()
-  {
-    return new FieldTranslator<Topic>()
-    {
-            @Override
-      public String toClient(Topic value)
-      {
-        String clientValue = "0";
-        if (value != null)
-          clientValue = String.valueOf(value.getId());
-
-        return clientValue;
-      }
+    public FieldTranslator getTranslator() {
+        return new FieldTranslator<Topic>() {
 
             @Override
-      public void render(MarkupWriter writer) { }
+            public String toClient(Topic value) {
+                String clientValue = "0";
+                if (value != null) {
+                    clientValue = String.valueOf(value.getId());
+                }
+
+                return clientValue;
+            }
 
             @Override
-      public Class<Topic> getType() { return Topic.class; }
+            public void render(MarkupWriter writer) {
+            }
 
             @Override
-      public Topic parse(String clientValue) throws ValidationException
-      {
-        Topic serverValue = null;
+            public Class<Topic> getType() {
+                return Topic.class;
+            }
 
-        if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
-            System.out.println(clientValue);
-          serverValue = topicDAO.findById(new Integer(clientValue));
-        }
-        return serverValue;
-      }
-    };
-  }
+            @Override
+            public Topic parse(String clientValue) throws ValidationException {
+                Topic serverValue = null;
+
+                if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                    System.out.println(clientValue);
+                    serverValue = topicDAO.findById(new Integer(clientValue));
+                }
+                return serverValue;
+            }
+        };
+    }
 
     List<Topic> onProvideCompletionsFromAutoCompleteGridinTopics(String partial) {
-         List<Topic> matches = null;
+        List<Topic> matches = null;
 
-        if(testsubject1 != null)
-        {
+        if (testsubject1 != null) {
             logger.warn("Test subject is not null");
             matches = topicDAO.findByPartialName(partial, testsubject1);
             logger.warn("Size is " + matches.size());
-        }
-        else
-        {
+        } else {
             System.out.println("Partial is " + partial);
             matches = topicDAO.findByPartialName(partial);
         }
-       // matches = topicDAO.findByPartialName(partial);
+        // matches = topicDAO.findByPartialName(partial);
         return matches;
 
     }
 
-
-
-        @CommitAfter
-        JSONObject onSuccessFromTopicForm() {
-            JSONObject json = new JSONObject();
-            System.out.println("trying to save " + fTopicName);
-          Topic topic = new Topic();
-           topic.setName(fTopicName);
-          topic.setTestsubject(topicSubject);
-          System.out.println("Topic name and subject set.");
-         if(topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
-             String markup = "<p> There is already a <b>" + fTopicName +
+    @CommitAfter
+    JSONObject onSuccessFromTopicForm() {
+        JSONObject json = new JSONObject();
+        System.out.println("trying to save " + fTopicName);
+        Topic topic = new Topic();
+        topic.setName(fTopicName);
+        topic.setTestsubject(topicSubject);
+        System.out.println("Topic name and subject set.");
+        if (topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
+            String markup = "<p> There is already a <b>" + fTopicName +
                     "</b> topic in " + topicSubject.getName() + " Section.<p>";
-                json.put("content", markup);
+            json.put("content", markup);
 
 
-         }
-         else
-         {
-             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        } else {
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-             topic.setCreatedAt(now);
-             topic.setUpdatedAt(now);
-             System.out.println("Topic is being saved");
-             System.out.println("Topic is " + topicSubject);
+            topic.setCreatedAt(now);
+            topic.setUpdatedAt(now);
+            System.out.println("Topic is being saved");
+            System.out.println("Topic is " + topicSubject);
             topicDAO.doSave(topic);
-             String markup = "<p> You just submitted <b>" + topic.getName() +
+            String markup = "<p> You just submitted <b>" + topic.getName() +
                     "</b>. Please add it using the topics autocomplete. <p>";
-               json.put("content", markup);
+            json.put("content", markup);
 
-         }
-          return json;
         }
+        return json;
+    }
 
     public void setSubject(Testsubject testsubject1) {
         System.out.println("Setting subject in grid in." + testsubject1.getName());
         this.testsubject1 = testsubject1;
+    }
+
+    Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
+        return newgeneral;
     }
 }

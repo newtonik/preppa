@@ -1,138 +1,97 @@
-<html t:type="layout" t:pageTitle="Edit + ${fTitle}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html t:type="layout" t:pageTitle="Edit ${fTitle}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <br />
+    <div class="mainclass">
+        <div id="passage">
+            <t:form t:id="editpassageform">
+                <t:errors />
+                <table id="passtable">
 
-    <div id="passage">
-        <t:form t:id="editpassageform">
-            <t:errors />
-            <table id="passtable">
-
-                <tr align="left">
-                    <td align="right">
-                <t:label for="fTitle"> Title: </t:label>
-                </td>
-                <td align="left">
-                    <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="60"/>
-                </td>
-                </tr>
-                <tr>
-                <div id="pass1">
-                    <td valign="top" align="right">
-                    <t:label for="pass1">Passage: </t:label>
+                    <tr align="left">
+                        <td align="right">
+                    <t:label for="fTitle"> Title: </t:label>
                     </td>
-                    <td >
-                    <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:label="Passage" t:validate="required" t:width="600" t:height="300"/>
-                    </td>
-                </div>
-                </tr>
-                 <tr>
-                     <td></td>
-                    <td><b> Word Count</b></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td id="word_count"></td>
-                </tr>
-                <tr>
-
-                    <td valign="top" align="right">
-                <t:label for="fSource"> Sources: </t:label>
-                </td>
-                <td>
-                    <input t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="70"/>
-
-                </td>
-                </tr>
-                <tr>
-                    <td></td>
                     <td align="left">
-                <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
-                </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td align="left">
-                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
-                               translate="prop:tagtranslator" label="name" type="text" size="10" />
+                        <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:label="Title" t:validate="required" size="60"/>
                     </td>
+                    </tr>
+                    <tr>
+                    <div id="pass1">
+                        <td valign="top" align="right">
+                        <t:label for="pass1">Passage: </t:label>
+                        </td>
+                        <td >
+                        <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:label="Passage" t:validate="required" t:width="600" t:height="300"/>
+                        </td>
+                    </div>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><b> Word Count</b></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td id="word_count"></td>
+                    </tr>
+                    <tr>
 
-                </tr>
-                <tr>
-                    <td></td>
-                    <td align="left">
-                        Can't find one
-                        <a  id="addtag" href="#" > Add a New Tag </a>
+                        <td valign="top" align="right">
+                    <t:label for="fSource"> Sources: </t:label>
                     </td>
-                </tr>
-                <tr>
-                    <td></td>
                     <td>
-                <t:label for="fComment">
-                    Edit summary (Briefly describe the changes you have made)
-                </t:label>
-                </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
+                        <input t:type="TextArea" t:id="fSource" value="fSource" rows="3" cols="70"/>
+
                     </td>
-                </tr>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="left">
+                    <t:label for="autoCompletetag"> Tags (Select up to 5 tags) </t:label>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="left">
+                            <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompletetag" selected="addedTags"
+                                   translate="prop:tagtranslator" label="name" type="text" size="10" />
+                        </td>
 
-                <tr>
-                    <td></td>
-                    <td colspan="2" align="left">
-                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit"  onclick="IGNORE_UNLOAD = true" />
-                        <t:pagelink t:page="contribution/shortpassage/show" t:context="shortpassage.id"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="left">
+                            Can't find one
+                            <a  class="addtag" href="#" > Add a New Tag </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                    <t:label for="fComment">
+                        Edit summary (Briefly describe the changes you have made)
+                    </t:label>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input t:type="textfield" type="textfield" t:id="fComment" t:value="fComment" t:validate="required" size="80"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td colspan="2" align="left">
+                            <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit"  onclick="IGNORE_UNLOAD = true" />
+                    <t:pagelink t:page="contribution/shortpassage/show" t:context="shortpassage.id"><img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" ></img></t:pagelink>
                     </td>
 
-                </tr>
+                    </tr>
 
-            </table>
-        </t:form>
-    </div>
-    <div id="newtagbox" class="tagboxklass" style='display:none'>
-        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-             bgcolor="#FFFFFF"
-             style="padding: 20px;" align="center">
-            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
-
-                <t:zone t:id="formzone">
-                    <t:delegate to="newtagblock"/>
-                </t:zone>
-
-                <p>
-                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" id="closetagbox">Close</a>
-                </p>
-            </div>
+                </table>
+            </t:form>
         </div>
-
     </div>
-    <t:block t:id="newtagblock">
-        <h3> Add a Tag </h3>
-        <t:form t:id="tagform" t:zone="formzone">
+    <div t:type="newtag" />
 
-            <table id="userformtable">
-                <tr>
-                    <td>
-                <t:label for="tagTextfield"/>
-                </td>
-                </tr>
-                <tr>
-                    <td valign="top" align="left">
-                        <input t:type="TextField" t:id="tagTextfield" size="30"  t:value="fname" t:label="Tag Name" t:validate="required"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="left">
-                        <br />
-                        <input t:id="submit" type="submit" t:type="submit" value="Submit"/>
-                    </td>
-                </tr>
-
-
-            </table>
-
-
-        </t:form>
-    </t:block>
-
+    <br />
 </html>

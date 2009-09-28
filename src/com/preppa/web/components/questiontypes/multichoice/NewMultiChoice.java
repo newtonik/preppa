@@ -378,7 +378,7 @@ public class NewMultiChoice {
     }
 
     Object onValidateFormFromCreateQuestionForm() {
-        if(!cancelform) {
+  
         if (mywork == false) {
             error = true;
             emessage = "You must verify that this is your own work.";
@@ -429,11 +429,7 @@ public class NewMultiChoice {
             //showquestion.setquestion(question);
             return null;
         }
-        }
-        else
-        {
-            return null;
-        }
+       
     }
 
     JSONObject onChangeFromTestSubSelect(String testId) {
@@ -783,25 +779,9 @@ public class NewMultiChoice {
           return json;
         }
 
-        void onSelectedFromCancel() {
-            resources.discardPersistentFieldChanges();
-            cancelform = true;
-
-
-            
-        }
         Object onActionFromCancel() {
             resources.discardPersistentFieldChanges();
             return newgeneral;
         }
-        Object onSuccess() {
-            if(cancelform)
-            {
-                return newgeneral;
-            }
-            else
-            {
-                return null;
-            }
-        }
+
 }

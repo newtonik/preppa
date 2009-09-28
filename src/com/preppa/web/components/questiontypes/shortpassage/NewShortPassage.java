@@ -12,6 +12,7 @@ import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.User;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
@@ -88,6 +89,8 @@ public class NewShortPassage {
     private Form createpassageform;
     @Inject
     private ComponentResources resources;
+    @InjectPage
+    private NewGeneral newgeneral;
 
     public void NewShortPassage() {
         this.shortpassage = new ShortPassage();
@@ -144,7 +147,7 @@ public class NewShortPassage {
 
 
         shortpassageDAO.doSave(shortpassage);
-         resources.discardPersistentFieldChanges();
+        resources.discardPersistentFieldChanges();
         showpassage.setPassagePage(shortpassage);
 
 
@@ -216,5 +219,10 @@ public class NewShortPassage {
                 return serverValue;
             }
         };
+    }
+
+    Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
+        return newgeneral;
     }
 }

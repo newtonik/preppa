@@ -1,5 +1,6 @@
-<html t:type="layout" t:pageTitle="${fTitle}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-
+<html t:type="layout" t:pageTitle="Edit ${fTitle}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <br />
+    <div class="mainclass">
     <div id="dualpassage" align="center">
 
         <t:form t:id="editdualpassageform">
@@ -72,7 +73,7 @@
                     <td></td>
                     <td align="left">
                         Can't find one
-                        <a  id="addtag" href="#" > Add a New Tag </a>
+                        <a  class="addtag" href="#" > Add a New Tag </a>
                     </td>
                 </tr>
                 <tr>
@@ -104,49 +105,8 @@
             </table>
         </t:form>
     </div>
-    <div id="newtagbox" class="tagboxklass" style='display:none'>
-        <div t:type="ck/RoundCornerContainer" fgcolor="#4186D3"
-             bgcolor="#FFFFFF"
-             style="padding: 20px;" align="center">
-            <div id="tagcorner" style="padding: 20px; background-color:#e8eefa;" >
-
-                <t:zone t:id="formzone">
-                    <t:delegate to="newtagblock"/>
-                </t:zone>
-
-                <p>
-                    <a href="#" t:type="actionlink" t:id="closetag" t:zone="formzone" id="closetagbox">Close</a>
-                </p>
-            </div>
-        </div>
-
     </div>
-    <t:block t:id="newtagblock">
-        <h3> Add a Tag </h3>
-        <t:form t:id="tagform" t:zone="formzone">
+    <div t:type="newtag" />
+    <br />
 
-            <table id="userformtable">
-                <tr>
-                    <td>
-                <t:label for="tagTextfield"/>
-                </td>
-                </tr>
-                <tr>
-                    <td valign="top" align="left">
-                        <input t:type="TextField" t:id="tagTextfield" size="30"  t:value="fname" t:label="Tag Name" t:validate="required"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="left">
-                        <br />
-                        <input t:id="submit" type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="50" width="125"  t:type="submit" value="Submit"/>
-                    </td>
-                </tr>
-
-
-            </table>
-
-
-        </t:form>
-    </t:block>
 </html>

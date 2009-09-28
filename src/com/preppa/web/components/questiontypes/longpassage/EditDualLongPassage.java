@@ -13,11 +13,13 @@ import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.User;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import com.preppa.web.services.PassageService;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -100,7 +102,10 @@ public class EditDualLongPassage {
     private Form editdualpassageform;
     @Parameter(required=true)
     private LongDualPassage passParam;
-
+    @InjectPage
+    private NewGeneral newgeneral;
+    @Inject
+    private ComponentResources resources;
 
     @SetupRender
     void onSetup() {

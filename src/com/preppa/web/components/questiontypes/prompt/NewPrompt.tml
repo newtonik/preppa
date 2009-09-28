@@ -1,7 +1,6 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <br />
-    <div class="mainclass">
-         <div align="left"> <a href="#" > Best Practices</a> </div>
+          <div align="left"> <a href="#" > Best Practices</a> </div>
         <t:form t:id="promptform">
             <t:errors/>
             <table>
@@ -56,22 +55,21 @@
                 <tr>
                     <td align="left">
                         Can't find one
-                        <a  id="addtag" href="#" > Add a New Tag </a>
+                        <a  class="addtag" href="#" > Add a New Tag </a>
 
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="2" align="left">
-                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="50" width="125" value="Submit" onclick="IGNORE_UNLOAD = true" />
-                        <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="50" width="125" onclick="javascript:history.go(-1);" value="Cancel"></input>
-                    </td>
+                        <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true" />
+                      <a href="#" t:type="actionlink" t:id="cancel"> <img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" /> </a>
+                          </td>
 
                 </tr>
 
             </table>
         </t:form>
-    </div>
     <br />
     <div t:type="newtag" />
 

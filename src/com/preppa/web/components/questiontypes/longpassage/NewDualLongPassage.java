@@ -12,6 +12,7 @@ import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.User;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
@@ -96,7 +97,8 @@ public class NewDualLongPassage {
     private boolean showpage = false;
     @Inject
     private ComponentResources resources;
-
+    @InjectPage
+    private NewGeneral newgeneral;
 
     
       public void setPageTrue() {
@@ -246,4 +248,9 @@ public class NewDualLongPassage {
             }
         };
     }
+            Object onActionFromCancel() {
+            resources.discardPersistentFieldChanges();
+            return newgeneral;
+        }
+
 }

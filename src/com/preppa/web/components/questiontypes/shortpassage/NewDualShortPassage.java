@@ -14,6 +14,7 @@ import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.User;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import com.preppa.web.services.PassageService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
@@ -36,7 +36,6 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.chenillekit.tapestry.core.components.Editor;
 import org.chenillekit.tapestry.core.components.prototype_ui.AutoComplete;
-import org.springframework.security.annotation.Secured;
 
 /**
  *
@@ -95,6 +94,8 @@ public class NewDualShortPassage {
     private ShortDualPassage passed;
     @Inject
     private ComponentResources resources;
+    @InjectPage
+    private NewGeneral newgeneral;
 
     public void NewDualShortPassage() {
         this.shortDualpassage = new ShortDualPassage();
@@ -112,7 +113,7 @@ public class NewDualShortPassage {
 
     /**
      * Add form validation here
-     */  
+     */
     void onValidateFormFromDualShortPassageForm() {
         System.out.println("******");
         if (fBodyone == null) {
@@ -153,7 +154,7 @@ public class NewDualShortPassage {
 
 
         shortDualpassageDAO.doSave(shortDualpassage);
-         resources.discardPersistentFieldChanges();
+        resources.discardPersistentFieldChanges();
         showdualpasage.setShortDualPassage(shortDualpassage);
         return showdualpasage;
     }
@@ -233,5 +234,10 @@ public class NewDualShortPassage {
                 return serverValue;
             }
         };
+    }
+
+    Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
+        return newgeneral;
     }
 }

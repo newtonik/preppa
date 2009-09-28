@@ -78,8 +78,8 @@
                     <td></td>
                     <td colspan="2" align="left">
                         <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                        <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" onclick="javascript:history.go(-1);" value="Cancel"></input>
-                    </td>
+                       <a href="#" t:type="actionlink" t:id="cancel"> <img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" /> </a>
+                        </td>
 
                 </tr>
 

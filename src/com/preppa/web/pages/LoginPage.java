@@ -38,9 +38,9 @@ import org.springframework.security.userdetails.UserDetailsService;
  * @author newtonik
  */
 @IncludeStylesheet(value = {"context:styles/loginpage.css"})
-@IncludeJavaScriptLibrary(value = { "context:js/jquery-1.3.2.js", "context:js/jquery/jquery.tools.min.js", "context:js/loginpage.js"})
-public class LoginPage
-{
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/jquery.tools.min.js", "context:js/loginpage.js"})
+public class LoginPage {
+
     @Inject
     @Value("${spring-security.check.url}")
     private String checkUrl;
@@ -85,100 +85,94 @@ public class LoginPage
     @Property
     private Boolean rememberme;
 
-    public String getfLogin()
-    {
+    public String getfLogin() {
         return fLogin;
     }
 
     public void setfLogin(String login) {
         this.fLogin = login;
     }
-    public boolean isFailed()
-    {
+
+    public boolean isFailed() {
         return failed;
     }
 
-    public String getLoginCheckUrl()
-    {
+    public String getLoginCheckUrl() {
         return request.getContextPath() + checkUrl;
     }
 
-    public String getOpenIdCheckUrl()
-    {
+    public String getOpenIdCheckUrl() {
         return request.getContextPath() + openidCheckUrl;
     }
 
-    void onActivate(String extra)
-    {
-        if (extra.equals("failed"))
-        {
+    void onActivate(String extra) {
+        if (extra.equals("failed")) {
             failed = true;
         }
     }
 
     void onValidateForm() {
 
-       provider.setUserDetailsService(userserve);
-        
-       provider.setPasswordEncoder(new ShaPasswordEncoder());
-       authtoken = new UsernamePasswordAuthenticationToken(fLogin, fpass);
-       provider.setSaltSource(salt);
-       Authentication token = null;
-       try {
-      token = provider.authenticate(authtoken);
-       }
-       catch (org.springframework.security.BadCredentialsException e) {
-           loginform.recordError("Either the Username or Password is incorrect, Please try again.");
-           return;
-       }
-      if(token.isAuthenticated())
-      {
-          System.out.println("user has been authenticated");
-          this.user = userDAO.findByUsername(fLogin);
-          SecurityContextHolder.getContext().setAuthentication(token);
-          
-          SavedRequest savedRequest =
-                  (SavedRequest) requestGlobals.getHTTPServletRequest().getSession().getAttribute(AbstractProcessingFilter.SPRING_SECURITY_SAVED_REQUEST_KEY);
-          Session s = request.getSession(false);
-          s.invalidate();
-          s = request.getSession(true);
-           if(savedRequest != null){
-                 url = null;
+        provider.setUserDetailsService(userserve);
+
+        provider.setPasswordEncoder(new ShaPasswordEncoder());
+        authtoken = new UsernamePasswordAuthenticationToken(fLogin, fpass);
+        provider.setSaltSource(salt);
+        Authentication token = null;
+        try {
+            token = provider.authenticate(authtoken);
+        } catch (org.springframework.security.BadCredentialsException e) {
+            loginform.recordError("Either the Username or Password is incorrect, Please try again.");
+            return;
+        }
+        if (token.isAuthenticated()) {
+            System.out.println("user has been authenticated");
+            this.user = userDAO.findByUsername(fLogin);
+            SecurityContextHolder.getContext().setAuthentication(token);
+
+            SavedRequest savedRequest =
+                    (SavedRequest) requestGlobals.getHTTPServletRequest().getSession().getAttribute(AbstractProcessingFilter.SPRING_SECURITY_SAVED_REQUEST_KEY);
+            Session s = request.getSession(false);
+            s.invalidate();
+            s = request.getSession(true);
+            if (savedRequest != null) {
+                url = null;
 
                 try {
-                        url = new URL(savedRequest.getRequestURL());
-                } catch (MalformedURLException e){
-                        System.out.println("malformed url:" + savedRequest.getRequestURI());
+                    url = new URL(savedRequest.getRequestURL());
+                } catch (MalformedURLException e) {
+                    System.out.println("malformed url:" + savedRequest.getRequestURI());
                 }
+            }
+
+        } else {
+            //fpass = null;
+            //fLogin = null;
+
+            loginform.recordError("Either the Username or Password is incorrect, Please try again.");
+
         }
-
-      }
-
-      else
-      {
-          //fpass = null;
-          //fLogin = null;
-        
-          loginform.recordError("Either the Username or Password is incorrect, Please try again.");
-
-      }
 
     }
 
     @CommitAfter
     Object onSuccess() {
 
-        user.setLogincount(user.getLogincount() + 1);
-        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-        user.setLastlogintime(now);
-        if(url != null)
-        {
-    
 
+        if (url != null) {
+
+            System.out.println(user.getLogincount());
+            if (user.getLogincount() == null) {
+                user.setLogincount(1);
+            } else {
+                user.setLogincount(user.getLogincount() + 1);
+            }
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+            user.setLastlogintime(now);
+            userDAO.doSave(user);
             return url;
 
         }
-         return "index";
+        return "index";
     }
-
 }

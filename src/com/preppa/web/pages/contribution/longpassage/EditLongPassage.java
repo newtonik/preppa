@@ -82,11 +82,6 @@ public class EditLongPassage {
     private PassageService passageService;
     @Property
     private String fComment;
-    @Inject
-    @Property
-    private Block newtagblock;
-    @Property
-    private String fname;
     @Property
     private Tag tag;
     @Component
@@ -225,32 +220,5 @@ public class EditLongPassage {
     };
              }
 
-    @CommitAfter
-    JSONObject onSuccessFromTagForm() {
-        List<Tag> tolist = tagDAO.findByName(fname);
-        JSONObject json = new JSONObject();
-        if (tolist.size() > 0) {
-            String markup = "<p>  <b>" + fname +
-                    "</b> already exists. <p>";
-            json.put("content", markup);
-
-        } else {
-            tag = new Tag();
-            tag.setName(fname);
-
-            tagDAO.doSave(tag);
-            String markup = "<p> You just submitted <b>" + tag.getName() +
-                    "</b>. Please add it using the dropdown <p>";
-            json.put("content", markup);
-
-        }
-
-
-        // return new TextStreamResponse("text/json", json.toString());
-        return json;
-    }
-
-    Block onActionFromCloseTag() {
-        return newtagblock;
-    }
+   
 }

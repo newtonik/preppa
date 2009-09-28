@@ -178,12 +178,18 @@ public class LoginFailed
 
     @CommitAfter
     Object onSuccess() {
-        user.setLogincount(user.getLogincount() + 1);
-        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-        user.setLastlogintime(now);
+      
         if(url != null)
         {
-    
+            System.out.println(user.getLogincount());
+            if (user.getLogincount() == null) {
+                user.setLogincount(1);
+            } else {
+                user.setLogincount(user.getLogincount() + 1);
+            }
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+            user.setLastlogintime(now);
+            userDAO.doSave(user);
 
             return url;
 

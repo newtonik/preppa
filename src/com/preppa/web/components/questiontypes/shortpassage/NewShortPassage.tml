@@ -1,7 +1,7 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="passage" align="center">
-         <div align="left"> <a href="#" > Best Practices</a> </div>
+        <div align="left"> <a href="#" > Best Practices</a> </div>
         <t:form t:id="createpassageform" clientvalidation="false">
             <t:errors />
             <table id="passtable">
@@ -15,17 +15,17 @@
                 </td>
                 </tr>
                 <tr>
-            
+
                     <td valign="top" align="right">
-                    <t:label for="pass1">Passage: </t:label>
-                    </td>
-                    <td >
-                    <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="200" t:label="Passage"/>
-                    </td>
+                <t:label for="pass1">Passage: </t:label>
+                </td>
+                <td >
+                <t:editor align="left" t:id="pass1" value="fBody" t:toolbarSet="Basic" t:width="600" t:height="200" t:label="Passage"/>
+                </td>
 
                 </tr>
-                 <tr>
-                     <td></td>
+                <tr>
+                    <td></td>
                     <td><b> Word Count</b></td>
                 </tr>
                 <tr>
@@ -68,7 +68,7 @@
                     <td></td>
                     <td colspan="2" align="left">
                         <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
-                        <input type="image" src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" onclick="javascript:history.go(-1);" value="Cancel"></input>
+                        <a href="#" t:type="actionlink" t:id="cancel"> <img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" /> </a>
                     </td>
 
                 </tr>

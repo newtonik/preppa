@@ -14,6 +14,7 @@ import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.contribution.prompt.ShowPrompt;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -71,7 +72,8 @@ public class NewPrompt {
     private ShowPrompt showprompt;
     @Inject
     private ComponentResources resources;
-
+    @InjectPage
+    private NewGeneral newgeneral;
     void onValidateForm() {
     }
 
@@ -159,4 +161,9 @@ public class NewPrompt {
             }
         };
     }
+            Object onActionFromCancel() {
+            resources.discardPersistentFieldChanges();
+            return newgeneral;
+        }
+
 }

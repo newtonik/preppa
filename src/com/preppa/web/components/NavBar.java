@@ -68,7 +68,7 @@ public class NavBar {
 
     void onActionFromLogoutUrl() {
         logout.logout();
-
+        user = null;
     }
 
     /**

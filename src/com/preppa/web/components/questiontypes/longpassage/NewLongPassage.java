@@ -12,6 +12,7 @@ import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.Testsubject;
 import com.preppa.web.entities.User;
+import com.preppa.web.pages.contribution.question.general.NewGeneral;
 import com.preppa.web.services.PassageService;
 import com.preppa.web.utils.PassageType;
 import java.sql.Timestamp;
@@ -92,6 +93,9 @@ public class NewLongPassage {
     private Form createlongpassageform;
     @Inject
     private ComponentResources resources;
+    @InjectPage
+    private NewGeneral newgeneral;
+
 
     public void NewLongPassage() {
         this.longpassage = new LongPassage();
@@ -221,6 +225,11 @@ public class NewLongPassage {
             }
         };
     }
+            Object onActionFromCancel() {
+            resources.discardPersistentFieldChanges();
+            return newgeneral;
+        }
+
 }
 
     

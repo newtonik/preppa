@@ -13,11 +13,11 @@ import java.io.*;
 import java.sql.Timestamp;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.security.Authentication;
 import org.springframework.security.context.SecurityContextHolder;
-
 
 public class Index {
 
@@ -28,41 +28,54 @@ public class Index {
     @Inject
     private UserObDAO userDAO;
     private boolean userExists;
-
     @Inject
     private AnnouncementDAO announcementDAO;
     @Property
     private Announcement announcement;
 
     @CommitAfter
-    void onActivate() {
+    @SetupRender
+    void getAutUser() {
         //Attempt to get the authentication token if the user is already logged in but not in
         //the ASO object.
-       if(!userExists)
-       {
-            Authentication token  = SecurityContextHolder.getContext().getAuthentication();
-            if(token != null) {
+        if (!userExists) {
+            Authentication token = SecurityContextHolder.getContext().getAuthentication();
+            if (token != null) {
                 System.out.println(token.getPrincipal());
-                if((token.getPrincipal() instanceof String)) {
+                if ((token.getPrincipal() instanceof String)) {
                     String username = (String) token.getPrincipal();
-                    if(username != null && !username.equals("anonymous"))
-                            user = userDAO.findByUsername(username);
-
-                    if(user != null) {
-                                user.setLogincount(user.getLogincount() + 1);
-                                Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-                                user.setLastlogintime(now);
+                    if (username != null && !username.equals("anonymous")) {
+                        user = userDAO.findByUsername(username);
+                        if (user.getLogincount() == null) {
+                            user.setLogincount(1);
+                        } else {
+                            user.setLogincount(user.getLogincount() + 1);
+                        }
+                        Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+                        user.setLastlogintime(now);
+                        userDAO.doSave(user);
                     }
+                } else {
+                    user = (User) token.getPrincipal();
+                    user = userDAO.findById(user.getId());
+                    if (user.getLogincount() == null) {
+                        user.setLogincount(1);
+                    } else {
+                        user.setLogincount(user.getLogincount() + 1);
+                    }
+                    Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+                    user.setLastlogintime(now);
+                    userDAO.doSave(user);
                 }
-                else
-                {
-                    user = null;
-                }
-            }
 
-       }
+            }
+        }
 
     }
+
+    void onActivate() {
+    }
+
     public String getMessage() {
         return message;
     }
@@ -79,27 +92,26 @@ public class Index {
         return user;
     }
 
-	public static BufferedReader read(String url) throws Exception {
-		return new BufferedReader(
-			new InputStreamReader(
-				new URL(url).openStream()));
+    public static BufferedReader read(String url) throws Exception {
+        return new BufferedReader(
+                new InputStreamReader(
+                new URL(url).openStream()));
     }
 
     public String getWebPage() throws Exception {
         BufferedReader reader = read("http://www.preppa.com");
-		String line = reader.readLine();
+        String line = reader.readLine();
         String returnVal = "";
         boolean copy = false;
         String beginning = "<div class=" + '"' + "topPost" + '"' + ">";
         String end = "</div> <!-- Closes topPost --><br/>";
 
-		while (line != null) {
-			System.out.println(line);
-			line = reader.readLine();
+        while (line != null) {
+            System.out.println(line);
+            line = reader.readLine();
             if (line.contains(beginning) == true) {
                 copy = true;
-            }
-            else if (line.contains(end) == true) {
+            } else if (line.contains(end) == true) {
                 copy = false;
                 returnVal = returnVal + line;
                 break;
@@ -108,7 +120,7 @@ public class Index {
                 returnVal = returnVal + line;
             }
         }
-        if(returnVal == null) {
+        if (returnVal == null) {
             returnVal = "No Featured Article";
         }
         return returnVal;
@@ -126,17 +138,16 @@ public class Index {
 
     public List<DictionaryWord> getDictionary()
     {
-        //return session.createCriteria(UserOb.class).list();
-        return dictionaryDAO.findByPartialName("Ab");
+    //return session.createCriteria(UserOb.class).list();
+    return dictionaryDAO.findByPartialName("Ab");
     }*/
 
-    public List<User> getUsers()
-    {
+    public List<User> getUsers() {
         //return session.createCriteria(UserOb.class).list();
         return userDAO.findAll();
     }
-    public List<Vocab> getVocab()
-    {
+
+    public List<Vocab> getVocab() {
         //return session.createCriteria(UserOb.class).list();
         return vocabDAO.findAll();
     }
@@ -147,7 +158,7 @@ public class Index {
         if (returnVal != null) {
             // Getting the latest announcement
             System.out.println(returnVal);
-            returnVal = returnVal.subList(returnVal.size()-1, returnVal.size());
+            returnVal = returnVal.subList(returnVal.size() - 1, returnVal.size());
         }
 
         return returnVal;
