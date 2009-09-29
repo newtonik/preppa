@@ -32,10 +32,13 @@ public class ViewLongPassage {
     private List<LongPassage> longpassages;
     @Inject
     private VoteDAO voteDAO;
+    @Property
+    private boolean isApproved;
 
     Object onActivate(String type) {
         if(type.contains("Approved"))
         {
+            isApproved = true;
             System.out.println("In Approved");
             List<LongPassage> temp = longpassageDAO.findAll();
             longpassages = new ArrayList<LongPassage>();
@@ -52,6 +55,7 @@ public class ViewLongPassage {
         }
         // Assume it is awaiting approval
         else {
+            isApproved = false;
             System.out.println("Non-Approved");
             List<LongPassage> temp = longpassageDAO.findAll();
             longpassages = new ArrayList<LongPassage>();

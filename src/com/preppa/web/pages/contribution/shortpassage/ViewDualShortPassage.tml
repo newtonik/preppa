@@ -1,8 +1,12 @@
 <html t:type ="layout" t:pageTitle="Short Dual Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
     <div id="main">
-            <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - Short Dual Passages<br/>
-
+            <t:if t:test="isApproved">
+                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - Dual Short Passages<br/>
+                <t:parameter name="else">
+                <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - Dual Short Passages<br/>
+                </t:parameter>
+            </t:if>
         <strong>Short Dual Passages</strong>
           <table>
         <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">

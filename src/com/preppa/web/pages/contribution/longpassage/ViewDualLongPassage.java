@@ -32,6 +32,8 @@ public class ViewDualLongPassage {
     private LongDualPassageDAO longdualpDAO;
     @Inject
     private VoteDAO voteDAO;
+    @Property
+    private boolean isApproved;
 
     private final int APPROVESIZE = Constants.getApprovalThreshhold();
 
@@ -45,6 +47,7 @@ public class ViewDualLongPassage {
 
         if(type.contains("Approved"))
         {
+            isApproved = true;
             System.out.println("Approved");
             List<LongDualPassage> temp = longdualpDAO.findAll();
             longdualpassages = new ArrayList<LongDualPassage>();
@@ -59,6 +62,7 @@ public class ViewDualLongPassage {
         }
         else if(type.contains("Awaiting"))
         {
+            isApproved = false;
             System.out.println("Awaiting");
             List<LongDualPassage> temp = longdualpDAO.findAll();
             longdualpassages = new ArrayList<LongDualPassage>();
