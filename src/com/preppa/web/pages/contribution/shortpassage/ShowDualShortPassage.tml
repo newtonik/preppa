@@ -44,8 +44,6 @@
             <br />
             </p>
             <p>
-                <a href="#" t:type="pageLink" t:page="contribution/shortpassage/editdual" t:context="passage.id"> Edit </a>
-                <br />
                 <a href="#" id="addquestion" > Add Question</a>
                 <br/>
                 <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
@@ -102,9 +100,18 @@
             </t:block>
 
 
-            <p id="flagpass">
+            <t:if t:test="${isApproved}">
+
+                <t:parameter name ="else">
+             <p id="flagpass">
                 <a href="#" id="flaglink" > Flag </a>
             </p>
+                <a href="#" t:type="pageLink" t:page="contribution/shortpassage/editdual" t:context="passage.id"> Edit </a>
+            <br />
+                </t:parameter>
+            </t:if>
+
+
         </div>
     </div>
 

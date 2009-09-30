@@ -33,9 +33,7 @@
             <br />
             <div id="voteseal" t:type="voteseal" t:contentid="${passage.id}" t:contenttype="contType" t:votes="votes" />
             <br />
-            <p>
-                <a href="#" t:type="pageLink" t:page="contribution/longpassage/edit" t:context="passage.id"> Edit </a>
-            </p>
+
 
             <p>
                 <a id="addquestion" href="#"> Add Question</a>
@@ -93,9 +91,22 @@
                     <a t:type="actionlink" t:id="removenewquestion" href="#" t:zone="questionZone"> Cancel </a>
                 </div>
             </t:block>
-            <p id="flagpass">
-                <a href="#" id="flaglink" > Flag </a>
-            </p>
+
+
+            <t:if t:test="${isApproved}">
+
+                <t:parameter name ="else">
+                    <p id="flagpass">
+                        <a href="#" id="flaglink" > Flag </a>
+                    </p>
+                    <p>
+                        <a href="#" t:type="pageLink" t:page="contribution/longpassage/edit" t:context="passage.id"> Edit </a>
+                    </p>
+                </t:parameter>
+            </t:if>
+
+
+
         </div>
     </div>
 </body>

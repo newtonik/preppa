@@ -16,6 +16,7 @@ import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
 import com.preppa.web.utils.FlagStatus;
@@ -116,7 +117,11 @@ public class ShowShortPassage {
     private Questiontype questiontype;
     @Inject
     private QuestiontypeDAO questiontypeDAO;
-
+    @Property
+    private boolean isApproved;
+    @Property
+    private Integer votecount;
+    
     void onActivate(int id) {
         this.passage = passageDAO.findById(id);
         tags = passage.getTaglist();
@@ -126,6 +131,13 @@ public class ShowShortPassage {
         onequestion = true;
         contType = ContentType.ShortPassage;
         questiontype = questiontypeDAO.findByName("Short Passage");
+        votecount = voteDAO.findVoteByContentId(contType, passage.getId());
+        if (votecount >= Constants.getApprovalThreshhold()) {
+            isApproved = true;
+        }
+        else {
+            isApproved = false;
+        }
     }
 
     Integer onPassivate() {

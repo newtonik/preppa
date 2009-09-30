@@ -35,10 +35,7 @@
             <t:tagview t:alltags="tags" />
             <br />
             </p>
-            <p>
-                <a href="#" t:type="pageLink" t:page="contribution/shortpassage/edit" t:context="passage.id"> Edit </a>
-                <br />
-            </p>
+            <br/>
             <a id="addquestion"  href="#"> Add Question</a>
             <br/>
             <a t:type="actionlink" t:id="showquestionlink" t:context="passage.id" href="#" t:zone="showquestionZone"> Show Questions</a>
@@ -95,9 +92,20 @@
             </t:block>
 
 
+            <t:if t:test="${isApproved}">
+
+                <t:parameter name ="else">
+            <p>
+                <a href="#" t:type="pageLink" t:page="contribution/shortpassage/edit" t:context="passage.id"> Edit </a>
+                <br />
+            </p>
             <p id="flagpass">
                 <a href="#" id="flaglink" > Flag </a>
             </p>
+                </t:parameter>
+            </t:if>
+
+
         </div>
     </div>
 </body>

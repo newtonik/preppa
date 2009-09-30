@@ -17,6 +17,7 @@ import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
 import com.preppa.web.utils.FlagStatus;
@@ -123,7 +124,11 @@ public class ShowDualShortPassage {
     private Questiontype questiontype;
     @Inject 
     private QuestiontypeDAO questiontypeDAO;
-
+    @Property
+    private boolean isApproved;
+    @Property
+    private Integer votecount;
+    
     void onpageLoaded() {
         firstquestion.setPageFalse();
 
@@ -146,6 +151,14 @@ public class ShowDualShortPassage {
             q1 = passage.getQuestions().get(count);
         }
         contType = ContentType.ShortDualPassage;
+
+        votecount = voteDAO.findVoteByContentId(contType, passage.getId());
+        if (votecount >= Constants.getApprovalThreshhold()) {
+            isApproved = true;
+        }
+        else {
+            isApproved = false;
+        }
 //        return this;
     }
 

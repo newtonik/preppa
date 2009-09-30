@@ -9,12 +9,14 @@ import com.preppa.web.components.SQuestion;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.PassageDAO;
 import com.preppa.web.data.QuestiontypeDAO;
+import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.Questiontype;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
 import com.preppa.web.utils.FlagStatus;
@@ -113,7 +115,14 @@ public class ShowLongPassage {
     private Questiontype questiontype;
     @Inject
     private QuestiontypeDAO questiontypeDAO;
+    @Property
+    private boolean isApproved;
+    @Property
+    private Integer votecount;
+    @Inject
+    private VoteDAO voteDAO;
 
+    
     void onpageLoaded() {
         firstquestion.setPageFalse();
 
@@ -131,6 +140,13 @@ public class ShowLongPassage {
         tags = passage.getTaglist();
         this.pid = passage.getId();
         contType = ContentType.LongPassage;
+        votecount = voteDAO.findVoteByContentId(contType, passage.getId());
+        if (votecount >= Constants.getApprovalThreshhold()) {
+            isApproved = true;
+        }
+        else {
+            isApproved = false;
+        }
     }
 
     Integer onPassivate() {
