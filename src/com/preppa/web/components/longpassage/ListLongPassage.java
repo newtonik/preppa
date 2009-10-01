@@ -7,9 +7,9 @@
  */
 
 
-package com.preppa.web.components.questiontypes.gridin;
+package com.preppa.web.components.longpassage;
 
-import com.preppa.web.entities.Gridin;
+import com.preppa.web.entities.LongPassage;
 import java.util.List;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
@@ -18,12 +18,11 @@ import org.apache.tapestry5.annotations.Property;
  *
  * @author newtonik
  */
-public class ListGridin {
-
+public class ListLongPassage {
     @Parameter
+     @Property
+    private List<LongPassage> passages;
     @Property
-    private List<Gridin> gridins;
-    @Property
-    private Gridin gridin;
+    private LongPassage passage;
 
 }

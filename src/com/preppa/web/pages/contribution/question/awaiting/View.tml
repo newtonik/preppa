@@ -6,21 +6,23 @@
 
     </head>
     <t:practicebarart />
-    <div id="main">
+    <div class="mainclass">
         <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - ${qType}
         <div align="right">  <t:pagelink t:page="contribution/question/flagged" > Flagged </t:pagelink> </div>
-        <div class="question">
-
+        
             <t:if t:test="isGridin">
                 <h2>Grid-In Questions</h2>
                 <div t:type="questiontypes/gridin/list" t:gridins="gridins" />
-                <t:parameter name="else">
 
+            </t:if>
+
+
+        <t:if t:test="isMultiple">
                     <h2>${qType} Questions</h2>
                     <t:loop t:source="questions"
                             t:value="question">
 
-                        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                        <div class ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
                              style="padding: 1px; margins: 1px;" align="left">
                             <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
 
@@ -34,15 +36,24 @@
 
                     </t:loop>
                     <br/>
-                </t:parameter>
-            </t:if>
+        </t:if>
+            
 
             <t:if t:test="isPrompt">
                 <h2> Prompts </h2>
-                <div t:type="questiontypes/prompt/list" t:allprompts="prompts" />
+                <div t:id="listprompt"/>
                 <br />
             </t:if>
 
-        </div>
+
+            <t:if t:test="isLongPassage">
+                <h2> Long Passages </h2>
+                <div t:type="longpassage/list" t:passages="longpassages" />
+                <br />
+            </t:if>
+
+
+        
     </div>
+    <br />
 </html>

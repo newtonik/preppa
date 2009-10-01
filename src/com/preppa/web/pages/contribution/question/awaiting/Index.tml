@@ -46,7 +46,7 @@
             onmouseout="mclosetime()">
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:Identifying Sentence Errors"> Identifying Sentence Errors </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:Improving Sentences"> Improving Sentences </t:pagelink><br/>
-            <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:Improving Paragraph"> Improving Paragraph </t:pagelink><br/>
+            <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:Improving Paragraphs"> Improving Paragraphs </t:pagelink><br/>
             <t:pagelink t:page="contribution/question/awaiting/view" t:context="literal:Free Response Question"> Free Response Question </t:pagelink><br/>
         </div>
     </li>
@@ -62,6 +62,9 @@
         <b>&nbsp;&nbsp;Help us improve our questions and approve them!</b><br/>
 
         <br/>
+        <h2>
+            Multiple Choice Questions
+        </h2>
 
         <t:loop t:source="nonApproved" t:value="question">
             <div id="nifty">

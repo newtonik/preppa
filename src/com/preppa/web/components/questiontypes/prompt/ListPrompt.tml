@@ -1,0 +1,25 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <div id="promptlist">
+        <t:loop t:source="aprompts" t:value="prompt">
+
+            <div class ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                 style="padding: 1px; margins: 1px;" align="center">
+                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+
+
+                    <div class="prompt">
+                        <t:outputraw t:value="${prompt.quote}" /><br />
+                        <a href="#" t:type="pageLink" t:page="contribution/prompt/show" t:context="prompt.id">See More</a>
+                        <br />
+                    </div>
+
+
+
+                </div>
+            </div>
+            <br/>
+        </t:loop>
+    </div>
+
+</t:container>

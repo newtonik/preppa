@@ -10,6 +10,7 @@
 
 package com.preppa.web.pages.contribution.question.awaiting;
 
+import com.preppa.web.components.questiontypes.prompt.ListPrompt;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
@@ -20,10 +21,12 @@ import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Gridin;
+import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.Questiontype;
 import java.util.List;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -63,22 +66,33 @@ public class View {
     @Property
     private boolean isPrompt;
     @Property
+    private boolean isMultiple;
+        @Property
+    private boolean isLongPassage;
+    @Property
     private List<Prompt> prompts;
     @Inject
     private PromptDAO promptDAO;
     @Inject
     private QuestiontypeDAO questDAO;
     private Questiontype questype;
+    @Property
+    private List<LongPassage> longpassages;
+    @Component
+    private ListPrompt listprompt;
+
 
 
     Object onActivate(String questiontype) {
         System.out.println("In onActivate");
         System.out.println("Questiontype is " + questiontype);
         this.qType = questiontype;
-        questype = questDAO.findByName(qType);
+        
         List<Question> allquestions = null;
         isGridin = false;
         isPrompt = false;
+        isMultiple = false;
+        isLongPassage = false;
 
         if(questiontype.contains("Grid-ins")) {
           
@@ -88,11 +102,18 @@ public class View {
         else  if(questiontype.contains("Free Response Question")) {
             isPrompt = true;
             prompts = promptDAO.findAllByAwaiting();
-            System.out.println("There are " + prompts.size());
+            listprompt.setPrompts(prompts);
+            System.out.println("prompts size in after loop " + prompts.size());
+        }
+        else  if(questiontype.contains("LongPassage")) {
+            isLongPassage = true;
+            longpassages = longpassageDAO.findAllByAwaiting();
         }
         else {
-            allquestions = questionDAO.findAllByNonApproved(questype);
-            System.out.println("There are questions of size " + allquestions.size());
+            questype = questDAO.findByName(qType);
+            questions = questionDAO.findAllByNonApproved(questype);
+            isMultiple = true;
+            System.out.println("There are questions of size " + questions.size());
         }
 
 

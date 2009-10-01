@@ -19,11 +19,17 @@ import org.apache.tapestry5.annotations.Property;
  * @author newtonik
  */
 public class ListPrompt {
-    @Property
     @Parameter
-    private List<Prompt> allprompts;
+    @Property
+    private List<Prompt> aprompts;
     @Property
     private Prompt prompt;
 
+
+    public void setPrompts(List<Prompt> inprompts)
+    {
+        aprompts = inprompts;
+        System.out.println("prompts size in setPrompts " + aprompts.size());
+    }
 
 }

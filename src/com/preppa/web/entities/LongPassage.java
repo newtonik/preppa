@@ -30,6 +30,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
@@ -387,5 +388,8 @@ public class LongPassage implements Serializable {
         this.reviewcomments = reviewcomments;
     }
 
-
+    @Transient
+    public String getTeaser() {
+        return getPassage().substring(0, Math.min(getPassage().length(),100));
+    }
 }

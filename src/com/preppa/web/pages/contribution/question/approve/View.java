@@ -10,24 +10,20 @@
 
 package com.preppa.web.pages.contribution.question.approve;
 
-import com.preppa.web.components.questiontypes.QuestionMenu;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.PromptDAO;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Gridin;
-import com.preppa.web.entities.LongDualPassage;
-import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Question;
-import com.preppa.web.entities.ShortDualPassage;
-import com.preppa.web.entities.ShortPassage;
-import com.preppa.web.utils.Constants;
-import java.util.ArrayList;
+import com.preppa.web.entities.Questiontype;
 import java.util.List;
-import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -64,20 +60,39 @@ public class View {
     private String qType;
     @Property
     private boolean isGridin;
+    @Inject
+    private QuestiontypeDAO questDAO;
+    private Questiontype questype;
+    @Property
+    private Boolean isMultiple;
+    @Property
+    private Boolean isPrompt;
+    @Inject
+    private PromptDAO promptDAO;
+    @Property
+    private List<Prompt> prompts;
 
     Object onActivate(String questiontype) {
         System.out.println("In onActivate");
-        this.qType = questiontype;
+         this.qType = questiontype;
         List<Question> allquestions = null;
         isGridin = false;
 
         if(questiontype.contains("Grid-ins")) {
             System.out.println("Grid-ins");
             isGridin = true;
-            gridins = gridinDAO.findAll();
+            gridins = gridinDAO.findAllByApproved();
+        }
+          else  if(questiontype.contains("Free Response Question")) {
+            isPrompt = true;
+            prompts = promptDAO.findAllByApproved();
+
         }
         else {
-            allquestions = questionDAO.findAllByQuestionType(questiontype);
+            questype = questDAO.findByName(qType);
+            questions = questionDAO.findAllByApproved(questype);
+            isMultiple = true;
+            
         }
         /*if(questiontype.contains("SentenceCompletion"))
         {
@@ -165,6 +180,7 @@ public class View {
         }*/
 
 
+        /*
         if (isGridin == false) {
             questions = new ArrayList<Question>();
             for (int i = 0; i < allquestions.size(); i++) {
@@ -178,6 +194,7 @@ public class View {
                 }
             }
         }
+         * */
         return null;
     }
 }
