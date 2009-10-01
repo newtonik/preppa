@@ -30,6 +30,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
@@ -431,4 +432,14 @@ public class LongDualPassage implements Serializable {
     }
 
 
+    @Transient
+    public String getTeaser() {
+        if( title != null)
+        {
+            return title;
+        }
+        else {
+            return getPassageone().substring(0, Math.min(getPassageone().length(),100));
+        }
+    }
 }

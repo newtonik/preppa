@@ -1,19 +1,22 @@
 <html t:type="layout" t:pageTitle="Dual Long Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
-    <div id="main">
+    <div class="mainclass">
             <t:if t:test="isApproved">
                 <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - Dual Long Passages<br/>
                 <t:parameter name="else">
                 <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - Dual Long Passages<br/>
                 </t:parameter>
             </t:if>
-          <table>
+        <h3>Long Dual Passages</h3>
+<!--          <table>
         <tr t:type="loop" t:source="longdualpassages" t:value="longdualpassage">
             <td>
                 <a href="#" t:type="pagelink" t:page="contribution/longpassage/showdual" t:context="longdualpassage.id"> ${longdualpassage.title} </a>
             </td>
 
         </tr>
-        </table>
+        </table>-->
+        <div t:type="longpassage/listdual" t:passages="longdualpassages" />
 </div>
+<br />
 </html>

@@ -1,20 +1,22 @@
 <html t:type ="layout" t:pageTitle="Short Dual Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<t:practicebarart />
-    <div id="main">
-            <t:if t:test="isApproved">
-                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - Dual Short Passages<br/>
-                <t:parameter name="else">
+    <t:practicebarart />
+    <div class="mainclass">
+        <t:if t:test="isApproved">
+            <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - Dual Short Passages<br/>
+            <t:parameter name="else">
                 <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - Dual Short Passages<br/>
-                </t:parameter>
-            </t:if>
-        <strong>Short Dual Passages</strong>
-          <table>
-        <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">
-            <td>
-                <a href="#" t:type="pagelink" t:page="contribution/shortpassage/showdual" t:context="shortdualpassage.id"> ${shortdualpassage.title} </a>
-            </td>
+            </t:parameter>
+        </t:if>
+        <h3>Short Dual Passages</h3>
+        <!--          <table>
+                <tr t:type="loop" t:source="shortdualpassages" t:value="shortdualpassage">
+                    <td>
+                        <a href="#" t:type="pagelink" t:page="contribution/shortpassage/showdual" t:context="shortdualpassage.id"> ${shortdualpassage.title} </a>
+                    </td>
 
-        </tr>
-        </table>
-</div>
+                </tr>
+                </table>-->
+        <div t:type="shortpassage/listdual" t:passages="shortdualpassages" />
+    </div>
+    <br />
 </html>

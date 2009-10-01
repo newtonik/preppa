@@ -14,7 +14,6 @@ import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.utils.Constants;
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;

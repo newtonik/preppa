@@ -390,6 +390,12 @@ public class LongPassage implements Serializable {
 
     @Transient
     public String getTeaser() {
-        return getPassage().substring(0, Math.min(getPassage().length(),100));
+        if( title != null)
+        {
+            return title;
+        }
+        else {
+            return getPassage().substring(0, Math.min(getPassage().length(),100));
+        }
     }
 }

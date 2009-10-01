@@ -13,8 +13,6 @@ package com.preppa.web.pages.contribution.longpassage;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.LongPassage;
-import com.preppa.web.utils.Constants;
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;

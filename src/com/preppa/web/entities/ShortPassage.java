@@ -31,6 +31,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.hibernate.annotations.Cascade;
@@ -393,5 +394,10 @@ public class ShortPassage implements Serializable {
      */
     public void setReviewcomments(List<ReviewComment> reviewcomments) {
         this.reviewcomments = reviewcomments;
+    }
+     @Transient
+    public String getTeaser() {
+            return getPassage().substring(0, Math.min(getPassage().length(),100));
+     
     }
 }

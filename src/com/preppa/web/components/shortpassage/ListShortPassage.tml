@@ -1,0 +1,22 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <div class="passagelist">
+        <t:loop t:source="passages"   t:value="passage">
+            <div class ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                 style="padding: 1px; margins: 1px;" align="center">
+                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+
+
+
+                    <div class="passage">
+                        <t:outputraw t:value="${passage.teaser}" /><br />
+                        <a href="#" t:type="pageLink" t:page="contribution/longpassage/Show" t:context="passage.id">(See More)</a>
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+        </t:loop>
+    </div>
+
+</t:container>

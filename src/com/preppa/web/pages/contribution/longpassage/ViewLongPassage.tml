@@ -1,14 +1,15 @@
 <html t:type="layout" t:pageTitle="Long Passages" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <t:practicebarart />
-    <div id="main">
+    <div class="mainclass">
             <t:if t:test="isApproved">
                 <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - Long Passages<br/>
                 <t:parameter name="else">
                 <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - Long Passages<br/>
                 </t:parameter>
             </t:if>
-        <strong>Passages</strong>
-        <table>
+        <br />
+        <h3>Long Passages</h3>
+ <!--       <table>
         <tr t:type="loop" t:source="longpassages" t:value="longpassage">
             <td>
                 <a href="#" t:type="pagelink" t:page="contribution/longpassage/show" t:context="longpassage.id"> ${longpassage.title} </a>
@@ -16,5 +17,9 @@
 
         </tr>
         </table>
+-->
+     
+        <div t:type="longpassage/list" t:passages="longpassages" />
 </div>
+<br />
 </html>

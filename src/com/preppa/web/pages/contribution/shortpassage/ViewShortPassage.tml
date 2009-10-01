@@ -9,14 +9,16 @@
                 </t:parameter>
             </t:if>
 
-        <strong>Short Passages</strong>
-        <table>
+        <h3>Short Passages</h3>
+<!--        <table>
         <tr t:type="loop" t:source="shortpassages" t:value="shortpassage">
             <td>
                 <a href="#" t:type="pagelink" t:page="contribution/shortpassage/show" t:context="shortpassage.id"> ${shortpassage.title} </a>
             </td>
 
         </tr>
-        </table>
+        </table>-->
+    <div t:type="shortpassage/list" t:passages="shortpassages" />
 </div>
+<br />
 </html>
