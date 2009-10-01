@@ -1,20 +1,43 @@
 <html t:type="layout" t:pageTitle="Prompts" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     <t:practicebarArt />
     <div id="main">
+            <t:if t:test="approved">
+                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> -
 
-                <br/><t:pagelink t:page="contribution/prompt/index">Free Response Home</t:pagelink> - <b>${type}</b><br/>
+                <t:if t:test="threeLevels">
+                         <t:pagelink t:page="contribution/prompt/view" t:context="literal:Approve"><b>Prompts</b></t:pagelink> - ${type}
+                    <t:parameter name="else">
+                         Prompts
+                    </t:parameter>
+                </t:if>
+
+
+                <t:parameter name="else">
+                <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> -
+
+                    <t:if t:test="threeLevels">
+                             <t:pagelink t:page="contribution/prompt/view" t:context="literal:Awaiting"><b>Prompts</b></t:pagelink> - ${type}
+                        <t:parameter name="else">
+                             Prompts
+                        </t:parameter>
+                    </t:if>
+
+                </t:parameter>
+            </t:if>
+         
+              
 <t:promptmenu />
 <div  class="nav-menu"  align="left">
     <ul>
-            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Respond" style="height: 3em; line-height: 1.5em;">Respond to Statement</t:pagelink></li>
-            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Choosing" style="height: 3em; line-height: 1.5em;">Choosing Between Contrasting Statements</t:pagelink></li>
-            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Complete" style="height: 3em; line-height: 1.5em;">Complete a Statement</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Respond${approved}" style="height: 3em; line-height: 1.5em;">Respond to Statement</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Choosing${approved}" style="height: 3em; line-height: 1.5em;">Choosing Between Contrasting Statements</t:pagelink></li>
+            <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Complete${approved}" style="height: 3em; line-height: 1.5em;">Complete a Statement</t:pagelink></li>
     </ul>
 </div>
 
 
             <t:if t:test="show">
-                    <t:loop t:source="promptList" t:value="prompt">
+                    <t:loop t:source="promptList" t:value="prompt"> <br/>
     <i>${prompt.quote}</i>
 
         <div id="author-time">

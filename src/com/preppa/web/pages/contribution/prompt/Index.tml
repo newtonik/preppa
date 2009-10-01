@@ -5,7 +5,6 @@
     <ul>
             <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Non" style="height: 3em; line-height: 1.5em;">Non-Graded</t:pagelink></li>
             <li><t:pagelink t:page="contribution/prompt/essay/view" t:context="literal:Graded" style="height: 3em; line-height: 1.5em;">Graded</t:pagelink></li>
-            <li><t:pagelink t:page="contribution/prompt/view" style="height: 3em; line-height: 1.5em;">Prompts</t:pagelink></li>
     </ul>
 </div>
 <br/>

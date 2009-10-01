@@ -38,8 +38,8 @@
             onmouseout="mclosetime()">
             <t:pagelink t:page="contribution/question/approve/view" t:context="literal:Identifying Sentence Errors"> Identifying Sentence Errors </t:pagelink>
             <t:pagelink t:page="contribution/question/approve/view" t:context="literal:Improving Sentences"> Improving Sentences </t:pagelink>
-            <t:pagelink t:page="contribution/question/approve/view" t:context="literal:Improving Paragraphs"> Improving Paragraphs </t:pagelink>
-            <t:pagelink t:page="contribution/question/approve/view" t:context="literal:Free Response Question"> Free Response Question </t:pagelink>
+            <t:pagelink t:page="contribution/question/approve/view" t:context="literal:Improving Paragraph"> Improving Paragraph </t:pagelink>
+            <t:pagelink t:page="contribution/prompt/view" t:context="literal:Approve"> Free Response Question </t:pagelink>
         </div>
     </li>
 </ul>
