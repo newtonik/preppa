@@ -112,6 +112,8 @@ public class CreateArticle {
     private TagDAO tagDAO;
     @Inject
     private ComponentResources resources;
+    @InjectPage
+    private com.preppa.web.pages.Index mainindexpage;
 
     public void onPrepare() {
         Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
@@ -345,5 +347,9 @@ public class CreateArticle {
                 return serverValue;
             }
         };
+    }
+     Object onActionFromCancel() {
+
+        return mainindexpage;
     }
 }

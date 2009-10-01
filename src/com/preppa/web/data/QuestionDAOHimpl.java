@@ -52,8 +52,8 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
           SQLString sqlString = new SQLString("FROM Question q");
           sqlString.addWhereClause("q.questiontype = '" + questiontype.getId() + "'");
 
-            sqlString.addWhereClause("q.id IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
-                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) < '" + Constants.getApprovalThreshhold() + "')");
+            sqlString.addWhereClause("q.id NOT IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
+                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
             
             return (List<Question>) findByQuery(sqlString.toString());
 

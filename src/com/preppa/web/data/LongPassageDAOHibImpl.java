@@ -69,8 +69,8 @@ public class LongPassageDAOHibImpl extends AbstractHibernateDAO<LongPassage, Int
           ContentType ct = ContentType.LongPassage;
         SQLString sqlString = new SQLString("FROM LongPassage lp");
 
-            sqlString.addWhereClause("lp.id IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
-                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) < '" + Constants.getApprovalThreshhold() + "')");
+            sqlString.addWhereClause("lp.id NOT IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
+                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
             return (List<LongPassage>) findByQuery(sqlString.toString());
 
     }

@@ -6,6 +6,9 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.LongDualPassage;
+import com.preppa.web.entities.LongPassage;
+import com.preppa.web.utils.Constants;
+import com.preppa.web.utils.ContentType;
 import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
@@ -60,5 +63,26 @@ public class LongDualPassageDAOHibImpl extends AbstractHibernateDAO<LongDualPass
         }
 
         return findByQuery(sqlString.toString());
+    }
+
+    @Override
+    public List<LongDualPassage> findAllByAwaiting() {
+           ContentType ct = ContentType.LongDualPassage;
+        SQLString sqlString = new SQLString("FROM LongDualPassage lp");
+
+            sqlString.addWhereClause("lp.id NOT IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
+                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
+            return (List<LongDualPassage>) findByQuery(sqlString.toString());
+
+    }
+
+    @Override
+    public List<LongDualPassage> findAllByApproved() {
+            ContentType ct = ContentType.LongDualPassage;
+        SQLString sqlString = new SQLString("FROM LongDualPassage lp");
+
+            sqlString.addWhereClause("lp.id IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
+                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
+            return (List<LongDualPassage>) findByQuery(sqlString.toString());
     }
 }

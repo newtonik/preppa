@@ -126,6 +126,7 @@ public class EditArticle {
     @Property
     private String fTopicName;
 
+
     void Article(Integer id) {
 
         Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
@@ -413,5 +414,10 @@ public class EditArticle {
     Block onActionFromCloseTopic() {
         return newtopicblock;
 
+    }
+
+    Object onActionFromCancel() {
+        showarticle.setarticle(article);
+        return showarticle;
     }
 }

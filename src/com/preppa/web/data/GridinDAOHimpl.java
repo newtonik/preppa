@@ -86,7 +86,8 @@ public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Long> implement
         SQLString sqlString = new SQLString("FROM Gridin g");
         ContentType ct = ContentType.GridIn;
 
-        sqlString.addWhereClause("g.id IN " + "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '" + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) < '" + Constants.getApprovalThreshhold() + "')");
+        sqlString.addWhereClause("g.id NOT IN " + "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '" +
+                ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
         return (List<Gridin>) findByQuery(sqlString.toString());
 
 

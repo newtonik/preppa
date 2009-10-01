@@ -63,8 +63,8 @@ public class PromptDAOHimpl extends AbstractHibernateDAO<Prompt, Integer> implem
         ContentType ct = ContentType.Prompt;
         SQLString sqlString = new SQLString("FROM Prompt p");
         
-            sqlString.addWhereClause("p.id IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
-                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) < '" + Constants.getApprovalThreshhold() + "')");
+            sqlString.addWhereClause("p.id NOT IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
+                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
             return (List<Prompt>) findByQuery(sqlString.toString());
         
     }

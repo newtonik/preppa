@@ -39,33 +39,34 @@ public class ViewLongPassage {
         if(type.contains("Approved"))
         {
             isApproved = true;
-            System.out.println("In Approved");
-            List<LongPassage> temp = longpassageDAO.findAll();
-            longpassages = new ArrayList<LongPassage>();
-            if (temp.isEmpty() == false) {
-                System.out.println("IN LOOP");
-                for (int i = 0; i < temp.size(); i++) {
-                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) >= Constants.getApprovalThreshhold() ) {
-                        System.out.println("Sum is " + voteDAO.findSumByLongPassageId(temp.get(i).getId()));
-                        System.out.println("ADDING");
-                        longpassages.add(temp.get(i));
-                    }
-                }
-            }
+            longpassages = longpassageDAO.findAllByApproved();
+//            List<LongPassage> temp = longpassageDAO.findAll();
+//            longpassages = new ArrayList<LongPassage>();
+////            if (temp.isEmpty() == false) {
+//                System.out.println("IN LOOP");
+//                for (int i = 0; i < temp.size(); i++) {
+//                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) >= Constants.getApprovalThreshhold() ) {
+//                        System.out.println("Sum is " + voteDAO.findSumByLongPassageId(temp.get(i).getId()));
+//                        System.out.println("ADDING");
+//                        longpassages.add(temp.get(i));
+//                    }
+//                }
+//            }
         }
         // Assume it is awaiting approval
         else {
             isApproved = false;
-            System.out.println("Non-Approved");
-            List<LongPassage> temp = longpassageDAO.findAll();
-            longpassages = new ArrayList<LongPassage>();
-            if (temp.isEmpty() == false) {
-                for (int i = 0; i < temp.size(); i++) {
-                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) < Constants.getApprovalThreshhold() ) {
-                        longpassages.add(temp.get(i));
-                    }
-                }
-            }
+            longpassages = longpassageDAO.findAllByAwaiting();
+//            System.out.println("Non-Approved");
+//            List<LongPassage> temp = longpassageDAO.findAll();
+//            longpassages = new ArrayList<LongPassage>();
+//            if (temp.isEmpty() == false) {
+//                for (int i = 0; i < temp.size(); i++) {
+//                    if (voteDAO.findSumByLongPassageId(temp.get(i).getId()) < Constants.getApprovalThreshhold() ) {
+//                        longpassages.add(temp.get(i));
+//                    }
+//                }
+//            }
         }
         return null;
     }

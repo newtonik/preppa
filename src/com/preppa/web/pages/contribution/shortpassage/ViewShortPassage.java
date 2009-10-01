@@ -46,32 +46,34 @@ public class ViewShortPassage {
         if(type.contains("Approved"))
         {
             isApproved = true;
-            System.out.println("Approved");
-            List<ShortPassage> temp = shortpassageDAO.findAll();
-            shortpassages = new ArrayList<ShortPassage>();
-            if (shortpassages != null) {
-                for (int i = 0; i < temp.size(); i++) {
-                    System.out.println("1. " + (voteDAO.findSumByShortPassageId(temp.get(i).getId()) >= APPROVESIZE));
-                    if (voteDAO.findSumByShortPassageId(temp.get(i).getId()) >= APPROVESIZE && temp.get(i).getFlags().isEmpty() &&  shortpassages.contains(temp.get(i)) == false) {
-                        shortpassages.add(temp.get(i));
-                    }
-                }
-            }
+            shortpassages = shortpassageDAO.findAllByApproved();
+//            System.out.println("Approved");
+//            List<ShortPassage> temp = shortpassageDAO.findAll();
+//            shortpassages = new ArrayList<ShortPassage>();
+//            if (shortpassages != null) {
+//                for (int i = 0; i < temp.size(); i++) {
+//                    System.out.println("1. " + (voteDAO.findSumByShortPassageId(temp.get(i).getId()) >= APPROVESIZE));
+//                    if (voteDAO.findSumByShortPassageId(temp.get(i).getId()) >= APPROVESIZE && temp.get(i).getFlags().isEmpty() &&  shortpassages.contains(temp.get(i)) == false) {
+//                        shortpassages.add(temp.get(i));
+//                    }
+//                }
+//            }
         }
         else if(type.contains("Awaiting"))
         {
             isApproved = false;
-            System.out.println("Awaiting");
-            List<ShortPassage> temp = shortpassageDAO.findAll();
-            shortpassages = new ArrayList<ShortPassage>();
-            if (shortpassages != null) {
-                for (int i = 0; i < temp.size(); i++) {
-                    if (voteDAO.findSumByShortPassageId(temp.get(i).getId()) < APPROVESIZE && temp.get(i).getFlags().isEmpty() &&  shortpassages.contains(temp.get(i)) == false) {
-                        System.out.println("Votes is " + voteDAO.findSumByShortPassageId(temp.get(i).getId()));
-                        shortpassages.add(temp.get(i));
-                    }
-                }
-            }
+            shortpassages = shortpassageDAO.findAllByAwaiting();
+//            System.out.println("Awaiting");
+//            List<ShortPassage> temp = shortpassageDAO.findAll();
+//            shortpassages = new ArrayList<ShortPassage>();
+//            if (shortpassages != null) {
+//                for (int i = 0; i < temp.size(); i++) {
+//                    if (voteDAO.findSumByShortPassageId(temp.get(i).getId()) < APPROVESIZE && temp.get(i).getFlags().isEmpty() &&  shortpassages.contains(temp.get(i)) == false) {
+//                        System.out.println("Votes is " + voteDAO.findSumByShortPassageId(temp.get(i).getId()));
+//                        shortpassages.add(temp.get(i));
+//                    }
+//                }
+//            }
         }
 
         return null;
