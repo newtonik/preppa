@@ -3,6 +3,14 @@
     <t:practicebarArt />
     <div id="main">
         <br />
+            <t:if t:test="isApproved">
+                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - <t:pagelink t:page="contribution/shortpassage/ViewDual" t:context="literal:Approved">Dual Short Passages</t:pagelink> - Show
+                <t:parameter name="else">
+                 <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - <t:pagelink t:page="contribution/shortpassage/ViewDual" t:context="literal:Awaiting">Dual Short Passages</t:pagelink> - Show
+                </t:parameter>
+            </t:if>
+        <br/>
+
         <div t:type="shortpassage/shortdualpassagetab" t:passage="passage" />
         <div class="panes">
             <br />

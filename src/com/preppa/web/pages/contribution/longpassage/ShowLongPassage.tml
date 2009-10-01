@@ -3,6 +3,13 @@
     <t:practicebarart />
     <div id="main">
         <br />
+            <t:if t:test="isApproved">
+                <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - <t:pagelink t:page="contribution/longpassage/View" t:context="literal:Approved">Long Passages</t:pagelink> - Show
+                <t:parameter name="else">
+                 <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - <t:pagelink t:page="contribution/longpassage/View" t:context="literal:Awaiting">Long Passages</t:pagelink> - Show
+                </t:parameter>
+            </t:if>
+        <br/>
         <div t:type="longpassage/longpassagetab" t:passage="passage" />
         <div class="panes">
             <h2>
