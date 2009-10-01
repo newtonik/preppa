@@ -1,0 +1,21 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <div id="gridinlist">
+        <t:loop t:source="gridins"
+                t:value="gridin">
+
+            <div class ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                 style="padding: 1px; margins: 1px;" align="left">
+                <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+
+
+                    <div class="gridin">
+                        <t:outputraw t:value="${gridin.question}" /><br/>
+                        <a href="#" t:type="pageLink" t:page="contribution/gridin/Show" t:context="gridin.id">(See More)</a>
+                        <br></br>
+                    </div>
+
+                </div></div><br/>
+        </t:loop>
+    </div>
+
+</t:container>

@@ -20,8 +20,8 @@ public interface QuestionDAO extends GenericDAO <Question, Integer> {
     List<Question> findByQuestiontype(Integer q);
     List<Question> findAllNoRepeat();
     List<Question> findByTag(String name);
-    List<Question> findAllByNonApproved();
-    List<Question> findAllByApproved();
+    List<Question> findAllByNonApproved(Questiontype questiontype);
+    List<Question> findAllByApproved(Questiontype questiontype);
     List<Question> findAllByQuestionType(String qType);
     List<Question> findByUserIds(List<Integer> ids);
 }

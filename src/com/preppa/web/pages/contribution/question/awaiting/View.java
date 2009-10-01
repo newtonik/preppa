@@ -13,18 +13,16 @@ package com.preppa.web.pages.contribution.question.awaiting;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.PromptDAO;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Gridin;
-import com.preppa.web.entities.LongDualPassage;
-import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Question;
-import com.preppa.web.entities.ShortDualPassage;
-import com.preppa.web.entities.ShortPassage;
-import com.preppa.web.utils.Constants;
-import java.util.ArrayList;
+import com.preppa.web.entities.Questiontype;
 import java.util.List;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Property;
@@ -62,21 +60,39 @@ public class View {
     private String qType;
     @Property
     private boolean isGridin;
+    @Property
+    private boolean isPrompt;
+    @Property
+    private List<Prompt> prompts;
+    @Inject
+    private PromptDAO promptDAO;
+    @Inject
+    private QuestiontypeDAO questDAO;
+    private Questiontype questype;
+
 
     Object onActivate(String questiontype) {
         System.out.println("In onActivate");
         System.out.println("Questiontype is " + questiontype);
         this.qType = questiontype;
+        questype = questDAO.findByName(qType);
         List<Question> allquestions = null;
         isGridin = false;
+        isPrompt = false;
 
         if(questiontype.contains("Grid-ins")) {
-            System.out.println("Grid-ins");
+          
             isGridin = true;
-            gridins = gridinDAO.findAll();
+            gridins = gridinDAO.findAllByAwaiting();
+        }
+        else  if(questiontype.contains("Free Response Question")) {
+            isPrompt = true;
+            prompts = promptDAO.findAllByAwaiting();
+            System.out.println("There are " + prompts.size());
         }
         else {
-            allquestions = questionDAO.findAllByQuestionType(questiontype);
+            allquestions = questionDAO.findAllByNonApproved(questype);
+            System.out.println("There are questions of size " + allquestions.size());
         }
 
 
@@ -166,7 +182,7 @@ public class View {
             allquestions = questionDAO.findAllNoRepeat();
         }*/
 
-
+/*
         if (isGridin == false) {
             questions = new ArrayList<Question>();
             for (int i = 0; i < allquestions.size(); i++) {
@@ -179,7 +195,7 @@ public class View {
                     }
                 }
             }
-        }
+        }*/
         return null;
     }
 }

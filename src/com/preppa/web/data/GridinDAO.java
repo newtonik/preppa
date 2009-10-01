@@ -11,4 +11,6 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface GridinDAO  extends GenericDAO<Gridin, Long> {
     Gridin findById(Long id);
     List<Gridin> findByUserIds(List<Long> ids);
+     List<Gridin> findAllByAwaiting();
+     List<Gridin> findAllByApproved();
 }

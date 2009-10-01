@@ -1,57 +1,48 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html t:type ="layout" t:pageTitle="View Awaiting" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<head>
+    <head>
 
 
-</head>
-<t:practicebarart />
-<div id="main">
-                <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - ${qType}
+    </head>
+    <t:practicebarart />
+    <div id="main">
+        <t:pagelink t:page="contribution/question/awaiting/index"><b>Awaiting</b></t:pagelink> - ${qType}
         <div align="right">  <t:pagelink t:page="contribution/question/flagged" > Flagged </t:pagelink> </div>
-<div class="question">
+        <div class="question">
 
-                <t:if t:test="isGridin">
-   <h2>Grid-In Questions</h2>
-    <t:loop t:source="gridins"
-    t:value="gridin">
+            <t:if t:test="isGridin">
+                <h2>Grid-In Questions</h2>
+                <div t:type="questiontypes/gridin/list" t:gridins="gridins" />
+                <t:parameter name="else">
 
-        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-        style="padding: 1px; margins: 1px;" align="left">
-        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
+                    <h2>${qType} Questions</h2>
+                    <t:loop t:source="questions"
+                            t:value="question">
 
+                        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
+                             style="padding: 1px; margins: 1px;" align="left">
+                            <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
 
-    <div class="gridin">
-          ${gridin.title}<br/>
-            <a href="#" t:type="pageLink" t:page="contribution/gridin/Show" t:context="gridin.id">(See More)</a>
-            <br></br>
+                                <div class="question">
+                                    <t:outputraw t:value="${question.question}" />
+                                    &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/show" t:context="question.id">See More</a>
+                                    <br></br>
+                                </div>
+
+                            </div></div>
+
+                    </t:loop>
+                    <br/>
+                </t:parameter>
+            </t:if>
+
+            <t:if t:test="isPrompt">
+                <h2> Prompts </h2>
+                <div t:type="questiontypes/prompt/list" t:allprompts="prompts" />
+                <br />
+            </t:if>
+
+        </div>
     </div>
-
-    </div></div><br/>
-    </t:loop>
-                    <t:parameter name="else">
-
-    <h2>Questions</h2>
-    <t:loop t:source="questions"
-    t:value="question">
-
-        <div id ="newuser" t:type="ck/RoundCornerContainer" fgcolor="#e8eefa" bgcolor="#FFFFFF"
-        style="padding: 1px; margins: 1px;" align="left">
-        <div style="padding: 1px; background-color:#e8eefa; margins: 1px;">
-
-    <div class="question">
-            <t:outputraw t:value="${question.question}" />
-            &nbsp;&nbsp;<a href="#" t:type="pageLink" t:page="contribution/question/show" t:context="question.id">See More</a>
-            <br></br>
-    </div>
-
-        </div></div>
-
-</t:loop>
-    <br/>
-                    </t:parameter>
-                </t:if>
-
-</div>
-</div>
 </html>

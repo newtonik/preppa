@@ -4,6 +4,7 @@ import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
 import com.preppa.web.utils.ContentType;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import org.chenillekit.hibernate.daos.AbstractHibernateDAO;
 import org.chenillekit.hibernate.utils.SQLString;
@@ -16,16 +17,15 @@ import org.slf4j.Logger;
  * @author nwt
  */
 public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements VoteDAO {
-    public VoteDAOHimpl(Logger logger, Session session)
-    {
+
+    public VoteDAOHimpl(Logger logger, Session session) {
         super(logger, session);
     }
 
     @Override
     public List<Vote> findVoteByContentId(ContentType contentType) {
         SQLString sqlString = new SQLString("FROM Vote v");
-        if(contentType != null)
-        {
+        if (contentType != null) {
             sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
         }
 
@@ -55,8 +55,7 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
     @Override
     public Integer findSumByGridInId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
+        if (contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + 7 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
@@ -66,8 +65,8 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         List<Vote> result = findBySQLQuery(sqlString.toString());
         System.out.println("Sum is " + result);
         Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
+        if (result != null) {
+            if (result.toArray().length > 0) {
                 BigDecimal s = (BigDecimal) result.toArray()[0];
                 sum = Integer.valueOf(s.intValue());
             }
@@ -83,12 +82,10 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
     }
 
-
     @Override
     public Integer findSumByQuestionId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
+        if (contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + 6 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
@@ -98,8 +95,8 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         List<Vote> result = findBySQLQuery(sqlString.toString());
         System.out.println("Sum is " + result);
         Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
+        if (result != null) {
+            if (result.toArray().length > 0) {
                 BigDecimal s = (BigDecimal) result.toArray()[0];
                 sum = Integer.valueOf(s.intValue());
             }
@@ -115,12 +112,10 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
     }
 
-
     @Override
     public Integer findSumByLongPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
+        if (contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + 3 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
@@ -130,8 +125,8 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         List<Vote> result = findBySQLQuery(sqlString.toString());
         System.out.println("Sum is " + result);
         Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
+        if (result != null) {
+            if (result.toArray().length > 0) {
                 BigDecimal s = (BigDecimal) result.toArray()[0];
                 sum = Integer.valueOf(s.intValue());
             }
@@ -147,12 +142,10 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
     }
 
-
     @Override
     public Integer findSumByShortDualPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
+        if (contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + 2 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
@@ -162,8 +155,8 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         List<Vote> result = findBySQLQuery(sqlString.toString());
         System.out.println("Sum is " + result);
         Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
+        if (result != null) {
+            if (result.toArray().length > 0) {
                 BigDecimal s = (BigDecimal) result.toArray()[0];
                 sum = Integer.valueOf(s.intValue());
             }
@@ -179,13 +172,10 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
     }
 
-
-
     @Override
     public Integer findSumByLongDualPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
+        if (contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + 4 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
@@ -195,8 +185,8 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         List<Vote> result = findBySQLQuery(sqlString.toString());
         System.out.println("Sum is " + result);
         Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
+        if (result != null) {
+            if (result.toArray().length > 0) {
                 BigDecimal s = (BigDecimal) result.toArray()[0];
                 sum = Integer.valueOf(s.intValue());
             }
@@ -212,12 +202,10 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
 
     }
 
-
     @Override
     public Integer findSumByShortPassageId(Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentId > 0)
-        {
+        if (contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + 1 + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
@@ -227,8 +215,8 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         List<Vote> result = findBySQLQuery(sqlString.toString());
         System.out.println("Sum is " + result);
         Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
+        if (result != null) {
+            if (result.toArray().length > 0) {
                 BigDecimal s = (BigDecimal) result.toArray()[0];
                 sum = Integer.valueOf(s.intValue());
             }
@@ -247,8 +235,7 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
     @Override
     public Integer findVoteByContentId(ContentType contentType, Integer contentId) {
         SQLString sqlString = new SQLString("select sum(v.value) FROM Vote v");
-        if(contentType != null && contentId > 0)
-        {
+        if (contentType != null && contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addGroupField("v.contentTypeId");
@@ -260,13 +247,13 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
         List<Vote> result = findBySQLQuery(sqlString.toString());
         System.out.println("Sum is " + result);
         Integer sum = 0;
-        if(result != null) {
-            if(result.toArray().length > 0) {
+        if (result != null) {
+            if (result.toArray().length > 0) {
                 BigDecimal s = (BigDecimal) result.toArray()[0];
                 sum = Integer.valueOf(s.intValue());
             }
         }
-        
+
 //
         //Integer sum = 0;
         //Integer sum = result.get(0).getValue();
@@ -280,24 +267,61 @@ public class VoteDAOHimpl extends AbstractHibernateDAO<Vote, Long> implements Vo
     @Override
     public Boolean checkVoted(ContentType contentType, Integer contentId, User user) {
         SQLString sqlString = new SQLString("select v.value FROM Vote v");
-        if(contentType != null && contentId > 0)
-        {
+        if (contentType != null && contentId > 0) {
             sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
             sqlString.addWhereClause("v.contentId = '" + contentId + "'");
             sqlString.addWhereClause("v.user = '" + user.getId() + "'");
 
         }
 
-            //votes = findBySQLQuery(sqlString.toString());
-            Integer result =  0;
-            result = (Integer)  countByQuery(sqlString.toString());
+        //votes = findBySQLQuery(sqlString.toString());
+        Integer result = 0;
+        result = (Integer) countByQuery(sqlString.toString());
 
-            if(result == null)
-            {
-                return false;
-            }
-            if(result == 0)
-                return false;
-            return true;
+        if (result == null) {
+            return false;
+        }
+        if (result == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public List<Long> findIdByContentTypeApproved(ContentType contentType, Integer threshold) {
+        SQLString sqlString = new SQLString("select v.contentId FROM Vote v");
+        if (contentType != null) {
+            sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
+            sqlString.addGroupField("v.contentId");
+        }
+
+
+        List result = findBySQLQuery(sqlString.toString() + " Having sum(v.value) >= " + threshold);
+
+        List<Long> out = new ArrayList<Long>();
+        out.addAll(result);
+
+
+        return out;
+
+    }
+
+    @Override
+    public List<Long> findIdByContentTypeAwaiting(ContentType contentType, Integer threshold) {
+        SQLString sqlString = new SQLString("select v.contentId FROM Vote v");
+        if (contentType != null) {
+            sqlString.addWhereClause("v.contentTypeId  = '" + contentType.ordinal() + "'");
+            sqlString.addGroupField("v.contentId");
+        }
+
+
+        List result = findBySQLQuery(sqlString.toString() + " Having sum(v.value) < " + threshold);
+
+        List<Long> out = new ArrayList<Long>();
+        out.addAll(result);
+
+
+        return out;
+
     }
 }

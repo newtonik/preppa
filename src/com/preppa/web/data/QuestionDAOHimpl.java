@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.preppa.web.data;
 
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.Questiontype;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentType;
 import java.util.List;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -19,24 +19,25 @@ import org.slf4j.Logger;
  *
  * @author nwt
  */
-public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> implements  QuestionDAO {
-        @Inject
-        private VoteDAO voteDAO;
-        private Logger slogger;
+public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> implements QuestionDAO {
+
+    @Inject
+    private VoteDAO voteDAO;
+    private Logger slogger;
 
     public QuestionDAOHimpl(Logger logger, Session session) {
         super(logger, session);
         slogger = logger;
     }
+
     @Override
     public Question findById(Integer id) {
         SQLString sqlString = new SQLString("FROM Question q");
-        if(id != null)
-        {
-             sqlString.addWhereClause("q.id = '" + id + "'");
+        if (id != null) {
+            sqlString.addWhereClause("q.id = '" + id + "'");
         }
 
-        return (Question)findByQuery(sqlString.toString()).get(0);
+        return (Question) findByQuery(sqlString.toString()).get(0);
     }
 
     @Override
@@ -46,27 +47,27 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
     }
 
     @Override
-    public List<Question> findAllByNonApproved() {
-        SQLString sqlString = new SQLString("FROM Question q");
+    public List<Question> findAllByNonApproved(Questiontype questiontype) {
+         ContentType ct = ContentType.Question;
+          SQLString sqlString = new SQLString("FROM Question q");
+          sqlString.addWhereClause("q.questiontype = '" + questiontype.getId() + "'");
 
-        sqlString.addWhereClause("q.votes.size = 0");
+            sqlString.addWhereClause("q.id IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
+                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) < '" + Constants.getApprovalThreshhold() + "')");
+            
+            return (List<Question>) findByQuery(sqlString.toString());
 
-        return findByQuery(sqlString.toString());
-
-        /*SQLString sqlString = new SQLString("FROM Question q");
-        sqlString.addWhereClause("q.id IN (SELECT v.contentId FROM Vote v WHERE contentTypeId = 6 AND SUM(value) < 1)");
-        return findByQuery(sqlString.toString());*/
     }
 
     @Override
-    public List<Question> findAllByApproved() {
-        /*SQLString sqlString = new SQLString("FROM Question q");
-        sqlString.addWhereClause("q.votes.size >= 1");
-
-        return findByQuery(sqlString.toString());*/
-        SQLString sqlString = new SQLString("FROM Question q");
-        sqlString.addWhereClause("q.id IN (SELECT v.contentId FROM Vote v WHERE contentTypeId = 6 AND SUM(value) >= 1)");
-        return findByQuery(sqlString.toString());
+    public List<Question> findAllByApproved(Questiontype questiontype) {
+           ContentType ct = ContentType.Question;
+          SQLString sqlString = new SQLString("FROM Question q");
+            sqlString.addWhereClause("q.questiontype_id = '" + questiontype.getId() + "'");
+            sqlString.addWhereClause("q.id IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
+                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
+            
+            return (List<Question>) findByQuery(sqlString.toString());
     }
 
     @Override
@@ -79,26 +80,22 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
     @Override
     public List<Question> findByQuestiontype(Questiontype q) {
         SQLString sqlString = new SQLString("FROM Question q");
-        if(q.getId() > 0)
-        {
-             sqlString.addWhereClause("q.questiontype_id = '" + q.getId() + "'");
+        if (q.getId() > 0) {
+            sqlString.addWhereClause("q.questiontype_id = '" + q.getId() + "'");
         }
 
         return findByQuery(sqlString.toString());
     }
 
     @Override
-     public List<Question> findByQuestiontype(Integer q) {
+    public List<Question> findByQuestiontype(Integer q) {
         SQLString sqlString = new SQLString("FROM Question q");
-        if(q > 0)
-        {
-             sqlString.addWhereClause("q.questiontype_id = '" + q + "'");
+        if (q > 0) {
+            sqlString.addWhereClause("q.questiontype_id = '" + q + "'");
         }
 
         return findByQuery(sqlString.toString());
     }
-
-
 
     @Override
     public List<Question> findByTag(String name) {
@@ -107,35 +104,31 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
 
     @Override
     public List<Question> findByUserIds(List<Integer> ids) {
-         SQLString sqlString = new SQLString("FROM Question q");
-        if(ids.size() > 0)
-        {
+        SQLString sqlString = new SQLString("FROM Question q");
+        if (ids.size() > 0) {
 
-             String rlist = ids.toString();
+            String rlist = ids.toString();
 
-             rlist = rlist.replace('[', '(');
-             rlist = rlist.replace(']', ')');
-             sqlString.addWhereClause("q.id IN " + rlist );
+            rlist = rlist.replace('[', '(');
+            rlist = rlist.replace(']', ')');
+            sqlString.addWhereClause("q.id IN " + rlist);
         }
 
-         return findByQuery(sqlString.toString());
+        return findByQuery(sqlString.toString());
     }
 
     @Override
     public void preDoSave(Question question) {
-        if(question.getId() != null) {
+        if (question.getId() != null) {
             Integer vote = voteDAO.findVoteByContentId(ContentType.Question, question.getId());
             question.setVoteScore(vote);
 
-            if(vote >= 1) {
+            if (vote >= 1) {
                 question.setApproval(Boolean.TRUE);
-            }
-            else
-            {
+            } else {
                 question.setApproval(Boolean.FALSE);
             }
-        }
-        else {
+        } else {
             question.setApproval(Boolean.FALSE);
             question.setVoteScore(0);
         }
@@ -159,5 +152,4 @@ public class QuestionDAOHimpl extends AbstractHibernateDAO<Question, Integer> im
 
         slogger.debug("do post retreive");
     }
-    
 }

@@ -12,14 +12,17 @@ package com.preppa.web.pages.contribution.question;
 
 import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
-import com.preppa.web.entities.Vote;
+import com.preppa.web.entities.Questiontype;
 import java.util.List;
 import com.preppa.web.utils.ContentType;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -46,6 +49,9 @@ public class Index {
     private Question question;
     @Inject
     private VoteDAO voteDAO;
+    @Inject
+    private QuestiontypeDAO questypeDAO;
+    private Questiontype questiontype;
 
     void onActivate() {
         List<Flag> temp = flagDAO.FindAllByContentType(ContentType.Question);
@@ -56,7 +62,9 @@ public class Index {
             }
         }
 
-        List<Question> qTemp = questionDAO.findAllByNonApproved();
+        questiontype = questypeDAO.findByName("Multiple Choice");
+
+        List<Question> qTemp = questionDAO.findAllByNonApproved(questiontype);
         nonApproved = new ArrayList<Question>();
 
         for (int i = 0; i < qTemp.size(); i++) {

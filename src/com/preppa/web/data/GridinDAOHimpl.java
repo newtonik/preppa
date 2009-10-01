@@ -1,6 +1,8 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.Gridin;
+import com.preppa.web.entities.Prompt;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentType;
 import java.util.List;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -47,18 +49,17 @@ public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Long> implement
 
     @Override
     public void preDoSave(Gridin question) {
-        if(question.getId() != null) {
-        Integer vote = voteDAO.findVoteByContentId(ContentType.GridIn, question.getId().intValue());
-        question.setVoteScore(vote);
+        if (question.getId() != null) {
+            Integer vote = voteDAO.findVoteByContentId(ContentType.GridIn, question.getId().intValue());
+            question.setVoteScore(vote);
 
-        if (vote >= 1) {
-            question.setApproval(Boolean.TRUE);
+            if (vote >= 1) {
+                question.setApproval(Boolean.TRUE);
+            } else {
+                question.setApproval(Boolean.FALSE);
+            }
+
         } else {
-            question.setApproval(Boolean.FALSE);
-        }
-
-        }
-        else {
             question.setApproval(Boolean.FALSE);
             question.setVoteScore(0);
         }
@@ -77,6 +78,28 @@ public class GridinDAOHimpl extends AbstractHibernateDAO<Gridin, Long> implement
             }
             doSave(question);
         }
-        
+
+    }
+
+    @Override
+    public List<Gridin> findAllByAwaiting() {
+        SQLString sqlString = new SQLString("FROM Gridin g");
+        ContentType ct = ContentType.GridIn;
+
+        sqlString.addWhereClause("g.id IN " + "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '" + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) < '" + Constants.getApprovalThreshhold() + "')");
+        return (List<Gridin>) findByQuery(sqlString.toString());
+
+
+
+    }
+
+    @Override
+    public List<Gridin> findAllByApproved() {
+        SQLString sqlString = new SQLString("FROM Gridin g");
+        ContentType ct = ContentType.GridIn;
+
+        sqlString.addWhereClause("g.id IN " + "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '" + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
+        return (List<Gridin>) findByQuery(sqlString.toString());
+
     }
 }
