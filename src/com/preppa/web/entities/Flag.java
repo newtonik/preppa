@@ -39,6 +39,7 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 public class Flag implements Serializable {
+    private ImprovingParagraph improvingParagraph;
     private Question question;
     private Article article;
     private LongDualPassage longdualpassage;
@@ -426,5 +427,14 @@ public class Flag implements Serializable {
             this.contentType = ContentType.Prompt;
             this.prompt = prompt;
         }
+    }
+
+    @ManyToOne
+    public ImprovingParagraph getImprovingParagraph() {
+        return improvingParagraph;
+    }
+
+    public void setImprovingParagraph(ImprovingParagraph improvingParagraph) {
+        this.improvingParagraph = improvingParagraph;
     }
 }

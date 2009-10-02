@@ -1,0 +1,79 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+    <br />
+    <div align="left"> <a href="#" > Best Practices</a> </div>
+    <t:form t:id="improvingform">
+        <t:errors/>
+        <table id="improvingtable">
+
+            <tr align="left">
+                <td></td>
+                <td align="left">
+                    <t:label for="fTitle"> Title: </t:label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            <td align="left">
+                <input t:type="TextField" t:id="fTitle"  t:value="fTitle" t:validate="required" t:label="Title" size="60" />
+            </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td valign="top" align="left">
+                    <t:label for="passeditor">Paragraph: </t:label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <t:editor align="left" t:id="passeditor"  t:toolbarSet="Basic" t:width="600" t:height="300"  t:label="Passage"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><b> Word Count</b></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td id="word_count"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left">
+            <t:label for="autoCompleteImprovingTag"> Tags (Select up to 5 tags) </t:label>
+            </td>
+            </tr>
+            <tr>
+                <td></td>
+
+                <td align="left">
+                    <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteImprovingTag" selected="addedTags"
+                           translate="prop:tagtranslator" label="name" type="text" size="10" />
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left">
+                    Can't find one
+                    <a  class="addtag" href="#" > Add a New Tag </a>
+                </td>                  </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" align="left">
+                    <input type="image" src="${asset:context:/images/layout/submit-submit.jpg}" height="33" width="83" value="Submit" onclick="IGNORE_UNLOAD = true"/>
+                    <a href="#" t:type="actionlink" t:id="cancel"> <img src="${asset:context:/images/layout/submit-cancel.jpg}" height="33" width="83" /> </a>
+                </td>
+
+            </tr>
+
+        </table>
+    </t:form>
+    <br />
+    <div t:type="newtag" />
+
+
+</t:container>
+

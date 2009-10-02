@@ -1,7 +1,6 @@
 package com.preppa.web.data;
 
 import com.preppa.web.entities.Gridin;
-import com.preppa.web.entities.Prompt;
 import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentType;
 import java.util.List;

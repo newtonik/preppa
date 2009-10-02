@@ -30,12 +30,18 @@
 
 
                 <tr>
-                    <td width="10%" valign="top" align="right"><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
-            <td align="left"> <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
-                               translate="prop:translator" label="name" type="text" size="10"  />
-                <a href="#" class="addtopic">Add a topic here</a></td>
+                    <td></td>
+                    <td width="10%" valign="top" align="left"><t:label for="autoCompleteMultiTopics" >Topics:</t:label></td>
                 </tr>
-                                    <tr>
+                <tr>
+                    <td></td>
+                <td align="left">
+                    <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
+                               translate="prop:translator" label="name" type="text" size="10"  />
+                        <a href="#" class="addtopic">Add a topic here</a>
+                </td>
+                </tr>
+                <tr>
                         <td></td>
                         <td>
                             <b> Does your question contain a graph or an Image?</b>
@@ -57,10 +63,14 @@
                     </tr>
                 <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
                     <tr>
-                        <td width="10%" valign="top" align="right">
+                        <td></td>
+                        <td width="10%" valign="top" align="left">
                     <t:label for="questioneditor">Question: </t:label>
                     </td>
-                    <td >
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
 
                     <t:editor align="left" t:id="questioneditor" t:toolbarSet="Gridin" customConfiguration="asset:context:js/fck/gridin.js" t:width="600" t:height="300"/>
 
@@ -68,7 +78,8 @@
                     </tr>
                  
                     <tr>
-                        <td colspan="2">
+                        <td></td>
+                        <td >
                             <h3> Answer Choices </h3>
                         </td>
                     </tr>
@@ -129,19 +140,26 @@
                     </tr>
 
                     <tr>
-
-                        <td width="10%" valign="top" align="right">
+                        <td></td>
+                        <td width="10%" valign="top" align="left">
                     <t:label for="fExplanation"> Explanation: </t:label>
-                    </td>
-                    <td align="left">
-                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="3" cols="80" t:validate="required"/>
                     </td>
                     </tr>
                     <tr>
-                        <td width="10%" valign="top" align="right">
+                        <td></td>
+                    <td align="left">
+                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="3" cols="60" t:validate="required"/>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td width="10%" valign="top" align="left">
                     <t:label for="ratingField"> Difficulty: </t:label>
 
                     </td>
+                    </tr>
+                    <tr>
+                        <td></td>
                     <td align="left">
 
                         <div t:type="ck/RatingField" t:id="ratingField" source="list:1,2,3,4,5" value="ratingValue" t:validate="required"/>

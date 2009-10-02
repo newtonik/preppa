@@ -256,7 +256,7 @@ public class NewMultiChoice {
 
 
     public void setSubject(Testsubject testsubject1) {
-        System.out.println("Setting subject in newmultichoice." + testsubject1.getName());
+        //System.out.println("Setting subject in newmultichoice." + testsubject1.getName());
         this.testsubject1 = testsubject1;
     }
 

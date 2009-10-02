@@ -17,6 +17,8 @@ import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.FlagDAOHimpl;
 import com.preppa.web.data.GridinDAO;
 import com.preppa.web.data.GridinDAOHimpl;
+import com.preppa.web.data.ImprovingParagraphDAO;
+import com.preppa.web.data.ImprovingParagraphHimplDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongDualPassageDAOHibImpl;
 import com.preppa.web.data.LongPassageDAO;
@@ -129,6 +131,7 @@ public final class AppModule {
         binder.bind(EssayDAO.class, EssayDAOHimpl.class);
         binder.bind(FeedBackDAO.class, FeedBackDAOHimpl.class);
         binder.bind(PracticeSetDAO.class, PracticeSetDAOHimpl.class);
+        binder.bind(ImprovingParagraphDAO.class, ImprovingParagraphHimplDAO.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 
