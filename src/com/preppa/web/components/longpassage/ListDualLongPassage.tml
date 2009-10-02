@@ -10,7 +10,8 @@
 
                     <div class="passage">
                         <t:outputraw t:value="${passage.teaser}" /><br />
-                        <a href="#" t:type="pageLink" t:page="contribution/longpassage/Show" t:context="passage.id">(See More)</a>
+                        By ${username}<br/>
+                        <a href="#" t:type="pageLink" t:page="contribution/longpassage/Showdual" t:context="passage.id">(See More)</a>
                         <br />
                     </div>
                 </div>

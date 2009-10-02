@@ -18,6 +18,11 @@
             <div class="author-time">
                 Last updated <t:output format="literal:MMM. dd, yyyy h:mm a" value="passage.updatedAt" />
             </div>
+
+            <p>
+                By ${username}
+            </p>
+
             <p>
             <h3> Brief Introduction of Passage </h3>
             <t:outputraw t:value="${passage.summary}" />

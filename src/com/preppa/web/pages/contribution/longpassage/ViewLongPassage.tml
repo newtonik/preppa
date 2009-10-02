@@ -12,7 +12,13 @@
  <!--       <table>
         <tr t:type="loop" t:source="longpassages" t:value="longpassage">
             <td>
-                <a href="#" t:type="pagelink" t:page="contribution/longpassage/show" t:context="longpassage.id"> ${longpassage.title} </a>
+                ${longpassage.title}
+            </td>
+            <td>
+                By ${longpassage.user}
+            </td>
+            <td>
+                <a href="#" t:type="pagelink" t:page="contribution/longpassage/show" t:context="longpassage.id"> See More </a>
             </td>
 
         </tr>

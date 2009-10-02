@@ -16,4 +16,12 @@ public class ListShortPassage {
     private List<ShortPassage> passages;
     @Property
     private ShortPassage passage;
+    public String getUsername() {
+        if (passage.getUser() != null) {
+            return passage.getUser().getUsername();
+        }
+        else {
+            return "";
+        }
+    }
 }

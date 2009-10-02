@@ -128,7 +128,16 @@ public class ShowDualShortPassage {
     private boolean isApproved;
     @Property
     private Integer votecount;
-    
+
+    public String getUsername() {
+        if (passage.getUser() != null) {
+            return passage.getUser().getUsername();
+        }
+        else {
+            return "";
+        }
+    }
+
     void onpageLoaded() {
         firstquestion.setPageFalse();
 

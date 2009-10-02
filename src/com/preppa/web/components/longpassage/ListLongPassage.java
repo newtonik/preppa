@@ -25,4 +25,12 @@ public class ListLongPassage {
     @Property
     private LongPassage passage;
 
+    public String getUsername() {
+        if (passage.getUser() != null) {
+            return passage.getUser().getUsername();
+        }
+        else {
+            return "";
+        }
+    }
 }

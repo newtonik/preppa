@@ -15,4 +15,13 @@ public class ListDualLongPassage {
     private List<LongDualPassage> passages;
     @Property
     private LongDualPassage passage;
+
+    public String getUsername() {
+        if (passage.getUser() != null) {
+            return passage.getUser().getUsername();
+        }
+        else {
+            return "";
+        }
+    }
 }

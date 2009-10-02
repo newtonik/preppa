@@ -121,7 +121,16 @@ public class ShowShortPassage {
     private boolean isApproved;
     @Property
     private Integer votecount;
-    
+
+    public String getUsername() {
+        if (passage.getUser() != null) {
+            return passage.getUser().getUsername();
+        }
+        else {
+            return "";
+        }
+    }
+
     void onActivate(int id) {
         this.passage = passageDAO.findById(id);
         tags = passage.getTaglist();

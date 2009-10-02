@@ -15,11 +15,16 @@
         <div t:type="longpassage/longdualpassagetab" t:passage="passage" />
 
         <h2>
-            ${passage.title}
+            By ${passage.title}
         </h2>
         <div class="author-time">
             Last updated <t:output format="literal:MMM. dd, yyyy" value="passage.updatedAt" />
         </div>
+
+            <p>
+                By ${username}
+            </p>
+
         <p>
         <h3> Brief Introduction of Passage </h3>
         <t:outputraw t:value="${passage.summary}" />

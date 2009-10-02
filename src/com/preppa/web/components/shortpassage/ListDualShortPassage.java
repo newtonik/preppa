@@ -15,5 +15,12 @@ public class ListDualShortPassage {
     private List<ShortDualPassage> passages;
     @Property
     private ShortDualPassage passage;
-
+    public String getUsername() {
+        if (passage.getUser() != null) {
+            return passage.getUser().getUsername();
+        }
+        else {
+            return "";
+        }
+    }
 }

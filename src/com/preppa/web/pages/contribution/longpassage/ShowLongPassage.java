@@ -122,6 +122,15 @@ public class ShowLongPassage {
     @Inject
     private VoteDAO voteDAO;
 
+
+    public String getUsername() {
+        if (passage.getUser() != null) {
+            return passage.getUser().getUsername();
+        }
+        else {
+            return "";
+        }
+    }
     
     void onpageLoaded() {
         firstquestion.setPageFalse();
