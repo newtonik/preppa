@@ -15,5 +15,6 @@ public enum ContentType {
     GridIn,
     Vocab,
     Prompt,
-    OpenAnswer
+    OpenAnswer,
+    ImprovingParagraph
 }

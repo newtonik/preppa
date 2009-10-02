@@ -1,0 +1,39 @@
+<html t:type ="layout" t:pageTitle="${improving.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <br />
+    <div class="mainclass">
+        <div class="panes">
+            <br />
+            <br />
+            <h2>
+                ${improving.title}
+            </h2>
+            <div class="author-time">
+                Last updated <t:output format="literal:MMM. dd, yyyy h:mm a" value="improving.createdAt" />
+            </div>
+            <p>
+            <t:outputraw t:value="${improving.paragraph}"/>
+            </p>
+
+            <br />
+            <div id="voteseal" t:type="voteseal" t:contentid="${improving.id}" t:contenttype="contentType" t:votes="votes" />
+            <br />
+
+
+            <p>
+            <t:tagview t:alltags="tags" />
+            <br />
+            </p>
+            <br/>
+            <a id="addquestion"  href="#"> Add Question</a>
+
+
+
+        </div>
+
+        <p>
+            <a href="#" t:type="pageLink" t:page="contribution/improving/edit" t:context="improving.id"> Edit </a>
+            <br />
+        </p>
+    </div>
+    <br/>
+</html>

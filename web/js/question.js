@@ -153,6 +153,20 @@ function showQuestionBlock( vblock) {
         document.title = "New Prompt";
     }
 
+     if(vblock.type == "improving") {
+            eBlocks = $$(".questiontype");
+            for(i = 0; i < eBlocks.length; i++) {
+                eBlocks[i].hide();
+                eBlocks[i].removeClassName("current");
+
+            }
+            $('improving').addClassName("current");
+
+            $('improving').show();
+            $('improving').highlight();
+            document.title = "New Improving Paragraph";
+        }
+
 
 //alert(response.type);
 }

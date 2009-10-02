@@ -2,7 +2,7 @@
 
     <br />
     <div align="left"> <a href="#" > Best Practices</a> </div>
-    <t:form t:id="improvingform">
+    <t:form t:id="improvingform" clientvalidation="false">
         <t:errors/>
         <table id="improvingtable">
 

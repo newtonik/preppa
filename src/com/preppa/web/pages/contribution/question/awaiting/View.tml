@@ -46,9 +46,9 @@
             </t:if>
 
 
-            <t:if t:test="isLongPassage">
+            <t:if t:test="isParagraph">
                 <h2> Long Passages </h2>
-                <div t:type="longpassage/list" t:passages="longpassages" />
+                <div t:type="questiontypes/improving/list" t:paragraphs="paragraphs" />
                 <br />
             </t:if>
 

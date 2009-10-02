@@ -1,6 +1,7 @@
 package com.preppa.web.pages.contribution.question.general;
 
 import com.preppa.web.components.questiontypes.gridin.NewGridin;
+import com.preppa.web.components.questiontypes.improving.NewImproving;
 import com.preppa.web.components.questiontypes.longpassage.NewDualLongPassage;
 import com.preppa.web.components.questiontypes.longpassage.NewLongPassage;
 import com.preppa.web.components.questiontypes.multichoice.NewMultiChoice;
@@ -93,6 +94,8 @@ public class NewGeneral {
     private NewDualLongPassage newlongdualpassage;
     @Component
     private NewPrompt newprompt;
+    @Component
+    private NewImproving newimproving;
     @Inject
     private TagDAO tagDAO;
     @Property
@@ -240,6 +243,11 @@ public class NewGeneral {
             visiblequestiontype = "newprompt";
             json.put("type", "newprompt");
             json.put("title", "Create Prompt");
+            questiontype = questiontypeDAO.findByName(quesType);
+        } else if (quesType.equals("Improving Paragraphs")) {
+            visiblequestiontype = "improving";
+            json.put("type", "improving");
+            json.put("title", "Create Improving Paragraph");
             questiontype = questiontypeDAO.findByName(quesType);
         } else if (quesType.equals("Sentence Completion")) {
             visiblequestiontype = "Sentence Completion";

@@ -1,0 +1,10 @@
+<html t:type ="layout" t:pageTitle="${iparagraph.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <br />
+    <div class="mainclass">
+        <div t:type="questiontypes/improving/edit" t:improving="iparagraph" />
+    </div>
+
+    <br />
+
+
+</html>

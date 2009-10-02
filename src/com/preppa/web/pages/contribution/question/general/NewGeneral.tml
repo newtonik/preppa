@@ -50,6 +50,9 @@
          <div id="prompt" class="questiontype" align="center" style='display:none'>
             <div t:id="newprompt" />
         </div>
+             <div id ="improving"  class="questiontype" align="center" style='display:none'>
+                 <div t:id="newimproving" />
+             </div>
 
 
     </div>

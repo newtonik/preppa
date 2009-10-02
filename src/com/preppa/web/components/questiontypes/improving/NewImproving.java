@@ -6,9 +6,11 @@ import com.preppa.web.entities.ImprovingParagraph;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
+import com.preppa.web.pages.contribution.improving.ShowImproving;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -54,17 +56,26 @@ public class NewImproving {
     private Tag tag;
     @Inject
     private ImprovingParagraphDAO improvingParagraphDAO;
+    @InjectPage
+    private ShowImproving showimproving;
+    @Inject
+    private ComponentResources resources;
 
     
     @SetupRender
     void setDefaults() {
-          
+        if(!improvingform.getHasErrors())
+        {
+            addedTags.clear();
+
+        }
     }
 
     void onActivate() {
         
     }
     Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
         return indexpage;
     }
 
@@ -72,6 +83,16 @@ public class NewImproving {
         List<Tag> matches = tagDAO.findByPartialName(partial);
         return matches;
 
+    }
+
+    void onValidateFormFromImprovingForm() {
+
+        if(fBody == null) {
+            improvingform.recordError(passeditor, "You must include a paragraph");
+        }
+        if(fTitle == null) {
+             improvingform.recordError("Please add a title");
+        }
     }
 
     @CommitAfter
@@ -89,7 +110,10 @@ public class NewImproving {
 
         improvingParagraphDAO.doSave(improving);
 
-        return null;
+        showimproving.setImprovingParagraph(improving);
+
+        resources.discardPersistentFieldChanges();
+        return showimproving;
     }
     public FieldTranslator getTagTranslator() {
         return new FieldTranslator<Tag>() {

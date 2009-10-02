@@ -12,6 +12,7 @@ package com.preppa.web.pages.contribution.question.awaiting;
 
 import com.preppa.web.components.questiontypes.prompt.ListPrompt;
 import com.preppa.web.data.GridinDAO;
+import com.preppa.web.data.ImprovingParagraphDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.PromptDAO;
@@ -21,6 +22,7 @@ import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Gridin;
+import com.preppa.web.entities.ImprovingParagraph;
 import com.preppa.web.entities.LongPassage;
 import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Question;
@@ -67,8 +69,8 @@ public class View {
     private boolean isPrompt;
     @Property
     private boolean isMultiple;
-        @Property
-    private boolean isLongPassage;
+    @Property
+    private Boolean isParagraph;
     @Property
     private List<Prompt> prompts;
     @Inject
@@ -80,7 +82,11 @@ public class View {
     private List<LongPassage> longpassages;
     @Component
     private ListPrompt listprompt;
-
+    @Property
+    private List<ImprovingParagraph> paragraphs;
+    @Inject
+    private ImprovingParagraphDAO improvingDAO;
+    
 
 
     Object onActivate(String questiontype) {
@@ -92,7 +98,7 @@ public class View {
         isGridin = false;
         isPrompt = false;
         isMultiple = false;
-        isLongPassage = false;
+        isParagraph = false;
 
         if(questiontype.contains("Grid-ins")) {
           
@@ -105,9 +111,9 @@ public class View {
             listprompt.setPrompts(prompts);
             System.out.println("prompts size in after loop " + prompts.size());
         }
-        else  if(questiontype.contains("LongPassage")) {
-            isLongPassage = true;
-            longpassages = longpassageDAO.findAllByAwaiting();
+        else  if(questiontype.contains("Improving Paragraphs")) {
+            isParagraph = true;
+            paragraphs = improvingDAO.findAllByAwaiting();
         }
         else {
             questype = questDAO.findByName(qType);
