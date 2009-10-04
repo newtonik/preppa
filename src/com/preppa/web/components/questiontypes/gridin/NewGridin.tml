@@ -17,7 +17,7 @@
                 
                 <td>
                     <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteGridinTopics" selected="addedTopics"
-                           translate="prop:translator" label="name" type="text" size="10"  />
+                           translate="prop:translator" label="name" type="text" size="10"  t:validate="required"/>
                     <a href="#" class="addtopic">Add a topic here</a>
                 </td>
             </tr>

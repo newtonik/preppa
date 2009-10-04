@@ -181,6 +181,12 @@ public class NewGridin {
         if (hasimage == null) {
             gridinForm.recordError(gridinchooseimage, "Please specify if you have an image");
         }
+        if (ratingValue == null || ratingValue == 0) {
+            gridinForm.recordError(gridinchooseimage, "Please specify a difficulty.");
+        }
+        if (addedTopics.size() == 0) {
+            gridinForm.recordError(gridinchooseimage, "Please add a topic.");
+        }
         if (answertype == null) {
             gridinForm.recordError("You need to select an answer");
         } else {

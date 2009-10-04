@@ -32,6 +32,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Target;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
@@ -65,6 +66,7 @@ public class Gridin implements Serializable {
     private Integer votescore;
     private Boolean approval;
     private List<ReviewComment> reviewcomments;
+    private List<Flag> flags  = new ArrayList<Flag>();
 
     @Id
     @DocumentId
@@ -396,5 +398,22 @@ public class Gridin implements Serializable {
      */
     public void setApproval(Boolean approval) {
         this.approval = approval;
+    }
+
+    /**
+     * @return the flags
+     */
+    @OneToMany(mappedBy = "gridin", cascade=CascadeType.ALL, fetch=FetchType.LAZY, targetEntity=Flag.class)
+    @Audited
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 }

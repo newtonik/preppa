@@ -59,6 +59,7 @@ public class Flag implements Serializable {
     private Date updatedAt;
     private User assignee;
     private Vocab vocab;
+    private Gridin gridin;
 
      @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -264,6 +265,31 @@ public class Flag implements Serializable {
             this.contentType = ContentType.Vocab;
             this.vocab = vocab;
         }
+    }
+
+    @ManyToOne
+    public Gridin getGridin() {
+        return gridin;
+    }
+
+    public void setGridin(Gridin gridin) {
+        /* if(contentType != null)
+        {
+            if(contentType == ContentType.GridIn)
+            {
+                this.gridin = gridin;
+            }
+            else
+            {
+               this.gridin = null;
+            }
+        }
+        else {
+            this.contentType = ContentType.GridIn;
+            this.gridin = gridin;
+        }*/
+        this.gridin = gridin;
+        this.contentType = ContentType.GridIn;
     }
 
     @ManyToOne

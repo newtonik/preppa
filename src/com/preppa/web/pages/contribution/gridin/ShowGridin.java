@@ -1,23 +1,34 @@
 package com.preppa.web.pages.contribution.gridin;
 
 import com.preppa.web.data.GridinDAO;
+import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.VoteDAO;
+import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.Gridin;
 import com.preppa.web.entities.GridinAnswer;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
+import com.preppa.web.utils.FlagStatus;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.acegisecurity.annotation.Secured;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 
@@ -25,7 +36,8 @@ import org.apache.tapestry5.json.JSONObject;
  *
  * @author nwt
  */
-@IncludeJavaScriptLibrary(value = {"context:js/gridin.js"})
+@IncludeStylesheet(value = {"context:styles/flag.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/gridin.js", "context:js/showquestion.js"})
 public class ShowGridin {
     @ApplicationState
     private User user;
@@ -57,6 +69,24 @@ public class ShowGridin {
     private ContentType contType;
     @Property
     private List<Tag> tags;
+
+    //Flags
+    @Component
+    private Form flagform;
+    @Inject
+    private Block flagresponse;
+    private List<Flag> questionflags;
+    @Inject
+    @Property
+    private Block flagblock;
+    @Property
+    private String reason;
+    @Property
+    private String reasonDesc;
+    @Property
+    private User author;
+    @Inject
+    private UserObDAO userDAO;
 
     void onActivate(Long id)  {
         if(id > 0) {
@@ -145,4 +175,68 @@ public class ShowGridin {
          return voted;
      }
  }*/
+
+    @CommitAfter
+    @Secured("ROLE_USER")
+    Block onSuccessFromFlagForm() {
+        if (reason != null) {
+            Flag f = new Flag();
+            if (reason.equals("A")) {
+                f.setFlagtype(ContentFlag.Inappropriate);
+            } else if (reason.equals("B")) {
+                f.setFlagtype(ContentFlag.Spam);
+            } else if (reason.equals("C")) {
+                f.setFlagtype(ContentFlag.Attention);
+            } else if (reason.equals("D")) {
+                f.setFlagtype(ContentFlag.Incorrect);
+            } else if (reason.equals("E")) {
+
+                f.setFlagtype(ContentFlag.Copyright);
+            } else {
+                System.out.println(reason);
+                f.setFlagtype(ContentFlag.Attention);
+            }
+
+            f.setDescription(reasonDesc);
+            f.setContentType(ContentType.Question);
+
+            author = userDAO.doRetrieve(user.getId(), false);
+            System.out.println("author id is " + user.getId());
+            f.setFlagger(author);
+            f.setStatus(FlagStatus.NEW);
+            f.setGridin(question);
+
+
+
+            if (questionflags == null) {
+                questionflags = new ArrayList<Flag>();
+                questionflags.add(f);
+                question.setFlags(questionflags);
+
+            } else {
+                //questionflags.add(f);
+                question.getFlags().add(f);
+
+            }
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+
+            f.setUpdatedAt(now);
+            f.setCreatedAt(now);
+
+            //flagDAO.doSave(f);
+            //question.setUpdatedAt(now);
+            gridinDAO.doSave(question);
+
+        }
+
+        return flagresponse;
+    }
+
+    Block onActionFromRemoveFlagBox() {
+        return null;
+    }
+
+    Block onActionFromCloseFlagBlock() {
+        return flagblock;
+    }
 }
