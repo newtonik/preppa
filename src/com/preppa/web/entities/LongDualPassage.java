@@ -396,7 +396,7 @@ public class LongDualPassage implements Serializable {
      */
     @Audited
     @OneToMany(mappedBy = "longdualpassage", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     public List<Flag> getFlags() {
         return flags;
     }

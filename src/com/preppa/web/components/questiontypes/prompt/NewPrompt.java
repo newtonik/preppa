@@ -74,6 +74,7 @@ public class NewPrompt {
     private ComponentResources resources;
     @InjectPage
     private NewGeneral newgeneral;
+
     void onValidateForm() {
     }
 
@@ -110,7 +111,7 @@ public class NewPrompt {
         prompt.setUpdatedBy(user);
 
         promptDAO.doSave(prompt);
-         resources.discardPersistentFieldChanges();
+        resources.discardPersistentFieldChanges();
         showprompt.setprompt(prompt);
         return showprompt;
     }
@@ -161,9 +162,9 @@ public class NewPrompt {
             }
         };
     }
-            Object onActionFromCancel() {
-            resources.discardPersistentFieldChanges();
-            return newgeneral;
-        }
 
+    Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
+        return newgeneral;
+    }
 }

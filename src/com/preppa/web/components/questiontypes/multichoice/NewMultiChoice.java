@@ -199,7 +199,7 @@ public class NewMultiChoice {
         "onCompleteCallback=literal:onChangeTestsubject"})
     @Mixins({"ck/OnEvent"})
     private Select testSubSelect;
-    @Component(parameters = {"value=questiontype", "event=change" })
+    @Component(parameters = {"value=questiontype", "event=change"})
     @Mixins({"ck/OnEvent"})
     private Select QuestiontypeSelect;
     @Inject
@@ -221,7 +221,6 @@ public class NewMultiChoice {
     private String hasquestiontype;
     @Persist
     private String hasOwner;
-
     //Topics
     @Inject
     private TopicDAO topicDAO;
@@ -231,7 +230,7 @@ public class NewMultiChoice {
     private List<Topic> addedTopics = new LinkedList<Topic>();
     @Property
     private Testsubject topicSubject;
-     @Property
+    @Property
     private String fTopic;
     @Property
     private String fTopicName;
@@ -253,7 +252,6 @@ public class NewMultiChoice {
     private String clear;
     @Inject
     private Environment _environment;
-
 
     public void setSubject(Testsubject testsubject1) {
         //System.out.println("Setting subject in newmultichoice." + testsubject1.getName());
@@ -300,29 +298,26 @@ public class NewMultiChoice {
         if (ans5 != null) {
             ans5 = null;
         }
-        if(clear == null)
-        {
-           _resources.discardPersistentFieldChanges();
-           ValidationTracker tracker = _environment.peek(ValidationTracker.class);
-           tracker.clear();
+        if (clear == null) {
+            _resources.discardPersistentFieldChanges();
+            ValidationTracker tracker = _environment.peek(ValidationTracker.class);
+            tracker.clear();
         }
     }
 
     @SetupRender
     void getSetupItems() {
         _resources.discardPersistentFieldChanges();
-        if(qtype != null) {
-             questiontype = qtype;
+        if (qtype != null) {
+            questiontype = qtype;
             questiontExists = false;
-        }
-        else
-        {
+        } else {
             questiontExists = true;
         }
         // System.out.println(hasquestiontype);
-        if(hasquestiontype != null) {
-            
-            if(hasquestiontype.equals("true")) {
+        if (hasquestiontype != null) {
+
+            if (hasquestiontype.equals("true")) {
                 System.out.println(hasquestiontype + " " + questiontExists);
                 questiontExists = false;
             }
@@ -332,28 +327,25 @@ public class NewMultiChoice {
 
         questiontypes = questiontypeDAO.findAll();
         hasimage = "false";
-        if(owner != null)
+        if (owner != null) {
             hasOwner = "true";
-        else
-        {
+        } else {
             hasOwner = "false";
         }
         //clear the tags from showing up in new questions if the form is not being reloaded
         //for errors
-        if(!createquestionform.getHasErrors())
-        {
+        if (!createquestionform.getHasErrors()) {
             addedTags.clear();
             addedTopics.clear();
         }
-        if(clear == null)
-        {
-           _resources.discardPersistentFieldChanges();
-           ValidationTracker tracker = _environment.peek(ValidationTracker.class);
-           if(tracker != null) {
-            tracker.clear();
-            System.out.println("Clearing Tracker");
+        if (clear == null) {
             _resources.discardPersistentFieldChanges();
-           }
+            ValidationTracker tracker = _environment.peek(ValidationTracker.class);
+            if (tracker != null) {
+                tracker.clear();
+                System.out.println("Clearing Tracker");
+                _resources.discardPersistentFieldChanges();
+            }
         }
     }
 
@@ -378,7 +370,7 @@ public class NewMultiChoice {
     }
 
     Object onValidateFormFromCreateQuestionForm() {
-  
+
         if (mywork == false) {
             error = true;
             emessage = "You must verify that this is your own work.";
@@ -399,37 +391,39 @@ public class NewMultiChoice {
                 createquestionform.recordError(QuestiontypeSelect, "You have to select a Question subject to add this question");
             }
         }
-        if(fQuestion == null) {
-                        createquestionform.recordError(questioneditor, messages.get("answer-required-message"));
+        if (fQuestion == null) {
+            createquestionform.recordError(questioneditor, messages.get("answer-required-message"));
         }
-        if(ans1 == null) {
+        if (ans1 == null) {
             createquestionform.recordError(choice1, messages.get("choice-message"));
         }
-       if(ans2 == null) {
+        if (ans2 == null) {
             createquestionform.recordError(choice2, messages.get("choice-message"));
         }
-        if(ans3 == null) {
+        if (ans3 == null) {
             createquestionform.recordError(choice3, messages.get("choice-message"));
-        }if(ans4 == null) {
+        }
+        if (ans4 == null) {
             createquestionform.recordError(choice4, messages.get("choice-message"));
-        }if(ans5 == null) {
+        }
+        if (ans5 == null) {
             createquestionform.recordError(choice5, messages.get("choice-message"));
         }
 
-        if(hasimage == null) {
+        if (hasimage == null) {
             createquestionform.recordError(chooseimage, "Please specify if you have an image");
         }
         if (request.isXHR() && createquestionform.getHasErrors()) {
             testsubjects = testsubjectDAO.findAllWithQuestions();
 
-        questiontypes = questiontypeDAO.findAll();
+            questiontypes = questiontypeDAO.findAll();
             return null;
             //return null;
         } else {
             //showquestion.setquestion(question);
             return null;
         }
-       
+
     }
 
     JSONObject onChangeFromTestSubSelect(String testId) {
@@ -511,12 +505,10 @@ public class NewMultiChoice {
             question.getChoices().add(ch);
         }
 
-        if(qtype == null) {
+        if (qtype == null) {
             questiontype = questiontypeDAO.findById(questType);
             question.setQuestiontype(questiontype);
-        }
-        else
-        {
+        } else {
             question.setQuestiontype(qtype);
         }
         for (Tag t : addedTags) {
@@ -541,7 +533,7 @@ public class NewMultiChoice {
         question.setTopics(addedTopics);
         questionDAO.doSave(question);
         String impath = null;
-        
+
         if (hasimage.equals("yes")) {
             impath = context.getRealFile("/").getPath() + "/images/multiplechoice/question" + question.getId() + "/" + question.getId() + ".jpg";
             question.setImagePath(impath);
@@ -550,30 +542,29 @@ public class NewMultiChoice {
             System.out.println(impath);
             File copied = new File(impath);
             imageupload.write(copied);
-            
+
         }
 
 
         //add new topics and verify no duplicates
-       for(Topic e: addedTopics) {
-            if(!(question.getTopics().contains(e)))
-            {
+        for (Topic e : addedTopics) {
+            if (!(question.getTopics().contains(e))) {
                 question.getTopics().add(e);
             }
 
-         }
-
-       resources.discardPersistentFieldChanges();
-    if(owner != null) {
-     if(hasOwner.equals("true")) {
-       if (!saveQuestionToObject(owner, question)) {
-                logger.debug("Just saving the question, object is null");
-                questionDAO.doSave(question);
         }
-     }
-    }
 
-        if (request.isXHR() ) {
+        resources.discardPersistentFieldChanges();
+        if (owner != null) {
+            if (hasOwner.equals("true")) {
+                if (!saveQuestionToObject(owner, question)) {
+                    logger.debug("Just saving the question, object is null");
+                    questionDAO.doSave(question);
+                }
+            }
+        }
+
+        if (request.isXHR()) {
             showquestion.setquestion(question);
             return showquestionblock;
         } else {
@@ -636,8 +627,9 @@ public class NewMultiChoice {
      */
     @CommitAfter
     Boolean saveQuestionToObject(Object toSave, Question questiontoSave) {
-        if(toSave == null)
+        if (toSave == null) {
             return false;
+        }
         if (toSave instanceof LongPassage) {
             longpassage = (LongPassage) toSave;
             longpassage = longpassageDAO.findById(longpassage.getId());
@@ -667,121 +659,114 @@ public class NewMultiChoice {
         }
 
     }
+
     /**
      * <t:if t:test="error">
     <font color="FF0000">ERROR : ${emessage}</font>
     </t:if>
      */
-
-    public void onPrepare(){
-              Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
-                testsubjects1.clear();
-              testsubjects1.addAll(setItems);
+    public void onPrepare() {
+        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+        testsubjects1.clear();
+        testsubjects1.addAll(setItems);
 
     }
 
     void Article() {
-       Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
-       testsubjects1.addAll(setItems);
+        Set setItems = new LinkedHashSet(testsubjectDAO.findAll());
+        testsubjects1.addAll(setItems);
 
 
 
     }
 
-    public FieldTranslator getTranslator()
-  {
-    return new FieldTranslator<Topic>()
-    {
-            @Override
-      public String toClient(Topic value)
-      {
-        String clientValue = "0";
-        if (value != null)
-          clientValue = String.valueOf(value.getId());
-
-        return clientValue;
-      }
+    public FieldTranslator getTranslator() {
+        return new FieldTranslator<Topic>() {
 
             @Override
-      public void render(MarkupWriter writer) { }
+            public String toClient(Topic value) {
+                String clientValue = "0";
+                if (value != null) {
+                    clientValue = String.valueOf(value.getId());
+                }
+
+                return clientValue;
+            }
 
             @Override
-      public Class<Topic> getType() { return Topic.class; }
+            public void render(MarkupWriter writer) {
+            }
 
             @Override
-      public Topic parse(String clientValue) throws ValidationException
-      {
-        Topic serverValue = null;
+            public Class<Topic> getType() {
+                return Topic.class;
+            }
 
-        if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
-            System.out.println(clientValue);
-          serverValue = topicDAO.findById(new Integer(clientValue));
-        }
-        return serverValue;
-      }
-    };
-  }
+            @Override
+            public Topic parse(String clientValue) throws ValidationException {
+                Topic serverValue = null;
+
+                if (clientValue != null && clientValue.length() > 0 && !clientValue.equals("0")) {
+                    System.out.println(clientValue);
+                    serverValue = topicDAO.findById(new Integer(clientValue));
+                }
+                return serverValue;
+            }
+        };
+    }
 
     List<Topic> onProvideCompletionsFromAutoCompleteMultiTopics(String partial) {
-         List<Topic> matches = null;
+        List<Topic> matches = null;
 
-         if(questiontype != null) {
+        if (questiontype != null) {
             testsubject1 = questiontype.getTestsubject();
-         }
-        if(testsubject1 != null)
-        {
+        }
+        if (testsubject1 != null) {
             logger.warn("Test subject is not null");
             matches = topicDAO.findByPartialName(partial, testsubject1);
             logger.warn("Size is " + matches.size());
-        }
-        else
-        {
+        } else {
             System.out.println("Partial is " + partial);
             matches = topicDAO.findByPartialName(partial);
         }
-       // matches = topicDAO.findByPartialName(partial);
+        // matches = topicDAO.findByPartialName(partial);
         return matches;
 
     }
 
+    @CommitAfter
+    JSONObject onSuccessFromTopicForm() {
 
-
-        @CommitAfter
-        JSONObject onSuccessFromTopicForm() {
-
-            JSONObject json = new JSONObject();
-            System.out.println("trying to save " + fTopicName);
-          Topic topic = new Topic();
-           topic.setName(fTopicName);
-          topic.setTestsubject(topicSubject);
-          System.out.println("Topic name and subject set.");
-         if(topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
-             String markup = "<p> There is already a <b>" + fTopicName +
+        JSONObject json = new JSONObject();
+        System.out.println("trying to save " + fTopicName);
+        Topic topic = new Topic();
+        topic.setName(fTopicName);
+        topic.setTestsubject(topicSubject);
+        System.out.println("Topic name and subject set.");
+        if (topicDAO.findSizeByName(fTopicName, topicSubject) > 0) {
+            String markup = "<p> There is already a <b>" + fTopicName +
                     "</b> topic in " + topicSubject.getName() + " Section.<p>";
-                json.put("content", markup);
+            json.put("content", markup);
 
 
-         }
-         else
-         {
-             Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        } else {
+            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 
-             topic.setCreatedAt(now);
-             topic.setUpdatedAt(now);
-             System.out.println("Topic is being saved");
-             System.out.println("Topic is " + topicSubject);
+            topic.setCreatedAt(now);
+            topic.setUpdatedAt(now);
+            System.out.println("Topic is being saved");
+            System.out.println("Topic is " + topicSubject);
             topicDAO.doSave(topic);
-             String markup = "<p> You just submitted <b>" + topic.getName() +
+            String markup = "<p> You just submitted <b>" + topic.getName() +
                     "</b>. Please add it using the topics autocomplete. <p>";
-               json.put("content", markup);
+            json.put("content", markup);
 
-         }
-          return json;
         }
+        return json;
+    }
 
-        Object onActionFromCancel() {
-            resources.discardPersistentFieldChanges();
-            return newgeneral;
-        }
-
+    Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
+        return newgeneral;
+    }
 }

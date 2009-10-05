@@ -1,0 +1,55 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+
+<div id="votebox" class="votemenu" style='display:none'>
+    <t:zone t:id="flagZone">
+        <t:delegate to="flagblock"/>
+    </t:zone>
+    <div align="center">
+        <a href="#" t:type="actionlink"  t:id="closeflagblock" t:zone="flagZone"> Close </a>
+    </div>
+
+</div>
+
+
+<t:block t:id="flagblock">
+    <div id="submittable">
+        <h3> Select a reason for flaging </h3>
+        <t:form t:id="flagform" t:zone="flagZone">
+            <t:radiogroup value="reason" name="flaggroup">
+                <input t:type="radio" name="flaggroup"  value="literal:D" align="left" />
+                Incorrect<br />
+                <input t:type="radio" name="flaggroup"  value="literal:A" align="left" />
+                Offensive or Abusive<br />
+                <input t:type="radio" name="flaggroup"  value="literal:B" align="left" />
+                Spam <br />
+                <input t:type="radio" name="flaggroup"  value="literal:C" align="left" />
+                Alert Moderator<br />
+                <br />
+                <input t:type="radio" name="flaggroup"  value="literal:E" align="left" />
+                Copyright Violation<br />
+                <br />
+                <t:label for="flagfield"> Enter a Short Description of problem </t:label>
+                <br />
+
+            </t:radiogroup>
+            <input t:type="textfield" type="textfield" t:id="flagfield" t:value="reasonDesc" size="30"/>
+            <br />
+            <p align="center">
+                <br />
+                <input type="submit" value="Submit"/>
+                <br />
+            </p>
+        </t:form>
+    </div>
+</t:block>
+<t:block t:id="flagresponse" >
+    <br />
+    <br />
+    <p>
+        Thanks for your feedback, we will look at the issue.
+    </p>
+    <br />
+
+</t:block>
+</t:container>

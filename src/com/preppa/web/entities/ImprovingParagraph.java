@@ -30,6 +30,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
+import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
@@ -64,6 +65,7 @@ public class ImprovingParagraph implements Serializable {
 
 
     @Id
+    @DocumentId
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;

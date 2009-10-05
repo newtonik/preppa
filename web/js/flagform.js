@@ -1,5 +1,5 @@
   
-  /* 
+/* 
    * Preppa, Inc.
    * 
    * Copyright 2009. All rights
@@ -7,41 +7,45 @@
    * 
    * $Id$
    */
+document.observe("dom:loaded", function() {
+    $$('.flaglink').invoke('observe', 'click', function() {
+        //get position
+        var pos = $$('.mainclass')[0].cumulativeOffset();
 
-$('flaglink').observe('click', function() {
-    //get position
-    var pos = $('main').cumulativeOffset();
+
+        $('votebox').setStyle({
+
+            // display: 'block',
+            position: 'absolute',
+            fontSize: '12px',
+            left: (pos.left-300) + "px",
+            top : (pos.top)+ "px"
+        });
+        $('votebox').show();
+        $('votebox').makePositioned();
+        $('votebox').focus();
+        $('flagfield').activate();
+        //Effect.ScrollTo('header');
+        //$('votebox').absolutize()
 
 
-    $('votebox').setStyle({
+        $('closeflagblock').observe('click', function() {
+            $('votebox').hide();
 
-        // display: 'block',
-      position: 'absolute',
-        fontSize: '12px'
+        });
     });
-    $('votebox').show();
-     $('votebox').makePositioned();
-      $('votebox').focus();
-    $('flagfield').activate();
-    //Effect.ScrollTo('header');
-    //$('votebox').absolutize()
 
-
-    $('closeflag').observe('click', function() {
+    window.scroll(0,  document.height);
+    //$('cancelflag').observe('click', function() {
+    //    $('votebox').hide();
+    //
+    //});
+    $('closeflagblock').observe('click', function() {
+        $('votebox').setStyle( {
+            display: 'none'
+        })
         $('votebox').hide();
 
     });
-});
-
-window.scroll(0,  document.height);
-$('cancelflag').observe('click', function() {
-    $('votebox').hide();
-
-});
-$('closeflagblock').observe('click', function() {
-    $('votebox').setStyle( {
-        display: 'none'
-    })
-    $('votebox').hide();
 
 });

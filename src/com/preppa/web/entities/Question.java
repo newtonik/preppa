@@ -393,9 +393,9 @@ public class Question implements Serializable {
     /**
      * @return the flags
      */
-    @OneToMany(mappedBy = "question", cascade=CascadeType.ALL, fetch=FetchType.LAZY, targetEntity=Flag.class)
     @Audited
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @OneToMany(mappedBy = "question", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     public List<Flag> getFlags() {
         return flags;
     }

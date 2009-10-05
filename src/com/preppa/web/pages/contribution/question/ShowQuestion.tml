@@ -1,7 +1,7 @@
 <html t:type ="layout" t:pageTitle="MultiChoice Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
     
 <t:practicebarart />
-    <div id="main">
+    <div class="mainclass">
 
 
             <t:if t:test="isApproved">

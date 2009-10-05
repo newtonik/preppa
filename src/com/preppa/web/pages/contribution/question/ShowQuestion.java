@@ -10,23 +10,17 @@ import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.User;
-import com.preppa.web.entities.Vote;
 import com.preppa.web.pages.Index;
 import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentType;
-import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.tapestry5.Block;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONObject;
 
 
 /**

@@ -73,20 +73,6 @@ public class ShowMultiChoice {
     @Property
     private User author;
     /* Question Flags */
-    @Component
-    private Form flagform;
-    @Inject
-    private Block flagresponse;
-    private List<Flag> questionflags;
-    @Inject
-    @Property
-    private Block flagblock;
-    @Property
-    private String reason;
-    @Property
-    private String reasonDesc;
-    @Inject
-    private FlagDAO flagDAO;
     @Inject
     private UserObDAO userDAO;
     @Property
@@ -107,7 +93,6 @@ public class ShowMultiChoice {
             returnVal = question.getChoices();
             tags = question.getTaglist();
             author = question.getUser();
-            questionflags = question.getFlags();
             contType = ContentType.Question;
             votecount = voteDAO.findVoteByContentId(contType, question.getId());
             if (votecount >= Constants.getApprovalThreshhold()) {
@@ -133,69 +118,7 @@ public class ShowMultiChoice {
         this.qid = question.getId();
     }
 
-    @CommitAfter
-    @Secured("ROLE_USER")
-    Block onSuccessFromFlagForm() {
-        if (reason != null) {
-            Flag f = new Flag();
-            if (reason.equals("A")) {
-                f.setFlagtype(ContentFlag.Inappropriate);
-            } else if (reason.equals("B")) {
-                f.setFlagtype(ContentFlag.Spam);
-            } else if (reason.equals("C")) {
-                f.setFlagtype(ContentFlag.Attention);
-            } else if (reason.equals("D")) {
-                f.setFlagtype(ContentFlag.Incorrect);
-            } else if (reason.equals("E")) {
-
-                f.setFlagtype(ContentFlag.Copyright);
-            } else {
-                System.out.println(reason);
-                f.setFlagtype(ContentFlag.Attention);
-            }
-
-            f.setDescription(reasonDesc);
-            f.setContentType(ContentType.Question);
-
-            author = userDAO.doRetrieve(user.getId(), false);
-            System.out.println("author id is " + user.getId());
-            f.setFlagger(author);
-            f.setStatus(FlagStatus.NEW);
-            f.setQuestion(question);
-
-
-
-            if (questionflags == null) {
-                questionflags = new ArrayList<Flag>();
-                questionflags.add(f);
-                question.setFlags(questionflags);
-
-            } else {
-                //questionflags.add(f);
-                question.getFlags().add(f);
-
-            }
-            Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-
-            f.setUpdatedAt(now);
-            f.setCreatedAt(now);
-
-            //flagDAO.doSave(f);
-            //question.setUpdatedAt(now);
-            questionDAO.doSave(question);
-
-        }
-
-        return flagresponse;
-    }
-
-    Block onActionFromRemoveFlagBox() {
-        return null;
-    }
-
-    Block onActionFromCloseFlagBlock() {
-        return flagblock;
-    }
+    
 
     public Date getUpdatedAt() {
                 return question.getUpdatedAt(); 

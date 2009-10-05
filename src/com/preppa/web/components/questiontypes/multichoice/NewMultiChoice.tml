@@ -35,48 +35,48 @@
                 </tr>
                 <tr>
                     <td></td>
-                <td align="left">
-                    <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
+                    <td align="left">
+                        <input t:type="ck/prototype_ui/AutoComplete" t:id="autoCompleteMultiTopics" selected="addedTopics"
                                translate="prop:translator" label="name" type="text" size="10"  />
                         <a href="#" class="addtopic">Add a topic here</a>
+                    </td>
+                </tr>
+                <tr id="imagerow">
+                    <td></td>
+                    <td>
+                        <b> Does your question contain a graph or an Image?</b>
+                        <br />
+                <t:radiogroup t:id="chooseimage" t:value="hasimage" >
+                    <b> Yes </b>
+                    <input t:id="yesimage" t:type="radio" type="radio" t:label="Yes" t:value="literal:yes" name="answertype" onclick="showUpload()" />
+                    <b> No </b>
+                    <input t:id="noimage" t:type="radio" type="radio" t:label="No" t:value="literal:no" name="answertype" onclick="hideUpload()" />
+                </t:radiogroup>
                 </td>
                 </tr>
-                <tr>
-                        <td></td>
-                        <td>
-                            <b> Does your question contain a graph or an Image?</b>
-                            <br />
-                    <t:radiogroup t:id="chooseimage" t:value="hasimage" >
-                        <b> Yes </b>
-                        <input t:id="yesimage" t:type="radio" type="radio" t:label="Yes" t:value="literal:yes" name="answertype" onclick="showUpload()" />
-                        <b> No </b>
-                        <input t:id="noimage" t:type="radio" type="radio" t:label="No" t:value="literal:no" name="answertype" onclick="hideUpload()" />
-                    </t:radiogroup>
+                <tr id="uploadrow">
+                    <td></td>
+                    <td>
+                        <input t:type="upload" t:id="upload" value="imageupload" style="display: none"/>
+                        <br />
                     </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input t:type="upload" t:id="upload" value="imageupload" style="display: none"/>
-                            <br />
-                        </td>
-                    </tr>
+                </tr>
                 <t:radiogroup t:id="answergroup" t:value="correct" validators="validators:required">
                     <tr>
                         <td></td>
                         <td width="10%" valign="top" align="left">
                     <t:label for="questioneditor">Question: </t:label>
                     </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
 
                     <t:editor align="left" t:id="questioneditor" t:toolbarSet="Gridin" customConfiguration="asset:context:js/fck/gridin.js" t:width="600" t:height="300"/>
 
                     </td>
                     </tr>
-                 
+
                     <tr>
                         <td></td>
                         <td >
@@ -147,9 +147,9 @@
                     </tr>
                     <tr>
                         <td></td>
-                    <td align="left">
-                        <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="3" cols="60" t:validate="required"/>
-                    </td>
+                        <td align="left">
+                            <input t:type="TextArea" t:id="fExplanation" value="fExplanation" t:title="Explanation" rows="3" cols="60" t:validate="required"/>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
@@ -160,10 +160,10 @@
                     </tr>
                     <tr>
                         <td></td>
-                    <td align="left">
+                        <td align="left">
 
-                        <div t:type="ck/RatingField" t:id="ratingField" source="list:1,2,3,4,5" value="ratingValue" t:validate="required"/>
-                    </td>
+                            <div t:type="ck/RatingField" t:id="ratingField" source="list:1,2,3,4,5" value="ratingValue" t:validate="required"/>
+                        </td>
                     </tr>
 
                     <tr>

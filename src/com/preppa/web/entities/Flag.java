@@ -242,6 +242,7 @@ public class Flag implements Serializable {
      * @return the vocab
      */
     @ManyToOne
+    @JoinColumn(name="vocab_id")
     public Vocab getVocab() {
         return vocab;
     }
@@ -268,6 +269,7 @@ public class Flag implements Serializable {
     }
 
     @ManyToOne
+    @JoinColumn(name="gridin_id")
     public Gridin getGridin() {
         return gridin;
     }
@@ -293,6 +295,7 @@ public class Flag implements Serializable {
     }
 
     @ManyToOne
+    @JoinColumn(name="question_id")
     public Question getQuestion() {
         return question;
     }

@@ -70,6 +70,15 @@ function showQuestionBlock( vblock) {
             eBlocks[i].removeClassName("current");
          
         }
+        if(vblock.title != "Multiple Choice") {
+            $('imagerow').hide();
+            $('uploadrow').hide();
+        }
+        else {
+               $('imagerow').show();
+            $('uploadrow').show();
+        }
+
         $('multichoice').addClassName("current");
         $('multichoice').show();
         $('multichoice').highlight();

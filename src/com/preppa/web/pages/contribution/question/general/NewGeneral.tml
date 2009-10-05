@@ -25,14 +25,14 @@
         </t:zone>
         <div t:type="newtag" />
 
-     <div t:type="newtopic" />
-         <div id="multichoice" class="questiontype" align="center" style='display:none'>
+        <div t:type="newtopic" />
+        <div id="multichoice" class="questiontype" align="center" style='display:none'>
             <div t:id="aquestion" t:hasquestiontype="true" t:qtype="questiontype" t:clear="viewed"></div>
         </div>
-       <div id="shortpassage" class="questiontype" align="center" style='display:none'>
+        <div id="shortpassage" class="questiontype" align="center" style='display:none'>
             <div align="center" t:id="newshortpassage" />
         </div>
-      <div id="shortdualpassage"  class="questiontype" align="center" style='display:none'>
+        <div id="shortdualpassage"  class="questiontype" align="center" style='display:none'>
             <div align="center" t:id="newshortdualpassage" />
         </div>
         <div id="longpassage"  class="questiontype" align="center" style='display:none'>
@@ -43,18 +43,18 @@
             <div t:id="newlongdualpassage" />
             <br />
         </div>
-       
+
         <div id="gridin" class="questiontype" align="center" style='display:none'>
             <div t:id="newgridin" />
         </div>
-         <div id="prompt" class="questiontype" align="center" style='display:none'>
+        <div id="prompt" class="questiontype" align="center" style='display:none'>
             <div t:id="newprompt" />
         </div>
-             <div id ="improving"  class="questiontype" align="center" style='display:none'>
-                 <div t:id="newimproving" />
-             </div>
+        <div id ="improving"  class="questiontype" align="center" style='display:none'>
+            <div t:id="newimproving" />
+        </div>
 
 
     </div>
-            <br />
+    <br />
 </html>

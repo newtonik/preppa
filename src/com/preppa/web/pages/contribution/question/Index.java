@@ -54,14 +54,10 @@ public class Index {
     private Questiontype questiontype;
 
     void onActivate() {
-        List<Flag> temp = flagDAO.FindAllByContentType(ContentType.Question);
-        flags = new ArrayList<Flag>();
-        for (int i = 0; i < temp.size(); i++) {
-            if(flags.contains(temp.get(i)) != true) {
-               flags.add(temp.get(i));
-            }
-        }
+        flags = flagDAO.FindAllByContentType(ContentType.Question);
 
+        flags = null;
+      
         questiontype = questypeDAO.findByName("Multiple Choice");
 
         List<Question> qTemp = questionDAO.findAllByNonApproved(questiontype);
@@ -76,6 +72,7 @@ public class Index {
         }
 
     }
+
 
     public String getAnswerFormatted() {
         String returnVal = answer.getAnswer();

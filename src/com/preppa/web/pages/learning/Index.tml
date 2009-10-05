@@ -4,9 +4,6 @@
     <div>
     <br/>
         <t:articlemenu />
-        <t:articlesearch/>
-        <br/>
-         <a href="#" t:type="pagelink" t:page="contribution/article/search"> Search Page</a>
     </div>
     <div>
        <h3>Today's featured article</h3>

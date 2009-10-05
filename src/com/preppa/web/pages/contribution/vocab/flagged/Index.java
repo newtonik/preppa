@@ -74,7 +74,9 @@ public class Index {
 
     void onActivate() {
         flags = flagDAO.FindAllByContentType(ContentType.Vocab);
-       System.out.println("There are " + flags.size() + " flags");
+        //remove flags till fix
+        flags = null;
+       
        
 //        if(flags.size() > 0) {
 //            for(Flag f : flags) {

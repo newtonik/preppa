@@ -215,6 +215,7 @@ public class NewGeneral {
 
         if (quesType.equals("Multiple Choice")) {
             json.put("type", "multichoice");
+            json.put("title", quesType);
             visiblequestiontype = "multichoice";
             questiontype = questiontypeDAO.findByName(quesType);
             aquestion.setSubject(testsubject);

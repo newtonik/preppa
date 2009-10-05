@@ -53,7 +53,8 @@
 
 
             <div align="left">
-            <a href="#" t:type="pageLink" t:page="contribution/question/Show" t:context="flag.question.id"><t:outputraw t:value="${flag.question.question}" /></a>
+
+                <t:outputraw t:value="${flag.question.question}" />
             <t:loop t:source="flag.question.choices" t:value="answer">
             <div class="answer">
             <u><t:outputraw t:value="${answer.answer}" /></u>

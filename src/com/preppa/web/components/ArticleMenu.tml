@@ -1,33 +1,39 @@
 <t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
-<div id="qtypemenu" class="nav-menu">
-    <ul>
-        <t:if t:test="Testing">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test" class="active" >Test Info</t:pagelink></li>
-            <t:parameter name="else">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test">Test Info</t:pagelink></li>
-            </t:parameter>
-        </t:if>
-        <t:if t:test="Math">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math" class="active">Math</t:pagelink></li>
-            <t:parameter name="else">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math">Math</t:pagelink></li>
-            </t:parameter>
-        </t:if>        
-        <t:if t:test="CriticalReading">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading" class="active">Critical Reading</t:pagelink></li>
-            <t:parameter name="else">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading">Critical Reading</t:pagelink></li>
-            </t:parameter>
-        </t:if>
-        <t:if t:test="Writing">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing" class="active">Writing</t:pagelink></li>
-            <t:parameter name="else">
-            <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing">Writing</t:pagelink></li>
-            </t:parameter>
-        </t:if>
+    <div id="articlemenu">
+        <div id="qtypemenu"  style="float: left;"  class="nav-menu">
+            <ul>
+                <t:if t:test="Testing">
+                    <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test" class="active" >Test Info</t:pagelink></li>
+                    <t:parameter name="else">
+                        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Test">Test Info</t:pagelink></li>
+                    </t:parameter>
+                </t:if>
+                <t:if t:test="Math">
+                    <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math" class="active">Math</t:pagelink></li>
+                    <t:parameter name="else">
+                        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Math">Math</t:pagelink></li>
+                    </t:parameter>
+                </t:if>
+                <t:if t:test="CriticalReading">
+                    <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading" class="active">Critical Reading</t:pagelink></li>
+                    <t:parameter name="else">
+                        <li><t:pagelink t:page="contribution/article/view" t:context="literal:CriticalReading">Critical Reading</t:pagelink></li>
+                    </t:parameter>
+                </t:if>
+                <t:if t:test="Writing">
+                    <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing" class="active">Writing</t:pagelink></li>
+                    <t:parameter name="else">
+                        <li><t:pagelink t:page="contribution/article/view" t:context="literal:Writing">Writing</t:pagelink></li>
+                    </t:parameter>
+                </t:if>
 
-    </ul>
-</div>
-<br/>
-<br/>
+            </ul>
+        </div>
+        <br />
+        <div align="right">
+            <div t:type="articlesearch" />
+        </div>
+    </div>
+    <br/>
+    <br/>
 </t:container>
