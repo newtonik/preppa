@@ -1,5 +1,6 @@
     package com.preppa.web.components.questiontypes.multichoice;
 
+
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.TagDAO;
 import com.preppa.web.data.TopicDAO;
@@ -11,6 +12,7 @@ import com.preppa.web.entities.Topic;
 import com.preppa.web.entities.User;
 import com.preppa.web.pages.Index;
 import com.preppa.web.pages.contribution.question.ShowQuestion;
+import com.preppa.web.pages.contribution.vocab.ShowVocab;
 import com.preppa.web.utils.InjectSelectionModel;
 import java.io.File;
 import java.sql.Timestamp;
@@ -20,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -154,6 +157,11 @@ public class EditMultiChoice {
     @Inject
     private Logger logger;
     
+    @InjectPage
+    private ShowQuestion show;
+    @Inject
+    private ComponentResources resources;
+
     void CreateQuestion() {
         //question = new Question();
     }
@@ -440,4 +448,10 @@ public class EditMultiChoice {
           return json;
         }
 
+
+    Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
+        show.activate(question.getId());
+        return show;
+    }
 }

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldTranslator;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -74,6 +75,11 @@ public class NewVocab {
     @Property
     private DictionaryWord dWord;
 
+    @InjectPage
+    private AddVocab add;
+    @Inject
+    private ComponentResources resources;
+    
     void onValidateFormFromVocabForm() {
     }
 
@@ -223,5 +229,8 @@ public FieldTranslator getTagTranslator()
    }
 
 
-
+    Object onActionFromCancel() {
+        resources.discardPersistentFieldChanges();
+        return add;
+    }
 }

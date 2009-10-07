@@ -98,6 +98,33 @@ public class ShowQuestion {
         //return this;
     }
 
+    public void activate(int id) {
+        if (id > 0) {
+            this.ques = questionDAO.findById(id);
+            isApproved = this.ques.getApproval();
+            if (ques.getQuestiontype() != null) {
+                qType = ques.getQuestiontype().getName();
+            }
+            contType = ContentType.Question;
+            votecount = voteDAO.findVoteByContentId(contType, ques.getId());
+            if (votecount >= Constants.getApprovalThreshhold()) {
+                isApproved = true;
+            }
+            else {
+                isApproved = false;
+            }
+
+            if (this.ques != null) {
+                /*example = question.getSentence().getSentence();
+                vid = question.getId();*/
+                qid = id;
+                this.votes = voteDAO.findSumByQuestionId(ques.getId());
+            } else {
+                // return index;
+            }
+        }
+    }
+
     Integer onPassivate() {
         return this.qid;
     }

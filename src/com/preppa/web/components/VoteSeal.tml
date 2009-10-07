@@ -29,9 +29,8 @@
 
      <t:if t:test="Approved">
             <b> This question is approved.</b>
-     </t:if>
-    <div class="vote">
 
+            <t:parameter name="else">
 
                 <div class="thumb">
                 <a href="#" t:type="actionlink" disabled="true" t:id="voteup" >
@@ -47,6 +46,13 @@
                     <img class="downimg" alt="Thumbs Down" align="middle" height="20" width="20" src="${asset:context:/images/voting/thumbsdown2.jpg}" style="border: 2px solid ;"/>
                 </a>
                     </div>
+
+            </t:parameter>
+     </t:if>
+    <div class="vote">
+
+
+
         <t:form class="hiddenform">
             <input t:id="contidhidden" class="hiddenId"/>
             <input t:id="conttypehidden" class="hiddentypeid" />
