@@ -23,8 +23,6 @@ import org.slf4j.Logger;
  */
 public class PromptDAOHimpl extends AbstractHibernateDAO<Prompt, Integer> implements PromptDAO {
 
-
-
     public PromptDAOHimpl(Logger logger, Session session) {
         super(logger, session);
     }
@@ -62,22 +60,34 @@ public class PromptDAOHimpl extends AbstractHibernateDAO<Prompt, Integer> implem
     public List<Prompt> findAllByAwaiting() {
         ContentType ct = ContentType.Prompt;
         SQLString sqlString = new SQLString("FROM Prompt p");
-        
-            sqlString.addWhereClause("p.id NOT IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
-                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
-            return (List<Prompt>) findByQuery(sqlString.toString());
-        
+
+        sqlString.addWhereClause("p.id NOT IN " + "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '" + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
+        return (List<Prompt>) findByQuery(sqlString.toString());
+
     }
 
     @Override
     public List<Prompt> findAllByApproved() {
         ContentType ct = ContentType.Prompt;
-           SQLString sqlString = new SQLString("FROM Prompt p");
+        SQLString sqlString = new SQLString("FROM Prompt p");
 
-            sqlString.addWhereClause("p.id IN "+ "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '"
-                                    + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
-            return (List<Prompt>) findByQuery(sqlString.toString());
+        sqlString.addWhereClause("p.id IN " + "(Select v.contentId FROM Vote v WHERE v.contentTypeId = '" + ct.ordinal() + "' GROUP BY v.contentId Having sum(v.value) >= '" + Constants.getApprovalThreshhold() + "')");
+        return (List<Prompt>) findByQuery(sqlString.toString());
 
 
+    }
+
+    @Override
+    public List<Prompt> findByUserIds(List<Integer> ids) {
+        SQLString sqlString = new SQLString("FROM Prompt p");
+        if (ids.size() > 0) {
+            String rlist = ids.toString();
+
+            rlist = rlist.replace('[', '(');
+            rlist = rlist.replace(']', ')');
+            sqlString.addWhereClause("p.id IN " + rlist);
+        }
+
+        return findByQuery(sqlString.toString());
     }
 }

@@ -16,10 +16,8 @@ import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.VoteDAO;
 import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.Question;
-import com.preppa.web.entities.Question;
 import com.preppa.web.entities.QuestionAnswer;
 import com.preppa.web.entities.Questiontype;
-import java.util.List;
 import com.preppa.web.utils.ContentType;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,13 +61,13 @@ public class Index {
         List<Question> qTemp = questionDAO.findAllByNonApproved(questiontype);
         nonApproved = new ArrayList<Question>();
 
-        for (int i = 0; i < qTemp.size(); i++) {
-            if (qTemp.get(i).getFlags().isEmpty()) {
-                if (voteDAO.findSumByQuestionId(qTemp.get(i).getId()) < 1) {
-                    nonApproved.add(qTemp.get(i));
-                }
-            }
-        }
+//        for (int i = 0; i < qTemp.size(); i++) {
+//            if (qTemp.get(i).getFlags().isEmpty()) {
+//                if (voteDAO.findSumByQuestionId(qTemp.get(i).getId()) < 1) {
+//                    nonApproved.add(qTemp.get(i));
+//                }
+//            }
+//        }
 
     }
 

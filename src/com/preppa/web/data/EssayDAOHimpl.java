@@ -68,4 +68,18 @@ public class EssayDAOHimpl extends AbstractHibernateDAO<Essay, Integer> implemen
 
         return findByQuery(sqlString.toString());
     }
+
+    @Override
+    public List<Essay> findByUserIds(List<Integer> ids) {
+        SQLString sqlString = new SQLString("FROM Essay e");
+        if (ids.size() > 0) {
+            String rlist = ids.toString();
+
+            rlist = rlist.replace('[', '(');
+            rlist = rlist.replace(']', ')');
+            sqlString.addWhereClause("e.id IN " + rlist);
+        }
+
+        return findByQuery(sqlString.toString());
+    }
 }

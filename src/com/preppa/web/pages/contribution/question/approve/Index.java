@@ -54,9 +54,9 @@ public class Index {
 
         for (int i = 0; i < qTemp.size(); i++) {
 
-            if (voteDAO.findSumByQuestionId(qTemp.get(i).getId()) >= Constants.getApprovalThreshhold() && qTemp.get(i).getFlags().isEmpty() && approved.contains(qTemp.get(i)) == false) {
-                approved.add(qTemp.get(i));
-            }
+        //    if (voteDAO.findSumByQuestionId(qTemp.get(i).getId()) >= Constants.getApprovalThreshhold() && qTemp.get(i).getFlags().isEmpty() && approved.contains(qTemp.get(i)) == false) {
+          //      approved.add(qTemp.get(i));
+            //}
         }
     }
 

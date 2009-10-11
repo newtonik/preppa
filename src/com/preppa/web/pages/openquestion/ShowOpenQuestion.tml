@@ -2,7 +2,7 @@
     <body>
         <br />
         <br />
-        <div id="main">
+        <div class="mainclass">
             <t:if t:test="sameUser">
             <div align="right">
                 <a href="#" t:type="pageLink" t:page="openquestion/Edit" t:context="question.id"> Edit </a>
@@ -27,14 +27,18 @@
             <t:tagview t:alltags="tags" t:searchlink="${slink}"/>
             <br />
             <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
-            <br />
-            <br />
-            <br />
-            <br />
+              <p>
+                <small><a href="#" class="flaglink" > Flag </a></small>
+             </p>
 
             <br />
             <br />
-
+            <br />
+            <br />
+             <div t:type="newflag" t:contType="contType" t:contid="question.id" t:objectToflag="question"/>
+            <br />
+            <br />
+          
             <div t:id="answerlist" t:answers="openanswers">
 
             </div>

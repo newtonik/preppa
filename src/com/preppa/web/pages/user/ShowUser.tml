@@ -25,19 +25,61 @@
     <div align="left">Buddy List</div>
     <t:pagelink t:page="announcements/newannouncement">Create Announcement</t:pagelink>
 
+
     <div id="trackerbox" class="mainclass">
         <h3> Watchlist </h3>
+        <br /> <br />
+        <ul id="sddm">
+            <li><a href="#"
+                   onmouseover="mopen('m1')"
+                   onmouseout="mclosetime()">Critical Reading</a>
+                <div id="m1"
+                     onmouseover="mcancelclosetime()"
+                     onmouseout="mclosetime()">
+                    <a href="#" t:type="actionlink" t:id="sentence" id="sentence" t:zone="multiplezone" > Sentence Completion </a><br/>
+                    <a href="#" t:type="actionLink" t:id="spassage" id="spassage" t:zone="multiplezone" > Short Passages </a>
+                    <a href="#" t:type="actionlink" t:id="lpassage" id="lpassage" t:zone="multiplezone" > Long Passages </a>
+                    <a href="#" t:type="actionlink" t:id="sdpassage" id="sdpassage" t:zone="multiplezone" > Short Dual Passages </a>
+                    <a href="#" t:type="actionlink" t:id="ldpassage" id="ldpassage" t:zone="multiplezone" > Long Dual Passages </a>
+
+                </div>
+            </li>
+            <li><a href="#"
+                   onmouseover="mopen('m2')"
+                   onmouseout="mclosetime()">Math<br/><br/></a>
+                <div id="m2"
+                     onmouseover="mcancelclosetime()"
+                     onmouseout="mclosetime()">
+                    <a href="#" t:type="actionlink" t:id="multiple" id="multiple" t:zone="multiplezone"> Multiple Choice </a><br/>
+                    <a href="#" t:type="actionlink" t:id="gridin"  id="gridin" t:zone="multiplezone" > Grid-ins </a>
+                </div>
+            </li>
+            <li><a href="#"
+                   onmouseover="mopen('m3')"
+                   onmouseout="mclosetime()">Writing<br/><br/></a>
+                <div id="m3"
+                     onmouseover="mcancelclosetime()"
+                     onmouseout="mclosetime()">
+                    <a href="#" t:type="actionlink" t:id="identifying" id="identifying" t:zone="multiplezone" > Identifying Sentence Errors </a><br/>
+                    <a href="#" t:type="actionlink" t:id="improvingsentences"  id="improvingsentences" t:zone="multiplezone" > Improving Sentences </a><br/>
+                    <a href="#" t:type="actionlink" t:id="improvingparagraphs" id="improvingparagraphs"  t:zone="multiplezone" > Improving Paragraphs </a><br/>
+                    <a href="#" t:type="actionlink" t:id="prompts" id="prompts" t:zone="multiplezone" > Free Response Question </a><br/>
+                </div>
+            </li>
+        </ul>
+        <br /> <br />
         <!-- tab "panes" -->
         <ul class="css-tabs">
-            <li><a href="#" t:id="getarticles" t:type="actionlink" t:zone="articlezone"  >Articles and Guides</a></li>
-            <li><a href="#" t:id="getquestions" t:type="actionlink"  t:zone="multiplezone" >Questions</a></li>
-            <li><a href="#" t:id="getgridins" t:type="actionlink" t:zone="gridinzone" >Essay Responses</a></li>
-            <li><a href="#" t:id="getvocabs" t:type="actionlink" t:zone="vocabzone" >Vocab</a></li>
+            <li><a href="#" t:context="articles" t:id="getarticles" t:type="actionlink" t:zone="articlezone"  >Articles and Guides</a></li>
+            <li><a href="#" t:context="multiple" t:id="getquestions" id="getquestions"  t:type="actionlink"  t:zone="multiplezone" >Questions</a></li>
+            <li><a href="#" t:context="essays" t:id="getessays" t:type="actionlink" t:zone="gridinzone" >Essay Responses</a></li>
+            <li><a href="#" t:context="vocabs" t:id="getvocabs" t:type="actionlink" t:zone="vocabzone" >Vocab</a></li>
 
         </ul>
         <div class="realpanes">
             <div t:type="zone" t:id="articlezone" style="display:block"> <t:delegate to="resultblock" /> </div>
-            <div t:type="zone" t:id="multiplezone"></div>
+            <div t:type="zone" t:id="multiplezone" id="multiplezone" t:show="showmultiple" >
+            </div>
             <div t:type="zone" t:id="gridinzone"></div>
             <div t:type="zone" t:id="vocabzone"></div>
         </div>
@@ -46,6 +88,7 @@
     </div>
     <t:block t:id="gridinblock">
         <h3> Gridins Contributed</h3>
+
         <table class="questiontable">
             <tr>
                 <th> Title</th>
@@ -55,20 +98,21 @@
                 <th> Last Updated By </th>
             </tr>
             <tr t:type="loop" source="gridins" value="gridin">
-                    <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${gridin.id}">${gridin.title} </a> </td>
-                    <td align="left"> <t:outputraw value="gridin.question" /> </td>
-                <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="gridin.createdat" /> </td>
+                <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="${gridin.id}">${gridin.title} </a> </td>
+                <td align="left"> <t:outputraw value="gridin.question" /> </td>
+            <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="gridin.createdat" /> </td>
             <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="gridin.updatedat" /> </td>
             <td align="left"> ${gridin.updatedBy.username} </td>
             </tr>
         </table>
     </t:block>
 
+
+
     <t:block t:id="questionblock">
-        <h3> Questions Contributed</h3>
+        <h2> </h2>
         <table class="questiontable">
             <tr>
-                <th> Title</th>
                 <th> Question </th>
                 <th> Time Submitted </th>
                 <th> Last Updated </th>
@@ -76,20 +120,19 @@
                 <th></th>
             </tr>
             <tr class="clickablerow" t:type="loop" source="questions" value="question" onclick="DoClick('../../contribution/question/show/${question.id}');">
-                    <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/question/show" t:context="${question.id}" >${question.title} </a> </td>
-                    <td align="left"> <t:outputraw value="question.question" /> </td>
-                <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.createdat" /> </td>
+                <td align="left"> <t:outputraw value="question.question" /> </td>
+            <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.createdat" /> </td>
             <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="question.updatedat" /> </td>
             <td align="left"> ${question.updatedBy.username} </td>
-             </tr>
+            </tr>
         </table>
     </t:block>
     <t:block t:id="clickblock">
         <b> I have been clicked </b>
     </t:block>
     <t:block t:id="vocabblock">
-     <h3>Vocab Words Contributed</h3>
-        <table class="vocabtable">
+        <h3>Vocab Words Contributed</h3>
+       <table class="vocabtable">
             <tr>
                 <th> Title</th>
                 <th> Definition</th>
@@ -98,9 +141,9 @@
                 <th> Last Updated By </th>
             </tr>
             <tr t:type="loop" source="vocabs" value="vocab">
-                    <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/vocab/show" t:context="${vocab.id}" >${vocab.name} </a> </td>
-                    <td align="left"> <t:outputraw value="vocab.definition" /> </td>
-                <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="vocab.createdat" /> </td>
+                <td align="left"> <a href="#" t:type="pagelink" t:page="contribution/vocab/show" t:context="${vocab.id}" >${vocab.name} </a> </td>
+                <td align="left"> <t:outputraw value="vocab.definition" /> </td>
+            <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="vocab.createdat" /> </td>
             <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="vocab.updatedat" /> </td>
             <td align="left"> ${vocab.updatedBy.username} </td>
             </tr>
@@ -188,6 +231,59 @@
                 <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="article.createdat" /> </td>
             <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="article.updatedat" /> </td>
             <td align="left"> ${article.updatedBy.username} </td>
+            </tr>
+        </table>
+    </t:block>
+
+    <t:block t:id="improvingblock">
+        <h2> Improving Paragraphs Contributed</h2>
+        <table class="articletable">
+            <tr>
+                <th> Teaser </th>
+                <th> Time Submitted </th>
+                <th> Last Updated </th>
+                <th> Last Updated By </th>
+            </tr>
+            <tr class="clickablerow" t:type="loop" source="improvingparagraphs" value="improving"  onclick="DoClick('../../contribution/improving/show/${improving.id}');">
+                <td align="left"> ${improving.teaser} </td>
+                <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="improving.createdat" /> </td>
+            <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="improving.updatedat" /> </td>
+            <td align="left"> ${improving.updatedBy.username} </td>
+            </tr>
+        </table>
+    </t:block>
+
+    <t:block t:id="promptblock">
+        <h2>Free Responses Contributed</h2>
+        <table class="articletable">
+            <tr>
+                <th> Quote </th>
+                <th> Time Submitted </th>
+                <th> Last Updated </th>
+                <th> Last Updated By </th>
+            </tr>
+            <tr class="clickablerow" t:type="loop" source="prompts" value="prompt"  onclick="DoClick('../../contribution/prompt/show/${prompt.id}');">
+                <td align="left"> ${prompt.quote} </td>
+                <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="prompt.createdat" /> </td>
+            <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="prompt.updatedat" /> </td>
+            <td align="left"> ${prompt.updatedBy.username} </td>
+            </tr>
+        </table>
+    </t:block>
+
+      <t:block t:id="essayblock">
+        <table class="articletable">
+            <tr>
+                <th> Teaser </th>
+                <th> Time Submitted </th>
+                <th> Last Updated </th>
+                <th> Last Updated By </th>
+            </tr>
+            <tr class="clickablerow" t:type="loop" source="essays" value="essay"  onclick="DoClick('../../contribution/prompt/essay/show/${essay.id}');">
+                <td align="left"> ${essay.teaser} </td>
+                <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="essay.createdat" /> </td>
+            <td align="left">  <t:output format="literal:MMM. dd, yyyy h:mm a"  value="essay.updatedat" /> </td>
+            <td align="left"> ${essay.updatedBy.username} </td>
             </tr>
         </table>
     </t:block>

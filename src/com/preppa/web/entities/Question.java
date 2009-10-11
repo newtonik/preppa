@@ -70,7 +70,7 @@ public class Question implements Serializable {
     private String revComment;
     private Boolean image;
     private String imagePath;
-    private List<Flag> flags  = new ArrayList<Flag>();
+  //  private List<Flag> flags  = new ArrayList<Flag>();
     private Set<Vote> votes;
     private Integer voteScore;
     private User updatedBy;
@@ -78,6 +78,7 @@ public class Question implements Serializable {
     private List<ReviewComment> reviewcomments;
     private List<Topic> topics = new LinkedList<Topic>();
     private Testsubject testsubject;
+    private List<Flag> flags;
 
     public Question() {
     }
@@ -390,22 +391,20 @@ public class Question implements Serializable {
         this.imagePath = imagePath;
     }
 
-    /**
-     * @return the flags
-     */
-    @Audited
-    @OneToMany(mappedBy = "question", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    public List<Flag> getFlags() {
-        return flags;
-    }
-
-    /**
-     * @param flags the flags to set
-     */
-    public void setFlags(List<Flag> flags) {
-        this.flags = flags;
-    }
+//    /**
+//     * @return the flags
+//     */
+//    @OneToMany(mappedBy="question")
+//    public List<Flag> getFlags() {
+//        return flags;
+//    }
+//
+//    /**
+//     * @param flags the flags to set
+//     */
+//    public void setFlags(List<Flag> flags) {
+//        this.flags = flags;
+//    }
 
     /**
      * @return the votes
@@ -518,6 +517,15 @@ public class Question implements Serializable {
      */
     public void setTopics(List<Topic> topics) {
         this.topics = topics;
+    }
+
+    @OneToMany(mappedBy = "question")
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 
 }

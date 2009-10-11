@@ -23,6 +23,8 @@ import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongDualPassageDAOHibImpl;
 import com.preppa.web.data.LongPassageDAO;
 import com.preppa.web.data.LongPassageDAOHibImpl;
+import com.preppa.web.data.OpenAnswerDAO;
+import com.preppa.web.data.OpenAnswerDAOHimpl;
 import com.preppa.web.data.OpenQuestionDAO;
 import com.preppa.web.data.OpenQuestionDAOHimpl;
 import com.preppa.web.data.PassageDAO;
@@ -132,6 +134,7 @@ public final class AppModule {
         binder.bind(FeedBackDAO.class, FeedBackDAOHimpl.class);
         binder.bind(PracticeSetDAO.class, PracticeSetDAOHimpl.class);
         binder.bind(ImprovingParagraphDAO.class, ImprovingParagraphHimplDAO.class);
+        binder.bind(OpenAnswerDAO.class, OpenAnswerDAOHimpl.class);
         //binder.bind(UserDetailsService.class, UserDetailsWithOpenIDServiceImpl.class);
 
 

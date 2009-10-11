@@ -28,6 +28,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
@@ -202,5 +203,9 @@ public class Essay implements Serializable {
      */
     public void setFeedBack(List<FeedBack> feedback) {
         this.feedback = feedback;
+    }
+    @Transient
+    public String getTeaser() {
+         return getBody().substring(0, Math.min(getBody().length(),100));
     }
 }
