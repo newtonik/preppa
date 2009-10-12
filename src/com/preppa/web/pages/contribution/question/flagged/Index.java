@@ -11,7 +11,6 @@ import com.preppa.web.utils.ContentType;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.Block;
-import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
@@ -22,9 +21,13 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.util.TextStreamResponse;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.security.annotation.Secured;
 
 /**
@@ -60,6 +63,9 @@ public class Index {
     private List<Flag> flags;
     @Property
     private Flag flag;
+    private Session sess;
+    @Inject
+    private HibernateSessionManager sessionManager;
 
     @Component(parameters = {"value=flagvalue",  "event=change",
                          "onCompleteCallback=literal:onChangeFlag"})
@@ -72,15 +78,27 @@ public class Index {
     public void setType( FlagType type) { flagtype = type; }
 
     void onActivate() {
-        List<Flag> temp = flagDAO.FindAllByContentType(ContentType.Question);
-        questions = new ArrayList<Question>();
+//        flags = flagDAO.FindAllByContentType(ContentType.Question);
+//        questions = new ArrayList<Question>();
+        sess = sessionManager.getSession();
+        sess.beginTransaction();
+        Criteria crit = sess.createCriteria(Flag.class);
+        crit.add(Restrictions.eq("contentType", ContentType.Question));
+        crit.setFetchMode("question", FetchMode.JOIN);
 
-        flags = new ArrayList();
-        for (int i = 0; i < temp.size(); i++) {
-            if(flags.contains(temp.get(i)) != true) {
-               flags.add(temp.get(i));
-            }
-        }
+        flags = crit.list();
+
+        System.out.println("first question of " + flags.size() );
+       // sess.close();
+
+
+//
+//        flags = new ArrayList();
+//        for (int i = 0; i < temp.size(); i++) {
+//            if(flags.contains(temp.get(i)) != true) {
+//               flags.add(temp.get(i));
+//            }
+//        }
     }
 
     Block onChangeFromFlagSelect(String selected) {

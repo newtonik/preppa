@@ -69,6 +69,7 @@ public class OpenQuestion implements Serializable {
     private String imagePath;
     private User updatedBy;
     private List<Vote> votes;
+    private List<Flag> flags = new ArrayList<Flag>();
 
 
     @Id
@@ -359,5 +360,20 @@ public class OpenQuestion implements Serializable {
     @Transient
     public Integer getAnswerCount() {
         return this.answers.size();
+    }
+
+    /**
+     * @return the flags
+     */
+    @OneToMany(mappedBy = "openQuestion")
+    public List<Flag> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(List<Flag> flags) {
+        this.flags = flags;
     }
 }

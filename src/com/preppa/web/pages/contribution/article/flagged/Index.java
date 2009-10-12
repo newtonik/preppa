@@ -11,7 +11,6 @@ import com.preppa.web.utils.ContentType;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.Block;
-import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
@@ -24,7 +23,6 @@ import org.apache.tapestry5.corelib.components.Select;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.util.TextStreamResponse;
 import org.springframework.security.annotation.Secured;
 
 

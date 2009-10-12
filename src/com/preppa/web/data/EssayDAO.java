@@ -23,4 +23,5 @@ public interface EssayDAO extends GenericDAO <Essay, Integer> {
     List<Essay> findAllByNewest();
     List<Essay> findAllByGraded();
     List<Essay> findAllByNonGraded();
+    List<Essay> findByUserIds(List<Integer> ids);
 }

@@ -12,6 +12,8 @@ import com.preppa.web.data.FlagDAO;
 import com.preppa.web.data.ImprovingParagraphDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.OpenAnswerDAO;
+import com.preppa.web.data.OpenQuestionDAO;
 import com.preppa.web.data.PromptDAO;
 import com.preppa.web.data.QuestionDAO;
 import com.preppa.web.data.ShortDualPassageDAO;
@@ -22,6 +24,8 @@ import com.preppa.web.entities.Flag;
 import com.preppa.web.entities.ImprovingParagraph;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.OpenAnswer;
+import com.preppa.web.entities.OpenQuestion;
 import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Question;
 import com.preppa.web.entities.ShortDualPassage;
@@ -48,7 +52,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
 /**
- *
+ * 
  * @author newtonik
  */
 @IncludeJavaScriptLibrary(value = {"context:js/flagform.js"})
@@ -103,7 +107,10 @@ public class NewFlag {
     private QuestionDAO questionDAO;
     @Inject
     private VocabDAO vocabDAO;
-
+    @Inject
+    private OpenQuestionDAO openDAO;
+    @Inject
+    private OpenAnswerDAO openAnswerDAO;
 
     @CommitAfter
     Block onSuccessFromFlagForm() {
@@ -137,7 +144,7 @@ public class NewFlag {
             f.setUpdatedAt(now);
             f.setCreatedAt(now);
             saveFlagToObject();
-           // Flag doSave = flagDAO.doSave(f);
+            flagDAO.doSave(f);
 
 
         }
@@ -219,9 +226,9 @@ public class NewFlag {
 
             prompt = promptDAO.doRetrieve(prompt.getId(), true);
             prompt.getFlags().add(f);
-
-            promptDAO.doSave(prompt);
             f.setPrompt(prompt);
+            promptDAO.doSave(prompt);
+            
             return true;
         }
         if (objectToflag instanceof Question) {
@@ -231,8 +238,8 @@ public class NewFlag {
             
             f.setContentType(ContentType.Question);
             f.setQuestion(question);
-            question.getFlags().add(f);
-            questionDAO.doSave(question);
+            //question.getFlags().add(f);
+            //questionDAO.doSave(question);
             
             
             return true;
@@ -265,6 +272,38 @@ public class NewFlag {
             vocabDAO.doSave(vocab);
             return true;
         }
+          if (objectToflag instanceof OpenQuestion) {
+            OpenQuestion opq = (OpenQuestion) objectToflag;
+            f.setContentType(ContentType.OpenQuestion);
+
+           opq = openDAO.findById(opq.getId());
+
+
+            f.setOpenQuestion(opq);
+            if(opq.getFlags() == null) {
+
+            }
+             opq.getFlags().add(f);
+             openDAO.doSave(opq);
+            return true;
+        }
+
+         if (objectToflag instanceof OpenAnswer) {
+            OpenAnswer opq = (OpenAnswer) objectToflag;
+            f.setContentType(ContentType.OpenAnswer);
+
+           opq = openAnswerDAO.doRetrieve(opq.getId(), false);
+
+
+            f.setOpenAnswer(opq);
+            if(opq.getFlags() == null) {
+
+            }
+             opq.getFlags().add(f);
+             openAnswerDAO.doSave(opq);
+            return true;
+        }
+
         logger.error("Object is not of a valid contentType");
         return false;
     }

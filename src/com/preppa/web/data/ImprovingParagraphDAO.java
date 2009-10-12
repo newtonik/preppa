@@ -11,4 +11,5 @@ import org.chenillekit.hibernate.daos.GenericDAO;
 public interface ImprovingParagraphDAO extends GenericDAO<ImprovingParagraph, Long> {
         List<ImprovingParagraph> findAllByAwaiting();
         List<ImprovingParagraph> findAllByApproved();
+        List<ImprovingParagraph> findByUserIds(List<Long> ids);
 }

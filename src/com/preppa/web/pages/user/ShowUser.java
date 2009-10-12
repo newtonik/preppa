@@ -5,20 +5,28 @@
 package com.preppa.web.pages.user;
 
 import com.preppa.web.data.ArticleDAO;
+import com.preppa.web.data.EssayDAO;
 import com.preppa.web.data.GridinDAO;
+import com.preppa.web.data.ImprovingParagraphDAO;
 import com.preppa.web.data.LongDualPassageDAO;
 import com.preppa.web.data.LongPassageDAO;
+import com.preppa.web.data.PromptDAO;
 import com.preppa.web.data.QuestionDAO;
+import com.preppa.web.data.QuestiontypeDAO;
 import com.preppa.web.data.ShortDualPassageDAO;
 import com.preppa.web.data.ShortPassageDAO;
 import com.preppa.web.data.UserObDAO;
 import com.preppa.web.data.UserProfileDAO;
 import com.preppa.web.data.VocabDAO;
 import com.preppa.web.entities.Article;
+import com.preppa.web.entities.Essay;
 import com.preppa.web.entities.Gridin;
+import com.preppa.web.entities.ImprovingParagraph;
 import com.preppa.web.entities.LongDualPassage;
 import com.preppa.web.entities.LongPassage;
+import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Question;
+import com.preppa.web.entities.Questiontype;
 import com.preppa.web.entities.ShortDualPassage;
 import com.preppa.web.entities.ShortPassage;
 import com.preppa.web.entities.User;
@@ -36,6 +44,7 @@ import org.apache.tapestry5.annotations.ApplicationState;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.HibernateSessionManager;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -51,9 +60,10 @@ import org.hibernate.envers.query.criteria.LogicalAuditExpression;
  *
  * @author newtonik
  */
-@IncludeStylesheet(value = {"context:styles/showuser.css"})
-@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/jquery/tools.tabs-1.0.1.js", "context:js/showuser.js"})
+@IncludeStylesheet(value = {"context:styles/showuser.css", "context:styles/dropdown.css"})
+@IncludeJavaScriptLibrary(value = {"context:js/dropdown.js", "context:js/jquery-1.3.2.js", "context:js/jquery/tools.tabs-1.0.1.js", "context:js/showuser.js"})
 public class ShowUser {
+
     @ApplicationState
     private User user;
     @Property
@@ -104,6 +114,34 @@ public class ShowUser {
     @Property
     private List<ShortDualPassage> shortdualpassages;
     @Inject
+    private ImprovingParagraphDAO improvingDAO;
+    @Property
+    private List<ImprovingParagraph> improvingparagraphs;
+    @Property
+    private ImprovingParagraph improving;
+    @Inject
+    @Property
+    private Block improvingblock;
+    @Inject
+    private PromptDAO promptDAO;
+    @Property
+    private List<Prompt> prompts;
+    @Property
+    private Prompt prompt;
+    @Inject
+    @Property
+    private Block promptblock;
+    @Property
+    private List<Essay> essays;
+    @Property
+    private Essay essay;
+    @Inject
+    private EssayDAO essayDAO;
+    @Inject
+    @Property
+    private Block essayblock;
+
+    @Inject
     @Property
     private Block passageblock;
     @Property
@@ -112,7 +150,7 @@ public class ShowUser {
     private Vocab vocab;
     @Inject
     private VocabDAO vocabDAO;
-     @Inject
+    @Inject
     @Property
     private Block vocabblock;
     @Property
@@ -135,25 +173,25 @@ public class ShowUser {
     private GridinDAO gridinDAO;
     @InjectPage
     private Index index;
+    @Inject
+    private QuestiontypeDAO questiontypeDAO;
+    @Persist
+    private Questiontype questiontype;
 
     Object onActivate(Integer id) {
-        if(user != null ) {
+        if (user != null) {
 
             this.owner = userDAO.findById(id);
-            if(user.getId() == owner.getId()) {
+            if (user.getId() == owner.getId()) {
                 userprofile = owner.getUserProfile();
                 return null;
-            }
-            else 
-            {
+            } else {
                 return index;
             }
-        }
-        else
-        {
+        } else {
             return index;
         }
-        
+
     }
 
     /*public String getImageURL() {
@@ -215,13 +253,6 @@ public class ShowUser {
         }
     }
 
-    Block onActionFromGetArticles() {
-
-        updateArticles();
-
-        return resultblock;
-    }
-
     void updateLongPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
         AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
@@ -249,16 +280,82 @@ public class ShowUser {
 
         }
 
-        if(ids.size() > 0) {
+        if (ids.size() > 0) {
             longpassages = longpassageDAO.findByUserIds(ids);
-        }
-        else
-        {
+        } else {
             longpassages = null;
         }
     }
 
-     void updateGridins() {
+    void updatePrompts() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Prompt.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        if (ids.size() > 0) {
+            prompts = promptDAO.findByUserIds(ids);
+        } else {
+            prompts = null;
+        }
+    }
+
+    void updateImprovingParagraphs() {
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
+
+        LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(ImprovingParagraph.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Long> ids = new ArrayList<Long>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Long i = new Long((Long) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        if (ids.size() > 0) {
+            improvingparagraphs = improvingDAO.findByUserIds(ids);
+        } else {
+            improvingparagraphs = null;
+        }
+    }
+
+    void updateGridins() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
         AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
         AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
@@ -276,7 +373,7 @@ public class ShowUser {
         while (iter.hasNext()) {
 
             Map test = (HashMap) iter.next();
-             Integer in = new Integer((Integer) test.get("id"));
+            Integer in = new Integer((Integer) test.get("id"));
             Long i = in.longValue();
 
             if (!ids.contains(i)) {
@@ -285,14 +382,13 @@ public class ShowUser {
 
         }
 
-         if(ids.size() > 0) {
+        if (ids.size() > 0) {
             gridins = gridinDAO.findByUserIds(ids);
-         }
-         else
-         {
+        } else {
             gridins = null;
-         }
+        }
     }
+
     void updateVocabs() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
         AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
@@ -320,13 +416,11 @@ public class ShowUser {
 
         }
 
-         if(ids.size() > 0) {
+        if (ids.size() > 0) {
             vocabs = vocabDAO.findByUserIds(ids);
-         }
-         else
-         {
+        } else {
             vocabs = null;
-         }
+        }
     }
 
     void updateLongDualPassages() {
@@ -355,13 +449,11 @@ public class ShowUser {
             }
 
         }
-         if(ids.size() > 0) {
+        if (ids.size() > 0) {
             longdualpassages = longdualpassageDAO.findByUserIds(ids);
-         }
-         else
-         {
+        } else {
             longdualpassages = null;
-         }
+        }
     }
 
     void updateShortPassages() {
@@ -391,22 +483,30 @@ public class ShowUser {
 
         }
 
-         if(ids.size() > 0) {
+        if (ids.size() > 0) {
             shortpassages = shortpassageDAO.findByUserIds(ids);
-         }
-         else
-         {
+        } else {
             shortpassages = null;
-         }
+        }
     }
 
-    void updateQuestions() {
-                AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+    void updateQuestions(String qtype) {
+        if (qtype != null) {
+            questiontype = questiontypeDAO.findByName(qtype);
+        }
+
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
         AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
         AuditCriterion upudatercrit = AuditEntity.property("updatedBy").eq(owner);
 
         LogicalAuditExpression orExp = new LogicalAuditExpression(usercrit, upudatercrit, "or");
         AuditQuery query = reader.createQuery().forRevisionsOfEntity(Question.class, false, false).add(orExp).addProjection(AuditEntity.property("id").distinct());
+        if (questiontype != null) {
+            AuditCriterion qtypecrit = AuditEntity.property("questiontype").eq(questiontype);
+            query.add(qtypecrit);
+        }
+
+
 
 
 
@@ -426,15 +526,14 @@ public class ShowUser {
             }
 
         }
-         if(ids.size() > 0) {
+        if (ids.size() > 0) {
             questions = questionDAO.findByUserIds(ids);
-         }
-         else
-         {
+        } else {
             questions = null;
-         }
+        }
 
     }
+
     void updateShortDualPassages() {
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
         AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
@@ -462,13 +561,11 @@ public class ShowUser {
 
         }
 
-         if(ids.size() > 0) {
+        if (ids.size() > 0) {
             shortdualpassages = shortdualpassageDAO.findByUserIds(ids);
-         }
-         else
-         {
+        } else {
             shortdualpassages = null;
-         }
+        }
     }
 
     void updateArticles() {
@@ -481,13 +578,10 @@ public class ShowUser {
         AuditCriterion updatercrit = AuditEntity.property("updatedBy").eq(owner);
         AuditCriterion orcrit = AuditEntity.or(updatercrit, usercrit);
 
-    
-        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Article.class, false, false)
-                .add(orcrit)
-                
-                .addProjection(AuditEntity.property("id").distinct());
 
-        
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Article.class, false, false).add(orcrit).addProjection(AuditEntity.property("id").distinct());
+
+
 
 
         List results = query.getResultList();
@@ -504,16 +598,63 @@ public class ShowUser {
             if (!ids.contains(i)) {
                 ids.add(i);
             }
-          
+
         }
 
-        if(ids.size() > 0) {
+        if (ids.size() > 0) {
             articles = articleDAO.findByUserIds(ids);
-        }
-        else {
+        } else {
             articles = null;
         }
 
+    }
+        void updateEssays() {
+
+        AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
+
+
+
+        AuditCriterion usercrit = AuditEntity.property("user").eq(owner);
+        AuditCriterion updatercrit = AuditEntity.property("updatedBy").eq(owner);
+        AuditCriterion orcrit = AuditEntity.or(updatercrit, usercrit);
+
+
+        AuditQuery query = reader.createQuery().forRevisionsOfEntity(Essay.class, false, false).add(orcrit).addProjection(AuditEntity.property("id").distinct());
+
+
+
+
+        List results = query.getResultList();
+
+        Iterator iter = results.iterator();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        while (iter.hasNext()) {
+
+            Map test = (HashMap) iter.next();
+
+            Integer i = new Integer((Integer) test.get("id"));
+
+            if (!ids.contains(i)) {
+                ids.add(i);
+            }
+
+        }
+
+        if (ids.size() > 0) {
+            essays = essayDAO.findByUserIds(ids);
+        } else {
+           essay = null;
+        }
+
+    }
+
+
+    Block onActionFromGetArticles() {
+
+        updateArticles();
+
+        return resultblock;
     }
 
     Block onActionFromGetPassages() {
@@ -526,8 +667,8 @@ public class ShowUser {
         return passageblock;
     }
 
-    Block onActionFromGetQuestions() {
-        updateQuestions();
+    Block onActionFromGetQuestions(String qtype) {
+        updateQuestions(qtype);
         return questionblock;
     }
 
@@ -540,9 +681,82 @@ public class ShowUser {
     Block onActionFromGetOpenQuestions() {
         return clickblock;
     }
+
     Block onActionFromGetVocabs() {
         updateVocabs();
 
         return vocabblock;
+    }
+
+    Block onActionFromSentence() {
+        updateQuestions("Sentence Completion");
+        return questionblock;
+    }
+
+    Block onActionFromIdentifying() {
+        updateQuestions("Identifying Sentence Errors");
+        return questionblock;
+
+    }
+
+    Block onActionFromGridin() {
+        updateGridins();
+        return gridinblock;
+    }
+
+    Block onActionFromMultiple() {
+        updateQuestions("Multiple Choice");
+        return questionblock;
+    }
+
+    Block onActionFromImprovingSentences() {
+        updateQuestions("Improving Sentences");
+        return questionblock;
+
+    }
+
+    Block onActionFromImprovingParagraphs() {
+        updateImprovingParagraphs();
+
+        return improvingblock;
+    }
+
+    Block onActionFromPrompts() {
+        updatePrompts();
+        return promptblock;
+
+    }
+
+    Block onActionFromLpassage() {
+        updateLongPassages();
+
+        return passageblock;
+    }
+
+    Block onActionFromLdpassage() {
+        updateLongDualPassages();
+
+        return passageblock;
+    }
+
+    Block onActionFromSpassage() {
+        updateShortPassages();
+
+        return passageblock;
+    }
+
+    Block onActionFromSdpassage() {
+        updateShortDualPassages();
+
+        return passageblock;
+    }
+
+    Block onActionFromGetEssays() {
+        updateEssays();
+        return essayblock;
+    }
+
+    public String getMultiple() {
+        return "Multiple Choice";
     }
 }

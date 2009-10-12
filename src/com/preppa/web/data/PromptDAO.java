@@ -24,4 +24,5 @@ public interface PromptDAO extends GenericDAO<Prompt, Integer> {
     List<Prompt> findByTopic(String topic);
     List<Prompt> findAllByAwaiting();
      List<Prompt> findAllByApproved();
+     List<Prompt> findByUserIds(List<Integer> ids);
 }

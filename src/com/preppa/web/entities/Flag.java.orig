@@ -19,7 +19,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +28,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.Audited;
 
 /**
@@ -39,8 +39,6 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 public class Flag implements Serializable {
-    private OpenQuestion openQuestion;
-    private OpenAnswer openAnswer;
     private ImprovingParagraph improvingParagraph;
     private Question question;
     private Article article;
@@ -199,7 +197,31 @@ public class Flag implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-   
+    @ManyToOne
+    @JoinColumn(name="contentId")
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        if(contentType != null)
+        {
+            if(contentType == ContentType.Article) {
+                 this.article = article;
+            }
+            else
+            {
+                this.article = null;
+            }
+        }
+        else
+        {
+            this.contentType = ContentType.Article;
+             this.article = article;
+        }
+
+    }
+
     /**
      * @return the assignee
      */
@@ -219,7 +241,7 @@ public class Flag implements Serializable {
     /**
      * @return the vocab
      */
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="vocab_id")
     public Vocab getVocab() {
         return vocab;
@@ -246,7 +268,7 @@ public class Flag implements Serializable {
         }
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="gridin_id")
     public Gridin getGridin() {
         return gridin;
@@ -272,9 +294,10 @@ public class Flag implements Serializable {
         this.contentType = ContentType.GridIn;
     }
 
-    @JoinColumn(name="questionId")
     @ManyToOne
-   public Question getQuestion() {
+    @Fetch(FetchMode.SELECT)
+    @JoinColumn(name="question_id")
+    public Question getQuestion() {
         return question;
     }
 
@@ -296,7 +319,7 @@ public class Flag implements Serializable {
         }
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     public LongDualPassage getlongdualpassage() {
         return longdualpassage;
     }
@@ -324,7 +347,7 @@ public class Flag implements Serializable {
         }
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     public LongPassage getlongpassage() {
         return longpassage;
     }
@@ -352,7 +375,7 @@ public class Flag implements Serializable {
         }
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     public ShortDualPassage getshortdualpassage() {
         return shortdualpassage;
     }
@@ -380,7 +403,7 @@ public class Flag implements Serializable {
         }
     }
 
-       @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     public ShortPassage getshortpassage() {
         return shortpassage;
     }
@@ -408,7 +431,7 @@ public class Flag implements Serializable {
         }
     }
 
-       @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     public Prompt getPrompt() {
         return prompt;
     }
@@ -436,7 +459,7 @@ public class Flag implements Serializable {
         }
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     public ImprovingParagraph getImprovingParagraph() {
         return improvingParagraph;
     }
@@ -444,48 +467,4 @@ public class Flag implements Serializable {
     public void setImprovingParagraph(ImprovingParagraph improvingParagraph) {
         this.improvingParagraph = improvingParagraph;
     }
-
-     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="contentId")
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        if(contentType != null)
-        {
-            if(contentType == ContentType.Article) {
-                 this.article = article;
-            }
-            else
-            {
-                this.article = null;
-            }
-        }
-        else
-        {
-            this.contentType = ContentType.Article;
-             this.article = article;
-        }
-
-    }
-
-    @ManyToOne
-    public OpenAnswer getOpenAnswer() {
-        return openAnswer;
-    }
-
-    public void setOpenAnswer(OpenAnswer openAnswer) {
-        this.openAnswer = openAnswer;
-    }
-
-    @ManyToOne
-    public OpenQuestion getOpenQuestion() {
-        return openQuestion;
-    }
-
-    public void setOpenQuestion(OpenQuestion openQuestion) {
-        this.openQuestion = openQuestion;
-    }
-
 }
