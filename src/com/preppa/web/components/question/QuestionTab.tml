@@ -1,0 +1,8 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+              <ul class="css-tabs">
+                <li><a href="#" t:type="pagelink" t:context="id" t:page="contribution/question/revisions/QuestionRevisions"> History </a></li>
+                <li><a href="#" t:type="pagelink" t:page="contribution/question/talk" t:context="id"> Discuss</a></li>
+                 <li><a href="#" t:type="pagelink" t:page="contribution/question/show" t:context="id"> Question </a></li>
+              </ul>
+</t:container>

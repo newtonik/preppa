@@ -17,6 +17,7 @@ import com.preppa.web.entities.Prompt;
 import com.preppa.web.entities.Tag;
 import com.preppa.web.entities.User;
 import com.preppa.web.entities.Vote;
+import com.preppa.web.utils.Constants;
 import com.preppa.web.utils.ContentFlag;
 import com.preppa.web.utils.ContentType;
 import com.preppa.web.utils.FlagStatus;
@@ -81,7 +82,8 @@ public class ShowPrompt {
     private Integer votes;
     @Property
     private ContentType contType;
-    
+    @Property
+    private boolean isApproved;
     void onActivate(int id) {
         if (id > 0) {
             prompt = promptDAO.findById(id);
@@ -91,6 +93,12 @@ public class ShowPrompt {
                 flags = prompt.getFlags();
                 tags = prompt.getTaglist();
                 this.votes = voteDAO.findVoteByContentId(ContentType.Prompt, prompt.getId());
+                if (votes >= Constants.getApprovalThreshhold()) {
+                    isApproved = true;
+                }
+                else {
+                    isApproved = false;
+                }
             }
             type = prompt.getTopic();
         }

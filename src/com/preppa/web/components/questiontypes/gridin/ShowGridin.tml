@@ -8,11 +8,40 @@
         </p>
 
         <p>
-            <a href="#" t:type="pagelink" t:page="conribution/gridin/edit" t:context="${question.id}" > Edit </a>
+            <a href="#" t:type="pagelink" t:page="contribution/gridin/Edit" t:context="${question.id}" > Edit </a>
         </p>
+
+        <t:tagview t:alltags="question.taglist" />
+
+        <div id="gridinanswer" align="left" >
+            <h4>Answer</h4>
+            <p>
+
+                <b>If Single Answer</b>
+                ${answer.answer}
+                <br />
+                <b>If Range Answer</b>
+                High: ${answer.highanswer}
+                Low: ${answer.lowanswer}
+            </p>
+            <h4>Explanation</h4>
+            <p>
+                ${answer.description}
+            </p>
+
+        </div>
+
+
     </div>
     <br />
-    <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
 
+            <t:if t:test="${isRevision}">
+
+                <t:parameter name ="else">
+                    <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
+
+                </t:parameter>
+            </t:if>
+    
 
 </t:container>
