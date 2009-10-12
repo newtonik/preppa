@@ -2,7 +2,6 @@
 
     <br />
     <div class="mainclass">
-<t:promptmenu />
 
             <t:if t:test="isApproved">
                 <t:pagelink t:page="contribution/prompt/View" t:context="literal:Approve"><b>Approved</b></t:pagelink> - <b><t:pagelink t:page="contribution/prompt/view" t:context="literal:${type}">${type}</t:pagelink></b> - Prompt<br/>

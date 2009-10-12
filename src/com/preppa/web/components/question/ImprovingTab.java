@@ -20,7 +20,7 @@ import org.apache.tapestry5.annotations.SetupRender;
  *
  * @author Jan Jan
  */
-@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/passagetab.js"})
+@IncludeJavaScriptLibrary(value = {"context:js/jquery-1.3.2.js", "context:js/questiontab.js"})
 public class ImprovingTab {
 @Parameter(required=true)
 private ImprovingParagraph question;
