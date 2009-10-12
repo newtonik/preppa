@@ -1,0 +1,6 @@
+<html t:type="layout" t:pageTitle="Question Revisions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <body>
+    <div t:type="question/questiontab" t:question="question" />
+    <div t:id="showquestion" t:question="question"/>
+    </body>
+</html>

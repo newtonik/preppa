@@ -26,7 +26,7 @@
             </t:if>
          
               
-<t:promptmenu />
+<!-- <t:promptmenu /> -->
 <div  class="nav-menu"  align="left">
     <ul>
             <li><t:pagelink t:page="contribution/prompt/view" t:context="literal:Respond${approved}" style="height: 3em; line-height: 1.5em;">Respond to Statement</t:pagelink></li>

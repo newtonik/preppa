@@ -1,0 +1,57 @@
+<html t:type ="layout" t:pageTitle="Question" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <body>
+    <t:practicebarArt />
+    <div id="main">
+        <br />
+
+<div t:type="question/questiontab" t:question="question" />
+
+        <!-- <div t:type="longpassage/longpassagetab" t:passage="passage" /> -->
+        <div class="panes">
+            <br />
+            <br />
+            <div id="commentbox">
+                <ul t:type="loop" source="comments" value="comment">
+                    <li>
+                        <span id="commter-name" class="author"> ${comment.commenter.username} </span>:
+                        <p class="comment">
+                    <t:outputraw value="${comment.comment}" />
+                    </p>
+                    <div class="author-time" align="left">
+                        Created at <t:output format="literal:MMM. dd, yyyy h:mm a" value="comment.createdAt" />
+                    </div>
+                    </li>
+                </ul>
+            </div>
+            <br />
+            <br />
+
+            <div id="responsebox">
+                <t:form t:id="commentform" clientValidation="false">
+                    <t:errors />
+
+                    <table align="center">
+
+                        <tr>
+                            <td align="left">
+                                Enter a review
+                                <br />
+                        <t:editor align="left" t:id="pass1" t:toolbarSet="Basic" t:width="600" t:height="100"/>
+                        </td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="2" align="left">
+                                <br />
+                                <input type="submit" value="Post"/>
+                            </td>
+                        </tr>
+
+                    </table>
+                </t:form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

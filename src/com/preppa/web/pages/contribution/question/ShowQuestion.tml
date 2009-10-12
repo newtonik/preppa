@@ -3,6 +3,7 @@
 <t:practicebarart />
     <div class="mainclass">
 
+    <div t:type="question/questiontab" t:question="ques" />
 
             <t:if t:test="isApproved">
                 <t:pagelink t:page="contribution/question/approve/index"><b>Approved</b></t:pagelink> - <t:pagelink t:page="contribution/question/approve/view" t:context="${qType}">${qType}</t:pagelink> - Show Question

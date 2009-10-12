@@ -1,0 +1,6 @@
+<html t:type="layout" t:pageTitle="Gridin Revsions" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <body>
+    <div t:type="question/gridintab" t:question="question" />
+    <div t:id="showquestion" t:question="question" t:isRevision="true" t:answer="answer"/>
+    </body>
+</html>

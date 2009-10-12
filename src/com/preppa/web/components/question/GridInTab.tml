@@ -1,0 +1,7 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+              <ul class="css-tabs">
+                <li><a href="#" t:type="pagelink" t:context="id" t:page="contribution/gridin/revisions/GridinRevisions"> History </a></li>
+                <li><a href="#" t:type="pagelink" t:page="contribution/gridin/talk" t:context="id"> Discuss</a></li>
+                 <li><a href="#" t:type="pagelink" t:page="contribution/gridin/show" t:context="id"> Question </a></li>
+              </ul>
+</t:container>
