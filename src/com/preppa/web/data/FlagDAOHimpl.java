@@ -28,12 +28,14 @@ public class FlagDAOHimpl  extends AbstractHibernateDAO<Flag, Integer> implement
      SQLString sqlString = new SQLString("FROM Flag f");
         if(t != null)
         {
-             sqlString.addWhereClause("f.contentType = '" + t.ordinal() + "'");
+             //sqlString.addWhereClause("f.contentType = '" + t.ordinal() + "'");
+             //sqlString.addWhereClause("f.contentType = '" + t + "'");
         }
 
 
 
-        return findByQuery(sqlString.toString());
+        //return findByQuery(sqlString.toString());
+        return findByCriteria(Restrictions.eq("contentType", t));
     }
 
     @Override

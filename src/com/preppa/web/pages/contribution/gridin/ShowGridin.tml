@@ -1,6 +1,9 @@
 <html t:type="layout" t:pageTitle="${question.title}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
     <div id="main">
+
+        <div t:type="question/gridintab" t:question="question" />
+
         <h3>  ${question.title} </h3>
         <div align="center">
             <t:if t:test="${question.image}">
