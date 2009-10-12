@@ -140,10 +140,18 @@ public class ShowUser {
     @Inject
     @Property
     private Block essayblock;
-
     @Inject
     @Property
-    private Block passageblock;
+    private Block shortpassageblock;
+    @Inject
+    @Property
+    private Block longpassageblock;
+    @Inject
+    @Property
+    private Block longdualpassageblock;
+    @Inject
+    @Property
+    private Block shortdualpassageblock;
     @Property
     private List<Vocab> vocabs;
     @Property
@@ -176,6 +184,7 @@ public class ShowUser {
     @Inject
     private QuestiontypeDAO questiontypeDAO;
     @Persist
+    @Property
     private Questiontype questiontype;
 
     Object onActivate(Integer id) {
@@ -608,7 +617,8 @@ public class ShowUser {
         }
 
     }
-        void updateEssays() {
+
+    void updateEssays() {
 
         AuditReader reader = AuditReaderFactory.get(sessionManager.getSession());
 
@@ -644,11 +654,10 @@ public class ShowUser {
         if (ids.size() > 0) {
             essays = essayDAO.findByUserIds(ids);
         } else {
-           essay = null;
+            essay = null;
         }
 
     }
-
 
     Block onActionFromGetArticles() {
 
@@ -657,15 +666,7 @@ public class ShowUser {
         return resultblock;
     }
 
-    Block onActionFromGetPassages() {
-
-        updateLongDualPassages();
-        updateLongPassages();
-        updateShortDualPassages();
-        updateShortPassages();
-
-        return passageblock;
-    }
+  
 
     Block onActionFromGetQuestions(String qtype) {
         updateQuestions(qtype);
@@ -730,25 +731,25 @@ public class ShowUser {
     Block onActionFromLpassage() {
         updateLongPassages();
 
-        return passageblock;
+        return longpassageblock;
     }
 
     Block onActionFromLdpassage() {
         updateLongDualPassages();
 
-        return passageblock;
+        return longdualpassageblock;
     }
 
     Block onActionFromSpassage() {
         updateShortPassages();
 
-        return passageblock;
+        return shortpassageblock;
     }
 
     Block onActionFromSdpassage() {
         updateShortDualPassages();
 
-        return passageblock;
+        return shortdualpassageblock;
     }
 
     Block onActionFromGetEssays() {

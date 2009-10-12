@@ -16,10 +16,10 @@ root {
 }
 
 table {
-    width:95%;
+    width:100%;
     border-top:1px solid #e5eff8;
     border-right:1px solid #e5eff8;
-    margin:1em auto;
+    margin:0.5em auto;
     border-collapse:collapse;
 }
 td {
@@ -44,4 +44,10 @@ th {
 }
 tr.clickablerow {
     cursor:pointer;
+}
+
+#usertab {
+    margin-left:auto;
+    margin-right:auto;
+    z-index:1000;
 }

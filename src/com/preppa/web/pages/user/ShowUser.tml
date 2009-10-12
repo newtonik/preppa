@@ -29,6 +29,7 @@
     <div id="trackerbox" class="mainclass">
         <h3> Watchlist </h3>
         <br /> <br />
+        <div id="usertab">
         <ul id="sddm">
             <li><a href="#"
                    onmouseover="mopen('m1')"
@@ -67,13 +68,15 @@
                 </div>
             </li>
         </ul>
+        </div>
+        <br /> <br />
         <br /> <br />
         <!-- tab "panes" -->
         <ul class="css-tabs">
-            <li><a href="#" t:context="articles" t:id="getarticles" t:type="actionlink" t:zone="articlezone"  >Articles and Guides</a></li>
-            <li><a href="#" t:context="multiple" t:id="getquestions" id="getquestions"  t:type="actionlink"  t:zone="multiplezone" >Questions</a></li>
-            <li><a href="#" t:context="essays" t:id="getessays" t:type="actionlink" t:zone="gridinzone" >Essay Responses</a></li>
-            <li><a href="#" t:context="vocabs" t:id="getvocabs" t:type="actionlink" t:zone="vocabzone" >Vocab</a></li>
+            <li><a href="#" class="tabbutton" t:context="articles" t:id="getarticles" t:type="actionlink" t:zone="articlezone"  >Articles and Guides</a></li>
+            <li><a href="#" class="questiontab" t:context="multiple" t:id="getquestions" id="getquestions"  t:type="actionlink"  t:zone="multiplezone" >Questions</a></li>
+            <li><a href="#" class="tabbutton" t:context="essays" t:id="getessays" t:type="actionlink" t:zone="gridinzone" >Essay Responses</a></li>
+            <li><a href="#" class="tabbutton" t:context="vocabs" t:id="getvocabs" t:type="actionlink" t:zone="vocabzone" >Vocab</a></li>
 
         </ul>
         <div class="realpanes">
@@ -83,7 +86,6 @@
             <div t:type="zone" t:id="gridinzone"></div>
             <div t:type="zone" t:id="vocabzone"></div>
         </div>
-
 
     </div>
     <t:block t:id="gridinblock">
@@ -110,7 +112,7 @@
 
 
     <t:block t:id="questionblock">
-        <h2> </h2>
+        <h2> ${questiontype.name}</h2>
         <table class="questiontable">
             <tr>
                 <th> Question </th>
@@ -149,7 +151,7 @@
             </tr>
         </table>
     </t:block>
-    <t:block t:id="passageblock">
+    <t:block t:id="shortpassageblock">
         <h3>Short Passages</h3>
         <table class="passagetable">
             <tr>
@@ -165,7 +167,11 @@
             <td align="left"> ${shortpassage.updatedBy.username} </td>
             </tr>
         </table>
+
         <br />
+
+    </t:block>
+     <t:block t:id="shortdualpassageblock">
         <h3>Short Dual Passages</h3>
         <table class="passagetable">
             <tr>
@@ -182,6 +188,8 @@
             </tr>
         </table>
         <br />
+     </t:block>
+     <t:block t:id="longpassageblock">
         <h3>Long Passages</h3>
         <table class="passagetable">
             <tr>
@@ -198,6 +206,8 @@
             </tr>
         </table>
         <br />
+     </t:block>
+     <t:block t:id="longdualpassageblock">
         <h3>Long Dual Passages</h3>
         <table class="passagetable">
             <tr>
@@ -272,6 +282,7 @@
     </t:block>
 
       <t:block t:id="essayblock">
+          <h2> Essay Responses</h2>
         <table class="articletable">
             <tr>
                 <th> Teaser </th>

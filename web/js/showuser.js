@@ -15,18 +15,22 @@ function DoClick(theUrl) {
     document.location.href = theUrl;
 
 }
-
+    $('sddm').hide();
 document.observe("dom:loaded", function() {
-    $('showq').observe('click', function() {
-        alert("clicked");
 
-        $('multiplezone').setStyle({
-            display:'block'
-        })
+
+    $$("a.tabbutton").invoke("observe", "click", function() {
+            $('sddm').hide();
+        
     });
-
-
-
+     $("getquestions").observe("click", function() {
+            $('sddm').show();
+   
+    });
+//    $('getquestions').observe('click', function() {
+//        $('sddm').show();
+//
+//    });
 });
 
 function showmultiple() {
