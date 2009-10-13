@@ -43,7 +43,7 @@ public class ShowVocab {
     private List<Tag> tags;
     @Property
     private ContentType contType;
-
+    
 
     void onActivate(int id) {
         contType = ContentType.Vocab;

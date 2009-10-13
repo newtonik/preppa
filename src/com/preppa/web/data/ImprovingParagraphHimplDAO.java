@@ -52,4 +52,12 @@ public class ImprovingParagraphHimplDAO extends AbstractHibernateDAO<ImprovingPa
 
         return findByQuery(sqlString.toString());
     }
+
+    @Override
+    public ImprovingParagraph findById(Integer quesId) {
+        SQLString sqlString = new SQLString("FROM ImprovingParagraph lp");
+
+        sqlString.addWhereClause("lp.id =   '" + quesId + "'");
+        return (ImprovingParagraph) findByQuery(sqlString.toString());
+    }
 }

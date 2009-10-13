@@ -25,8 +25,6 @@
             </div>
             <br />
             <t:tagview t:alltags="tags" t:searchlink="${slink}"/>
-            <br />
-            <div id="voteseal" t:type="voteseal" t:contentid="${question.id}" t:contenttype="contType" t:votes="${question.rating}" />
               <p>
                 <small><a href="#" class="flaglink" > Flag </a></small>
              </p>

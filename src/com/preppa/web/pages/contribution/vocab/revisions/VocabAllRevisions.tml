@@ -1,6 +1,6 @@
 <html t:type="layout" t:pageTitle="All revisions for ${vocab.name}" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
    <t:practicebarArt />
-    <div id="main">
+    <div class="mainclass">
            <div align="right">
             <a href="#" t:type="pagelink" t:context="${vocab.id}" t:page="contribution/vocab/show"> Current </a>
    </div>

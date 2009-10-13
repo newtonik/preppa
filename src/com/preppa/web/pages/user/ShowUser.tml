@@ -29,7 +29,7 @@
     <div id="trackerbox" class="mainclass">
         <h3> Watchlist </h3>
         <br /> <br />
-        <div id="usertab">
+        <div id="usertab" style='display: none'>
         <ul id="sddm">
             <li><a href="#"
                    onmouseover="mopen('m1')"
